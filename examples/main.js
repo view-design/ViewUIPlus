@@ -1,7 +1,6 @@
 /**
  * Created by aresn on 16/6/20.
  */
-// import 'babel-polyfill';
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import App from './app.vue';
