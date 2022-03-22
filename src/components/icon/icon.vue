@@ -1,5 +1,5 @@
 <template>
-    <i :class="classes" :style="styles" @click="handleClick"></i>
+    <i :class="classes" :style="styles"></i>
 </template>
 <script>
     const prefixCls = 'ivu-icon';
@@ -31,20 +31,11 @@
             styles () {
                 let style = {};
 
-                if (this.size) {
-                    style['font-size'] = `${this.size}px`;
-                }
+                if (this.size) style['font-size'] = `${this.size}px`;
 
-                if (this.color) {
-                    style.color = this.color;
-                }
+                if (this.color) style.color = this.color;
 
                 return style;
-            }
-        },
-        methods: {
-            handleClick (event) {
-                this.$emit('click', event);
             }
         }
     };
