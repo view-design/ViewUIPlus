@@ -4,7 +4,7 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import App from './app.vue';
-// import iView from '../src/index';
+import ViewUIPlus from '../src/index';
 // import locale from '../src/locale/lang/en-US';
 // import locale from '../src/locale/lang/zh-CN';
 
@@ -36,7 +36,7 @@ const router = createRouter({
         // },
         // {
         //     path: '/button',
-        //     component: (resolve) => require(['./routers/button.vue'], resolve)
+        //     component: () => import('./routers/button.vue')
         // },
         // {
         //     path: '/input',
@@ -222,10 +222,10 @@ const router = createRouter({
         //     path: '/drawer',
         //     component: (resolve) => require(['./routers/drawer.vue'], resolve)
         // },
-        // {
-        //     path: '/icon',
-        //     component: (resolve) => require(['./routers/icon.vue'], resolve)
-        // },
+        {
+            path: '/icon',
+            component: () => import('./routers/icon.vue')
+        },
         // {
         //     path: '/list',
         //     component: (resolve) => require(['./routers/list.vue'], resolve)
@@ -234,6 +234,7 @@ const router = createRouter({
 });
 
 const app = createApp(App);
+app.use(ViewUIPlus);
 app.use(router);
 app.mount('#app');
 export default app;
