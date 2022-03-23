@@ -15,7 +15,7 @@
 // import BackTop from './components/back-top';
 // import Badge from './components/badge';
 // import Breadcrumb from './components/breadcrumb';
-// import Button from './components/button';
+import Button from './components/button';
 // import Card from './components/card';
 // import Carousel from './components/carousel';
 // import Cascader from './components/cascader';
@@ -79,8 +79,8 @@ const components = {
     // Badge,
     // Breadcrumb,
     // BreadcrumbItem: Breadcrumb.Item,
-    // Button,
-    // ButtonGroup: Button.Group,
+    Button,
+    ButtonGroup: Button.Group,
     // Card,
     // Carousel,
     // CarouselItem: Carousel.Item,
@@ -152,7 +152,7 @@ const components = {
 
 const iview = {
     ...components,
-    // iButton: Button,
+    iButton: Button,
     // iCircle: Circle,
     // iCol: Col,
     // iContent: Content,

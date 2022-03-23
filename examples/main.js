@@ -34,10 +34,10 @@ const router = createRouter({
         //     path: '/grid',
         //     component: (resolve) => require(['./routers/grid.vue'], resolve)
         // },
-        // {
-        //     path: '/button',
-        //     component: () => import('./routers/button.vue')
-        // },
+        {
+            path: '/button',
+            component: () => import('./routers/button.vue')
+        },
         // {
         //     path: '/input',
         //     component: (resolve) => require(['./routers/input.vue'], resolve)

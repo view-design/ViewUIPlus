@@ -3,7 +3,7 @@ import { oneOf } from '../utils/assist';
 export default {
     props: {
         to: {
-            type: [Object, String]
+            type: [ Object, String ]
         },
         replace: {
             type: Boolean,
@@ -20,7 +20,7 @@ export default {
             type: Boolean,
             required: false,
             default: false,
-        },
+        }
     },
     computed: {
         linkUrl () {

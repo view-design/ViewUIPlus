@@ -15,7 +15,7 @@
 <!--            <span><router-link to="/affix">Affix</router-link></span>-->
 <!--            <span><router-link to="/anchor">Anchor</router-link></span>-->
 <!--            <span><router-link to="/grid">Grid</router-link></span>-->
-<!--            <span><router-link to="/button">Button</router-link></span>-->
+            <span><router-link to="/button">Button</router-link></span>
 <!--            <span><router-link to="/input">Input</router-link></span>-->
 <!--            <span><router-link to="/radio">Radio</router-link></span>-->
 <!--            <span><router-link to="/checkbox">Checkbox</router-link></span>-->

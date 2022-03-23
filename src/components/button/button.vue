@@ -17,6 +17,7 @@
         name: 'Button',
         mixins: [ mixinsLink, mixinsForm ],
         components: { Icon },
+        emits: ['click'],
         props: {
             type: {
                 validator (value) {
@@ -33,8 +34,8 @@
                 validator (value) {
                     return oneOf(value, ['small', 'large', 'default']);
                 },
-                default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                default (props) {
+                    return !props.$IVIEW || props.$IVIEW.size === '' ? 'default' : props.$IVIEW.size;
                 }
             },
             loading: Boolean,
@@ -89,16 +90,16 @@
                 const {isHrefPattern} = this;
                 return isHrefPattern ? 'a' : 'button';
             },
-            tagProps() {
-                const {isHrefPattern} = this;
-                if(isHrefPattern) {
-                    const {linkUrl,target}=this;
-                    return {href: linkUrl, target};
-                } else {
-                    const {htmlType} = this;
-                    return {type: htmlType};
-                }
-            }
+        //     tagProps() {
+        //         const {isHrefPattern} = this;
+        //         if(isHrefPattern) {
+        //             const {linkUrl,target}=this;
+        //             return {href: linkUrl, target};
+        //         } else {
+        //             const {htmlType} = this;
+        //             return {type: htmlType};
+        //         }
+        //     }
         },
         methods: {
             // Ctrl or CMD and click, open in new window when use `to`
