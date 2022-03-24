@@ -152,7 +152,7 @@ const components = {
 
 const iview = {
     ...components,
-    iButton: Button,
+    // iButton: Button,
     // iCircle: Circle,
     // iCol: Col,
     // iContent: Content,
