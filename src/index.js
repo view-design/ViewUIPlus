@@ -175,7 +175,6 @@ const install = function(app, opts = {}) {
         app.component(key, iview[key]);
         // todo i-tag
     });
-    console.log("install:",app)
     app.config.globalProperties.$IVIEW = {
         size: opts.size || '',
     }
