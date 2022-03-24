@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div :class="classes" v-if="fullscreenVisible">
+        <div :class="classes" v-if="fullscreenVisible && show">
             <div :class="mainClasses">
                 <span :class="dotClasses"></span>
                 <div :class="textClasses"><slot></slot></div>
@@ -33,6 +33,10 @@
             fullscreen: {
                 type: Boolean,
                 default: false
+            },
+            show: {
+                type: Boolean,
+                default: true
             }
         },
         data () {
