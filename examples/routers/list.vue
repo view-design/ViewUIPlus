@@ -37,7 +37,7 @@
 
                 </ListItemMeta>
                 一段内容
-                <template v-slot:action>
+                <template #action>
                     <li>
                         <a href="">edit</a>
                         <!--                        <Button typr="primary">编辑</Button>-->
@@ -57,7 +57,7 @@
 
                 </ListItemMeta>
                 We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.
-                <template v-slot:action>
+                <template #action>
                     <li>
                         <Icon type="ios-star-outline" /> 156
                     </li>
@@ -68,7 +68,7 @@
                         <Icon type="ios-chatbubbles-outline" /> 10
                     </li>
                 </template>
-                <template v-slot:extra>
+                <template #extra>
                     <img src="https://dev-file.iviewui.com/5wxHCQMUyrauMCGSVEYVxHR5JmvS7DpH/large" style="width: 280px">
                 </template>
             </ListItem>
