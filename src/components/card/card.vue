@@ -91,7 +91,7 @@
             tagProps () {
                 const { isHrefPattern } = this;
                 if (isHrefPattern) {
-                    const { linkUrl,target } = this;
+                    const { linkUrl, target } = this;
                     return { href: linkUrl, target };
                 } else {
                     return {};
