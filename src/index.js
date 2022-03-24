@@ -16,6 +16,7 @@
 // import Badge from './components/badge';
 // import Breadcrumb from './components/breadcrumb';
 import Button from './components/button';
+import ButtonGroup from './components/button-group';
 // import Card from './components/card';
 // import Carousel from './components/carousel';
 // import Cascader from './components/cascader';
@@ -24,20 +25,16 @@ import Button from './components/button';
 // import Circle from './components/circle';
 // import Collapse from './components/collapse';
 // import ColorPicker from './components/color-picker';
-import Content from './components/content';
 // import DatePicker from './components/date-picker';
 // import Divider from './components/divider';
 // import Drawer from './components/drawer';
 // import Dropdown from './components/dropdown';
-import Footer from './components/footer';
 // import Form from './components/form';
-import Header from './components/header';
 import Icon from './components/icon';
 // import Input from './components/input';
 // import InputNumber from './components/input-number';
 // import Scroll from './components/scroll';
 // import Split from './components/split';
-import Layout from './components/layout';
 // import List from './components/list';
 // import LoadingBar from './components/loading-bar';
 // import Menu from './components/menu';
@@ -49,7 +46,6 @@ import Layout from './components/layout';
 // import Progress from './components/progress';
 // import Radio from './components/radio';
 // import Rate from './components/rate';
-import Sider from './components/sider';
 // import Slider from './components/slider';
 // import Spin from './components/spin';
 // import Steps from './components/steps';
@@ -65,6 +61,7 @@ import Sider from './components/sider';
 // import Tree from './components/tree';
 // import Upload from './components/upload';
 import { Row, Col } from './components/grid';
+import { Layout, Header, Sider, Content, Footer } from './components/layout';
 // import { Select, Option, OptionGroup } from './components/select';
 // import locale from './locale/index';
 
@@ -80,7 +77,7 @@ const components = {
     // Breadcrumb,
     // BreadcrumbItem: Breadcrumb.Item,
     Button,
-    ButtonGroup: Button.Group,
+    ButtonGroup,
     // Card,
     // Carousel,
     // CarouselItem: Carousel.Item,

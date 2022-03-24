@@ -4,9 +4,4 @@ import Sider from './sider.vue';
 import Content from './content.vue';
 import Footer from './footer.vue';
 
-Layout.Header = Header;
-Layout.Sider = Sider;
-Layout.Content = Content;
-Layout.Footer = Footer;
-
-export default Layout; 
+export { Layout, Header, Sider, Content, Footer };
