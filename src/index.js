@@ -64,8 +64,8 @@ import Icon from './components/icon';
 // import Transfer from './components/transfer';
 // import Tree from './components/tree';
 // import Upload from './components/upload';
-// import {Row, Col} from './components/grid';
-// import {Select, Option, OptionGroup} from './components/select';
+import { Row, Col } from './components/grid';
+// import { Select, Option, OptionGroup } from './components/select';
 // import locale from './locale/index';
 
 const components = {
@@ -89,7 +89,7 @@ const components = {
     // CellGroup: Cell.Group,
     // Checkbox,
     // CheckboxGroup: Checkbox.Group,
-    // Col,
+    Col,
     // Collapse,
     // ColorPicker,
     // Content: Content,
@@ -130,7 +130,7 @@ const components = {
     // Radio,
     // RadioGroup: Radio.Group,
     // Rate,
-    // Row,
+    Row,
     // Select,
     // Slider,
     // Spin,

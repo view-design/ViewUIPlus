@@ -30,10 +30,10 @@ const router = createRouter({
         //     path: '/anchor',
         //     component: (resolve) => require(['./routers/anchor.vue'], resolve)
         // },
-        // {
-        //     path: '/grid',
-        //     component: (resolve) => require(['./routers/grid.vue'], resolve)
-        // },
+        {
+            path: '/grid',
+            component: () => import('./routers/grid.vue')
+        },
         {
             path: '/button',
             component: () => import('./routers/button.vue')

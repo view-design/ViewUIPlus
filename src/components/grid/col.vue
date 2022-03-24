@@ -104,7 +104,7 @@
         mounted () {
             this.updateGutter();
         },
-        beforeDestroy () {
+        beforeUnmount () {
             this.updateGutter();
         }
     };
