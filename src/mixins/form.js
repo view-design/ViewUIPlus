@@ -8,7 +8,7 @@ export default {
         itemDisabled () {
             let state = this.disabled;
             if (!state && this.FormInstance) state = this.FormInstance.disabled;
-            return state;
+            return state ? true : null; // todo <a> can not set disabled: false
         }
     }
 };
