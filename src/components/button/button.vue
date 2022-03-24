@@ -90,16 +90,16 @@
                 const {isHrefPattern} = this;
                 return isHrefPattern ? 'a' : 'button';
             },
-        //     tagProps() {
-        //         const {isHrefPattern} = this;
-        //         if(isHrefPattern) {
-        //             const {linkUrl,target}=this;
-        //             return {href: linkUrl, target};
-        //         } else {
-        //             const {htmlType} = this;
-        //             return {type: htmlType};
-        //         }
-        //     }
+            tagProps() {
+                const {isHrefPattern} = this;
+                if(isHrefPattern) {
+                    const {linkUrl,target}=this;
+                    return {href: linkUrl, target};
+                } else {
+                    const {htmlType} = this;
+                    return {type: htmlType};
+                }
+            }
         },
         methods: {
             // Ctrl or CMD and click, open in new window when use `to`
