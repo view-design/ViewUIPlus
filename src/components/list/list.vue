@@ -9,6 +9,7 @@
     </div>
 </template>
 <script>
+    import Spin from '../spin';
     import { oneOf } from '../../utils/assist';
 
     const prefixCls = 'ivu-list';
@@ -20,6 +21,7 @@
                 ListInstance: this
             };
         },
+        components: { Spin },
         props: {
             border: {
                 type: Boolean,
