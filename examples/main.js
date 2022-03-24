@@ -138,10 +138,10 @@ const router = createRouter({
         //     path: '/menu',
         //     component: (resolve) => require(['./routers/menu.vue'], resolve)
         // },
-        // {
-        //     path: '/spin',
-        //     component: (resolve) => require(['./routers/spin.vue'], resolve)
-        // },
+        {
+            path: '/spin',
+            component: () => import('./routers/spin.vue')
+        },
         // {
         //     path: '/cascader',
         //     component: (resolve) => require(['./routers/cascader.vue'], resolve)

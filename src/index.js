@@ -46,7 +46,7 @@ import Icon from './components/icon';
 // import Radio from './components/radio';
 // import Rate from './components/rate';
 // import Slider from './components/slider';
-// import Spin from './components/spin';
+import Spin from './components/spin';
 // import Steps from './components/steps';
 // import Switch from './components/switch';
 // import Table from './components/table';
@@ -129,7 +129,7 @@ const components = {
     Sider,
     // Slider,
     // Split,
-    // Spin,
+    Spin,
     // Step: Steps.Step,
     // Steps,
     // Submenu: Menu.Sub,
