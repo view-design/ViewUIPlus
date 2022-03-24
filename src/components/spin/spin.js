@@ -14,9 +14,11 @@ Spin.newInstance = properties => {
     const _props = properties || {};
 
     const Instance = new Vue({
-        data: Object.assign({}, _props, {
+        data () {
+            return Object.assign({}, _props, {
 
-        }),
+            });
+        },
         render (h) {
             let vnode = '';
             if (this.render) {

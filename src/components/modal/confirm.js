@@ -10,22 +10,24 @@ Modal.newInstance = properties => {
 
     const Instance = new Vue({
         mixins: [ Locale ],
-        data: Object.assign({}, _props, {
-            visible: false,
-            width: 416,
-            title: '',
-            body: '',
-            iconType: '',
-            iconName: '',
-            okText: undefined,
-            cancelText: undefined,
-            showCancel: false,
-            loading: false,
-            buttonLoading: false,
-            scrollable: false,
-            closable: false,
-            closing: false // 关闭有动画，期间使用此属性避免重复点击
-        }),
+        data () {
+            return Object.assign({}, _props, {
+                visible: false,
+                width: 416,
+                title: '',
+                body: '',
+                iconType: '',
+                iconName: '',
+                okText: undefined,
+                cancelText: undefined,
+                showCancel: false,
+                loading: false,
+                buttonLoading: false,
+                scrollable: false,
+                closable: false,
+                closing: false // 关闭有动画，期间使用此属性避免重复点击
+            });
+        },
         render (h) {
             let footerVNodes = [];
             if (this.showCancel) {
