@@ -17,7 +17,7 @@ import Avatar from './components/avatar';
 // import Breadcrumb from './components/breadcrumb';
 import Button from './components/button';
 import ButtonGroup from './components/button-group';
-// import Card from './components/card';
+import Card from './components/card';
 // import Carousel from './components/carousel';
 // import Cascader from './components/cascader';
 // import Cell from './components/cell';
@@ -78,7 +78,7 @@ const components = {
     // BreadcrumbItem: Breadcrumb.Item,
     Button,
     ButtonGroup,
-    // Card,
+    Card,
     // Carousel,
     // CarouselItem: Carousel.Item,
     // Cascader,

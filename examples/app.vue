@@ -30,7 +30,7 @@
 <!--            <span><router-link to="/upload">Upload</router-link></span>-->
 <!--            <span><router-link to="/collapse">Collapse</router-link></span>-->
 <!--            <span><router-link to="/carousel">Carousel</router-link></span>-->
-<!--            <span><router-link to="/card">Card</router-link></span>-->
+            <span><router-link to="/card">Card</router-link></span>
 <!--            <span><router-link to="/tree">Tree</router-link></span>-->
 <!--            <span><router-link to="/rate">Rate</router-link></span>-->
 <!--            <span><router-link to="/circle">Circle</router-link></span>-->

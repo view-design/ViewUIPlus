@@ -1,15 +1,19 @@
 <template>
     <Card style="width:350px" to="/button">
-        <p slot="title">
-            <Icon type="ios-film-outline"></Icon>
-            <span>经典电影</span>
-        </p>
-        <a href="#" slot="extra" @click.prevent="changeLimit">
-            <Icon type="ios-loop-strong"></Icon>
-            换一换
-        </a>
+        <template #title>
+            <p>
+                <Icon type="ios-film-outline"></Icon>
+                <span>经典电影</span>
+            </p>
+        </template>
+        <template #extra>
+            <a href="#" @click.prevent="changeLimit">
+                <Icon type="ios-loop-strong"></Icon>
+                换一换
+            </a>
+        </template>
         <ul>
-            <li v-for="item in movieList">
+            <li v-for="item in movieList" :key="item.name">
                 <a :href="item.url" target="_blank">{{ item.name }}</a>
                 <span>
                     <!--<Icon type="ios-star" v-for="n in 4"></Icon><Icon type="ios-star" v-if="item.rate >= 9.5"></Icon><Icon type="ios-star-half" v-else></Icon>-->

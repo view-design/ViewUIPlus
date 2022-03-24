@@ -94,10 +94,10 @@ const router = createRouter({
         //     path: '/carousel',
         //     component: (resolve) => require(['./routers/carousel.vue'], resolve)
         // },
-        // {
-        //     path: '/card',
-        //     component: (resolve) => require(['./routers/card.vue'], resolve)
-        // },
+        {
+            path: '/card',
+            component: () => import('./routers/card.vue')
+        },
         // {
         //     path: '/tree',
         //     component: (resolve) => require(['./routers/tree.vue'], resolve)
