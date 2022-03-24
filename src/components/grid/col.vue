@@ -4,7 +4,6 @@
     </div>
 </template>
 <script>
-    import { findComponentUpward } from '../../utils/assist';
     const prefixCls = 'ivu-col';
 
     function parseFlex(flex) {
@@ -21,6 +20,7 @@
 
     export default {
         name: 'iCol',
+        inject: ['RowInstance'],
         props: {
             span: [Number, String],
             order: [Number, String],
@@ -40,12 +40,10 @@
                 default: ''
             }
         },
-        data () {
-            return {
-                gutter: 0
-            };
-        },
         computed: {
+            gutter () {
+                return this.RowInstance.gutter;
+            },
             classes () {
                 let classList = [
                     `${prefixCls}`,
@@ -92,20 +90,6 @@
 
                 return style;
             }
-        },
-        methods: {
-            updateGutter () {
-                const Row = findComponentUpward(this, 'Row');
-                if (Row) {
-                    Row.updateGutter(Row.gutter);
-                }
-            }
-        },
-        mounted () {
-            this.updateGutter();
-        },
-        beforeUnmount () {
-            this.updateGutter();
         }
     };
 </script>

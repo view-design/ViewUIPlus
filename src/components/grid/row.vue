@@ -4,12 +4,17 @@
     </div>
 </template>
 <script>
-    import { oneOf, findComponentDownward, findBrothersComponents } from '../../utils/assist';
+    import { oneOf } from '../../utils/assist';
 
     const prefixCls = 'ivu-row';
 
     export default {
         name: 'Row',
+        provide () {
+            return {
+                RowInstance: this
+            }
+        },
         props: {
             // todo 4.5.0 已无效，强制 flex
             type: {
@@ -64,26 +69,6 @@
                 }
 
                 return style;
-            }
-        },
-        methods: {
-            updateGutter (val) {
-                // 这里会嵌套寻找，把 Col 里的 Row 里的 Col 也找到，所以用 兄弟找
-//                const Cols = findComponentsDownward(this, 'iCol');
-                const Col = findComponentDownward(this, 'iCol');
-                const Cols = findBrothersComponents(Col, 'iCol', false);
-                if (Cols.length) {
-                    Cols.forEach((child) => {
-                        if (val !== 0) {
-                            child.gutter = val;
-                        }
-                    });
-                }
-            }
-        },
-        watch: {
-            gutter (val) {
-                this.updateGutter(val);
             }
         }
     };
