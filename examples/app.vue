@@ -28,7 +28,7 @@
 <!--            <span><router-link to="/input-number">InputNumber</router-link></span>-->
 <!--            <span><router-link to="/progress">Progress</router-link></span>-->
 <!--            <span><router-link to="/upload">Upload</router-link></span>-->
-<!--            <span><router-link to="/collapse">Collapse</router-link></span>-->
+            <span><router-link to="/collapse">Collapse</router-link></span>
 <!--            <span><router-link to="/carousel">Carousel</router-link></span>-->
             <span><router-link to="/card">Card</router-link></span>
 <!--            <span><router-link to="/tree">Tree</router-link></span>-->

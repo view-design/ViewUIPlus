@@ -86,10 +86,10 @@ const router = createRouter({
         //     path: '/progress',
         //     component: (resolve) => require(['./routers/progress.vue'], resolve)
         // },
-        // {
-        //     path: '/collapse',
-        //     component: (resolve) => require(['./routers/collapse.vue'], resolve)
-        // },
+        {
+            path: '/collapse',
+            component: () => import('./routers/collapse.vue')
+        },
         // {
         //     path: '/carousel',
         //     component: (resolve) => require(['./routers/carousel.vue'], resolve)

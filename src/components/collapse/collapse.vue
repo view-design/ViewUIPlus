@@ -8,12 +8,13 @@
 
     export default {
         name: 'Collapse',
+        emits: ['on-change', 'update:modelValue'],
         props: {
             accordion: {
                 type: Boolean,
                 default: false
             },
-            value: {
+            modelValue: {
                 type: [Array, String]
             },
             simple: {
@@ -23,7 +24,7 @@
         },
         data () {
             return {
-                currentValue: this.value
+                currentValue: this.modelValue
             };
         },
         computed: {
@@ -35,9 +36,6 @@
                     }
                 ];
             }
-        },
-        mounted () {
-            this.setActive();
         },
         methods: {
             setActive () {
@@ -94,17 +92,20 @@
                 }
 
                 this.currentValue = newActiveKey;
-                this.$emit('input', newActiveKey);
+                this.$emit('update:modelValue', newActiveKey);
                 this.$emit('on-change', newActiveKey);
             }
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 this.currentValue = val;
             },
             currentValue () {
                 this.setActive();
             }
+        },
+        mounted () {
+            this.setActive();
         }
     };
 </script>

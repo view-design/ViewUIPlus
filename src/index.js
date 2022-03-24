@@ -23,7 +23,6 @@ import Card from './components/card';
 // import Cell from './components/cell';
 // import Checkbox from './components/checkbox';
 // import Circle from './components/circle';
-// import Collapse from './components/collapse';
 // import ColorPicker from './components/color-picker';
 // import DatePicker from './components/date-picker';
 // import Divider from './components/divider';
@@ -60,6 +59,7 @@ import Spin from './components/spin';
 // import Tree from './components/tree';
 // import Upload from './components/upload';
 import { Row, Col } from './components/grid';
+import { Collapse, Panel } from './components/collapse';
 import { Layout, Header, Sider, Content, Footer } from './components/layout';
 import { List, ListItem, ListItemMeta } from './components/list';
 // import { Select, Option, OptionGroup } from './components/select';
@@ -87,7 +87,7 @@ const components = {
     // Checkbox,
     // CheckboxGroup: Checkbox.Group,
     Col,
-    // Collapse,
+    Collapse,
     // ColorPicker,
     Content,
     // DatePicker,
@@ -117,7 +117,7 @@ const components = {
     // Option: Option,
     // OptionGroup,
     // Page,
-    // Panel: Collapse.Panel,
+    Panel,
     // Poptip,
     // Progress,
     // Radio,
