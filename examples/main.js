@@ -18,10 +18,10 @@ const router = createRouter({
         //     path: '/split',
         //     component: (resolve) => require(['./routers/split.vue'], resolve)
         // },
-        // {
-        //     path: '/layout',
-        //     component: (resolve) => require(['./routers/layout.vue'], resolve)
-        // },
+        {
+            path: '/layout',
+            component: () => import('./routers/layout.vue')
+        },
         // {
         //     path: '/affix',
         //     component: (resolve) => require(['./routers/affix.vue'], resolve)

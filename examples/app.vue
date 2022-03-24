@@ -11,7 +11,7 @@
     <div id="app" class="container">
         <div class="container-nav">
 <!--            <span><router-link to="/split">Split</router-link></span>-->
-<!--            <span><router-link to="/layout">Layout</router-link></span>-->
+            <span><router-link to="/layout">Layout</router-link></span>
 <!--            <span><router-link to="/affix">Affix</router-link></span>-->
 <!--            <span><router-link to="/anchor">Anchor</router-link></span>-->
             <span><router-link to="/grid">Grid</router-link></span>
