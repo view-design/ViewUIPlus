@@ -63,7 +63,7 @@
 <!--            <span><router-link to="/cell">Cell</router-link></span>-->
 <!--            <span><router-link to="/drawer">Drawer</router-link></span>-->
             <span><router-link to="/icon">Icon</router-link></span>
-<!--            <span><router-link to="/list">List</router-link></span>-->
+            <span><router-link to="/list">List</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>

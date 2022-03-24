@@ -50,8 +50,8 @@
                 validator (value) {
                     return oneOf(value, ['small', 'large', 'default']);
                 },
-                default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                default (props) {
+                    return !props.$IVIEW || props.$IVIEW.size === '' ? 'default' : props.$IVIEW.size;
                 }
             },
             split: {

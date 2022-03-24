@@ -226,10 +226,10 @@ const router = createRouter({
             path: '/icon',
             component: () => import('./routers/icon.vue')
         },
-        // {
-        //     path: '/list',
-        //     component: (resolve) => require(['./routers/list.vue'], resolve)
-        // }
+        {
+            path: '/list',
+            component: () => import('./routers/list.vue')
+        }
     ]
 });
 

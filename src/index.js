@@ -35,7 +35,6 @@ import Icon from './components/icon';
 // import InputNumber from './components/input-number';
 // import Scroll from './components/scroll';
 // import Split from './components/split';
-// import List from './components/list';
 // import LoadingBar from './components/loading-bar';
 // import Menu from './components/menu';
 // import Message from './components/message';
@@ -62,6 +61,7 @@ import Icon from './components/icon';
 // import Upload from './components/upload';
 import { Row, Col } from './components/grid';
 import { Layout, Header, Sider, Content, Footer } from './components/layout';
+import { List, ListItem, ListItemMeta } from './components/list';
 // import { Select, Option, OptionGroup } from './components/select';
 // import locale from './locale/index';
 
@@ -104,9 +104,9 @@ const components = {
     // Input,
     // InputNumber,
     Layout,
-    // List,
-    // ListItem: List.Item,
-    // ListItemMeta: List.Item.Meta,
+    List,
+    ListItem,
+    ListItemMeta,
     // LoadingBar,
     // Menu,
     // MenuGroup: Menu.Group,

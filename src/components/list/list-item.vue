@@ -35,7 +35,7 @@
             },
             isItemContainsTextNode () {
                 let result;
-                this.$slots.default.forEach(item => {
+                this.$slots.default().forEach(item => {
                     if (typeof item === 'string') {
                         result = true;
                     }
