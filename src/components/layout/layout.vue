@@ -23,9 +23,7 @@
         },
         methods: {
             findSider () {
-                return this.$children.some(child => {
-                    return child.$options.name === 'Sider'; 
-                });
+                return this.$slots.default().some(child => child.type.name === 'Sider');
             }
         },
         mounted () {
