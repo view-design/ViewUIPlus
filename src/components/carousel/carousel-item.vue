@@ -43,7 +43,7 @@
                 }
             }
         },
-        beforeDestroy () {
+        beforeUnmount () {
             this.$parent.slotChange();
         }
     };

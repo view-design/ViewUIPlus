@@ -99,7 +99,7 @@
         mounted () {
             this.dispatch('Steps', 'append');
         },
-        beforeDestroy () {
+        beforeUnmount () {
             this.dispatch('Steps', 'remove');
         }
     };

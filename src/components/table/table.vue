@@ -1461,7 +1461,7 @@
                 }
             });
         },
-        beforeDestroy () {
+        beforeUnmount () {
             this.$off('on-visible-change');
             off(window, 'resize', this.handleResize);
             this.observer.removeAllListeners(this.$el);

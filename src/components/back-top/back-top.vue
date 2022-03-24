@@ -42,7 +42,7 @@
             on(window, 'scroll', this.handleScroll);
             on(window, 'resize', this.handleScroll);
         },
-        beforeDestroy () {
+        beforeUnmount () {
 //            window.removeEventListener('scroll', this.handleScroll, false);
 //            window.removeEventListener('resize', this.handleScroll, false);
             off(window, 'scroll', this.handleScroll);

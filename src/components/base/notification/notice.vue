@@ -182,7 +182,7 @@
                 this.withDesc = this.render ? true : (desc ? desc.innerHTML !== '' : false);
             }
         },
-        beforeDestroy () {
+        beforeUnmount () {
             this.clearCloseTimer();
         }
     };

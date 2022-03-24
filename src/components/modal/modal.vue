@@ -424,7 +424,7 @@
             // ESC close
             document.addEventListener('keydown', this.EscClose);
         },
-        beforeDestroy () {
+        beforeUnmount () {
             document.removeEventListener('keydown', this.EscClose);
             this.removeScrollEffect();
         },

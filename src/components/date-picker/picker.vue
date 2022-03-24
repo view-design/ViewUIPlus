@@ -827,7 +827,7 @@
             this.$on('focus-input', () => this.focus());
             this.$on('update-popper', () => this.updatePopper());
         },
-        beforeDestroy() {
+        beforeUnmount() {
             this.$off('focus-input');
             this.$off('update-popper');
         }

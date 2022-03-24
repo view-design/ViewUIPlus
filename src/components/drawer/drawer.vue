@@ -280,7 +280,7 @@
             on(document, 'mouseup', this.handleMouseup);
             this.handleSetWrapperWidth();
         },
-        beforeDestroy () {
+        beforeUnmount () {
             off(document, 'mousemove', this.handleMousemove);
             off(document, 'mouseup', this.handleMouseup);
             this.removeScrollEffect();

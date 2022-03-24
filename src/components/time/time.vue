@@ -98,7 +98,7 @@
                 this.setTime();
             }, 1000 * this.interval);
         },
-        beforeDestroy () {
+        beforeUnmount () {
             if (this.timer) clearInterval(this.timer);
         }
     };

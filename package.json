@@ -24,6 +24,7 @@
     "scripts": {
         "dev": "vue-cli-service serve",
         "build:style": "gulp --gulpfile build/build-style.js",
+        "lint": "vue-cli-service lint --fix",
         "prepare": "npm run build"
     },
     "repository": {

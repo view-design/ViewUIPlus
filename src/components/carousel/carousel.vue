@@ -328,7 +328,7 @@
 //            window.addEventListener('resize', this.handleResize, false);
             on(window, 'resize', this.handleResize);
         },
-        beforeDestroy () {
+        beforeUnmount () {
 //            window.removeEventListener('resize', this.handleResize, false);
             off(window, 'resize', this.handleResize);
         }

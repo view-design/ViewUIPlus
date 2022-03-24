@@ -329,7 +329,7 @@
                 }
             }
         },
-        beforeDestroy () {
+        beforeUnmount () {
             this.$off('on-select-selected');
         },
         data () {

@@ -265,7 +265,7 @@
                 this.setRules();
             }
         },
-        beforeDestroy () {
+        beforeUnmount () {
             this.dispatch('iForm', 'on-form-item-remove', this);
         }
     };

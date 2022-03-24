@@ -479,7 +479,7 @@
             this.observer = elementResizeDetectorMaker();
             this.observer.listenTo(this.$refs.slider, this.handleSetSliderWidth);
         },
-        beforeDestroy() {
+        beforeUnmount() {
             this.observer.removeListener(this.$refs.slider, this.handleSetSliderWidth);
         }
     };

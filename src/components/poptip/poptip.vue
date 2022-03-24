@@ -308,7 +308,7 @@
                 });
             }
         },
-        beforeDestroy () {
+        beforeUnmount () {
             const $children = this.getInputChildren();
             if ($children) {
                 $children.removeEventListener('focus', this.handleFocus, false);

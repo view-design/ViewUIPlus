@@ -178,7 +178,7 @@
 
             on(window, 'resize', this.computeOffset);
         },
-        beforeDestroy () {
+        beforeUnmount () {
             off(window, 'resize', this.computeOffset);
         }
     };

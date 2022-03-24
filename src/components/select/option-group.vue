@@ -44,7 +44,7 @@
                 return true;
             });
         },
-        beforeDestroy() {
+        beforeUnmount() {
             this.$off('on-query-change');
         }
     };
