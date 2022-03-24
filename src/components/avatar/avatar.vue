@@ -6,11 +6,11 @@
     </span>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import Icon from '../icon';
     import { oneOf } from '../../utils/assist';
 
     const prefixCls = 'ivu-avatar';
-
     const sizeList = ['small', 'large', 'default'];
 
     export default {
@@ -26,7 +26,8 @@
             size: {
                 type: [String, Number],
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    let global=getCurrentInstance().appContext.config.globalProperties
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             src: {

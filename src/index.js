@@ -11,7 +11,7 @@
 // import Anchor from './components/anchor';
 // import AnchorLink from './components/anchor-link';
 // import AutoComplete from './components/auto-complete';
-// import Avatar from './components/avatar';
+import Avatar from './components/avatar';
 // import BackTop from './components/back-top';
 // import Badge from './components/badge';
 // import Breadcrumb from './components/breadcrumb';
@@ -71,7 +71,7 @@ const components = {
     // Anchor,
     // AnchorLink,
     // AutoComplete,
-    // Avatar,
+    Avatar,
     // BackTop,
     // Badge,
     // Breadcrumb,
@@ -175,7 +175,10 @@ const install = function(app, opts = {}) {
         app.component(key, iview[key]);
         // todo i-tag
     });
-
+    console.log("install:",app)
+    app.config.globalProperties.$IVIEW = {
+        size: opts.size || '',
+    }
     // app.prototype.$IVIEW = {
     //     size: opts.size || '',
     //     transfer: 'transfer' in opts ? opts.transfer : '',
@@ -241,9 +244,9 @@ const install = function(app, opts = {}) {
 };
 
 // auto install
-// if (typeof window !== 'undefined' && window.Vue) {
-//     install(window.Vue);
-// }
+if (typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+}
 
 const API = {
     version: process.env.VERSION, // eslint-disable-line no-undef

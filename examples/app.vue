@@ -54,7 +54,7 @@
 <!--            <span><router-link to="/modal">Modal</router-link></span>-->
 <!--            <span><router-link to="/message">Message</router-link></span>-->
 <!--            <span><router-link to="/notice">Notice</router-link></span>-->
-<!--            <span><router-link to="/avatar">Avatar</router-link></span>-->
+            <span><router-link to="/avatar">Avatar</router-link></span>
 <!--            <span><router-link to="/color-picker">ColorPicker</router-link></span>-->
 <!--            <span><router-link to="/auto-complete">AutoComplete</router-link></span>-->
 <!--            <span><router-link to="/scroll">Scroll</router-link></span>-->

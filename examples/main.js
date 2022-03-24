@@ -190,10 +190,10 @@ const router = createRouter({
         //     path: '/notice',
         //     component: (resolve) => require(['./routers/notice.vue'], resolve)
         // },
-        // {
-        //     path: '/avatar',
-        //     component: (resolve) => require(['./routers/avatar.vue'], resolve)
-        // },
+        {
+            path: '/avatar',
+            component: () => import('./routers/avatar.vue')
+        },
         // {
         //     path: '/color-picker',
         //     component: (resolve) => require(['./routers/color-picker.vue'], resolve)
