@@ -16,6 +16,7 @@
     export default {
         name: 'Avatar',
         components: { Icon },
+        emits: ['on-error'],
         props: {
             shape: {
                 validator (value) {
@@ -38,7 +39,7 @@
             customIcon: {
                 type: String,
                 default: ''
-            },
+            }
         },
         data () {
             return {
@@ -111,16 +112,14 @@
             }
         },
         beforeCreate () {
-            this.slotTemp = this.$slots.default;
+            this.slotTemp = this.$slots.default ? this.$slots.default() : null;
         },
         mounted () {
             this.setScale();
         },
         updated () {
-            if (this.$slots.default !== this.slotTemp) {
-                this.slotTemp = this.$slots.default;
-                this.setScale();
-            }
+            const slot = this.$slots.default ? this.$slots.default() : null;
+            if (slot && slot !== this.slotTemp) this.setScale();
         }
     };
 </script>
