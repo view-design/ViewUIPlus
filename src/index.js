@@ -238,6 +238,7 @@ const install = function(app, opts = {}) {
     // Vue.prototype.$Modal = Modal;
     // Vue.prototype.$Notice = Notice;
     // Vue.prototype.$Spin = Spin;
+    app.config.globalProperties.$Spin = Spin;
 };
 
 // auto install

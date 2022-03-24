@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { createApp, h } from 'vue';
 import Spin from './spin.vue';
 
 import { transferIndex, transferIncrease } from '../../utils/transfer-queue';
@@ -13,28 +13,26 @@ let tIndex = handleGetIndex();
 Spin.newInstance = properties => {
     const _props = properties || {};
 
-    const Instance = new Vue({
+    const Instance = createApp({
         data () {
             return Object.assign({}, _props, {
 
             });
         },
-        render (h) {
+        render () {
             let vnode = '';
             if (this.render) {
                 vnode = h(Spin, {
-                    props: {
-                        fix: true,
-                        fullscreen: true
-                    }
+                    fix: true,
+                    fullscreen: true,
+                    ref: 'spin'
                 }, [this.render(h)]);
             } else {
                 vnode = h(Spin, {
-                    props: {
-                        size: 'large',
-                        fix: true,
-                        fullscreen: true
-                    }
+                    size: 'large',
+                    fix: true,
+                    fullscreen: true,
+                    ref: 'spin'
                 });
             }
             return h('div', {
@@ -46,9 +44,10 @@ Spin.newInstance = properties => {
         }
     });
 
-    const component = Instance.$mount();
-    document.body.appendChild(component.$el);
-    const spin = Instance.$children[0];
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+    Instance.mount(container);
+    const spin = Instance._instance.refs.spin;
 
     return {
         show () {
@@ -58,10 +57,8 @@ Spin.newInstance = properties => {
         remove (cb) {
             spin.visible = false;
             setTimeout(function() {
-                spin.$parent.$destroy();
-                if (document.getElementsByClassName('ivu-spin-fullscreen')[0] !== undefined) {
-                    document.body.removeChild(document.getElementsByClassName('ivu-spin-fullscreen')[0]);
-                }
+                Instance.unmount();
+                document.body.removeChild(container);
                 cb();
             }, 500);
         },
