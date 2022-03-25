@@ -9,7 +9,7 @@
             用户管理
         </MenuItem>
         <Submenu name="3">
-            <template slot="title">
+            <template #title>
                 <Icon type="ios-stats" />
                 统计分析
             </template>

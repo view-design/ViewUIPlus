@@ -31,6 +31,11 @@
         name: 'Submenu',
         mixins: [ Emitter, mixin ],
         components: { Icon, Drop, CollapseTransition },
+        provide () {
+            return {
+                SubmenuInstance: this
+            }
+        },
         props: {
             name: {
                 type: [String, Number],
@@ -164,18 +169,18 @@
             }
         },
         mounted () {
-            this.$on('on-menu-item-select', (name) => {
-                if (this.mode === 'horizontal') this.opened = false;
-                this.dispatch('Menu', 'on-menu-item-select', name);
-                return true;
-            });
-            this.$on('on-update-active-name', (status) => {
-                if (findComponentUpward(this, 'Submenu')) this.dispatch('Submenu', 'on-update-active-name', status);
-                if (findComponentsDownward(this, 'Submenu')) findComponentsDownward(this, 'Submenu').forEach(item => {
-                    item.active = false;
-                });
-                this.active = status;
-            });
+            // this.$on('on-menu-item-select', (name) => {
+            //     if (this.mode === 'horizontal') this.opened = false;
+            //     this.dispatch('Menu', 'on-menu-item-select', name);
+            //     return true;
+            // });
+            // this.$on('on-update-active-name', (status) => {
+            //     if (findComponentUpward(this, 'Submenu')) this.dispatch('Submenu', 'on-update-active-name', status);
+            //     if (findComponentsDownward(this, 'Submenu')) findComponentsDownward(this, 'Submenu').forEach(item => {
+            //         item.active = false;
+            //     });
+            //     this.active = status;
+            // });
         }
     };
 </script>

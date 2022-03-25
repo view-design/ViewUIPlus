@@ -76,14 +76,14 @@
             }
         },
         mounted () {
-            this.$on('on-update-active-name', (name) => {
-                if (this.name === name) {
-                    this.active = true;
-                    this.dispatch('Submenu', 'on-update-active-name', name);
-                } else {
-                    this.active = false;
-                }
-            });
+            // this.$on('on-update-active-name', (name) => {
+            //     if (this.name === name) {
+            //         this.active = true;
+            //         this.dispatch('Submenu', 'on-update-active-name', name);
+            //     } else {
+            //         this.active = false;
+            //     }
+            // });
         }
     };
 </script>

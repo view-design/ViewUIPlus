@@ -34,7 +34,6 @@ import Icon from './components/icon';
 // import Scroll from './components/scroll';
 import Split from './components/split';
 // import LoadingBar from './components/loading-bar';
-// import Menu from './components/menu';
 // import Message from './components/message';
 // import Modal from './components/modal';
 // import Notice from './components/notice';
@@ -58,10 +57,11 @@ import Spin from './components/spin';
 // import Tree from './components/tree';
 // import Upload from './components/upload';
 import { Cell, CellGroup } from './components/cell';
-import { Row, Col } from './components/grid';
 import { Collapse, Panel } from './components/collapse';
 import { Layout, Header, Sider, Content, Footer } from './components/layout';
 import { List, ListItem, ListItemMeta } from './components/list';
+import { Row, Col } from './components/grid';
+import { Menu, MenuGroup, MenuItem, Submenu } from './components/menu';
 // import { Select, Option, OptionGroup } from './components/select';
 // import locale from './locale/index';
 
@@ -108,9 +108,9 @@ const components = {
     ListItem,
     ListItemMeta,
     // LoadingBar,
-    // Menu,
-    // MenuGroup: Menu.Group,
-    // MenuItem: Menu.Item,
+    Menu,
+    MenuGroup,
+    MenuItem,
     // Message,
     // Modal,
     // Notice,
@@ -132,7 +132,7 @@ const components = {
     Spin,
     // Step: Steps.Step,
     // Steps,
-    // Submenu: Menu.Sub,
+    Submenu,
     // Table,
     // Tabs: Tabs,
     // TabPane: Tabs.Pane,
@@ -182,6 +182,11 @@ const install = function(app, opts = {}) {
             customArrow: opts.cell ? opts.cell.customArrow ? opts.cell.customArrow : '' : '',
             arrowSize: opts.cell ? opts.cell.arrowSize ? opts.cell.arrowSize : '' : ''
         },
+        menu: {
+            arrow: opts.menu ? opts.menu.arrow ? opts.menu.arrow : '' : '',
+            customArrow: opts.menu ? opts.menu.customArrow ? opts.menu.customArrow : '' : '',
+            arrowSize: opts.menu ? opts.menu.arrowSize ? opts.menu.arrowSize : '' : ''
+        },
     }
     // app.prototype.$IVIEW = {
     //     size: opts.size || '',
@@ -191,11 +196,6 @@ const install = function(app, opts = {}) {
     //         arrow: opts.select ? opts.select.arrow ? opts.select.arrow : '' : '',
     //         customArrow: opts.select ? opts.select.customArrow ? opts.select.customArrow : '' : '',
     //         arrowSize: opts.select ? opts.select.arrowSize ? opts.select.arrowSize : '' : ''
-    //     },
-    //     menu: {
-    //         arrow: opts.menu ? opts.menu.arrow ? opts.menu.arrow : '' : '',
-    //         customArrow: opts.menu ? opts.menu.customArrow ? opts.menu.customArrow : '' : '',
-    //         arrowSize: opts.menu ? opts.menu.arrowSize ? opts.menu.arrowSize : '' : ''
     //     },
     //     tree: {
     //         arrow: opts.tree ? opts.tree.arrow ? opts.tree.arrow : '' : '',

@@ -1,19 +1,20 @@
 import { findComponentUpward, findComponentsUpward } from '../../utils/assist';
 export default {
+    inject: ['MenuInstance', 'SubmenuInstance'],
     data () {
         return {
-            menu: findComponentUpward(this, 'Menu')
+            menu: this.MenuInstance
         };
     },
     computed: {
         hasParentSubmenu () {
-            return !!findComponentUpward(this, 'Submenu');
+            return !!this.SubmenuInstance;
         },
         parentSubmenuNum () {
             return findComponentsUpward(this, 'Submenu').length;
         },
         mode () {
-            return this.menu.mode;
+            return this.MenuInstance.mode;
         }
     }
 };
