@@ -35,7 +35,7 @@
     import Checkbox from '../checkbox/checkbox.vue';
     import Icon from '../icon/icon.vue';
     import Render from './render';
-    import CollapseTransition from '../base/collapse-transition';
+    import CollapseTransition from '../base/collapse-transition.vue';
     import Emitter from '../../mixins/emitter';
     import { findComponentUpward } from '../../utils/assist';
 

@@ -20,7 +20,7 @@
 <script>
     import Drop from '../select/dropdown.vue';
     import Icon from '../icon/icon.vue';
-    import CollapseTransition from '../base/collapse-transition';
+    import CollapseTransition from '../base/collapse-transition.vue';
     import { getStyle, findComponentUpward, findComponentsDownward } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
     import mixin from './mixin';
