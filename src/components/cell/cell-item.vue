@@ -14,6 +14,7 @@
 </template>
 <script>
     export default {
+        name: 'CellItem',
         props: {
             title: {
                 type: String,
@@ -26,7 +27,7 @@
             extra: {
                 type: String,
                 default: ''
-            },
+            }
         }
     };
 </script>

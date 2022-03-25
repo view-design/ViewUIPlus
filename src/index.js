@@ -20,7 +20,6 @@ import ButtonGroup from './components/button-group';
 import Card from './components/card';
 // import Carousel from './components/carousel';
 // import Cascader from './components/cascader';
-// import Cell from './components/cell';
 // import Checkbox from './components/checkbox';
 // import Circle from './components/circle';
 // import ColorPicker from './components/color-picker';
@@ -58,6 +57,7 @@ import Spin from './components/spin';
 // import Transfer from './components/transfer';
 // import Tree from './components/tree';
 // import Upload from './components/upload';
+import { Cell, CellGroup } from './components/cell';
 import { Row, Col } from './components/grid';
 import { Collapse, Panel } from './components/collapse';
 import { Layout, Header, Sider, Content, Footer } from './components/layout';
@@ -82,8 +82,8 @@ const components = {
     // Carousel,
     // CarouselItem: Carousel.Item,
     // Cascader,
-    // Cell,
-    // CellGroup: Cell.Group,
+    Cell,
+    CellGroup,
     // Checkbox,
     // CheckboxGroup: Checkbox.Group,
     Col,
@@ -177,6 +177,11 @@ const install = function(app, opts = {}) {
     });
     app.config.globalProperties.$IVIEW = {
         size: opts.size || '',
+        cell: {
+            arrow: opts.cell ? opts.cell.arrow ? opts.cell.arrow : '' : '',
+            customArrow: opts.cell ? opts.cell.customArrow ? opts.cell.customArrow : '' : '',
+            arrowSize: opts.cell ? opts.cell.arrowSize ? opts.cell.arrowSize : '' : ''
+        },
     }
     // app.prototype.$IVIEW = {
     //     size: opts.size || '',
@@ -186,11 +191,6 @@ const install = function(app, opts = {}) {
     //         arrow: opts.select ? opts.select.arrow ? opts.select.arrow : '' : '',
     //         customArrow: opts.select ? opts.select.customArrow ? opts.select.customArrow : '' : '',
     //         arrowSize: opts.select ? opts.select.arrowSize ? opts.select.arrowSize : '' : ''
-    //     },
-    //     cell: {
-    //         arrow: opts.cell ? opts.cell.arrow ? opts.cell.arrow : '' : '',
-    //         customArrow: opts.cell ? opts.cell.customArrow ? opts.cell.customArrow : '' : '',
-    //         arrowSize: opts.cell ? opts.cell.arrowSize ? opts.cell.arrowSize : '' : ''
     //     },
     //     menu: {
     //         arrow: opts.menu ? opts.menu.arrow ? opts.menu.arrow : '' : '',

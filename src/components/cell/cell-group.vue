@@ -6,10 +6,11 @@
 <script>
     export default {
         name: 'CellGroup',
+        emits: ['on-click'],
         provide () {
             return {
-                cellGroup: this
-            };
+                CellGroupInstance: this
+            }
         },
         methods: {
             handleClick (name) {

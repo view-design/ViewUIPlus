@@ -214,10 +214,10 @@ const router = createRouter({
         //     path: '/time',
         //     component: (resolve) => require(['./routers/time.vue'], resolve)
         // },
-        // {
-        //     path: '/cell',
-        //     component: (resolve) => require(['./routers/cell.vue'], resolve)
-        // },
+        {
+            path: '/cell',
+            component: () => import('./routers/cell.vue')
+        },
         // {
         //     path: '/drawer',
         //     component: (resolve) => require(['./routers/drawer.vue'], resolve)

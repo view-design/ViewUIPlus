@@ -9,18 +9,18 @@
             @click.ctrl="handleClickItem($event, true)"
             @click.meta="handleClickItem($event, true)">
             <CellItem :title="title" :label="label" :extra="extra">
-                <slot name="icon" slot="icon"></slot>
-                <slot slot="default"></slot>
-                <slot name="extra" slot="extra"></slot>
-                <slot name="label" slot="label"></slot>
+                <template #icon><slot name="icon"></slot></template>
+                <template #default><slot></slot></template>
+                <template #extra><slot name="extra"></slot></template>
+                <template #label><slot name="label"></slot></template>
             </CellItem>
         </a>
         <div class="ivu-cell-link" v-else @click="handleClickItem">
             <CellItem :title="title" :label="label" :extra="extra">
-                <slot name="icon" slot="icon"></slot>
-                <slot slot="default"></slot>
-                <slot name="extra" slot="extra"></slot>
-                <slot name="label" slot="label"></slot>
+                <template #icon><slot name="icon"></slot></template>
+                <template #default><slot></slot></template>
+                <template #extra><slot name="extra"></slot></template>
+                <template #label><slot name="label"></slot></template>
             </CellItem>
         </div>
         <div class="ivu-cell-arrow" v-if="to">
@@ -39,7 +39,7 @@
 
     export default {
         name: 'Cell',
-        inject: ['cellGroup'],
+        inject: ['CellGroupInstance'],
         mixins: [ mixinsLink ],
         components: { CellItem, Icon },
         props: {
@@ -121,7 +121,7 @@
         },
         methods: {
             handleClickItem (event, new_window) {
-                this.cellGroup.handleClick(this.name);
+                this.CellGroupInstance.handleClick(this.name);
 
                 this.handleCheckClick(event, new_window);
             }
