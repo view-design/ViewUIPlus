@@ -58,10 +58,11 @@ import Spin from './components/spin';
 // import Upload from './components/upload';
 import { Cell, CellGroup } from './components/cell';
 import { Collapse, Panel } from './components/collapse';
+import { Dropdown, DropdownMenu, DropdownItem } from './components/dropdown';
 import { Layout, Header, Sider, Content, Footer } from './components/layout';
 import { List, ListItem, ListItemMeta } from './components/list';
 import { Row, Col } from './components/grid';
-import { Menu, MenuGroup, MenuItem, Submenu } from './components/menu';
+// import { Menu, MenuGroup, MenuItem, Submenu } from './components/menu';
 // import { Select, Option, OptionGroup } from './components/select';
 // import locale from './locale/index';
 
@@ -93,9 +94,9 @@ const components = {
     // DatePicker,
     Divider,
     // Drawer,
-    // Dropdown,
-    // DropdownItem: Dropdown.Item,
-    // DropdownMenu: Dropdown.Menu,
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
     Footer,
     // Form,
     // FormItem: Form.Item,
@@ -108,9 +109,9 @@ const components = {
     ListItem,
     ListItemMeta,
     // LoadingBar,
-    Menu,
-    MenuGroup,
-    MenuItem,
+    // Menu,
+    // MenuGroup,
+    // MenuItem,
     // Message,
     // Modal,
     // Notice,
@@ -132,7 +133,7 @@ const components = {
     Spin,
     // Step: Steps.Step,
     // Steps,
-    Submenu,
+    // Submenu,
     // Table,
     // Tabs: Tabs,
     // TabPane: Tabs.Pane,

@@ -126,10 +126,10 @@ const router = createRouter({
         //     path: '/slider',
         //     component: (resolve) => require(['./routers/slider.vue'], resolve)
         // },
-        // {
-        //     path: '/dropdown',
-        //     component: (resolve) => require(['./routers/dropdown.vue'], resolve)
-        // },
+        {
+            path: '/dropdown',
+            component: () => import('./routers/dropdown.vue')
+        },
         // {
         //     path: '/breadcrumb',
         //     component: (resolve) => require(['./routers/breadcrumb.vue'], resolve)

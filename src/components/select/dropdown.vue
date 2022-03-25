@@ -1,16 +1,20 @@
 <template>
-    <div class="ivu-select-dropdown" :class="className" :style="styles"><slot></slot></div>
+    <teleport to="body" :disabled="!transfer">
+        <div class="ivu-select-dropdown" :class="className" :style="styles" v-bind="$attrs"><slot></slot></div>
+    </teleport>
 </template>
 <script>
-    import Vue from 'vue';
-    const isServer = Vue.prototype.$isServer;
+    // import Vue from 'vue';
+    // const isServer = Vue.prototype.$isServer;
     import { getStyle } from '../../utils/assist';
-    const Popper = isServer ? function() {} : require('popper.js/dist/umd/popper.js');  // eslint-disable-line
+    // const Popper = isServer ? function() {} : require('popper.js/dist/umd/popper.js');  // eslint-disable-line
+    const Popper = require('popper.js/dist/umd/popper.js');  // eslint-disable-line
 
     import { transferIndex, transferIncrease } from '../../utils/transfer-queue';
 
     export default {
         name: 'Drop',
+        emits: ['mouseenter', 'mouseleave'],
         props: {
             placement: {
                 type: String,
@@ -48,13 +52,13 @@
         },
         methods: {
             update () {
-                if (isServer) return;
+                // if (isServer) return;
                 this.$nextTick(() => {
                     if (this.popper) {
                         this.popper.update();
                         this.popperStatus = true;
                     } else {
-                        this.popper = new Popper(this.$parent.$refs.reference, this.$el, {
+                        this.popper = new Popper(this.$parent.$parent.$refs.reference, this.$el, {
                             eventsEnabled: this.eventsEnabled,
                             placement: this.placement,
                             modifiers: {
@@ -75,8 +79,8 @@
                         });
                     }
                     // set a height for parent is Modal and Select's width is 100%
-                    if (this.$parent.$options.name === 'iSelect') {
-                        this.width = parseInt(getStyle(this.$parent.$el, 'width'));
+                    if (this.$parent.$parent.$options.name === 'iSelect') {
+                        this.width = parseInt(getStyle(this.$parent.$parent.$el, 'width'));
                     }
                     this.tIndex = this.handleGetIndex();
                 });
@@ -112,12 +116,12 @@
             },
         },
         created () {
-            this.$on('on-update-popper', this.update);
-            this.$on('on-destroy-popper', this.destroy);
+            // this.$on('on-update-popper', this.update);
+            // this.$on('on-destroy-popper', this.destroy);
         },
         beforeUnmount () {
-            this.$off('on-update-popper', this.update);
-            this.$off('on-destroy-popper', this.destroy);
+            // this.$off('on-update-popper', this.update);
+            // this.$off('on-destroy-popper', this.destroy);
             if (this.popper) {
                 this.popper.destroy();
                 this.popper = null;

@@ -7,31 +7,30 @@
         <div :class="relClasses" ref="reference" @click="handleClick" @contextmenu.prevent="handleRightClick"><slot></slot></div>
         <transition name="transition-drop">
             <Drop
-                :class="dropdownCls"
-                v-show="currentVisible"
-                :placement="placement"
                 ref="drop"
-                @mouseenter.native="handleMouseenter"
-                @mouseleave.native="handleMouseleave"
+                v-show="currentVisible"
+                :class="dropdownCls"
+                :placement="placement"
                 :eventsEnabled="eventsEnabled"
-                :data-transfer="transfer"
                 :transfer="transfer"
-                v-transfer-dom><slot name="list"></slot></Drop>
+                @mouseenter="handleMouseenter"
+                @mouseleave="handleMouseleave"
+            ><slot name="list"></slot></Drop>
         </transition>
     </div>
 </template>
 <script>
     import Drop from '../select/dropdown.vue';
     import clickOutside from '../../directives/clickoutside';
-    import TransferDom from '../../directives/transfer-dom';
     import { oneOf, findComponentUpward } from '../../utils/assist';
 
     const prefixCls = 'ivu-dropdown';
 
     export default {
         name: 'Dropdown',
-        directives: { clickOutside, TransferDom },
+        directives: { clickOutside },
         components: { Drop },
+        emits: ['on-visible-change', 'on-clickoutside', 'on-click' , 'on-hover-click', 'on-haschild-click'],
         props: {
             trigger: {
                 validator (value) {
@@ -51,8 +50,8 @@
             },
             transfer: {
                 type: Boolean,
-                default () {
-                    return !this.$IVIEW || this.$IVIEW.transfer === '' ? false : this.$IVIEW.transfer;
+                default (props) {
+                    return !props.$IVIEW || props.$IVIEW.transfer === '' ? false : props.$IVIEW.transfer;
                 }
             },
             transferClassName: {
@@ -65,8 +64,8 @@
             // 4.0.0
             capture: {
                 type: Boolean,
-                default () {
-                    return !this.$IVIEW ? true : this.$IVIEW.capture;
+                default (props) {
+                    return !props.$IVIEW ? true : props.$IVIEW.capture;
                 }
             },
             // 4.6.0
@@ -182,34 +181,34 @@
             }
         },
         mounted () {
-            this.$on('on-click', (key) => {
-                if (this.stopPropagation) return;
-                const $parent = this.hasParent();
-                if ($parent) $parent.$emit('on-click', key);
-            });
-            this.$on('on-hover-click', () => {
-                const $parent = this.hasParent();
-                if ($parent) {
-                    this.$nextTick(() => {
-                        if (this.trigger === 'custom') return false;
-                        this.currentVisible = false;
-                    });
-                    $parent.$emit('on-hover-click');
-                } else {
-                    this.$nextTick(() => {
-                        if (this.trigger === 'custom') return false;
-                        this.currentVisible = false;
-                    });
-                }
-            });
-            this.$on('on-haschild-click', () => {
-                this.$nextTick(() => {
-                    if (this.trigger === 'custom') return false;
-                    this.currentVisible = true;
-                });
-                const $parent = this.hasParent();
-                if ($parent) $parent.$emit('on-haschild-click');
-            });
+            // this.$on('on-click', (key) => {
+            //     if (this.stopPropagation) return;
+            //     const $parent = this.hasParent();
+            //     if ($parent) $parent.$emit('on-click', key);
+            // });
+            // this.$on('on-hover-click', () => {
+            //     const $parent = this.hasParent();
+            //     if ($parent) {
+            //         this.$nextTick(() => {
+            //             if (this.trigger === 'custom') return false;
+            //             this.currentVisible = false;
+            //         });
+            //         $parent.$emit('on-hover-click');
+            //     } else {
+            //         this.$nextTick(() => {
+            //             if (this.trigger === 'custom') return false;
+            //             this.currentVisible = false;
+            //         });
+            //     }
+            // });
+            // this.$on('on-haschild-click', () => {
+            //     this.$nextTick(() => {
+            //         if (this.trigger === 'custom') return false;
+            //         this.currentVisible = true;
+            //     });
+            //     const $parent = this.hasParent();
+            //     if ($parent) $parent.$emit('on-haschild-click');
+            // });
         }
     };
 </script>
