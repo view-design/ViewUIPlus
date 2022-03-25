@@ -27,7 +27,7 @@
                 default: false
             },
             overflowCount: {
-                type: [Number, String],
+                type: [ Number, String ],
                 default: 99
             },
             className: String,
@@ -126,9 +126,9 @@
 
                 return status || this.showZero;
             },
-            hasCount() {
-                if(this.count || this.text !== '') return true;
-                if(this.showZero && parseInt(this.count) === 0) return true;
+            hasCount () {
+                if (this.count || this.text !== '') return true;
+                if (this.showZero && parseInt(this.count) === 0) return true;
                 else return false;
             },
             alone () {

@@ -21,7 +21,9 @@
             <a href="#" class="demo-badge"></a>
         </Badge>
         <Badge>
-            <Icon type="md-time" slot="count" size="16" color="#ff6600" />
+            <template #count>
+                <Icon type="md-time" size="16" color="#ff6600" />
+            </template>
             <a href="#" class="demo-badge"></a>
         </Badge>
         <Button @click="setCount">set count</Button>
@@ -31,7 +33,9 @@
         </Badge>
         <Badge :count="count">
             <a href="#" class="demo-badge"></a>
-            <span slot="text">hhh</span>
+            <template #text>
+                <span>hhh</span>
+            </template>
         </Badge>
         <br><br>
         <Badge text="hot">
@@ -47,7 +51,9 @@
             <br />
             <Badge status="success" text="Success" />
             <Badge status="success">
-                <strong slot="text">Success</strong>
+                <template #text>
+                    <strong>Success</strong>
+                </template>
             </Badge>
             <br />
             <Badge status="error" text="Error" />

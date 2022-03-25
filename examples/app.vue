@@ -23,7 +23,7 @@
 <!--            <span><router-link to="/timeline">Timeline</router-link></span>-->
 <!--            <span><router-link to="/switch">Switch</router-link></span>-->
 <!--            <span><router-link to="/alert">Alert</router-link></span>-->
-<!--            <span><router-link to="/badge">Badge</router-link></span>-->
+            <span><router-link to="/badge">Badge</router-link></span>
 <!--            <span><router-link to="/tag">Tag</router-link></span>-->
 <!--            <span><router-link to="/input-number">InputNumber</router-link></span>-->
 <!--            <span><router-link to="/progress">Progress</router-link></span>-->

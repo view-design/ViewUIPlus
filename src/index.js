@@ -13,7 +13,7 @@
 // import AutoComplete from './components/auto-complete';
 import Avatar from './components/avatar';
 // import BackTop from './components/back-top';
-// import Badge from './components/badge';
+import Badge from './components/badge';
 import Button from './components/button';
 import ButtonGroup from './components/button-group';
 import Card from './components/card';
@@ -74,7 +74,7 @@ const components = {
     // AutoComplete,
     Avatar,
     // BackTop,
-    // Badge,
+    Badge,
     Breadcrumb,
     BreadcrumbItem,
     Button,

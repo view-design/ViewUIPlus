@@ -66,10 +66,10 @@ const router = createRouter({
         //     path: '/alert',
         //     component: (resolve) => require(['./routers/alert.vue'], resolve)
         // },
-        // {
-        //     path: '/badge',
-        //     component: (resolve) => require(['./routers/badge.vue'], resolve)
-        // },
+        {
+            path: '/badge',
+            component: () => import('./routers/badge.vue')
+        },
         // {
         //     path: '/tag',
         //     component: (resolve) => require(['./routers/tag.vue'], resolve)
