@@ -5,55 +5,57 @@
     </div>
 </template>
 <script>
-export default {
-    name: 'AnchorLink',
-    inject: ['anchorCom'],
-    props: {
-        href: String,
-        title: String,
-        scrollOffset: {
-            type: Number,
-            default () {
-                return this.anchorCom.scrollOffset;
+    import { inject } from 'vue';
+
+    export default {
+        name: 'AnchorLink',
+        inject: ['AnchorInstance'],
+        props: {
+            href: String,
+            title: String,
+            scrollOffset: {
+                type: Number,
+                default () {
+                    return inject('AnchorInstance').scrollOffset;
+                }
             }
-        }
-    },
-    data () {
-        return {
-            prefix: 'ivu-anchor-link'
-        };
-    },
-    computed: {
-        anchorLinkClasses () {
-            return [
-                this.prefix,
-                this.anchorCom.currentLink === this.href ? `${this.prefix}-active` : ''
-            ];
         },
-        linkTitleClasses () {
-            return [
-                `${this.prefix}-title`
-            ];
-        }
-    },
-    methods: {
-        goAnchor () {
-            this.currentLink = this.href;
-            this.anchorCom.handleHashChange();
-            this.anchorCom.handleScrollTo();
-            this.anchorCom.$emit('on-select', this.href);
-            const isRoute = this.$router;
-            if (isRoute) {
-                this.$router.push(this.href, () => {});
-            } else {
-                window.location.href = this.href;
+        data () {
+            return {
+                prefix: 'ivu-anchor-link'
+            };
+        },
+        computed: {
+            anchorLinkClasses () {
+                return [
+                    this.prefix,
+                    this.AnchorInstance.currentLink === this.href ? `${this.prefix}-active` : ''
+                ];
+            },
+            linkTitleClasses () {
+                return [
+                    `${this.prefix}-title`
+                ];
             }
+        },
+        methods: {
+            goAnchor () {
+                this.currentLink = this.href;
+                this.AnchorInstance.handleHashChange();
+                this.AnchorInstance.handleScrollTo();
+                this.AnchorInstance.$emit('on-select', this.href);
+                const isRoute = this.$router;
+                if (isRoute) {
+                    this.$router.push(this.href, () => {});
+                } else {
+                    window.location.href = this.href;
+                }
+            }
+        },
+        mounted () {
+            this.$nextTick(() => {
+                this.AnchorInstance.init();
+            });
         }
-    },
-    mounted () {
-        this.$nextTick(() => {
-            this.anchorCom.init();
-        });
-    }
-};
+    };
 </script>

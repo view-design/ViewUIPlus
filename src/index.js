@@ -8,8 +8,8 @@
  */
 // import Affix from './components/affix';
 // import Alert from './components/alert';
-// import Anchor from './components/anchor';
-// import AnchorLink from './components/anchor-link';
+import Anchor from './components/anchor';
+import AnchorLink from './components/anchor-link';
 // import AutoComplete from './components/auto-complete';
 import Avatar from './components/avatar';
 // import BackTop from './components/back-top';
@@ -69,8 +69,8 @@ import { Row, Col } from './components/grid';
 const components = {
     // Affix,
     // Alert,
-    // Anchor,
-    // AnchorLink,
+    Anchor,
+    AnchorLink,
     // AutoComplete,
     Avatar,
     // BackTop,
