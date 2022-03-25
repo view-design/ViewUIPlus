@@ -30,17 +30,17 @@
 </template>
 
 <script>
-    import {oneOf} from '../../utils/assist';
-    import {on, off} from '../../utils/dom';
+    import { oneOf } from '../../utils/assist';
+    import { on, off } from '../../utils/dom';
     import Trigger from './trigger.vue';
+
     export default {
         name: 'Split',
-        components: {
-            Trigger
-        },
+        components: { Trigger },
+        emits: ['update:modelValue', 'on-move-start', 'on-moving', 'on-move-end'],
         props: {
-            value: {
-                type: [Number, String],
+            modelValue: {
+                type: [ Number, String ],
                 default: 0.5
             },
             mode: {
@@ -97,7 +97,7 @@
                 return 100 - this.offset;
             },
             valueIsPx () {
-                return typeof this.value === 'string';
+                return typeof this.modelValue === 'string';
             },
             offsetSize () {
                 return this.isHorizontal ? 'offsetWidth' : 'offsetHeight';
@@ -134,9 +134,9 @@
                 let anotherValue = this.getAnotherOffset(value);
                 if (parseFloat(value) <= parseFloat(this.computedMin)) value = this.getMax(value, this.computedMin);
                 if (parseFloat(anotherValue) <= parseFloat(this.computedMax)) value = this.getAnotherOffset(this.getMax(anotherValue, this.computedMax));
-                e.atMin = this.value === this.computedMin;
-                e.atMax = this.valueIsPx ? this.getAnotherOffset(this.value) === this.computedMax : this.getAnotherOffset(this.value).toFixed(5) === this.computedMax.toFixed(5);
-                this.$emit('input', value);
+                e.atMin = this.modelValue === this.computedMin;
+                e.atMax = this.valueIsPx ? this.getAnotherOffset(this.modelValue) === this.computedMax : this.getAnotherOffset(this.modelValue).toFixed(5) === this.computedMax.toFixed(5);
+                this.$emit('update:modelValue', value);
                 this.$emit('on-moving', e);
             },
             handleUp () {
@@ -147,7 +147,7 @@
             },
             handleMousedown (e) {
                 this.initOffset = this.isHorizontal ? e.pageX : e.pageY;
-                this.oldOffset = this.value;
+                this.oldOffset = this.modelValue;
                 this.isMoving = true;
                 on(document, 'mousemove', this.handleMove);
                 on(document, 'mouseup', this.handleUp);
@@ -159,12 +159,12 @@
                     this.computedMax = this.getComputedThresholdValue('max');
                     // https://github.com/view-design/ViewUI/commit/d827b6405c365b9b7c130448f509724564cad8c1
                     // todo 这里对 px 没有适配，先还原
-                    this.offset = (this.valueIsPx ? this.px2percent(this.value, this.$refs.outerWrapper[this.offsetSize]) : this.value) * 10000 / 100;
+                    this.offset = (this.valueIsPx ? this.px2percent(this.modelValue, this.$refs.outerWrapper[this.offsetSize]) : this.modelValue) * 10000 / 100;
                 });
             }
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 if (val !== this.currentValue) {
                     this.currentValue = val;
                     this.computeOffset();

@@ -1,98 +1,50 @@
 <template>
-    <div>
-        <div class="demo-split">
-            <Split v-model="split1">
-                <template #left>
-                    <div class="demo-split-pane">
-                        左边面板
-                    </div>
-                </template>
-                <template #right>
-                    <div class="demo-split-pane">
-                        右边面板
-                    </div>
-                </template>
-            </Split>
-        </div>
-        <div class="demo-split">
-            <Split v-model="split1" mode="vertical">
-                <template #left>
-                    <div class="demo-split-pane">
-                        左边面板
-                    </div>
-                </template>
-                <template #right>
-                    <div class="demo-split-pane">
-                        右边面板
-                    </div>
-                </template>
-            </Split>
-        </div>
+    <div class="demo-split">
+        <Split v-model="split3">
+            <template #left>
+                <div class="demo-split-pane no-padding">
+                    <Split v-model="split4" mode="vertical">
+                        <template #top>
+                            <div class="demo-split-pane">
+                                Top Pane
+                            </div>
+                        </template>
+                        <template #bottom>
+                            <div class="demo-split-pane">
+                                Bottom Pane
+                            </div>
+                        </template>
+                    </Split>
+                </div>
+            </template>
+            <template #right>
+                <div class="demo-split-pane">
+                    Right Pane
+                </div>
+            </template>
+        </Split>
     </div>
 </template>
-
 <script>
-    export default {
-        name: 'split_pane_page',
-        data () {
-            return {
-                offset: 0.6,
-                offsetVertical: '250px',
-                split1: 0.5
-            }
-        },
-        methods: {
-            handleMoving (e) {
-                console.log(e.atMin, e.atMax)
-            }
+export default {
+    data () {
+        return {
+            split3: 0.5,
+            split4: 0.5
         }
-    }
+    },
+}
 </script>
-
-<style lang="less">
-    .center-middle {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .split-pane-page-wrapper {
-        height: 600px;
-        .pane {
-            width: 100%;
-            height: 100%;
-            &.left-pane {
-                background: sandybrown;
-            }
-            &.right-pane {
-                background: palevioletred;
-            }
-            &.top-pane {
-                background: sandybrown;
-            }
-            &.bottom-pane {
-                background: palevioletred;
-            }
-        }
-        .custom-trigger {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #fff;
-            position: absolute;
-            .center-middle;
-            box-shadow: 0 0 6px 0 rgba(28, 36, 56, 0.4);
-            cursor: row-resize;
-            i.trigger-icon {
-                .center-middle;
-            }
-        }
-    }
-</style>
 <style>
-    .demo-split{
-        height: 300px;
-        border: 1px solid #dddee1;
-    }
+.demo-split{
+    height: 200px;
+    border: 1px solid #dcdee2;
+}
+.demo-split-pane{
+    padding: 10px;
+}
+.demo-split-pane.no-padding{
+    height: 200px;
+    padding: 0;
+}
 </style>
