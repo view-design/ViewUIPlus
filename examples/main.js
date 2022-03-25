@@ -206,10 +206,10 @@ const router = createRouter({
         //     path: '/scroll',
         //     component: (resolve) => require(['./routers/scroll.vue'], resolve)
         // },
-        // {
-        //     path: '/divider',
-        //     component: (resolve) => require(['./routers/divider.vue'], resolve)
-        // },
+        {
+            path: '/divider',
+            component: () => import('./routers/divider.vue')
+        },
         // {
         //     path: '/time',
         //     component: (resolve) => require(['./routers/time.vue'], resolve)

@@ -25,7 +25,7 @@ import Card from './components/card';
 // import Circle from './components/circle';
 // import ColorPicker from './components/color-picker';
 // import DatePicker from './components/date-picker';
-// import Divider from './components/divider';
+import Divider from './components/divider';
 // import Drawer from './components/drawer';
 // import Dropdown from './components/dropdown';
 // import Form from './components/form';
@@ -91,7 +91,7 @@ const components = {
     // ColorPicker,
     Content,
     // DatePicker,
-    // Divider,
+    Divider,
     // Drawer,
     // Dropdown,
     // DropdownItem: Dropdown.Item,
