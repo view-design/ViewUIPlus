@@ -14,10 +14,10 @@ const router = createRouter({
     mode: 'history',
     history: createWebHistory(),
     routes: [
-        // {
-        //     path: '/split',
-        //     component: (resolve) => require(['./routers/split.vue'], resolve)
-        // },
+        {
+            path: '/split',
+            component: () => import('./routers/split.vue')
+        },
         {
             path: '/layout',
             component: () => import('./routers/layout.vue')
