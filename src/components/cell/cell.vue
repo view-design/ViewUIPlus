@@ -34,13 +34,14 @@
     import CellItem from './cell-item.vue';
     import Icon from '../icon/icon.vue';
     import mixinsLink from '../../mixins/link';
+    import globalConfig from '../../mixins/globalConfig';
 
     const prefixCls = 'ivu-cell';
 
     export default {
         name: 'Cell',
         inject: ['CellGroupInstance'],
-        mixins: [ mixinsLink ],
+        mixins: [ mixinsLink, globalConfig ],
         components: { CellItem, Icon },
         props: {
             name: {
@@ -85,35 +86,38 @@
             },
             // 3.4.0, global setting customArrow 有值时，arrow 赋值空
             arrowType () {
+                const config = this.globalConfig;
                 let type = 'ios-arrow-forward';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.cell.customArrow) {
+                if (config) {
+                    if (config.cell.customArrow) {
                         type = '';
-                    } else if (this.$IVIEW.cell.arrow) {
-                        type = this.$IVIEW.cell.arrow;
+                    } else if (config.cell.arrow) {
+                        type = config.cell.arrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             customArrowType () {
+                const config = this.globalConfig;
                 let type = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.cell.customArrow) {
-                        type = this.$IVIEW.cell.customArrow;
+                if (config) {
+                    if (config.cell.customArrow) {
+                        type = config.cell.customArrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             arrowSize () {
+                const config = this.globalConfig;
                 let size = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.cell.arrowSize) {
-                        size = this.$IVIEW.cell.arrowSize;
+                if (config) {
+                    if (config.cell.arrowSize) {
+                        size = config.cell.arrowSize;
                     }
                 }
                 return size;
@@ -122,7 +126,6 @@
         methods: {
             handleClickItem (event, new_window) {
                 this.CellGroupInstance.handleClick(this.name);
-
                 this.handleCheckClick(event, new_window);
             }
         }
