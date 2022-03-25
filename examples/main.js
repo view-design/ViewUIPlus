@@ -130,10 +130,10 @@ const router = createRouter({
             path: '/dropdown',
             component: () => import('./routers/dropdown.vue')
         },
-        // {
-        //     path: '/breadcrumb',
-        //     component: (resolve) => require(['./routers/breadcrumb.vue'], resolve)
-        // },
+        {
+            path: '/breadcrumb',
+            component: () => import('./routers/breadcrumb.vue')
+        },
         {
             path: '/menu',
             component: () => import('./routers/menu.vue')

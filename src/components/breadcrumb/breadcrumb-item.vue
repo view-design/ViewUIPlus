@@ -26,12 +26,12 @@
     export default {
         name: 'BreadcrumbItem',
         mixins: [ mixinsLink ],
+        inject: ['BreadcrumbInstance'],
         props: {
 
         },
         data () {
             return {
-                separator: '',
                 showSeparator: false
             };
         },
@@ -41,6 +41,9 @@
             },
             separatorClasses () {
                 return `${prefixCls}-separator`;
+            },
+            separator () {
+                return this.BreadcrumbInstance.separator;
             }
         },
         mounted () {

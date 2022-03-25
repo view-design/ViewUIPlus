@@ -15,13 +15,13 @@
     <Breadcrumb separator="">
         <Breadcrumb-item href="/">
             <template>Home</template>
-            <template slot="separator">
+            <template #separator>
                 <b style="color: #ff5500;">-></b>
             </template>
         </Breadcrumb-item>
         <Breadcrumb-item href="/components/page">
             <template>Breadcrumb</template>
-            <template slot="separator">
+            <template #separator>
                 <b style="color: #ff5500;">-></b>
             </template>
         </Breadcrumb-item>

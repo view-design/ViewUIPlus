@@ -14,7 +14,6 @@
 import Avatar from './components/avatar';
 // import BackTop from './components/back-top';
 // import Badge from './components/badge';
-// import Breadcrumb from './components/breadcrumb';
 import Button from './components/button';
 import ButtonGroup from './components/button-group';
 import Card from './components/card';
@@ -56,6 +55,7 @@ import Spin from './components/spin';
 // import Transfer from './components/transfer';
 // import Tree from './components/tree';
 // import Upload from './components/upload';
+import { Breadcrumb, BreadcrumbItem } from './components/breadcrumb';
 import { Cell, CellGroup } from './components/cell';
 import { Collapse, Panel } from './components/collapse';
 import { Dropdown, DropdownMenu, DropdownItem } from './components/dropdown';
@@ -75,8 +75,8 @@ const components = {
     Avatar,
     // BackTop,
     // Badge,
-    // Breadcrumb,
-    // BreadcrumbItem: Breadcrumb.Item,
+    Breadcrumb,
+    BreadcrumbItem,
     Button,
     ButtonGroup,
     Card,
