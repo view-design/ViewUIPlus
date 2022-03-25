@@ -19,6 +19,7 @@
     export default {
         name: 'Panel',
         components: { Icon, CollapseTransition },
+        inject: ['CollapseInstance'],
         props: {
             name: {
                 type: String
@@ -31,7 +32,6 @@
         data () {
             return {
                 index: 0, // use index for default when name is null
-                isActive: false,
                 mounted: false
             };
         },
@@ -52,19 +52,28 @@
             },
             boxClasses () {
                 return `${prefixCls}-content-box`;
+            },
+            isActive () {
+                const activeKey = this.CollapseInstance.getActiveKey();
+                const name = this.name || this.index.toString();
+                return activeKey.indexOf(name) > -1;
             }
         },
         methods: {
+            setIndex () {
+                this.index = this.CollapseInstance.panelCount + 1;
+                this.CollapseInstance.panelCount = this.index;
+            },
             toggle () {
-                this.$parent.toggle({
+                this.CollapseInstance.toggle({
                     name: this.name || this.index,
                     isActive: this.isActive
                 });
             }
         },
         mounted () {
+            this.setIndex();
             this.mounted = true;
-            this.$parent.setActive();
         }
     };
 </script>

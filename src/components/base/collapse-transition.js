@@ -1,4 +1,5 @@
 import { addClass, removeClass } from '../../utils/assist';
+import { h } from 'vue';
 
 const Transition = {
     beforeEnter(el) {
@@ -66,18 +67,15 @@ const Transition = {
 
 export default {
     name: 'CollapseTransition',
-    functional: true,
     props: {
         appear: Boolean
     },
-    render(h, { children, props }) {
+    render (props, context) {
         const data = {
             on: Transition,
-            props: {
-                appear: props.appear
-            }
+            appear: props.appear
         };
 
-        return h('transition', data, children);
+        return h('transition', data, context.slots);
     }
 };

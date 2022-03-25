@@ -9,6 +9,11 @@
     export default {
         name: 'Collapse',
         emits: ['on-change', 'update:modelValue'],
+        provide () {
+            return {
+                CollapseInstance: this
+            }
+        },
         props: {
             accordion: {
                 type: Boolean,
@@ -24,7 +29,8 @@
         },
         data () {
             return {
-                currentValue: this.modelValue
+                currentValue: this.modelValue,
+                panelCount: 0 // Vue3 不能由父组件遍历子组件实例，因此无法在父组件操作子组件
             };
         },
         computed: {
@@ -38,16 +44,6 @@
             }
         },
         methods: {
-            setActive () {
-                const activeKey = this.getActiveKey();
-
-                this.$children.forEach((child, index) => {
-                    const name = child.name || index.toString();
-
-                    child.isActive = activeKey.indexOf(name) > -1;
-                    child.index = index;
-                });
-            },
             getActiveKey () {
                 let activeKey = this.currentValue || [];
                 const accordion = this.accordion;
@@ -100,12 +96,6 @@
             modelValue (val) {
                 this.currentValue = val;
             },
-            currentValue () {
-                this.setActive();
-            }
-        },
-        mounted () {
-            this.setActive();
         }
     };
 </script>
