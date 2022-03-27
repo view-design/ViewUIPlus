@@ -116,7 +116,7 @@
             },
             validateField(prop, cb) {
                 const field = this.fields.filter(field => field.prop === prop)[0];
-                if (!field) { throw new Error('[iView warn]: must call validateField with valid prop string!'); }
+                if (!field) { throw new Error('[View UI warn]: must call validateField with valid prop string!'); }
 
                 field.validate('', cb);
             }
