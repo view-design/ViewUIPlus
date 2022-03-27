@@ -43,7 +43,8 @@ import Split from './components/split';
 // import Rate from './components/rate';
 // import Slider from './components/slider';
 import Spin from './components/spin';
-// import Steps from './components/steps';
+import Step from './components/step';
+import Steps from './components/steps';
 // import Switch from './components/switch';
 // import Table from './components/table';
 // import Tabs from './components/tabs';
@@ -131,8 +132,8 @@ const components = {
     // Slider,
     Split,
     Spin,
-    // Step: Steps.Step,
-    // Steps,
+    Step,
+    Steps,
     // Submenu,
     // Table,
     // Tabs: Tabs,

@@ -50,10 +50,10 @@ const router = createRouter({
         //     path: '/checkbox',
         //     component: (resolve) => require(['./routers/checkbox.vue'], resolve)
         // },
-        // {
-        //     path: '/steps',
-        //     component: (resolve) => require(['./routers/steps.vue'], resolve)
-        // },
+        {
+            path: '/steps',
+            component: () => import('./routers/steps.vue')
+        },
         // {
         //     path: '/timeline',
         //     component: (resolve) => require(['./routers/timeline.vue'], resolve)
