@@ -5,7 +5,7 @@
 </template>
 <script>
     import { getCurrentInstance } from 'vue';
-    import { findComponentsDownward, oneOf } from '../../utils/assist';
+    import { oneOf } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
 
     const prefixCls = 'ivu-checkbox-group';

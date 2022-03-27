@@ -48,7 +48,7 @@
         <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px;margin-bottom:6px;">
             <Checkbox
                     :indeterminate="indeterminate"
-                    :value="checkAll"
+                    :modelValue="checkAll"
                     @click.prevent="handleCheckAll">全选</Checkbox>
         </div>
         <CheckboxGroup v-model="checkAllGroup" @on-change="checkAllGroupChange">

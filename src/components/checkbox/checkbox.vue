@@ -89,8 +89,8 @@
         data () {
             return {
                 showSlot: true,
-                parent: this.CheckboxGroupInstance,
-                focusInner: false
+                focusInner: false,
+                model: []
             };
         },
         computed: {
@@ -129,20 +129,13 @@
             },
             currentValue () {
                 if (this.CheckboxGroupInstance) {
-                    return this.CheckboxGroupInstance.currentValue === this.label;
+                    return this.CheckboxGroupInstance.modelValue.indexOf(this.label) >= 0;
                 } else {
                     return this.modelValue === this.trueValue;
                 }
             },
             group () {
                 return !!this.CheckboxGroupInstance;
-            },
-            model () {
-                if (this.CheckboxGroupInstance) {
-                    return this.CheckboxGroupInstance.modelValue || [];
-                } else {
-                    return [];
-                }
             }
         },
         mounted () {
@@ -160,7 +153,7 @@
                 this.$emit('update:modelValue', value);
 
                 if (this.group) {
-                    this.parent.change(this.model);
+                    this.CheckboxGroupInstance.change(this.model);
                 } else {
                     this.$emit('on-change', value);
                     this.dispatch('FormItem', 'on-form-change', value); // todo
@@ -180,6 +173,12 @@
                 } else {
                     throw 'Value should be trueValue or falseValue.';
                 }
+            },
+            'CheckboxGroupInstance.modelValue': {
+                handler (val) {
+                    this.model = val || [];
+                },
+                immediate: true
             }
         }
     };
