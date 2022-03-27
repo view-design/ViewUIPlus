@@ -314,7 +314,7 @@
             handleBlur (event) {
                 this.$emit('on-blur', event);
                 if (!findComponentUpward(this, ['DatePicker', 'TimePicker', 'Cascader', 'Search'])) {
-                    this.dispatch('FormItem', 'on-form-blur', this.currentValue);
+                    this.dispatch('FormItem', 'on-form-blur', this.currentValue); // todo
                 }
             },
             handleComposition(event) {
