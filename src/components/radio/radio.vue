@@ -15,6 +15,7 @@
     </label>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import { findComponentUpward, oneOf } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
@@ -24,8 +25,9 @@
     export default {
         name: 'Radio',
         mixins: [ Emitter, mixinsForm ],
+        emits: ['update:modelValue', 'on-change'],
         props: {
-            value: {
+            modelValue: {
                 type: [String, Number, Boolean],
                 default: false
             },
@@ -49,7 +51,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             name: {
@@ -63,7 +66,7 @@
         },
         data () {
             return {
-                currentValue: this.value,
+                currentValue: this.modelValue,
                 group: false,
                 groupName: this.name,
                 parent: findComponentUpward(this, 'RadioGroup'),
@@ -116,7 +119,7 @@
                     }
                     /* eslint-enable no-console */
                 } else {
-                    this.groupName = this.parent.name; 
+                    this.groupName = this.parent.name;
                 }
             }
 
@@ -136,13 +139,13 @@
                 this.currentValue = checked;
 
                 const value = checked ? this.trueValue : this.falseValue;
-                this.$emit('input', value);
+                this.$emit('update:modelValue', value);
 
                 if (this.group) {
                     if (this.label !== undefined) {
                         this.parent.change({
                             value: this.label,
-                            checked: this.value
+                            checked: this.modelValue
                         });
                     }
                 } else {
@@ -151,7 +154,7 @@
                 }
             },
             updateValue () {
-                this.currentValue = this.value === this.trueValue;
+                this.currentValue = this.modelValue === this.trueValue;
             },
             onBlur () {
                 this.focusWrapper = false;
@@ -166,7 +169,7 @@
             }
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 if (val === this.trueValue || val === this.falseValue) {
                     this.updateValue();
                 } else {

@@ -42,10 +42,10 @@ const router = createRouter({
             path: '/input',
             component: () => import('./routers/input.vue')
         },
-        // {
-        //     path: '/radio',
-        //     component: (resolve) => require(['./routers/radio.vue'], resolve)
-        // },
+        {
+            path: '/radio',
+            component: () => import('./routers/radio.vue')
+        },
         // {
         //     path: '/checkbox',
         //     component: (resolve) => require(['./routers/checkbox.vue'], resolve)

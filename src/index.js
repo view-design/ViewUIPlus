@@ -55,7 +55,8 @@ import LoadingBar from './components/loading-bar';
 import Panel from './components/panel';
 // import Poptip from './components/poptip';
 // import Progress from './components/progress';
-// import Radio from './components/radio';
+import Radio from './components/radio';
+import RadioGroup from './components/radio-group';
 // import Rate from './components/rate';
 import Row from './components/row';
 import Sider from './components/sider';
@@ -133,8 +134,8 @@ const components = {
     Panel,
     // Poptip,
     // Progress,
-    // Radio,
-    // RadioGroup: Radio.Group,
+    Radio,
+    RadioGroup,
     // Rate,
     Row,
     // Scroll,

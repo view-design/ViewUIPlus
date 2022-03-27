@@ -4,6 +4,7 @@
     </div>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import { oneOf, findComponentsDownward } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
 
@@ -26,7 +27,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             type: {
