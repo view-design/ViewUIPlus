@@ -16,7 +16,7 @@
 </template>
 <script>
     import { getCurrentInstance } from 'vue';
-    import { findComponentUpward, oneOf } from '../../utils/assist';
+    import { oneOf } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
 
@@ -26,6 +26,11 @@
         name: 'Radio',
         mixins: [ Emitter, mixinsForm ],
         emits: ['update:modelValue', 'on-change'],
+        inject: {
+            RadioGroupInstance: {
+                default: null
+            }
+        },
         props: {
             modelValue: {
                 type: [String, Number, Boolean],
@@ -66,10 +71,8 @@
         },
         data () {
             return {
-                currentValue: this.modelValue,
-                group: false,
                 groupName: this.name,
-                parent: findComponentUpward(this, 'RadioGroup'),
+                parent: this.RadioGroupInstance,
                 focusWrapper: false,
                 focusInner: false
             };
@@ -107,26 +110,29 @@
             },
             inputClasses () {
                 return `${prefixCls}-input`;
+            },
+            currentValue () {
+                if (this.RadioGroupInstance) {
+                    return this.RadioGroupInstance.currentValue === this.label;
+                } else {
+                    return this.modelValue === this.trueValue;
+                }
+            },
+            group () {
+                return !!this.RadioGroupInstance;
             }
         },
         mounted () {
             if (this.parent) {
-                this.group = true;
                 if (this.name && this.name !== this.parent.name) {
                     /* eslint-disable no-console */
                     if (console.warn) {
-                        console.warn('[iview] Name does not match Radio Group name.');
+                        console.warn('[View UI] Name does not match Radio Group name.');
                     }
                     /* eslint-enable no-console */
                 } else {
                     this.groupName = this.parent.name;
                 }
-            }
-
-            if (this.group) {
-                this.parent.updateValue();
-            } else {
-                this.updateValue();
             }
         },
         methods: {
@@ -136,7 +142,6 @@
                 }
 
                 const checked = event.target.checked;
-                this.currentValue = checked;
 
                 const value = checked ? this.trueValue : this.falseValue;
                 this.$emit('update:modelValue', value);
@@ -150,11 +155,8 @@
                     }
                 } else {
                     this.$emit('on-change', value);
-                    this.dispatch('FormItem', 'on-form-change', value);
+                    this.dispatch('FormItem', 'on-form-change', value); // todo
                 }
-            },
-            updateValue () {
-                this.currentValue = this.modelValue === this.trueValue;
             },
             onBlur () {
                 this.focusWrapper = false;
@@ -171,7 +173,7 @@
         watch: {
             modelValue (val) {
                 if (val === this.trueValue || val === this.falseValue) {
-                    this.updateValue();
+                    // this.updateValue();
                 } else {
                     throw 'Value should be trueValue or falseValue.';
                 }

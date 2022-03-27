@@ -5,7 +5,7 @@
 </template>
 <script>
     import { getCurrentInstance } from 'vue';
-    import { oneOf, findComponentsDownward } from '../../utils/assist';
+    import { oneOf } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
 
     const prefixCls = 'ivu-radio-group';
@@ -17,8 +17,14 @@
     export default {
         name: 'RadioGroup',
         mixins: [ Emitter ],
+        emits: ['update:modelValue', 'on-change'],
+        provide () {
+            return {
+                RadioGroupInstance: this
+            }
+        },
         props: {
-            value: {
+            modelValue: {
                 type: [String, Number],
                 default: ''
             },
@@ -54,7 +60,7 @@
         },
         data () {
             return {
-                currentValue: this.value,
+                currentValue: this.modelValue,
                 children: []
             };
         },
@@ -72,34 +78,18 @@
                 ];
             }
         },
-        mounted () {
-            this.updateValue();
-        },
         methods: {
-            updateValue () {
-                this.children = findComponentsDownward(this, 'Radio');
-                if (this.children) {
-                    this.children.forEach(child => {
-                        child.currentValue = this.currentValue === child.label;
-                        child.group = true;
-                    });
-                }
-            },
             change (data) {
                 this.currentValue = data.value;
-                this.updateValue();
-                this.$emit('input', data.value);
+                this.$emit('update:modelValue', data.value);
                 this.$emit('on-change', data.value);
-                this.dispatch('FormItem', 'on-form-change', data.value);
+                this.dispatch('FormItem', 'on-form-change', data.value); // todo
             }
         },
         watch: {
-            value () {
-                if(this.currentValue !== this.value){
-                    this.currentValue = this.value;
-                    this.$nextTick(()=>{
-                        this.updateValue();
-                    });
+            modelValue () {
+                if (this.currentValue !== this.modelValue) {
+                    this.currentValue = this.modelValue;
                 }
             }
         }
