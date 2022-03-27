@@ -47,7 +47,7 @@ import ListItemMeta from './components/list-item-meta';
 // import InputNumber from './components/input-number';
 // import Scroll from './components/scroll';
 import Split from './components/split';
-// import LoadingBar from './components/loading-bar';
+import LoadingBar from './components/loading-bar';
 // import Message from './components/message';
 // import Modal from './components/modal';
 // import Notice from './components/notice';
@@ -120,7 +120,7 @@ const components = {
     List,
     ListItem,
     ListItemMeta,
-    // LoadingBar,
+    LoadingBar,
     // Menu,
     // MenuGroup,
     // MenuItem,
@@ -248,12 +248,12 @@ const install = function(app, opts = {}) {
     //     }
     // };
     //
-    // Vue.prototype.$Loading = LoadingBar;
     // Vue.prototype.$Message = Message;
     // Vue.prototype.$Modal = Modal;
     // Vue.prototype.$Notice = Notice;
     // Vue.prototype.$Spin = Spin;
     app.config.globalProperties.$Spin = Spin;
+    app.config.globalProperties.$Loading = LoadingBar;
 };
 
 // auto install

@@ -174,10 +174,10 @@ const router = createRouter({
         //     path: '/table',
         //     component: (resolve) => require(['./routers/table.vue'], resolve)
         // },
-        // {
-        //     path: '/loading-bar',
-        //     component: (resolve) => require(['./routers/loading-bar.vue'], resolve)
-        // },
+        {
+            path: '/loading-bar',
+            component: () => import('./routers/loading-bar.vue')
+        },
         // {
         //     path: '/modal',
         //     component: (resolve) => require(['./routers/modal.vue'], resolve)

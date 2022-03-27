@@ -1,8 +1,8 @@
 <template>
     <div>
-        <i-button @click.native="start">Start</i-button>
-        <i-button @click.native="finish">Finish</i-button>
-        <i-button @click.native="error">Error</i-button>
+        <Button @click="start">Start</Button>
+        <Button @click="finish">Finish</Button>
+        <Button @click="error">Error</Button>
     </div>
 </template>
 <script>
@@ -19,11 +19,11 @@
             }
         },
         created () {
-//            this.$Loading.config({
-//                color: '#5cb85c',
-//                failedColor: '#f0ad4e',
-//                height: 5
-//            });
+           // this.$Loading.config({
+           //     color: '#5cb85c',
+           //     failedColor: '#f0ad4e',
+           //     height: 5
+           // });
         }
     }
 </script>

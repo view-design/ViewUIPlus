@@ -1,21 +1,24 @@
+import { createApp, h } from 'vue';
 import LoadingBar from './loading-bar.vue';
-import Vue from 'vue';
 
 LoadingBar.newInstance = properties => {
     const _props = properties || {};
 
-    const Instance = new Vue({
-        data: _props,
-        render (h) {
-            return h(LoadingBar, {
-                props: _props
-            });
+    const Instance = createApp({
+        data () {
+            return _props
+        },
+        render () {
+            return h(LoadingBar, Object.assign({
+                ref: 'loadingBar'
+            }, _props));
         }
     });
 
-    const component = Instance.$mount();
-    document.body.appendChild(component.$el);
-    const loading_bar = Instance.$children[0];
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+    Instance.mount(container);
+    const loading_bar = Instance._instance.refs.loadingBar;
 
     return {
         update (options) {
@@ -31,7 +34,8 @@ LoadingBar.newInstance = properties => {
         },
         component: loading_bar,
         destroy () {
-            document.body.removeChild(document.getElementsByClassName('ivu-loading-bar')[0]);
+            Instance.unmount();
+            document.body.removeChild(container);
         }
     };
 };

@@ -19,7 +19,7 @@
 <!--            <span><router-link to="/input">Input</router-link></span>-->
 <!--            <span><router-link to="/radio">Radio</router-link></span>-->
 <!--            <span><router-link to="/checkbox">Checkbox</router-link></span>-->
-            <span><router-link to="/steps">Steps</router-link></span>
+            <span>[todo]<router-link to="/steps">Steps</router-link></span>
 <!--            <span><router-link to="/timeline">Timeline</router-link></span>-->
 <!--            <span><router-link to="/switch">Switch</router-link></span>-->
 <!--            <span><router-link to="/alert">Alert</router-link></span>-->
@@ -50,7 +50,7 @@
 <!--            <span><router-link to="/date">Date</router-link></span>-->
 <!--            <span><router-link to="/form">Form</router-link></span>-->
 <!--            <span><router-link to="/table">Table</router-link></span>-->
-<!--            <span><router-link to="/loading-bar">LoadingBar</router-link></span>-->
+            <span><router-link to="/loading-bar">LoadingBar</router-link></span>
 <!--            <span><router-link to="/modal">Modal</router-link></span>-->
 <!--            <span><router-link to="/message">Message</router-link></span>-->
 <!--            <span><router-link to="/notice">Notice</router-link></span>-->
