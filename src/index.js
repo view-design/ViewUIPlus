@@ -23,7 +23,8 @@ import Card from './components/card';
 // import Cascader from './components/cascader';
 import Cell from './components/cell';
 import CellGroup from './components/cell-group';
-// import Checkbox from './components/checkbox';
+import Checkbox from './components/checkbox';
+import CheckboxGroup from './components/checkbox-group';
 // import Circle from './components/circle';
 import Col from './components/col';
 import Collapse from './components/collapse';
@@ -98,8 +99,8 @@ const components = {
     // Cascader,
     Cell,
     CellGroup,
-    // Checkbox,
-    // CheckboxGroup: Checkbox.Group,
+    Checkbox,
+    CheckboxGroup,
     Col,
     Collapse,
     // ColorPicker,

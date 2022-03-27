@@ -28,7 +28,8 @@
     </label>
 </template>
 <script>
-    import { findComponentUpward, oneOf } from '../../utils/assist';
+    import { getCurrentInstance } from 'vue';
+    import { oneOf } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
 
@@ -37,12 +38,18 @@
     export default {
         name: 'Checkbox',
         mixins: [ Emitter, mixinsForm ],
+        emits: ['update:modelValue', 'on-change'],
+        inject: {
+            CheckboxGroupInstance: {
+                default: null
+            }
+        },
         props: {
             disabled: {
                 type: Boolean,
                 default: false
             },
-            value: {
+            modelValue: {
                 type: [String, Number, Boolean],
                 default: false
             },
@@ -66,7 +73,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             name: {
@@ -80,11 +88,8 @@
         },
         data () {
             return {
-                model: [],
-                currentValue: this.value,
-                group: false,
                 showSlot: true,
-                parent: findComponentUpward(this, 'CheckboxGroup'),
+                parent: this.CheckboxGroupInstance,
                 focusInner: false
             };
         },
@@ -121,20 +126,27 @@
             },
             inputClasses () {
                 return `${prefixCls}-input`;
+            },
+            currentValue () {
+                if (this.CheckboxGroupInstance) {
+                    return this.CheckboxGroupInstance.currentValue === this.label;
+                } else {
+                    return this.modelValue === this.trueValue;
+                }
+            },
+            group () {
+                return !!this.CheckboxGroupInstance;
+            },
+            model () {
+                if (this.CheckboxGroupInstance) {
+                    return this.CheckboxGroupInstance.modelValue || [];
+                } else {
+                    return [];
+                }
             }
         },
         mounted () {
-            this.parent = findComponentUpward(this, 'CheckboxGroup');
-            if (this.parent) {
-                this.group = true;
-            }
-
-            if (this.group) {
-                this.parent.updateModel(true);
-            } else {
-                this.updateModel();
-                this.showSlot = this.$slots.default !== undefined;
-            }
+            if (!this.CheckboxGroupInstance) this.showSlot = this.$slots.default !== undefined;
         },
         methods: {
             change (event) {
@@ -143,20 +155,16 @@
                 }
 
                 const checked = event.target.checked;
-                this.currentValue = checked;
 
                 const value = checked ? this.trueValue : this.falseValue;
-                this.$emit('input', value);
+                this.$emit('update:modelValue', value);
 
                 if (this.group) {
                     this.parent.change(this.model);
                 } else {
                     this.$emit('on-change', value);
-                    this.dispatch('FormItem', 'on-form-change', value);
+                    this.dispatch('FormItem', 'on-form-change', value); // todo
                 }
-            },
-            updateModel () {
-                this.currentValue = this.value === this.trueValue;
             },
             onBlur () {
                 this.focusInner = false;
@@ -166,9 +174,9 @@
             }
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 if (val === this.trueValue || val === this.falseValue) {
-                    this.updateModel();
+                    // this.updateModel();
                 } else {
                     throw 'Value should be trueValue or falseValue.';
                 }

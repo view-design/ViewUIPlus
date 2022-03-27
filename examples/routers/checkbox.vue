@@ -49,7 +49,7 @@
             <Checkbox
                     :indeterminate="indeterminate"
                     :value="checkAll"
-                    @click.prevent.native="handleCheckAll">全选</Checkbox>
+                    @click.prevent="handleCheckAll">全选</Checkbox>
         </div>
         <CheckboxGroup v-model="checkAllGroup" @on-change="checkAllGroupChange">
             <Checkbox label="香蕉"></Checkbox>

@@ -4,6 +4,7 @@
     </div>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import { findComponentsDownward, oneOf } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
 
@@ -12,8 +13,14 @@
     export default {
         name: 'CheckboxGroup',
         mixins: [ Emitter ],
+        emits: ['update:modelValue', 'on-change'],
+        provide () {
+            return {
+                CheckboxGroupInstance: this
+            }
+        },
         props: {
-            value: {
+            modelValue: {
                 type: Array,
                 default () {
                     return [];
@@ -24,13 +31,14 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             }
         },
         data () {
             return {
-                currentValue: this.value || [],
+                currentValue: this.modelValue || [],
                 children: []
             };
         },
@@ -44,34 +52,12 @@
                 ];
             }
         },
-        mounted () {
-            this.updateModel(true);
-        },
         methods: {
-            updateModel (update) {
-                this.children = findComponentsDownward(this, 'Checkbox');
-                if (this.children) {
-                    const value = this.value || [];
-                    this.children.forEach(child => {
-                        child.model = value;
-
-                        if (update) {
-                            child.currentValue = value.indexOf(child.label) >= 0;
-                            child.group = true;
-                        }
-                    });
-                }
-            },
             change (data) {
                 this.currentValue = data;
-                this.$emit('input', data);
+                this.$emit('update:modelValue', data);
                 this.$emit('on-change', data);
-                this.dispatch('FormItem', 'on-form-change', data);
-            }
-        },
-        watch: {
-            value () {
-                this.updateModel(true);
+                this.dispatch('FormItem', 'on-form-change', data); // todo
             }
         }
     };
