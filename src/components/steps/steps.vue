@@ -4,6 +4,7 @@
     </div>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import { oneOf } from '../../utils/assist';
 
     const prefixCls = 'ivu-steps';
@@ -19,7 +20,7 @@
                 waiting = false;
                 fn.apply(context, args);
             };
-            this.$nextTick(later);
+            nextTick(later);
         };
     }
 
@@ -122,8 +123,8 @@
         },
         mounted () {
             this.updateSteps();
-            this.$on('append', this.debouncedAppendRemove());
-            this.$on('remove', this.debouncedAppendRemove());
+            // this.$on('append', this.debouncedAppendRemove());
+            // this.$on('remove', this.debouncedAppendRemove());
         },
         watch: {
             current () {
