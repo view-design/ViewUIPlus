@@ -80,6 +80,7 @@
     </div>
 </template>
 <script>
+    import { getCurrentInstance, nextTick } from 'vue';
     import { oneOf, findComponentUpward } from '../../utils/assist';
     import calcTextareaHeight from '../../utils/calcTextareaHeight';
     import Emitter from '../../mixins/emitter';
@@ -90,6 +91,7 @@
     export default {
         name: 'Input',
         mixins: [ Emitter, mixinsForm ],
+        emits: ['on-enter', 'on-search', 'on-keydown', 'on-keypress', 'on-keyup', 'on-click', 'on-focus', 'on-blur', 'on-change', 'on-input-change', 'on-clear', 'update:modelValue'],
         props: {
             type: {
                 validator (value) {
@@ -97,7 +99,7 @@
                 },
                 default: 'text'
             },
-            value: {
+            modelValue: {
                 type: [String, Number],
                 default: ''
             },
@@ -106,7 +108,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             placeholder: {
@@ -199,7 +202,7 @@
         },
         data () {
             return {
-                currentValue: this.value,
+                currentValue: this.modelValue,
                 prefixCls: prefixCls,
                 slotReady: false,
                 textareaStyles: {},
@@ -275,11 +278,11 @@
                 return this.maxlength;
             },
             textLength () {
-                if (typeof this.value === 'number') {
-                    return String(this.value).length;
+                if (typeof this.modelValue === 'number') {
+                    return String(this.modelValue).length;
                 }
 
-                return (this.value || '').length;
+                return (this.modelValue || '').length;
             },
             clearableStyles () {
                 const style = {};
@@ -328,7 +331,7 @@
 
                 let value = event.target.value;
                 if (this.number && value !== '') value = Number.isNaN(Number(value)) ? value : Number(value);
-                this.$emit('input', value);
+                this.$emit('update:modelValue', value);
                 this.setCurrentValue(value);
                 this.$emit('on-change', event);
             },
@@ -337,7 +340,7 @@
             },
             setCurrentValue (value) {
                 if (value === this.currentValue) return;
-                this.$nextTick(() => {
+                nextTick(() => {
                     this.resizeTextarea();
                 });
                 this.currentValue = value;
@@ -414,11 +417,11 @@
             }
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 this.setCurrentValue(val);
             },
             type () {
-                this.$nextTick(this.handleCalcIconOffset);
+                nextTick(this.handleCalcIconOffset);
             }
         },
         mounted () {
@@ -427,7 +430,7 @@
             this.handleCalcIconOffset();
         },
         updated () {
-            this.$nextTick(this.handleCalcIconOffset);
+            nextTick(this.handleCalcIconOffset);
         }
     };
 </script>

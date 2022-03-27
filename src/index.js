@@ -43,7 +43,7 @@ import Layout from './components/layout';
 import List from './components/list';
 import ListItem from './components/list-item';
 import ListItemMeta from './components/list-item-meta';
-// import Input from './components/input';
+import Input from './components/input';
 // import InputNumber from './components/input-number';
 // import Scroll from './components/scroll';
 import Split from './components/split';
@@ -114,7 +114,7 @@ const components = {
     // FormItem: Form.Item,
     Header,
     Icon,
-    // Input,
+    Input,
     // InputNumber,
     Layout,
     List,

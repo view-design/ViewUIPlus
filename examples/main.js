@@ -38,10 +38,10 @@ const router = createRouter({
             path: '/button',
             component: () => import('./routers/button.vue')
         },
-        // {
-        //     path: '/input',
-        //     component: (resolve) => require(['./routers/input.vue'], resolve)
-        // },
+        {
+            path: '/input',
+            component: () => import('./routers/input.vue')
+        },
         // {
         //     path: '/radio',
         //     component: (resolve) => require(['./routers/radio.vue'], resolve)
