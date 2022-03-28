@@ -218,10 +218,10 @@ const router = createRouter({
             path: '/cell',
             component: () => import('./routers/cell.vue')
         },
-        // {
-        //     path: '/drawer',
-        //     component: (resolve) => require(['./routers/drawer.vue'], resolve)
-        // },
+        {
+            path: '/drawer',
+            component: () => import('./routers/drawer.vue')
+        },
         {
             path: '/icon',
             component: () => import('./routers/icon.vue')

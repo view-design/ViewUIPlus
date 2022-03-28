@@ -1,38 +1,40 @@
 <template>
-    <div v-transfer-dom :data-transfer="transfer">
-        <transition name="fade">
-            <div :class="maskClasses" :style="maskStyle" v-show="visible" v-if="mask" @click="handleMask"></div>
-        </transition>
-        <div :class="wrapClasses" @click="handleWrapClick">
-            <transition :name="transitionName">
-                <div :class="classes" :style="mainStyles" v-show="visible">
-                    <div :class="contentClasses" ref="content">
-                        <a class="ivu-drawer-close" v-if="closable" @click="close">
-                            <slot name="close">
-                                <Icon type="ios-close"></Icon>
-                            </slot>
-                        </a>
-                        <div :class="[prefixCls + '-header']" v-if="showHead"><slot name="header"><div :class="[prefixCls + '-header-inner']">{{ title }}</div></slot></div>
-                        <div :class="[prefixCls + '-body']" :style="styles"><slot></slot></div>
-                    </div>
-                    <div class="ivu-drawer-drag" :class="'ivu-drawer-drag-' + placement" v-if="draggable && (placement === 'left' || placement === 'right')" @mousedown="handleTriggerMousedown">
-                        <slot name="trigger">
-                            <div class="ivu-drawer-drag-move-trigger">
-                                <div class="ivu-drawer-drag-move-trigger-point">
-                                    <i></i><i></i><i></i><i></i><i></i>
-                                </div>
-                            </div>
-                        </slot>
-                    </div>
-                </div>
+    <teleport to="body" :disabled="!transfer">
+        <div ref="drawer">
+            <transition name="fade">
+                <div :class="maskClasses" :style="maskStyle" v-show="visible" v-if="mask" @click="handleMask"></div>
             </transition>
+            <div :class="wrapClasses" @click="handleWrapClick">
+                <transition :name="transitionName">
+                    <div :class="classes" :style="mainStyles" v-show="visible">
+                        <div :class="contentClasses" ref="content">
+                            <a class="ivu-drawer-close" v-if="closable" @click="close">
+                                <slot name="close">
+                                    <Icon type="ios-close"></Icon>
+                                </slot>
+                            </a>
+                            <div :class="[prefixCls + '-header']" v-if="showHead"><slot name="header"><div :class="[prefixCls + '-header-inner']">{{ title }}</div></slot></div>
+                            <div :class="[prefixCls + '-body']" :style="styles"><slot></slot></div>
+                        </div>
+                        <div class="ivu-drawer-drag" :class="'ivu-drawer-drag-' + placement" v-if="draggable && (placement === 'left' || placement === 'right')" @mousedown="handleTriggerMousedown">
+                            <slot name="trigger">
+                                <div class="ivu-drawer-drag-move-trigger">
+                                    <div class="ivu-drawer-drag-move-trigger-point">
+                                        <i></i><i></i><i></i><i></i><i></i>
+                                    </div>
+                                </div>
+                            </slot>
+                        </div>
+                    </div>
+                </transition>
+            </div>
         </div>
-    </div>
+    </teleport>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import Icon from '../icon';
     import { oneOf, findBrothersComponents, findComponentsUpward } from '../../utils/assist';
-    import TransferDom from '../../directives/transfer-dom';
     import Emitter from '../../mixins/emitter';
     import ScrollbarMixins from '../modal/mixins-scrollbar';
 
@@ -44,9 +46,9 @@
         name: 'Drawer',
         mixins: [ Emitter, ScrollbarMixins ],
         components: { Icon },
-        directives: { TransferDom },
+        emits: ['on-close', 'on-resize-width', 'on-visible-change', 'update:modelValue'],
         props: {
-            value: {
+            modelValue: {
                 type: Boolean,
                 default: false
             },
@@ -98,7 +100,8 @@
             transfer: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.transfer === '' ? true : this.$IVIEW.transfer;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? true : global.$IVIEW.transfer;
                 }
             },
             className: {
@@ -118,7 +121,7 @@
         data () {
             return {
                 prefixCls: prefixCls,
-                visible: this.value,
+                visible: this.modelValue,
                 wrapShow: false,
                 showHead: true,
                 canMove: false,
@@ -217,7 +220,7 @@
             },
             handleClose () {
                 this.visible = false;
-                this.$emit('input', false);
+                this.$emit('update:modelValue', false);
                 this.$emit('on-close');
             },
             handleMask () {
@@ -249,7 +252,7 @@
                 const {
                     width,
                     left
-                } = this.$el.getBoundingClientRect();
+                } = this.$refs.drawer.getBoundingClientRect();
                 this.wrapperWidth = width;
                 this.wrapperLeft = left;
             },
@@ -286,11 +289,12 @@
             this.removeScrollEffect();
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 this.visible = val;
             },
             visible (val) {
                 if (val === false) {
+                    // todo
                     this.timer = setTimeout(() => {
                         this.wrapShow = false;
                         // #4831 Check if there are any drawers left at the parent level
@@ -312,8 +316,8 @@
                         this.addScrollEffect();
                     }
                 }
-                this.broadcast('Table', 'on-visible-change', val);
-                this.broadcast('Slider', 'on-visible-change', val);  // #2852
+                // this.broadcast('Table', 'on-visible-change', val); // todo
+                // this.broadcast('Slider', 'on-visible-change', val);  // #2852 // todo
                 this.$emit('on-visible-change', val);
             },
             scrollable (val) {

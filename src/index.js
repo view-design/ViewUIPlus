@@ -32,7 +32,7 @@ import Collapse from './components/collapse';
 import Content from './components/content';
 // import DatePicker from './components/date-picker';
 import Divider from './components/divider';
-// import Drawer from './components/drawer';
+import Drawer from './components/drawer';
 import Dropdown from './components/dropdown';
 import DropdownItem from './components/dropdown-item';
 import DropdownMenu from './components/dropdown-menu';
@@ -107,7 +107,7 @@ const components = {
     Content,
     // DatePicker,
     Divider,
-    // Drawer,
+    Drawer,
     Dropdown,
     DropdownItem,
     DropdownMenu,
