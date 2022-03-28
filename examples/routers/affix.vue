@@ -14,7 +14,7 @@
     <Affix>
         <div class="demo-affix">固定在最顶部</div>
     </Affix>
-    <div v-for="(item,index) in arr">{{item}}</div>
+    <div v-for="(item,index) in arr" :key="index">{{item}}</div>
 </div>
 </template>
 <script>

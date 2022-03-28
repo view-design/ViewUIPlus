@@ -6,7 +6,7 @@
  * Released under the MIT license
  *
  */
-// import Affix from './components/affix';
+import Affix from './components/affix';
 import Alert from './components/alert';
 import Anchor from './components/anchor';
 import AnchorLink from './components/anchor-link';
@@ -83,7 +83,7 @@ import Upload from './components/upload';
 // import locale from './locale/index';
 
 const components = {
-    // Affix,
+    Affix,
     Alert,
     Anchor,
     AnchorLink,

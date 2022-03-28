@@ -22,10 +22,10 @@ const router = createRouter({
             path: '/layout',
             component: () => import('./routers/layout.vue')
         },
-        // {
-        //     path: '/affix',
-        //     component: (resolve) => require(['./routers/affix.vue'], resolve)
-        // },
+        {
+            path: '/affix',
+            component: () => import('./routers/affix.vue')
+        },
         {
             path: '/anchor',
             component: () => import('./routers/anchor.vue')

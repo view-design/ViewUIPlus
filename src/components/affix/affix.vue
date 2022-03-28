@@ -41,6 +41,7 @@
 
     export default {
         name: 'Affix',
+        emits: ['on-change'],
         props: {
             offsetTop: {
                 type: Number,
