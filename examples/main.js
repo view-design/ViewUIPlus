@@ -78,10 +78,10 @@ const router = createRouter({
             path: '/input-number',
             component: () => import('./routers/input-number.vue')
         },
-        // {
-        //     path: '/upload',
-        //     component: (resolve) => require(['./routers/upload.vue'], resolve)
-        // },
+        {
+            path: '/upload',
+            component: () => import('./routers/upload.vue')
+        },
         // {
         //     path: '/progress',
         //     component: (resolve) => require(['./routers/progress.vue'], resolve)

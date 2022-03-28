@@ -1,7 +1,8 @@
 <template>
     <ul :class="[prefixCls + '-list']">
         <li
-            v-for="file in files"
+            v-for="(file, index) in files"
+            :key="index"
             :class="fileCls(file)"
             @click="handleClick(file)">
             <span @click="handlePreview(file)">
@@ -11,7 +12,7 @@
                 type="ios-close"
                 :class="[prefixCls + '-list-remove']"
                 v-show="file.status === 'finished'"
-                @click.native="handleRemove(file)"></Icon>
+                @click="handleRemove(file)"></Icon>
             <transition name="fade">
                 <i-progress
                     v-if="file.showProgress"
