@@ -47,7 +47,7 @@ function notice (type, options) {
 
     const with_desc = (options.render && !title) ? '' : (desc || options.render) ? ` ${prefixCls}-with-desc` : '';
 
-    if (type == 'normal') {
+    if (type === 'normal') {
         withIcon = false;
         content = `
             <div class="${prefixCls}-custom-content ${prefixCls}-with-normal ${with_desc}">

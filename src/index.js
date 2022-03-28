@@ -51,7 +51,7 @@ import Split from './components/split';
 import LoadingBar from './components/loading-bar';
 import Message from './components/message';
 // import Modal from './components/modal';
-// import Notice from './components/notice';
+import Notice from './components/notice';
 // import Page from './components/page';
 import Panel from './components/panel';
 // import Poptip from './components/poptip';
@@ -128,7 +128,7 @@ const components = {
     // MenuItem,
     Message,
     // Modal,
-    // Notice,
+    Notice,
     // Option: Option,
     // OptionGroup,
     // Page,
@@ -252,11 +252,11 @@ const install = function(app, opts = {}) {
     // };
     //
     // Vue.prototype.$Modal = Modal;
-    // Vue.prototype.$Notice = Notice;
     // Vue.prototype.$Spin = Spin;
     app.config.globalProperties.$Spin = Spin;
     app.config.globalProperties.$Loading = LoadingBar;
     app.config.globalProperties.$Message = Message;
+    app.config.globalProperties.$Notice = Notice;
 };
 
 // auto install

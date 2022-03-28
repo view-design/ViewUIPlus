@@ -186,10 +186,10 @@ const router = createRouter({
             path: '/message',
             component: () => import('./routers/message.vue')
         },
-        // {
-        //     path: '/notice',
-        //     component: (resolve) => require(['./routers/notice.vue'], resolve)
-        // },
+        {
+            path: '/notice',
+            component: () => import('./routers/notice.vue')
+        },
         {
             path: '/avatar',
             component: () => import('./routers/avatar.vue')
