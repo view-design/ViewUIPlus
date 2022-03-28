@@ -57,7 +57,7 @@
             <span><router-link to="/avatar">Avatar</router-link></span>
 <!--            <span><router-link to="/color-picker">ColorPicker</router-link></span>-->
 <!--            <span><router-link to="/auto-complete">AutoComplete</router-link></span>-->
-<!--            <span><router-link to="/scroll">Scroll</router-link></span>-->
+            <span><router-link to="/scroll">Scroll</router-link></span>
             <span><router-link to="/divider">Divider</router-link></span>
             <span><router-link to="/time">Time</router-link></span>
             <span><router-link to="/cell">Cell</router-link></span>

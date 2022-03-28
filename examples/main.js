@@ -202,10 +202,10 @@ const router = createRouter({
         //     path: '/auto-complete',
         //     component: (resolve) => require(['./routers/auto-complete.vue'], resolve)
         // },
-        // {
-        //     path: '/scroll',
-        //     component: (resolve) => require(['./routers/scroll.vue'], resolve)
-        // },
+        {
+            path: '/scroll',
+            component: () => import('./routers/scroll.vue')
+        },
         {
             path: '/divider',
             component: () => import('./routers/divider.vue')

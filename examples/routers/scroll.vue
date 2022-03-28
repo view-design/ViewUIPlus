@@ -1,6 +1,6 @@
 <template>
     <Scroll :on-reach-edge="loadData">
-        <section v-for="item in list">
+        <section v-for="(item, index) in list" :key="index">
             <div class="city">
                 <p>{{ item }}</p>
             </div>

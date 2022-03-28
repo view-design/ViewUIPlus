@@ -47,7 +47,7 @@ import ListItem from './components/list-item';
 import ListItemMeta from './components/list-item-meta';
 import Input from './components/input';
 import InputNumber from './components/input-number';
-// import Scroll from './components/scroll';
+import Scroll from './components/scroll';
 import Split from './components/split';
 import LoadingBar from './components/loading-bar';
 import Message from './components/message';
@@ -142,7 +142,7 @@ const components = {
     RadioGroup,
     Rate,
     Row,
-    // Scroll,
+    Scroll,
     // Select,
     Sider,
     // Slider,
