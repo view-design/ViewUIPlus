@@ -31,6 +31,7 @@
     export default {
         name: 'UploadList',
         components: { Icon, iProgress },
+        emits: ['on-file-click', 'on-file-preview', 'on-file-remove'],
         props: {
             files: {
                 type: Array,

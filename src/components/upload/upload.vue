@@ -303,7 +303,7 @@
                     _file.response = res;
 
                     this.onSuccess(res, _file, this.fileList);
-                    this.dispatch('FormItem', 'on-form-change', _file);
+                    this.dispatch('FormItem', 'on-form-change', _file); // todo
 
                     setTimeout(() => {
                         _file.showProgress = false;
