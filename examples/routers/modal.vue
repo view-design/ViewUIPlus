@@ -1,21 +1,41 @@
 <template>
-    <Button @click="modal12 = true">Open Modal (default)</Button>
-    <Button @click="modal13 = true">Open Modal (sticky)</Button>
-    <Modal v-model="modal12" draggable scrollable :mask="false" title="Modal 1">
-        <div>Modal 1</div>
-        <div>Can be dragged off the screen</div>
-    </Modal>
-    <Modal v-model="modal13" draggable sticky scrollable :mask="false" title="Modal 2">
-        <div>Modal 2</div>
-        <div>Can’t be dragged out of the screen, it will be automatically adsorbed</div>
-    </Modal>
+    <Button @click="instance('info')">Info</Button>
+    <Button @click="instance('success')">Success</Button>
+    <Button @click="instance('warning')">Warning</Button>
+    <Button @click="instance('error')">Error</Button>
 </template>
 <script>
 export default {
-    data () {
-        return {
-            modal12: false,
-            modal13: false
+    methods: {
+        instance (type) {
+            const title = 'Title';
+            const content = '<p>Content of dialog</p><p>Content of dialog</p>';
+            switch (type) {
+                case 'info':
+                    this.$Modal.info({
+                        title: title,
+                        content: content
+                    });
+                    break;
+                case 'success':
+                    this.$Modal.success({
+                        title: title,
+                        content: content
+                    });
+                    break;
+                case 'warning':
+                    this.$Modal.warning({
+                        title: title,
+                        content: content
+                    });
+                    break;
+                case 'error':
+                    this.$Modal.error({
+                        title: title,
+                        content: content
+                    });
+                    break;
+            }
         }
     }
 }

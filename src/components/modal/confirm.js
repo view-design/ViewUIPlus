@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { createApp, h } from 'vue';
 import Modal from './modal.vue';
 import Button from '../button/button.vue';
 import Locale from '../../mixins/locale';
@@ -8,7 +8,7 @@ const prefixCls = 'ivu-modal-confirm';
 Modal.newInstance = properties => {
     const _props = properties || {};
 
-    const Instance = new Vue({
+    const Instance = createApp({
         mixins: [ Locale ],
         data () {
             return Object.assign({}, _props, {
@@ -28,23 +28,19 @@ Modal.newInstance = properties => {
                 closing: false // 关闭有动画，期间使用此属性避免重复点击
             });
         },
-        render (h) {
+        render () {
             let footerVNodes = [];
             if (this.showCancel) {
                 footerVNodes.push(h(Button, {
-                    props: {
-                        type: 'text'
-                    },
+                    type: 'text',
                     on: {
                         click: this.cancel
                     }
                 }, this.localeCancelText));
             }
             footerVNodes.push(h(Button, {
-                props: {
-                    type: 'primary',
-                    loading: this.buttonLoading
-                },
+                type: 'primary',
+                loading: this.buttonLoading,
                 on: {
                     click: this.ok
                 }
@@ -54,20 +50,14 @@ Modal.newInstance = properties => {
             let body_render;
             if (this.render) {
                 body_render = h('div', {
-                    attrs: {
-                        class: `${prefixCls}-body ${prefixCls}-body-render`
-                    }
+                    class: `${prefixCls}-body ${prefixCls}-body-render`
                 }, [this.render(h)]);
             } else {
                 body_render = h('div', {
-                    attrs: {
-                        class: `${prefixCls}-body`
-                    }
+                    class: `${prefixCls}-body`
                 }, [
                     h('div', {
-                        domProps: {
-                            innerHTML: this.body
-                        }
+                        innerHTML: this.body
                     })
                 ]);
             }
@@ -76,9 +66,7 @@ Modal.newInstance = properties => {
             let head_render;
             if (this.title) {
                 head_render = h('div', {
-                    attrs: {
-                        class: `${prefixCls}-head`
-                    }
+                    class: `${prefixCls}-head`
                 }, [
                     h('div', {
                         class: this.iconTypeCls
@@ -88,43 +76,30 @@ Modal.newInstance = properties => {
                         })
                     ]),
                     h('div', {
-                        attrs: {
-                            class: `${prefixCls}-head-title`
-                        },
-                        domProps: {
-                            innerHTML: this.title
-                        }
+                        class: `${prefixCls}-head-title`,
+                        innerHTML: this.title
                     })
                 ]);
             }
 
-            return h(Modal, {
-                props: Object.assign({}, _props, {
-                    width: this.width,
-                    scrollable: this.scrollable,
-                    closable: this.closable
-                }),
-                domProps: {
-                    value: this.visible
-                },
+            return h(Modal, Object.assign({
+                ref: 'modal'
+            }, {
+                value: this.visible,
                 on: {
                     input: (status) => {
                         this.visible = status;
                     },
                     'on-cancel': this.cancel
                 }
-            }, [
+            }), [
                 h('div', {
-                    attrs: {
-                        class: prefixCls
-                    }
+                    class: prefixCls
                 }, [
                     head_render,
                     body_render,
                     h('div', {
-                        attrs: {
-                            class: `${prefixCls}-footer`
-                        }
+                        class: `${prefixCls}-footer`
                     }, footerVNodes)
                 ])
             ]);
@@ -193,9 +168,10 @@ Modal.newInstance = properties => {
         }
     });
 
-    const component = Instance.$mount();
-    document.body.appendChild(component.$el);
-    const modal = Instance.$children[0];
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+    Instance.mount(container);
+    const modal = Instance._instance.refs.modal;
 
     return {
         show (props) {
