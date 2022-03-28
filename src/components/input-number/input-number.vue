@@ -48,6 +48,7 @@
     </div>
 </template>
 <script>
+    import { getCurrentInstance, nextTick } from 'vue';
     import { oneOf, findComponentUpward } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
@@ -82,6 +83,7 @@
     export default {
         name: 'InputNumber',
         mixins: [ Emitter, mixinsForm ],
+        emits: ['on-change', 'on-focus', 'on-blur', 'update:modelValue'],
         props: {
             max: {
                 type: Number,
@@ -99,7 +101,7 @@
                 type: Boolean,
                 default: true
             },
-            value: {
+            modelValue: {
                 type: Number,
                 default: 1
             },
@@ -108,7 +110,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             disabled: {
@@ -157,7 +160,7 @@
                 focused: false,
                 upDisabled: false,
                 downDisabled: false,
-                currentValue: this.value
+                currentValue: this.modelValue
             };
         },
         computed: {
@@ -285,11 +288,11 @@
                     }
                 }
 
-                this.$nextTick(() => {
+                nextTick(() => {
                     this.currentValue = val;
-                    this.$emit('input', val);
+                    this.$emit('update:modelValue', val);
                     this.$emit('on-change', val);
-                    this.dispatch('FormItem', 'on-form-change', val);
+                    this.dispatch('FormItem', 'on-form-change', val); // todo
                 });
             },
             focus (event) {
@@ -313,9 +316,9 @@
                 }
             },
             change (event) {
-                if (event.type == 'change' && this.activeChange) return;
+                if (event.type === 'change' && this.activeChange) return;
 
-                if (event.type == 'input' && !this.activeChange) return;
+                if (event.type === 'input' && !this.activeChange) return;
                 let val = event.target.value.trim();
                 if (this.parser) {
                     val = this.parser(val);
@@ -326,7 +329,7 @@
                     this.setValue(null);
                     return;
                 }
-                if (event.type == 'input' && val.match(/^\-?\.?$|\.$/)) return; // prevent fire early if decimal. If no more input the change event will fire later
+                if (event.type === 'input' && val.match(/^\-?\.?$|\.$/)) return; // prevent fire early if decimal. If no more input the change event will fire later
 
                 val = Number(val);
 
@@ -354,7 +357,7 @@
             this.changeVal(this.currentValue);
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 this.currentValue = val;
             },
             currentValue (val) {

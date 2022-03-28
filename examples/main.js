@@ -74,10 +74,10 @@ const router = createRouter({
         //     path: '/tag',
         //     component: (resolve) => require(['./routers/tag.vue'], resolve)
         // },
-        // {
-        //     path: '/input-number',
-        //     component: (resolve) => require(['./routers/input-number.vue'], resolve)
-        // },
+        {
+            path: '/input-number',
+            component: () => import('./routers/input-number.vue')
+        },
         // {
         //     path: '/upload',
         //     component: (resolve) => require(['./routers/upload.vue'], resolve)

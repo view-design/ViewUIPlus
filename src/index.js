@@ -45,7 +45,7 @@ import List from './components/list';
 import ListItem from './components/list-item';
 import ListItemMeta from './components/list-item-meta';
 import Input from './components/input';
-// import InputNumber from './components/input-number';
+import InputNumber from './components/input-number';
 // import Scroll from './components/scroll';
 import Split from './components/split';
 import LoadingBar from './components/loading-bar';
@@ -117,7 +117,7 @@ const components = {
     Header,
     Icon,
     Input,
-    // InputNumber,
+    InputNumber,
     Layout,
     List,
     ListItem,
