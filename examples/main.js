@@ -102,10 +102,10 @@ const router = createRouter({
         //     path: '/tree',
         //     component: (resolve) => require(['./routers/tree.vue'], resolve)
         // },
-        // {
-        //     path: '/rate',
-        //     component: (resolve) => require(['./routers/rate.vue'], resolve)
-        // },
+        {
+            path: '/rate',
+            component: () => import('./routers/rate.vue')
+        },
         // {
         //     path: '/circle',
         //     component: (resolve) => require(['./routers/circle.vue'], resolve)

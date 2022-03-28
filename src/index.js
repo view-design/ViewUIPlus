@@ -58,7 +58,7 @@ import Panel from './components/panel';
 // import Progress from './components/progress';
 import Radio from './components/radio';
 import RadioGroup from './components/radio-group';
-// import Rate from './components/rate';
+import Rate from './components/rate';
 import Row from './components/row';
 import Sider from './components/sider';
 // import Slider from './components/slider';
@@ -137,7 +137,7 @@ const components = {
     // Progress,
     Radio,
     RadioGroup,
-    // Rate,
+    Rate,
     Row,
     // Scroll,
     // Select,
