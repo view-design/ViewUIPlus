@@ -150,10 +150,10 @@ const router = createRouter({
         //     path: '/select',
         //     component: (resolve) => require(['./routers/select.vue'], resolve)
         // },
-        // {
-        //     path: '/backtop',
-        //     component: (resolve) => require(['./routers/back-top.vue'], resolve)
-        // },
+        {
+            path: '/backtop',
+            component: () => import('./routers/back-top.vue')
+        },
         // {
         //     path: '/page',
         //     component: (resolve) => require(['./routers/page.vue'], resolve)

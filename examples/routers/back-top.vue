@@ -5,7 +5,7 @@
 </style>
 <template>
     <BackTop>
-       
+
     </BackTop>
 </template>
 <script>
@@ -16,7 +16,7 @@
             }
         },
         mounted(){
-            
+
         }
     }
 </script>

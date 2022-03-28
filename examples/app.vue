@@ -44,7 +44,7 @@
             <span><router-link to="/spin">Spin</router-link></span>
 <!--            <span><router-link to="/cascader">Cascader</router-link></span>-->
 <!--            <span><router-link to="/select">Select</router-link></span>-->
-<!--            <span><router-link to="/backtop">Backtop</router-link></span>-->
+            <span><router-link to="/backtop">Backtop</router-link></span>
 <!--            <span><router-link to="/page">Page</router-link></span>-->
             <span>[todo]<router-link to="/transfer">Transfer</router-link></span>
 <!--            <span><router-link to="/date">Date</router-link></span>-->

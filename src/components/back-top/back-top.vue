@@ -13,6 +13,8 @@
     const prefixCls = 'ivu-back-top';
 
     export default {
+        name: 'BackTop',
+        emits: ['on-click'],
         props: {
             height: {
                 type: Number,

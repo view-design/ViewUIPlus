@@ -12,7 +12,7 @@ import Anchor from './components/anchor';
 import AnchorLink from './components/anchor-link';
 // import AutoComplete from './components/auto-complete';
 import Avatar from './components/avatar';
-// import BackTop from './components/back-top';
+import BackTop from './components/back-top';
 import Badge from './components/badge';
 import Breadcrumb from './components/breadcrumb';
 import BreadcrumbItem from './components/breadcrumb-item';
@@ -89,7 +89,7 @@ const components = {
     AnchorLink,
     // AutoComplete,
     Avatar,
-    // BackTop,
+    BackTop,
     Badge,
     Breadcrumb,
     BreadcrumbItem,
