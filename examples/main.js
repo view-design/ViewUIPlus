@@ -70,10 +70,10 @@ const router = createRouter({
             path: '/badge',
             component: () => import('./routers/badge.vue')
         },
-        // {
-        //     path: '/tag',
-        //     component: (resolve) => require(['./routers/tag.vue'], resolve)
-        // },
+        {
+            path: '/tag',
+            component: () => import('./routers/tag.vue')
+        },
         {
             path: '/input-number',
             component: () => import('./routers/input-number.vue')

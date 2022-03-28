@@ -68,7 +68,7 @@ import Steps from './components/steps';
 import Switch from './components/switch';
 // import Table from './components/table';
 // import Tabs from './components/tabs';
-// import Tag from './components/tag';
+import Tag from './components/tag';
 // import Time from './components/time';
 // import Timeline from './components/timeline';
 // import TimePicker from './components/time-picker';
@@ -152,7 +152,7 @@ const components = {
     // Table,
     // Tabs: Tabs,
     // TabPane: Tabs.Pane,
-    // Tag,
+    Tag,
     // Time,
     // Timeline,
     // TimelineItem: Timeline.Item,
