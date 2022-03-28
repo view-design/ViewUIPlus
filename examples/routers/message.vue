@@ -6,11 +6,36 @@
         <Button @click="error">Display error prompt</Button>
         <Button @click="loading">Display loading...</Button>
         <Button @click="closable">Display a closable message</Button>
+
+        <Button @click="handleAdd">add</Button>
+        <Button @click="handleRemove">remove</Button>
+        <div v-for="(item, index) in list" :key="index">
+            <transition name="move-up" appear>
+                <div style="width:200px;height: 200px;background: #2d8cf0"></div>
+            </transition>
+        </div>
+
     </div>
 </template>
 <script>
     export default {
+        data () {
+            return {
+                a: false,
+                list: [{
+                    a: 1
+                }]
+            }
+        },
         methods: {
+            handleAdd () {
+                this.list.push({
+                    a: 1
+                })
+            },
+            handleRemove () {
+                this.list.splice(0, 1);
+            },
             info () {
                 this.$Message.info({
                     content: '这是一条普通的提示',
