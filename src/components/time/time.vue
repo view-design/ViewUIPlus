@@ -2,8 +2,8 @@
     <span :class="classes" @click="handleClick">{{ date }}</span>
 </template>
 <script>
-    import Vue from 'vue';
-    const isServer = Vue.prototype.$isServer;
+    // import Vue from 'vue';
+    // const isServer = Vue.prototype.$isServer;
     import { oneOf } from '../../utils/assist';
     import Locale from '../../mixins/locale';
     import Time from './time';
@@ -52,7 +52,8 @@
         watch: {
             time () {
                 // https://segmentfault.com/q/1010000021110866
-                if (!isServer) this.setTime();
+                // if (!isServer) this.setTime();
+                this.setTime();
             }
         },
         methods: {
@@ -93,7 +94,7 @@
         },
         mounted () {
             this.setTime();
-            if (isServer) return;
+            // if (isServer) return;
             this.timer = setInterval(() => {
                 this.setTime();
             }, 1000 * this.interval);

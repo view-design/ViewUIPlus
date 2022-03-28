@@ -70,7 +70,7 @@ import Switch from './components/switch';
 // import Table from './components/table';
 // import Tabs from './components/tabs';
 import Tag from './components/tag';
-// import Time from './components/time';
+import Time from './components/time';
 import Timeline from './components/timeline';
 import TimelineItem from './components/timeline-item';
 // import TimePicker from './components/time-picker';
@@ -155,7 +155,7 @@ const components = {
     // Tabs: Tabs,
     // TabPane: Tabs.Pane,
     Tag,
-    // Time,
+    Time,
     Timeline,
     TimelineItem,
     // TimePicker,

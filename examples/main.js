@@ -210,10 +210,10 @@ const router = createRouter({
             path: '/divider',
             component: () => import('./routers/divider.vue')
         },
-        // {
-        //     path: '/time',
-        //     component: (resolve) => require(['./routers/time.vue'], resolve)
-        // },
+        {
+            path: '/time',
+            component: () => import('./routers/time.vue')
+        },
         {
             path: '/cell',
             component: () => import('./routers/cell.vue')
