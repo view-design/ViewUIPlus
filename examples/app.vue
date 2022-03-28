@@ -51,7 +51,7 @@
 <!--            <span><router-link to="/form">Form</router-link></span>-->
 <!--            <span><router-link to="/table">Table</router-link></span>-->
             <span><router-link to="/loading-bar">LoadingBar</router-link></span>
-<!--            <span><router-link to="/modal">Modal</router-link></span>-->
+            <span>[todo]<router-link to="/modal">Modal</router-link></span>
             <span>[todo]<router-link to="/message">Message</router-link></span>
             <span>[todo]<router-link to="/notice">Notice</router-link></span>
             <span><router-link to="/avatar">Avatar</router-link></span>

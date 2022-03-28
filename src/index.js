@@ -50,7 +50,7 @@ import InputNumber from './components/input-number';
 import Split from './components/split';
 import LoadingBar from './components/loading-bar';
 import Message from './components/message';
-// import Modal from './components/modal';
+import Modal from './components/modal';
 import Notice from './components/notice';
 // import Page from './components/page';
 import Panel from './components/panel';
@@ -127,7 +127,7 @@ const components = {
     // MenuGroup,
     // MenuItem,
     Message,
-    // Modal,
+    Modal,
     Notice,
     // Option: Option,
     // OptionGroup,
@@ -203,6 +203,9 @@ const install = function(app, opts = {}) {
             customArrow: opts.menu ? opts.menu.customArrow ? opts.menu.customArrow : '' : '',
             arrowSize: opts.menu ? opts.menu.arrowSize ? opts.menu.arrowSize : '' : ''
         },
+        modal: {
+            maskClosable: opts.modal ? 'maskClosable' in opts.modal ? opts.modal.maskClosable : '' : ''
+        }
     }
     // app.prototype.$IVIEW = {
     //     size: opts.size || '',
@@ -246,17 +249,14 @@ const install = function(app, opts = {}) {
     //         customCloseIcon: opts.tabs ? opts.tabs.customCloseIcon ? opts.tabs.customCloseIcon : '' : '',
     //         closeIconSize: opts.tabs ? opts.tabs.closeIconSize ? opts.tabs.closeIconSize : '' : ''
     //     },
-    //     modal: {
-    //         maskClosable: opts.modal ? 'maskClosable' in opts.modal ? opts.modal.maskClosable : '' : ''
-    //     }
     // };
     //
-    // Vue.prototype.$Modal = Modal;
     // Vue.prototype.$Spin = Spin;
     app.config.globalProperties.$Spin = Spin;
     app.config.globalProperties.$Loading = LoadingBar;
     app.config.globalProperties.$Message = Message;
     app.config.globalProperties.$Notice = Notice;
+    app.config.globalProperties.$Modal = Modal;
 };
 
 // auto install

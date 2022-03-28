@@ -178,10 +178,10 @@ const router = createRouter({
             path: '/loading-bar',
             component: () => import('./routers/loading-bar.vue')
         },
-        // {
-        //     path: '/modal',
-        //     component: (resolve) => require(['./routers/modal.vue'], resolve)
-        // },
+        {
+            path: '/modal',
+            component: () => import('./routers/modal.vue')
+        },
         {
             path: '/message',
             component: () => import('./routers/message.vue')

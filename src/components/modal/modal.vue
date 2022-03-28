@@ -1,5 +1,5 @@
 <template>
-    <div v-transfer-dom :data-transfer="transfer">
+    <teleport to="body" :disabled="!transfer">
         <transition :name="transitionNames[1]">
             <div :class="maskClasses" :style="wrapStyles" v-show="visible" v-if="showMask" @click="handleMask"></div>
         </transition>
@@ -19,20 +19,20 @@
                         <div :class="[prefixCls + '-body']"><slot></slot></div>
                         <div :class="[prefixCls + '-footer']" v-if="!footerHide">
                             <slot name="footer">
-                                <i-button type="text" @click.native="cancel">{{ localeCancelText }}</i-button>
-                                <i-button type="primary" :loading="buttonLoading" @click.native="ok">{{ localeOkText }}</i-button>
+                                <i-button type="text" @click="cancel">{{ localeCancelText }}</i-button>
+                                <i-button type="primary" :loading="buttonLoading" @click="ok">{{ localeOkText }}</i-button>
                             </slot>
                         </div>
                     </div>
                 </div>
             </transition>
         </div>
-    </div>
+    </teleport>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import Icon from '../icon';
     import iButton from '../button/button.vue';
-    import TransferDom from '../../directives/transfer-dom';
     import Locale from '../../mixins/locale';
     import Emitter from '../../mixins/emitter';
     import ScrollbarMixins from './mixins-scrollbar';
@@ -57,9 +57,9 @@
         name: 'Modal',
         mixins: [ Locale, Emitter, ScrollbarMixins ],
         components: { Icon, iButton },
-        directives: { TransferDom },
+        emits: ['on-cancel', 'on-ok', 'on-hidden', 'on-visible-change', 'update:modelValue'],
         props: {
-            value: {
+            modelValue: {
                 type: Boolean,
                 default: false
             },
@@ -70,7 +70,8 @@
             maskClosable: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.modal.maskClosable === '' ? true : this.$IVIEW.modal.maskClosable;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.modal.maskClosable === '' ? true : global.$IVIEW.modal.maskClosable;
                 }
             },
             title: {
@@ -117,7 +118,8 @@
             transfer: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.transfer === '' ? true : this.$IVIEW.transfer;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? true : global.$IVIEW.transfer;
                 }
             },
             fullscreen: {
@@ -159,7 +161,7 @@
                 wrapShow: false,
                 showHead: true,
                 buttonLoading: false,
-                visible: this.value,
+                visible: this.modelValue,
                 dragData: deepCopy(dragData),
                 modalIndex: this.handleGetModalIndex(),  // for Esc close the top modal
                 isMouseTriggerIn: false, // #5800
@@ -276,7 +278,7 @@
             },
             handleClose () {
                 this.visible = false;
-                this.$emit('input', false);
+                this.$emit('update:modelValue', false);
                 this.$emit('on-cancel');
             },
             handleMask () {
@@ -304,11 +306,12 @@
                     this.buttonLoading = true;
                 } else {
                     this.visible = false;
-                    this.$emit('input', false);
+                    this.$emit('update:modelValue', false);
                 }
                 this.$emit('on-ok');
             },
             EscClose (e) {
+                // todo
                 if (this.visible && this.closable) {
                     if (e.keyCode === 27) {
                         const $Modals = findComponentsDownward(this.$root, 'Modal').filter(item => item.$data.visible && item.$props.closable);
@@ -429,7 +432,7 @@
             this.removeScrollEffect();
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 this.visible = val;
             },
             visible (val) {
@@ -451,8 +454,8 @@
                         this.addScrollEffect();
                     }
                 }
-                this.broadcast('Table', 'on-visible-change', val);
-                this.broadcast('Slider', 'on-visible-change', val);  // #2852
+                // this.broadcast('Table', 'on-visible-change', val); // todo
+                // this.broadcast('Slider', 'on-visible-change', val);  // #2852 // todo
                 this.$emit('on-visible-change', val);
                 this.lastVisible = val;
                 this.lastVisibleIndex = lastVisibleIndex;
