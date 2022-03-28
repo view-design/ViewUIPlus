@@ -62,10 +62,10 @@ const router = createRouter({
             path: '/switch',
             component: () => import('./routers/switch.vue')
         },
-        // {
-        //     path: '/alert',
-        //     component: (resolve) => require(['./routers/alert.vue'], resolve)
-        // },
+        {
+            path: '/alert',
+            component: () => import('./routers/alert.vue')
+        },
         {
             path: '/badge',
             component: () => import('./routers/badge.vue')

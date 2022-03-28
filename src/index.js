@@ -7,7 +7,7 @@
  *
  */
 // import Affix from './components/affix';
-// import Alert from './components/alert';
+import Alert from './components/alert';
 import Anchor from './components/anchor';
 import AnchorLink from './components/anchor-link';
 // import AutoComplete from './components/auto-complete';
@@ -82,7 +82,7 @@ import Upload from './components/upload';
 
 const components = {
     // Affix,
-    // Alert,
+    Alert,
     Anchor,
     AnchorLink,
     // AutoComplete,
