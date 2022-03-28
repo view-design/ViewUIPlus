@@ -14,6 +14,7 @@
     </span>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import { oneOf } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
@@ -23,8 +24,9 @@
     export default {
         name: 'iSwitch',
         mixins: [ Emitter, mixinsForm ],
+        emits: ['update:modelValue', 'on-change'],
         props: {
-            value: {
+            modelValue: {
                 type: [String, Number, Boolean],
                 default: false
             },
@@ -45,7 +47,8 @@
                     return oneOf(value, ['large', 'small', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             name: {
@@ -65,7 +68,7 @@
         },
         data () {
             return {
-                currentValue: this.value
+                currentValue: this.modelValue
             };
         },
         computed: {
@@ -102,9 +105,9 @@
                 const checked = this.currentValue === this.trueValue ? this.falseValue : this.trueValue;
 
                 this.currentValue = checked;
-                this.$emit('input', checked);
+                this.$emit('update:modelValue', checked);
                 this.$emit('on-change', checked);
-                this.dispatch('FormItem', 'on-form-change', checked);
+                this.dispatch('FormItem', 'on-form-change', checked); // todo
             },
             toggle (event) {
                 event.preventDefault();
@@ -128,7 +131,7 @@
             }
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 if (val !== this.trueValue && val !== this.falseValue && val !== null) {
                     throw 'Value should be trueValue or falseValue.';
                 }

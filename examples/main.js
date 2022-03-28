@@ -58,10 +58,10 @@ const router = createRouter({
         //     path: '/timeline',
         //     component: (resolve) => require(['./routers/timeline.vue'], resolve)
         // },
-        // {
-        //     path: '/switch',
-        //     component: (resolve) => require(['./routers/switch.vue'], resolve)
-        // },
+        {
+            path: '/switch',
+            component: () => import('./routers/switch.vue')
+        },
         // {
         //     path: '/alert',
         //     component: (resolve) => require(['./routers/alert.vue'], resolve)

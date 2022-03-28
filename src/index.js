@@ -65,7 +65,7 @@ import Sider from './components/sider';
 import Spin from './components/spin';
 import Step from './components/step';
 import Steps from './components/steps';
-// import Switch from './components/switch';
+import Switch from './components/switch';
 // import Table from './components/table';
 // import Tabs from './components/tabs';
 // import Tag from './components/tag';
@@ -148,6 +148,7 @@ const components = {
     Step,
     Steps,
     // Submenu,
+    Switch,
     // Table,
     // Tabs: Tabs,
     // TabPane: Tabs.Pane,
@@ -176,7 +177,7 @@ const iview = {
     // iOption: Option,
     // iProgress: Progress,
     // iSelect: Select,
-    // iSwitch: Switch,
+    iSwitch: Switch,
     // iTable: Table,
     // iTime: Time
 };

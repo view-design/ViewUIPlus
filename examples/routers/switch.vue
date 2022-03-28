@@ -1,8 +1,12 @@
 <template>
     <div>
         <i-switch v-model="m1" :loading="loading" @on-change="change" :before-change="beforeChange">
-            <span slot="open">开</span>
-            <span slot="close">关</span>
+            <template #open>
+                <span>开</span>
+            </template>
+            <template #close>
+                <span>关</span>
+            </template>
         </i-switch>
         {{ m1 }}
         <div @click="m1 = !m1">toggle</div>
@@ -13,21 +17,37 @@
         <i-switch size="small" v-model="m1" :loading="loading"></i-switch>
         <br><br>
         <i-switch>
-            <span slot="open">开</span>
-            <span slot="close">关</span>
+            <template #open>
+                <span>开</span>
+            </template>
+            <template #close>
+                <span>关</span>
+            </template>
         </i-switch>
         <i-switch>
-            <Icon type="md-checkmark" slot="open"></Icon>
-            <Icon type="md-close" slot="close"></Icon>
+            <template #open>
+                <Icon type="md-checkmark"></Icon>
+            </template>
+            <template #close>
+                <Icon type="md-close"></Icon>
+            </template>
         </i-switch>
         <br><br>
         <i-switch size="large">
-            <span slot="open">开启</span>
-            <span slot="close">关闭</span>
+            <template #open>
+                <span>开启</span>
+            </template>
+            <template #close>
+                <span>关闭</span>
+            </template>
         </i-switch>
         <i-switch size="large" v-model="m1" :loading="loading">
-            <span slot="open">ON</span>
-            <span slot="close">OFF</span>
+            <template #open>
+                <span>ON</span>
+            </template>
+            <template #close>
+                <span>OFF</span>
+            </template>
         </i-switch>
         <br><br>
         <i-switch :disabled="disabled"></i-switch>
