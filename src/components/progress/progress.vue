@@ -68,7 +68,7 @@
         },
         computed: {
             isStatus () {
-                return this.currentStatus == 'wrong' || this.currentStatus == 'success';
+                return this.currentStatus === 'wrong' || this.currentStatus === 'success';
             },
             statusIcon () {
                 let type = '';
@@ -150,7 +150,7 @@
                     this.currentStatus = 'normal';
                     this.$emit('on-status-change', 'normal');
                 } else {
-                    if (parseInt(this.percent, 10) == 100) {
+                    if (parseInt(this.percent, 10) === 100) {
                         this.currentStatus = 'success';
                         this.$emit('on-status-change', 'success');
                     }

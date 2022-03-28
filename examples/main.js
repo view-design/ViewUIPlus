@@ -82,10 +82,10 @@ const router = createRouter({
             path: '/upload',
             component: () => import('./routers/upload.vue')
         },
-        // {
-        //     path: '/progress',
-        //     component: (resolve) => require(['./routers/progress.vue'], resolve)
-        // },
+        {
+            path: '/progress',
+            component: () => import('./routers/progress.vue')
+        },
         {
             path: '/collapse',
             component: () => import('./routers/collapse.vue')

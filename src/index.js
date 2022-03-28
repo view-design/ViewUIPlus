@@ -55,7 +55,7 @@ import LoadingBar from './components/loading-bar';
 // import Page from './components/page';
 import Panel from './components/panel';
 // import Poptip from './components/poptip';
-// import Progress from './components/progress';
+import Progress from './components/progress';
 import Radio from './components/radio';
 import RadioGroup from './components/radio-group';
 import Rate from './components/rate';
@@ -134,7 +134,7 @@ const components = {
     // Page,
     Panel,
     // Poptip,
-    // Progress,
+    Progress,
     Radio,
     RadioGroup,
     Rate,
@@ -175,7 +175,7 @@ const iview = {
     // iInput: Input,
     // iMenu: Menu,
     // iOption: Option,
-    // iProgress: Progress,
+    iProgress: Progress,
     // iSelect: Select,
     iSwitch: Switch,
     // iTable: Table,
