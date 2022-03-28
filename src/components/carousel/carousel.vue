@@ -147,7 +147,7 @@
             }
         },
         methods: {
-            // find option component
+            // find option component // todo
             findChild (cb) {
                 const find = function (child) {
                     const name = child.$options.componentName;
