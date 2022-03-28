@@ -182,10 +182,10 @@ const router = createRouter({
         //     path: '/modal',
         //     component: (resolve) => require(['./routers/modal.vue'], resolve)
         // },
-        // {
-        //     path: '/message',
-        //     component: (resolve) => require(['./routers/message.vue'], resolve)
-        // },
+        {
+            path: '/message',
+            component: () => import('./routers/message.vue')
+        },
         // {
         //     path: '/notice',
         //     component: (resolve) => require(['./routers/notice.vue'], resolve)

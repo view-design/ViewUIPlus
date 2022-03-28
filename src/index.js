@@ -49,7 +49,7 @@ import InputNumber from './components/input-number';
 // import Scroll from './components/scroll';
 import Split from './components/split';
 import LoadingBar from './components/loading-bar';
-// import Message from './components/message';
+import Message from './components/message';
 // import Modal from './components/modal';
 // import Notice from './components/notice';
 // import Page from './components/page';
@@ -126,7 +126,7 @@ const components = {
     // Menu,
     // MenuGroup,
     // MenuItem,
-    // Message,
+    Message,
     // Modal,
     // Notice,
     // Option: Option,
@@ -251,12 +251,12 @@ const install = function(app, opts = {}) {
     //     }
     // };
     //
-    // Vue.prototype.$Message = Message;
     // Vue.prototype.$Modal = Modal;
     // Vue.prototype.$Notice = Notice;
     // Vue.prototype.$Spin = Spin;
     app.config.globalProperties.$Spin = Spin;
     app.config.globalProperties.$Loading = LoadingBar;
+    app.config.globalProperties.$Message = Message;
 };
 
 // auto install
