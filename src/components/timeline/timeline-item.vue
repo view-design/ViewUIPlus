@@ -24,7 +24,7 @@
             };
         },
         mounted () {
-            this.dot = this.$refs.dot.innerHTML.length ? true : false;
+            this.dot = !!this.$refs.dot.innerHTML.length;
         },
         computed: {
             itemClasses () {
@@ -43,7 +43,7 @@
                 ];
             },
             headColorShow () {
-                return this.color == 'blue' || this.color == 'red' || this.color == 'green';
+                return this.color === 'blue' || this.color === 'red' || this.color === 'green';
             },
             customColor () {
                 let style = {};

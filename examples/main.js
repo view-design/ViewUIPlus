@@ -54,10 +54,10 @@ const router = createRouter({
             path: '/steps',
             component: () => import('./routers/steps.vue')
         },
-        // {
-        //     path: '/timeline',
-        //     component: (resolve) => require(['./routers/timeline.vue'], resolve)
-        // },
+        {
+            path: '/timeline',
+            component: () => import('./routers/timeline.vue')
+        },
         {
             path: '/switch',
             component: () => import('./routers/switch.vue')

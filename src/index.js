@@ -71,7 +71,8 @@ import Switch from './components/switch';
 // import Tabs from './components/tabs';
 import Tag from './components/tag';
 // import Time from './components/time';
-// import Timeline from './components/timeline';
+import Timeline from './components/timeline';
+import TimelineItem from './components/timeline-item';
 // import TimePicker from './components/time-picker';
 // import Tooltip from './components/tooltip';
 import Transfer from './components/transfer';
@@ -155,8 +156,8 @@ const components = {
     // TabPane: Tabs.Pane,
     Tag,
     // Time,
-    // Timeline,
-    // TimelineItem: Timeline.Item,
+    Timeline,
+    TimelineItem,
     // TimePicker,
     // Tooltip,
     Transfer,
