@@ -90,10 +90,10 @@ const router = createRouter({
             path: '/collapse',
             component: () => import('./routers/collapse.vue')
         },
-        // {
-        //     path: '/carousel',
-        //     component: (resolve) => require(['./routers/carousel.vue'], resolve)
-        // },
+        {
+            path: '/carousel',
+            component: () => import('./routers/carousel.vue')
+        },
         {
             path: '/card',
             component: () => import('./routers/card.vue')

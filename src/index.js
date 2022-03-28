@@ -19,7 +19,8 @@ import BreadcrumbItem from './components/breadcrumb-item';
 import Button from './components/button';
 import ButtonGroup from './components/button-group';
 import Card from './components/card';
-// import Carousel from './components/carousel';
+import Carousel from './components/carousel';
+import CarouselItem from './components/carousel-item';
 // import Cascader from './components/cascader';
 import Cell from './components/cell';
 import CellGroup from './components/cell-group';
@@ -94,8 +95,8 @@ const components = {
     Button,
     ButtonGroup,
     Card,
-    // Carousel,
-    // CarouselItem: Carousel.Item,
+    Carousel,
+    CarouselItem,
     // Cascader,
     Cell,
     CellGroup,

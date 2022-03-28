@@ -2,6 +2,7 @@
     <div :class="prefixCls" :style="styles"><slot></slot></div>
 </template>
 <script>
+    import { nextTick } from 'vue';
     const prefixCls = 'ivu-carousel-item';
 
     export default {
@@ -30,14 +31,14 @@
         watch: {
             width (val) {
                 if (val && this.$parent.loop) {
-                    this.$nextTick(() => {
+                    nextTick(() => {
                         this.$parent.initCopyTrackDom();
                     });
                 }
             },
             height (val) {
                 if (val && this.$parent.loop) {
-                    this.$nextTick(() => {
+                    nextTick(() => {
                         this.$parent.initCopyTrackDom();
                     });
                 }

@@ -14,7 +14,7 @@
             <Icon type="ios-arrow-forward"></Icon>
         </button>
         <ul :class="dotsClasses">
-            <template v-for="n in slides.length">
+            <template v-for="n in slides.length" :key="n">
                 <li :class="[n - 1 === currentIndex ? prefixCls + '-active' : '']"
                     @click="dotsEvent('click', n - 1)"
                     @mouseover="dotsEvent('hover', n - 1)">
@@ -25,6 +25,7 @@
     </div>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import Icon from '../icon/icon.vue';
     import { getStyle, oneOf } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
@@ -34,6 +35,7 @@
     export default {
         name: 'Carousel',
         components: { Icon },
+        emits: ['on-change', 'on-click', 'update:modelValue'],
         props: {
             arrow: {
                 type: String,
@@ -76,7 +78,7 @@
                     return oneOf(value, ['click', 'hover']);
                 }
             },
-            value: {
+            modelValue: {
                 type: Number,
                 default: 0
             },
@@ -100,9 +102,9 @@
                 slideInstances: [],
                 timer: null,
                 ready: false,
-                currentIndex: this.value,
-                trackIndex: this.value,
-                copyTrackIndex: this.value,
+                currentIndex: this.modelValue,
+                trackIndex: this.modelValue,
+                copyTrackIndex: this.modelValue,
                 hideTrackPos: -1, // 默认左滑
             };
         },
@@ -171,7 +173,7 @@
             },
             // copy trackDom
             initCopyTrackDom () {
-                this.$nextTick(() => {
+                nextTick(() => {
                     this.$refs.copyTrack.innerHTML = this.$refs.originTrack.innerHTML;
                 });
             },
@@ -203,7 +205,7 @@
             },
             // use when slot changed
             slotChange () {
-                this.$nextTick(() => {
+                nextTick(() => {
                     this.slides = [];
                     this.slideInstances = [];
 
@@ -261,7 +263,7 @@
                 }
                 this.currentIndex = index === this.slides.length ? 0 : index;
                 this.$emit('on-change', oldIndex, this.currentIndex);
-                this.$emit('input', this.currentIndex);
+                this.$emit('update:modelValue', this.currentIndex);
             },
             arrowEvent (offset) {
                 this.setAutoplay();
@@ -273,7 +275,7 @@
                 if (event === this.trigger && curIndex !== n) {
                     this.updateTrackIndex(n);
                     this.$emit('on-change', oldCurrentIndex, this.currentIndex);
-                    this.$emit('input', n);
+                    this.$emit('update:modelValue', n);
                     // Reset autoplay timer when trigger be activated
                     this.setAutoplay();
                 }
@@ -287,7 +289,7 @@
                 }
             },
             updateOffset () {
-                this.$nextTick(() => {
+                nextTick(() => {
                     /* hack: revise copyTrack offset (1px) */
                     let ofs = this.copyTrackIndex > 0 ? -1 : 1;
                     this.trackOffset = this.trackIndex * this.listWidth;
@@ -314,7 +316,7 @@
             height () {
                 this.updatePos();
             },
-            value (val) {
+            modelValue (val) {
 //                this.currentIndex = val;
 //                this.trackIndex = val;
                 this.updateTrackIndex(val);
