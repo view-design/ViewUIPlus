@@ -73,7 +73,7 @@ import Switch from './components/switch';
 // import Timeline from './components/timeline';
 // import TimePicker from './components/time-picker';
 // import Tooltip from './components/tooltip';
-// import Transfer from './components/transfer';
+import Transfer from './components/transfer';
 // import Tree from './components/tree';
 // import Upload from './components/upload';
 // import { Menu, MenuGroup, MenuItem, Submenu } from './components/menu';
@@ -158,7 +158,7 @@ const components = {
     // TimelineItem: Timeline.Item,
     // TimePicker,
     // Tooltip,
-    // Transfer,
+    Transfer,
     // Tree,
     // Upload
 };

@@ -16,7 +16,8 @@
             </div>
             <ul :class="prefixCls + '-content'">
                 <li
-                    v-for="item in filterData"
+                    v-for="(item, index) in filterData"
+                    :key="index"
                     :class="itemClasses(item)"
                     @click.prevent="select(item)">
                     <Checkbox :value="isCheck(item)" :disabled="item.disabled"></Checkbox>
@@ -35,6 +36,8 @@
     export default {
         name: 'TransferList',
         components: { Search, Checkbox },
+        inject: ['TransferInstance'],
+        emits: ['on-checked-keys-change'],
         props: {
             prefixCls: String,
             data: Array,
@@ -110,8 +113,9 @@
             select (item) {
                 if (item.disabled) return;
                 const index = this.checkedKeys.indexOf(item.key);
+                // eslint-disable-next-line vue/no-mutating-props
                 index > -1 ? this.checkedKeys.splice(index, 1) : this.checkedKeys.push(item.key);
-                this.$parent.handleCheckedKeys();
+                this.TransferInstance.handleCheckedKeys();
             },
             updateFilteredData () {
                 this.showItems = this.data;

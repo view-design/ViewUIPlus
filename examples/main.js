@@ -158,10 +158,10 @@ const router = createRouter({
         //     path: '/page',
         //     component: (resolve) => require(['./routers/page.vue'], resolve)
         // },
-        // {
-        //     path: '/transfer',
-        //     component: (resolve) => require(['./routers/transfer.vue'], resolve)
-        // },
+        {
+            path: '/transfer',
+            component: () => import('./routers/transfer.vue')
+        },
         // {
         //     path: '/date',
         //     component: (resolve) => require(['./routers/date.vue'], resolve)

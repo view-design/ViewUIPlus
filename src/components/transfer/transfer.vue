@@ -1,4 +1,5 @@
 <script>
+    import { h } from 'vue';
     import List from './list.vue';
     import Operation from './operation.vue';
     import Locale from '../../mixins/locale';
@@ -9,7 +10,13 @@
     export default {
         name: 'Transfer',
         mixins: [ Emitter, Locale ],
-        render (h) {
+        emits: ['on-change', 'on-selected-change'],
+        provide () {
+            return {
+                TransferInstance: this
+            }
+        },
+        render () {
 
             function cloneVNode (vnode) {
                 const clonedChildren = vnode.children && vnode.children.map(vnode => cloneVNode(vnode));
@@ -34,49 +41,43 @@
             }, [
                 h(List, {
                     ref: 'left',
-                    props: {
-                        prefixCls: this.prefixCls + '-list',
-                        data: this.leftData,
-                        renderFormat: this.renderFormat,
-                        checkedKeys: this.leftCheckedKeys,
-                        validKeysCount: this.leftValidKeysCount,
-                        listStyle: this.listStyle,
-                        title: this.localeTitles[0],
-                        filterable: this.filterable,
-                        filterPlaceholder: this.localeFilterPlaceholder,
-                        filterMethod: this.filterMethod,
-                        notFoundText: this.localeNotFoundText
-                    },
+                    prefixCls: this.prefixCls + '-list',
+                    data: this.leftData,
+                    renderFormat: this.renderFormat,
+                    checkedKeys: this.leftCheckedKeys,
+                    validKeysCount: this.leftValidKeysCount,
+                    listStyle: this.listStyle,
+                    title: this.localeTitles[0],
+                    filterable: this.filterable,
+                    filterPlaceholder: this.localeFilterPlaceholder,
+                    filterMethod: this.filterMethod,
+                    notFoundText: this.localeNotFoundText,
                     on: {
                         'on-checked-keys-change': this.handleLeftCheckedKeysChange
                     }
                 }, vNodes),
 
                 h(Operation, {
-                    props: {
-                        prefixCls: this.prefixCls,
-                        operations: this.operations,
-                        leftActive: this.leftValidKeysCount > 0,
-                        rightActive: this.rightValidKeysCount > 0,
-                        reverseOperation: this.reverseOperation
-                    }
+                    prefixCls: this.prefixCls,
+                    operations: this.operations,
+                    leftActive: this.leftValidKeysCount > 0,
+                    rightActive: this.rightValidKeysCount > 0,
+                    reverseOperation: this.reverseOperation
                 }),
 
                 h(List, {
                     ref: 'right',
-                    props: {
-                        prefixCls: this.prefixCls + '-list',
-                        data: this.rightData,
-                        renderFormat: this.renderFormat,
-                        checkedKeys: this.rightCheckedKeys,
-                        validKeysCount: this.rightValidKeysCount,
-                        listStyle: this.listStyle,
-                        title: this.localeTitles[1],
-                        filterable: this.filterable,
-                        filterPlaceholder: this.localeFilterPlaceholder,
-                        filterMethod: this.filterMethod,
-                        notFoundText: this.localeNotFoundText
-                    },
+                    prefixCls: this.prefixCls + '-list',
+                    data: this.rightData,
+                    renderFormat: this.renderFormat,
+                    checkedKeys: this.rightCheckedKeys,
+                    validKeysCount: this.rightValidKeysCount,
+                    listStyle: this.listStyle,
+                    title: this.localeTitles[1],
+                    filterable: this.filterable,
+                    filterPlaceholder: this.localeFilterPlaceholder,
+                    filterMethod: this.filterMethod,
+                    notFoundText: this.localeNotFoundText,
                     on: {
                         'on-checked-keys-change': this.handleRightCheckedKeysChange
                     }
@@ -238,7 +239,7 @@
                     tarketKeys: newTargetKeys,
                     direction: direction,
                     moveKeys: moveKeys
-                });
+                }); // todo
             },
             handleLeftCheckedKeysChange (keys) {
                 this.leftCheckedKeys = keys;

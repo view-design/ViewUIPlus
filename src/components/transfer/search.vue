@@ -14,6 +14,7 @@
     export default {
         name: 'Search',
         components: { iInput },
+        emits: ['on-query-change', 'on-query-clear'],
         props: {
             prefixCls: String,
             placeholder: String,
