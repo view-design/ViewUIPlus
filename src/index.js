@@ -26,7 +26,7 @@ import Cell from './components/cell';
 import CellGroup from './components/cell-group';
 import Checkbox from './components/checkbox';
 import CheckboxGroup from './components/checkbox-group';
-// import Circle from './components/circle';
+import Circle from './components/circle';
 import Col from './components/col';
 import Collapse from './components/collapse';
 // import ColorPicker from './components/color-picker';
@@ -103,6 +103,7 @@ const components = {
     CellGroup,
     Checkbox,
     CheckboxGroup,
+    Circle,
     Col,
     Collapse,
     // ColorPicker,
@@ -168,7 +169,7 @@ const components = {
 const iview = {
     ...components,
     iButton: Button,
-    // iCircle: Circle,
+    iCircle: Circle,
     iCol: Col,
     iContent: Content,
     // iForm: Form,

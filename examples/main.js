@@ -106,10 +106,10 @@ const router = createRouter({
             path: '/rate',
             component: () => import('./routers/rate.vue')
         },
-        // {
-        //     path: '/circle',
-        //     component: (resolve) => require(['./routers/circle.vue'], resolve)
-        // },
+        {
+            path: '/circle',
+            component: () => import('./routers/circle.vue')
+        },
         // {
         //     path: '/tabs',
         //     component: (resolve) => require(['./routers/tabs.vue'], resolve)
