@@ -33,17 +33,13 @@ Modal.newInstance = properties => {
             if (this.showCancel) {
                 footerVNodes.push(h(Button, {
                     type: 'text',
-                    on: {
-                        click: this.cancel
-                    }
+                    onClick: this.cancel
                 }, this.localeCancelText));
             }
             footerVNodes.push(h(Button, {
                 type: 'primary',
                 loading: this.buttonLoading,
-                on: {
-                    click: this.ok
-                }
+                onClick: this.ok
             }, this.localeOkText));
 
             // render content
@@ -82,16 +78,15 @@ Modal.newInstance = properties => {
                 ]);
             }
 
-            return h(Modal, Object.assign({
+            return h(Modal, Object.assign({}, _props, {
+                width: this.width,
+                scrollable: this.scrollable,
+                closable: this.closable,
                 ref: 'modal'
             }, {
                 value: this.visible,
-                on: {
-                    input: (status) => {
-                        this.visible = status;
-                    },
-                    'on-cancel': this.cancel
-                }
+                onInput: (status) => this.visible = status,
+                'onOn-cancel': this.cancel
             }), [
                 h('div', {
                     class: prefixCls
