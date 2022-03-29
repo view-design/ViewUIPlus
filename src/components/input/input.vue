@@ -314,7 +314,7 @@
                 this.$emit('on-blur', event);
                 if (!findComponentUpward(this, ['DatePicker', 'TimePicker', 'Cascader', 'Search'])) {
                     // this.dispatch('FormItem', 'on-form-blur', this.currentValue);
-                    if (this.FormItemInstance) this.FormItemInstance.formBlur(this.currentValue);
+                    this.handleFormItemChange('blur', this.currentValue);
                 }
             },
             handleComposition(event) {
@@ -346,7 +346,7 @@
                 this.currentValue = value;
                 if (!findComponentUpward(this, ['DatePicker', 'TimePicker', 'Cascader', 'Search'])) {
                     // this.dispatch('FormItem', 'on-form-change', value);
-                    if (this.FormItemInstance) this.FormItemInstance.formChange(value);
+                    this.handleFormItemChange('change', value);
                 }
             },
             resizeTextarea () {

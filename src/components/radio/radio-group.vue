@@ -6,7 +6,7 @@
 <script>
     import { getCurrentInstance } from 'vue';
     import { oneOf } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
+    import mixinsForm from '../../mixins/form';
 
     const prefixCls = 'ivu-radio-group';
 
@@ -16,7 +16,7 @@
 
     export default {
         name: 'RadioGroup',
-        mixins: [ Emitter ],
+        mixins: [ mixinsForm ],
         emits: ['update:modelValue', 'on-change'],
         provide () {
             return {
@@ -83,7 +83,8 @@
                 this.currentValue = data.value;
                 this.$emit('update:modelValue', data.value);
                 this.$emit('on-change', data.value);
-                this.dispatch('FormItem', 'on-form-change', data.value); // todo
+                // this.dispatch('FormItem', 'on-form-change', data.value);
+                this.handleFormItemChange('change', data.value);
             }
         },
         watch: {

@@ -17,14 +17,13 @@
 <script>
     import { getCurrentInstance } from 'vue';
     import { oneOf } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
 
     const prefixCls = 'ivu-radio';
 
     export default {
         name: 'Radio',
-        mixins: [ Emitter, mixinsForm ],
+        mixins: [ mixinsForm ],
         emits: ['update:modelValue', 'on-change'],
         inject: {
             RadioGroupInstance: {
@@ -155,7 +154,8 @@
                     }
                 } else {
                     this.$emit('on-change', value);
-                    this.dispatch('FormItem', 'on-form-change', value); // todo
+                    // this.dispatch('FormItem', 'on-form-change', value);
+                    this.handleFormItemChange('change', value);
                 }
             },
             onBlur () {
