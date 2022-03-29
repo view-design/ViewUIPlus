@@ -2,6 +2,9 @@ export default {
     inject: {
         FormInstance: {
             default: ''
+        },
+        FormItemInstance: {
+            default: null
         }
     },
     computed: {

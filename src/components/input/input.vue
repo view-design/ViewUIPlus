@@ -83,14 +83,13 @@
     import { getCurrentInstance, nextTick } from 'vue';
     import { oneOf, findComponentUpward } from '../../utils/assist';
     import calcTextareaHeight from '../../utils/calcTextareaHeight';
-    import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
 
     const prefixCls = 'ivu-input';
 
     export default {
         name: 'Input',
-        mixins: [ Emitter, mixinsForm ],
+        mixins: [ mixinsForm ],
         emits: ['on-enter', 'on-search', 'on-keydown', 'on-keypress', 'on-keyup', 'on-click', 'on-focus', 'on-blur', 'on-change', 'on-input-change', 'on-clear', 'update:modelValue'],
         props: {
             type: {
@@ -314,7 +313,8 @@
             handleBlur (event) {
                 this.$emit('on-blur', event);
                 if (!findComponentUpward(this, ['DatePicker', 'TimePicker', 'Cascader', 'Search'])) {
-                    this.dispatch('FormItem', 'on-form-blur', this.currentValue); // todo
+                    // this.dispatch('FormItem', 'on-form-blur', this.currentValue);
+                    if (this.FormItemInstance) this.FormItemInstance.formBlur(this.currentValue);
                 }
             },
             handleComposition(event) {
@@ -345,7 +345,8 @@
                 });
                 this.currentValue = value;
                 if (!findComponentUpward(this, ['DatePicker', 'TimePicker', 'Cascader', 'Search'])) {
-                    this.dispatch('FormItem', 'on-form-change', value);
+                    // this.dispatch('FormItem', 'on-form-change', value);
+                    if (this.FormItemInstance) this.FormItemInstance.formChange(value);
                 }
             },
             resizeTextarea () {
