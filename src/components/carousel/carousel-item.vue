@@ -25,9 +25,6 @@
                 };
             }
         },
-        mounted () {
-            this.$parent.slotChange();
-        },
         watch: {
             width (val) {
                 if (val && this.$parent.loop) {
@@ -43,6 +40,9 @@
                     });
                 }
             }
+        },
+        mounted () {
+            this.$parent.slotChange();
         },
         beforeUnmount () {
             this.$parent.slotChange();
