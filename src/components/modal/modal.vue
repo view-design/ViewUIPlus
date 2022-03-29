@@ -313,10 +313,9 @@
                 this.$emit('on-ok');
             },
             EscClose (e) {
-                // todo
                 if (this.visible && this.closable) {
                     if (e.keyCode === 27) {
-                        const $Modals = findComponentsDownward(this.$root, 'Modal').filter(item => item.$data.visible && item.$props.closable);
+                        const $Modals = this.$root.modalList.map(item => item.modal).filter(item => item.$data.visible && item.$props.closable);
 
                         const $TopModal = $Modals.sort((a, b) => {
                             return a.$data.modalIndex < b.$data.modalIndex ? 1 : -1;
