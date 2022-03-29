@@ -1,16 +1,5 @@
-<template>
-    <button v-if="tagName === 'button'" :class="classes" :disabled="itemDisabled" @click="handleClickLink" v-bind="tagProps">
-        <Icon class="ivu-load-loop" type="ios-loading" v-if="loading"></Icon>
-        <Icon :type="icon" :custom="customIcon" v-if="(icon || customIcon) && !loading"></Icon>
-        <span v-if="showSlot" ref="slot"><slot></slot></span>
-    </button>
-    <a v-else-if="tagName === 'a'" :class="classes" :disabled="itemDisabled" @click="handleClickLink" v-bind="tagProps">
-        <Icon class="ivu-load-loop" type="ios-loading" v-if="loading"></Icon>
-        <Icon :type="icon" :custom="customIcon" v-if="(icon || customIcon) && !loading"></Icon>
-        <span v-if="showSlot" ref="slot"><slot></slot></span>
-    </a>
-</template>
 <script>
+    import { h } from 'vue';
     import Icon from '../icon';
     import { oneOf } from '../../utils/assist';
     import mixinsLink from '../../mixins/link';
@@ -87,22 +76,22 @@
                 ];
             },
             // Point out if it should render as <a> tag
-            isHrefPattern() {
-                const {to} = this;
+            isHrefPattern () {
+                const { to } = this;
                 return !!to;
             },
-            tagName() {
-                const {isHrefPattern} = this;
+            tagName () {
+                const { isHrefPattern } = this;
                 return isHrefPattern ? 'a' : 'button';
             },
-            tagProps() {
-                const {isHrefPattern} = this;
-                if(isHrefPattern) {
-                    const {linkUrl,target}=this;
-                    return {href: linkUrl, target};
+            tagProps () {
+                const { isHrefPattern } = this;
+                if (isHrefPattern) {
+                    const { linkUrl,target } = this;
+                    return { href: linkUrl, target };
                 } else {
-                    const {htmlType} = this;
-                    return {type: htmlType};
+                    const { htmlType } = this;
+                    return { type: htmlType };
                 }
             }
         },
@@ -114,6 +103,37 @@
 
                 this.handleCheckClick(event, openInNewWindow);
             }
+        },
+        render () {
+            let tag;
+            if (this.tagName === 'button') tag = 'button';
+            else if (this.tagName === 'a') tag = 'a';
+
+            let slots = [];
+            if (this.loading) {
+                slots.push(h(Icon, {
+                    class: 'ivu-load-loop',
+                    type: 'ios-loading'
+                }));
+            }
+            if ((this.icon || this.customIcon) && !this.loading) {
+                slots.push(h(Icon, {
+                    type: this.icon,
+                    custom: this.customIcon
+                }));
+            }
+            if (this.showSlot) {
+                slots.push(h('span', {
+                    ref: 'slot'
+                }), this.$slots.default());
+            }
+
+            return h(tag, {
+                class: this.classes,
+                disabled: this.itemDisabled,
+                onClick: () => this.handleClickLink,
+                ...this.tagProps
+            }, slots);
         }
     };
 </script>
