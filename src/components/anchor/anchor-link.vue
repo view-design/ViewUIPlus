@@ -5,7 +5,9 @@
     </div>
 </template>
 <script>
-    import { inject } from 'vue';
+    import { inject, nextTick } from 'vue';
+    import random from '../../utils/random_str';
+    const _id = random(6);
 
     export default {
         name: 'AnchorLink',
@@ -53,9 +55,13 @@
             }
         },
         mounted () {
-            this.$nextTick(() => {
+            this.AnchorInstance.addLink(_id, this);
+            nextTick(() => {
                 this.AnchorInstance.init();
             });
+        },
+        beforeUnmount () {
+            this.AnchorInstance.removeLink(_id);
         }
     };
 </script>

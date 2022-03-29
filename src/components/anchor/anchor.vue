@@ -11,6 +11,7 @@
 	</component>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import { scrollTop, findComponentsDownward, sharpMatcherRegx } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
 
@@ -32,9 +33,10 @@
                 currentId: '', // current show title id =>  #href -> currentId = href
                 scrollContainer: null,
                 scrollElement: null,
-                titlesOffsetArr: [],
+                // titlesOffsetArr: [],
                 wrapperTop: 0,
-                upperFirstTitle: true
+                upperFirstTitle: true,
+                links: []
             };
         },
         props: {
@@ -73,6 +75,24 @@
             },
             containerIsWindow () {
                 return this.scrollContainer === window;
+            },
+            titlesOffsetArr () {
+                const links = this.links.map(item => {
+                    return item.link.href;
+                });
+                const idArr = links.map(link => {
+                    return link.split('#')[1];
+                });
+                let offsetArr = [];
+                idArr.forEach(id => {
+                    const titleEle = document.getElementById(id);
+                    if (titleEle) offsetArr.push({
+                        link: `#${id}`,
+                        offset: titleEle.offsetTop - this.scrollElement.offsetTop
+                    });
+                });
+
+                return offsetArr;
             }
         },
         methods: {
@@ -82,7 +102,7 @@
             handleScroll (e) {
                 this.upperFirstTitle = e.target.scrollTop < this.titlesOffsetArr[0].offset;
                 if (this.animating) return;
-                this.updateTitleOffset();
+                // this.updateTitleOffset();
                 const scrollTop = document.documentElement.scrollTop || document.body.scrollTop || e.target.scrollTop;
                 this.getCurrentScrollAtTitleId(scrollTop);
             },
@@ -116,23 +136,6 @@
                 const top = (elementATop < 0 ? this.offsetTop : elementATop);
                 this.inkTop = top;
             },
-            updateTitleOffset () {
-                const links = findComponentsDownward(this, 'AnchorLink').map(link => {
-                    return link.href;
-                });
-                const idArr = links.map(link => {
-                    return link.split('#')[1];
-                });
-                let offsetArr = [];
-                idArr.forEach(id => {
-                    const titleEle = document.getElementById(id);
-                    if (titleEle) offsetArr.push({
-                        link: `#${id}`,
-                        offset: titleEle.offsetTop - this.scrollElement.offsetTop
-                    });
-                });
-                this.titlesOffsetArr = offsetArr;
-            },
             getCurrentScrollAtTitleId (scrollTop) {
                 let i = -1;
                 let len = this.titlesOffsetArr.length;
@@ -163,25 +166,32 @@
             init () {
                 // const anchorLink = findComponentDownward(this, 'AnchorLink');
                 this.handleHashChange();
-                this.$nextTick(() => {
+                nextTick(() => {
                     this.removeListener();
                     this.getContainer();
                     this.wrapperTop = this.containerIsWindow ? 0 : this.scrollElement.offsetTop;
                     this.handleScrollTo();
                     this.handleSetInkTop();
-                    this.updateTitleOffset();
+                    // this.updateTitleOffset();
                     if (this.titlesOffsetArr[0]) {
                         this.upperFirstTitle = this.scrollElement.scrollTop < this.titlesOffsetArr[0].offset;
                     }
                     on(this.scrollContainer, 'scroll', this.handleScroll);
                     on(window, 'hashchange', this.handleHashChange);
                 });
+            },
+            addLink (id, link) {
+                this.links.push({ id, link });
+            },
+            removeLink (id) {
+                const linkIndex = this.links.findIndex(item => item.id === id);
+                this.links.splice(linkIndex, 1);
             }
         },
         watch: {
             '$route' () {
                 this.handleHashChange();
-                this.$nextTick(() => {
+                nextTick(() => {
                     this.handleScrollTo();
                 });
             },
