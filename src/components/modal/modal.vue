@@ -39,6 +39,7 @@
 
     import { on, off } from '../../utils/dom';
     import { findComponentsDownward, deepCopy } from '../../utils/assist';
+    import random from '../../utils/random_str';
 
     import { transferIndex as modalIndex, transferIncrease as modalIncrease, lastVisibleIndex, lastVisibleIncrease } from '../../utils/transfer-queue';
 
@@ -165,6 +166,7 @@
                 dragData: deepCopy(dragData),
                 modalIndex: this.handleGetModalIndex(),  // for Esc close the top modal
                 isMouseTriggerIn: false, // #5800
+                id: random(6)
             };
         },
         computed: {
@@ -409,27 +411,21 @@
                     }
                     this.modalIndex = this.handleGetModalIndex();
                 }
+            },
+            addModal () {
+                const root = this.$root;
+                if (!root.modalList) root.modalList = [];
+                root.modalList.push({
+                    id: this.id,
+                    modal: this
+                });
+            },
+            removeModal () {
+                const root = this.$root;
+                if (!root.modalList) return;
+                const index = root.modalList.findIndex(item => item.id === this.id);
+                root.modalList.splice(index, 1);
             }
-        },
-        mounted () {
-            if (this.visible) {
-                this.wrapShow = true;
-            }
-
-            let showHead = true;
-
-            if (this.$slots.header === undefined && !this.title) {
-                showHead = false;
-            }
-
-            this.showHead = showHead;
-
-            // ESC close
-            document.addEventListener('keydown', this.EscClose);
-        },
-        beforeUnmount () {
-            document.removeEventListener('keydown', this.EscClose);
-            this.removeScrollEffect();
         },
         watch: {
             modelValue (val) {
@@ -480,6 +476,30 @@
                     this.showHead = !!val;
                 }
             }
+        },
+        mounted () {
+            if (this.visible) {
+                this.wrapShow = true;
+            }
+
+            let showHead = true;
+
+            if (this.$slots.header === undefined && !this.title) {
+                showHead = false;
+            }
+
+            this.showHead = showHead;
+
+            // add instance to root for esc close
+            this.addModal();
+
+            // ESC close
+            document.addEventListener('keydown', this.EscClose);
+        },
+        beforeUnmount () {
+            this.removeModal();
+            document.removeEventListener('keydown', this.EscClose);
+            this.removeScrollEffect();
         }
     };
 </script>
