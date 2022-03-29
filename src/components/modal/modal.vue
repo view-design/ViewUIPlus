@@ -38,7 +38,7 @@
     import ScrollbarMixins from './mixins-scrollbar';
 
     import { on, off } from '../../utils/dom';
-    import { findComponentsDownward, deepCopy } from '../../utils/assist';
+    import { deepCopy } from '../../utils/assist';
     import random from '../../utils/random_str';
 
     import { transferIndex as modalIndex, transferIncrease as modalIncrease, lastVisibleIndex, lastVisibleIncrease } from '../../utils/transfer-queue';

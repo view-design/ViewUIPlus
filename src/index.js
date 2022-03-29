@@ -197,6 +197,7 @@ const install = function(app, opts = {}) {
     });
     app.config.globalProperties.$IVIEW = {
         size: opts.size || '',
+        transfer: 'transfer' in opts ? opts.transfer : '',
         cell: {
             arrow: opts.cell ? opts.cell.arrow ? opts.cell.arrow : '' : '',
             customArrow: opts.cell ? opts.cell.customArrow ? opts.cell.customArrow : '' : '',
@@ -213,7 +214,6 @@ const install = function(app, opts = {}) {
     }
     // app.prototype.$IVIEW = {
     //     size: opts.size || '',
-    //     transfer: 'transfer' in opts ? opts.transfer : '',
     //     capture: 'capture' in opts ? opts.capture : true,
     //     select: {
     //         arrow: opts.select ? opts.select.arrow ? opts.select.arrow : '' : '',
