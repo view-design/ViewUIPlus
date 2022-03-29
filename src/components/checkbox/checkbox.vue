@@ -30,14 +30,13 @@
 <script>
     import { getCurrentInstance } from 'vue';
     import { oneOf } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
 
     const prefixCls = 'ivu-checkbox';
 
     export default {
         name: 'Checkbox',
-        mixins: [ Emitter, mixinsForm ],
+        mixins: [ mixinsForm ],
         emits: ['update:modelValue', 'on-change'],
         inject: {
             CheckboxGroupInstance: {
@@ -156,7 +155,8 @@
                     this.CheckboxGroupInstance.change(this.model);
                 } else {
                     this.$emit('on-change', value);
-                    this.dispatch('FormItem', 'on-form-change', value); // todo
+                    // this.dispatch('FormItem', 'on-form-change', value);
+                    this.handleFormItemChange('change', value);
                 }
             },
             onBlur () {

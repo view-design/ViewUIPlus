@@ -6,13 +6,12 @@
 <script>
     import { getCurrentInstance } from 'vue';
     import { oneOf } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
-
+    import mixinsForm from '../../mixins/form';
     const prefixCls = 'ivu-checkbox-group';
 
     export default {
         name: 'CheckboxGroup',
-        mixins: [ Emitter ],
+        mixins: [ mixinsForm ],
         emits: ['update:modelValue', 'on-change'],
         provide () {
             return {
@@ -57,7 +56,8 @@
                 this.currentValue = data;
                 this.$emit('update:modelValue', data);
                 this.$emit('on-change', data);
-                this.dispatch('FormItem', 'on-form-change', data); // todo
+                // this.dispatch('FormItem', 'on-form-change', data);
+                this.handleFormItemChange('change', data);
             }
         }
     };
