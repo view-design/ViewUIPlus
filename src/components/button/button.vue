@@ -132,7 +132,7 @@
             return h(tag, {
                 class: this.classes,
                 disabled: this.itemDisabled,
-                onClick: () => this.handleClickLink,
+                onClick: this.handleClickLink,
                 ...this.tagProps
             }, slots);
         }
