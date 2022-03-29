@@ -1,5 +1,5 @@
 <script>
-    import { h } from 'vue';
+    import { h, getCurrentInstance } from 'vue';
     import Icon from '../icon';
     import { oneOf } from '../../utils/assist';
     import mixinsLink from '../../mixins/link';
@@ -29,7 +29,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default (props) {
-                    return !props.$IVIEW || props.$IVIEW.size === '' ? 'default' : props.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             loading: Boolean,
