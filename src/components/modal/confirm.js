@@ -133,7 +133,7 @@ Modal.newInstance = properties => {
         methods: {
             cancel () {
                 if (this.closing) return;
-                this.$children[0].visible = false;
+                this.$refs.modal.visible = false;
                 this.buttonLoading = false;
                 this.onCancel();
                 this.remove();
