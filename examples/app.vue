@@ -32,7 +32,7 @@
             <span>[todo]<router-link to="/carousel">Carousel</router-link></span>
             <span><router-link to="/card">Card</router-link></span>
 <!--            <span><router-link to="/tree">Tree</router-link></span>-->
-            <span>[todo]<router-link to="/rate">Rate</router-link></span>
+            <span><router-link to="/rate">Rate</router-link></span>
             <span><router-link to="/circle">Circle</router-link></span>
 <!--            <span><router-link to="/tabs">Tabs</router-link></span>-->
 <!--            <span><router-link to="/tooltip">Tooltip</router-link></span>-->

@@ -28,14 +28,13 @@
 </template>
 <script>
     import Locale from '../../mixins/locale';
-    import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
 
     const prefixCls = 'ivu-rate';
 
     export default {
         name: 'Rate',
-        mixins: [ Locale, Emitter, mixinsForm ],
+        mixins: [ Locale, mixinsForm ],
         emits: ['update:modelValue', 'on-change'],
         props: {
             count: {
@@ -178,7 +177,8 @@
                 this.currentValue = value;
                 this.$emit('update:modelValue', value);
                 this.$emit('on-change', value);
-                this.dispatch('FormItem', 'on-form-change', value); // todo
+                // this.dispatch('FormItem', 'on-form-change', value);
+                this.handleFormItemChange('change', value);
             }
         }
     };
