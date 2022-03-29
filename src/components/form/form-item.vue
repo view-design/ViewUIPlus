@@ -11,7 +11,6 @@
 </template>
 <script>
     import AsyncValidator from 'async-validator';
-    import Emitter from '../../mixins/emitter';
 
     const prefixCls = 'ivu-form-item';
 
@@ -40,7 +39,12 @@
 
     export default {
         name: 'FormItem',
-        mixins: [ Emitter ],
+        inject: ['FormInstance'],
+        provide () {
+            return {
+                FormItemInstance: this
+            }
+        },
         props: {
             label: {
                 type: String,
@@ -104,7 +108,6 @@
                 }
             },
         },
-        inject: ['FormInstance'],
         computed: {
             classes () {
                 return [
@@ -156,19 +159,19 @@
         methods: {
             setRules() {
                 let rules = this.getRules();
-                if (rules.length&&this.required) {
+                if (rules.length && this.required) {
                     return;
-                }else if (rules.length) {
+                } else if (rules.length) {
                     rules.every((rule) => {
                         this.isRequired = rule.required;
                     });
-                }else if (this.required){
+                } else if (this.required) {
                     this.isRequired = this.required;
                 }
-                this.$off('on-form-blur', this.onFieldBlur);
-                this.$off('on-form-change', this.onFieldChange);
-                this.$on('on-form-blur', this.onFieldBlur);
-                this.$on('on-form-change', this.onFieldChange);
+                // this.$off('on-form-blur', this.onFieldBlur);
+                // this.$off('on-form-change', this.onFieldChange);
+                // this.$on('on-form-blur', this.onFieldBlur);
+                // this.$on('on-form-change', this.onFieldChange);
             },
             getRules () {
                 let formRules = this.FormInstance.rules;
@@ -252,11 +255,18 @@
                 }
 
                 this.validate('change');
+            },
+            formBlur () {
+                this.onFieldBlur();
+            },
+            formChange () {
+                this.onFieldChange();
             }
         },
         mounted () {
             if (this.prop) {
-                this.dispatch('iForm', 'on-form-item-add', this);
+                // this.dispatch('iForm', 'on-form-item-add', this);
+                this.FormInstance.addField(this);
 
                 Object.defineProperty(this, 'initialValue', {
                     value: this.fieldValue
@@ -266,7 +276,8 @@
             }
         },
         beforeUnmount () {
-            this.dispatch('iForm', 'on-form-item-remove', this);
+            // this.dispatch('iForm', 'on-form-item-remove', this);
+            this.FormInstance.removeField(this);
         }
     };
 </script>

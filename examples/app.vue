@@ -48,7 +48,7 @@
 <!--            <span><router-link to="/page">Page</router-link></span>-->
             <span>[todo]<router-link to="/transfer">Transfer</router-link></span>
 <!--            <span><router-link to="/date">Date</router-link></span>-->
-<!--            <span><router-link to="/form">Form</router-link></span>-->
+            <span>[todo]<router-link to="/form">Form</router-link></span>
 <!--            <span><router-link to="/table">Table</router-link></span>-->
             <span><router-link to="/loading-bar">LoadingBar</router-link></span>
             <span>[todo]<router-link to="/modal">Modal</router-link></span>

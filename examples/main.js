@@ -166,10 +166,10 @@ const router = createRouter({
         //     path: '/date',
         //     component: (resolve) => require(['./routers/date.vue'], resolve)
         // },
-        // {
-        //     path: '/form',
-        //     component: (resolve) => require(['./routers/form.vue'], resolve)
-        // },
+        {
+            path: '/form',
+            component: () => import('./routers/form.vue')
+        },
         // {
         //     path: '/table',
         //     component: (resolve) => require(['./routers/table.vue'], resolve)

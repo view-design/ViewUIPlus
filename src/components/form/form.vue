@@ -8,6 +8,12 @@
 
     export default {
         name: 'iForm',
+        emits: ['on-validate'],
+        provide () {
+            return {
+                FormInstance : this
+            };
+        },
         props: {
             model: {
                 type: Object
@@ -53,9 +59,6 @@
                 type: Boolean,
                 default: false
             }
-        },
-        provide () {
-            return { FormInstance : this };
         },
         data () {
             return {
@@ -119,22 +122,18 @@
                 if (!field) { throw new Error('[View UI warn]: must call validateField with valid prop string!'); }
 
                 field.validate('', cb);
+            },
+            addField (field) {
+                if (field) this.fields.push(field);
+            },
+            removeField (field) {
+                if (field.prop) this.fields.splice(this.fields.indexOf(field), 1);
             }
         },
         watch: {
-            rules() {
+            rules () {
                 this.validate();
             }
-        },
-        created () {
-            this.$on('on-form-item-add', (field) => {
-                if (field) this.fields.push(field);
-                return false;
-            });
-            this.$on('on-form-item-remove', (field) => {
-                if (field.prop) this.fields.splice(this.fields.indexOf(field), 1);
-                return false;
-            });
         }
     };
 </script>

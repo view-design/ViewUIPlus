@@ -38,7 +38,8 @@ import Dropdown from './components/dropdown';
 import DropdownItem from './components/dropdown-item';
 import DropdownMenu from './components/dropdown-menu';
 import Footer from './components/footer';
-// import Form from './components/form';
+import Form from './components/form';
+import FormItem from './components/form-item';
 import Header from './components/header';
 import Icon from './components/icon';
 import Layout from './components/layout';
@@ -115,8 +116,8 @@ const components = {
     DropdownItem,
     DropdownMenu,
     Footer,
-    // Form,
-    // FormItem: Form.Item,
+    Form,
+    FormItem,
     Header,
     Icon,
     Input,
@@ -172,7 +173,7 @@ const iview = {
     iCircle: Circle,
     iCol: Col,
     iContent: Content,
-    // iForm: Form,
+    iForm: Form,
     iFooter: Footer,
     iHeader: Header,
     // iInput: Input,
