@@ -8,6 +8,9 @@ const prefixCls = 'ivu-modal-confirm';
 Modal.newInstance = properties => {
     const _props = properties || {};
 
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
     const Instance = createApp({
         mixins: [ Locale ],
         data () {
@@ -140,7 +143,7 @@ Modal.newInstance = properties => {
                 if (this.loading) {
                     this.buttonLoading = true;
                 } else {
-                    this.$children[0].visible = false;
+                    this.$refs.modal.visible = false;
                     this.remove();
                 }
                 this.onOk();
@@ -153,8 +156,8 @@ Modal.newInstance = properties => {
                 }, 300);
             },
             destroy () {
-                this.$destroy();
-                if (this.$el) document.body.removeChild(this.$el);
+                Instance.unmount();
+                document.body.removeChild(container);
                 this.onRemove();
             },
             onOk () {},
@@ -163,8 +166,6 @@ Modal.newInstance = properties => {
         }
     });
 
-    const container = document.createElement('div');
-    document.body.appendChild(container);
     Instance.mount(container);
     const modal = Instance._instance.refs.modal;
 
