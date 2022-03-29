@@ -1,12 +1,5 @@
 <template>
-    <transition name="fade" v-if="fade">
-        <div :class="classes" @click.stop="check" :style="wraperStyles">
-            <span :class="dotClasses" v-if="showDot" :style="bgColorStyle"></span>
-            <span :class="textClasses" :style="textColorStyle"><slot></slot></span>
-            <Icon v-if="closable" :class="iconClass" :color="lineColor" type="ios-close" @click.stop="close"></Icon>
-        </div>
-    </transition>
-    <div v-else :class="classes" @click.stop="check" :style="wraperStyles">
+    <div :class="classes" @click.stop="check" :style="wraperStyles">
         <span :class="dotClasses" v-if="showDot" :style="bgColorStyle"></span>
         <span :class="textClasses" :style="textColorStyle"><slot></slot></span>
         <Icon v-if="closable" :class="iconClass" :color="lineColor" type="ios-close" @click.stop="close"></Icon>
@@ -48,10 +41,6 @@
             name: {
                 type: [String, Number]
             },
-            fade: {
-                type: Boolean,
-                default: true
-            },
             // 4.0.0
             size: {
                 validator (value) {
@@ -74,7 +63,8 @@
                         [`${prefixCls}-${this.color}`]: !!this.color && oneOf(this.color, initColorList),
                         [`${prefixCls}-${this.type}`]: !!this.type,
                         [`${prefixCls}-closable`]: this.closable,
-                        [`${prefixCls}-checked`]: this.isChecked
+                        [`${prefixCls}-checked`]: this.isChecked,
+                        [`${prefixCls}-checkable`]: this.checkable
                     }
                 ];
             },

@@ -30,11 +30,15 @@
     // for color and unchecked
     &:not(&-border):not(&-dot):not(&-checked){
         background: transparent;
-        border: 0;
+        border-color: transparent;
         color: @text-color;
         .@{tag-close-prefix-cls} {
             color: @text-color !important;
         }
+    }
+
+    &-checkable{
+        cursor: pointer;
     }
 
     &-color{
@@ -164,15 +168,15 @@
         }
     }
 
-    &:hover {
-        opacity: 0.85;
-    }
-
-    &,
-    a,
-    a:hover {
-        // color: @text-color;
-    }
+    //&:hover {
+    //    opacity: 0.85;
+    //}
+    //
+    //&,
+    //a,
+    //a:hover {
+    //    // color: @text-color;
+    //}
 
     &-text {
         a:first-child:last-child {
