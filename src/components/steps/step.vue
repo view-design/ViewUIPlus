@@ -17,15 +17,15 @@
     </div>
 </template>
 <script>
-    import Emitter from '../../mixins/emitter';
     import { oneOf } from '../../utils/assist';
+    import random from '../../utils/random_str';
 
     const prefixCls = 'ivu-steps';
     const iconPrefixCls = 'ivu-icon';
 
     export default {
         name: 'Step',
-        mixins: [ Emitter ],
+        inject: ['StepsInstance'],
         props: {
             status: {
                 validator (value) {
@@ -46,10 +46,7 @@
         data () {
             return {
                 prefixCls: prefixCls,
-                stepNumber: '',
-                nextError: false,
-                total: 1,
-                currentStatus: ''
+                id: random(6)
             };
         },
         computed: {
@@ -83,24 +80,57 @@
                         [`${iconPrefixCls}-${icon}`]: icon !== ''
                     }
                 ];
-            }
-        },
-        watch: {
-            status (val) {
-                this.currentStatus = val;
-                if (this.currentStatus === 'error') {
-                    this.$parent.setNextError();
+            },
+            stepNumber () {
+                return this.StepsInstance.steps.findIndex(item => item.id === this.id) + 1;
+            },
+            total () {
+                return this.StepsInstance.direction === 'horizontal' ? this.StepsInstance.steps.length : 1;
+            },
+            currentStatus () {
+                let status = '';
+
+                if (this.status) {
+                    status = this.status;
+                } else {
+                    const StepsInstance = this.StepsInstance;
+                    const current = StepsInstance.current;
+                    const index = StepsInstance.steps.findIndex(item => item.id === this.id);
+
+                    if (index === current) {
+                        if (StepsInstance.status !== 'error') {
+                            status = 'process';
+                        } else {
+                            status = 'error';
+                        }
+                    } else if (index < current) {
+                        status = 'finish';
+                    } else {
+                        status = 'wait';
+                    }
                 }
+
+                return status;
+            },
+            nextError () {
+                let status = false;
+
+                const StepsInstance = this.StepsInstance;
+                const index = StepsInstance.steps.findIndex(item => item.id === this.id);
+
+                if ((index + 1) < StepsInstance.steps.length) {
+                    const nextStep = StepsInstance.steps[index + 1];
+                    if (nextStep.currentStatus === 'error') status = true;
+                }
+
+                return status;
             }
         },
-        created () {
-            this.currentStatus = this.status;
-        },
-        mounted () {
-            this.dispatch('Steps', 'append');
+        beforeMount () {
+            this.StepsInstance.addStep(this.id, this);
         },
         beforeUnmount () {
-            this.dispatch('Steps', 'remove');
+            this.StepsInstance.removeStep(this.id);
         }
     };
 </script>
