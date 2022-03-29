@@ -16,14 +16,13 @@
 <script>
     import { getCurrentInstance } from 'vue';
     import { oneOf } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
 
     const prefixCls = 'ivu-switch';
 
     export default {
         name: 'iSwitch',
-        mixins: [ Emitter, mixinsForm ],
+        mixins: [ mixinsForm ],
         emits: ['update:modelValue', 'on-change'],
         props: {
             modelValue: {
@@ -107,7 +106,8 @@
                 this.currentValue = checked;
                 this.$emit('update:modelValue', checked);
                 this.$emit('on-change', checked);
-                this.dispatch('FormItem', 'on-form-change', checked); // todo
+                // this.dispatch('FormItem', 'on-form-change', checked);
+                this.handleFormItemChange('change', checked);
             },
             toggle (event) {
                 event.preventDefault();
