@@ -50,7 +50,6 @@
 <script>
     import { getCurrentInstance, nextTick } from 'vue';
     import { oneOf, findComponentUpward } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
 
     const prefixCls = 'ivu-input-number';
@@ -82,7 +81,7 @@
 
     export default {
         name: 'InputNumber',
-        mixins: [ Emitter, mixinsForm ],
+        mixins: [ mixinsForm ],
         emits: ['on-change', 'on-focus', 'on-blur', 'update:modelValue'],
         props: {
             max: {
@@ -292,7 +291,8 @@
                     this.currentValue = val;
                     this.$emit('update:modelValue', val);
                     this.$emit('on-change', val);
-                    this.dispatch('FormItem', 'on-form-change', val); // todo
+                    // this.dispatch('FormItem', 'on-form-change', val);
+                    this.handleFormItemChange('change', val);
                 });
             },
             focus (event) {
@@ -303,7 +303,8 @@
                 this.focused = false;
                 this.$emit('on-blur');
                 if (!findComponentUpward(this, ['DatePicker', 'TimePicker', 'Cascader', 'Search'])) {
-                    this.dispatch('FormItem', 'on-form-blur', this.currentValue);
+                    // this.dispatch('FormItem', 'on-form-blur', this.currentValue);
+                    this.handleFormItemChange('blur', this.currentValue);
                 }
             },
             keyDown (e) {
