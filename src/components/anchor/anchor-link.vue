@@ -7,7 +7,6 @@
 <script>
     import { inject, nextTick } from 'vue';
     import random from '../../utils/random_str';
-    const _id = random(6);
 
     export default {
         name: 'AnchorLink',
@@ -24,7 +23,8 @@
         },
         data () {
             return {
-                prefix: 'ivu-anchor-link'
+                prefix: 'ivu-anchor-link',
+                id: random(6)
             };
         },
         computed: {
@@ -55,13 +55,13 @@
             }
         },
         mounted () {
-            this.AnchorInstance.addLink(_id, this);
+            this.AnchorInstance.addLink(this.id, this);
             nextTick(() => {
                 this.AnchorInstance.init();
             });
         },
         beforeUnmount () {
-            this.AnchorInstance.removeLink(_id);
+            this.AnchorInstance.removeLink(this.id);
         }
     };
 </script>
