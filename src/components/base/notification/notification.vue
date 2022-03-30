@@ -1,6 +1,6 @@
 <template>
     <div :class="classes" :style="wrapStyles">
-        <transition-group name="move-up">
+        <transition-group :name="transitionName" appear>
             <Notice
                 v-for="notice in notices"
                 :key="notice.name"
@@ -55,6 +55,9 @@
                 type: String
             },
             className: {
+                type: String
+            },
+            transitionName: {
                 type: String
             }
         },
@@ -112,7 +115,7 @@
             handleGetIndex () {
                 transferIncrease();
                 return transferIndex;
-            },
+            }
         }
     };
 </script>

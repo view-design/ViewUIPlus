@@ -16,13 +16,16 @@ const iconTypes = {
     'error': 'ios-close-circle'
 };
 
+const transitionName = 'move-notice';
+
 function getNoticeInstance () {
     noticeInstance = noticeInstance || Notification.newInstance({
         prefixCls: prefixCls,
         styles: {
             top: `${top}px`,
             right: 0
-        }
+        },
+        transitionName
     });
 
     return noticeInstance;
@@ -73,7 +76,7 @@ function notice (type, options) {
         name: noticeKey.toString(),
         duration: duration,
         styles: {},
-        transitionName: 'move-notice',
+        transitionName,
         content: content,
         withIcon: withIcon,
         render: render,

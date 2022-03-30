@@ -20,12 +20,15 @@ const iconTypes = {
     'loading': 'ios-loading'
 };
 
+const transitionName = 'move-up';
+
 function getMessageInstance () {
     messageInstance = messageInstance || Notification.newInstance({
         prefixCls: prefixCls,
         styles: {
             top: `${defaults.top}px`
-        }
+        },
+        transitionName
     });
 
     return messageInstance;
@@ -43,7 +46,7 @@ function notice (content = '', duration = defaults.duration, type, onClose = fun
         name: `${prefixKey}${name}`,
         duration: duration,
         styles: {},
-        transitionName: 'move-up',
+        transitionName,
         content: `
             <div class="${prefixCls}-custom-content ${prefixCls}-${type}">
                 <i class="${iconPrefixCls} ${iconPrefixCls}-${iconType} ${loadCls}"></i>

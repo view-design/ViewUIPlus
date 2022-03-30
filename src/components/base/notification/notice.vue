@@ -1,31 +1,30 @@
 <template>
-    <transition :name="transitionName" @enter="handleEnter" @leave="handleLeave" appear>
-        <div :class="classes" :style="styles">
-            <template v-if="type === 'notice'">
-                <div :class="contentClasses" ref="content" v-html="content"></div>
-                <div :class="contentWithIcon">
+    <div :class="classes" :style="styles">
+        <template v-if="type === 'notice'">
+            <div :class="contentClasses" ref="content" v-html="content"></div>
+            <div :class="contentWithIcon">
+                <render-cell :render="renderFunc"></render-cell>
+            </div>
+            <a :class="[baseClass + '-close']" @click="close" v-if="closable">
+                <i class="ivu-icon ivu-icon-ios-close"></i>
+            </a>
+        </template>
+        <template v-if="type === 'message'">
+            <div :class="messageContentClasses" ref="content">
+                <div :class="[baseClass + '-content-text']" v-html="content"></div>
+                <div :class="[baseClass + '-content-text']">
                     <render-cell :render="renderFunc"></render-cell>
                 </div>
                 <a :class="[baseClass + '-close']" @click="close" v-if="closable">
                     <i class="ivu-icon ivu-icon-ios-close"></i>
                 </a>
-            </template>
-            <template v-if="type === 'message'">
-                <div :class="messageContentClasses" ref="content">
-                    <div :class="[baseClass + '-content-text']" v-html="content"></div>
-                    <div :class="[baseClass + '-content-text']">
-                        <render-cell :render="renderFunc"></render-cell>
-                    </div>
-                    <a :class="[baseClass + '-close']" @click="close" v-if="closable">
-                        <i class="ivu-icon ivu-icon-ios-close"></i>
-                    </a>
-                </div>
-            </template>
-        </div>
-    </transition>
+            </div>
+        </template>
+    </div>
 </template>
 <script>
     import RenderCell from '../render';
+
     export default {
         components: {
             RenderCell
@@ -153,8 +152,6 @@
                 }
             },
             handleLeave (el) {
-                // todo
-                console.log(999)
                 if (this.type === 'message') {
                     // 优化一下，如果当前只有一个 Message，则不使用 js 过渡动画，这样更优美
                     if (document.getElementsByClassName('ivu-message-notice').length !== 1) {
@@ -166,6 +163,7 @@
             }
         },
         mounted () {
+            this.handleEnter(this.$el);
             this.clearCloseTimer();
 
             if (this.duration !== 0) {
@@ -181,6 +179,7 @@
             }
         },
         beforeUnmount () {
+            this.handleLeave(this.$el);
             this.clearCloseTimer();
         }
     };
