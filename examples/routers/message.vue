@@ -9,11 +9,14 @@
 
         <Button @click="handleAdd">add</Button>
         <Button @click="handleRemove">remove</Button>
-        <div v-for="(item, index) in list" :key="index">
-            <transition name="move-up" appear>
-                <div style="width:200px;height: 200px;background: #2d8cf0"></div>
-            </transition>
-        </div>
+        <transition-group name="move-up" appear>
+            <div v-for="(item, index) in list" :key="index">
+                <transition name="move-up" appear @enter="inn" @leave="out">
+                    <div style="width:200px;height: 200px;background: #2d8cf0"></div>
+                </transition>
+            </div>
+        </transition-group>
+
 
     </div>
 </template>
@@ -28,6 +31,12 @@
             }
         },
         methods: {
+            inn () {
+                console.log(1);
+            },
+            out () {
+                console.log(2);
+            },
             handleAdd () {
                 this.list.push({
                     a: 1

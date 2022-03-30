@@ -145,7 +145,7 @@
             close () {
                 this.clearCloseTimer();
                 this.onClose();
-                this.$parent.close(this.name);
+                this.$parent.$parent.close(this.name);
             },
             handleEnter (el) {
                 if (this.type === 'message') {
@@ -153,6 +153,8 @@
                 }
             },
             handleLeave (el) {
+                // todo
+                console.log(999)
                 if (this.type === 'message') {
                     // 优化一下，如果当前只有一个 Message，则不使用 js 过渡动画，这样更优美
                     if (document.getElementsByClassName('ivu-message-notice').length !== 1) {

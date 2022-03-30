@@ -1,23 +1,25 @@
 <template>
     <div :class="classes" :style="wrapStyles">
-        <Notice
-            v-for="notice in notices"
-            :key="notice.name"
-            :prefix-cls="prefixCls"
-            :styles="notice.styles"
-            :type="notice.type"
-            :content="notice.content"
-            :duration="notice.duration"
-            :render="notice.render"
-            :has-title="notice.hasTitle"
-            :withIcon="notice.withIcon"
-            :closable="notice.closable"
-            :name="notice.name"
-            :transition-name="notice.transitionName"
-            :background="notice.background"
-            :msg-type="notice.msgType"
-            :on-close="notice.onClose">
-        </Notice>
+        <transition-group name="move-up">
+            <Notice
+                v-for="notice in notices"
+                :key="notice.name"
+                :prefix-cls="prefixCls"
+                :styles="notice.styles"
+                :type="notice.type"
+                :content="notice.content"
+                :duration="notice.duration"
+                :render="notice.render"
+                :has-title="notice.hasTitle"
+                :withIcon="notice.withIcon"
+                :closable="notice.closable"
+                :name="notice.name"
+                :transition-name="notice.transitionName"
+                :background="notice.background"
+                :msg-type="notice.msgType"
+                :on-close="notice.onClose">
+            </Notice>
+        </transition-group>
     </div>
 </template>
 <script>
