@@ -35,16 +35,16 @@
     import { getCurrentInstance } from 'vue';
     import Icon from '../icon';
     import { oneOf, findBrothersComponents, findComponentsUpward } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
     import ScrollbarMixins from '../modal/mixins-scrollbar';
 
     import { on, off } from '../../utils/dom';
+    import random from '../../utils/random_str';
 
     const prefixCls = 'ivu-drawer';
 
     export default {
         name: 'Drawer',
-        mixins: [ Emitter, ScrollbarMixins ],
+        mixins: [ ScrollbarMixins ],
         components: { Icon },
         emits: ['on-close', 'on-resize-width', 'on-visible-change', 'update:modelValue'],
         props: {
@@ -131,7 +131,8 @@
                 wrapperHeight: this.height,
                 wrapperLeft: 0,
                 minWidth: 256,
-                minHeight: 256
+                minHeight: 256,
+                id: random(6)
             };
         },
         computed: {
@@ -265,6 +266,20 @@
                 // 防止鼠标选中抽屉中文字，造成拖动trigger触发浏览器原生拖动行为
                 window.getSelection().removeAllRanges();
             },
+            addDrawer () {
+                const root = this.$root;
+                if (!root.drawerList) root.drawerList = [];
+                root.drawerList.push({
+                    id: this.id,
+                    drawer: this
+                });
+            },
+            removeDrawer () {
+                const root = this.$root;
+                if (!root.drawerList) return;
+                const index = root.drawerList.findIndex(item => item.id === this.id);
+                root.drawerList.splice(index, 1);
+            }
         },
         mounted () {
             if (this.visible) {
@@ -279,11 +294,14 @@
 
             this.showHead = showHead;
 
+            this.addDrawer();
+
             on(document, 'mousemove', this.handleMousemove);
             on(document, 'mouseup', this.handleMouseup);
             this.handleSetWrapperWidth();
         },
         beforeUnmount () {
+            this.removeDrawer();
             off(document, 'mousemove', this.handleMousemove);
             off(document, 'mouseup', this.handleMouseup);
             this.removeScrollEffect();
@@ -294,14 +312,11 @@
             },
             visible (val) {
                 if (val === false) {
-                    // todo
                     this.timer = setTimeout(() => {
                         this.wrapShow = false;
                         // #4831 Check if there are any drawers left at the parent level
-                        const brotherDrawers = findBrothersComponents(this, 'Drawer') || [];
-                        const parentDrawers = findComponentsUpward(this, 'Drawer') || [];
-
-                        const otherDrawers = [].concat(brotherDrawers).concat(parentDrawers);
+                        const drawers = this.$root.drawerList.map(item => item.drawer);
+                        const otherDrawers = drawers.filter(item => item.id !== this.id);
 
                         const isScrollDrawer = otherDrawers.some(item => item.visible && !item.scrollable);
 

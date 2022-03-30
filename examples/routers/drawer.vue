@@ -1,17 +1,24 @@
 <template>
-    <Button @click="value1 = true" type="primary">Open</Button>
-    <Drawer title="Basic Drawer" :closable="false" v-model="value1">
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+    <Button @click="value5 = true" type="primary">Open Drawer</Button>
+    <Drawer title="Multi-level drawer" width="512" :closable="false" v-model="value5">
+        <Button @click="value6 = true" type="primary">Two-level Drawer</Button>
+    </Drawer>
+    <Drawer title="Two-level Drawer" :closable="false" v-model="value6">
+        This is two-level drawer.
     </Drawer>
 </template>
 <script>
 export default {
     data () {
         return {
-            value1: false
+            value5: false,
+            value6: false
         }
     }
 }
 </script>
+<style>
+body{
+    height: 2000px;
+}
+</style>
