@@ -254,8 +254,6 @@ const install = function(app, opts = {}) {
     //         closeIconSize: opts.tabs ? opts.tabs.closeIconSize ? opts.tabs.closeIconSize : '' : ''
     //     },
     // };
-    //
-    // Vue.prototype.$Spin = Spin;
     app.config.globalProperties.$Spin = Spin;
     app.config.globalProperties.$Loading = LoadingBar;
     app.config.globalProperties.$Message = Message;

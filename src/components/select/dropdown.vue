@@ -1,9 +1,10 @@
 <template>
     <teleport to="body" :disabled="!transfer">
-        <div class="ivu-select-dropdown" :class="className" :style="styles" v-bind="$attrs"><slot></slot></div>
+        <div class="ivu-select-dropdown" ref="drop" :class="className" :style="styles" v-bind="$attrs"><slot></slot></div>
     </teleport>
 </template>
 <script>
+    import { nextTick } from 'vue';
     // import Vue from 'vue';
     // const isServer = Vue.prototype.$isServer;
     import { getStyle } from '../../utils/assist';
@@ -53,12 +54,12 @@
         methods: {
             update () {
                 // if (isServer) return;
-                this.$nextTick(() => {
+                nextTick(() => {
                     if (this.popper) {
                         this.popper.update();
                         this.popperStatus = true;
                     } else {
-                        this.popper = new Popper(this.$parent.$parent.$refs.reference, this.$el, {
+                        this.popper = new Popper(this.$parent.$parent.$refs.reference, this.$refs.drop, {
                             eventsEnabled: this.eventsEnabled,
                             placement: this.placement,
                             modifiers: {
@@ -71,7 +72,7 @@
                             },
                             onCreate:()=>{
                                 this.resetTransformOrigin();
-                                this.$nextTick(this.popper.update());
+                                nextTick(this.popper.update());
                             },
                             onUpdate:()=>{
                                 this.resetTransformOrigin();
@@ -79,6 +80,7 @@
                         });
                     }
                     // set a height for parent is Modal and Select's width is 100%
+                    // todo
                     if (this.$parent.$parent.$options.name === 'iSelect') {
                         this.width = parseInt(getStyle(this.$parent.$parent.$el, 'width'));
                     }

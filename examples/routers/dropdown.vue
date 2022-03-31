@@ -1,5 +1,5 @@
 <template>
-    <Dropdown transfer transfer-class-name="aa">
+    <Dropdown transfer transfer-class-name="aa" trigger="click">
         <a href="javascript:void(0)">
             下拉菜单
             <Icon type="ios-arrow-down"></Icon>
