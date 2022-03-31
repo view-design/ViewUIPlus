@@ -8,7 +8,7 @@
         <Drop
             ref="drop"
             :visible="currentVisible"
-            :class="dropdownCls"
+            :classes="dropdownCls"
             :placement="placement"
             :eventsEnabled="eventsEnabled"
             :transfer="transfer"

@@ -5,7 +5,7 @@
                 v-show="visible"
                 class="ivu-select-dropdown"
                 ref="drop"
-                :class="className"
+                :class="mergedClass"
                 :style="styles"
                 v-bind="$attrs"
                 @mouseenter="handleMouseenter"
@@ -45,6 +45,10 @@
             },
             visible: {
                 type: Boolean
+            },
+            classes: {
+                type: Object,
+                default: () => {}
             }
         },
         data () {
@@ -63,6 +67,11 @@
                 if (this.transfer) style['z-index'] = 1060 + this.tIndex;
 
                 return style;
+            },
+            mergedClass () {
+                return Object.assign({}, this.classes, {
+                    [this.className]: this.className
+                });
             }
         },
         methods: {
