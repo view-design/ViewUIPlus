@@ -1,6 +1,8 @@
 <template>
     <teleport to="body" :disabled="!transfer">
-        <div class="ivu-select-dropdown" ref="drop" :class="className" :style="styles" v-bind="$attrs"><slot></slot></div>
+        <transition name="transition-drop">
+            <div v-show="visible" class="ivu-select-dropdown" ref="drop" :class="className" :style="styles" v-bind="$attrs"><slot></slot></div>
+        </transition>
     </teleport>
 </template>
 <script>
@@ -31,6 +33,9 @@
             eventsEnabled: {
                 type: Boolean,
                 default: false
+            },
+            visible: {
+                type: Boolean
             }
         },
         data () {
@@ -59,7 +64,7 @@
                         this.popper.update();
                         this.popperStatus = true;
                     } else {
-                        this.popper = new Popper(this.$parent.$parent.$refs.reference, this.$refs.drop, {
+                        this.popper = new Popper(this.$parent.$refs.reference, this.$refs.drop, {
                             eventsEnabled: this.eventsEnabled,
                             placement: this.placement,
                             modifiers: {

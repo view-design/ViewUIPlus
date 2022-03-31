@@ -5,18 +5,16 @@
         @mouseenter="handleMouseenter"
         @mouseleave="handleMouseleave">
         <div :class="relClasses" ref="reference" @click="handleClick" @contextmenu.prevent="handleRightClick"><slot></slot></div>
-        <transition name="transition-drop">
-            <Drop
-                ref="drop"
-                v-show="currentVisible"
-                :class="dropdownCls"
-                :placement="placement"
-                :eventsEnabled="eventsEnabled"
-                :transfer="transfer"
-                @mouseenter="handleMouseenter"
-                @mouseleave="handleMouseleave"
-            ><slot name="list"></slot></Drop>
-        </transition>
+        <Drop
+            ref="drop"
+            :visible="currentVisible"
+            :class="dropdownCls"
+            :placement="placement"
+            :eventsEnabled="eventsEnabled"
+            :transfer="transfer"
+            @mouseenter="handleMouseenter"
+            @mouseleave="handleMouseleave"
+        ><slot name="list"></slot></Drop>
     </div>
 </template>
 <script>
