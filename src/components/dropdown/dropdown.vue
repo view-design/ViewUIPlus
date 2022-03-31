@@ -147,7 +147,7 @@
                     clearTimeout(this.timeout);
                     this.timeout = setTimeout(() => {
                         this.currentVisible = false;
-                    }, 250);
+                    }, 150);
                 }
             },
             onClickoutside (e) {
