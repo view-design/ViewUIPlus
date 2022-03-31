@@ -94,7 +94,8 @@
         data () {
             return {
                 prefixCls: prefixCls,
-                currentVisible: this.visible
+                currentVisible: this.visible,
+                timeout: null
             };
         },
         watch: {
@@ -146,7 +147,7 @@
                     clearTimeout(this.timeout);
                     this.timeout = setTimeout(() => {
                         this.currentVisible = false;
-                    }, 150);
+                    }, 250);
                 }
             },
             onClickoutside (e) {

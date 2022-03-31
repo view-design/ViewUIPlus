@@ -1,7 +1,16 @@
 <template>
     <teleport to="body" :disabled="!transfer">
         <transition name="transition-drop">
-            <div v-show="visible" class="ivu-select-dropdown" ref="drop" :class="className" :style="styles" v-bind="$attrs"><slot></slot></div>
+            <div
+                v-show="visible"
+                class="ivu-select-dropdown"
+                ref="drop"
+                :class="className"
+                :style="styles"
+                v-bind="$attrs"
+                @mouseenter="handleMouseenter"
+                @mouseleave="handleMouseleave"
+            ><slot></slot></div>
         </transition>
     </teleport>
 </template>
@@ -121,6 +130,12 @@
                 transferIncrease();
                 return transferIndex;
             },
+            handleMouseenter (e) {
+                this.$emit('mouseenter', e);
+            },
+            handleMouseleave (e) {
+                this.$emit('mouseleave', e);
+            }
         },
         created () {
             // this.$on('on-update-popper', this.update);

@@ -1,5 +1,5 @@
 <template>
-    <Dropdown transfer transfer-class-name="aa" trigger="click">
+    <Dropdown :transfer="true" transfer-class-name="aa" trigger="hover">
         <a href="javascript:void(0)">
             下拉菜单
             <Icon type="ios-arrow-down"></Icon>
