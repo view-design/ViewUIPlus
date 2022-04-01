@@ -155,10 +155,12 @@
             }
         },
         created () {
+            // todo
             // this.$on('on-update-popper', this.update);
             // this.$on('on-destroy-popper', this.destroy);
         },
         beforeUnmount () {
+            // todo
             // this.$off('on-update-popper', this.update);
             // this.$off('on-destroy-popper', this.destroy);
             if (this.popper) {
