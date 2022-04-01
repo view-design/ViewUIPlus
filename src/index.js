@@ -51,6 +51,9 @@ import InputNumber from './components/input-number';
 import Scroll from './components/scroll';
 import Split from './components/split';
 import LoadingBar from './components/loading-bar';
+import Menu from './components/menu';
+import MenuGroup from './components/menu-group';
+import MenuItem from './components/menu-item';
 import Message from './components/message';
 import Modal from './components/modal';
 import Notice from './components/notice';
@@ -67,6 +70,7 @@ import Sider from './components/sider';
 import Spin from './components/spin';
 import Step from './components/step';
 import Steps from './components/steps';
+import Submenu from './components/submenu';
 import Switch from './components/switch';
 // import Table from './components/table';
 // import Tabs from './components/tabs';
@@ -79,7 +83,6 @@ import TimelineItem from './components/timeline-item';
 import Transfer from './components/transfer';
 // import Tree from './components/tree';
 import Upload from './components/upload';
-// import { Menu, MenuGroup, MenuItem, Submenu } from './components/menu';
 // import { Select, Option, OptionGroup } from './components/select';
 // import locale from './locale/index';
 
@@ -127,9 +130,9 @@ const components = {
     ListItem,
     ListItemMeta,
     LoadingBar,
-    // Menu,
-    // MenuGroup,
-    // MenuItem,
+    Menu,
+    MenuGroup,
+    MenuItem,
     Message,
     Modal,
     Notice,
@@ -151,7 +154,7 @@ const components = {
     Spin,
     Step,
     Steps,
-    // Submenu,
+    Submenu,
     Switch,
     // Table,
     // Tabs: Tabs,
