@@ -73,7 +73,8 @@ import Steps from './components/steps';
 import Submenu from './components/submenu';
 import Switch from './components/switch';
 // import Table from './components/table';
-// import Tabs from './components/tabs';
+import TabPane from './components/tab-pane';
+import Tabs from './components/tabs';
 import Tag from './components/tag';
 import Time from './components/time';
 import Timeline from './components/timeline';
@@ -157,8 +158,8 @@ const components = {
     Submenu,
     Switch,
     // Table,
-    // Tabs: Tabs,
-    // TabPane: Tabs.Pane,
+    Tabs,
+    TabPane,
     Tag,
     Time,
     Timeline,
@@ -213,7 +214,12 @@ const install = function(app, opts = {}) {
         },
         modal: {
             maskClosable: opts.modal ? 'maskClosable' in opts.modal ? opts.modal.maskClosable : '' : ''
-        }
+        },
+        tabs: {
+            closeIcon: opts.tabs ? opts.tabs.closeIcon ? opts.tabs.closeIcon : '' : '',
+            customCloseIcon: opts.tabs ? opts.tabs.customCloseIcon ? opts.tabs.customCloseIcon : '' : '',
+            closeIconSize: opts.tabs ? opts.tabs.closeIconSize ? opts.tabs.closeIconSize : '' : ''
+        },
     }
     // app.prototype.$IVIEW = {
     //     size: opts.size || '',

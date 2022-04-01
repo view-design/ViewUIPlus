@@ -18,6 +18,7 @@
                             <div
                                 :class="tabCls(item)"
                                 v-for="(item, index) in navList"
+                                :key="index"
                                 @click="handleChange(index)"
                                 @dblclick="handleDblclick(index)"
                                 @contextmenu.stop="handleContextmenu(index, $event)"
@@ -30,7 +31,7 @@
                                 <Icon v-if="item.icon !== ''" :type="item.icon"></Icon>
                                 <Render v-if="item.labelType === 'function'" :render="item.label"></Render>
                                 <template v-else>{{ item.label }}</template>
-                                <Icon :class="[prefixCls + '-close']" v-if="showClose(item)" :type="arrowType" :custom="customArrowType" :size="arrowSize" @click.native.stop="handleRemove(index)"></Icon>
+                                <Icon :class="[prefixCls + '-close']" v-if="showClose(item)" :type="arrowType" :custom="customArrowType" :size="arrowSize" @click.stop="handleRemove(index)"></Icon>
                             </div>
                         </div>
                     </div>
@@ -40,20 +41,23 @@
         <div :class="contentClasses" :style="contentStyle" ref="panes"><slot></slot></div>
         <div class="ivu-tabs-context-menu" :style="contextMenuStyles">
             <Dropdown trigger="custom" :visible="contextMenuVisible" transfer @on-clickoutside="handleClickContextMenuOutside">
-                <DropdownMenu slot="list">
-                    <slot name="contextMenu"></slot>
-                </DropdownMenu>
+                <template #list>
+                    <DropdownMenu>
+                        <slot name="contextMenu"></slot>
+                    </DropdownMenu>
+                </template>
             </Dropdown>
         </div>
     </div>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import Icon from '../icon/icon.vue';
     import Render from '../base/render';
     import Dropdown from '../dropdown/dropdown.vue';
     import DropdownMenu from '../dropdown/dropdown-menu.vue';
-    import { oneOf, MutationObserver, findComponentsDownward } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
+    import { oneOf, MutationObserver } from '../../utils/assist';
+    import globalConfig from '../../mixins/globalConfig';
     import elementResizeDetectorMaker from 'element-resize-detector';
 
     const prefixCls = 'ivu-tabs';
@@ -82,13 +86,16 @@
 
     export default {
         name: 'Tabs',
-        mixins: [ Emitter ],
+        mixins: [ globalConfig ],
+        emits: ['on-click', 'on-dblclick', 'on-contextmenu', 'on-tab-remove', 'on-drag-drop', 'update:modelValue'],
         components: { Icon, Render, Dropdown, DropdownMenu },
         provide () {
-            return { TabsInstance: this };
+            return {
+                TabsInstance: this
+            };
         },
         props: {
-            value: {
+            modelValue: {
                 type: [String, Number]
             },
             type: {
@@ -144,7 +151,8 @@
                 contextMenuStyles: {
                     top: 0,
                     left: 0
-                }
+                },
+                paneList: []
             };
         },
         computed: {
@@ -202,35 +210,38 @@
             },
             // 3.4.0, global setting customArrow 有值时，arrow 赋值空
             arrowType () {
+                const config = this.globalConfig;
                 let type = 'ios-close';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.tabs.customCloseIcon) {
+                if (config) {
+                    if (config.tabs.customCloseIcon) {
                         type = '';
-                    } else if (this.$IVIEW.tabs.closeIcon) {
-                        type = this.$IVIEW.tabs.closeIcon;
+                    } else if (config.tabs.closeIcon) {
+                        type = config.tabs.closeIcon;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             customArrowType () {
+                const config = this.globalConfig;
                 let type = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.tabs.customCloseIcon) {
-                        type = this.$IVIEW.tabs.customCloseIcon;
+                if (config) {
+                    if (config.tabs.customCloseIcon) {
+                        type = config.tabs.customCloseIcon;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             arrowSize () {
+                const config = this.globalConfig;
                 let size = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.tabs.closeIconSize) {
-                        size = this.$IVIEW.tabs.closeIconSize;
+                if (config) {
+                    if (config.tabs.closeIconSize) {
+                        size = config.tabs.closeIconSize;
                     }
                 }
                 return size;
@@ -238,8 +249,7 @@
         },
         methods: {
             getTabs () {
-                // return this.$children.filter(item => item.$options.name === 'TabPane');
-                const AllTabPanes = findComponentsDownward(this, 'TabPane');
+                const AllTabPanes = this.paneList.map(item => item.pane);
                 const TabPanes = [];
 
                 AllTabPanes.forEach(item => {
@@ -281,7 +291,7 @@
                 this.updateBar();
             },
             updateBar () {
-                this.$nextTick(() => {
+                nextTick(() => {
                     const index = this.getTabIndex(this.activeKey);
                     if (!this.$refs.nav) return;  // 页面销毁时，这里会报错，为了解决 #2100
                     const prevTabs = this.$refs.nav.querySelectorAll(`.${prefixCls}-tab`);
@@ -325,7 +335,7 @@
                 const nav = this.navList[index];
                 if (!nav || nav.disabled) return;
                 this.activeKey = nav.name;
-                this.$emit('input', nav.name);
+                this.$emit('update:modelValue', nav.name);
                 this.$emit('on-click', nav.name);
             },
             handleDblclick (index) {
@@ -335,7 +345,7 @@
             },
             handleContextmenu (index, event) {
                 if (this.contextMenuVisible) this.handleClickContextMenuOutside();
-                this.$nextTick(() => {
+                nextTick(() => {
                     const nav = this.navList[index];
                     if (!nav || nav.disabled || !nav.contextMenu) return;
 
@@ -410,7 +420,7 @@
                         }
                     }
                     this.activeKey = activeKey;
-                    this.$emit('input', activeKey);
+                    this.$emit('update:modelValue', activeKey);
                 }
                 this.$emit('on-tab-remove', tab.currentName);
                 this.updateNav();
@@ -574,8 +584,8 @@
                 this.focusedKey = val;
                 this.updateBar();
                 this.updateStatus();
-                this.broadcast('Table', 'on-visible-change', true);
-                this.$nextTick(() => {
+                // this.broadcast('Table', 'on-visible-change', true); // todo
+                nextTick(() => {
                     this.scrollToActiveTab();
                 });
 

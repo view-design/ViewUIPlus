@@ -2,6 +2,8 @@
     <div :class="prefixCls" v-show="show" :style="contentStyle"><slot></slot></div>
 </template>
 <script>
+    import random from '../../utils/random_str';
+
     const prefixCls = 'ivu-tabs-tabpane';
 
     export default {
@@ -45,7 +47,8 @@
             return {
                 prefixCls: prefixCls,
                 show: true,
-                currentName: this.name
+                currentName: this.name,
+                id: random(6)
             };
         },
         computed: {
@@ -58,6 +61,21 @@
         methods: {
             updateNav () {
                 this.TabsInstance.updateNav();
+            },
+            addPane () {
+                const root = this.TabsInstance;
+                if (!root.paneList) root.paneList = [];
+                root.paneList.push({
+                    id: this.id,
+                    pane: this
+                });
+            },
+            removePane () {
+                const root = this.TabsInstance;
+                if (root.paneList && root.paneList.length) {
+                    const index = root.paneList.findIndex(item => item.id === this.id);
+                    root.paneList.splice(index, 1);
+                }
             }
         },
         watch: {
