@@ -18,7 +18,6 @@
     </li>
 </template>
 <script>
-    import { getCurrentInstance } from 'vue';
     import Drop from '../select/dropdown.vue';
     import Icon from '../icon/icon.vue';
     import CollapseTransition from '../base/collapse-transition.vue';
