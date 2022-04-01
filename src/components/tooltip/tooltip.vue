@@ -3,27 +3,28 @@
         <div :class="[prefixCls + '-rel']" ref="reference">
             <slot></slot>
         </div>
-        <transition name="fade">
-            <div
-                :class="dropdownCls"
-                :style="dropStyles"
-                ref="popper"
-                v-show="!disabled && (visible || always)"
-                @mouseenter="handleShowPopper"
-                @mouseleave="handleClosePopper"
-                :data-transfer="transfer"
-                v-transfer-dom>
-                <div :class="[prefixCls + '-content']">
-                    <div :class="[prefixCls + '-arrow']"></div>
-                    <div :class="innerClasses" :style="innerStyles"><slot name="content">{{ content }}</slot></div>
+        <teleport to="body" :disabled="!transfer">
+            <transition name="fade">
+                <div
+                    ref="popper"
+                    v-show="!disabled && (visible || always)"
+                    :class="dropdownCls"
+                    :style="dropStyles"
+                    @mouseenter="handleShowPopper"
+                    @mouseleave="handleClosePopper"
+                >
+                    <div :class="[prefixCls + '-content']">
+                        <div :class="[prefixCls + '-arrow']"></div>
+                        <div :class="innerClasses" :style="innerStyles"><slot name="content">{{ content }}</slot></div>
+                    </div>
                 </div>
-            </div>
-        </transition>
+            </transition>
+        </teleport>
     </div>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import Popper from '../base/popper';
-    import TransferDom from '../../directives/transfer-dom';
     import { oneOf } from '../../utils/assist';
     import { transferIndex, transferIncrease } from '../../utils/transfer-queue';
 
@@ -31,8 +32,7 @@
 
     export default {
         name: 'Tooltip',
-        directives: { TransferDom },
-        mixins: [Popper],
+        mixins: [ Popper ],
         props: {
             placement: {
                 validator (value) {
@@ -63,7 +63,8 @@
             transfer: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.transfer === '' ? false : this.$IVIEW.transfer;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
                 }
             },
             theme: {

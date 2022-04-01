@@ -80,7 +80,7 @@ import Time from './components/time';
 import Timeline from './components/timeline';
 import TimelineItem from './components/timeline-item';
 // import TimePicker from './components/time-picker';
-// import Tooltip from './components/tooltip';
+import Tooltip from './components/tooltip';
 import Transfer from './components/transfer';
 // import Tree from './components/tree';
 import Upload from './components/upload';
@@ -165,7 +165,7 @@ const components = {
     Timeline,
     TimelineItem,
     // TimePicker,
-    // Tooltip,
+    Tooltip,
     Transfer,
     // Tree,
     Upload
@@ -201,6 +201,7 @@ const install = function(app, opts = {}) {
     });
     app.config.globalProperties.$IVIEW = {
         size: opts.size || '',
+        capture: 'capture' in opts ? opts.capture : true,
         transfer: 'transfer' in opts ? opts.transfer : '',
         cell: {
             arrow: opts.cell ? opts.cell.arrow ? opts.cell.arrow : '' : '',
@@ -222,8 +223,6 @@ const install = function(app, opts = {}) {
         },
     }
     // app.prototype.$IVIEW = {
-    //     size: opts.size || '',
-    //     capture: 'capture' in opts ? opts.capture : true,
     //     select: {
     //         arrow: opts.select ? opts.select.arrow ? opts.select.arrow : '' : '',
     //         customArrow: opts.select ? opts.select.customArrow ? opts.select.customArrow : '' : '',
@@ -256,11 +255,6 @@ const install = function(app, opts = {}) {
     //         icon: opts.timePicker ? opts.timePicker.icon ? opts.timePicker.icon : '' : '',
     //         customIcon: opts.timePicker ? opts.timePicker.customIcon ? opts.timePicker.customIcon : '' : '',
     //         iconSize: opts.timePicker ? opts.timePicker.iconSize ? opts.timePicker.iconSize : '' : ''
-    //     },
-    //     tabs: {
-    //         closeIcon: opts.tabs ? opts.tabs.closeIcon ? opts.tabs.closeIcon : '' : '',
-    //         customCloseIcon: opts.tabs ? opts.tabs.customCloseIcon ? opts.tabs.customCloseIcon : '' : '',
-    //         closeIconSize: opts.tabs ? opts.tabs.closeIconSize ? opts.tabs.closeIconSize : '' : ''
     //     },
     // };
     app.config.globalProperties.$Spin = Spin;
