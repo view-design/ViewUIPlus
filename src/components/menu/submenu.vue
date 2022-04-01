@@ -25,12 +25,13 @@
     import { getStyle, findComponentUpward } from '../../utils/assist';
     import random from '../../utils/random_str';
     import mixin from './mixin';
+    import globalConfig from '../../mixins/globalConfig';
 
     const prefixCls = 'ivu-menu';
 
     export default {
         name: 'Submenu',
-        mixins: [ mixin ],
+        mixins: [ mixin, globalConfig ],
         components: { Icon, Drop, CollapseTransition },
         provide () {
             return {
@@ -86,35 +87,38 @@
             },
             // 3.4.0, global setting customArrow 有值时，arrow 赋值空
             arrowType () {
+                const config = this.globalConfig;
                 let type = 'ios-arrow-down';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.menu.customArrow) {
+                if (config) {
+                    if (config.menu.customArrow) {
                         type = '';
-                    } else if (this.$IVIEW.menu.arrow) {
-                        type = this.$IVIEW.menu.arrow;
+                    } else if (config.menu.arrow) {
+                        type = config.menu.arrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             customArrowType () {
+                const config = this.globalConfig;
                 let type = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.menu.customArrow) {
-                        type = this.$IVIEW.menu.customArrow;
+                if (config) {
+                    if (config.menu.customArrow) {
+                        type = config.menu.customArrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             arrowSize () {
+                const config = this.globalConfig;
                 let size = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.menu.arrowSize) {
-                        size = this.$IVIEW.menu.arrowSize;
+                if (config) {
+                    if (config.menu.arrowSize) {
+                        size = config.menu.arrowSize;
                     }
                 }
                 return size;
