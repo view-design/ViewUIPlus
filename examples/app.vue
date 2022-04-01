@@ -29,16 +29,16 @@
             <span><router-link to="/progress">Progress</router-link></span>
             <span><router-link to="/upload">Upload</router-link></span>
             <span><router-link to="/collapse">Collapse</router-link></span>
-            <span><Tag color="orange">未完成</Tag><router-link to="/carousel">Carousel</router-link></span>
+            <span><Tag color="green">未完成</Tag><router-link to="/carousel">Carousel</router-link></span>
             <span><router-link to="/card">Card</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/tree">Tree</router-link></span>
             <span><router-link to="/rate">Rate</router-link></span>
             <span><router-link to="/circle">Circle</router-link></span>
-            <span><Tag color="red">未开始</Tag><router-link to="/tabs">Tabs</router-link></span>
+            <span><Tag color="green">未完成</Tag><router-link to="/tabs">Tabs</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/tooltip">Tooltip</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/poptip">Poptip</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/slider">Slider</router-link></span>
-            <span><Tag color="orange">未完成</Tag><router-link to="/dropdown">Dropdown</router-link></span>
+            <span><Tag color="green">未完成</Tag><router-link to="/dropdown">Dropdown</router-link></span>
             <span><router-link to="/breadcrumb">Breadcrumb</router-link></span>
             <span><router-link to="/menu">Menu</router-link></span>
             <span><router-link to="/spin">Spin</router-link></span>
@@ -46,12 +46,12 @@
             <span><Tag color="red">未开始</Tag><router-link to="/select">Select</router-link></span>
             <span><router-link to="/backtop">Backtop</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/page">Page</router-link></span>
-            <span><Tag color="orange">未完成</Tag><router-link to="/transfer">Transfer</router-link></span>
+            <span><Tag color="green">未完成</Tag><router-link to="/transfer">Transfer</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/date">Date</router-link></span>
             <span><router-link to="/form">Form</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/table">Table</router-link></span>
             <span><router-link to="/loading-bar">LoadingBar</router-link></span>
-            <span><Tag color="orange">未完成</Tag><router-link to="/modal">Modal</router-link></span>
+            <span><Tag color="green">未完成</Tag><router-link to="/modal">Modal</router-link></span>
             <span><router-link to="/message">Message</router-link></span>
             <span><router-link to="/notice">Notice</router-link></span>
             <span><router-link to="/avatar">Avatar</router-link></span>
@@ -61,7 +61,7 @@
             <span><router-link to="/divider">Divider</router-link></span>
             <span><router-link to="/time">Time</router-link></span>
             <span><router-link to="/cell">Cell</router-link></span>
-            <span><Tag color="orange">未完成</Tag><router-link to="/drawer">Drawer</router-link></span>
+            <span><Tag color="green">未完成</Tag><router-link to="/drawer">Drawer</router-link></span>
             <span><router-link to="/icon">Icon</router-link></span>
             <span><router-link to="/list">List</router-link></span>
         </div>

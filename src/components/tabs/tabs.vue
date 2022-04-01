@@ -401,7 +401,6 @@
             handleRemoveTab (index) {
                 const tabs = this.getTabs();
                 const tab = tabs[index];
-                tab.$destroy();
 
                 if (tab.currentName === this.activeKey) {
                     const newTabs = this.getTabs();
