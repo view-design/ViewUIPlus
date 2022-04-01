@@ -4,13 +4,11 @@
 <script>
     import { nextTick } from 'vue';
     import { oneOf, findComponentsUpward } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
 
     const prefixCls = 'ivu-menu';
 
     export default {
         name: 'Menu',
-        mixins: [ Emitter ],
         emits: ['on-select', 'on-open-change'],
         provide () {
             return {
@@ -88,11 +86,8 @@
                 this.menuItemList.map(item => item.menuitem).forEach(item => {
                     item.handleUpdateActiveName(this.currentActiveName);
                 });
-                // this.broadcast('Submenu', 'on-update-active-name', false); // todo
-                // this.broadcast('MenuItem', 'on-update-active-name', this.currentActiveName); // todo
             },
             updateOpenKeys (name) {
-                // todo
                 let names = [...this.openedNames];
                 const index = names.indexOf(name);
                 const submenuList = this.submenuList.map(item => item.submenu);

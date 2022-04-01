@@ -11,7 +11,6 @@
     <li v-else :class="classes" @click.stop="handleClickItem" :style="itemStyle"><slot></slot></li>
 </template>
 <script>
-    import Emitter from '../../mixins/emitter';
     import { findComponentUpward } from '../../utils/assist';
     import random from '../../utils/random_str';
     import mixin from './mixin';
@@ -21,7 +20,7 @@
 
     export default {
         name: 'MenuItem',
-        mixins: [ Emitter, mixin, mixinsLink ],
+        mixins: [ mixin, mixinsLink ],
         props: {
             name: {
                 type: [String, Number],

@@ -18,19 +18,19 @@
     </li>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import Drop from '../select/dropdown.vue';
     import Icon from '../icon/icon.vue';
     import CollapseTransition from '../base/collapse-transition.vue';
     import { getStyle, findComponentUpward } from '../../utils/assist';
     import random from '../../utils/random_str';
-    import Emitter from '../../mixins/emitter';
     import mixin from './mixin';
 
     const prefixCls = 'ivu-menu';
 
     export default {
         name: 'Submenu',
-        mixins: [ Emitter, mixin ],
+        mixins: [ mixin ],
         components: { Icon, Drop, CollapseTransition },
         provide () {
             return {
@@ -218,18 +218,6 @@
         },
         mounted () {
             this.addSubmenu();
-            // this.$on('on-menu-item-select', (name) => {
-            //     if (this.mode === 'horizontal') this.opened = false;
-            //     this.dispatch('Menu', 'on-menu-item-select', name);
-            //     return true;
-            // });
-            // this.$on('on-update-active-name', (status) => {
-            //     if (findComponentUpward(this, 'Submenu')) this.dispatch('Submenu', 'on-update-active-name', status);
-            //     if (findComponentsDownward(this, 'Submenu')) findComponentsDownward(this, 'Submenu').forEach(item => {
-            //         item.active = false;
-            //     });
-            //     this.active = status;
-            // });
         },
         beforeUnmount () {
             this.removeSubmenu();
