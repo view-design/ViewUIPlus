@@ -94,9 +94,11 @@
             }
         },
         mounted () {
+            this.addPane();
             this.updateNav();
         },
-        unmounted () {
+        beforeUnmount () {
+            this.removePane();
             this.updateNav();
         }
     };
