@@ -6,7 +6,7 @@
             :size="inputSize"
             :max="max"
             :step="step"
-            :value="exportValue[0]"
+            :modelValue="exportValue[0]"
             :disabled="itemDisabled"
             :active-change="activeChange"
             @on-change="handleInputChange"></Input-number>
@@ -23,6 +23,7 @@
                 <div
                     :class="[prefixCls + '-stop']"
                     v-for="item in stops"
+                    :key="item"
                     :style="{ 'left': item + '%' }"
                     @click.self="sliderClick"
                 ></div>
@@ -41,7 +42,7 @@
                         :key="key"
                         :mark="item.mark"
                         :style="{ 'left': item.position + '%' }"
-                        @click.native="sliderClick"
+                        @click="sliderClick"
                     />
                 </div>
             </template>
@@ -104,7 +105,6 @@
     import SliderMarker from './marker';
     import { getStyle, oneOf } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
-    import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
     import elementResizeDetectorMaker from 'element-resize-detector';
 
@@ -112,7 +112,8 @@
 
     export default {
         name: 'Slider',
-        mixins: [ Emitter, mixinsForm ],
+        mixins: [ mixinsForm ],
+        emits: ['update:modelValue', 'on-input', 'on-change'],
         components: { InputNumber, Tooltip, SliderMarker },
         props: {
             min: {
@@ -131,7 +132,7 @@
                 type: Boolean,
                 default: false
             },
-            value: {
+            modelValue: {
                 type: [Number, Array],
                 default: 0
             },
@@ -181,8 +182,8 @@
             }
         },
         data () {
-            let val = this.checkLimits(Array.isArray(this.value) ? this.value : [this.value]);
-            if (this.range && this.value === null) val = [0, 0];
+            let val = this.checkLimits(Array.isArray(this.modelValue) ? this.modelValue : [this.modelValue]);
+            if (this.range && this.modelValue === null) val = [0, 0];
             return {
                 prefixCls: prefixCls,
                 currentValue: val,
@@ -201,7 +202,7 @@
             };
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 if (val === null) this.isValueNull = true;
                 val = this.checkLimits(Array.isArray(val) ? val : [val]);
                 if (!this.dragging && (val[0] !== this.currentValue[0] || val[1] !== this.currentValue[1])) {
@@ -428,7 +429,7 @@
             emitChange(){
                 const value = this.range ? this.exportValue : this.exportValue[0];
                 this.$emit('on-change', value);
-                this.dispatch('FormItem', 'on-form-change', value);
+                // this.dispatch('FormItem', 'on-form-change', value); // todo
             },
 
             sliderClick (event) {
@@ -460,21 +461,22 @@
             },
         },
         mounted () {
+            // todo
             // #2852
-            this.$on('on-visible-change', (val) => {
-                if (val && this.showTip === 'always') {
-                    this.$refs.minTooltip.doDestroy();
-                    if (this.range) {
-                        this.$refs.maxTooltip.doDestroy();
-                    }
-                    this.$nextTick(() => {
-                        this.$refs.minTooltip.updatePopper();
-                        if (this.range) {
-                            this.$refs.maxTooltip.updatePopper();
-                        }
-                    });
-                }
-            });
+            // this.$on('on-visible-change', (val) => {
+            //     if (val && this.showTip === 'always') {
+            //         this.$refs.minTooltip.doDestroy();
+            //         if (this.range) {
+            //             this.$refs.maxTooltip.doDestroy();
+            //         }
+            //         this.$nextTick(() => {
+            //             this.$refs.minTooltip.updatePopper();
+            //             if (this.range) {
+            //                 this.$refs.maxTooltip.updatePopper();
+            //             }
+            //         });
+            //     }
+            // });
 
             this.observer = elementResizeDetectorMaker();
             this.observer.listenTo(this.$refs.slider, this.handleSetSliderWidth);

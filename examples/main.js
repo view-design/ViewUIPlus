@@ -122,10 +122,10 @@ const router = createRouter({
             path: '/poptip',
             component: () => import('./routers/poptip.vue')
         },
-        // {
-        //     path: '/slider',
-        //     component: (resolve) => require(['./routers/slider.vue'], resolve)
-        // },
+        {
+            path: '/slider',
+            component: () => import('./routers/slider.vue')
+        },
         {
             path: '/dropdown',
             component: () => import('./routers/dropdown.vue')

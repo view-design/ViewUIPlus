@@ -1,3 +1,4 @@
+import { h } from 'vue';
 export default {
     name: 'SliderMarker',
     props: {
@@ -5,7 +6,7 @@ export default {
             type: [String, Object]
         }
     },
-    render (h) {
+    render () {
         let label = typeof this.mark === 'string' ? this.mark : [this.mark.label];
 
         return h('div', {

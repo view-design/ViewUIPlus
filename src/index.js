@@ -66,7 +66,7 @@ import RadioGroup from './components/radio-group';
 import Rate from './components/rate';
 import Row from './components/row';
 import Sider from './components/sider';
-// import Slider from './components/slider';
+import Slider from './components/slider';
 import Spin from './components/spin';
 import Step from './components/step';
 import Steps from './components/steps';
@@ -150,7 +150,7 @@ const components = {
     Scroll,
     // Select,
     Sider,
-    // Slider,
+    Slider,
     Split,
     Spin,
     Step,
