@@ -1,6 +1,6 @@
 <template>
     <teleport to="body" :disabled="!transfer">
-        <transition name="transition-drop">
+        <transition :name="transitionName">
             <div
                 v-show="visible"
                 class="ivu-select-dropdown"
@@ -49,6 +49,10 @@
             classes: {
                 type: Object,
                 default: () => {}
+            },
+            transitionName: {
+                type: String,
+                default: 'transition-drop'
             }
         },
         data () {

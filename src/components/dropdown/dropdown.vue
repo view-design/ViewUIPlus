@@ -12,6 +12,7 @@
             :placement="placement"
             :eventsEnabled="eventsEnabled"
             :transfer="transfer"
+            transition-name="transition-drop"
             @mouseenter="handleMouseenter"
             @mouseleave="handleMouseleave"
         ><slot name="list"></slot></Drop>
