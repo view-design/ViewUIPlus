@@ -1,6 +1,13 @@
-import { findComponentUpward, findComponentsUpward } from '../../utils/assist';
+import { findComponentsUpward } from '../../utils/assist';
 export default {
-    inject: ['MenuInstance', 'SubmenuInstance'],
+    inject: {
+        MenuInstance: {
+            default: null
+        },
+        SubmenuInstance: {
+            default: null
+        }
+    },
     data () {
         return {
             menu: this.MenuInstance

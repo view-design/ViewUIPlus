@@ -13,6 +13,7 @@
 <script>
     import Emitter from '../../mixins/emitter';
     import { findComponentUpward } from '../../utils/assist';
+    import random from '../../utils/random_str';
     import mixin from './mixin';
     import mixinsLink from '../../mixins/link';
 
@@ -33,7 +34,8 @@
         },
         data () {
             return {
-                active: false
+                active: false,
+                id: random(6)
             };
         },
         computed: {
@@ -66,24 +68,43 @@
                     let parent = findComponentUpward(this, 'Submenu');
 
                     if (parent) {
-                        this.dispatch('Submenu', 'on-menu-item-select', this.name);
+                        this.SubmenuInstance.handleMenuItemSelect(this.name);
                     } else {
-                        this.dispatch('Menu', 'on-menu-item-select', this.name);
+                        this.MenuInstance.handleMenuItemSelect(this.name)
                     }
 
                     this.handleCheckClick(event, new_window);
                 }
+            },
+            handleUpdateActiveName (name) {
+                if (this.name === name) {
+                    this.active = true;
+                    if (this.SubmenuInstance) this.SubmenuInstance.handleUpdateActiveName(name);
+                } else {
+                    this.active = false;
+                }
+            },
+            addMenuItem () {
+                const root = this.MenuInstance;
+                if (!root.menuItemList) root.menuItemList = [];
+                root.menuItemList.push({
+                    id: this.id,
+                    menuitem: this
+                });
+            },
+            removeMenuItem () {
+                const root = this.MenuInstance;
+                if (root.menuItemList && root.menuItemList.length) {
+                    const index = root.menuItemList.findIndex(item => item.id === this.id);
+                    root.menuItemList.splice(index, 1);
+                }
             }
         },
         mounted () {
-            // this.$on('on-update-active-name', (name) => {
-            //     if (this.name === name) {
-            //         this.active = true;
-            //         this.dispatch('Submenu', 'on-update-active-name', name);
-            //     } else {
-            //         this.active = false;
-            //     }
-            // });
+            this.addMenuItem();
+        },
+        beforeUnmount () {
+            this.removeMenuItem();
         }
     };
 </script>

@@ -6,7 +6,7 @@
                 class="ivu-select-dropdown"
                 ref="drop"
                 :class="mergedClass"
-                :style="styles"
+                :style="mergedStyle"
                 v-bind="$attrs"
                 @mouseenter="handleMouseenter"
                 @mouseleave="handleMouseleave"
@@ -50,6 +50,10 @@
                 type: Object,
                 default: () => {}
             },
+            styles: {
+                type: Object,
+                default: () => {}
+            },
             transitionName: {
                 type: String,
                 default: 'transition-drop'
@@ -64,13 +68,13 @@
             };
         },
         computed: {
-            styles () {
+            mergedStyle () {
                 let style = {};
                 if (this.width) style.minWidth = `${this.width}px`;
 
                 if (this.transfer) style['z-index'] = 1060 + this.tIndex;
 
-                return style;
+                return Object.assign({}, this.styles, style);
             },
             mergedClass () {
                 return Object.assign({}, this.classes, {

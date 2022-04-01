@@ -1,6 +1,6 @@
 <template>
-    <Menu mode="horizontal" :theme="theme1" active-name="3-4" @on-select="hs">
-        <MenuItem name="1" to="/button" target="_blank">
+    <Menu mode="horizontal" :theme="theme1" active-name="1">
+        <MenuItem name="1">
             <Icon type="ios-paper" />
             内容管理
         </MenuItem>
@@ -28,18 +28,20 @@
             综合设置
         </MenuItem>
     </Menu>
+    <br>
+    <p>Change theme</p>
+    <RadioGroup v-model="theme1">
+        <Radio label="light"></Radio>
+        <Radio label="dark"></Radio>
+        <Radio label="primary"></Radio>
+    </RadioGroup>
 </template>
 <script>
-    export default {
-        data () {
-            return {
-                theme1: 'light'
-            }
-        },
-        methods: {
-            hs (n) {
-                console.log(n);
-            }
+export default {
+    data () {
+        return {
+            theme1: 'light'
         }
     }
+}
 </script>

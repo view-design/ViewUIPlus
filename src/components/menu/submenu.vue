@@ -7,21 +7,22 @@
         <collapse-transition v-if="mode === 'vertical'">
             <ul :class="[prefixCls]" v-show="opened"><slot></slot></ul>
         </collapse-transition>
-        <transition name="slide-up" v-else>
-            <Drop
-                v-show="opened"
-                placement="bottom"
-                ref="drop"
-                :style="dropStyle"><ul :class="[prefixCls + '-drop-list']"><slot></slot></ul>
-            </Drop>
-        </transition>
+        <Drop
+            v-else
+            ref="drop"
+            :visible="opened"
+            placement="bottom"
+            transition-name="slide-up"
+            :styles="dropStyle"><ul :class="[prefixCls + '-drop-list']"><slot></slot></ul>
+        </Drop>
     </li>
 </template>
 <script>
     import Drop from '../select/dropdown.vue';
     import Icon from '../icon/icon.vue';
     import CollapseTransition from '../base/collapse-transition.vue';
-    import { getStyle, findComponentUpward, findComponentsDownward } from '../../utils/assist';
+    import { getStyle, findComponentUpward } from '../../utils/assist';
+    import random from '../../utils/random_str';
     import Emitter from '../../mixins/emitter';
     import mixin from './mixin';
 
@@ -51,7 +52,9 @@
                 prefixCls: prefixCls,
                 active: false,
                 opened: false,
-                dropWidth: parseFloat(getStyle(this.$el, 'width'))
+                dropWidth: parseFloat(getStyle(this.$el, 'width')),
+                id: random(6),
+                childSubmenuList: []
             };
         },
         computed: {
@@ -149,6 +152,51 @@
                 }
                 this.opened = !opened;
                 this.menu.updateOpenKeys(this.name);
+            },
+            addSubmenu () {
+                const root = this.MenuInstance;
+                if (!root.submenuList) root.submenuList = [];
+                root.submenuList.push({
+                    id: this.id,
+                    submenu: this
+                });
+
+                const parentSubmenu = findComponentUpward(this, 'Submenu');
+                if (parentSubmenu) {
+                    if (!parentSubmenu.childSubmenuList) parentSubmenu.childSubmenuList = [];
+                    parentSubmenu.childSubmenuList.push({
+                        id: this.id,
+                        submenu: this
+                    });
+                }
+            },
+            removeSubmenu () {
+                const root = this.MenuInstance;
+                if (root.submenuList && root.submenuList.length) {
+                    const index = root.submenuList.findIndex(item => item.id === this.id);
+                    root.submenuList.splice(index, 1);
+                }
+
+                const parentSubmenu = findComponentUpward(this, 'Submenu');
+                if (parentSubmenu) {
+                    if (parentSubmenu.childSubmenuList && parentSubmenu.childSubmenuList.length) {
+                        const index = parentSubmenu.childSubmenuList.findIndex(item => item.id === this.id);
+                        parentSubmenu.childSubmenuList.splice(index, 1);
+                    }
+                }
+            },
+            handleMenuItemSelect (name) {
+                if (this.mode === 'horizontal') this.opened = false;
+                this.MenuInstance.handleMenuItemSelect(name)
+            },
+            handleUpdateActiveName (status) {
+                if (findComponentUpward(this, 'Submenu')) this.SubmenuInstance.handleUpdateActiveName(status);
+
+                if (this.childSubmenuList && this.childSubmenuList.length) {
+                    this.childSubmenuList.map(item => item.submenu).forEach(item => {
+                        item.active = false;
+                    });
+                }
             }
         },
         watch: {
@@ -169,6 +217,7 @@
             }
         },
         mounted () {
+            this.addSubmenu();
             // this.$on('on-menu-item-select', (name) => {
             //     if (this.mode === 'horizontal') this.opened = false;
             //     this.dispatch('Menu', 'on-menu-item-select', name);
@@ -181,6 +230,9 @@
             //     });
             //     this.active = status;
             // });
+        },
+        beforeUnmount () {
+            this.removeSubmenu();
         }
     };
 </script>
