@@ -18,6 +18,7 @@
     </div>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import Drop from '../select/dropdown.vue';
     import clickOutside from '../../directives/clickoutside';
     import { oneOf, findComponentUpward } from '../../utils/assist';
@@ -170,44 +171,42 @@
                 this.currentVisible = false;
             },
             hasParent () {
-//                const $parent = this.$parent.$parent.$parent;
                 const $parent = findComponentUpward(this, 'Dropdown');
                 if ($parent) {
                     return $parent;
                 } else {
                     return false;
                 }
+            },
+            handleHaschildClick () {
+                nextTick(() => {
+                    if (this.trigger === 'custom') return false;
+                    this.currentVisible = true;
+                });
+                const $parent = this.hasParent();
+                if ($parent) $parent.handleHaschildClick();
+            },
+            handleItemClick (key) {
+                if (this.stopPropagation) return;
+                const $parent = this.hasParent();
+                if ($parent) $parent.handleItemClick(key);
+                else this.$emit('on-click', key);
+            },
+            handleHoverClick () {
+                const $parent = this.hasParent();
+                if ($parent) {
+                    nextTick(() => {
+                        if (this.trigger === 'custom') return false;
+                        this.currentVisible = false;
+                    });
+                    $parent.handleHoverClick();
+                } else {
+                    nextTick(() => {
+                        if (this.trigger === 'custom') return false;
+                        this.currentVisible = false;
+                    });
+                }
             }
-        },
-        mounted () {
-            // this.$on('on-click', (key) => {
-            //     if (this.stopPropagation) return;
-            //     const $parent = this.hasParent();
-            //     if ($parent) $parent.$emit('on-click', key);
-            // });
-            // this.$on('on-hover-click', () => {
-            //     const $parent = this.hasParent();
-            //     if ($parent) {
-            //         this.$nextTick(() => {
-            //             if (this.trigger === 'custom') return false;
-            //             this.currentVisible = false;
-            //         });
-            //         $parent.$emit('on-hover-click');
-            //     } else {
-            //         this.$nextTick(() => {
-            //             if (this.trigger === 'custom') return false;
-            //             this.currentVisible = false;
-            //         });
-            //     }
-            // });
-            // this.$on('on-haschild-click', () => {
-            //     this.$nextTick(() => {
-            //         if (this.trigger === 'custom') return false;
-            //         this.currentVisible = true;
-            //     });
-            //     const $parent = this.hasParent();
-            //     if ($parent) $parent.$emit('on-haschild-click');
-            // });
         }
     };
 </script>

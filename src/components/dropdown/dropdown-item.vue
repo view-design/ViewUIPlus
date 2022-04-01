@@ -2,8 +2,10 @@
     <li :class="classes" @click="handleClick"><slot></slot></li>
 </template>
 <script>
-    const prefixCls = 'ivu-dropdown-item';
     import { findComponentUpward } from '../../utils/assist';
+
+    const prefixCls = 'ivu-dropdown-item';
+
     export default {
         name: 'DropdownItem',
         props: {
@@ -42,13 +44,13 @@
                 const hasChildren = this.$parent && this.$parent.$options.name === 'Dropdown';
 
                 if (hasChildren) {
-                    this.$parent.$emit('on-haschild-click');
+                    this.$parent.handleHaschildClick();
                 } else {
                     if ($parent && $parent.$options.name === 'Dropdown') {
-                        $parent.$emit('on-hover-click');
+                        $parent.handleHoverClick();
                     }
                 }
-                $parent.$emit('on-click', this.name);
+                $parent.handleItemClick(this.name);
             }
         }
     };
