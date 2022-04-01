@@ -200,6 +200,7 @@
                         item.active = false;
                     });
                 }
+                this.active = status;
             }
         },
         watch: {

@@ -69,7 +69,7 @@
                     if (parent) {
                         this.SubmenuInstance.handleMenuItemSelect(this.name);
                     } else {
-                        this.MenuInstance.handleMenuItemSelect(this.name)
+                        this.MenuInstance.handleMenuItemSelect(this.name);
                     }
 
                     this.handleCheckClick(event, new_window);
