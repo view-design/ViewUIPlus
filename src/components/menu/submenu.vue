@@ -4,11 +4,11 @@
             <slot name="title"></slot>
             <Icon :type="arrowType" :custom="customArrowType" :size="arrowSize" :class="[prefixCls + '-submenu-title-icon']" />
         </div>
-        <collapse-transition v-if="mode === 'vertical'">
+        <collapse-transition v-if="mode === 'vertical'" :ready="menu.ready">
             <ul :class="[prefixCls]" v-show="opened"><slot></slot></ul>
         </collapse-transition>
         <Drop
-            v-else
+            v-if="mode === 'horizontal'"
             ref="drop"
             :visible="opened"
             placement="bottom"

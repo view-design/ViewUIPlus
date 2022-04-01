@@ -51,7 +51,8 @@
                 currentActiveName: this.activeName,
                 openedNames: [],
                 submenuList: [],
-                menuItemList: []
+                menuItemList: [],
+                ready: false
             };
         },
         computed: {
@@ -153,7 +154,10 @@
         mounted () {
             this.openedNames = [...this.openNames];
             this.updateOpened();
-            nextTick(() => this.updateActiveName());
+            nextTick(() => {
+                this.updateActiveName();
+                this.ready = true;
+            });
         },
         watch: {
             openNames (names) {

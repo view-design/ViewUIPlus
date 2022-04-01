@@ -9,10 +9,17 @@ import { addClass, removeClass } from '../../utils/assist';
 
 export default defineComponent({
     name: 'CollapseTransition',
-    setup () {
+    props: {
+        ready: {
+            type: Boolean,
+            default: true
+        }
+    },
+    setup (props) {
         return {
             on: {
                 beforeEnter(el) {
+                    if (!props.ready) return;
                     addClass(el, 'collapse-transition');
                     if (!el.dataset) el.dataset = {};
 
@@ -25,6 +32,7 @@ export default defineComponent({
                 },
 
                 enter(el) {
+                    if (!props.ready) return;
                     el.dataset.oldOverflow = el.style.overflow;
                     if (el.scrollHeight !== 0) {
                         el.style.height = el.scrollHeight + 'px';
@@ -40,6 +48,7 @@ export default defineComponent({
                 },
 
                 afterEnter(el) {
+                    if (!props.ready) return;
                     // for safari: remove class then reset height is necessary
                     removeClass(el, 'collapse-transition');
                     el.style.height = '';
@@ -47,6 +56,7 @@ export default defineComponent({
                 },
 
                 beforeLeave(el) {
+                    if (!props.ready) return;
                     if (!el.dataset) el.dataset = {};
                     el.dataset.oldPaddingTop = el.style.paddingTop;
                     el.dataset.oldPaddingBottom = el.style.paddingBottom;
@@ -57,6 +67,7 @@ export default defineComponent({
                 },
 
                 leave(el) {
+                    if (!props.ready) return;
                     if (el.scrollHeight !== 0) {
                         // for safari: add class after set height, or it will jump to zero height suddenly, weired
                         addClass(el, 'collapse-transition');
@@ -67,6 +78,7 @@ export default defineComponent({
                 },
 
                 afterLeave(el) {
+                    if (!props.ready) return;
                     removeClass(el, 'collapse-transition');
                     el.style.height = '';
                     el.style.overflow = el.dataset.oldOverflow;
