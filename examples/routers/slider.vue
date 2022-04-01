@@ -1,15 +1,23 @@
 <template>
-    <Slider v-model="value1"></Slider>
-    <Slider v-model="value2" range></Slider>
-    <Slider v-model="value3" range disabled></Slider>
+    <Slider v-model="value11" range :marks="marks"></Slider>
 </template>
 <script>
+import { h } from 'vue';
 export default {
     data () {
         return {
-            value1: 25,
-            value2: [20, 50],
-            value3: [20, 50]
+            value11: [25, 65],
+            marks: {
+                0: '0°C',
+                12: '12°C',
+                32: '32°C',
+                55: {
+                    style: {
+                        color: '#ff0000'
+                    },
+                    label: h('strong', '55℃')
+                }
+            }
         }
     }
 }

@@ -100,6 +100,7 @@
     </div>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import InputNumber from '../../components/input-number/input-number.vue';
     import Tooltip from '../../components/tooltip/tooltip.vue';
     import SliderMarker from './marker';
@@ -211,7 +212,7 @@
                 }
             },
             exportValue (values) {
-                this.$nextTick(() => {
+                nextTick(() => {
                     this.$refs.minTooltip.updatePopper();
                     if (this.range) {
                         this.$refs.maxTooltip.updatePopper();
@@ -220,9 +221,9 @@
                 const value = this.range ? values : values[0];
                 if (this.isValueNull) {
                     this.isValueNull = false;
-                    this.$emit('input', null);
+                    this.$emit('update:modelValue', null);
                 } else {
-                    this.$emit('input', value);
+                    this.$emit('update:modelValue', value);
                 }
                 this.$emit('on-input', value);
             }
@@ -429,7 +430,8 @@
             emitChange(){
                 const value = this.range ? this.exportValue : this.exportValue[0];
                 this.$emit('on-change', value);
-                // this.dispatch('FormItem', 'on-form-change', value); // todo
+                this.handleFormItemChange('change', value);
+                // this.dispatch('FormItem', 'on-form-change', value);
             },
 
             sliderClick (event) {
@@ -461,7 +463,7 @@
             },
         },
         mounted () {
-            // todo
+            // todo Modal
             // #2852
             // this.$on('on-visible-change', (val) => {
             //     if (val && this.showTip === 'always') {
@@ -481,7 +483,7 @@
             this.observer = elementResizeDetectorMaker();
             this.observer.listenTo(this.$refs.slider, this.handleSetSliderWidth);
         },
-        beforeUnmount() {
+        beforeUnmount () {
             this.observer.removeListener(this.$refs.slider, this.handleSetSliderWidth);
         }
     };
