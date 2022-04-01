@@ -12,45 +12,46 @@
             @mouseup="handleBlur(false)">
             <slot></slot>
         </div>
-        <transition name="fade">
-            <div
-                :class="popperClasses"
-                :style="styles"
-                ref="popper"
-                v-show="visible"
-                @click="handleTransferClick"
-                @mouseenter="handleMouseenter"
-                @mouseleave="handleMouseleave"
-                :data-transfer="transfer"
-                v-transfer-dom>
-                <div :class="[prefixCls + '-content']">
-                    <div :class="[prefixCls + '-arrow']"></div>
-                    <div :class="[prefixCls + '-inner']" v-if="confirm">
-                        <div :class="[prefixCls + '-body']">
-                            <i class="ivu-icon ivu-icon-ios-help-circle"></i>
-                            <div :class="[prefixCls + '-body-message']"><slot name="title">{{ title }}</slot></div>
+        <teleport to="body" :disabled="!transfer">
+            <transition name="fade">
+                <div
+                    :class="popperClasses"
+                    :style="styles"
+                    ref="popper"
+                    v-show="visible"
+                    @click="handleTransferClick"
+                    @mouseenter="handleMouseenter"
+                    @mouseleave="handleMouseleave"
+                >
+                    <div :class="[prefixCls + '-content']">
+                        <div :class="[prefixCls + '-arrow']"></div>
+                        <div :class="[prefixCls + '-inner']" v-if="confirm">
+                            <div :class="[prefixCls + '-body']">
+                                <i class="ivu-icon ivu-icon-ios-help-circle"></i>
+                                <div :class="[prefixCls + '-body-message']"><slot name="title">{{ title }}</slot></div>
+                            </div>
+                            <div :class="[prefixCls + '-footer']">
+                                <i-button type="text" size="small" @click="cancel">{{ localeCancelText }}</i-button>
+                                <i-button type="primary" size="small" @click="ok">{{ localeOkText }}</i-button>
+                            </div>
                         </div>
-                        <div :class="[prefixCls + '-footer']">
-                            <i-button type="text" size="small" @click.native="cancel">{{ localeCancelText }}</i-button>
-                            <i-button type="primary" size="small" @click.native="ok">{{ localeOkText }}</i-button>
-                        </div>
-                    </div>
-                    <div :class="[prefixCls + '-inner']" v-if="!confirm">
-                        <div :class="[prefixCls + '-title']" :style="contentPaddingStyle" v-if="showTitle" ref="title"><slot name="title"><div :class="[prefixCls + '-title-inner']">{{ title }}</div></slot></div>
-                        <div :class="[prefixCls + '-body']" :style="contentPaddingStyle">
-                            <div :class="contentClasses"><slot name="content"><div :class="[prefixCls + '-body-content-inner']">{{ content }}</div></slot></div>
+                        <div :class="[prefixCls + '-inner']" v-if="!confirm">
+                            <div :class="[prefixCls + '-title']" :style="contentPaddingStyle" v-if="showTitle" ref="title"><slot name="title"><div :class="[prefixCls + '-title-inner']">{{ title }}</div></slot></div>
+                            <div :class="[prefixCls + '-body']" :style="contentPaddingStyle">
+                                <div :class="contentClasses"><slot name="content"><div :class="[prefixCls + '-body-content-inner']">{{ content }}</div></slot></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </transition>
+            </transition>
+        </teleport>
     </div>
 </template>
 <script>
+    import { getCurrentInstance, nextTick } from 'vue';
     import Popper from '../base/popper';
     import iButton from '../button/button.vue';
     import clickOutside from '../../directives/clickoutside';
-    import TransferDom from '../../directives/transfer-dom';
     import { oneOf } from '../../utils/assist';
     import { transferIndex, transferIncrease } from '../../utils/transfer-queue';
     import Locale from '../../mixins/locale';
@@ -60,7 +61,8 @@
     export default {
         name: 'Poptip',
         mixins: [ Popper, Locale ],
-        directives: { clickOutside, TransferDom },
+        emits: ['on-ok', 'on-cancel'],
+        directives: { clickOutside },
         components: { iButton },
         props: {
             trigger: {
@@ -98,7 +100,8 @@
             transfer: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.transfer === '' ? false : this.$IVIEW.transfer;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
                 }
             },
             popperClass: {
@@ -121,7 +124,8 @@
             capture: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW ? false : this.$IVIEW.capture;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW ? false : global.$IVIEW.capture;
                 }
             },
             transferClassName: {
@@ -242,7 +246,7 @@
             },
             handleMouseenter () {
                 if (this.disabled) return;
-                
+
                 if (this.trigger !== 'hover' || this.confirm) {
                     return false;
                 }
@@ -298,7 +302,7 @@
             }
             // if trigger and children is input or textarea,listen focus & blur event
             if (this.trigger === 'focus') {
-                this.$nextTick(() => {
+                nextTick(() => {
                     const $children = this.getInputChildren();
                     if ($children) {
                         this.isInput = true;

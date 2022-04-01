@@ -8,6 +8,7 @@ import { nextTick } from 'vue';
 const Popper = require('popper.js/dist/umd/popper.js');  // eslint-disable-line
 
 export default {
+    emits: ['on-popper-show', 'on-popper-hide', 'created', 'update:modelValue'],
     props: {
         eventsEnabled: {
             type: Boolean,
@@ -26,7 +27,7 @@ export default {
         offset: {
             default: 0
         },
-        value: {
+        modelValue: {
             type: Boolean,
             default: false
         },
@@ -53,15 +54,15 @@ export default {
     },
     data () {
         return {
-            visible: this.value
+            visible: this.modelValue
         };
     },
     watch: {
-        value: {
+        modelValue: {
             immediate: true,
             handler(val) {
                 this.visible = val;
-                this.$emit('input', val);
+                this.$emit('update:modelValue', val);
             }
         },
         visible(val) {
@@ -72,7 +73,7 @@ export default {
             } else {
                 this.$emit('on-popper-hide');
             }
-            this.$emit('input', val);
+            this.$emit('update:modelValue', val);
         }
     },
     methods: {
@@ -123,7 +124,7 @@ export default {
         nextTick(()=>this.updatePopper());
 
     },
-    beforeDestroy() {
+    beforeUnmount() {
         // if (isServer) return;
         if (this.popperJS) {
             this.popperJS.destroy();

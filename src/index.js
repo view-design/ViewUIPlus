@@ -59,7 +59,7 @@ import Modal from './components/modal';
 import Notice from './components/notice';
 // import Page from './components/page';
 import Panel from './components/panel';
-// import Poptip from './components/poptip';
+import Poptip from './components/poptip';
 import Progress from './components/progress';
 import Radio from './components/radio';
 import RadioGroup from './components/radio-group';
@@ -141,7 +141,7 @@ const components = {
     // OptionGroup,
     // Page,
     Panel,
-    // Poptip,
+    Poptip,
     Progress,
     Radio,
     RadioGroup,
