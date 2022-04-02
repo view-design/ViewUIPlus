@@ -15,13 +15,8 @@
         <template v-for="(item, index) in list" :key="item + ':' + index">
             <div :class="[prefixCls + '-picker-colors-wrapper']">
                 <div :data-color-id="index">
-                    <div
-                        :style="{background: item}"
-                        :class="[prefixCls + '-picker-colors-wrapper-color']"
-                    ></div>
-                    <div
-                        :ref="'color-circle-' + index"
-                        :class="[prefixCls + '-picker-colors-wrapper-circle', hideClass]"></div>
+                    <div :style="{background: item}" :class="[prefixCls + '-picker-colors-wrapper-color']"></div>
+                    <div :ref="'color-circle-' + index" :class="[prefixCls + '-picker-colors-wrapper-circle', hideClass]"></div>
                 </div>
             </div>
             <br v-if="lineBreak(list, index)">
@@ -36,6 +31,7 @@
     export default {
         name: 'RecommendedColors',
         mixins: [ HandleEscapeMixin, Prefixes ],
+        emits: ['picker-color', 'change'],
         props: {
             list: {
                 type: Array,

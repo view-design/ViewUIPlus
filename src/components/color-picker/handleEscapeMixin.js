@@ -1,7 +1,8 @@
 export default {
+    inject: ['ColorPickerInstance'],
     methods: {
-        handleEscape(e) {
-            // this.dispatch('ColorPicker', 'on-escape-keydown', e); // todo
+        handleEscape (e) {
+            this.ColorPickerInstance.handleOnEscapeKeydown(e);
         }
     }
 };

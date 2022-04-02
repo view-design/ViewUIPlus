@@ -33,6 +33,7 @@
     export default {
         name: 'Saturation',
         mixins: [ HSAMixin, Prefixes ],
+        emits: ['change'],
         data () {
             const normalStep = 0.01;
 
@@ -55,7 +56,7 @@
         },
         methods: {
             change (h, s, v, a) {
-                this.$emit('change', {h, s, v, a, source: 'hsva'});
+                this.$emit('change', { h, s, v, a, source: 'hsva' });
             },
             handleSlide (e, direction, key) {
                 e.preventDefault();

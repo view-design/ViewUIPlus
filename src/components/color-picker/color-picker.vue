@@ -123,6 +123,11 @@
         directives: { clickOutside },
         mixins: [ Locale, Prefixes, mixinsForm, globalConfig ],
         emits: ['on-active-change', 'on-open-change', 'on-change', 'on-pick-success', 'on-pick-clear', 'update:modelValue'],
+        provide () {
+            return {
+                ColorPickerInstance: this
+            }
+        },
         props: {
             modelValue: {
                 type: String,
@@ -402,7 +407,6 @@
         },
         mounted() {
             // todo
-            // this.$on('on-escape-keydown', this.closer);
             // this.$on('on-dragging', this.setDragging);
         },
         methods: {
@@ -508,6 +512,9 @@
                     event.stopPropagation();
                     this.visible = true;
                 }
+            },
+            handleOnEscapeKeydown (e) {
+                this.this.closer(e);
             }
         }
     };

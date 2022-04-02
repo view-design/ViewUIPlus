@@ -31,6 +31,7 @@
     export default {
         name: 'Hue',
         mixins: [ HASMixin, Prefixes ],
+        emits: ['change'],
         data () {
             const normalStep = 1 / 360 * 25;
             const jumpStep = 20 * normalStep;
