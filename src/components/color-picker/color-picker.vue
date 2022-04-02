@@ -75,6 +75,7 @@
                                 <template v-else>{{formatColor}}</template>
                             </span>
                         <i-button
+                            :class="[prefixCls + '-confirm-btn-cancel']"
                             ref="clear"
                             :tabindex="0"
                             size="small"
