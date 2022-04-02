@@ -405,10 +405,6 @@
                 this.$emit('on-open-change', Boolean(val));
             }
         },
-        mounted() {
-            // todo
-            // this.$on('on-dragging', this.setDragging);
-        },
         methods: {
             setDragging (value) {
                 this.dragging = value;
@@ -423,7 +419,7 @@
                     }
 
                     if (this.transfer) {
-                        const {$el} = this.$refs.drop;
+                        const { $el } = this.$refs.drop;
                         if ($el === event.target || $el.contains(event.target)) {
                             return;
                         }
@@ -463,7 +459,7 @@
                 this.currentValue = value;
                 this.$emit('update:modelValue', value);
                 this.$emit('on-change', value);
-                // this.dispatch('FormItem', 'on-form-change', value); // todo
+                this.handleFormItemChange('change', value);
                 this.closer(event);
             },
             handleSuccess (event) {
@@ -514,7 +510,10 @@
                 }
             },
             handleOnEscapeKeydown (e) {
-                this.this.closer(e);
+                this.closer(e);
+            },
+            handleOnDragging (value) {
+                this.setDragging(value);
             }
         }
     };
