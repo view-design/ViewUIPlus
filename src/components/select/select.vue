@@ -58,10 +58,11 @@
         </div>
         <Drop
             ref="dropdown"
-            :class="dropdownCls"
+            :classes="dropdownCls"
             :visible="dropVisible"
             :placement="placement"
             :eventsEnabled="eventsEnabled"
+            :transfer="transfer"
             transition-name="transition-drop"
         >
             <ul v-show="showNotFoundLabel && !allowCreate" :class="[prefixCls + '-not-found']"><li>{{ localeNotFoundText }}</li></ul>
