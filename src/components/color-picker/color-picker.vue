@@ -124,6 +124,7 @@
     import iButton from '../button/button.vue';
     import Icon from '../icon/icon.vue';
     import Locale from '../../mixins/locale';
+    import globalConfig from '../../mixins/globalConfig';
     import { oneOf } from '../../utils/assist';
     import mixinsForm from '../../mixins/form';
     import Prefixes from './prefixMixin';
@@ -133,7 +134,7 @@
         name: 'ColorPicker',
         components: { Drop, RecommendColors, Saturation, Hue, Alpha, iInput, iButton, Icon },
         directives: { clickOutside },
-        mixins: [ Locale, Prefixes, mixinsForm ],
+        mixins: [ Locale, Prefixes, mixinsForm, globalConfig ],
         emits: ['on-active-change', 'on-open-change', 'on-change', 'on-pick-success', 'on-pick-clear', 'update:modelValue'],
         props: {
             modelValue: {
@@ -365,35 +366,38 @@
             },
             // 3.4.0, global setting customArrow 有值时，arrow 赋值空
             arrowType () {
+                const config = this.globalConfig;
                 let type = 'ios-arrow-down';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.colorPicker.customArrow) {
+                if (config) {
+                    if (config.colorPicker.customArrow) {
                         type = '';
-                    } else if (this.$IVIEW.colorPicker.arrow) {
-                        type = this.$IVIEW.colorPicker.arrow;
+                    } else if (config.colorPicker.arrow) {
+                        type = config.colorPicker.arrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             customArrowType () {
+                const config = this.globalConfig;
                 let type = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.colorPicker.customArrow) {
-                        type = this.$IVIEW.colorPicker.customArrow;
+                if (config) {
+                    if (config.colorPicker.customArrow) {
+                        type = config.colorPicker.customArrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             arrowSize () {
+                const config = this.globalConfig;
                 let size = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.colorPicker.arrowSize) {
-                        size = this.$IVIEW.colorPicker.arrowSize;
+                if (config) {
+                    if (config.colorPicker.arrowSize) {
+                        size = config.colorPicker.arrowSize;
                     }
                 }
                 return size;
