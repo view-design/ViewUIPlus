@@ -56,6 +56,7 @@
         mixins: [ Locale, globalConfig ],
         components: { Icon },
         emits: ['on-input-focus', 'on-input-blur', 'on-keydown', 'on-enter', 'on-clear', 'on-query-change'],
+        inject: ['SelectInstance'],
         props: {
             disabled: {
                 type: Boolean,
@@ -239,7 +240,7 @@
             },
             removeTag (value) {
                 if (this.disabled) return false;
-                // this.dispatch('iSelect', 'on-select-selected', value); // todo
+                this.SelectInstance.handleOnSelectSelected(value);
             },
             resetInputState () {
                 this.inputLength = this.$refs.input.value.length * 12 + 20;

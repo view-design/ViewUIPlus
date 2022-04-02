@@ -16,6 +16,7 @@
         componentName: 'select-item',
         mixins: [ mixinsForm ],
         emits: ['on-select-selected'],
+        inject: ['SelectInstance'],
         props: {
             value: {
                 type: [String, Number],
@@ -69,12 +70,11 @@
             select () {
                 if (this.itemDisabled) return false;
 
-                // todo
-                // this.dispatch('iSelect', 'on-select-selected', {
-                //     value: this.value,
-                //     label: this.optionLabel,
-                //     tag: this.tag
-                // });
+                this.SelectInstance.handleOnSelectSelected({
+                    value: this.value,
+                    label: this.optionLabel,
+                    tag: this.tag
+                });
                 this.$emit('on-select-selected', {
                     value: this.value,
                     label: this.optionLabel,

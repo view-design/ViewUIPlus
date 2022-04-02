@@ -306,9 +306,7 @@
                 default: false
             }
         },
-        mounted(){
-            // this.$on('on-select-selected', this.onOptionClick); // todo
-
+        mounted () {
             // set the initial values if there are any
             if (!this.remote && this.selectOptions.length > 0){
                 this.values = this.getInitialValue().map(value => {
@@ -336,9 +334,6 @@
                     });
                 }
             }
-        },
-        beforeUnmount () {
-            // this.$off('on-select-selected'); // todo
         },
         data () {
             return {
@@ -725,7 +720,7 @@
 
                 this.focusIndex = index;
             },
-            onOptionClick(option) {
+            onOptionClick (option) {
                 if (this.multiple){
 
                     // keep the query for remote select
@@ -812,6 +807,9 @@
                     // 单选（和多选，#926）时如果不在 nextTick 里执行，无法赋值
                     nextTick(() => this.onOptionClick(option));
                 }
+            },
+            handleOnSelectSelected (options) {
+                this.onOptionClick(options);
             }
         },
         watch: {
