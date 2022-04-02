@@ -107,7 +107,7 @@ export const directive = Object.defineProperties(
         /**
          * 注意，这里的 arg 修改为 capture，这样可以动态设置，原先的事件作为 modifiers
          * */
-        bind: {
+        beforeMount: {
             value: function bind(el, binding) {
                 if (typeof binding.value !== 'function') {
                     throw new TypeError('Binding value must be a function.');
@@ -154,7 +154,7 @@ export const directive = Object.defineProperties(
             },
         },
 
-        unbind: {
+        unmounted: {
             value: function unbind(el) {
                 const compareElements = function _compareElements(item) {
                     return item.el !== el;

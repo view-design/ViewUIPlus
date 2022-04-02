@@ -48,7 +48,6 @@
         },
         computed: {
             bgColorStyle () {
-                console.log(this.value)
                 return { background: `hsl(${this.value.hsv.h}, 100%, 50%)` };
             },
             pointerStyle () {

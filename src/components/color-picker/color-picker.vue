@@ -258,7 +258,7 @@
                     '#607d8b',
                     '#000000',
                     '#ffffff',
-                ],
+                ]
             };
         },
         computed: {
@@ -311,14 +311,12 @@
                 ];
             },
             dropClasses () {
-                return [
-                    `${this.transferPrefixCls}-no-max-height`,
-                    {
-                        [`${this.prefixCls}-transfer`]: this.transfer,
-                        [`${this.prefixCls}-hide-drop`]: this.hideDropDown,
-                        [this.transferClassName]: this.transferClassName
-                    },
-                ];
+                return {
+                    [`${this.transferPrefixCls}-no-max-height`]: true,
+                    [`${this.prefixCls}-transfer`]: this.transfer,
+                    [`${this.prefixCls}-hide-drop`]: this.hideDropDown,
+                    [this.transferClassName]: this.transferClassName
+                };
             },
             displayedColorStyle () {
                 return { backgroundColor: toRGBAString(this.visible ? this.saturationColors.rgba : tinycolor(this.modelValue).toRgb()) };

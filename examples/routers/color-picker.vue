@@ -1,5 +1,5 @@
 <template>
-    <ColorPicker v-model="color1" transfer />
+    <ColorPicker v-model="color1" />
 </template>
 <script>
     export default {
