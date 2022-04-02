@@ -6,10 +6,7 @@
             ref="reference"
             :class="wrapClasses"
             @click="toggleVisible">
-            <input
-                :name="name"
-                :value="currentValue"
-                type="hidden">
+            <input :name="name" :value="currentValue" type="hidden">
             <Icon :type="arrowType" :custom="customArrowType" :size="arrowSize" :class="arrowClasses"></Icon>
             <div
                 ref="input"
@@ -22,12 +19,12 @@
             >
                 <div :class="[prefixCls + '-color']">
                     <div
-                        v-show="value === '' && !visible"
+                        v-show="modelValue === '' && !visible"
                         :class="[prefixCls + '-color-empty']">
                         <i :class="[iconPrefixCls, iconPrefixCls + '-ios-close']"></i>
                     </div>
                     <div
-                        v-show="value || visible"
+                        v-show="modelValue || visible"
                         :style="displayedColorStyle"></div>
                 </div>
             </div>
@@ -85,7 +82,7 @@
                         <div :class="[prefixCls + '-confirm']">
                             <span :class="confirmColorClasses">
                                 <template v-if="editable">
-                                    <i-input ref="editColorInput" :value="formatColor" size="small" @on-enter="handleEditColor" @on-blur="handleEditColor"></i-input>
+                                    <i-input ref="editColorInput" :modelValue="formatColor" size="small" @on-enter="handleEditColor" @on-blur="handleEditColor"></i-input>
                                 </template>
                                 <template v-else>{{formatColor}}</template>
                             </span>
@@ -138,7 +135,7 @@
         mixins: [ Locale, Prefixes, mixinsForm ],
         emits: ['on-active-change', 'on-open-change', 'on-change', 'on-pick-success', 'on-pick-clear', 'update:modelValue'],
         props: {
-            value: {
+            modelValue: {
                 type: String,
                 default: undefined,
             },
@@ -235,8 +232,8 @@
         },
         data () {
             return {
-                val: changeColor(this.value || ''),
-                currentValue: this.value || '',
+                val: changeColor(this.modelValue || ''),
+                currentValue: this.modelValue || '',
                 dragging: false,
                 visible: false,
                 recommendedColor: [
@@ -327,7 +324,7 @@
                 ];
             },
             displayedColorStyle () {
-                return { backgroundColor: toRGBAString(this.visible ? this.saturationColors.rgba : tinycolor(this.value).toRgb()) };
+                return { backgroundColor: toRGBAString(this.visible ? this.saturationColors.rgba : tinycolor(this.modelValue).toRgb()) };
             },
             formatColor () {
                 const { format, saturationColors } = this;
@@ -399,11 +396,11 @@
             }
         },
         watch: {
-            value (newVal) {
+            modelValue (newVal) {
                 this.val = changeColor(newVal || '');
             },
             visible (val) {
-                this.val = changeColor(this.value || '');
+                this.val = changeColor(this.modelValue || '');
                 this.$refs.drop[val ? 'update' : 'destroy']();
                 this.$emit('on-open-change', Boolean(val));
             }
