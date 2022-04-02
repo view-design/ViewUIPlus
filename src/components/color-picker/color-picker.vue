@@ -112,6 +112,7 @@
     </div>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import tinycolor from 'tinycolor2';
     import { directive as clickOutside } from '../../directives/v-click-outside-x';
     import Drop from '../../components/select/dropdown.vue';
@@ -173,7 +174,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             hideDropDown: {
@@ -203,7 +205,8 @@
             transfer: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.transfer === '' ? false : this.$IVIEW.transfer;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
                 }
             },
             name: {
@@ -218,7 +221,8 @@
             capture: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW ? true : this.$IVIEW.capture;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW ? true : global.$IVIEW.capture;
                 }
             },
             transferClassName: {
