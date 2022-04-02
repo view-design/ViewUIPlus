@@ -347,7 +347,7 @@
                 query: '',
                 initialLabel: this.label,
                 hasMouseHoverHead: false,
-                slotOptions: this.$slots.default,
+                slotOptions: this.$slots.default(),
                 caretPosition: -1,
                 lastRemoteQuery: '',
                 unchangedQuery: true,
@@ -435,17 +435,18 @@
                 // }
                 return this.multiple ? this.values.map(option => option.value) : (this.values[0] || {}).value;
             },
-            canBeCleared(){
+            canBeCleared () {
                 const uiStateMatch = this.hasMouseHoverHead || this.active;
                 const qualifiesForClear = !this.multiple && !this.itemDisabled && this.clearable;
                 return uiStateMatch && qualifiesForClear && this.reset; // we return a function
             },
-            selectOptions() {
+            selectOptions () {
                 const selectOptions = [];
                 const slotOptions = (this.slotOptions || []);
                 let optionCounter = -1;
                 const currentIndex = this.focusIndex;
                 const selectedValues = this.values.filter(Boolean).map(({value}) => value);
+
                 if (this.autoComplete) {
                     const copyChildren = (node, fn) => {
                         return {
@@ -465,7 +466,6 @@
                     });
                 }
                 for (let option of slotOptions) {
-
                     const cOptions = option.componentOptions;
                     if (!cOptions) continue;
                     if (optionGroupRegexp.test(cOptions.tag)){
@@ -500,13 +500,13 @@
 
                 return selectOptions;
             },
-            flatOptions(){
+            flatOptions () {
                 return extractOptions(this.selectOptions);
             },
-            selectTabindex(){
+            selectTabindex () {
                 return this.itemDisabled || this.filterable ? -1 : 0;
             },
-            remote(){
+            remote () {
                 return typeof this.remoteMethod === 'function';
             }
         },
