@@ -152,6 +152,12 @@
             },
             handleMouseleave (e) {
                 this.$emit('mouseleave', e);
+            },
+            handleOnUpdatePopper () {
+                this.update();
+            },
+            handleOnDestroyPopper () {
+                this.destroy();
             }
         },
         created () {

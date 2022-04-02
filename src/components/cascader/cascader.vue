@@ -442,7 +442,7 @@
                     if (this.transfer) {
                         this.$refs.drop.update();
                     }
-                    // this.broadcast('Drop', 'on-update-popper'); // todo
+                    this.$refs.drop.handleOnUpdatePopper();
                 } else {
                     if (this.filterable) {
                         this.query = '';
@@ -451,7 +451,7 @@
                     if (this.transfer) {
                         this.$refs.drop.destroy();
                     }
-                    // this.broadcast('Drop', 'on-destroy-popper'); // todo
+                    this.$refs.drop.handleOnDestroyPopper();
                 }
                 this.$emit('on-visible-change', val);
             },

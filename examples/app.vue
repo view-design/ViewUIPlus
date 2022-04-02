@@ -42,7 +42,7 @@
             <span><router-link to="/breadcrumb">Breadcrumb</router-link></span>
             <span><router-link to="/menu">Menu</router-link></span>
             <span><router-link to="/spin">Spin</router-link></span>
-            <span><Tag color="red">未开始</Tag><router-link to="/cascader">Cascader</router-link></span>
+            <span><router-link to="/cascader">Cascader</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/select">Select</router-link></span>
             <span><router-link to="/backtop">Backtop</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/page">Page</router-link></span>
