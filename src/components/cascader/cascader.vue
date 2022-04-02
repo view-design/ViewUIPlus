@@ -311,7 +311,10 @@
                 this.currentValue = this.selected = this.tmpSelected = [];
                 this.handleClose();
                 this.emitValue(this.currentValue, oldVal);
-//                 this.broadcast('Caspanel', 'on-clear'); // todo
+
+                this.caspanelList.forEach(item => {
+                    item.caspanel.handleOnClear();
+                });
             },
             handleClose () {
                 this.visible = false;
@@ -327,7 +330,9 @@
             onFocus () {
                 this.visible = true;
                 if (!this.currentValue.length) {
-                    // this.broadcast('Caspanel', 'on-clear'); // todo
+                    this.caspanelList.forEach(item => {
+                        item.caspanel.handleOnClear();
+                    });
                 }
             },
             updateResult (result) {
@@ -336,10 +341,11 @@
             updateSelected (init = false, changeOnSelectDataChange = false) {
                 // #2793 changeOnSelectDataChange used for changeOnSelect when data changed and set value
                 if (!this.changeOnSelect || init || changeOnSelectDataChange) {
-                    // todo
-                    // this.broadcast('Caspanel', 'on-find-selected', {
-                    //     value: this.currentValue
-                    // });
+                    this.caspanelList.forEach(item => {
+                        item.caspanel.handleOnFindSelected({
+                            value: this.currentValue
+                        });
+                    });
                 }
             },
             emitValue (val, oldVal) {

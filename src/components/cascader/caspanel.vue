@@ -106,11 +106,10 @@
 
                     // #1553
                     if (this.changeOnSelect) {
-                        // todo
-                        // const Caspanel = findComponentDownward(this, 'Caspanel');
-                        // if (Caspanel) {
-                        //     Caspanel.$emit('on-clear', true);
-                        // }
+                        if (this.childCaspanelList.length) {
+                            const Caspanel = this.childCaspanelList[0].caspanel;
+                            Caspanel.handleOnClear(true);
+                        }
                     }
                 } else {
                     this.sublist = [];
@@ -141,7 +140,7 @@
                 if (this.$parent.$options.name === 'Caspanel') {
                     this.$parent.updateResult(result);
                 } else {
-                    this.$parent.$parent.updateResult(result);
+                    this.CascaderInstance.updateResult(result);
                 }
             },
             getKey () {
@@ -156,10 +155,12 @@
                             this.handleTriggerItem(this.data[j], true);
                             value.splice(0, 1);
                             nextTick(() => {
-                                // todo
-                                // this.broadcast('Caspanel', 'on-find-selected', {
-                                //     value: value
-                                // });
+                                if (this.childCaspanelList.length) {
+                                    const Caspanel = this.childCaspanelList[0].caspanel;
+                                    Caspanel.handleOnFindSelected({
+                                        value
+                                    });
+                                }
                             });
                             return false;
                         }
@@ -170,11 +171,10 @@
                 this.sublist = [];
                 this.tmpItem = {};
                 if (deep) {
-                    // todo
-                    // const Caspanel = findComponentDownward(this, 'Caspanel');
-                    // if (Caspanel) {
-                    //     Caspanel.$emit('on-clear', true);
-                    // }
+                    if (this.childCaspanelList.length) {
+                        const Caspanel = this.childCaspanelList[0].caspanel;
+                        Caspanel.handleOnClear(true);
+                    }
                 }
             },
             addCaspanel () {
