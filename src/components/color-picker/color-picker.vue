@@ -54,7 +54,7 @@
                                     v-model="saturationColors"
                                     :focused="visible"
                                     @change="childChange"
-                                    @keydown.native.tab="handleFirstTab"
+                                    @keydown.tab="handleFirstTab"
                                 ></Saturation>
                             </div>
                             <div
@@ -136,6 +136,7 @@
         components: { Drop, RecommendColors, Saturation, Hue, Alpha, iInput, iButton, Icon },
         directives: { clickOutside },
         mixins: [ Locale, Prefixes, mixinsForm ],
+        emits: ['on-active-change', 'on-open-change', 'on-change', 'on-pick-success', 'on-pick-clear', 'update:modelValue'],
         props: {
             value: {
                 type: String,
@@ -464,7 +465,7 @@
             },
             handleButtons (event, value) {
                 this.currentValue = value;
-                this.$emit('input', value);
+                this.$emit('update:modelValue', value);
                 this.$emit('on-change', value);
                 this.dispatch('FormItem', 'on-form-change', value);
                 this.closer(event);
