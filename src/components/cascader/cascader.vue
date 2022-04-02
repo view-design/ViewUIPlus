@@ -73,6 +73,11 @@
         components: { iInput, Drop, Icon, Caspanel },
         directives: { clickOutside },
         emits: ['on-change', 'on-visible-change', 'update:modelValue'],
+        provide () {
+            return {
+                CascaderInstance: this
+            }
+        },
         props: {
             data: {
                 type: Array,
@@ -388,37 +393,36 @@
                 }
 
                 return data.map(item => deleteData(item));
+            },
+            handleOnResultChange (params) {
+                // lastValue: is click the final val
+                // fromInit: is this emit from update value
+                const lastValue = params.lastValue;
+                const changeOnSelect = params.changeOnSelect;
+                const fromInit = params.fromInit;
+
+                if (lastValue || changeOnSelect) {
+                    const oldVal = JSON.stringify(this.currentValue);
+                    this.selected = this.tmpSelected;
+
+                    let newVal = [];
+                    this.selected.forEach((item) => {
+                        newVal.push(item.value);
+                    });
+
+                    if (!fromInit) {
+                        this.updatingValue = true;
+                        this.currentValue = newVal;
+                        this.emitValue(this.currentValue, oldVal);
+                    }
+                }
+                if (lastValue && !fromInit) {
+                    this.handleClose();
+                }
             }
         },
         created () {
             this.validDataStr = JSON.stringify(this.getValidData(this.data));
-            // todo
-            // this.$on('on-result-change', (params) => {
-            //     // lastValue: is click the final val
-            //     // fromInit: is this emit from update value
-            //     const lastValue = params.lastValue;
-            //     const changeOnSelect = params.changeOnSelect;
-            //     const fromInit = params.fromInit;
-            //
-            //     if (lastValue || changeOnSelect) {
-            //         const oldVal = JSON.stringify(this.currentValue);
-            //         this.selected = this.tmpSelected;
-            //
-            //         let newVal = [];
-            //         this.selected.forEach((item) => {
-            //             newVal.push(item.value);
-            //         });
-            //
-            //         if (!fromInit) {
-            //             this.updatingValue = true;
-            //             this.currentValue = newVal;
-            //             this.emitValue(this.currentValue, oldVal);
-            //         }
-            //     }
-            //     if (lastValue && !fromInit) {
-            //         this.handleClose();
-            //     }
-            // });
         },
         mounted () {
             this.updateSelected(true);
