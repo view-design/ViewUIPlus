@@ -48,6 +48,7 @@
         },
         computed: {
             bgColorStyle () {
+                console.log(this.value)
                 return { background: `hsl(${this.value.hsv.h}, 100%, 50%)` };
             },
             pointerStyle () {
@@ -74,7 +75,7 @@
                 e.preventDefault();
                 e.stopPropagation();
 
-                const {clientWidth, clientHeight} = this.$refs.container;
+                const { clientWidth, clientHeight } = this.$refs.container;
                 const left = clamp(this.getLeft(e), 0, clientWidth);
                 const top = clamp(this.getTop(e), 0, clientHeight);
                 const saturation = left / clientWidth;

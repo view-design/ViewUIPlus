@@ -44,17 +44,17 @@
                         <div :class="[prefixCls + '-picker-panel']">
                             <Saturation
                                 ref="saturation"
-                                v-model="saturationColors"
+                                :value="saturationColors"
                                 :focused="visible"
                                 @change="childChange"
                                 @keydown.tab="handleFirstTab"
                             ></Saturation>
                         </div>
                         <div v-if="hue" :class="[prefixCls + '-picker-hue-slider']">
-                            <Hue v-model="saturationColors" @change="childChange"></Hue>
+                            <Hue :value="saturationColors" @change="childChange"></Hue>
                         </div>
                         <div v-if="alpha" :class="[prefixCls + '-picker-alpha-slider']">
-                            <Alpha v-model="saturationColors" @change="childChange"></Alpha>
+                            <Alpha :value="saturationColors" @change="childChange"></Alpha>
                         </div>
                         <recommend-colors
                             v-if="colors.length"
