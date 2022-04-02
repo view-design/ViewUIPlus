@@ -21,7 +21,7 @@ import ButtonGroup from './components/button-group';
 import Card from './components/card';
 import Carousel from './components/carousel';
 import CarouselItem from './components/carousel-item';
-// import Cascader from './components/cascader';
+import Cascader from './components/cascader';
 import Cell from './components/cell';
 import CellGroup from './components/cell-group';
 import Checkbox from './components/checkbox';
@@ -105,7 +105,7 @@ const components = {
     Card,
     Carousel,
     CarouselItem,
-    // Cascader,
+    Cascader,
     Cell,
     CellGroup,
     Checkbox,
@@ -233,20 +233,20 @@ const install = function(app, opts = {}) {
             customArrow: opts.colorPicker ? opts.colorPicker.customArrow ? opts.colorPicker.customArrow : '' : '',
             arrowSize: opts.colorPicker ? opts.colorPicker.arrowSize ? opts.colorPicker.arrowSize : '' : ''
         },
+        cascader: {
+            arrow: opts.cascader ? opts.cascader.arrow ? opts.cascader.arrow : '' : '',
+            customArrow: opts.cascader ? opts.cascader.customArrow ? opts.cascader.customArrow : '' : '',
+            arrowSize: opts.cascader ? opts.cascader.arrowSize ? opts.cascader.arrowSize : '' : '',
+            itemArrow: opts.cascader ? opts.cascader.itemArrow ? opts.cascader.itemArrow : '' : '',
+            customItemArrow: opts.cascader ? opts.cascader.customItemArrow ? opts.cascader.customItemArrow : '' : '',
+            itemArrowSize: opts.cascader ? opts.cascader.itemArrowSize ? opts.cascader.itemArrowSize : '' : ''
+        }
     }
     // app.prototype.$IVIEW = {
     //     tree: {
     //         arrow: opts.tree ? opts.tree.arrow ? opts.tree.arrow : '' : '',
     //         customArrow: opts.tree ? opts.tree.customArrow ? opts.tree.customArrow : '' : '',
     //         arrowSize: opts.tree ? opts.tree.arrowSize ? opts.tree.arrowSize : '' : ''
-    //     },
-    //     cascader: {
-    //         arrow: opts.cascader ? opts.cascader.arrow ? opts.cascader.arrow : '' : '',
-    //         customArrow: opts.cascader ? opts.cascader.customArrow ? opts.cascader.customArrow : '' : '',
-    //         arrowSize: opts.cascader ? opts.cascader.arrowSize ? opts.cascader.arrowSize : '' : '',
-    //         itemArrow: opts.cascader ? opts.cascader.itemArrow ? opts.cascader.itemArrow : '' : '',
-    //         customItemArrow: opts.cascader ? opts.cascader.customItemArrow ? opts.cascader.customItemArrow : '' : '',
-    //         itemArrowSize: opts.cascader ? opts.cascader.itemArrowSize ? opts.cascader.itemArrowSize : '' : ''
     //     },
     //     datePicker: {
     //         icon: opts.datePicker ? opts.datePicker.icon ? opts.datePicker.icon : '' : '',

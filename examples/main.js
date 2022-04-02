@@ -142,10 +142,10 @@ const router = createRouter({
             path: '/spin',
             component: () => import('./routers/spin.vue')
         },
-        // {
-        //     path: '/cascader',
-        //     component: (resolve) => require(['./routers/cascader.vue'], resolve)
-        // },
+        {
+            path: '/cascader',
+            component: () => import('./routers/cascader.vue')
+        },
         {
             path: '/select',
             component: () => import('./routers/select.vue')

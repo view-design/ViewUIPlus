@@ -7,10 +7,12 @@
 </template>
 <script>
     import Icon from '../icon/icon.vue';
+    import globalConfig from '../../mixins/globalConfig';
 
     export default {
         name: 'Casitem',
         components: { Icon },
+        mixins: [ globalConfig ],
         props: {
             data: Object,
             prefixCls: String,
@@ -34,35 +36,38 @@
             },
             // 3.4.0, global setting customArrow 有值时，arrow 赋值空
             arrowType () {
+                const config = this.globalConfig;
                 let type = 'ios-arrow-forward';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.cascader.customItemArrow) {
+                if (config) {
+                    if (config.cascader.customItemArrow) {
                         type = '';
-                    } else if (this.$IVIEW.cascader.itemArrow) {
-                        type = this.$IVIEW.cascader.itemArrow;
+                    } else if (config.cascader.itemArrow) {
+                        type = config.cascader.itemArrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             customArrowType () {
+                const config = this.globalConfig;
                 let type = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.cascader.customItemArrow) {
-                        type = this.$IVIEW.cascader.customItemArrow;
+                if (config) {
+                    if (config.cascader.customItemArrow) {
+                        type = config.cascader.customItemArrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             arrowSize () {
+                const config = this.globalConfig;
                 let size = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.cascader.itemArrowSize) {
-                        size = this.$IVIEW.cascader.itemArrowSize;
+                if (config) {
+                    if (config.cascader.itemArrowSize) {
+                        size = config.cascader.itemArrowSize;
                     }
                 }
                 return size;

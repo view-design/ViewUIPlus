@@ -2,26 +2,24 @@
     <span>
         <ul v-if="data && data.length" :class="[prefixCls + '-menu']">
             <Casitem
-                v-for="item in data"
-                :key="getKey()"
+                v-for="(item, index) in data"
+                :key="index"
                 :prefix-cls="prefixCls"
                 :data="item"
                 :tmp-item="tmpItem"
-                @click.native.stop="handleClickItem(item)"
-                @mouseenter.native.stop="handleHoverItem(item)"></Casitem>
+                @click.stop="handleClickItem(item)"
+                @mouseenter.stop="handleHoverItem(item)"></Casitem>
         </ul><Caspanel v-if="sublist && sublist.length" :prefix-cls="prefixCls" :data="sublist" :disabled="disabled" :trigger="trigger" :change-on-select="changeOnSelect"></Caspanel>
     </span>
 </template>
 <script>
     import Casitem from './casitem.vue';
-    import Emitter from '../../mixins/emitter';
-    import { findComponentUpward, findComponentDownward } from '../../utils/assist';
+    import { findComponentUpward } from '../../utils/assist';
 
     let key = 1;
 
     export default {
         name: 'Caspanel',
-        mixins: [ Emitter ],
         components: { Casitem },
         props: {
             data: {
@@ -89,26 +87,29 @@
 
                 if (item.children && item.children.length){
                     this.sublist = item.children;
-                    this.dispatch('Cascader', 'on-result-change', {
-                        lastValue: false,
-                        changeOnSelect: this.changeOnSelect,
-                        fromInit: fromInit
-                    });
+                    // todo
+                    // this.dispatch('Cascader', 'on-result-change', {
+                    //     lastValue: false,
+                    //     changeOnSelect: this.changeOnSelect,
+                    //     fromInit: fromInit
+                    // });
 
                     // #1553
                     if (this.changeOnSelect) {
-                        const Caspanel = findComponentDownward(this, 'Caspanel');
+                        // todo
+                        // const Caspanel = findComponentDownward(this, 'Caspanel');
                         if (Caspanel) {
                             Caspanel.$emit('on-clear', true);
                         }
                     }
                 } else {
                     this.sublist = [];
-                    this.dispatch('Cascader', 'on-result-change', {
-                        lastValue: true,
-                        changeOnSelect: this.changeOnSelect,
-                        fromInit: fromInit
-                    });
+                    // todo
+                    // this.dispatch('Cascader', 'on-result-change', {
+                    //     lastValue: true,
+                    //     changeOnSelect: this.changeOnSelect,
+                    //     fromInit: fromInit
+                    // });
                 }
 
                 if (cascader) {
@@ -139,35 +140,36 @@
             }
         },
         mounted () {
-            this.$on('on-find-selected', (params) => {
-                const val = params.value;
-                let value = [...val];
-                for (let i = 0; i < value.length; i++) {
-                    for (let j = 0; j < this.data.length; j++) {
-                        if (value[i] === this.data[j].value) {
-                            this.handleTriggerItem(this.data[j], true);
-                            value.splice(0, 1);
-                            this.$nextTick(() => {
-                                this.broadcast('Caspanel', 'on-find-selected', {
-                                    value: value
-                                });
-                            });
-                            return false;
-                        }
-                    }
-                }
-            });
-            // deep for #1553
-            this.$on('on-clear', (deep = false) => {
-                this.sublist = [];
-                this.tmpItem = {};
-                if (deep) {
-                    const Caspanel = findComponentDownward(this, 'Caspanel');
-                    if (Caspanel) {
-                        Caspanel.$emit('on-clear', true);
-                    }
-                }
-            });
+            // todo
+            // this.$on('on-find-selected', (params) => {
+            //     const val = params.value;
+            //     let value = [...val];
+            //     for (let i = 0; i < value.length; i++) {
+            //         for (let j = 0; j < this.data.length; j++) {
+            //             if (value[i] === this.data[j].value) {
+            //                 this.handleTriggerItem(this.data[j], true);
+            //                 value.splice(0, 1);
+            //                 this.$nextTick(() => {
+            //                     this.broadcast('Caspanel', 'on-find-selected', {
+            //                         value: value
+            //                     });
+            //                 });
+            //                 return false;
+            //             }
+            //         }
+            //     }
+            // });
+            // // deep for #1553
+            // this.$on('on-clear', (deep = false) => {
+            //     this.sublist = [];
+            //     this.tmpItem = {};
+            //     if (deep) {
+            //         const Caspanel = findComponentDownward(this, 'Caspanel');
+            //         if (Caspanel) {
+            //             Caspanel.$emit('on-clear', true);
+            //         }
+            //     }
+            // });
         }
     };
 </script>

@@ -8,7 +8,7 @@
                     ref="input"
                     :readonly="!filterable"
                     :disabled="itemDisabled"
-                    :value="displayInputRender"
+                    :modelValue="displayInputRender"
                     @on-change="handleInput"
                     :size="size"
                     :placeholder="inputPlaceholder"></i-input>
@@ -16,64 +16,63 @@
                     :class="[prefixCls + '-label']"
                     v-show="filterable && query === ''"
                     @click="handleFocus">{{ displayRender }}</div>
-                <Icon type="ios-close-circle" :class="[prefixCls + '-arrow']" v-show="showCloseIcon" @click.native.stop="clearSelect"></Icon>
+                <Icon type="ios-close-circle" :class="[prefixCls + '-arrow']" v-show="showCloseIcon" @click.stop="clearSelect"></Icon>
                 <Icon :type="arrowType" :custom="customArrowType" :size="arrowSize" :class="[prefixCls + '-arrow']"></Icon>
             </slot>
         </div>
-        <transition name="transition-drop">
-            <Drop
-                v-show="visible"
-                :class="dropdownCls"
-                ref="drop"
-                :eventsEnabled="eventsEnabled"
-                :data-transfer="transfer"
-                :transfer="transfer"
-                v-transfer-dom>
-                <div>
-                    <Caspanel
-                        v-show="!filterable || (filterable && query === '')"
-                        ref="caspanel"
-                        :prefix-cls="prefixCls"
-                        :data="data"
-                        :disabled="itemDisabled"
-                        :change-on-select="changeOnSelect"
-                        :trigger="trigger"></Caspanel>
-                    <div :class="[prefixCls + '-dropdown']" v-show="filterable && query !== '' && querySelections.length">
-                        <ul :class="[selectPrefixCls + '-dropdown-list']">
-                            <li
-                                :class="[selectPrefixCls + '-item', {
+        <Drop
+            ref="drop"
+            :visible="visible"
+            :classes="dropdownCls"
+            :eventsEnabled="eventsEnabled"
+            transition-name="transition-drop"
+            :transfer="transfer">
+            <div>
+                <Caspanel
+                    v-show="!filterable || (filterable && query === '')"
+                    ref="caspanel"
+                    :prefix-cls="prefixCls"
+                    :data="data"
+                    :disabled="itemDisabled"
+                    :change-on-select="changeOnSelect"
+                    :trigger="trigger"></Caspanel>
+                <div :class="[prefixCls + '-dropdown']" v-show="filterable && query !== '' && querySelections.length">
+                    <ul :class="[selectPrefixCls + '-dropdown-list']">
+                        <li
+                            :class="[selectPrefixCls + '-item', {
                                     [selectPrefixCls + '-item-disabled']: item.disabled
                                 }]"
-                                v-for="(item, index) in querySelections"
-                                @click="handleSelectItem(index)" v-html="item.display"></li>
-                        </ul>
-                    </div>
-                    <ul v-show="(filterable && query !== '' && !querySelections.length) || !data.length" :class="[prefixCls + '-not-found-tip']"><li>{{ localeNotFoundText }}</li></ul>
+                            v-for="(item, index) in querySelections"
+                            :key="index"
+                            @click="handleSelectItem(index)" v-html="item.display"></li>
+                    </ul>
                 </div>
-            </Drop>
-        </transition>
+                <ul v-show="(filterable && query !== '' && !querySelections.length) || !data.length" :class="[prefixCls + '-not-found-tip']"><li>{{ localeNotFoundText }}</li></ul>
+            </div>
+        </Drop>
     </div>
 </template>
 <script>
+    import { getCurrentInstance, nextTick } from 'vue';
     import iInput from '../input/input.vue';
     import Drop from '../select/dropdown.vue';
     import Icon from '../icon/icon.vue';
     import Caspanel from './caspanel.vue';
     import clickOutside from '../../directives/clickoutside';
-    import TransferDom from '../../directives/transfer-dom';
     import { oneOf } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
     import Locale from '../../mixins/locale';
     import mixinsForm from '../../mixins/form';
+    import globalConfig from '../../mixins/globalConfig';
 
     const prefixCls = 'ivu-cascader';
     const selectPrefixCls = 'ivu-select';
 
     export default {
         name: 'Cascader',
-        mixins: [ Emitter, Locale, mixinsForm ],
+        mixins: [ Locale, mixinsForm, globalConfig ],
         components: { iInput, Drop, Icon, Caspanel },
-        directives: { clickOutside, TransferDom },
+        directives: { clickOutside },
+        emits: ['on-change', 'on-visible-change', 'update:modelValue'],
         props: {
             data: {
                 type: Array,
@@ -81,7 +80,7 @@
                     return [];
                 }
             },
-            value: {
+            modelValue: {
                 type: Array,
                 default () {
                     return [];
@@ -103,7 +102,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             trigger: {
@@ -135,7 +135,8 @@
             transfer: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.transfer === '' ? false : this.$IVIEW.transfer;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
                 }
             },
             name: {
@@ -148,7 +149,8 @@
             capture: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW ? true : this.$IVIEW.capture;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW ? true : global.$IVIEW.capture;
                 }
             },
             transferClassName: {
@@ -168,7 +170,7 @@
                 selected: [],
                 tmpSelected: [],
                 updatingValue: false,    // to fix set value in changeOnSelect type
-                currentValue: this.value || [],
+                currentValue: this.modelValue || [],
                 query: '',
                 validDataStr: '',
                 isLoadedChildren: false,    // #950
@@ -253,35 +255,38 @@
             },
             // 3.4.0, global setting customArrow 有值时，arrow 赋值空
             arrowType () {
+                const config = this.globalConfig;
                 let type = 'ios-arrow-down';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.cascader.customArrow) {
+                if (config) {
+                    if (config.cascader.customArrow) {
                         type = '';
-                    } else if (this.$IVIEW.cascader.arrow) {
-                        type = this.$IVIEW.cascader.arrow;
+                    } else if (config.cascader.arrow) {
+                        type = config.cascader.arrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             customArrowType () {
+                const config = this.globalConfig;
                 let type = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.cascader.customArrow) {
-                        type = this.$IVIEW.cascader.customArrow;
+                if (config) {
+                    if (config.cascader.customArrow) {
+                        type = config.cascader.customArrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             arrowSize () {
+                const config = this.globalConfig;
                 let size = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.cascader.arrowSize) {
-                        size = this.$IVIEW.cascader.arrowSize;
+                if (config) {
+                    if (config.cascader.arrowSize) {
+                        size = config.cascader.arrowSize;
                     }
                 }
                 return size;
@@ -301,7 +306,7 @@
                 this.handleClose();
                 this.emitValue(this.currentValue, oldVal);
 //                this.$broadcast('on-clear');
-                this.broadcast('Caspanel', 'on-clear');
+//                 this.broadcast('Caspanel', 'on-clear'); // todo
             },
             handleClose () {
                 this.visible = false;
@@ -317,7 +322,7 @@
             onFocus () {
                 this.visible = true;
                 if (!this.currentValue.length) {
-                    this.broadcast('Caspanel', 'on-clear');
+                    // this.broadcast('Caspanel', 'on-clear'); // todo
                 }
             },
             updateResult (result) {
@@ -326,16 +331,17 @@
             updateSelected (init = false, changeOnSelectDataChange = false) {
                 // #2793 changeOnSelectDataChange used for changeOnSelect when data changed and set value
                 if (!this.changeOnSelect || init || changeOnSelectDataChange) {
-                    this.broadcast('Caspanel', 'on-find-selected', {
-                        value: this.currentValue
-                    });
+                    // todo
+                    // this.broadcast('Caspanel', 'on-find-selected', {
+                    //     value: this.currentValue
+                    // });
                 }
             },
             emitValue (val, oldVal) {
                 if (JSON.stringify(val) !== oldVal) {
                     this.$emit('on-change', this.currentValue, JSON.parse(JSON.stringify(this.selected)));
-                    this.$nextTick(() => {
-                        this.dispatch('FormItem', 'on-form-change', {
+                    nextTick(() => {
+                        this.handleFormItemChange('change', {
                             value: this.currentValue,
                             selected: JSON.parse(JSON.stringify(this.selected))
                         });
@@ -386,32 +392,33 @@
         },
         created () {
             this.validDataStr = JSON.stringify(this.getValidData(this.data));
-            this.$on('on-result-change', (params) => {
-                // lastValue: is click the final val
-                // fromInit: is this emit from update value
-                const lastValue = params.lastValue;
-                const changeOnSelect = params.changeOnSelect;
-                const fromInit = params.fromInit;
-
-                if (lastValue || changeOnSelect) {
-                    const oldVal = JSON.stringify(this.currentValue);
-                    this.selected = this.tmpSelected;
-
-                    let newVal = [];
-                    this.selected.forEach((item) => {
-                        newVal.push(item.value);
-                    });
-
-                    if (!fromInit) {
-                        this.updatingValue = true;
-                        this.currentValue = newVal;
-                        this.emitValue(this.currentValue, oldVal);
-                    }
-                }
-                if (lastValue && !fromInit) {
-                    this.handleClose();
-                }
-            });
+            // todo
+            // this.$on('on-result-change', (params) => {
+            //     // lastValue: is click the final val
+            //     // fromInit: is this emit from update value
+            //     const lastValue = params.lastValue;
+            //     const changeOnSelect = params.changeOnSelect;
+            //     const fromInit = params.fromInit;
+            //
+            //     if (lastValue || changeOnSelect) {
+            //         const oldVal = JSON.stringify(this.currentValue);
+            //         this.selected = this.tmpSelected;
+            //
+            //         let newVal = [];
+            //         this.selected.forEach((item) => {
+            //             newVal.push(item.value);
+            //         });
+            //
+            //         if (!fromInit) {
+            //             this.updatingValue = true;
+            //             this.currentValue = newVal;
+            //             this.emitValue(this.currentValue, oldVal);
+            //         }
+            //     }
+            //     if (lastValue && !fromInit) {
+            //         this.handleClose();
+            //     }
+            // });
         },
         mounted () {
             this.updateSelected(true);
@@ -425,7 +432,7 @@
                     if (this.transfer) {
                         this.$refs.drop.update();
                     }
-                    this.broadcast('Drop', 'on-update-popper');
+                    // this.broadcast('Drop', 'on-update-popper'); // todo
                 } else {
                     if (this.filterable) {
                         this.query = '';
@@ -434,11 +441,11 @@
                     if (this.transfer) {
                         this.$refs.drop.destroy();
                     }
-                    this.broadcast('Drop', 'on-destroy-popper');
+                    // this.broadcast('Drop', 'on-destroy-popper'); // todo
                 }
                 this.$emit('on-visible-change', val);
             },
-            value (val) {
+            modelValue (val) {
                 if (val === null) this.isValueNull = true;
                 this.currentValue = val || [];
                 if (val === null || !val.length) this.selected = [];
@@ -446,9 +453,9 @@
             currentValue () {
                 if (this.isValueNull) {
                     this.isValueNull = false;
-                    this.$emit('input', null);
+                    this.$emit('update:modelValue', null);
                 } else {
-                    this.$emit('input', this.currentValue);
+                    this.$emit('update:modelValue', this.currentValue);
                 }
                 if (this.updatingValue) {
                     this.updatingValue = false;
@@ -463,7 +470,7 @@
                     if (validDataStr !== this.validDataStr) {
                         this.validDataStr = validDataStr;
                         if (!this.isLoadedChildren) {
-                            this.$nextTick(() => this.updateSelected(false, this.changeOnSelect));
+                            nextTick(() => this.updateSelected(false, this.changeOnSelect));
                         }
                         this.isLoadedChildren = false;
                     }
