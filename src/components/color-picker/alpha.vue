@@ -37,6 +37,7 @@
     export default {
         name: 'Alpha',
         mixins: [ HSAMixin, Prefixes ],
+        emits: ['change'],
         data () {
             const normalStep = 1;
             const jumpStep = 10;
@@ -55,7 +56,7 @@
                 const start = toRGBAString({r, g, b, a: 0});
                 const finish = toRGBAString({r, g, b, a: 1});
 
-                return {background: `linear-gradient(to right, ${start} 0%, ${finish} 100%)`};
+                return { background: `linear-gradient(to right, ${start} 0%, ${finish} 100%)` };
             }
         },
         methods: {
