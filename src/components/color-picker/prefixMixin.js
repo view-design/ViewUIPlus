@@ -6,5 +6,5 @@ export default {
             iconPrefixCls: 'ivu-icon',
             transferPrefixCls: 'ivu-transfer',
         };
-    },
+    }
 };

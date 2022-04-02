@@ -1,11 +1,9 @@
-import Emitter from '../../mixins/emitter';
 import handleEscapeMixin from './handleEscapeMixin';
-import {getTouches} from './utils';
+import { getTouches } from './utils';
 import { on, off } from '../../utils/dom';
 
 export default {
-    mixins: [Emitter, handleEscapeMixin],
-
+    mixins: [ handleEscapeMixin ],
     props: {
         focused: {
             type: Boolean,
@@ -14,44 +12,41 @@ export default {
         value: {
             type: Object,
             default: undefined,
-        },
+        }
     },
-
-    beforeDestroy() {
-        this.unbindEventListeners();
-    },
-
-    created() {
+    created () {
         if (this.focused) {
             setTimeout(() => this.$el.focus(), 1);
         }
     },
-
+    beforeUnmount () {
+        this.unbindEventListeners();
+    },
     methods: {
-        handleLeft(e) {
+        handleLeft (e) {
             this.handleSlide(e, this.left, 'left');
         },
-        handleRight(e) {
+        handleRight (e) {
             this.handleSlide(e, this.right, 'right');
         },
-        handleUp(e) {
+        handleUp (e) {
             this.handleSlide(e, this.up, 'up');
         },
-        handleDown(e) {
+        handleDown (e) {
             this.handleSlide(e, this.down, 'down');
         },
-        handleMouseDown(e) {
-            this.dispatch('ColorPicker', 'on-dragging', true);
+        handleMouseDown (e) {
+            // this.dispatch('ColorPicker', 'on-dragging', true); // todo
             this.handleChange(e, true);
             // window.addEventListener('mousemove', this.handleChange, false);
             // window.addEventListener('mouseup', this.handleMouseUp, false);
             on(window, 'mousemove', this.handleChange);
             on(window, 'mouseup', this.handleMouseUp);
         },
-        handleMouseUp() {
+        handleMouseUp () {
             this.unbindEventListeners();
         },
-        unbindEventListeners() {
+        unbindEventListeners () {
             // window.removeEventListener('mousemove', this.handleChange);
             // window.removeEventListener('mouseup', this.handleMouseUp);
             off(window, 'mousemove', this.handleChange);
@@ -60,19 +55,19 @@ export default {
             // has the chance to run before the mouseup removes the dragging flag.
             setTimeout(() => this.dispatch('ColorPicker', 'on-dragging', false), 1);
         },
-        getLeft(e) {
+        getLeft (e) {
             const {container} = this.$refs;
             const xOffset = container.getBoundingClientRect().left + window.pageXOffset;
             const pageX = e.pageX || getTouches(e, 'PageX');
 
             return pageX - xOffset;
         },
-        getTop(e) {
+        getTop (e) {
             const {container} = this.$refs;
             const yOffset = container.getBoundingClientRect().top + window.pageYOffset;
             const pageY = e.pageY || getTouches(e, 'PageY');
 
             return pageY - yOffset;
-        },
-    },
+        }
+    }
 };

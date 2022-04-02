@@ -1,5 +1,5 @@
 import tinycolor from 'tinycolor2';
-import {oneOf} from '../../utils/assist';
+import { oneOf } from '../../utils/assist';
 
 function setAlpha(data, alpha) {
     const color = tinycolor(data);

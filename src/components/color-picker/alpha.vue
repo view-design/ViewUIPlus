@@ -29,75 +29,70 @@
         </div>
     </div>
 </template>
-
 <script>
-import HSAMixin from './hsaMixin';
-import Prefixes from './prefixMixin';
-import {clamp, toRGBAString} from './utils';
+    import HSAMixin from './hsaMixin';
+    import Prefixes from './prefixMixin';
+    import { clamp, toRGBAString } from './utils';
 
-export default {
-    name: 'Alpha',
+    export default {
+        name: 'Alpha',
+        mixins: [ HSAMixin, Prefixes ],
+        data () {
+            const normalStep = 1;
+            const jumpStep = 10;
 
-    mixins: [HSAMixin, Prefixes],
-
-    data() {
-        const normalStep = 1;
-        const jumpStep = 10;
-
-        return {
-            left: -normalStep,
-            right: normalStep,
-            up: jumpStep,
-            down: -jumpStep,
-            powerKey: 'shiftKey',
-        };
-    },
-
-    computed: {
-        gradientStyle() {
-            const {r, g, b} = this.value.rgba;
-            const start = toRGBAString({r, g, b, a: 0});
-            const finish = toRGBAString({r, g, b, a: 1});
-
-            return {background: `linear-gradient(to right, ${start} 0%, ${finish} 100%)`};
+            return {
+                left: -normalStep,
+                right: normalStep,
+                up: jumpStep,
+                down: -jumpStep,
+                powerKey: 'shiftKey',
+            };
         },
-    },
+        computed: {
+            gradientStyle () {
+                const {r, g, b} = this.value.rgba;
+                const start = toRGBAString({r, g, b, a: 0});
+                const finish = toRGBAString({r, g, b, a: 1});
 
-    methods: {
-        change(newAlpha) {
-            const {h, s, l} = this.value.hsl;
-            const {a} = this.value;
-
-            if (a !== newAlpha) {
-                this.$emit('change', {h, s, l, a: newAlpha, source: 'rgba'});
+                return {background: `linear-gradient(to right, ${start} 0%, ${finish} 100%)`};
             }
         },
-        handleSlide(e, direction) {
-            e.preventDefault();
-            e.stopPropagation();
+        methods: {
+            change (newAlpha) {
+                const { h, s, l } = this.value.hsl;
+                const { a } = this.value;
 
-            this.change(clamp(e[this.powerKey] ? direction : Math.round(this.value.hsl.a * 100 + direction) / 100, 0, 1));
-        },
-        handleChange(e) {
-            e.preventDefault();
-            e.stopPropagation();
+                if (a !== newAlpha) {
+                    this.$emit('change', {h, s, l, a: newAlpha, source: 'rgba'});
+                }
+            },
+            handleSlide (e, direction) {
+                e.preventDefault();
+                e.stopPropagation();
 
-            const left = this.getLeft(e);
+                this.change(clamp(e[this.powerKey] ? direction : Math.round(this.value.hsl.a * 100 + direction) / 100, 0, 1));
+            },
+            handleChange (e) {
+                e.preventDefault();
+                e.stopPropagation();
 
-            if (left < 0) {
-                this.change(0);
-                return;
+                const left = this.getLeft(e);
+
+                if (left < 0) {
+                    this.change(0);
+                    return;
+                }
+
+                const { clientWidth } = this.$refs.container;
+
+                if (left > clientWidth) {
+                    this.change(1);
+                    return;
+                }
+
+                this.change(Math.round(left * 100 / clientWidth) / 100);
             }
-
-            const {clientWidth} = this.$refs.container;
-
-            if (left > clientWidth) {
-                this.change(1);
-                return;
-            }
-
-            this.change(Math.round(left * 100 / clientWidth) / 100);
-        },
-    },
-};
+        }
+    };
 </script>

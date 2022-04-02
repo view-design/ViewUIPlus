@@ -29,7 +29,7 @@ import CheckboxGroup from './components/checkbox-group';
 import Circle from './components/circle';
 import Col from './components/col';
 import Collapse from './components/collapse';
-// import ColorPicker from './components/color-picker';
+import ColorPicker from './components/color-picker';
 import Content from './components/content';
 // import DatePicker from './components/date-picker';
 import Divider from './components/divider';
@@ -113,7 +113,7 @@ const components = {
     Circle,
     Col,
     Collapse,
-    // ColorPicker,
+    ColorPicker,
     Content,
     // DatePicker,
     Divider,
@@ -228,6 +228,11 @@ const install = function(app, opts = {}) {
             customArrow: opts.select ? opts.select.customArrow ? opts.select.customArrow : '' : '',
             arrowSize: opts.select ? opts.select.arrowSize ? opts.select.arrowSize : '' : ''
         },
+        colorPicker: {
+            arrow: opts.colorPicker ? opts.colorPicker.arrow ? opts.colorPicker.arrow : '' : '',
+            customArrow: opts.colorPicker ? opts.colorPicker.customArrow ? opts.colorPicker.customArrow : '' : '',
+            arrowSize: opts.colorPicker ? opts.colorPicker.arrowSize ? opts.colorPicker.arrowSize : '' : ''
+        },
     }
     // app.prototype.$IVIEW = {
     //     tree: {
@@ -242,11 +247,6 @@ const install = function(app, opts = {}) {
     //         itemArrow: opts.cascader ? opts.cascader.itemArrow ? opts.cascader.itemArrow : '' : '',
     //         customItemArrow: opts.cascader ? opts.cascader.customItemArrow ? opts.cascader.customItemArrow : '' : '',
     //         itemArrowSize: opts.cascader ? opts.cascader.itemArrowSize ? opts.cascader.itemArrowSize : '' : ''
-    //     },
-    //     colorPicker: {
-    //         arrow: opts.colorPicker ? opts.colorPicker.arrow ? opts.colorPicker.arrow : '' : '',
-    //         customArrow: opts.colorPicker ? opts.colorPicker.customArrow ? opts.colorPicker.customArrow : '' : '',
-    //         arrowSize: opts.colorPicker ? opts.colorPicker.arrowSize ? opts.colorPicker.arrowSize : '' : ''
     //     },
     //     datePicker: {
     //         icon: opts.datePicker ? opts.datePicker.icon ? opts.datePicker.icon : '' : '',
