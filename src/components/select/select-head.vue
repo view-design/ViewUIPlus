@@ -8,9 +8,9 @@
         <div
             class="ivu-tag ivu-tag-checked"
             v-for="(item, index) in selectedMultiple"
-            v-if="maxTagCount === undefined || index < maxTagCount">
+            :key="index">
             <span class="ivu-tag-text" :class="{ 'ivu-select-multiple-tag-hidden': item.disabled }">{{ item.tag !== undefined ? item.tag : item.label }}</span>
-            <Icon type="ios-close" v-if="!item.disabled" @click.native.stop="removeTag(item)"></Icon>
+            <Icon type="ios-close" v-if="!item.disabled" @click.stop="removeTag(item)"></Icon>
         </div><div class="ivu-tag ivu-tag-checked" v-if="maxTagCount !== undefined && selectedMultiple.length > maxTagCount">
             <span class="ivu-tag-text ivu-select-max-tag">
                 <template v-if="maxTagPlaceholder">{{ maxTagPlaceholder(selectedMultiple.length - maxTagCount) }}</template>
@@ -39,21 +39,23 @@
             @blur="onInputBlur"
 
             ref="input">
-        <Icon type="ios-close-circle" :class="[prefixCls + '-arrow']" v-if="resetSelect" @click.native.stop="onClear"></Icon>
+        <Icon type="ios-close-circle" :class="[prefixCls + '-arrow']" v-if="resetSelect" @click.stop="onClear"></Icon>
         <Icon :type="arrowType" :custom="customArrowType" :size="arrowSize" :class="[prefixCls + '-arrow']" v-if="!resetSelect && !remote"></Icon>
     </div>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import Icon from '../icon';
-    import Emitter from '../../mixins/emitter';
     import Locale from '../../mixins/locale';
+    import globalConfig from '../../mixins/globalConfig';
 
     const prefixCls = 'ivu-select';
 
     export default {
         name: 'iSelectHead',
-        mixins: [ Emitter, Locale ],
+        mixins: [ Locale, globalConfig ],
         components: { Icon },
+        emits: ['on-input-focus', 'on-input-blur', 'on-keydown', 'on-enter', 'on-clear', 'on-query-change'],
         props: {
             disabled: {
                 type: Boolean,
@@ -122,15 +124,15 @@
             };
         },
         computed: {
-            singleDisplayClasses(){
-                const {filterable, multiple, showPlaceholder} = this;
+            singleDisplayClasses () {
+                const { filterable, multiple, showPlaceholder } = this;
                 return [{
                     [prefixCls + '-head-with-prefix']: this.$slots.prefix || this.prefix,
                     [prefixCls + '-placeholder']: showPlaceholder && !filterable,
                     [prefixCls + '-selected-value']: !showPlaceholder && !multiple && !filterable,
                 }];
             },
-            singleDisplayValue(){
+            singleDisplayValue () {
                 if ((this.multiple && this.values.length > 0) || this.filterable) return '';
                 return `${this.selectedSingle}` || this.localePlaceholder;
             },
@@ -148,7 +150,7 @@
                 }
                 return status;
             },
-            resetSelect(){
+            resetSelect () {
                 return !this.showPlaceholder && this.clearable;
             },
             inputStyle () {
@@ -171,12 +173,15 @@
                     return this.placeholder;
                 }
             },
-            selectedSingle(){
+            selectedSingle () {
                 const selected = this.values[0];
                 return selected ? selected.label : (this.remoteInitialLabel || '');
             },
-            selectedMultiple(){
-                return this.multiple ? this.values : [];
+            selectedMultiple () {
+                const values = this.multiple ? this.values : [];
+                values.filter((item, index) => this.maxTagCount === undefined || index < this.maxTagCount);
+
+                return values;
             },
             // 使用 prefix 时，在 filterable
             headCls () {
@@ -186,42 +191,45 @@
             },
             // 3.4.0, global setting customArrow 有值时，arrow 赋值空
             arrowType () {
+                const config = this.globalConfig;
                 let type = 'ios-arrow-down';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.select.customArrow) {
+                if (config) {
+                    if (config.select.customArrow) {
                         type = '';
-                    } else if (this.$IVIEW.select.arrow) {
-                        type = this.$IVIEW.select.arrow;
+                    } else if (config.select.arrow) {
+                        type = config.select.arrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             customArrowType () {
+                const config = this.globalConfig;
                 let type = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.select.customArrow) {
-                        type = this.$IVIEW.select.customArrow;
+                if (config) {
+                    if (config.select.customArrow) {
+                        type = config.select.customArrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             arrowSize () {
+                const config = this.globalConfig;
                 let size = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.select.arrowSize) {
-                        size = this.$IVIEW.select.arrowSize;
+                if (config) {
+                    if (config.select.arrowSize) {
+                        size = config.select.arrowSize;
                     }
                 }
                 return size;
             }
         },
         methods: {
-            onInputFocus(){
+            onInputFocus () {
                 this.$emit('on-input-focus');
             },
             onInputBlur () {
@@ -231,7 +239,7 @@
             },
             removeTag (value) {
                 if (this.disabled) return false;
-                this.dispatch('iSelect', 'on-select-selected', value);
+                // this.dispatch('iSelect', 'on-select-selected', value); // todo
             },
             resetInputState () {
                 this.inputLength = this.$refs.input.value.length * 12 + 20;
@@ -248,12 +256,12 @@
                 // #926
                 if (this.showCreateItem) e.stopPropagation();
             },
-            onHeaderClick(e){
+            onHeaderClick (e) {
                 if (this.filterable && e.target === this.$el){
                     this.$refs.input.focus();
                 }
             },
-            onClear(){
+            onClear () {
                 this.$emit('on-clear');
             }
         },
@@ -269,7 +277,7 @@
                 // #982
                 if (typeof value === 'undefined' || value === '' || value === null) this.query = '';
                 else this.query = value.label;
-                this.$nextTick(() => this.preventRemoteCall = false); // this should be after the query change setter above
+                nextTick(() => this.preventRemoteCall = false); // this should be after the query change setter above
             },
             query (val) {
                 if (this.preventRemoteCall) {
@@ -279,7 +287,7 @@
 
                 this.$emit('on-query-change', val);
             },
-            queryProp(query){
+            queryProp (query ){
                 if (query !== this.query) this.query = query;
             },
         }

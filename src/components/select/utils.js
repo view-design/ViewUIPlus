@@ -1,3 +1,5 @@
+import { nextTick } from 'vue';
+
 export function debounce(fn) {
     let waiting;
     return function() {
@@ -9,6 +11,6 @@ export function debounce(fn) {
             waiting = false;
             fn.apply(context, args);
         };
-        this.$nextTick(later);
+        nextTick(later);
     };
 }

@@ -50,58 +50,57 @@
                     @on-clear="clearSingleSelect"
                     @on-enter="handleCreateItem"
                 >
-                    <slot name="prefix" slot="prefix"></slot>
+                    <template #prefix>
+                        <slot name="prefix"></slot>
+                    </template>
                 </select-head>
             </slot>
         </div>
-        <transition name="transition-drop">
-            <Drop
-                :class="dropdownCls"
-                v-show="dropVisible"
-                :placement="placement"
-                ref="dropdown"
-                :data-transfer="transfer"
-                :transfer="transfer"
-                v-transfer-dom
-                :eventsEnabled="eventsEnabled"
+        <Drop
+            ref="dropdown"
+            :class="dropdownCls"
+            :visible="dropVisible"
+            :placement="placement"
+            :eventsEnabled="eventsEnabled"
+            transition-name="transition-drop"
+        >
+            <ul v-show="showNotFoundLabel && !allowCreate" :class="[prefixCls + '-not-found']"><li>{{ localeNotFoundText }}</li></ul>
+
+            <functional-options
+                v-if="(!remote) || (remote && !loading)"
+                :options="selectOptions"
+                :slot-update-hook="updateSlotOptions"
+                :slot-options="slotOptions"
+                :class="prefixCls + '-dropdown-list'"
             >
-                <ul v-show="showNotFoundLabel && !allowCreate" :class="[prefixCls + '-not-found']"><li>{{ localeNotFoundText }}</li></ul>
+                <li :class="prefixCls + '-item'" v-if="showCreateItem" @click="handleCreateItem">
+                    {{ query }}
+                    <Icon type="md-return-left" :class="prefixCls + '-item-enter'" />
+                </li>
+            </functional-options>
+            <ul :class="prefixCls + '-dropdown-list'" v-else>
+                <li :class="prefixCls + '-item'" v-if="showCreateItem" @click="handleCreateItem">
+                    {{ query }}
+                    <Icon type="md-return-left" :class="prefixCls + '-item-enter'" />
+                </li>
+            </ul>
 
-                <functional-options
-                    v-if="(!remote) || (remote && !loading)"
-                    :options="selectOptions"
-                    :slot-update-hook="updateSlotOptions"
-                    :slot-options="slotOptions"
-                    :class="prefixCls + '-dropdown-list'"
-                >
-                    <li :class="prefixCls + '-item'" v-if="showCreateItem" @click="handleCreateItem">
-                        {{ query }}
-                        <Icon type="md-return-left" :class="prefixCls + '-item-enter'" />
-                    </li>
-                </functional-options>
-                <ul :class="prefixCls + '-dropdown-list'" v-else>
-                    <li :class="prefixCls + '-item'" v-if="showCreateItem" @click="handleCreateItem">
-                        {{ query }}
-                        <Icon type="md-return-left" :class="prefixCls + '-item-enter'" />
-                    </li>
-                </ul>
-
-                <ul v-show="loading" :class="[prefixCls + '-loading']">{{ localeLoadingText }}</ul>
-            </Drop>
-        </transition>
+            <ul v-show="loading" :class="[prefixCls + '-loading']">{{ localeLoadingText }}</ul>
+        </Drop>
     </div>
 </template>
 <script>
+    import { getCurrentInstance, nextTick } from 'vue';
+
     import Drop from './dropdown.vue';
     import Icon from '../icon';
-    import {directive as clickOutside} from '../../directives/v-click-outside-x';
-    import TransferDom from '../../directives/transfer-dom';
-    import { oneOf, findComponentsDownward } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
-    import mixinsForm from '../../mixins/form';
-    import Locale from '../../mixins/locale';
     import SelectHead from './select-head.vue';
     import FunctionalOptions from './functional-options.vue';
+
+    import { directive as clickOutside } from '../../directives/v-click-outside-x';
+    import { oneOf } from '../../utils/assist';
+    import mixinsForm from '../../mixins/form';
+    import Locale from '../../mixins/locale';
 
     const prefixCls = 'ivu-select';
     const optionRegexp = /^i-option$|^Option$/i;
@@ -171,11 +170,17 @@
 
     export default {
         name: 'iSelect',
-        mixins: [ Emitter, Locale, mixinsForm ],
+        mixins: [ Locale, mixinsForm ],
         components: { FunctionalOptions, Drop, SelectHead, Icon },
-        directives: { clickOutside, TransferDom },
+        directives: { clickOutside },
+        emits: ['on-set-default-options', 'on-clear', 'on-clickoutside', 'on-select', 'on-create', 'on-change', 'on-query-change', 'on-open-change', 'update:modelValue'],
+        provide () {
+            return {
+                SelectInstance: this
+            }
+        },
         props: {
-            value: {
+            modelValue: {
                 type: [String, Number, Array],
                 default: ''
             },
@@ -226,7 +231,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             labelInValue: {
@@ -245,7 +251,8 @@
             transfer: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.transfer === '' ? false : this.$IVIEW.transfer;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
                 }
             },
             // Use for AutoComplete
@@ -283,7 +290,8 @@
             capture: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW ? true : this.$IVIEW.capture;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW ? true : global.$IVIEW.capture;
                 }
             },
             // 4.2.0
@@ -299,7 +307,7 @@
             }
         },
         mounted(){
-            this.$on('on-select-selected', this.onOptionClick);
+            // this.$on('on-select-selected', this.onOptionClick); // todo
 
             // set the initial values if there are any
             if (!this.remote && this.selectOptions.length > 0){
@@ -312,11 +320,11 @@
             this.checkUpdateStatus();
 
             // remote search, set default-label
-            if (this.remote && this.value && this.defaultLabel) {
+            if (this.remote && this.modelValue && this.defaultLabel) {
                 if (!this.multiple) {
                     this.query = this.defaultLabel;
-                } else if (this.multiple && (this.defaultLabel instanceof Array) && this.value.length === this.defaultLabel.length) {
-                    const values = this.value.map((item, index) => {
+                } else if (this.multiple && (this.defaultLabel instanceof Array) && this.modelValue.length === this.defaultLabel.length) {
+                    const values = this.modelValue.map((item, index) => {
                         return {
                             value: item,
                             label: this.defaultLabel[index]
@@ -330,7 +338,7 @@
             }
         },
         beforeUnmount () {
-            this.$off('on-select-selected');
+            // this.$off('on-select-selected'); // todo
         },
         data () {
             return {
@@ -453,7 +461,7 @@
                     const selectedSlotOption = autoCompleteOptions[currentIndex];
 
                     return slotOptions.map(node => {
-                        if (node === selectedSlotOption || getNestedProperty(node, 'componentOptions.propsData.value') === this.value) return applyProp(node, 'isFocused', true);
+                        if (node === selectedSlotOption || getNestedProperty(node, 'componentOptions.propsData.value') === this.modelValue) return applyProp(node, 'isFocused', true);
                         return copyChildren(node, (child) => {
                             if (child !== selectedSlotOption) return child;
                             return applyProp(child, 'isFocused', true);
@@ -521,7 +529,7 @@
             },
             clearSingleSelect(){ // PUBLIC API
                 // fix #446
-                if (!this.multiple) this.$emit('input', '');
+                if (!this.multiple) this.$emit('update:modelValue', '');
                 this.$emit('on-clear');
                 this.hideMenu();
                 if (this.clearable) this.reset();
@@ -592,7 +600,7 @@
                 this.visible = typeof force !== 'undefined' ? force : !this.visible;
                 if (this.visible){
                     this.dropDownWidth = this.$el.getBoundingClientRect().width;
-                    this.broadcast('Drop', 'on-update-popper');
+                    // this.broadcast('Drop', 'on-update-popper'); // todo
                 }
             },
             hideMenu () {
@@ -619,7 +627,7 @@
                     if (this.filterable) {
                         const input = this.$el.querySelector('input[type="text"]');
                         this.caretPosition = input.selectionStart;
-                        this.$nextTick(() => {
+                        nextTick(() => {
                             const caretPosition = this.caretPosition === -1 ? input.value.length : this.caretPosition;
                             input.setSelectionRange(caretPosition, caretPosition);
                         });
@@ -746,10 +754,10 @@
 
                 if (this.filterable){
                     const inputField = this.$el.querySelector('input[type="text"]');
-                    if (!this.autoComplete) this.$nextTick(() => inputField.focus());
+                    if (!this.autoComplete) nextTick(() => inputField.focus());
                 }
                 this.$emit('on-select', option); // # 4441
-                this.broadcast('Drop', 'on-update-popper');
+                // this.broadcast('Drop', 'on-update-popper'); // todo
                 setTimeout(() => {
                     this.filterQueryChange = false;
                 }, ANIMATION_TIMEOUT);
@@ -802,23 +810,23 @@
                         tag: undefined
                     };
                     // 单选（和多选，#926）时如果不在 nextTick 里执行，无法赋值
-                    this.$nextTick(() => this.onOptionClick(option));
+                    nextTick(() => this.onOptionClick(option));
                 }
             }
         },
         watch: {
-            value(value){
-                const {getInitialValue, getOptionData, publicValue, values} = this;
+            modelValue (value) {
+                const { getInitialValue, getOptionData, publicValue, values } = this;
 
                 this.checkUpdateStatus();
 
                 if (value === '') this.values = [];
                 else if (checkValuesNotEqual(value,publicValue,values)) {
-                    this.$nextTick(() => this.values = getInitialValue().map(getOptionData).filter(Boolean));
-                    if (!this.multiple) this.dispatch('FormItem', 'on-form-change', this.publicValue);
+                    nextTick(() => this.values = getInitialValue().map(getOptionData).filter(Boolean));
+                    // if (!this.multiple) this.dispatch('FormItem', 'on-form-change', this.publicValue); // todo
                 }
             },
-            values(now, before){
+            values (now, before) {
                 const newValue = JSON.stringify(now);
                 const oldValue = JSON.stringify(before);
                 // v-model is always just the value, event with labelInValue === true
@@ -827,7 +835,7 @@
                 //     this.publicValue;
                 // 改变 labelInValue 的实现：直接在 emit 时改数据
                 let vModelValue = this.publicValue;
-                const shouldEmitInput = newValue !== oldValue && vModelValue !== this.value;
+                const shouldEmitInput = newValue !== oldValue && vModelValue !== this.modelValue;
                 if (shouldEmitInput) {
                     let emitValue = this.publicValue;
                     if (this.labelInValue) {
@@ -839,12 +847,12 @@
                     }
 
                     // Form 重置时，如果初始值是 null，也置为 null，而不是 []
-                    if (Array.isArray(vModelValue) && !vModelValue.length && this.value === null) vModelValue = null;
-                    else if (vModelValue === undefined && this.value === null) vModelValue = null;
+                    if (Array.isArray(vModelValue) && !vModelValue.length && this.modelValue === null) vModelValue = null;
+                    else if (vModelValue === undefined && this.modelValue === null) vModelValue = null;
 
-                    this.$emit('input', vModelValue); // to update v-model
+                    this.$emit('update:modelValue', vModelValue); // to update v-model
                     this.$emit('on-change', emitValue);
-                    this.dispatch('FormItem', 'on-form-change', emitValue);
+                    // this.dispatch('FormItem', 'on-form-change', emitValue); // todo
                 }
             },
             query (query) {
@@ -866,12 +874,12 @@
                 }
                 if (query !== '' && this.remote) this.lastRemoteQuery = query;
             },
-            loading(state){
+            loading (state) {
                 if (state === false){
                     this.updateSlotOptions();
                 }
             },
-            isFocused(focused){
+            isFocused (focused) {
                 const el = this.filterable ? this.$el.querySelector('input[type="text"]') : this.$el;
                 el[this.isFocused ? 'focus' : 'blur']();
 
@@ -885,7 +893,7 @@
                     }
                 }
             },
-            focusIndex(index){
+            focusIndex (index) {
                 if (index < 0 || this.autoComplete) return;
                 // update scroll
                 const optionValue = this.flatOptions[index].componentOptions.propsData.value;
@@ -902,10 +910,10 @@
                     this.$refs.dropdown.$el.scrollTop += topOverflowDistance;
                 }
             },
-            dropVisible(open){
-                this.broadcast('Drop', open ? 'on-update-popper' : 'on-destroy-popper');
+            dropVisible (open) {
+                // this.broadcast('Drop', open ? 'on-update-popper' : 'on-destroy-popper'); // todo
             },
-            selectOptions(){
+            selectOptions () {
                 if (this.hasExpectedValue && this.selectOptions.length > 0){
                     if (this.values.length === 0) {
                         this.values = this.getInitialValue();
@@ -920,12 +928,12 @@
 
                  // 当 dropdown 一开始在控件下部显示，而滚动页面后变成在上部显示，如果选项列表的长度由内部动态变更了(搜索情况)
                  // dropdown 的位置不会重新计算，需要重新计算
-                this.broadcast('Drop', 'on-update-popper');
+                // this.broadcast('Drop', 'on-update-popper'); // todo
             },
-            visible(state){
+            visible (state) {
                 this.$emit('on-open-change', state);
             },
-            slotOptions(options, old){
+            slotOptions (options, old) {
                 // #4626，当 Options 的 label 更新时，v-model 的值未更新
                 // remote 下，调用 getInitialValue 有 bug
                 if (!this.remote) {
@@ -938,7 +946,7 @@
                 // 当 dropdown 在控件上部显示时，如果选项列表的长度由外部动态变更了，
                 // dropdown 的位置会有点问题，需要重新计算
                 if (options && old && options.length !== old.length) {
-                    this.broadcast('Drop', 'on-update-popper');
+                    // this.broadcast('Drop', 'on-update-popper'); // todo
                 }
             },
         }

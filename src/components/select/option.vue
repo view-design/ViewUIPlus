@@ -6,7 +6,6 @@
     ><slot>{{ showLabel }}</slot></li>
 </template>
 <script>
-    import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
     import { findComponentUpward } from '../../utils/assist';
 
@@ -15,7 +14,8 @@
     export default {
         name: 'iOption',
         componentName: 'select-item',
-        mixins: [ Emitter, mixinsForm ],
+        mixins: [ mixinsForm ],
+        emits: ['on-select-selected'],
         props: {
             value: {
                 type: [String, Number],
@@ -69,11 +69,12 @@
             select () {
                 if (this.itemDisabled) return false;
 
-                this.dispatch('iSelect', 'on-select-selected', {
-                    value: this.value,
-                    label: this.optionLabel,
-                    tag: this.tag
-                });
+                // todo
+                // this.dispatch('iSelect', 'on-select-selected', {
+                //     value: this.value,
+                //     label: this.optionLabel,
+                //     tag: this.tag
+                // });
                 this.$emit('on-select-selected', {
                     value: this.value,
                     label: this.optionLabel,
@@ -84,6 +85,6 @@
         mounted () {
             const Select = findComponentUpward(this, 'iSelect');
             if (Select) this.autoComplete = Select.autoComplete;
-        },
+        }
     };
 </script>

@@ -146,10 +146,10 @@ const router = createRouter({
         //     path: '/cascader',
         //     component: (resolve) => require(['./routers/cascader.vue'], resolve)
         // },
-        // {
-        //     path: '/select',
-        //     component: (resolve) => require(['./routers/select.vue'], resolve)
-        // },
+        {
+            path: '/select',
+            component: () => import('./routers/select.vue')
+        },
         {
             path: '/backtop',
             component: () => import('./routers/back-top.vue')

@@ -7,6 +7,7 @@
     </li>
 </template>
 <script>
+    import { nextTick } from 'vue';
     const prefixCls = 'ivu-select-group';
 
     export default {
@@ -25,7 +26,7 @@
         },
         methods: {
             queryChange () {
-                this.$nextTick(() => {
+                nextTick(() => {
                     const options = this.$refs.options.querySelectorAll('.ivu-select-item');
                     let hasVisibleOption = false;
                     for (let i = 0; i < options.length; i++) {
@@ -39,13 +40,15 @@
             }
         },
         mounted () {
-            this.$on('on-query-change', () => {
-                this.queryChange();
-                return true;
-            });
+            // todo
+            // this.$on('on-query-change', () => {
+            //     this.queryChange();
+            //     return true;
+            // });
         },
-        beforeUnmount() {
-            this.$off('on-query-change');
+        beforeUnmount () {
+            // todo
+            // this.$off('on-query-change');
         }
     };
 </script>

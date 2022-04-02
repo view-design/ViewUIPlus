@@ -57,6 +57,8 @@ import MenuItem from './components/menu-item';
 import Message from './components/message';
 import Modal from './components/modal';
 import Notice from './components/notice';
+import Option from './components/option';
+import OptionGroup from './components/option-group';
 // import Page from './components/page';
 import Panel from './components/panel';
 import Poptip from './components/poptip';
@@ -65,6 +67,7 @@ import Radio from './components/radio';
 import RadioGroup from './components/radio-group';
 import Rate from './components/rate';
 import Row from './components/row';
+import Select from './components/select';
 import Sider from './components/sider';
 import Slider from './components/slider';
 import Spin from './components/spin';
@@ -84,7 +87,6 @@ import Tooltip from './components/tooltip';
 import Transfer from './components/transfer';
 // import Tree from './components/tree';
 import Upload from './components/upload';
-// import { Select, Option, OptionGroup } from './components/select';
 // import locale from './locale/index';
 
 const components = {
@@ -137,8 +139,8 @@ const components = {
     Message,
     Modal,
     Notice,
-    // Option: Option,
-    // OptionGroup,
+    Option,
+    OptionGroup,
     // Page,
     Panel,
     Poptip,
@@ -148,7 +150,7 @@ const components = {
     Rate,
     Row,
     Scroll,
-    // Select,
+    Select,
     Sider,
     Slider,
     Split,
@@ -182,9 +184,9 @@ const iview = {
     iHeader: Header,
     // iInput: Input,
     // iMenu: Menu,
-    // iOption: Option,
+    iOption: Option,
     iProgress: Progress,
-    // iSelect: Select,
+    iSelect: Select,
     iSwitch: Switch,
     // iTable: Table,
     // iTime: Time
@@ -221,13 +223,13 @@ const install = function(app, opts = {}) {
             customCloseIcon: opts.tabs ? opts.tabs.customCloseIcon ? opts.tabs.customCloseIcon : '' : '',
             closeIconSize: opts.tabs ? opts.tabs.closeIconSize ? opts.tabs.closeIconSize : '' : ''
         },
+        select: {
+            arrow: opts.select ? opts.select.arrow ? opts.select.arrow : '' : '',
+            customArrow: opts.select ? opts.select.customArrow ? opts.select.customArrow : '' : '',
+            arrowSize: opts.select ? opts.select.arrowSize ? opts.select.arrowSize : '' : ''
+        },
     }
     // app.prototype.$IVIEW = {
-    //     select: {
-    //         arrow: opts.select ? opts.select.arrow ? opts.select.arrow : '' : '',
-    //         customArrow: opts.select ? opts.select.customArrow ? opts.select.customArrow : '' : '',
-    //         arrowSize: opts.select ? opts.select.arrowSize ? opts.select.arrowSize : '' : ''
-    //     },
     //     tree: {
     //         arrow: opts.tree ? opts.tree.arrow ? opts.tree.arrow : '' : '',
     //         customArrow: opts.tree ? opts.tree.customArrow ? opts.tree.customArrow : '' : '',
