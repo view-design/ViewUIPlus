@@ -179,7 +179,8 @@
                 query: '',
                 validDataStr: '',
                 isLoadedChildren: false,    // #950
-                isValueNull: false // hack：解决 value 置为 null 时，$emit:input [] 而不是 null
+                isValueNull: false, // hack：解决 value 置为 null 时，$emit:input [] 而不是 null
+                caspanelList: []
             };
         },
         computed: {
@@ -310,7 +311,6 @@
                 this.currentValue = this.selected = this.tmpSelected = [];
                 this.handleClose();
                 this.emitValue(this.currentValue, oldVal);
-//                this.$broadcast('on-clear');
 //                 this.broadcast('Caspanel', 'on-clear'); // todo
             },
             handleClose () {

@@ -16,6 +16,7 @@
     import { nextTick } from 'vue';
     import Casitem from './casitem.vue';
     import { findComponentUpward } from '../../utils/assist';
+    import random from '../../utils/random_str';
 
     let key = 1;
 
@@ -23,6 +24,11 @@
         name: 'Caspanel',
         components: { Casitem },
         inject: ['CascaderInstance'],
+        provide () {
+            return {
+                CaspanelInstance: this
+            }
+        },
         props: {
             data: {
                 type: Array,
@@ -39,7 +45,9 @@
             return {
                 tmpItem: {},
                 result: [],
-                sublist: []
+                sublist: [],
+                id: random(6),
+                childCaspanelList: []
             };
         },
         watch: {
@@ -168,7 +176,45 @@
                     //     Caspanel.$emit('on-clear', true);
                     // }
                 }
+            },
+            addCaspanel () {
+                const root = this.CascaderInstance;
+                if (!root.caspanelList) root.caspanelList = [];
+                root.caspanelList.push({
+                    id: this.id,
+                    caspanel: this
+                });
+
+                const parentCaspanel = findComponentUpward(this, 'Caspanel');
+                if (parentCaspanel) {
+                    if (!parentCaspanel.childCaspanelList) parentCaspanel.childCaspanelList = [];
+                    parentCaspanel.childCaspanelList.push({
+                        id: this.id,
+                        caspanel: this
+                    });
+                }
+            },
+            removeCaspanel () {
+                const root = this.CascaderInstance;
+                if (root.caspanelList && root.caspanelList.length) {
+                    const index = root.caspanelList.findIndex(item => item.id === this.id);
+                    root.caspanelList.splice(index, 1);
+                }
+
+                const parentCaspanel = findComponentUpward(this, 'Caspanel');
+                if (parentCaspanel) {
+                    if (parentCaspanel.childCaspanelList && parentCaspanel.childCaspanelList.length) {
+                        const index = parentCaspanel.childCaspanelList.findIndex(item => item.id === this.id);
+                        parentCaspanel.childCaspanelList.splice(index, 1);
+                    }
+                }
             }
+        },
+        mounted () {
+            this.addCaspanel();
+        },
+        beforeUnmount () {
+            this.removeCaspanel();
         }
     };
 </script>
