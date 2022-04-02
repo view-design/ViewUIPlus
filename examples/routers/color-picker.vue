@@ -1,12 +1,13 @@
 <template>
     <Row>
-        <Col span="12">
-            有默认值
-            <ColorPicker v-model="color1" />
+        <Col span="8">
+            <ColorPicker v-model="color6" size="large" />
         </Col>
-        <Col span="12">
-            无默认值
-            <ColorPicker v-model="color2" />
+        <Col span="8">
+            <ColorPicker v-model="color6" />
+        </Col>
+        <Col span="8">
+            <ColorPicker v-model="color6" size="small" />
         </Col>
     </Row>
 </template>
@@ -14,8 +15,7 @@
 export default {
     data () {
         return {
-            color1: '#19be6b',
-            color2: ''
+            color6: '#19be6b'
         }
     }
 }
