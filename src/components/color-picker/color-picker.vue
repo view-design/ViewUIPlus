@@ -29,86 +29,73 @@
                 </div>
             </div>
         </div>
-        <transition name="transition-drop">
-            <Drop
-                v-transfer-dom
-                v-show="visible"
-                ref="drop"
-                :placement="placement"
-                :data-transfer="transfer"
-                :transfer="transfer"
-                :class="dropClasses"
-                :eventsEnabled="eventsEnabled"
-            >
-                <transition name="fade">
-                    <div
-                        v-if="visible"
-                        :class="[prefixCls + '-picker']">
-                        <div :class="[prefixCls + '-picker-wrapper']">
-                            <div :class="[prefixCls + '-picker-panel']">
-                                <Saturation
-                                    ref="saturation"
-                                    v-model="saturationColors"
-                                    :focused="visible"
-                                    @change="childChange"
-                                    @keydown.tab="handleFirstTab"
-                                ></Saturation>
-                            </div>
-                            <div
-                                v-if="hue"
-                                :class="[prefixCls + '-picker-hue-slider']">
-                                <Hue
-                                    v-model="saturationColors"
-                                    @change="childChange"></Hue>
-                            </div>
-                            <div
-                                v-if="alpha"
-                                :class="[prefixCls + '-picker-alpha-slider']">
-                                <Alpha
-                                    v-model="saturationColors"
-                                    @change="childChange"></Alpha>
-                            </div>
-                            <recommend-colors
-                                v-if="colors.length"
-                                :list="colors"
-                                :class="[prefixCls + '-picker-colors']"
-                                @picker-color="handleSelectColor"></recommend-colors>
-                            <recommend-colors
-                                v-if="!colors.length && recommend"
-                                :list="recommendedColor"
-                                :class="[prefixCls + '-picker-colors']"
-                                @picker-color="handleSelectColor"></recommend-colors>
+        <Drop
+            ref="drop"
+            :visible="visible"
+            :placement="placement"
+            :transfer="transfer"
+            :classes="dropClasses"
+            :eventsEnabled="eventsEnabled"
+            transition-name="transition-drop"
+        >
+            <transition name="fade">
+                <div v-if="visible" :class="[prefixCls + '-picker']">
+                    <div :class="[prefixCls + '-picker-wrapper']">
+                        <div :class="[prefixCls + '-picker-panel']">
+                            <Saturation
+                                ref="saturation"
+                                v-model="saturationColors"
+                                :focused="visible"
+                                @change="childChange"
+                                @keydown.tab="handleFirstTab"
+                            ></Saturation>
                         </div>
-                        <div :class="[prefixCls + '-confirm']">
+                        <div v-if="hue" :class="[prefixCls + '-picker-hue-slider']">
+                            <Hue v-model="saturationColors" @change="childChange"></Hue>
+                        </div>
+                        <div v-if="alpha" :class="[prefixCls + '-picker-alpha-slider']">
+                            <Alpha v-model="saturationColors" @change="childChange"></Alpha>
+                        </div>
+                        <recommend-colors
+                            v-if="colors.length"
+                            :list="colors"
+                            :class="[prefixCls + '-picker-colors']"
+                            @picker-color="handleSelectColor"></recommend-colors>
+                        <recommend-colors
+                            v-if="!colors.length && recommend"
+                            :list="recommendedColor"
+                            :class="[prefixCls + '-picker-colors']"
+                            @picker-color="handleSelectColor"></recommend-colors>
+                    </div>
+                    <div :class="[prefixCls + '-confirm']">
                             <span :class="confirmColorClasses">
                                 <template v-if="editable">
                                     <i-input ref="editColorInput" :modelValue="formatColor" size="small" @on-enter="handleEditColor" @on-blur="handleEditColor"></i-input>
                                 </template>
                                 <template v-else>{{formatColor}}</template>
                             </span>
-                            <i-button
-                                ref="clear"
-                                :tabindex="0"
-                                size="small"
-                                @click="handleClear"
-                                @keydown.enter="handleClear"
-                                @keydown.esc="closer"
-                            >{{t('i.datepicker.clear')}}</i-button>
-                            <i-button
-                                ref="ok"
-                                :tabindex="0"
-                                size="small"
-                                type="primary"
-                                @click="handleSuccess"
-                                @keydown.tab="handleLastTab"
-                                @keydown.enter="handleSuccess"
-                                @keydown.esc="closer"
-                            >{{t('i.datepicker.ok')}}</i-button>
-                        </div>
+                        <i-button
+                            ref="clear"
+                            :tabindex="0"
+                            size="small"
+                            @click="handleClear"
+                            @keydown.enter="handleClear"
+                            @keydown.esc="closer"
+                        >{{t('i.datepicker.clear')}}</i-button>
+                        <i-button
+                            ref="ok"
+                            :tabindex="0"
+                            size="small"
+                            type="primary"
+                            @click="handleSuccess"
+                            @keydown.tab="handleLastTab"
+                            @keydown.enter="handleSuccess"
+                            @keydown.esc="closer"
+                        >{{t('i.datepicker.ok')}}</i-button>
                     </div>
-                </transition>
-            </Drop>
-        </transition>
+                </div>
+            </transition>
+        </Drop>
     </div>
 </template>
 <script>
@@ -472,7 +459,7 @@
                 this.currentValue = value;
                 this.$emit('update:modelValue', value);
                 this.$emit('on-change', value);
-                this.dispatch('FormItem', 'on-form-change', value);
+                // this.dispatch('FormItem', 'on-form-change', value); // todo
                 this.closer(event);
             },
             handleSuccess (event) {
