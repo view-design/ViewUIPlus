@@ -187,11 +187,11 @@
                 if (item[this.childrenKey].length === 0) {
                     const tree = findComponentUpward(this, 'Tree');
                     if (tree && tree.loadData) {
-                        // this.$set(this.data, 'loading', true); // todo
+                        this.data.loading = true; // eslint-disable-line
                         tree.loadData(item, children => {
-                            // this.$set(this.data, 'loading', false); // todo
+                            this.data.loading = false; // eslint-disable-line
                             if (children.length) {
-                                // this.$set(this.data, this.childrenKey, children); // todo
+                                this.data[this.childrenKey] = children; // eslint-disable-line
                                 nextTick(() => this.handleExpand());
                             }
                         });
@@ -200,7 +200,7 @@
                 }
 
                 if (item[this.childrenKey] && item[this.childrenKey].length) {
-                    // this.$set(this.data, 'expand', !this.data.expand); // todo
+                    this.data.expand = !this.data.expand; // eslint-disable-line
                     // this.dispatch('Tree', 'toggle-expand', this.data); // todo
                 }
             },
