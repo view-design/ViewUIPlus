@@ -33,20 +33,18 @@
     </collapse-transition>
 </template>
 <script>
-    import { nextTick } from 'vue';
+    import { getCurrentInstance, nextTick } from 'vue';
     import Checkbox from '../checkbox/checkbox.vue';
     import Icon from '../icon/icon.vue';
     import Render from './render';
     import CollapseTransition from '../base/collapse-transition.vue';
     import { findComponentUpward } from '../../utils/assist';
-    import globalConfig from '../../mixins/globalConfig';
 
     const prefixCls = 'ivu-tree';
 
     export default {
         name: 'TreeNode',
         inject: ['TreeInstance'],
-        mixins: ['globalConfig'],
         components: { Checkbox, Icon, CollapseTransition, Render },
         props: {
             data: {
@@ -73,7 +71,8 @@
         data () {
             return {
                 prefixCls: prefixCls,
-                appearByClickArrow: false
+                appearByClickArrow: false,
+                globalConfig: {}
             };
         },
         computed: {
@@ -238,6 +237,10 @@
                     event.preventDefault();
                 }
             }
+        },
+        created () {
+            const instance = getCurrentInstance();
+            this.globalConfig = instance.appContext.config.globalProperties.$IVIEW;
         }
     };
 </script>
