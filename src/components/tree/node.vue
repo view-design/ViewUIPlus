@@ -201,7 +201,7 @@
 
                 if (item[this.childrenKey] && item[this.childrenKey].length) {
                     this.data.expand = !this.data.expand; // eslint-disable-line
-                    // this.dispatch('Tree', 'toggle-expand', this.data); // todo
+                    this.TreeInstance.handleToggleExpand(this.data);
                 }
             },
             handleClickNode () {
@@ -216,7 +216,7 @@
                 if (this.TreeInstance.showCheckbox && this.TreeInstance.checkDirectly) {
                     this.handleCheck();
                 } else {
-                    // this.dispatch('Tree', 'on-selected', this.data.nodeKey); // todo
+                    this.TreeInstance.handleOnSelected(this.data.nodeKey);
                 }
             },
             handleCheck () {
@@ -225,12 +225,12 @@
                     checked: !this.data.checked && !this.data.indeterminate,
                     nodeKey: this.data.nodeKey
                 };
-                // this.dispatch('Tree', 'on-check', changes); // todo
+                this.TreeInstance.handleOnCheck(changes);
             },
             handleContextmenu (data, event) {
                 if (data.contextmenu) {
                     event.preventDefault();
-                    // this.dispatch('Tree', 'contextmenu', { data, event }); // todo
+                    this.TreeInstance.handleOnContextmenu({ data, event });
                 }
             },
             handlePreventSelect (data, event) {

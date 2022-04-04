@@ -232,18 +232,23 @@
             },
             handleClickContextMenuOutside () {
                 this.contextMenuVisible = false;
+            },
+            handleOnCheck (param) {
+                this.handleCheck(param);
+            },
+            handleOnSelected (param) {
+                this.handleSelect(param);
+            },
+            handleToggleExpand (node) {
+                this.$emit('on-toggle-expand', node);
+            },
+            handleOnContextmenu (param) {
+                this.handleContextmenu(param);
             }
         },
         created (){
             this.flatState = this.compileFlatState();
             this.rebuildTree();
-        },
-        mounted () {
-            // todo
-            // this.$on('on-check', this.handleCheck);
-            // this.$on('on-selected', this.handleSelect);
-            // this.$on('toggle-expand', node => this.$emit('on-toggle-expand', node));
-            // this.$on('contextmenu', this.handleContextmenu);
         }
     };
 </script>
