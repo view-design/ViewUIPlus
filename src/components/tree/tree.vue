@@ -1,6 +1,6 @@
 <template>
     <div :class="prefixCls" ref="treeWrap">
-        <Tree-node
+        <TreeNode
             v-for="(item, i) in stateTree"
             :key="i"
             :data="item"
@@ -8,39 +8,42 @@
             :multiple="multiple"
             :show-checkbox="showCheckbox"
             :children-key="childrenKey">
-        </Tree-node>
+        </TreeNode>
         <div :class="[prefixCls + '-empty']" v-if="!stateTree.length">{{ localeEmptyText }}</div>
         <div class="ivu-tree-context-menu" :style="contextMenuStyles">
             <Dropdown trigger="custom" :visible="contextMenuVisible" transfer @on-clickoutside="handleClickContextMenuOutside">
-                <DropdownMenu slot="list">
-                    <slot name="contextMenu"></slot>
-                </DropdownMenu>
+                <template #list>
+                    <DropdownMenu>
+                        <slot name="contextMenu"></slot>
+                    </DropdownMenu>
+                </template>
             </Dropdown>
         </div>
     </div>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import TreeNode from './node.vue';
     import Dropdown from '../dropdown/dropdown.vue';
     import DropdownMenu from '../dropdown/dropdown-menu.vue';
-    import Emitter from '../../mixins/emitter';
     import Locale from '../../mixins/locale';
 
     const prefixCls = 'ivu-tree';
 
     export default {
         name: 'Tree',
-        mixins: [ Emitter, Locale ],
+        mixins: [ Locale ],
         components: { TreeNode, Dropdown, DropdownMenu },
+        emits: ['on-select-change', 'on-check-change', 'on-contextmenu', 'on-toggle-expand'],
         provide () {
-            return { TreeInstance: this };
+            return {
+                TreeInstance: this
+            };
         },
         props: {
             data: {
                 type: Array,
-                default () {
-                    return [];
-                }
+                default: () => []
             },
             multiple: {
                 type: Boolean,
@@ -110,7 +113,7 @@
                 } else {
                     return this.emptyText;
                 }
-            },
+            }
         },
         methods: {
             compileFlatState () { // so we have always a relation parent/children of each node
@@ -144,11 +147,11 @@
                 if (node.checked == parent.checked && node.indeterminate == parent.indeterminate) return; // no need to update upwards
 
                 if (node.checked == true) {
-                    this.$set(parent, 'checked', parent[this.childrenKey].every(node => node.checked));
-                    this.$set(parent, 'indeterminate', !parent.checked);
+                    parent.checked = parent[this.childrenKey].every(node => node.checked);
+                    parent.indeterminate = !parent.checked;
                 } else {
-                    this.$set(parent, 'checked', false);
-                    this.$set(parent, 'indeterminate', parent[this.childrenKey].some(node => node.checked || node.indeterminate));
+                    parent.checked = false;
+                    parent.indeterminate = parent[this.childrenKey].some(node => node.checked || node.indeterminate);
                 }
                 this.updateTreeUp(parentKey);
             },
@@ -183,7 +186,7 @@
                 if (this.checkStrictly) return;
 
                 for (let key in changes) {
-                    this.$set(node, key, changes[key]);
+                    node[key] = changes[key];
                 }
                 if (node[this.childrenKey]) {
                     node[this.childrenKey].forEach(child => {
@@ -196,17 +199,17 @@
                 const node = this.flatState[nodeKey].node;
                 if (!this.multiple){ // reset previously selected node
                     const currentSelectedKey = this.flatState.findIndex(obj => obj.node.selected);
-                    if (currentSelectedKey >= 0 && currentSelectedKey !== nodeKey) this.$set(this.flatState[currentSelectedKey].node, 'selected', false);
+                    if (currentSelectedKey >= 0 && currentSelectedKey !== nodeKey) this.flatState[currentSelectedKey].node.selected = false;
                 }
-                this.$set(node, 'selected', !node.selected);
+                node.selected = !node.selected;
 
                 this.$emit('on-select-change', this.getSelectedNodes(), node);
             },
             handleCheck({ checked, nodeKey }) {
                 if (!this.flatState[nodeKey]) return;
                 const node = this.flatState[nodeKey].node;
-                this.$set(node, 'checked', checked);
-                this.$set(node, 'indeterminate', false);
+                node.checked = checked;
+                node.indeterminate = false;
 
                 this.updateTreeUp(nodeKey); // propagate up
                 this.updateTreeDown(node, {checked, indeterminate: false}); // reset `indeterminate` when going down
@@ -215,7 +218,7 @@
             },
             handleContextmenu ({ data, event }) {
                 if (this.contextMenuVisible) this.handleClickContextMenuOutside();
-                this.$nextTick(() => {
+                nextTick(() => {
                     const $TreeWrap = this.$refs.treeWrap;
                     const TreeBounding = $TreeWrap.getBoundingClientRect();
                     const position = {
@@ -231,15 +234,16 @@
                 this.contextMenuVisible = false;
             }
         },
-        created(){
+        created (){
             this.flatState = this.compileFlatState();
             this.rebuildTree();
         },
         mounted () {
-            this.$on('on-check', this.handleCheck);
-            this.$on('on-selected', this.handleSelect);
-            this.$on('toggle-expand', node => this.$emit('on-toggle-expand', node));
-            this.$on('contextmenu', this.handleContextmenu);
+            // todo
+            // this.$on('on-check', this.handleCheck);
+            // this.$on('on-selected', this.handleSelect);
+            // this.$on('toggle-expand', node => this.$emit('on-toggle-expand', node));
+            // this.$on('contextmenu', this.handleContextmenu);
         }
     };
 </script>

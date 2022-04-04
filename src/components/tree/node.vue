@@ -8,17 +8,17 @@
                 </span>
                 <Checkbox
                         v-if="showCheckbox"
-                        :value="data.checked"
+                        :model-value="data.checked"
                         :indeterminate="data.indeterminate"
                         :disabled="data.disabled || data.disableCheckbox"
-                        @click.native.prevent="handleCheck"></Checkbox>
+                        @click.prevent="handleCheck"></Checkbox>
                 <span :class="titleClasses" @click="handleClickNode">
                     <Render v-if="data.render" :render="data.render" :data="data" :node="node"></Render>
                     <Render v-else-if="isParentRender" :render="parentRender" :data="data" :node="node"></Render>
                     <template v-else>{{ data.title }}</template>
                 </span>
-                <Tree-node
-                        v-if="data.expand"
+                <template v-if="data.expand">
+                    <TreeNode
                         :appear="appearByClickArrow"
                         v-for="(item, i) in children"
                         :key="i"
@@ -26,32 +26,32 @@
                         :multiple="multiple"
                         :show-checkbox="showCheckbox"
                         :children-key="childrenKey">
-                </Tree-node>
+                    </TreeNode>
+                </template>
             </li>
         </ul>
     </collapse-transition>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import Checkbox from '../checkbox/checkbox.vue';
     import Icon from '../icon/icon.vue';
     import Render from './render';
     import CollapseTransition from '../base/collapse-transition.vue';
-    import Emitter from '../../mixins/emitter';
     import { findComponentUpward } from '../../utils/assist';
+    import globalConfig from '../../mixins/globalConfig';
 
     const prefixCls = 'ivu-tree';
 
     export default {
         name: 'TreeNode',
-        mixins: [ Emitter ],
         inject: ['TreeInstance'],
+        mixins: ['globalConfig'],
         components: { Checkbox, Icon, CollapseTransition, Render },
         props: {
             data: {
                 type: Object,
-                default () {
-                    return {};
-                }
+                default: () => {}
             },
             multiple: {
                 type: Boolean,
@@ -138,35 +138,38 @@
             },
             // 3.4.0, global setting customArrow 有值时，arrow 赋值空
             arrowType () {
+                const config = this.globalConfig;
                 let type = 'ios-arrow-forward';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.tree.customArrow) {
+                if (config) {
+                    if (config.tree.customArrow) {
                         type = '';
-                    } else if (this.$IVIEW.tree.arrow) {
-                        type = this.$IVIEW.tree.arrow;
+                    } else if (config.tree.arrow) {
+                        type = config.tree.arrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             customArrowType () {
+                const config = this.globalConfig;
                 let type = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.tree.customArrow) {
-                        type = this.$IVIEW.tree.customArrow;
+                if (config) {
+                    if (config.tree.customArrow) {
+                        type = config.tree.customArrow;
                     }
                 }
                 return type;
             },
             // 3.4.0, global setting
             arrowSize () {
+                const config = this.globalConfig;
                 let size = '';
 
-                if (this.$IVIEW) {
-                    if (this.$IVIEW.tree.arrowSize) {
-                        size = this.$IVIEW.tree.arrowSize;
+                if (config) {
+                    if (config.tree.arrowSize) {
+                        size = config.tree.arrowSize;
                     }
                 }
                 return size;
@@ -184,12 +187,12 @@
                 if (item[this.childrenKey].length === 0) {
                     const tree = findComponentUpward(this, 'Tree');
                     if (tree && tree.loadData) {
-                        this.$set(this.data, 'loading', true);
+                        // this.$set(this.data, 'loading', true); // todo
                         tree.loadData(item, children => {
-                            this.$set(this.data, 'loading', false);
+                            // this.$set(this.data, 'loading', false); // todo
                             if (children.length) {
-                                this.$set(this.data, this.childrenKey, children);
-                                this.$nextTick(() => this.handleExpand());
+                                // this.$set(this.data, this.childrenKey, children); // todo
+                                nextTick(() => this.handleExpand());
                             }
                         });
                         return;
@@ -197,8 +200,8 @@
                 }
 
                 if (item[this.childrenKey] && item[this.childrenKey].length) {
-                    this.$set(this.data, 'expand', !this.data.expand);
-                    this.dispatch('Tree', 'toggle-expand', this.data);
+                    // this.$set(this.data, 'expand', !this.data.expand); // todo
+                    // this.dispatch('Tree', 'toggle-expand', this.data); // todo
                 }
             },
             handleClickNode () {
@@ -213,7 +216,7 @@
                 if (this.TreeInstance.showCheckbox && this.TreeInstance.checkDirectly) {
                     this.handleCheck();
                 } else {
-                    this.dispatch('Tree', 'on-selected', this.data.nodeKey);
+                    // this.dispatch('Tree', 'on-selected', this.data.nodeKey); // todo
                 }
             },
             handleCheck () {
@@ -222,12 +225,12 @@
                     checked: !this.data.checked && !this.data.indeterminate,
                     nodeKey: this.data.nodeKey
                 };
-                this.dispatch('Tree', 'on-check', changes);
+                // this.dispatch('Tree', 'on-check', changes); // todo
             },
             handleContextmenu (data, event) {
                 if (data.contextmenu) {
                     event.preventDefault();
-                    this.dispatch('Tree', 'contextmenu', { data, event });
+                    // this.dispatch('Tree', 'contextmenu', { data, event }); // todo
                 }
             },
             handlePreventSelect (data, event) {

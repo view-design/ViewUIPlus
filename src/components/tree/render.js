@@ -1,17 +1,18 @@
+import { h } from 'vue';
+
 export default {
     name: 'RenderCell',
-    functional: true,
     props: {
         render: Function,
         data: Object,
         node: Array
     },
-    render: (h, ctx) => {
+    render () {
         const params = {
-            root: ctx.props.node[0],
-            node: ctx.props.node[1],
-            data: ctx.props.data
+            root: this.node[0],
+            node: this.node[1],
+            data: this.data
         };
-        return ctx.props.render(h, params);
+        return this.render(h, params);
     }
 };

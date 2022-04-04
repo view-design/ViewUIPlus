@@ -85,7 +85,7 @@ import TimelineItem from './components/timeline-item';
 // import TimePicker from './components/time-picker';
 import Tooltip from './components/tooltip';
 import Transfer from './components/transfer';
-// import Tree from './components/tree';
+import Tree from './components/tree';
 import Upload from './components/upload';
 // import locale from './locale/index';
 
@@ -169,7 +169,7 @@ const components = {
     // TimePicker,
     Tooltip,
     Transfer,
-    // Tree,
+    Tree,
     Upload
 };
 
@@ -240,14 +240,14 @@ const install = function(app, opts = {}) {
             itemArrow: opts.cascader ? opts.cascader.itemArrow ? opts.cascader.itemArrow : '' : '',
             customItemArrow: opts.cascader ? opts.cascader.customItemArrow ? opts.cascader.customItemArrow : '' : '',
             itemArrowSize: opts.cascader ? opts.cascader.itemArrowSize ? opts.cascader.itemArrowSize : '' : ''
-        }
+        },
+        tree: {
+            arrow: opts.tree ? opts.tree.arrow ? opts.tree.arrow : '' : '',
+            customArrow: opts.tree ? opts.tree.customArrow ? opts.tree.customArrow : '' : '',
+            arrowSize: opts.tree ? opts.tree.arrowSize ? opts.tree.arrowSize : '' : ''
+        },
     }
     // app.prototype.$IVIEW = {
-    //     tree: {
-    //         arrow: opts.tree ? opts.tree.arrow ? opts.tree.arrow : '' : '',
-    //         customArrow: opts.tree ? opts.tree.customArrow ? opts.tree.customArrow : '' : '',
-    //         arrowSize: opts.tree ? opts.tree.arrowSize ? opts.tree.arrowSize : '' : ''
-    //     },
     //     datePicker: {
     //         icon: opts.datePicker ? opts.datePicker.icon ? opts.datePicker.icon : '' : '',
     //         customIcon: opts.datePicker ? opts.datePicker.customIcon ? opts.datePicker.customIcon : '' : '',
