@@ -283,7 +283,7 @@
                             onDblclick: (e) => this.dblclickCurrentRow(row._index, e, row._rowKey),
                             onContextmenu: (e) => this.contextmenuCurrentRow(row._index, e, row._rowKey),
                             onSelectstart: (e) => this.selectStartCurrentRow(row._index, e, row._rowKey)
-                        }, [$tds]);
+                        }, () => $tds);
 
                         nodes.push($tableTr);
 
