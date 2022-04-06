@@ -15,76 +15,71 @@
                     :disabled="itemDisabled"
                     :size="size"
                     :placeholder="placeholder"
-                    :value="visualValue"
+                    :model-value="visualValue"
                     :name="name"
                     ref="input"
 
                     @on-input-change="handleInputChange"
                     @on-focus="handleFocus"
                     @on-blur="handleBlur"
-                    @click.native="handleFocus"
-                    @keydown.native="handleKeydown"
-                    @mouseenter.native="handleInputMouseenter"
-                    @mouseleave.native="handleInputMouseleave"
+                    @click="handleFocus"
+                    @keydown="handleKeydown"
+                    @mouseenter="handleInputMouseenter"
+                    @mouseleave="handleInputMouseleave"
                 >
                     <Icon @click="handleIconClick" :type="arrowType" :custom="customArrowType" :size="arrowSize" slot="suffix" />
                 </i-input>
             </slot>
         </div>
-        <transition name="transition-drop">
-            <Drop
-                @click.native="handleTransferClick"
-                v-show="opened"
-                :class="dropdownCls"
-                :placement="placement"
-                ref="drop"
-                :eventsEnabled="eventsEnabled"
-                :data-transfer="transfer"
-                :transfer="transfer"
-                v-transfer-dom>
-                <div>
-                    <component
-                        :is="panel"
-                        ref="pickerPanel"
-                        :visible="visible"
-                        :showTime="type === 'datetime' || type === 'datetimerange'"
-                        :confirm="isConfirm"
-                        :selectionMode="selectionMode"
-                        :steps="steps"
-                        :format="format"
-                        :value="internalValue"
-                        :start-date="startDate"
-                        :split-panels="splitPanels"
-                        :show-week-numbers="showWeekNumbers"
-                        :picker-type="type"
-                        :multiple="multiple"
-                        :focused-date="focusedDate"
+        <Drop
+            ref="drop"
+            :visible="opened"
+            :classes="dropdownCls"
+            :placement="placement"
+            :eventsEnabled="eventsEnabled"
+            @click="handleTransferClick"
+            :transfer="transfer">
+            <div>
+                <component
+                    :is="panel"
+                    ref="pickerPanel"
+                    :visible="visible"
+                    :showTime="type === 'datetime' || type === 'datetimerange'"
+                    :confirm="isConfirm"
+                    :selectionMode="selectionMode"
+                    :steps="steps"
+                    :format="format"
+                    :value="internalValue"
+                    :start-date="startDate"
+                    :split-panels="splitPanels"
+                    :show-week-numbers="showWeekNumbers"
+                    :picker-type="type"
+                    :multiple="multiple"
+                    :focused-date="focusedDate"
 
-                        :time-picker-options="timePickerOptions"
+                    :time-picker-options="timePickerOptions"
 
-                        v-bind="ownPickerProps"
+                    v-bind="ownPickerProps"
 
-                        @on-pick="onPick"
-                        @on-pick-clear="handleClear"
-                        @on-pick-success="onPickSuccess"
-                        @on-pick-click="disableClickOutSide = true"
-                        @on-selection-mode-change="onSelectionModeChange"
-                    ></component>
-                </div>
-            </Drop>
-        </transition>
+                    @on-pick="onPick"
+                    @on-pick-clear="handleClear"
+                    @on-pick-success="onPickSuccess"
+                    @on-pick-click="disableClickOutSide = true"
+                    @on-selection-mode-change="onSelectionModeChange"
+                ></component>
+            </div>
+        </Drop>
     </div>
 </template>
 <script>
+    import { getCurrentInstance, nextTick } from 'vue';
     import iInput from '../../components/input/input.vue';
     import Drop from '../../components/select/dropdown.vue';
     import Icon from '../../components/icon/icon.vue';
     import {directive as clickOutside} from '../../directives/v-click-outside-x';
-    import TransferDom from '../../directives/transfer-dom';
     import { oneOf } from '../../utils/assist';
     import { DEFAULT_FORMATS, TYPE_VALUE_RESOLVER_MAP, getDayCountOfMonth } from './util';
     import {findComponentsDownward} from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
 
     const prefixCls = 'ivu-date-picker';
@@ -120,9 +115,10 @@
 
 
     export default {
-        mixins: [ Emitter, mixinsForm ],
+        mixins: [ mixinsForm ],
         components: { iInput, Drop, Icon },
-        directives: { clickOutside, TransferDom },
+        directives: { clickOutside },
+        emits: ['on-clickoutside', 'on-clear', 'on-change', 'on-ok', 'on-open-change', 'update:modelValue'],
         props: {
             format: {
                 type: String
@@ -175,7 +171,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             placeholder: {
@@ -191,7 +188,8 @@
             transfer: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.transfer === '' ? false : this.$IVIEW.transfer;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
                 }
             },
             name: {
@@ -204,7 +202,7 @@
                 type: Array,
                 default: () => []
             },
-            value: {
+            modelValue: {
                 type: [Date, String, Array]
             },
             options: {
@@ -219,7 +217,8 @@
             capture: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW ? true : this.$IVIEW.capture;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW ? true : global.$IVIEW.capture;
                 }
             },
             transferClassName: {
@@ -234,7 +233,7 @@
         data(){
             const isRange = this.type.includes('range');
             const emptyArray = isRange ? [null, null] : [null];
-            const initialValue = isEmptyArray((isRange ? this.value : [this.value]) || []) ? emptyArray : this.parseDate(this.value);
+            const initialValue = isEmptyArray((isRange ? this.modelValue : [this.modelValue]) || []) ? emptyArray : this.parseDate(this.modelValue);
             const focusedTime = initialValue.map(extractTime);
 
             return {
@@ -678,7 +677,7 @@
                 this.visible = false;
                 this.internalValue = this.internalValue.map(() => null);
                 this.$emit('on-clear');
-                this.dispatch('FormItem', 'on-form-change', '');
+                this.handleFormItemChange('change', '');
                 this.emitChange(this.type);
                 this.reset();
 
@@ -688,9 +687,9 @@
                 );
             },
             emitChange (type) {
-                this.$nextTick(() => {
+                nextTick(() => {
                     this.$emit('on-change', this.publicStringValue, type);
-                    this.dispatch('FormItem', 'on-form-change', this.publicStringValue);
+                    this.handleFormItemChange('change', this.publicStringValue);
                 });
             },
             parseDate(val) {
@@ -789,17 +788,17 @@
                 if (state) this.$refs.drop.update(); // 解决：修改完 #589 #590 #592，Drop 收起时闪动
                 this.$emit('on-open-change', state);
             },
-            value(val) {
+            modelValue (val) {
                 if (val === null) this.isValueNull = true;
                 this.internalValue = this.parseDate(val);
             },
             open (val) {
                 this.visible = val === true;
             },
-            type(type){
+            type (type) {
                 this.onSelectionModeChange(type);
             },
-            publicVModelValue(now, before){
+            publicVModelValue (now, before) {
                 const newValue = JSON.stringify(now);
                 const oldValue = JSON.stringify(before);
                 const shouldEmitInput = newValue !== oldValue || typeof now !== typeof before;
@@ -807,9 +806,9 @@
                 if (shouldEmitInput) {
                     if (this.isValueNull) {
                         this.isValueNull = false;
-                        this.$emit('input', null);
+                        this.$emit('update:modelValue', null);
                     } else {
-                        this.$emit('input', now);
+                        this.$emit('update:modelValue', now);
                     }
                 }
             },
@@ -824,12 +823,14 @@
             if (this.open !== null) this.visible = this.open;
 
             // to handle focus from confirm buttons
-            this.$on('focus-input', () => this.focus());
-            this.$on('update-popper', () => this.updatePopper());
+            // todo
+            // this.$on('focus-input', () => this.focus());
+            // this.$on('update-popper', () => this.updatePopper());
         },
         beforeUnmount() {
-            this.$off('focus-input');
-            this.$off('update-popper');
+            // todo
+            // this.$off('focus-input');
+            // this.$off('update-popper');
         }
     };
 </script>

@@ -162,10 +162,10 @@ const router = createRouter({
             path: '/transfer',
             component: () => import('./routers/transfer.vue')
         },
-        // {
-        //     path: '/date',
-        //     component: (resolve) => require(['./routers/date.vue'], resolve)
-        // },
+        {
+            path: '/date',
+            component: () => import('./routers/date.vue')
+        },
         {
             path: '/form',
             component: () => import('./routers/form.vue')

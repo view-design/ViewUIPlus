@@ -2,22 +2,23 @@
     <div :class="classes">
         <div :class="[prefixCls+ '-list']" ref="hours">
             <ul :class="[prefixCls + '-ul']">
-                <li :class="getCellCls(item)" v-for="item in hoursList" v-show="!item.hide" @click="handleClick('hours', item)">{{ formatTime(item.text) }}</li>
+                <li :class="getCellCls(item)" v-for="item in hoursList" :key="item.text" v-show="!item.hide" @click="handleClick('hours', item)">{{ formatTime(item.text) }}</li>
             </ul>
         </div>
         <div :class="[prefixCls+ '-list']" ref="minutes">
             <ul :class="[prefixCls + '-ul']">
-                <li :class="getCellCls(item)" v-for="item in minutesList" v-show="!item.hide" @click="handleClick('minutes', item)">{{ formatTime(item.text) }}</li>
+                <li :class="getCellCls(item)" v-for="item in minutesList" :key="item.text" v-show="!item.hide" @click="handleClick('minutes', item)">{{ formatTime(item.text) }}</li>
             </ul>
         </div>
         <div :class="[prefixCls+ '-list']" v-show="showSeconds" ref="seconds">
             <ul :class="[prefixCls + '-ul']">
-                <li :class="getCellCls(item)" v-for="item in secondsList" v-show="!item.hide" @click="handleClick('seconds', item)">{{ formatTime(item.text) }}</li>
+                <li :class="getCellCls(item)" v-for="item in secondsList" :key="item.text" v-show="!item.hide" @click="handleClick('seconds', item)">{{ formatTime(item.text) }}</li>
             </ul>
         </div>
     </div>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import Options from '../time-mixins';
     import { deepCopy, scrollTop, firstUpperCase } from '../../../utils/assist';
 
@@ -26,7 +27,8 @@
 
     export default {
         name: 'TimeSpinner',
-        mixins: [Options],
+        mixins: [ Options ],
+        emits: ['on-change', 'on-pick-click'],
         props: {
             hours: {
                 type: [Number, String],
@@ -195,7 +197,7 @@
                 return index;
             },
             updateScroll () {
-                this.$nextTick(() => {
+                nextTick(() => {
                     timeParts.forEach(type => {
                         this.$refs[type].scrollTop = 24 * this[`${type}List`].findIndex(obj => obj.text == this[type]);
                     });
@@ -232,7 +234,7 @@
             }
         },
         mounted () {
-            this.$nextTick(() => this.compiled = true);
+            nextTick(() => this.compiled = true);
         }
     };
 </script>

@@ -3,6 +3,7 @@
         <span
             :class="getCellCls(cell)"
             v-for="cell in cells"
+            :key="cell.date"
             @click="handleClick(cell, $event)"
             @mouseenter="handleMouseMove(cell)"
         >
@@ -65,7 +66,7 @@
                         [`${prefixCls}-cell-range`]: cell.range && !cell.start && !cell.end
                     }
                 ];
-            },
+            }
         }
     };
 </script>

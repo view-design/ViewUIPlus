@@ -3,10 +3,10 @@
         <i-button :class="timeClasses" size="small" type="text" :disabled="timeDisabled" v-if="showTime" @click="handleToggleTime">
             {{labels.time}}
         </i-button>
-        <i-button size="small" @click.native="handleClear" @keydown.enter.native="handleClear">
+        <i-button size="small" @click="handleClear" @keydown.enter="handleClear">
             {{labels.clear}}
         </i-button>
-        <i-button size="small" type="primary" @click.native="handleSuccess" @keydown.enter.native="handleSuccess">
+        <i-button size="small" type="primary" @click="handleSuccess" @keydown.enter="handleSuccess">
             {{labels.ok}}
         </i-button>
     </div>
@@ -14,17 +14,26 @@
 <script>
     import iButton from '../../button/button.vue';
     import Locale from '../../../mixins/locale';
-    import Emitter from '../../../mixins/emitter';
 
     const prefixCls = 'ivu-picker';
 
     export default {
-        mixins: [Locale, Emitter],
-        components: {iButton},
+        mixins: [ Locale ],
+        components: { iButton },
+        emits: ['on-pick-clear', 'on-pick-success', 'on-pick-toggle-time'],
         props: {
-            showTime: false,
-            isTime: false,
-            timeDisabled: false
+            showTime: {
+                type: Boolean,
+                default: false
+            },
+            isTime: {
+                type: Boolean,
+                default: false
+            },
+            timeDisabled: {
+                type: Boolean,
+                default: false
+            }
         },
         data() {
             return {
@@ -54,17 +63,17 @@
             handleToggleTime () {
                 if (this.timeDisabled) return;
                 this.$emit('on-pick-toggle-time');
-                this.dispatch('CalendarPicker', 'focus-input');
-                this.dispatch('CalendarPicker', 'update-popper');
+                // this.dispatch('CalendarPicker', 'focus-input'); // todo
+                // this.dispatch('CalendarPicker', 'update-popper'); // todo
             },
-            handleTab(e) {
+            handleTab (e) {
                 const tabbables = [...this.$el.children];
                 const expectedFocus = tabbables[e.shiftKey ? 'shift' : 'pop']();
 
                 if (document.activeElement === expectedFocus) {
                     e.preventDefault();
                     e.stopPropagation();
-                    this.dispatch('CalendarPicker', 'focus-input');
+                    // this.dispatch('CalendarPicker', 'focus-input'); // todo
                 }
             }
         }

@@ -31,7 +31,7 @@ import Col from './components/col';
 import Collapse from './components/collapse';
 import ColorPicker from './components/color-picker';
 import Content from './components/content';
-// import DatePicker from './components/date-picker';
+import DatePicker from './components/date-picker';
 import Divider from './components/divider';
 import Drawer from './components/drawer';
 import Dropdown from './components/dropdown';
@@ -115,7 +115,7 @@ const components = {
     Collapse,
     ColorPicker,
     Content,
-    // DatePicker,
+    DatePicker,
     Divider,
     Drawer,
     Dropdown,
@@ -182,14 +182,14 @@ const iview = {
     iForm: Form,
     iFooter: Footer,
     iHeader: Header,
-    // iInput: Input,
-    // iMenu: Menu,
+    iInput: Input,
+    iMenu: Menu,
     iOption: Option,
     iProgress: Progress,
     iSelect: Select,
     iSwitch: Switch,
     iTable: Table,
-    // iTime: Time
+    iTime: Time
 };
 
 const install = function(app, opts = {}) {
@@ -246,19 +246,17 @@ const install = function(app, opts = {}) {
             customArrow: opts.tree ? opts.tree.customArrow ? opts.tree.customArrow : '' : '',
             arrowSize: opts.tree ? opts.tree.arrowSize ? opts.tree.arrowSize : '' : ''
         },
+        datePicker: {
+            icon: opts.datePicker ? opts.datePicker.icon ? opts.datePicker.icon : '' : '',
+            customIcon: opts.datePicker ? opts.datePicker.customIcon ? opts.datePicker.customIcon : '' : '',
+            iconSize: opts.datePicker ? opts.datePicker.iconSize ? opts.datePicker.iconSize : '' : ''
+        },
+        timePicker: {
+            icon: opts.timePicker ? opts.timePicker.icon ? opts.timePicker.icon : '' : '',
+            customIcon: opts.timePicker ? opts.timePicker.customIcon ? opts.timePicker.customIcon : '' : '',
+            iconSize: opts.timePicker ? opts.timePicker.iconSize ? opts.timePicker.iconSize : '' : ''
+        }
     }
-    // app.prototype.$IVIEW = {
-    //     datePicker: {
-    //         icon: opts.datePicker ? opts.datePicker.icon ? opts.datePicker.icon : '' : '',
-    //         customIcon: opts.datePicker ? opts.datePicker.customIcon ? opts.datePicker.customIcon : '' : '',
-    //         iconSize: opts.datePicker ? opts.datePicker.iconSize ? opts.datePicker.iconSize : '' : ''
-    //     },
-    //     timePicker: {
-    //         icon: opts.timePicker ? opts.timePicker.icon ? opts.timePicker.icon : '' : '',
-    //         customIcon: opts.timePicker ? opts.timePicker.customIcon ? opts.timePicker.customIcon : '' : '',
-    //         iconSize: opts.timePicker ? opts.timePicker.iconSize ? opts.timePicker.iconSize : '' : ''
-    //     },
-    // };
     app.config.globalProperties.$Spin = Spin;
     app.config.globalProperties.$Loading = LoadingBar;
     app.config.globalProperties.$Message = Message;

@@ -1,8 +1,8 @@
-
-import {clearHours} from '../util';
+import { clearHours } from '../util';
 
 export default {
     name: 'PanelTable',
+    emits: ['on-pick', 'on-pick-click', 'on-change-range'],
     props: {
         tableDate: {
             type: Date,
@@ -37,7 +37,7 @@ export default {
             const {selectionMode, value, rangeState} = this;
             const rangeSelecting = selectionMode === 'range' && rangeState.selecting;
             return rangeSelecting ? [rangeState.from] : value;
-        },
+        }
     },
     methods: {
         handleClick (cell, e) {
