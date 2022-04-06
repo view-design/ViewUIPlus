@@ -259,7 +259,7 @@
 
                                 const $td = h('td', {
                                     class: this.alignCls(column, row),
-                                    attrs: this.getSpan(row, column, index, colIndex),
+                                    ...this.getSpan(row, column, index, colIndex),
                                     onClick: (e) => this.clickCell(row, column, column.key, e)
                                 }, [$tableCell]);
                                 $tds.push($td);
@@ -283,7 +283,7 @@
                             onDblclick: (e) => this.dblclickCurrentRow(row._index, e, row._rowKey),
                             onContextmenu: (e) => this.contextmenuCurrentRow(row._index, e, row._rowKey),
                             onSelectstart: (e) => this.selectStartCurrentRow(row._index, e, row._rowKey)
-                        }, $tds);
+                        }, [$tds]);
 
                         nodes.push($tableTr);
 
@@ -328,7 +328,7 @@
 
                         const $td = h('td', {
                             class: this.alignCls(column, row),
-                            attrs: this.getSpan(row, column, index, colIndex),
+                            ...this.getSpan(row, column, index, colIndex),
                             onClick: (e) => this.clickCell(row, column, column.key, e)
                         }, [$tableCell]);
                         $tds.push($td);
