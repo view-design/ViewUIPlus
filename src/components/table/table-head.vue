@@ -17,7 +17,7 @@
                             <span v-if="!column.renderHeader">{{ column.title || '' }}</span>
                             <render-header v-else :render="column.renderHeader" :column="column" :index="index"></render-header>
                         </template>
-                        <template v-else-if="column.type === 'selection'"><Checkbox v-if="!column.hideSelectAll" :value="isSelectAll" :disabled="isSelectDisabled" @on-change="selectAll"></Checkbox></template>
+                        <template v-else-if="column.type === 'selection'"><Checkbox v-if="!column.hideSelectAll" :model-value="isSelectAll" :disabled="isSelectDisabled" @on-change="selectAll"></Checkbox></template>
                         <template v-else>
                             <span v-if="!column.renderHeader" :class="{[prefixCls + '-cell-sort']: column.sortable}" @click="column.sortable && handleSortByHead(getColumn(rowIndex, index)._index)">{{ column.title || '#' }}</span>
                             <render-header v-else :render="column.renderHeader" :column="column" :index="index"></render-header>
