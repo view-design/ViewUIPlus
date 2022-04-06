@@ -232,7 +232,7 @@
                 default: false
             }
         },
-        data(){
+        data () {
             const isRange = this.type.includes('range');
             const emptyArray = isRange ? [null, null] : [null];
             const initialValue = isEmptyArray((isRange ? this.modelValue : [this.modelValue]) || []) ? emptyArray : this.parseDate(this.modelValue);

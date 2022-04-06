@@ -15,7 +15,7 @@ export default {
             type: String,
             required: true
         },
-        value: {
+        modelValue: {
             type: Array,
             required: true
         },
@@ -34,9 +34,9 @@ export default {
     },
     computed: {
         dates(){
-            const {selectionMode, value, rangeState} = this;
+            const { selectionMode, modelValue, rangeState } = this;
             const rangeSelecting = selectionMode === 'range' && rangeState.selecting;
-            return rangeSelecting ? [rangeState.from] : value;
+            return rangeSelecting ? [rangeState.from] : modelValue;
         }
     },
     methods: {
