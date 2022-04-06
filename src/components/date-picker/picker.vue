@@ -160,8 +160,8 @@
                 default: false
             },
             timePickerOptions: {
-                default: () => ({}),
                 type: Object,
+                default: () => ({}),
             },
             splitPanels: {
                 type: Boolean,
