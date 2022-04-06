@@ -3,7 +3,7 @@
         <i-button :class="timeClasses" size="small" type="text" :disabled="timeDisabled" v-if="showTime" @click="handleToggleTime">
             {{labels.time}}
         </i-button>
-        <i-button size="small" @click="handleClear" @keydown.enter="handleClear">
+        <i-button size="small" class="ivu-picker-confirm-btn-cancel" @click="handleClear" @keydown.enter="handleClear">
             {{labels.clear}}
         </i-button>
         <i-button size="small" type="primary" @click="handleSuccess" @keydown.enter="handleSuccess">
