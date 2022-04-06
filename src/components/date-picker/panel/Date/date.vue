@@ -4,6 +4,7 @@
             <div
                 :class="[prefixCls + '-shortcut']"
                 v-for="shortcut in shortcuts"
+                :key="shortcut.text"
                 @click="handleShortcutClick(shortcut)">{{ shortcut.text }}</div>
         </div>
         <div :class="[prefixCls + '-body']">
@@ -96,6 +97,7 @@
         name: 'DatePickerPanel',
         mixins: [ Mixin, Locale, DateMixin ],
         components: { Icon, DateTable, YearTable, MonthTable, TimePicker, Confirm, datePanelLabel },
+        emits: ['on-selection-mode-change', 'on-pick'],
         props: {
             // more props in the mixin
             multiple: {
@@ -104,7 +106,7 @@
             }
         },
         data () {
-            const {selectionMode, value} = this;
+            const { selectionMode, value } = this;
 
             const dates = value.slice().sort();
             return {

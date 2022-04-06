@@ -2,6 +2,7 @@ const prefixCls = 'ivu-picker-panel';
 const datePrefixCls = 'ivu-date-picker';
 
 export default {
+    emits: ['on-pick-clear', 'on-pick-success', 'on-pick-click', 'on-pick'],
     props: {
         confirm: {
             type: Boolean,
