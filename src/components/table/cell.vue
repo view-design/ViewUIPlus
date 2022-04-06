@@ -14,7 +14,7 @@
         <template v-if="renderType === 'html'"><span v-html="row[column.key]"></span></template>
         <template v-if="renderType === 'normal'">
             <template v-if="column.tooltip">
-                <Tooltip transfer :content="row[column.key]" :theme="column.tooltipTheme ? column.tooltipTheme : tableRoot.tooltipTheme" :disabled="!showTooltip" :max-width="column.tooltipMaxWidth ? column.tooltipMaxWidth : tableRoot.tooltipMaxWidth" class="ivu-table-cell-tooltip">
+                <Tooltip transfer :content="row[column.key]" :theme="column.tooltipTheme ? column.tooltipTheme : TableInstance.tooltipTheme" :disabled="!showTooltip" :max-width="column.tooltipMaxWidth ? column.tooltipMaxWidth : TableInstance.tooltipMaxWidth" class="ivu-table-cell-tooltip">
                     <span ref="content" @mouseenter="handleTooltipIn" class="ivu-table-cell-tooltip-content">{{ row[column.key] }}</span>
                 </Tooltip>
             </template>
@@ -49,7 +49,7 @@
     export default {
         name: 'TableCell',
         components: { Icon, Checkbox, TableExpand, TableSlot, Tooltip },
-        inject: ['tableRoot'],
+        inject: ['TableInstance'],
         props: {
             prefixCls: String,
             row: Object,
@@ -124,15 +124,15 @@
             },
             treeLevelStyle () {
                 return {
-                    'padding-left': this.treeLevel * this.tableRoot.indentSize + 'px'
+                    'padding-left': this.treeLevel * this.TableInstance.indentSize + 'px'
                 };
             },
             childrenExpand () {
-                const data = this.tableRoot.getDataByRowKey(this.row._rowKey);
+                const data = this.TableInstance.getDataByRowKey(this.row._rowKey);
                 return data._isShowChildren;
             },
             childrenLoading () {
-                const data = this.tableRoot.getDataByRowKey(this.row._rowKey);
+                const data = this.TableInstance.getDataByRowKey(this.row._rowKey);
                 return '_loading' in data && data._loading;
             }
         },

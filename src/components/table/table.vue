@@ -163,9 +163,10 @@
         name: 'Table',
         mixins: [ Locale ],
         components: { tableHead, tableBody, tableSummary, Spin, Dropdown, DropdownMenu },
+        emits: ['on-current-change', 'on-row-click', 'on-row-dblclick', 'on-contextmenu', 'on-select', 'on-select-cancel', 'on-selection-change', 'on-expand', 'on-expand-tree', 'on-select-all', 'on-select-all-cancel', 'on-sort-change', 'on-filter-change', 'on-drag-drop'],
         provide () {
             return {
-                tableRoot: this
+                TableInstance: this
             };
         },
         props: {
