@@ -346,7 +346,7 @@
                     onDblclick: (e) => this.dblclickCurrentRow(row._index, e),
                     onContextmenu: (e) => this.contextmenuCurrentRow(row._index, e),
                     onSelectstart: (e) => this.selectStartCurrentRow(row._index, e)
-                }, $tds);
+                }, () => $tds);
                 $tableTrs.push($tableTr);
 
                 // 可展开
