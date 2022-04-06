@@ -40,7 +40,7 @@
             },
             rowClsName (_index) {
                 return this.$parent.$parent.rowClassName(this.objData[_index], _index);
-            },
+            }
         }
     };
 </script>

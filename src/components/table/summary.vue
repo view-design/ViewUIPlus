@@ -31,7 +31,7 @@
             fixed: {
                 type: [Boolean, String],
                 default: false
-            },
+            }
         },
         methods: {
             cellCls (column) {
