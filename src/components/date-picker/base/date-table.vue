@@ -1,6 +1,6 @@
 <template>
     <div :class="classes">
-        <div :class="[prefixCls + '-header']">
+        <div class="ivu-date-picker-cells-header">
             <span v-for="day in headerDays" :key="day">
                 {{day}}
             </span>
@@ -34,11 +34,6 @@
                 type: Boolean,
                 default: false
             },
-        },
-        data () {
-            return {
-                prefixCls: prefixCls,
-            };
         },
         computed: {
             classes () {

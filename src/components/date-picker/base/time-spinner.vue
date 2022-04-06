@@ -21,6 +21,7 @@
     import { nextTick } from 'vue';
     import Options from '../time-mixins';
     import { deepCopy, scrollTop, firstUpperCase } from '../../../utils/assist';
+    import random from '../../../utils/random_str';
 
     const prefixCls = 'ivu-time-picker-cells';
     const timeParts = ['hours', 'minutes', 'seconds'];
@@ -29,6 +30,7 @@
         name: 'TimeSpinner',
         mixins: [ Options ],
         emits: ['on-change', 'on-pick-click'],
+        inject: ['PickerInstance'],
         props: {
             hours: {
                 type: [Number, String],
@@ -57,7 +59,8 @@
                 prefixCls: prefixCls,
                 compiled: false,
                 focusedColumn: -1, // which column inside the picker
-                focusedTime: [0, 0, 0] // the values array into [hh, mm, ss]
+                focusedTime: [0, 0, 0], // the values array into [hh, mm, ss]
+                id: random(6)
             };
         },
         computed: {
@@ -209,7 +212,21 @@
             updateFocusedTime(col, time) {
                 this.focusedColumn = col;
                 this.focusedTime = time.slice();
-
+            },
+            addTimeSpinner () {
+                const root = this.PickerInstance;
+                if (!root.timeSpinnerList) root.timeSpinnerList = [];
+                root.timeSpinnerList.push({
+                    id: this.id,
+                    timeSpinner: this
+                });
+            },
+            removeTimeSpinner () {
+                const root = this.PickerInstance;
+                if (root.timeSpinnerList && root.timeSpinnerList.length) {
+                    const index = root.timeSpinnerList.findIndex(item => item.id === this.id);
+                    root.timeSpinnerList.splice(index, 1);
+                }
             }
         },
         watch: {
@@ -234,7 +251,11 @@
             }
         },
         mounted () {
+            this.addTimeSpinner();
             nextTick(() => this.compiled = true);
+        },
+        beforeUnmount () {
+            this.removeTimeSpinner();
         }
     };
 </script>

@@ -83,7 +83,6 @@
     import {directive as clickOutside} from '../../directives/v-click-outside-x';
     import { oneOf } from '../../utils/assist';
     import { DEFAULT_FORMATS, TYPE_VALUE_RESOLVER_MAP, getDayCountOfMonth } from './util';
-    import {findComponentsDownward} from '../../utils/assist';
     import mixinsForm from '../../mixins/form';
 
     const prefixCls = 'ivu-date-picker';
@@ -263,7 +262,9 @@
                     active: false
                 },
                 internalFocus: false,
-                isValueNull: false // hack：解决 value 置为 null 时，$emit:input 不是 null
+                isValueNull: false, // hack：解决 value 置为 null 时，$emit:input 不是 null
+                timeSpinnerList: [],
+                panelTableList: []
             };
         },
         computed: {
@@ -484,7 +485,7 @@
 
                 // select date, "Enter" key
                 if (keyCode === 13){
-                    const timePickers = findComponentsDownward(this, 'TimeSpinner');
+                    const timePickers = this.timeSpinnerList.map(item => item.timeSpinner);
                     if (timePickers.length > 0){
                         const columnsPerPicker = timePickers[0].showSeconds ? 3 : 2;
                         const pickerIndex = Math.floor(this.focusedTime.column / columnsPerPicker);
@@ -497,7 +498,7 @@
                     if (this.type.match(/range/)){
                         this.$refs.pickerPanel.handleRangePick(this.focusedDate, 'date');
                     } else {
-                        const panels = findComponentsDownward(this, 'PanelTable');
+                        const panels = this.panelTableList.map(item => item.panelTable);
                         const compareDate = (d) => {
                             const sliceIndex = ['year', 'month', 'date'].indexOf((this.type)) + 1;
                             return [d.getFullYear(), d.getMonth(), d.getDate()].slice(0, sliceIndex).join('-');
@@ -523,7 +524,7 @@
                 this.focusedTime.active = true;
                 const horizontal = direction.match(/left|right/);
                 const vertical = direction.match(/up|down/);
-                const timePickers = findComponentsDownward(this, 'TimeSpinner');
+                const timePickers = this.timeSpinnerList.map(item => item.timeSpinner);
 
                 const maxNrOfColumns = (timePickers[0].showSeconds ? 3 : 2) * timePickers.length;
                 const column = (currentColumn => {
@@ -576,8 +577,7 @@
                 }
             },
             navigateDatePanel(direction, shift){
-
-                const timePickers = findComponentsDownward(this, 'TimeSpinner');
+                const timePickers = this.timeSpinnerList.map(item => item.timeSpinner);
                 if (timePickers.length > 0) {
                     // we are in TimePicker mode
                     this.navigateTimePanel(direction, shift, timePickers);
