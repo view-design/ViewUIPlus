@@ -49,7 +49,7 @@
             <span><Tag color="green">未完成</Tag><router-link to="/transfer">Transfer</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/date">Date</router-link></span>
             <span><router-link to="/form">Form</router-link></span>
-            <span><Tag color="red">未开始</Tag><router-link to="/table">Table</router-link></span>
+            <span><Tag color="green">未完成</Tag><router-link to="/table">Table</router-link></span>
             <span><router-link to="/loading-bar">LoadingBar</router-link></span>
             <span><Tag color="green">未完成</Tag><router-link to="/modal">Modal</router-link></span>
             <span><router-link to="/message">Message</router-link></span>
