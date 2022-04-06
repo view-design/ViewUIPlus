@@ -39,8 +39,10 @@
             :classes="dropdownCls"
             :placement="placement"
             :eventsEnabled="eventsEnabled"
+            :transfer="transfer"
+            transition-name="transition-drop"
             @click="handleTransferClick"
-            :transfer="transfer">
+        >
             <div>
                 <component
                     :is="panel"

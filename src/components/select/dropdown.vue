@@ -10,6 +10,7 @@
                 v-bind="$attrs"
                 @mouseenter="handleMouseenter"
                 @mouseleave="handleMouseleave"
+                @click="handleClick"
             ><slot></slot></div>
         </transition>
     </teleport>
@@ -26,7 +27,7 @@
 
     export default {
         name: 'Drop',
-        emits: ['mouseenter', 'mouseleave'],
+        emits: ['mouseenter', 'mouseleave', 'click'],
         props: {
             placement: {
                 type: String,
@@ -158,6 +159,9 @@
             },
             handleOnDestroyPopper () {
                 this.destroy();
+            },
+            handleClick (event) {
+                this.$emit('click', event)
             }
         },
         created () {
