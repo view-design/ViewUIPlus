@@ -58,8 +58,8 @@
                                                 @click="handleReset(getColumn(rowIndex, index)._index)">{{ t('i.table.clearFilter') }}</li>
                                             <li
                                                 :class="itemClasses(getColumn(rowIndex, index), item)"
-                                                v-for="(item, index) in column.filters"
-                                                :key="index"
+                                                v-for="item in column.filters"
+                                                :key="item.value"
                                                 @click="handleSelect(getColumn(rowIndex, index)._index, item.value)">{{ item.label }}</li>
                                         </ul>
                                     </div>
