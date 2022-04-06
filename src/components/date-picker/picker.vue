@@ -84,6 +84,7 @@
     import { oneOf } from '../../utils/assist';
     import { DEFAULT_FORMATS, TYPE_VALUE_RESOLVER_MAP, getDayCountOfMonth } from './util';
     import mixinsForm from '../../mixins/form';
+    import globalConfig from '../../mixins/globalConfig';
 
     const prefixCls = 'ivu-date-picker';
     const pickerPrefixCls = 'ivu-picker';
@@ -118,7 +119,7 @@
 
 
     export default {
-        mixins: [ mixinsForm ],
+        mixins: [ mixinsForm, globalConfig ],
         components: { iInput, Drop, Icon },
         directives: { clickOutside },
         emits: ['on-clickoutside', 'on-clear', 'on-change', 'on-ok', 'on-open-change', 'update:modelValue'],
@@ -305,26 +306,28 @@
             },
             // 3.4.0, global setting customArrow 有值时，arrow 赋值空
             arrowType () {
+                const config = this.globalConfig;
                 let type = '';
 
                 if (this.type === 'time' || this.type === 'timerange') {
                     type = 'ios-time-outline';
 
-                    if (this.$IVIEW) {
-                        if (this.$IVIEW.timePicker.customIcon) {
+                    if (config) {
+                        if (config.timePicker.customIcon) {
                             type = '';
-                        } else if (this.$IVIEW.timePicker.icon) {
-                            type = this.$IVIEW.timePicker.icon;
+                        } else if (config.timePicker.icon) {
+                            type = config.timePicker.icon;
                         }
                     }
                 } else {
+                    const config = this.globalConfig;
                     type = 'ios-calendar-outline';
 
-                    if (this.$IVIEW) {
-                        if (this.$IVIEW.datePicker.customIcon) {
+                    if (config) {
+                        if (config.datePicker.customIcon) {
                             type = '';
-                        } else if (this.$IVIEW.datePicker.icon) {
-                            type = this.$IVIEW.datePicker.icon;
+                        } else if (config.datePicker.icon) {
+                            type = config.datePicker.icon;
                         }
                     }
                 }
@@ -335,19 +338,20 @@
             },
             // 3.4.0, global setting
             customArrowType () {
+                const config = this.globalConfig;
                 let type = '';
 
                 if (!this.showClose) {
                     if (this.type === 'time' || this.type === 'timerange') {
-                        if (this.$IVIEW) {
-                            if (this.$IVIEW.timePicker.customIcon) {
-                                type = this.$IVIEW.timePicker.customIcon;
+                        if (config) {
+                            if (config.timePicker.customIcon) {
+                                type = config.timePicker.customIcon;
                             }
                         }
                     } else {
-                        if (this.$IVIEW) {
-                            if (this.$IVIEW.datePicker.customIcon) {
-                                type = this.$IVIEW.datePicker.customIcon;
+                        if (config) {
+                            if (config.datePicker.customIcon) {
+                                type = config.datePicker.customIcon;
                             }
                         }
                     }
@@ -357,19 +361,20 @@
             },
             // 3.4.0, global setting
             arrowSize () {
+                const config = this.globalConfig;
                 let size = '';
 
                 if (!this.showClose) {
                     if (this.type === 'time' || this.type === 'timerange') {
-                        if (this.$IVIEW) {
-                            if (this.$IVIEW.timePicker.iconSize) {
-                                size = this.$IVIEW.timePicker.iconSize;
+                        if (config) {
+                            if (config.timePicker.iconSize) {
+                                size = config.timePicker.iconSize;
                             }
                         }
                     } else {
-                        if (this.$IVIEW) {
-                            if (this.$IVIEW.datePicker.iconSize) {
-                                size = this.$IVIEW.datePicker.iconSize;
+                        if (config) {
+                            if (config.datePicker.iconSize) {
+                                size = config.datePicker.iconSize;
                             }
                         }
                     }
