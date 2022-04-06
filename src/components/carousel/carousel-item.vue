@@ -3,17 +3,25 @@
 </template>
 <script>
     import { nextTick } from 'vue';
+    import random from "../../utils/random_str";
     const prefixCls = 'ivu-carousel-item';
 
     export default {
         componentName: 'carousel-item',
         name: 'CarouselItem',
+        inject: ['CarouselInstance'],
+        provide () {
+            return {
+                CarouselItemInstance: this
+            }
+        },
         data () {
             return {
                 prefixCls: prefixCls,
                 width: 0,
                 height: 'auto',
-                left: 0
+                left: 0,
+                id: random(6)
             };
         },
         computed: {
@@ -27,25 +35,48 @@
         },
         watch: {
             width (val) {
-                if (val && this.$parent.loop) {
+                if (val && this.CarouselInstance.loop) {
                     nextTick(() => {
-                        this.$parent.initCopyTrackDom();
+                        this.CarouselInstance.initCopyTrackDom();
                     });
                 }
             },
             height (val) {
-                if (val && this.$parent.loop) {
+                if (val && this.CarouselInstance.loop) {
                     nextTick(() => {
-                        this.$parent.initCopyTrackDom();
+                        this.CarouselInstance.initCopyTrackDom();
                     });
                 }
             }
         },
+        methods:{
+            /**
+             * 添加组件实例到实例列表
+             * @param parentId 父组件ID
+             */
+            addInstance (parentId) {
+                const root = this.$root;
+                if (!root.instanceList) root.instanceList = [];
+                root.instanceList.push({
+                    id: this.id,
+                    parentId:parentId,
+                    instance: this
+                })
+            },
+            removeInstance () {
+                const root = this.$root;
+                if (!root.instanceList) return;
+                const index = root.instanceList.findIndex(item => item.id === this.id);
+                root.instanceList.splice(index, 1);
+            }
+        },
         mounted () {
-            this.$parent.slotChange();
+            this.addInstance(this.CarouselInstance.id);
+            this.CarouselInstance.slotChange();
         },
         beforeUnmount () {
-            this.$parent.slotChange();
+            this.removeInstance();
+            this.CarouselInstance.slotChange();
         }
     };
 </script>

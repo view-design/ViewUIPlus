@@ -29,11 +29,17 @@
     import Icon from '../icon/icon.vue';
     import { getStyle, oneOf } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
+    import random from "../../utils/random_str";
 
     const prefixCls = 'ivu-carousel';
 
     export default {
         name: 'Carousel',
+        provide () {
+            return {
+                CarouselInstance: this
+            }
+        },
         components: { Icon },
         emits: ['on-change', 'on-click', 'update:modelValue'],
         props: {
@@ -92,6 +98,7 @@
         },
         data () {
             return {
+                id: random(6),
                 prefixCls: prefixCls,
                 listWidth: 0,
                 trackWidth: 0,
@@ -149,26 +156,13 @@
         methods: {
             // find option component // todo
             findChild (cb) {
-                const find = function (child) {
-                    const name = child.$options.componentName;
-
-                    if (name) {
-                        cb(child);
-                    } else if (child.$children.length) {
-                        child.$children.forEach((innerChild) => {
-                            find(innerChild, cb);
-                        });
-                    }
-                };
-
-                if (this.slideInstances.length || !this.$children) {
-                    this.slideInstances.forEach((child) => {
-                        find(child);
-                    });
-                } else {
-                    this.$children.forEach((child) => {
-                        find(child);
-                    });
+                const root = this.$root;
+                if(root.instanceList){
+                    root.instanceList.forEach((item)=>{
+                        if(item.parentId===this.id){
+                            cb(item.instance)
+                        }
+                    })
                 }
             },
             // copy trackDom
@@ -186,12 +180,10 @@
                         $el: child.$el
                     });
                     child.index = index++;
-
                     if (init) {
                         this.slideInstances.push(child);
                     }
                 });
-
                 this.slides = slides;
                 this.updatePos();
             },
@@ -327,11 +319,9 @@
             this.updateSlides(true);
             this.handleResize();
             this.setAutoplay();
-//            window.addEventListener('resize', this.handleResize, false);
             on(window, 'resize', this.handleResize);
         },
         beforeUnmount () {
-//            window.removeEventListener('resize', this.handleResize, false);
             off(window, 'resize', this.handleResize);
         }
     };
