@@ -75,7 +75,7 @@ import Step from './components/step';
 import Steps from './components/steps';
 import Submenu from './components/submenu';
 import Switch from './components/switch';
-// import Table from './components/table';
+import Table from './components/table';
 import TabPane from './components/tab-pane';
 import Tabs from './components/tabs';
 import Tag from './components/tag';
@@ -159,7 +159,7 @@ const components = {
     Steps,
     Submenu,
     Switch,
-    // Table,
+    Table,
     Tabs,
     TabPane,
     Tag,
@@ -188,7 +188,7 @@ const iview = {
     iProgress: Progress,
     iSelect: Select,
     iSwitch: Switch,
-    // iTable: Table,
+    iTable: Table,
     // iTime: Time
 };
 

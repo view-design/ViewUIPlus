@@ -42,6 +42,7 @@
 -->
 <script>
     // todo :key="row"
+    import { h } from 'vue';
     import TableTr from './table-tr.vue';
     import TableCell from './cell.vue';
     import Expand from './expand.js';
@@ -304,7 +305,7 @@
                 }
             }
         },
-        render (h) {
+        render () {
             let $cols = [];
             this.columns.forEach(column => {
                 const $col = h('col', {

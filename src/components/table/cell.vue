@@ -2,7 +2,7 @@
     <div :class="classes" ref="cell">
         <template v-if="renderType === 'index'"><span>{{ column.indexMethod ? column.indexMethod(row, naturalIndex) : (naturalIndex + 1) }}</span></template>
         <template v-if="renderType === 'selection'">
-            <Checkbox :value="checked" @click.native.stop="handleClick" @on-change="toggleSelect" :disabled="disabled"></Checkbox>
+            <Checkbox :model-value="checked" @click.stop="handleClick" @on-change="toggleSelect" :disabled="disabled"></Checkbox>
         </template>
         <div class="ivu-table-cell-tree-level" v-if="showLevel" :style="treeLevelStyle"></div>
         <div class="ivu-table-cell-tree" :class="{ 'ivu-table-cell-tree-loading': childrenLoading }" v-if="showChildren" @click.prevent.stop="handleToggleTree">

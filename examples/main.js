@@ -170,10 +170,10 @@ const router = createRouter({
             path: '/form',
             component: () => import('./routers/form.vue')
         },
-        // {
-        //     path: '/table',
-        //     component: (resolve) => require(['./routers/table.vue'], resolve)
-        // },
+        {
+            path: '/table',
+            component: () => import('./routers/table.vue')
+        },
         {
             path: '/loading-bar',
             component: () => import('./routers/loading-bar.vue')

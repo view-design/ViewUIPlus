@@ -2,11 +2,11 @@
     <div style="overflow:hidden;">
         <table class="ivu-table-summary" cellspacing="0" cellpadding="0" border="0" :style="styleObject">
             <colgroup>
-                <col v-for="(column, index) in columns" :width="setCellWidth(column)">
+                <col v-for="(column, index) in columns" :key="index" :width="setCellWidth(column)">
             </colgroup>
             <tbody :class="[prefixCls + '-tbody']">
                 <tr class="ivu-table-row">
-                    <td v-for="(column, index) in columns" :class="alignCls(column)">
+                    <td v-for="(column, index) in columns" :key="index" :class="alignCls(column)">
                         <div class="ivu-table-cell" :class="cellCls(column)">
                             <span>{{ data[column.key].value }}</span>
                         </div>

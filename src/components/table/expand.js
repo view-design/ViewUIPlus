@@ -1,6 +1,7 @@
+import { h } from 'vue';
+
 export default {
     name: 'TableExpand',
-    functional: true,
     props: {
         row: Object,
         render: Function,
@@ -10,12 +11,12 @@ export default {
             default: null
         }
     },
-    render: (h, ctx) => {
+    render () {
         const params = {
-            row: ctx.props.row,
-            index: ctx.props.index
+            row: this.row,
+            index: this.index
         };
-        if (ctx.props.column) params.column = ctx.props.column;
-        return ctx.props.render(h, params);
+        if (this.column) params.column = this.column;
+        return this.render(h, params);
     }
 };

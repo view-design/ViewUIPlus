@@ -126,9 +126,11 @@
         <div class="ivu-table-resize-line" v-show="showResizeLine" ref="resizeLine"></div>
         <div class="ivu-table-context-menu" :style="contextMenuStyles" v-if="showContextMenu">
             <Dropdown trigger="custom" :visible="contextMenuVisible" transfer @on-clickoutside="handleClickContextMenuOutside">
-                <DropdownMenu slot="list">
-                    <slot name="contextMenu"></slot>
-                </DropdownMenu>
+                <template #list>
+                    <DropdownMenu>
+                        <slot name="contextMenu"></slot>
+                    </DropdownMenu>
+                </template>
             </Dropdown>
         </div>
         <Spin fix size="large" v-if="loading">
@@ -137,6 +139,7 @@
     </div>
 </template>
 <script>
+    import { getCurrentInstance, nextTick } from 'vue';
     import tableHead from './table-head.vue';
     import tableBody from './table-body.vue';
     import tableSummary from './summary.vue';
@@ -183,7 +186,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             width: {
@@ -681,7 +685,7 @@
 
                 // 4.7.0 auto fixed shadow
                 if (this.fixedShadow === 'auto') {
-                    this.$nextTick(() => {
+                    nextTick(() => {
                         const $body = this.$refs.body;
                         this.scrollOnTheLeft = $body.scrollLeft === 0;
                         this.scrollOnTheRight = $body.scrollWidth === $body.scrollLeft + $body.clientWidth;
@@ -766,7 +770,7 @@
             },
             contextmenuCurrentRow (_index, rowKey, event) {
                 if (this.contextMenuVisible) this.handleClickContextMenuOutside();
-                this.$nextTick(() => {
+                nextTick(() => {
                     const $TableWrap = this.$refs.tableWrap;
                     const TableBounding = $TableWrap.getBoundingClientRect();
                     const position = {
@@ -871,7 +875,7 @@
                 this.$emit('on-expand', JSON.parse(JSON.stringify(this.cloneData[_index])), status);
 
                 if(this.height || this.maxHeight){
-                    this.$nextTick(()=>this.fixedBody());
+                    nextTick(()=>this.fixedBody());
                 }
             },
             toggleTree (rowKey) {
@@ -885,7 +889,7 @@
                         this.$set(sourceData, '_loading', false);
                         if (children.length) {
                             this.$set(sourceData, 'children', children);
-                            this.$nextTick(() => {
+                            nextTick(() => {
                                 const newData = this.getDataByRowKey(rowKey);
                                 newData._isShowChildren = !newData._isShowChildren;
                                 // 由于 updateDataStatus 是基于原数据修改，导致单选、多选等状态重置，所以暂不处理 _showChildren 状态，而是通过事件 @on-expand-tree
@@ -1020,7 +1024,7 @@
             },
             fixedHeader () {
                 if (this.height || this.maxHeight) {
-                    this.$nextTick(() => {
+                    nextTick(() => {
                         const titleHeight = parseInt(getStyle(this.$refs.title, 'height')) || 0;
                         const headerHeight = parseInt(getStyle(this.$refs.header, 'height')) || 0;
                         const footerHeight = parseInt(getStyle(this.$refs.footer, 'height')) || 0;
@@ -1029,11 +1033,11 @@
                         } else if (this.maxHeight) {
                             this.bodyHeight = this.maxHeight - titleHeight - headerHeight - footerHeight;
                         }
-                        this.$nextTick(()=>this.fixedBody());
+                        nextTick(()=>this.fixedBody());
                     });
                 } else {
                     this.bodyHeight = 0;
-                    this.$nextTick(()=>this.fixedBody());
+                    nextTick(()=>this.fixedBody());
                 }
             },
             fixedBody (){
@@ -1447,22 +1451,23 @@
         },
         mounted () {
             this.handleResize();
-            this.$nextTick(() => this.ready = true);
+            nextTick(() => this.ready = true);
 
             on(window, 'resize', this.handleResize);
             this.observer = elementResizeDetectorMaker();
             this.observer.listenTo(this.$el, this.handleResize);
 
-            this.$on('on-visible-change', (val) => {
-                if (val) {
-                    this.$nextTick(() => {
-                        this.handleResize();
-                    });
-                }
-            });
+            // todo
+            // this.$on('on-visible-change', (val) => {
+            //     if (val) {
+            //         nextTick(() => {
+            //             this.handleResize();
+            //         });
+            //     }
+            // });
         },
         beforeUnmount () {
-            this.$off('on-visible-change');
+            // this.$off('on-visible-change'); // todo
             off(window, 'resize', this.handleResize);
             this.observer.removeAllListeners(this.$el);
             this.observer.uninstall(this.$el);
