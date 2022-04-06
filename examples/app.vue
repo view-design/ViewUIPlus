@@ -31,7 +31,7 @@
             <span><router-link to="/collapse">Collapse</router-link></span>
             <span><Tag color="green">未完成</Tag><router-link to="/carousel">Carousel</router-link></span>
             <span><router-link to="/card">Card</router-link></span>
-            <span><Tag color="red">未开始</Tag><router-link to="/tree">Tree</router-link></span>
+            <span><Tag color="green">未完成</Tag><router-link to="/tree">Tree</router-link></span>
             <span><router-link to="/rate">Rate</router-link></span>
             <span><router-link to="/circle">Circle</router-link></span>
             <span><Tag color="green">未完成</Tag><router-link to="/tabs">Tabs</router-link></span>
