@@ -50,7 +50,7 @@
                                         </div>
                                     </div>
                                 </template>
-                                <template #content  v-else>
+                                <template #content v-else>
                                     <div :class="[prefixCls + '-filter-list']">
                                         <ul :class="[prefixCls + '-filter-list-single']">
                                             <li
