@@ -40,7 +40,7 @@ export default {
         }
     },
     computed: {
-        dates(){
+        dates () {
             const { selectionMode, modelValue, rangeState } = this;
             const rangeSelecting = selectionMode === 'range' && rangeState.selecting;
             return rangeSelecting ? [rangeState.from] : modelValue;

@@ -50,7 +50,7 @@
                 <time-picker
                     ref="timePicker"
                     v-if="currentView === 'time'"
-                    :value="dates"
+                    :model-value="dates"
                     :format="format"
                     :time-disabled="timeDisabled"
                     :disabled-date="disabledDate"

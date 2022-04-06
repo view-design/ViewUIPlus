@@ -6,9 +6,9 @@
             </span>
         </div>
         <span
-                :class="getCellCls(cell)"
                 v-for="(cell, i) in cells"
                 :key="String(cell.date) + i"
+                :class="getCellCls(cell)"
                 @click="handleClick(cell, $event)"
                 @mouseenter="handleMouseMove(cell)"
         >

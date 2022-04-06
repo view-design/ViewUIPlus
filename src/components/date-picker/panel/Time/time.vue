@@ -53,6 +53,7 @@
         name: 'TimePickerPanel',
         mixins: [ Mixin, Locale, Options ],
         components: { TimeSpinner, Confirm },
+        emits: ['on-pick'],
         props: {
             disabledDate: {
                 type: Function,
@@ -66,7 +67,7 @@
                 type: String,
                 default: 'HH:mm:ss'
             },
-            value: {
+            modelValue: {
                 type: Array,
                 required: true
             },
@@ -75,7 +76,7 @@
             return {
                 prefixCls: prefixCls,
                 timePrefixCls: timePrefixCls,
-                date: this.value[0] || initTimeDate(),
+                date: this.modelValue[0] || initTimeDate(),
                 showDate: false
             };
         },
@@ -92,12 +93,12 @@
                 return `${date.getFullYear()}${tYear} ${tMonth}`;
             },
             timeSlots(){
-                if (!this.value[0]) return [];
+                if (!this.modelValue[0]) return [];
                 return ['getHours', 'getMinutes', 'getSeconds'].map(slot => this.date[slot]());
             },
             disabledHMS(){
                 const disabledTypes = ['disabledHours', 'disabledMinutes', 'disabledSeconds'];
-                if (this.disabledDate === returnFalse || !this.value[0]) {
+                if (this.disabledDate === returnFalse || !this.modelValue[0]) {
                     const disabled = disabledTypes.reduce(
                         (obj, type) => (obj[type] = this[type], obj), {}
                     );
@@ -122,7 +123,7 @@
             }
         },
         watch: {
-            value (dates) {
+            modelValue (dates) {
                 let newVal = dates[0] || initTimeDate();
                 newVal = new Date(newVal);
                 this.date = newVal;

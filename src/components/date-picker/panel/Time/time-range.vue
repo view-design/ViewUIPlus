@@ -66,6 +66,7 @@
         name: 'RangeTimePickerPanel',
         mixins: [ Mixin, Locale, Options ],
         components: { TimeSpinner, Confirm },
+        emits: ['on-pick'],
         props: {
             steps: {
                 type: Array,

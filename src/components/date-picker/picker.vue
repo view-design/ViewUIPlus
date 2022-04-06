@@ -53,7 +53,7 @@
                     :selectionMode="selectionMode"
                     :steps="steps"
                     :format="format"
-                    :value="internalValue"
+                    :model-value="internalValue"
                     :start-date="startDate"
                     :split-panels="splitPanels"
                     :show-week-numbers="showWeekNumbers"
