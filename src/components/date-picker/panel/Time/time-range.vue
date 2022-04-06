@@ -10,9 +10,9 @@
                     ref="timeSpinner"
                     :steps="steps"
                     :show-seconds="showSeconds"
-                    :hours="value[0] && dateStart.getHours()"
-                    :minutes="value[0] && dateStart.getMinutes()"
-                    :seconds="value[0] && dateStart.getSeconds()"
+                    :hours="modelValue[0] && dateStart.getHours()"
+                    :minutes="modelValue[0] && dateStart.getMinutes()"
+                    :seconds="modelValue[0] && dateStart.getSeconds()"
                     :disabled-hours="disabledHours"
                     :disabled-minutes="disabledMinutes"
                     :disabled-seconds="disabledSeconds"
@@ -29,9 +29,9 @@
                     ref="timeSpinnerEnd"
                     :steps="steps"
                     :show-seconds="showSeconds"
-                    :hours="value[1] && dateEnd.getHours()"
-                    :minutes="value[1] && dateEnd.getMinutes()"
-                    :seconds="value[1] && dateEnd.getSeconds()"
+                    :hours="modelValue[1] && dateEnd.getHours()"
+                    :minutes="modelValue[1] && dateEnd.getMinutes()"
+                    :seconds="modelValue[1] && dateEnd.getSeconds()"
                     :disabled-hours="disabledHours"
                     :disabled-minutes="disabledMinutes"
                     :disabled-seconds="disabledSeconds"
@@ -75,13 +75,13 @@
                 type: String,
                 default: 'HH:mm:ss'
             },
-            value: {
+            modelValue: {
                 type: Array,
                 required: true
-            },
+            }
         },
         data () {
-            const [dateStart, dateEnd] = this.value.slice();
+            const [dateStart, dateEnd] = this.modelValue.slice();
             return {
                 prefixCls: prefixCls,
                 timePrefixCls: timePrefixCls,
@@ -112,7 +112,7 @@
             }
         },
         watch: {
-            value (dates) {
+            modelValue (dates) {
                 const [dateStart, dateEnd] = dates.slice();
                 this.dateStart = dateStart || initTimeDate();
                 this.dateEnd = dateEnd || initTimeDate();

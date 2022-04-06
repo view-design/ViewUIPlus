@@ -37,7 +37,7 @@
                     v-if="currentView !== 'time'"
                     :table-date="panelDate"
                     :show-week-numbers="showWeekNumbers"
-                    :value="dates"
+                    :model-value="dates"
                     :selection-mode="selectionMode"
                     :disabled-date="disabledDate"
                     :focused-date="focusedDate"
@@ -150,7 +150,7 @@
             }
         },
         watch: {
-            value (newVal) {
+            modelValue (newVal) {
                 this.dates = newVal;
                 const panelDate = this.multiple ? this.dates[this.dates.length - 1] : (this.startDate || this.dates[0]);
                 this.panelDate = panelDate || new Date();

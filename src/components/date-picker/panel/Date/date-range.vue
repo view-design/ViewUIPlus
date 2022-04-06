@@ -4,6 +4,7 @@
             <div
                 :class="[prefixCls + '-shortcut']"
                 v-for="shortcut in shortcuts"
+                :key="shortcut.text"
                 @click="handleShortcutClick(shortcut)">{{ shortcut.text }}</div>
         </div>
         <div :class="panelBodyClasses">
@@ -40,7 +41,7 @@
                     :disabled-date="disabledDate"
                     :range-state="rangeState"
                     :show-week-numbers="showWeekNumbers"
-                    :value="preSelecting.left ? [dates[0]] : dates"
+                    :model-value="preSelecting.left ? [dates[0]] : dates"
                     :focused-date="focusedDate"
 
                     @on-change-range="handleChangeRange"
@@ -81,7 +82,7 @@
                     :range-state="rangeState"
                     :disabled-date="disabledDate"
                     :show-week-numbers="showWeekNumbers"
-                    :value="preSelecting.right ? [dates[dates.length - 1]] : dates"
+                    :model-value="preSelecting.right ? [dates[dates.length - 1]] : dates"
                     :focused-date="focusedDate"
 
                     @on-change-range="handleChangeRange"
@@ -92,7 +93,7 @@
                 <time-picker
                     ref="timePicker"
                     v-if="currentView === 'time'"
-                    :value="dates"
+                    :model-value="dates"
                     :format="format"
                     :time-disabled="timeDisabled"
                     v-bind="timePickerOptions"
@@ -149,14 +150,14 @@
             },
         },
         data(){
-            const [minDate, maxDate] = this.value.map(date => date || initTimeDate());
+            const [minDate, maxDate] = this.modelValue.map(date => date || initTimeDate());
             const leftPanelDate = this.startDate ? this.startDate : minDate;
 
             return {
                 prefixCls: prefixCls,
                 datePrefixCls: datePrefixCls,
-                dates: this.value,
-                rangeState: {from: this.value[0], to: this.value[1], selecting: minDate && !maxDate},
+                dates: this.modelValue,
+                rangeState: {from: this.modelValue[0], to: this.modelValue[1], selecting: minDate && !maxDate},
                 currentView: this.selectionMode || 'range',
                 leftPickerTable: `${this.selectionMode}-table`,
                 rightPickerTable: `${this.selectionMode}-table`,
@@ -215,7 +216,7 @@
             }
         },
         watch: {
-            value(newVal) {
+            modelValue (newVal) {
                 const minDate = newVal[0] ? toDate(newVal[0]) : null;
                 const maxDate = newVal[1] ? toDate(newVal[1]) : null;
                 this.dates = [minDate, maxDate].sort(dateSorter);

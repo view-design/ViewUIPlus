@@ -27,7 +27,7 @@ export default {
             type: Function,
             default: () => false
         },
-        value: {
+        modelValue: {
             type: Array,
             default: () => [initTimeDate(), initTimeDate()]
         },
