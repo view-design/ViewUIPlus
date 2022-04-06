@@ -389,7 +389,7 @@
             },
             handleClear () {
                 const e = { target: { value: '' } };
-                this.$emit('input', '');
+                this.$emit('update:modelValue', '');
                 this.setCurrentValue('');
                 this.$emit('on-change', e);
                 this.$emit('on-clear');
