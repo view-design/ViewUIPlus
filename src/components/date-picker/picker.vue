@@ -123,6 +123,11 @@
         components: { iInput, Drop, Icon },
         directives: { clickOutside },
         emits: ['on-clickoutside', 'on-clear', 'on-change', 'on-ok', 'on-open-change', 'update:modelValue'],
+        provide () {
+            return {
+                PickerInstance: this
+            }
+        },
         props: {
             format: {
                 type: String
@@ -782,6 +787,12 @@
             },
             updatePopper () {
                 this.$refs.drop.update();
+            },
+            handleOnFocusInput () {
+                this.focus();
+            },
+            handleOnUpdatePopper () {
+                this.updatePopper();
             }
         },
         watch: {

@@ -21,6 +21,7 @@
         mixins: [ Locale ],
         components: { iButton },
         emits: ['on-pick-clear', 'on-pick-success', 'on-pick-toggle-time'],
+        inject: ['PickerInstance'],
         props: {
             showTime: {
                 type: Boolean,
@@ -63,8 +64,8 @@
             handleToggleTime () {
                 if (this.timeDisabled) return;
                 this.$emit('on-pick-toggle-time');
-                // this.dispatch('CalendarPicker', 'focus-input'); // todo
-                // this.dispatch('CalendarPicker', 'update-popper'); // todo
+                this.PickerInstance.handleOnFocusInput();
+                this.PickerInstance.handleOnUpdatePopper();
             },
             handleTab (e) {
                 const tabbables = [...this.$el.children];
@@ -73,7 +74,7 @@
                 if (document.activeElement === expectedFocus) {
                     e.preventDefault();
                     e.stopPropagation();
-                    // this.dispatch('CalendarPicker', 'focus-input'); // todo
+                    this.PickerInstance.handleOnFocusInput();
                 }
             }
         }

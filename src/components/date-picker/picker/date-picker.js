@@ -6,7 +6,7 @@ import { oneOf } from '../../../utils/assist';
 
 export default {
     name: 'CalendarPicker',
-    mixins: [Picker],
+    mixins: [ Picker ],
     props: {
         type: {
             validator (value) {
@@ -17,11 +17,11 @@ export default {
     },
     components: { DatePickerPanel, RangeDatePickerPanel },
     computed: {
-        panel(){
+        panel () {
             const isRange =  this.type === 'daterange' || this.type === 'datetimerange';
             return isRange ? 'RangeDatePickerPanel' : 'DatePickerPanel';
         },
-        ownPickerProps(){
+        ownPickerProps () {
             return this.options;
         }
     },
