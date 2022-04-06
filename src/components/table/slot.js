@@ -22,7 +22,7 @@ export default {
                 'ivu-table-cell-slot-inline': this.display === 'inline',
                 'ivu-table-cell-slot-inline-block': this.display === 'inline-block'
             }
-        }, this.TableInstance.$scopedSlots[this.column.slot]({
+        }, this.TableInstance.$slots[this.column.slot]({
             row: this.row,
             column: this.column,
             index: this.index
