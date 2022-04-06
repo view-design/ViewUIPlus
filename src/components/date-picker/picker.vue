@@ -836,16 +836,6 @@
             //     this.$emit('input', this.publicVModelValue); // to update v-model
             // }
             if (this.open !== null) this.visible = this.open;
-
-            // to handle focus from confirm buttons
-            // todo
-            // this.$on('focus-input', () => this.focus());
-            // this.$on('update-popper', () => this.updatePopper());
-        },
-        beforeUnmount() {
-            // todo
-            // this.$off('focus-input');
-            // this.$off('update-popper');
         }
     };
 </script>
