@@ -80,7 +80,7 @@
     import iInput from '../../components/input/input.vue';
     import Drop from '../../components/select/dropdown.vue';
     import Icon from '../../components/icon/icon.vue';
-    import {directive as clickOutside} from '../../directives/v-click-outside-x';
+    import { directive as clickOutside } from '../../directives/v-click-outside-x';
     import { oneOf } from '../../utils/assist';
     import { DEFAULT_FORMATS, TYPE_VALUE_RESOLVER_MAP, getDayCountOfMonth } from './util';
     import mixinsForm from '../../mixins/form';
@@ -778,7 +778,7 @@
                 };
 
                 if (!this.isConfirm) this.onSelectionModeChange(this.type); // reset the selectionMode
-                if (!this.isConfirm) this.visible = visible;
+                if (!this.isConfirm) this.visible = !!visible;
                 this.emitChange(type);
             },
             onPickSuccess(){

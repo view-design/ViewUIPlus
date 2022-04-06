@@ -82,7 +82,7 @@ import Tag from './components/tag';
 import Time from './components/time';
 import Timeline from './components/timeline';
 import TimelineItem from './components/timeline-item';
-// import TimePicker from './components/time-picker';
+import TimePicker from './components/time-picker';
 import Tooltip from './components/tooltip';
 import Transfer from './components/transfer';
 import Tree from './components/tree';
@@ -166,7 +166,7 @@ const components = {
     Time,
     Timeline,
     TimelineItem,
-    // TimePicker,
+    TimePicker,
     Tooltip,
     Transfer,
     Tree,

@@ -1,12 +1,13 @@
+import { nextTick } from 'vue';
 import Picker from '../picker.vue';
 import TimePickerPanel from '../panel/Time/time.vue';
 import RangeTimePickerPanel from '../panel/Time/time-range.vue';
 import Options from '../time-mixins';
 
-import { findComponentsDownward, oneOf } from '../../../utils/assist';
+import { oneOf } from '../../../utils/assist';
 
 export default {
-    mixins: [Picker, Options],
+    mixins: [ Picker, Options ],
     components: { TimePickerPanel, RangeTimePickerPanel },
     props: {
         type: {
@@ -17,11 +18,11 @@ export default {
         },
     },
     computed: {
-        panel(){
+        panel () {
             const isRange =  this.type === 'timerange';
             return isRange ? 'RangeTimePickerPanel' : 'TimePickerPanel';
         },
-        ownPickerProps(){
+        ownPickerProps () {
             return {
                 disabledHours: this.disabledHours,
                 disabledMinutes: this.disabledMinutes,
@@ -31,10 +32,10 @@ export default {
         }
     },
     watch: {
-        visible(visible){
+        visible (visible) {
             if (visible) {
-                this.$nextTick(() => {
-                    const spinners = findComponentsDownward(this, 'TimeSpinner');
+                nextTick(() => {
+                    const spinners = this.timeSpinnerList.map(item => item.timeSpinner);
                     spinners.forEach(instance => instance.updateScroll());
                 });
             }
