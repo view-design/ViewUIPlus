@@ -27,7 +27,9 @@
                     @mouseenter="handleInputMouseenter"
                     @mouseleave="handleInputMouseleave"
                 >
-                    <Icon @click="handleIconClick" :type="arrowType" :custom="customArrowType" :size="arrowSize" slot="suffix" />
+                    <template #suffix>
+                        <Icon @click="handleIconClick" :type="arrowType" :custom="customArrowType" :size="arrowSize" />
+                    </template>
                 </i-input>
             </slot>
         </div>
