@@ -822,7 +822,7 @@
                 if (value === '') this.values = [];
                 else if (checkValuesNotEqual(value,publicValue,values)) {
                     nextTick(() => this.values = getInitialValue().map(getOptionData).filter(Boolean));
-                    // if (!this.multiple) this.dispatch('FormItem', 'on-form-change', this.publicValue); // todo
+                    if (!this.multiple) this.handleFormItemChange('change', this.publicValue);
                 }
             },
             values (now, before) {
@@ -851,7 +851,7 @@
 
                     this.$emit('update:modelValue', vModelValue); // to update v-model
                     this.$emit('on-change', emitValue);
-                    // this.dispatch('FormItem', 'on-form-change', emitValue); // todo
+                    this.handleFormItemChange('change', emitValue);
                 }
             },
             query (query) {
