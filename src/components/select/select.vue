@@ -367,7 +367,7 @@
                         [`${prefixCls}-disabled`]: this.itemDisabled,
                         [`${prefixCls}-multiple`]: this.multiple,
                         [`${prefixCls}-single`]: !this.multiple,
-                        [`${prefixCls}-show-clear`]: this.showCloseIcon,
+                        // [`${prefixCls}-show-clear`]: this.showCloseIcon, // 好像没用
                         [`${prefixCls}-${this.size}`]: !!this.size
                     }
                 ];
@@ -498,7 +498,8 @@
                 return selectOptions;
             },
             canBeCleared () {
-                const uiStateMatch = this.hasMouseHoverHead || this.active;
+                // const uiStateMatch = this.hasMouseHoverHead || this.active; // active 好像没用
+                const uiStateMatch = this.hasMouseHoverHead;
                 const qualifiesForClear = !this.multiple && !this.itemDisabled && this.clearable;
                 return uiStateMatch && qualifiesForClear && this.reset; // we return a function
             },
