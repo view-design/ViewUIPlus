@@ -29,7 +29,6 @@
     import Icon from '../icon/icon.vue';
     import { getStyle, oneOf } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
-    import random from "../../utils/random_str";
 
     const prefixCls = 'ivu-carousel';
 
@@ -98,7 +97,6 @@
         },
         data () {
             return {
-                id: random(6),
                 prefixCls: prefixCls,
                 listWidth: 0,
                 trackWidth: 0,
@@ -113,6 +111,7 @@
                 trackIndex: this.modelValue,
                 copyTrackIndex: this.modelValue,
                 hideTrackPos: -1, // 默认左滑
+                carouselItemList: []
             };
         },
         computed: {
@@ -154,15 +153,11 @@
             }
         },
         methods: {
-            // find option component // todo
             findChild (cb) {
-                const root = this.$root;
-                if(root.instanceList){
-                    root.instanceList.forEach((item)=>{
-                        if(item.parentId===this.id){
-                            cb(item.instance)
-                        }
-                    })
+                if (this.carouselItemList.length) {
+                    this.carouselItemList.forEach(item => {
+                        cb(item.carouselItem);
+                    });
                 }
             },
             // copy trackDom

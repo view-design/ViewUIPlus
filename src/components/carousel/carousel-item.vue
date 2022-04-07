@@ -3,18 +3,13 @@
 </template>
 <script>
     import { nextTick } from 'vue';
-    import random from "../../utils/random_str";
+    import random from '../../utils/random_str';
     const prefixCls = 'ivu-carousel-item';
 
     export default {
         componentName: 'carousel-item',
         name: 'CarouselItem',
         inject: ['CarouselInstance'],
-        provide () {
-            return {
-                CarouselItemInstance: this
-            }
-        },
         data () {
             return {
                 prefixCls: prefixCls,
@@ -52,26 +47,24 @@
         methods:{
             /**
              * 添加组件实例到实例列表
-             * @param parentId 父组件ID
              */
-            addInstance (parentId) {
-                const root = this.$root;
-                if (!root.instanceList) root.instanceList = [];
-                root.instanceList.push({
+            addInstance () {
+                const root = this.CarouselInstance;
+                if (!root.carouselItemList) root.carouselItemList = [];
+                root.carouselItemList.push({
                     id: this.id,
-                    parentId:parentId,
-                    instance: this
+                    carouselItem: this
                 })
             },
             removeInstance () {
-                const root = this.$root;
-                if (!root.instanceList) return;
-                const index = root.instanceList.findIndex(item => item.id === this.id);
-                root.instanceList.splice(index, 1);
+                const root = this.CarouselInstance;
+                if (!root.carouselItemList) return;
+                const index = root.carouselItemList.findIndex(item => item.id === this.id);
+                root.carouselItemList.splice(index, 1);
             }
         },
         mounted () {
-            this.addInstance(this.CarouselInstance.id);
+            this.addInstance();
             this.CarouselInstance.slotChange();
         },
         beforeUnmount () {
