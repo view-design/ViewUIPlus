@@ -154,10 +154,10 @@ const router = createRouter({
             path: '/backtop',
             component: () => import('./routers/back-top.vue')
         },
-        // {
-        //     path: '/page',
-        //     component: (resolve) => require(['./routers/page.vue'], resolve)
-        // },
+        {
+            path: '/page',
+            component: () => import('./routers/page.vue')
+        },
         {
             path: '/transfer',
             component: () => import('./routers/transfer.vue')

@@ -59,7 +59,7 @@ import Modal from './components/modal';
 import Notice from './components/notice';
 import Option from './components/option';
 import OptionGroup from './components/option-group';
-// import Page from './components/page';
+import Page from './components/page';
 import Panel from './components/panel';
 import Poptip from './components/poptip';
 import Progress from './components/progress';
@@ -141,7 +141,7 @@ const components = {
     Notice,
     Option,
     OptionGroup,
-    // Page,
+    Page,
     Panel,
     Poptip,
     Progress,

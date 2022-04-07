@@ -60,7 +60,7 @@
             :placement="placement"
             :transfer="transfer"
             :show-elevator="showElevator"
-            :_current.once="currentPage"
+            :_current="currentPage"
             :current="currentPage"
             :disabled="disabled"
             :all-pages="allPages"
@@ -72,6 +72,7 @@
     </ul>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import { oneOf } from '../../utils/assist';
     import Options from './options.vue';
     import Locale from '../../mixins/locale';
@@ -82,8 +83,9 @@
         name: 'Page',
         mixins: [ Locale ],
         components: { Options },
+        emits: ['update:modelValue', 'on-change', 'on-prev', 'on-next', 'on-page-size-change'],
         props: {
-            current: {
+            modelValue: {
                 type: Number,
                 default: 1
             },
@@ -110,7 +112,8 @@
             transfer: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.transfer === '' ? false : this.$IVIEW.transfer;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
                 }
             },
             size: {
@@ -161,7 +164,7 @@
         data () {
             return {
                 prefixCls: prefixCls,
-                currentPage: this.current,
+                currentPage: this.modelValue,
                 currentPageSize: this.pageSize
             };
         },
@@ -172,7 +175,7 @@
                     this.currentPage = (maxPage === 0 ? 1 : maxPage);
                 }
             },
-            current (val) {
+            modelValue (val) {
                 this.currentPage = val;
             },
             pageSize (val) {
@@ -249,7 +252,7 @@
                 if (this.disabled) return;
                 if (this.currentPage != page) {
                     this.currentPage = page;
-                    this.$emit('update:current', page);
+                    this.$emit('update:modelValue', page);
                     this.$emit('on-change', page);
                 }
             },

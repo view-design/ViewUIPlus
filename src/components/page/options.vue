@@ -34,6 +34,7 @@
         name: 'PageOption',
         mixins: [ Locale ],
         components: { iSelect, iOption },
+        emits: ['on-size', 'on-page'],
         props: {
             pageSizeOpts: Array,
             showSizer: Boolean,
