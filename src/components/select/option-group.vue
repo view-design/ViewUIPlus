@@ -8,6 +8,8 @@
 </template>
 <script>
     import { nextTick } from 'vue';
+    import random from '../../utils/random_str';
+
     const prefixCls = 'ivu-select-group';
 
     export default {
@@ -18,10 +20,18 @@
                 default: ''
             }
         },
+        provide () {
+            return {
+                OptionGroupInstance: this
+            }
+        },
+        inject: ['SelectInstance'],
         data () {
             return {
                 prefixCls: prefixCls,
-                hidden: false    // for search
+                hidden: false,    // for search
+                id: random(6),
+                optionList: []
             };
         },
         methods: {
@@ -37,9 +47,23 @@
                     }
                     this.hidden = !hasVisibleOption;
                 });
+            },
+            addOptionGroup () {
+                const select = this.SelectInstance;
+                select.slotOptions.push({
+                    id: this.id,
+                    optionGroup: this,
+                    tag: 'option-group'
+                });
+            },
+            removeOptionGroup () {
+                const select = this.SelectInstance;
+                const index = select.slotOptions.findIndex(item => item.id === this.id);
+                select.slotOptions.splice(index, 1);
             }
         },
         mounted () {
+            this.addOptionGroup();
             // todo
             // this.$on('on-query-change', () => {
             //     this.queryChange();
@@ -47,6 +71,7 @@
             // });
         },
         beforeUnmount () {
+            this.removeOptionGroup();
             // todo
             // this.$off('on-query-change');
         }

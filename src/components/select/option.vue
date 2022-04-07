@@ -8,6 +8,7 @@
 <script>
     import mixinsForm from '../../mixins/form';
     import { findComponentUpward } from '../../utils/assist';
+    import random from '../../utils/random_str';
 
     const prefixCls = 'ivu-select-item';
 
@@ -16,7 +17,14 @@
         componentName: 'select-item',
         mixins: [ mixinsForm ],
         emits: ['on-select-selected'],
-        inject: ['SelectInstance'],
+        inject: {
+            SelectInstance: {
+                default: null
+            },
+            OptionGroupInstance: {
+                default: null
+            }
+        },
         props: {
             value: {
                 type: [String, Number],
@@ -45,7 +53,8 @@
         data () {
             return {
                 searchLabel: '',  // the slot value (textContent)
-                autoComplete: false
+                autoComplete: false,
+                id: random(6)
             };
         },
         computed: {
@@ -81,10 +90,42 @@
                     tag: this.tag
                 });
             },
+            addOption () {
+                if (this.OptionGroupInstance) {
+                    const group = this.OptionGroupInstance;
+                    group.optionList.push({
+                        id: this.id,
+                        option: this,
+                        tag: 'option'
+                    });
+                } else {
+                    const select = this.SelectInstance;
+                    select.slotOptions.push({
+                        id: this.id,
+                        option: this,
+                        tag: 'option'
+                    });
+                }
+            },
+            removeOption () {
+                if (this.OptionGroupInstance) {
+                    const group = this.OptionGroupInstance;
+                    const index = group.optionList.findIndex(item => item.id === this.id);
+                    group.optionList.splice(index, 1);
+                } else {
+                    const select = this.SelectInstance;
+                    const index = select.slotOptions.findIndex(item => item.id === this.id);
+                    select.slotOptions.splice(index, 1);
+                }
+            }
         },
         mounted () {
+            this.addOption();
             const Select = findComponentUpward(this, 'iSelect');
             if (Select) this.autoComplete = Select.autoComplete;
+        },
+        beforeUnmount () {
+            this.removeOption();
         }
     };
 </script>

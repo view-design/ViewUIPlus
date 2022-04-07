@@ -78,6 +78,7 @@
                     {{ query }}
                     <Icon type="md-return-left" :class="prefixCls + '-item-enter'" />
                 </li>
+                <slot />
             </functional-options>
             <ul :class="prefixCls + '-dropdown-list'" v-else>
                 <li :class="prefixCls + '-item'" v-if="showCreateItem" @click="handleCreateItem">
@@ -347,7 +348,7 @@
                 query: '',
                 initialLabel: this.label,
                 hasMouseHoverHead: false,
-                slotOptions: this.$slots.default(),
+                slotOptions: [],
                 caretPosition: -1,
                 lastRemoteQuery: '',
                 unchangedQuery: true,
@@ -435,11 +436,6 @@
                 // }
                 return this.multiple ? this.values.map(option => option.value) : (this.values[0] || {}).value;
             },
-            canBeCleared () {
-                const uiStateMatch = this.hasMouseHoverHead || this.active;
-                const qualifiesForClear = !this.multiple && !this.itemDisabled && this.clearable;
-                return uiStateMatch && qualifiesForClear && this.reset; // we return a function
-            },
             selectOptions () {
                 const selectOptions = [];
                 const slotOptions = (this.slotOptions || []);
@@ -465,6 +461,7 @@
                         });
                     });
                 }
+
                 for (let option of slotOptions) {
                     const cOptions = option.componentOptions;
                     if (!cOptions) continue;
@@ -499,6 +496,11 @@
                 }
 
                 return selectOptions;
+            },
+            canBeCleared () {
+                const uiStateMatch = this.hasMouseHoverHead || this.active;
+                const qualifiesForClear = !this.multiple && !this.itemDisabled && this.clearable;
+                return uiStateMatch && qualifiesForClear && this.reset; // we return a function
             },
             flatOptions () {
                 return extractOptions(this.selectOptions);
@@ -596,7 +598,7 @@
                 this.visible = typeof force !== 'undefined' ? force : !this.visible;
                 if (this.visible){
                     this.dropDownWidth = this.$el.getBoundingClientRect().width;
-                    // this.broadcast('Drop', 'on-update-popper'); // todo
+                    this.$refs.dropdown.handleOnUpdatePopper();
                 }
             },
             hideMenu () {
@@ -753,7 +755,7 @@
                     if (!this.autoComplete) nextTick(() => inputField.focus());
                 }
                 this.$emit('on-select', option); // # 4441
-                // this.broadcast('Drop', 'on-update-popper'); // todo
+                this.$refs.dropdown.handleOnUpdatePopper();
                 setTimeout(() => {
                     this.filterQueryChange = false;
                 }, ANIMATION_TIMEOUT);
@@ -786,7 +788,7 @@
                 this.isFocused = type === 'focus';
             },
             updateSlotOptions(){
-                this.slotOptions = this.$slots.default;
+                // this.slotOptions = this.$slots.default;
             },
             checkUpdateStatus() {
                 if (this.getInitialValue().length > 0 && this.selectOptions.length === 0) {
@@ -910,7 +912,11 @@
                 }
             },
             dropVisible (open) {
-                // this.broadcast('Drop', open ? 'on-update-popper' : 'on-destroy-popper'); // todo
+                if (open) {
+                    this.$refs.dropdown.handleOnUpdatePopper();
+                } else {
+                    this.$refs.dropdown.handleOnDestroyPopper();
+                }
             },
             selectOptions () {
                 if (this.hasExpectedValue && this.selectOptions.length > 0){
@@ -927,7 +933,7 @@
 
                  // 当 dropdown 一开始在控件下部显示，而滚动页面后变成在上部显示，如果选项列表的长度由内部动态变更了(搜索情况)
                  // dropdown 的位置不会重新计算，需要重新计算
-                // this.broadcast('Drop', 'on-update-popper'); // todo
+                this.$refs.dropdown.handleOnUpdatePopper();
             },
             visible (state) {
                 this.$emit('on-open-change', state);
@@ -945,7 +951,7 @@
                 // 当 dropdown 在控件上部显示时，如果选项列表的长度由外部动态变更了，
                 // dropdown 的位置会有点问题，需要重新计算
                 if (options && old && options.length !== old.length) {
-                    // this.broadcast('Drop', 'on-update-popper'); // todo
+                    this.$refs.dropdown.handleOnUpdatePopper();
                 }
             },
         }
