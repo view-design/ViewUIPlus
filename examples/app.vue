@@ -45,7 +45,7 @@
             <span><router-link to="/cascader">Cascader</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/select">Select</router-link></span>
             <span><router-link to="/backtop">Backtop</router-link></span>
-            <span><Tag color="red">未开始</Tag><router-link to="/page">Page</router-link></span>
+            <span><router-link to="/page">Page</router-link></span>
             <span><Tag color="green">未完成</Tag><router-link to="/transfer">Transfer</router-link></span>
             <span><router-link to="/date">Date</router-link></span>
             <span><router-link to="/form">Form</router-link></span>
