@@ -12,7 +12,7 @@
 </template>
 <script>
     import { nextTick } from 'vue';
-    import { scrollTop, findComponentsDownward, sharpMatcherRegx } from '../../utils/assist';
+    import { scrollTop, sharpMatcherRegx } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
 
     export default {
