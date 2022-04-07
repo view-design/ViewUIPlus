@@ -10,7 +10,7 @@ import Affix from './components/affix';
 import Alert from './components/alert';
 import Anchor from './components/anchor';
 import AnchorLink from './components/anchor-link';
-// import AutoComplete from './components/auto-complete';
+import AutoComplete from './components/auto-complete';
 import Avatar from './components/avatar';
 import BackTop from './components/back-top';
 import Badge from './components/badge';
@@ -94,7 +94,7 @@ const components = {
     Alert,
     Anchor,
     AnchorLink,
-    // AutoComplete,
+    AutoComplete,
     Avatar,
     BackTop,
     Badge,

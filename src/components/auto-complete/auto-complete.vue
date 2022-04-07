@@ -8,7 +8,7 @@
         :placeholder="placeholder"
         :size="size"
         :placement="placement"
-        :value="currentValue"
+        :model-value="currentValue"
         :transfer-class-name="transferClassName"
         filterable
         remote
@@ -20,40 +20,42 @@
         :capture="capture"
         :eventsEnabled="eventsEnabled"
     >
-        <slot name="input">
-            <i-input
-                :element-id="elementId"
-                ref="input"
-                slot="input"
-                v-model="currentValue"
-                :name="name"
-                :placeholder="placeholder"
-                :disabled="itemDisabled"
-                :size="size"
-                :icon="inputIcon"
-                @on-click="handleClear"
-                @on-focus="handleFocus"
-                @on-blur="handleBlur"></i-input>
-        </slot>
+        <template #input>
+            <slot name="input">
+                <i-input
+                    :element-id="elementId"
+                    ref="input"
+                    v-model="currentValue"
+                    :name="name"
+                    :placeholder="placeholder"
+                    :disabled="itemDisabled"
+                    :size="size"
+                    :icon="inputIcon"
+                    @on-click="handleClear"
+                    @on-focus="handleFocus"
+                    @on-blur="handleBlur"></i-input>
+            </slot>
+        </template>
         <slot>
             <i-option v-for="item in filteredData" :value="item" :key="item">{{ item }}</i-option>
         </slot>
     </i-select>
 </template>
 <script>
+    import { getCurrentInstance, nextTick } from 'vue';
     import iSelect from '../select/select.vue';
     import iOption from '../select/option.vue';
     import iInput from '../input/input.vue';
     import { oneOf } from '../../utils/assist';
-    import Emitter from '../../mixins/emitter';
     import mixinsForm from '../../mixins/form';
 
     export default {
         name: 'AutoComplete',
-        mixins: [ Emitter, mixinsForm ],
+        mixins: [ mixinsForm ],
         components: { iSelect, iOption, iInput },
+        emits: ['update:modelValue', 'on-change', 'on-search', 'on-select', 'on-focus', 'on-blur', 'on-clear'],
         props: {
-            value: {
+            modelValue: {
                 type: [String, Number],
                 default: ''
             },
@@ -81,7 +83,8 @@
                     return oneOf(value, ['small', 'large', 'default']);
                 },
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.size === '' ? 'default' : this.$IVIEW.size;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             icon: {
@@ -100,7 +103,8 @@
             transfer: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW || this.$IVIEW.transfer === '' ? false : this.$IVIEW.transfer;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
                 }
             },
             name: {
@@ -116,7 +120,8 @@
             capture: {
                 type: Boolean,
                 default () {
-                    return !this.$IVIEW ? true : this.$IVIEW.capture;
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW ? true : global.$IVIEW.capture;
                 }
             },
             // 4.6.0
@@ -127,7 +132,7 @@
         },
         data () {
             return {
-                currentValue: this.value,
+                currentValue: this.modelValue,
                 disableEmitChange: false    // for Form reset
             };
         },
@@ -150,7 +155,7 @@
             }
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 if(this.currentValue !== val){
                     this.disableEmitChange = true;
                 }
@@ -158,13 +163,13 @@
             },
             currentValue (val) {
                 this.$refs.select.setQuery(val);
-                this.$emit('input', val);
+                this.$emit('update:modelValue', val);
                 if (this.disableEmitChange) {
                     this.disableEmitChange = false;
                     return;
                 }
                 this.$emit('on-change', val);
-                this.dispatch('FormItem', 'on-form-change', val);
+                this.handleFormItemChange('change', val);
             }
         },
         methods: {
@@ -191,7 +196,7 @@
                 this.$emit('on-clear');
             },
             handleClickOutside () {
-                this.$nextTick(() => {
+                nextTick(() => {
                     this.$refs.input.blur();
                 });
             }

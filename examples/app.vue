@@ -56,7 +56,7 @@
             <span><router-link to="/notice">Notice</router-link></span>
             <span><router-link to="/avatar">Avatar</router-link></span>
             <span><router-link to="/color-picker">ColorPicker</router-link></span>
-            <span><Tag color="red">未开始</Tag><router-link to="/auto-complete">AutoComplete</router-link></span>
+            <span><Tag color="green">未完成</Tag><router-link to="/auto-complete">AutoComplete</router-link></span>
             <span><router-link to="/scroll">Scroll</router-link></span>
             <span><router-link to="/divider">Divider</router-link></span>
             <span><router-link to="/time">Time</router-link></span>
