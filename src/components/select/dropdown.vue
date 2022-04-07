@@ -112,9 +112,8 @@
                         });
                     }
                     // set a height for parent is Modal and Select's width is 100%
-                    // todo
-                    if (this.$parent.$parent.$options.name === 'iSelect') {
-                        this.width = parseInt(getStyle(this.$parent.$parent.$el, 'width'));
+                    if (this.$parent.$options.name === 'iSelect') {
+                        this.width = parseInt(getStyle(this.$parent.$el, 'width'));
                     }
                     this.tIndex = this.handleGetIndex();
                 });
@@ -164,15 +163,7 @@
                 this.$emit('click', event)
             }
         },
-        created () {
-            // todo
-            // this.$on('on-update-popper', this.update);
-            // this.$on('on-destroy-popper', this.destroy);
-        },
         beforeUnmount () {
-            // todo
-            // this.$off('on-update-popper', this.update);
-            // this.$off('on-destroy-popper', this.destroy);
             if (this.popper) {
                 this.popper.destroy();
                 this.popper = null;
