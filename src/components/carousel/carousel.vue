@@ -34,6 +34,11 @@
 
     export default {
         name: 'Carousel',
+        provide () {
+            return {
+                CarouselInstance: this
+            }
+        },
         components: { Icon },
         emits: ['on-change', 'on-click', 'update:modelValue'],
         props: {
@@ -106,6 +111,7 @@
                 trackIndex: this.modelValue,
                 copyTrackIndex: this.modelValue,
                 hideTrackPos: -1, // 默认左滑
+                carouselItemList: []
             };
         },
         computed: {
@@ -147,27 +153,10 @@
             }
         },
         methods: {
-            // find option component // todo
             findChild (cb) {
-                const find = function (child) {
-                    const name = child.$options.componentName;
-
-                    if (name) {
-                        cb(child);
-                    } else if (child.$children.length) {
-                        child.$children.forEach((innerChild) => {
-                            find(innerChild, cb);
-                        });
-                    }
-                };
-
-                if (this.slideInstances.length || !this.$children) {
-                    this.slideInstances.forEach((child) => {
-                        find(child);
-                    });
-                } else {
-                    this.$children.forEach((child) => {
-                        find(child);
+                if (this.carouselItemList.length) {
+                    this.carouselItemList.forEach(item => {
+                        cb(item.carouselItem);
                     });
                 }
             },
@@ -186,12 +175,10 @@
                         $el: child.$el
                     });
                     child.index = index++;
-
                     if (init) {
                         this.slideInstances.push(child);
                     }
                 });
-
                 this.slides = slides;
                 this.updatePos();
             },
@@ -327,11 +314,9 @@
             this.updateSlides(true);
             this.handleResize();
             this.setAutoplay();
-//            window.addEventListener('resize', this.handleResize, false);
             on(window, 'resize', this.handleResize);
         },
         beforeUnmount () {
-//            window.removeEventListener('resize', this.handleResize, false);
             off(window, 'resize', this.handleResize);
         }
     };
