@@ -76,6 +76,7 @@
     </div>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import Icon from '../../../icon/icon.vue';
     import DateTable from '../../base/date-table.vue';
     import YearTable from '../../base/year-table.vue';
@@ -159,7 +160,7 @@
                 this.$emit('on-selection-mode-change', currentView);
 
                 if (this.currentView === 'time') {
-                    this.$nextTick(() => {
+                    nextTick(() => {
                         const spinner = this.$refs.timePicker.$refs.timeSpinner;
                         spinner.updateScroll();
                     });
