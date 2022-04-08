@@ -7,6 +7,7 @@
     </div>
 </template>
 <script>
+    import { nextTick } from 'vue';
     import { on, off } from '../../utils/dom';
     const prefixCls = 'ivu-affix';
 
@@ -81,17 +82,13 @@
             }
         },
         mounted () {
-//            window.addEventListener('scroll', this.handleScroll, false);
-//            window.addEventListener('resize', this.handleScroll, false);
             on(window, 'scroll', this.handleScroll, this.useCapture);
             on(window, 'resize', this.handleScroll, this.useCapture);
-            this.$nextTick(() => {
+            nextTick(() => {
                 this.handleScroll();
             });
         },
         beforeUnmount () {
-//            window.removeEventListener('scroll', this.handleScroll, false);
-//            window.removeEventListener('resize', this.handleScroll, false);
             off(window, 'scroll', this.handleScroll, this.useCapture);
             off(window, 'resize', this.handleScroll, this.useCapture);
         },
