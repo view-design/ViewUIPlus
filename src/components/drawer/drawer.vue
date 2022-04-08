@@ -47,6 +47,11 @@
         mixins: [ ScrollbarMixins ],
         components: { Icon },
         emits: ['on-close', 'on-resize-width', 'on-visible-change', 'update:modelValue'],
+        provide () {
+            return {
+                DrawerInstance: this
+            }
+        },
         props: {
             modelValue: {
                 type: Boolean,
@@ -132,7 +137,9 @@
                 wrapperLeft: 0,
                 minWidth: 256,
                 minHeight: 256,
-                id: random(6)
+                id: random(6),
+                tableList: [],
+                sliderList: []
             };
         },
         computed: {
@@ -331,9 +338,15 @@
                         this.addScrollEffect();
                     }
                 }
-                // this.broadcast('Table', 'on-visible-change', val); // todo
-                // this.broadcast('Slider', 'on-visible-change', val);  // #2852 // todo
-                
+
+                // #2852
+                this.tableList.forEach(item => {
+                    item.table.handleOnVisibleChange(val);
+                });
+                this.sliderList.forEach(item => {
+                    item.slider.handleOnVisibleChange(val);
+                });
+
                 this.$emit('on-visible-change', val);
             },
             scrollable (val) {

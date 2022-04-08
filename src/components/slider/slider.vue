@@ -120,6 +120,9 @@
         inject: {
             ModalInstance: {
                 default: null
+            },
+            DrawerInstance: {
+                default: null
             }
         },
         props: {
@@ -501,11 +504,15 @@
         },
         mounted () {
             this.addSlider('ModalInstance');
+            this.addSlider('DrawerInstance');
+
             this.observer = elementResizeDetectorMaker();
             this.observer.listenTo(this.$refs.slider, this.handleSetSliderWidth);
         },
         beforeUnmount () {
             this.removeSlider('ModalInstance');
+            this.removeSlider('DrawerInstance');
+
             this.observer.removeListener(this.$refs.slider, this.handleSetSliderWidth);
         }
     };

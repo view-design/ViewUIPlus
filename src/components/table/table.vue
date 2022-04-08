@@ -176,6 +176,9 @@
             },
             ModalInstance: {
                 default: null
+            },
+            DrawerInstance: {
+                default: null
             }
         },
         props: {
@@ -1485,6 +1488,7 @@
         mounted () {
             this.addTable('TabsInstance');
             this.addTable('ModalInstance');
+            this.addTable('DrawerInstance');
 
             this.handleResize();
             nextTick(() => this.ready = true);
@@ -1505,6 +1509,7 @@
         beforeUnmount () {
             this.removeTable('TabsInstance');
             this.removeTable('ModalInstance');
+            this.removeTable('DrawerInstance');
 
             off(window, 'resize', this.handleResize);
             this.observer.removeAllListeners(this.$el);

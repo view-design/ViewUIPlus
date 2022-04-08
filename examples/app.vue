@@ -61,7 +61,7 @@
             <span><router-link to="/divider">Divider</router-link></span>
             <span><router-link to="/time">Time</router-link></span>
             <span><router-link to="/cell">Cell</router-link></span>
-            <span><Tag color="green">未完成</Tag><router-link to="/drawer">Drawer</router-link></span>
+            <span><router-link to="/drawer">Drawer</router-link></span>
             <span><router-link to="/icon">Icon</router-link></span>
             <span><router-link to="/list">List</router-link></span>
         </div>
