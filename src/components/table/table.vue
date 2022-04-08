@@ -1496,15 +1496,6 @@
             on(window, 'resize', this.handleResize);
             this.observer = elementResizeDetectorMaker();
             this.observer.listenTo(this.$el, this.handleResize);
-
-            // todo
-            // this.$on('on-visible-change', (val) => {
-            //     if (val) {
-            //         nextTick(() => {
-            //             this.handleResize();
-            //         });
-            //     }
-            // });
         },
         beforeUnmount () {
             this.removeTable('TabsInstance');
