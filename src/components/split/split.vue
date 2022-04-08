@@ -28,8 +28,8 @@
         </div>
     </div>
 </template>
-
 <script>
+    import { nextTick } from 'vue';
     import { oneOf } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
     import Trigger from './trigger.vue';
@@ -154,7 +154,7 @@
                 this.$emit('on-move-start');
             },
             computeOffset(){
-                this.$nextTick(() => {
+                nextTick(() => {
                     this.computedMin = this.getComputedThresholdValue('min');
                     this.computedMax = this.getComputedThresholdValue('max');
                     // https://github.com/view-design/ViewUI/commit/d827b6405c365b9b7c130448f509724564cad8c1
@@ -172,7 +172,7 @@
             }
         },
         mounted () {
-            this.$nextTick(() => {
+            nextTick(() => {
                 this.computeOffset();
             });
 
