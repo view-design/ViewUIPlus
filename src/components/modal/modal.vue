@@ -59,6 +59,11 @@
         mixins: [ Locale, Emitter, ScrollbarMixins ],
         components: { Icon, iButton },
         emits: ['on-cancel', 'on-ok', 'on-hidden', 'on-visible-change', 'update:modelValue'],
+        provide () {
+            return {
+                ModalInstance: this
+            }
+        },
         props: {
             modelValue: {
                 type: Boolean,
@@ -166,7 +171,9 @@
                 dragData: deepCopy(dragData),
                 modalIndex: this.handleGetModalIndex(),  // for Esc close the top modal
                 isMouseTriggerIn: false, // #5800
-                id: random(6)
+                id: random(6),
+                tableList: [],
+                sliderList: []
             };
         },
         computed: {
@@ -449,8 +456,14 @@
                         this.addScrollEffect();
                     }
                 }
-                // this.broadcast('Table', 'on-visible-change', val); // todo
-                // this.broadcast('Slider', 'on-visible-change', val);  // #2852 // todo
+
+                this.tableList.forEach(item => {
+                    item.table.handleOnVisibleChange(val);
+                });
+                this.sliderList.forEach(item => {
+                    item.slider.handleOnVisibleChange(val);
+                });
+
                 this.$emit('on-visible-change', val);
                 this.lastVisible = val;
                 this.lastVisibleIndex = lastVisibleIndex;

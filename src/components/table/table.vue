@@ -173,6 +173,9 @@
         inject: {
             TabsInstance: {
                 default: null
+            },
+            ModalInstance: {
+                default: null
             }
         },
         props: {
@@ -1451,26 +1454,26 @@
                 this.contextMenuVisible = false;
             },
             handleOnVisibleChange (val) {
-                console.log(1)
                 if (val) {
                     nextTick(() => {
                         this.handleResize();
                     });
                 }
             },
-            addTable () {
-                const tabs = this.TabsInstance;
-                if (!tabs.tableList) tabs.tableList = [];
-                tabs.tableList.push({
+            addTable (instance) {
+                const target = this[instance];
+                if (!target) return;
+                if (!target.tableList) target.tableList = [];
+                target.tableList.push({
                     id: this.id,
                     table: this
                 });
             },
-            removeTable () {
-                const tabs = this.TabsInstance;
-                if (!tabs.tableList) return;
-                const index = tabs.tableList.findIndex(item => item.id === this.id);
-                tabs.tableList.splice(index, 1);
+            removeTable (instance) {
+                const target = this[instance];
+                if (!target || !target.tableList) return;
+                const index = target.tableList.findIndex(item => item.id === this.id);
+                target.tableList.splice(index, 1);
             }
         },
         created () {
@@ -1480,7 +1483,9 @@
             this.rebuildData = this.makeDataWithSortAndFilter();
         },
         mounted () {
-            this.addTable();
+            this.addTable('TabsInstance');
+            this.addTable('ModalInstance');
+
             this.handleResize();
             nextTick(() => this.ready = true);
 
@@ -1498,7 +1503,9 @@
             // });
         },
         beforeUnmount () {
-            this.removeTable();
+            this.removeTable('TabsInstance');
+            this.removeTable('ModalInstance');
+
             off(window, 'resize', this.handleResize);
             this.observer.removeAllListeners(this.$el);
             this.observer.uninstall(this.$el);

@@ -105,6 +105,7 @@
     import Tooltip from '../../components/tooltip/tooltip.vue';
     import SliderMarker from './marker';
     import { getStyle, oneOf } from '../../utils/assist';
+    import random from '../../utils/random_str';
     import { on, off } from '../../utils/dom';
     import mixinsForm from '../../mixins/form';
     import elementResizeDetectorMaker from 'element-resize-detector';
@@ -116,6 +117,11 @@
         mixins: [ mixinsForm ],
         emits: ['update:modelValue', 'on-input', 'on-change'],
         components: { InputNumber, Tooltip, SliderMarker },
+        inject: {
+            ModalInstance: {
+                default: null
+            }
+        },
         props: {
             min: {
                 type: Number,
@@ -199,7 +205,8 @@
                     max: 1,
                 },
                 sliderWidth: 0,
-                isValueNull: false // hack：解决 value 置为 null 时，$emit:input 0 而不是 null
+                isValueNull: false, // hack：解决 value 置为 null 时，$emit:input 0 而不是 null
+                id: random(6)
             };
         },
         watch: {
@@ -461,29 +468,44 @@
             handleSetSliderWidth () {
                 this.sliderWidth = parseInt(getStyle(this.$refs.slider, 'width'), 10);
             },
+            // #2852 for Modal
+            handleOnVisibleChange (val) {
+                if (val && this.showTip === 'always') {
+                    this.$refs.minTooltip.doDestroy();
+                    if (this.range) {
+                        this.$refs.maxTooltip.doDestroy();
+                    }
+                    nextTick(() => {
+                        this.$refs.minTooltip.updatePopper();
+                        if (this.range) {
+                            this.$refs.maxTooltip.updatePopper();
+                        }
+                    });
+                }
+            },
+            addSlider (instance) {
+                const target = this[instance];
+                if (!target) return;
+                if (!target.sliderList) target.sliderList = [];
+                target.sliderList.push({
+                    id: this.id,
+                    slider: this
+                });
+            },
+            removeSlider (instance) {
+                const target = this[instance];
+                if (!target || !target.sliderList) return;
+                const index = target.sliderList.findIndex(item => item.id === this.id);
+                target.sliderList.splice(index, 1);
+            }
         },
         mounted () {
-            // todo Modal
-            // #2852
-            // this.$on('on-visible-change', (val) => {
-            //     if (val && this.showTip === 'always') {
-            //         this.$refs.minTooltip.doDestroy();
-            //         if (this.range) {
-            //             this.$refs.maxTooltip.doDestroy();
-            //         }
-            //         this.$nextTick(() => {
-            //             this.$refs.minTooltip.updatePopper();
-            //             if (this.range) {
-            //                 this.$refs.maxTooltip.updatePopper();
-            //             }
-            //         });
-            //     }
-            // });
-
+            this.addSlider('ModalInstance');
             this.observer = elementResizeDetectorMaker();
             this.observer.listenTo(this.$refs.slider, this.handleSetSliderWidth);
         },
         beforeUnmount () {
+            this.removeSlider('ModalInstance');
             this.observer.removeListener(this.$refs.slider, this.handleSetSliderWidth);
         }
     };

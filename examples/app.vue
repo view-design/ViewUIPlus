@@ -37,7 +37,7 @@
             <span><router-link to="/tabs">Tabs</router-link></span>
             <span><router-link to="/tooltip">Tooltip</router-link></span>
             <span><router-link to="/poptip">Poptip</router-link></span>
-            <span><Tag color="green">未完成</Tag><router-link to="/slider">Slider</router-link></span>
+            <span><router-link to="/slider">Slider</router-link></span>
             <span><router-link to="/dropdown">Dropdown</router-link></span>
             <span><router-link to="/breadcrumb">Breadcrumb</router-link></span>
             <span><router-link to="/menu">Menu</router-link></span>
