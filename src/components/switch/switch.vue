@@ -106,7 +106,6 @@
                 this.currentValue = checked;
                 this.$emit('update:modelValue', checked);
                 this.$emit('on-change', checked);
-                // this.dispatch('FormItem', 'on-form-change', checked);
                 this.handleFormItemChange('change', checked);
             },
             toggle (event) {

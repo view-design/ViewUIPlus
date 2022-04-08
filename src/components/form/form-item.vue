@@ -168,10 +168,6 @@
                 } else if (this.required) {
                     this.isRequired = this.required;
                 }
-                // this.$off('on-form-blur', this.onFieldBlur);
-                // this.$off('on-form-change', this.onFieldChange);
-                // this.$on('on-form-blur', this.onFieldBlur);
-                // this.$on('on-form-change', this.onFieldChange);
             },
             getRules () {
                 let formRules = this.FormInstance.rules;
@@ -265,7 +261,6 @@
         },
         mounted () {
             if (this.prop) {
-                // this.dispatch('iForm', 'on-form-item-add', this);
                 this.FormInstance.addField(this);
 
                 Object.defineProperty(this, 'initialValue', {
@@ -276,7 +271,6 @@
             }
         },
         beforeUnmount () {
-            // this.dispatch('iForm', 'on-form-item-remove', this);
             this.FormInstance.removeField(this);
         }
     };

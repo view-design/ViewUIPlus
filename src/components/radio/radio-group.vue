@@ -83,7 +83,6 @@
                 this.currentValue = data.value;
                 this.$emit('update:modelValue', data.value);
                 this.$emit('on-change', data.value);
-                // this.dispatch('FormItem', 'on-form-change', data.value);
                 this.handleFormItemChange('change', data.value);
             }
         },

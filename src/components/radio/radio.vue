@@ -154,7 +154,6 @@
                     }
                 } else {
                     this.$emit('on-change', value);
-                    // this.dispatch('FormItem', 'on-form-change', value);
                     this.handleFormItemChange('change', value);
                 }
             },

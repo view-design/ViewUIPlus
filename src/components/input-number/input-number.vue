@@ -291,7 +291,6 @@
                     this.currentValue = val;
                     this.$emit('update:modelValue', val);
                     this.$emit('on-change', val);
-                    // this.dispatch('FormItem', 'on-form-change', val);
                     this.handleFormItemChange('change', val);
                 });
             },
@@ -303,7 +302,6 @@
                 this.focused = false;
                 this.$emit('on-blur');
                 if (!findComponentUpward(this, ['DatePicker', 'TimePicker', 'Cascader', 'Search'])) {
-                    // this.dispatch('FormItem', 'on-form-blur', this.currentValue);
                     this.handleFormItemChange('blur', this.currentValue);
                 }
             },

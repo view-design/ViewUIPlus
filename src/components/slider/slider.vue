@@ -441,7 +441,6 @@
                 const value = this.range ? this.exportValue : this.exportValue[0];
                 this.$emit('on-change', value);
                 this.handleFormItemChange('change', value);
-                // this.dispatch('FormItem', 'on-form-change', value);
             },
 
             sliderClick (event) {
