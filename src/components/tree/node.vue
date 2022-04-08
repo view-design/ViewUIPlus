@@ -1,23 +1,23 @@
 <template>
-    <collapse-transition :appear="appear">
-        <ul :class="classes">
-            <li @contextmenu.stop="handleContextmenu(data, $event)" @selectstart.stop="handlePreventSelect(data, $event)">
+    <ul :class="classes">
+        <li @contextmenu.stop="handleContextmenu(data, $event)" @selectstart.stop="handlePreventSelect(data, $event)">
                 <span :class="arrowClasses" @click="handleExpand">
                     <Icon v-if="showArrow" :type="arrowType" :custom="customArrowType" :size="arrowSize" />
                     <Icon v-if="showLoading" type="ios-loading" class="ivu-load-loop" />
                 </span>
-                <Checkbox
-                        v-if="showCheckbox"
-                        :model-value="data.checked"
-                        :indeterminate="data.indeterminate"
-                        :disabled="data.disabled || data.disableCheckbox"
-                        @click.prevent="handleCheck"></Checkbox>
-                <span :class="titleClasses" @click="handleClickNode">
-                    <Render v-if="data.render" :render="data.render" :data="data" :node="node"></Render>
-                    <Render v-else-if="isParentRender" :render="parentRender" :data="data" :node="node"></Render>
-                    <template v-else>{{ data.title }}</template>
-                </span>
-                <template v-if="data.expand">
+            <Checkbox
+                v-if="showCheckbox"
+                :model-value="data.checked"
+                :indeterminate="data.indeterminate"
+                :disabled="data.disabled || data.disableCheckbox"
+                @click.prevent="handleCheck"></Checkbox>
+            <span :class="titleClasses" @click="handleClickNode">
+                <Render v-if="data.render" :render="data.render" :data="data" :node="node"></Render>
+                <Render v-else-if="isParentRender" :render="parentRender" :data="data" :node="node"></Render>
+                <template v-else>{{ data.title }}</template>
+            </span>
+            <collapse-transition :appear="appear">
+                <div class="ivu-tree-expand" v-if="data.expand">
                     <TreeNode
                         :appear="appearByClickArrow"
                         v-for="(item, i) in children"
@@ -27,10 +27,10 @@
                         :show-checkbox="showCheckbox"
                         :children-key="childrenKey">
                     </TreeNode>
-                </template>
-            </li>
-        </ul>
-    </collapse-transition>
+                </div>
+            </collapse-transition>
+        </li>
+    </ul>
 </template>
 <script>
     import { getCurrentInstance, nextTick } from 'vue';
