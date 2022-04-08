@@ -54,7 +54,7 @@
                 root.carouselItemList.push({
                     id: this.id,
                     carouselItem: this
-                })
+                });
             },
             removeInstance () {
                 const root = this.CarouselInstance;
