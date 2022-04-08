@@ -148,6 +148,7 @@
     import Spin from '../spin/spin.vue';
     import { oneOf, getStyle, deepCopy, getScrollBarSize } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
+    import random from '../../utils/random_str';
     import Csv from '../../utils/csv';
     import ExportCsv from './export-csv';
     import Locale from '../../mixins/locale';
@@ -168,6 +169,11 @@
             return {
                 TableInstance: this
             };
+        },
+        inject: {
+            TabsInstance: {
+                default: null
+            }
         },
         props: {
             data: {
@@ -341,7 +347,8 @@
                     left: 0
                 },
                 scrollOnTheLeft: false,
-                scrollOnTheRight: false
+                scrollOnTheRight: false,
+                id: random(6)
             };
         },
         computed: {
@@ -1442,6 +1449,28 @@
             },
             handleClickContextMenuOutside () {
                 this.contextMenuVisible = false;
+            },
+            handleOnVisibleChange (val) {
+                console.log(1)
+                if (val) {
+                    nextTick(() => {
+                        this.handleResize();
+                    });
+                }
+            },
+            addTable () {
+                const tabs = this.TabsInstance;
+                if (!tabs.tableList) tabs.tableList = [];
+                tabs.tableList.push({
+                    id: this.id,
+                    table: this
+                });
+            },
+            removeTable () {
+                const tabs = this.TabsInstance;
+                if (!tabs.tableList) return;
+                const index = tabs.tableList.findIndex(item => item.id === this.id);
+                tabs.tableList.splice(index, 1);
             }
         },
         created () {
@@ -1451,6 +1480,7 @@
             this.rebuildData = this.makeDataWithSortAndFilter();
         },
         mounted () {
+            this.addTable();
             this.handleResize();
             nextTick(() => this.ready = true);
 
@@ -1468,7 +1498,7 @@
             // });
         },
         beforeUnmount () {
-            // this.$off('on-visible-change'); // todo
+            this.removeTable();
             off(window, 'resize', this.handleResize);
             this.observer.removeAllListeners(this.$el);
             this.observer.uninstall(this.$el);

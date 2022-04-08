@@ -152,7 +152,8 @@
                     top: 0,
                     left: 0
                 },
-                paneList: []
+                paneList: [],
+                tableList: []
             };
         },
         computed: {
@@ -583,7 +584,9 @@
                 this.focusedKey = val;
                 this.updateBar();
                 this.updateStatus();
-                // this.broadcast('Table', 'on-visible-change', true); // todo
+                this.tableList.forEach(item => {
+                    item.table.handleOnVisibleChange(true);
+                });
                 nextTick(() => {
                     this.scrollToActiveTab();
                 });
