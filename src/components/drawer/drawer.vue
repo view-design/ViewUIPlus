@@ -34,7 +34,7 @@
 <script>
     import { getCurrentInstance } from 'vue';
     import Icon from '../icon';
-    import { oneOf, findBrothersComponents, findComponentsUpward } from '../../utils/assist';
+    import { oneOf } from '../../utils/assist';
     import ScrollbarMixins from '../modal/mixins-scrollbar';
 
     import { on, off } from '../../utils/dom';
@@ -333,6 +333,7 @@
                 }
                 // this.broadcast('Table', 'on-visible-change', val); // todo
                 // this.broadcast('Slider', 'on-visible-change', val);  // #2852 // todo
+                
                 this.$emit('on-visible-change', val);
             },
             scrollable (val) {
