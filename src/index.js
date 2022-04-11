@@ -48,6 +48,7 @@ import DropdownMenu from './components/dropdown-menu';
 import Ellipsis from './components/ellipsis';
 import Email from './components/email';
 import Footer from './components/footer';
+import FooterToolbar from './components/footer-toolbar';
 import Form from './components/form';
 import FormItem from './components/form-item';
 import Grid from './components/grid';
@@ -159,6 +160,7 @@ const components = {
     Ellipsis,
     Email,
     Footer,
+    FooterToolbar,
     Form,
     FormItem,
     Grid,

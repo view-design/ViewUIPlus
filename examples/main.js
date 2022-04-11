@@ -293,6 +293,10 @@ const router = createRouter({
         {
             path: '/trend',
             component: () => import('./routers/trend.vue')
+        },
+        {
+            path: '/footer-toolbar',
+            component: () => import('./routers/footer-toolbar.vue')
         }
     ]
 });
