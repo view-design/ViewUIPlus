@@ -253,6 +253,10 @@ const router = createRouter({
         {
             path: '/notification',
             component: () => import('./routers/notification.vue')
+        },
+        {
+            path: '/calendar',
+            component: () => import('./routers/calendar.vue')
         }
     ]
 });

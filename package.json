@@ -38,9 +38,11 @@
     },
     "dependencies": {
         "async-validator": "^3.3.0",
+        "dayjs": "^1.11.0",
         "deepmerge": "^2.2.1",
         "element-resize-detector": "^1.2.0",
         "js-calendar": "^1.2.3",
+        "lodash.chunk": "^4.2.0",
         "lodash.throttle": "^4.1.1",
         "popper.js": "^1.14.6",
         "tinycolor2": "^1.4.1",

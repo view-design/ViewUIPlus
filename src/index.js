@@ -18,6 +18,7 @@ import Breadcrumb from './components/breadcrumb';
 import BreadcrumbItem from './components/breadcrumb-item';
 import Button from './components/button';
 import ButtonGroup from './components/button-group';
+import Calendar from './components/calendar';
 import Captcha from './components/captcha';
 import Card from './components/card';
 import Carousel from './components/carousel';
@@ -119,6 +120,7 @@ const components = {
     BreadcrumbItem,
     Button,
     ButtonGroup,
+    Calendar,
     Captcha,
     Card,
     Carousel,
