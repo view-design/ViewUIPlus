@@ -317,6 +317,10 @@ const router = createRouter({
         {
             path: '/v-style',
             component: () => import('./routers/v-style.vue')
+        },
+        {
+            path: '/v-resize',
+            component: () => import('./routers/v-resize.vue')
         }
     ]
 });

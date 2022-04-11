@@ -89,6 +89,7 @@
             <span><Tag color="red">未开始</Tag><router-link to="/tree-select">TreeSelect</router-link></span>
             <span><Tag color="red">未开始</Tag><router-link to="/city">City</router-link></span>
             <span><router-link to="/v-style">v-style</router-link></span>
+            <span><router-link to="/v-resize">v-resize</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>

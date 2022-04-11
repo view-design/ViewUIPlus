@@ -122,6 +122,7 @@ import WordCount from './components/word-count';
 // import locale from './locale/index';
 
 // directives
+import resize from './directives/resize';
 import style from './directives/style';
 
 const components = {
@@ -250,7 +251,7 @@ const directives = {
     color: style.color,
     'bg-color': style.bgColor,
 
-    // resize,
+    resize,
     // 'line-clamp': lineClamp
 };
 
