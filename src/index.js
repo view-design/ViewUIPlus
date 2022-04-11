@@ -42,6 +42,7 @@ import Drawer from './components/drawer';
 import Dropdown from './components/dropdown';
 import DropdownItem from './components/dropdown-item';
 import DropdownMenu from './components/dropdown-menu';
+import Ellipsis from './components/ellipsis';
 import Email from './components/email';
 import Footer from './components/footer';
 import Form from './components/form';
@@ -145,6 +146,7 @@ const components = {
     Dropdown,
     DropdownItem,
     DropdownMenu,
+    Ellipsis,
     Email,
     Footer,
     Form,

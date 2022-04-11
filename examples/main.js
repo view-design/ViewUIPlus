@@ -261,6 +261,10 @@ const router = createRouter({
         {
             path: '/auth',
             component: () => import('./routers/auth.vue')
+        },
+        {
+            path: '/ellipsis',
+            component: () => import('./routers/ellipsis.vue')
         }
     ]
 });
