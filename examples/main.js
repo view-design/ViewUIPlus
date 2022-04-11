@@ -313,6 +313,10 @@ const router = createRouter({
         {
             path: '/exception',
             component: () => import('./routers/exception.vue')
+        },
+        {
+            path: '/v-style',
+            component: () => import('./routers/v-style.vue')
         }
     ]
 });

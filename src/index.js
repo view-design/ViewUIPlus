@@ -121,6 +121,9 @@ import UserName from './components/user-name';
 import WordCount from './components/word-count';
 // import locale from './locale/index';
 
+// directives
+import style from './directives/style';
+
 const components = {
     Affix,
     Alert,
@@ -237,6 +240,20 @@ const components = {
     WordCount
 };
 
+const directives = {
+    display: style.display,
+    width: style.width,
+    height: style.height,
+    margin: style.margin,
+    padding: style.padding,
+    font: style.font,
+    color: style.color,
+    'bg-color': style.bgColor,
+
+    // resize,
+    // 'line-clamp': lineClamp
+};
+
 const iview = {
     ...components,
     iButton: Button,
@@ -265,6 +282,11 @@ const install = function(app, opts = {}) {
         app.component(key, iview[key]);
         // todo i-tag
     });
+
+    Object.keys(directives).forEach(key => {
+        app.directive(key, directives[key]);
+    });
+
     app.config.globalProperties.$IVIEW = {
         size: opts.size || '',
         capture: 'capture' in opts ? opts.capture : true,
