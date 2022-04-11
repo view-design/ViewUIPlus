@@ -23,12 +23,12 @@
         </div>
         <div class="ivu-calendar-body">
             <CalendarMonth v-if="mode === 'month'" :date="currentValue">
-                <template v-slot:month="{ date, data }">
+                <template #month="{ date, data }">
                     <slot :date="date" :data="data" name="month"></slot>
                 </template>
             </CalendarMonth>
             <CalendarYear v-else-if="mode === 'year'" :date="currentValue">
-                <template v-slot:year="{ month, data }">
+                <template #year="{ month, data }">
                     <slot :month="month" :data="data" name="year"></slot>
                 </template>
             </CalendarYear>
