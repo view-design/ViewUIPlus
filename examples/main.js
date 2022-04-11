@@ -321,6 +321,10 @@ const router = createRouter({
         {
             path: '/v-resize',
             component: () => import('./routers/v-resize.vue')
+        },
+        {
+            path: '/v-line-clamp',
+            component: () => import('./routers/v-line-clamp.vue')
         }
     ]
 });

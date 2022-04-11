@@ -122,6 +122,7 @@ import WordCount from './components/word-count';
 // import locale from './locale/index';
 
 // directives
+import lineClamp from './directives/line-clamp';
 import resize from './directives/resize';
 import style from './directives/style';
 
@@ -252,7 +253,7 @@ const directives = {
     'bg-color': style.bgColor,
 
     resize,
-    // 'line-clamp': lineClamp
+    'line-clamp': lineClamp
 };
 
 const iview = {
