@@ -46,14 +46,12 @@ import Grid from './components/grid';
 import GridItem from './components/grid-item';
 import Header from './components/header';
 import Icon from './components/icon';
+import Input from './components/input';
+import InputNumber from './components/input-number';
 import Layout from './components/layout';
 import List from './components/list';
 import ListItem from './components/list-item';
 import ListItemMeta from './components/list-item-meta';
-import Input from './components/input';
-import InputNumber from './components/input-number';
-import Scroll from './components/scroll';
-import Split from './components/split';
 import LoadingBar from './components/loading-bar';
 import Menu from './components/menu';
 import MenuGroup from './components/menu-group';
@@ -64,6 +62,7 @@ import Notice from './components/notice';
 import Option from './components/option';
 import OptionGroup from './components/option-group';
 import Page from './components/page';
+import PageHeader from './components/page-header';
 import Panel from './components/panel';
 import Poptip from './components/poptip';
 import Progress from './components/progress';
@@ -71,10 +70,12 @@ import Radio from './components/radio';
 import RadioGroup from './components/radio-group';
 import Rate from './components/rate';
 import Row from './components/row';
+import Scroll from './components/scroll';
 import Select from './components/select';
 import Sider from './components/sider';
 import Slider from './components/slider';
 import Spin from './components/spin';
+import Split from './components/split';
 import Step from './components/step';
 import Steps from './components/steps';
 import Submenu from './components/submenu';
@@ -150,6 +151,7 @@ const components = {
     Option,
     OptionGroup,
     Page,
+    PageHeader,
     Panel,
     Poptip,
     Progress,

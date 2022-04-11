@@ -67,6 +67,7 @@
             <Divider></Divider>
             <span><router-link to="/grid-component">Grid</router-link></span>
             <span><router-link to="/description-list">DescriptionList</router-link></span>
+            <span><router-link to="/page-header">PageHeader</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>

@@ -237,6 +237,10 @@ const router = createRouter({
         {
             path: '/description-list',
             component: () => import('./routers/description-list.vue')
+        },
+        {
+            path: '/page-header',
+            component: () => import('./routers/page-header.vue')
         }
     ]
 });
