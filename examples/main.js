@@ -229,6 +229,10 @@ const router = createRouter({
         {
             path: '/list',
             component: () => import('./routers/list.vue')
+        },
+        {
+            path: '/grid-component',
+            component: () => import('./routers/grid-component.vue')
         }
     ]
 });

@@ -1,3 +1,3 @@
-import Row from '../grid/row.vue';
+import Row from './row.vue';
 
 export default Row;

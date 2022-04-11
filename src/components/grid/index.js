@@ -1,4 +1,3 @@
-import Row from './row.vue';
-import Col from './col.vue';
+import Grid from './grid.vue';
 
-export { Row, Col };
+export default Grid;

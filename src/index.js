@@ -40,6 +40,8 @@ import DropdownMenu from './components/dropdown-menu';
 import Footer from './components/footer';
 import Form from './components/form';
 import FormItem from './components/form-item';
+import Grid from './components/grid';
+import GridItem from './components/grid-item';
 import Header from './components/header';
 import Icon from './components/icon';
 import Layout from './components/layout';
@@ -124,6 +126,8 @@ const components = {
     Footer,
     Form,
     FormItem,
+    Grid,
+    GridItem,
     Header,
     Icon,
     Input,

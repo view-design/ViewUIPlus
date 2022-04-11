@@ -64,6 +64,8 @@
             <span><router-link to="/drawer">Drawer</router-link></span>
             <span><router-link to="/icon">Icon</router-link></span>
             <span><router-link to="/list">List</router-link></span>
+            <Divider></Divider>
+            <span><router-link to="/grid-component">Grid</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>
