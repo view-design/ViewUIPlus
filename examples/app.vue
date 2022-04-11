@@ -69,6 +69,7 @@
             <span><router-link to="/description-list">DescriptionList</router-link></span>
             <span><router-link to="/page-header">PageHeader</router-link></span>
             <span><router-link to="/tag-select">TagSelect</router-link></span>
+            <span><router-link to="/login">Login</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>

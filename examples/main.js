@@ -245,6 +245,10 @@ const router = createRouter({
         {
             path: '/tag-select',
             component: () => import('./routers/tag-select.vue')
+        },
+        {
+            path: '/login',
+            component: () => import('./routers/login.vue')
         }
     ]
 });

@@ -18,6 +18,7 @@ import Breadcrumb from './components/breadcrumb';
 import BreadcrumbItem from './components/breadcrumb-item';
 import Button from './components/button';
 import ButtonGroup from './components/button-group';
+import Captcha from './components/captcha';
 import Card from './components/card';
 import Carousel from './components/carousel';
 import CarouselItem from './components/carousel-item';
@@ -39,6 +40,7 @@ import Drawer from './components/drawer';
 import Dropdown from './components/dropdown';
 import DropdownItem from './components/dropdown-item';
 import DropdownMenu from './components/dropdown-menu';
+import Email from './components/email';
 import Footer from './components/footer';
 import Form from './components/form';
 import FormItem from './components/form-item';
@@ -53,10 +55,12 @@ import List from './components/list';
 import ListItem from './components/list-item';
 import ListItemMeta from './components/list-item-meta';
 import LoadingBar from './components/loading-bar';
+import Login from './components/login';
 import Menu from './components/menu';
 import MenuGroup from './components/menu-group';
 import MenuItem from './components/menu-item';
 import Message from './components/message';
+import Mobile from './components/mobile';
 import Modal from './components/modal';
 import Notice from './components/notice';
 import Option from './components/option';
@@ -64,6 +68,7 @@ import OptionGroup from './components/option-group';
 import Page from './components/page';
 import PageHeader from './components/page-header';
 import Panel from './components/panel';
+import Password from './components/password';
 import Poptip from './components/poptip';
 import Progress from './components/progress';
 import Radio from './components/radio';
@@ -79,6 +84,7 @@ import Split from './components/split';
 import Step from './components/step';
 import Steps from './components/steps';
 import Submenu from './components/submenu';
+import Submit from './components/submit';
 import Switch from './components/switch';
 import Table from './components/table';
 import TabPane from './components/tab-pane';
@@ -94,6 +100,7 @@ import Tooltip from './components/tooltip';
 import Transfer from './components/transfer';
 import Tree from './components/tree';
 import Upload from './components/upload';
+import UserName from './components/user-name';
 // import locale from './locale/index';
 
 const components = {
@@ -109,6 +116,7 @@ const components = {
     BreadcrumbItem,
     Button,
     ButtonGroup,
+    Captcha,
     Card,
     Carousel,
     CarouselItem,
@@ -130,6 +138,7 @@ const components = {
     Dropdown,
     DropdownItem,
     DropdownMenu,
+    Email,
     Footer,
     Form,
     FormItem,
@@ -144,10 +153,12 @@ const components = {
     ListItem,
     ListItemMeta,
     LoadingBar,
+    Login,
     Menu,
     MenuGroup,
     MenuItem,
     Message,
+    Mobile,
     Modal,
     Notice,
     Option,
@@ -155,6 +166,7 @@ const components = {
     Page,
     PageHeader,
     Panel,
+    Password,
     Poptip,
     Progress,
     Radio,
@@ -170,6 +182,7 @@ const components = {
     Step,
     Steps,
     Submenu,
+    Submit,
     Switch,
     Table,
     Tabs,
@@ -184,7 +197,8 @@ const components = {
     Tooltip,
     Transfer,
     Tree,
-    Upload
+    Upload,
+    UserName
 };
 
 const iview = {
