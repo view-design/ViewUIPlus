@@ -82,6 +82,7 @@
             <span><router-link to="/number-info">NumberInfo</router-link></span>
             <span><router-link to="/trend">Trend</router-link></span>
             <span><router-link to="/footer-toolbar">FooterToolbar</router-link></span>
+            <span><router-link to="/global-footer">GlobalFooter</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>

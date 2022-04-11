@@ -51,6 +51,7 @@ import Footer from './components/footer';
 import FooterToolbar from './components/footer-toolbar';
 import Form from './components/form';
 import FormItem from './components/form-item';
+import GlobalFooter from './components/global-footer';
 import Grid from './components/grid';
 import GridItem from './components/grid-item';
 import Header from './components/header';
@@ -163,6 +164,7 @@ const components = {
     FooterToolbar,
     Form,
     FormItem,
+    GlobalFooter,
     Grid,
     GridItem,
     Header,

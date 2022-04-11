@@ -297,6 +297,10 @@ const router = createRouter({
         {
             path: '/footer-toolbar',
             component: () => import('./routers/footer-toolbar.vue')
+        },
+        {
+            path: '/global-footer',
+            component: () => import('./routers/global-footer.vue')
         }
     ]
 });
