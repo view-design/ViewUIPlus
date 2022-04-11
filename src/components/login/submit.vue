@@ -25,7 +25,7 @@
             const $button = h(Button, {
                 ...finalProps,
                 onClick: this.handleSubmit
-            }, this.$slots.default || '登录');
+            }, this.$slots.default || (() => '登录'));
 
             return h('div', {
                 class: 'ivu-login-submit'

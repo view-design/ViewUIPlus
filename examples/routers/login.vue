@@ -7,7 +7,7 @@
                 <Checkbox v-model="autoLogin" size="large">自动登录</Checkbox>
                 <a>忘记密码</a>
             </div>
-            <Submit />
+            <Submit></Submit>
         </Login>
     </div>
 </template>

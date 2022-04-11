@@ -90,7 +90,7 @@ export default {
         const $formitem = h(FormItem, {
             prop: this.prop,
             rules: this.rules
-        }, [$input]);
+        }, () => [$input]);
 
         return h('div', {
             class: this.className
