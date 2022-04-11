@@ -257,6 +257,10 @@ const router = createRouter({
         {
             path: '/calendar',
             component: () => import('./routers/calendar.vue')
+        },
+        {
+            path: '/auth',
+            component: () => import('./routers/auth.vue')
         }
     ]
 });

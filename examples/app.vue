@@ -72,6 +72,7 @@
             <span><router-link to="/login">Login</router-link></span>
             <span><router-link to="/notification">Notification</router-link></span>
             <span><router-link to="/calendar">Calendar</router-link></span>
+            <span><router-link to="/auth">Auth</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>
