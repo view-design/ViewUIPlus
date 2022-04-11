@@ -301,6 +301,10 @@ const router = createRouter({
         {
             path: '/global-footer',
             component: () => import('./routers/global-footer.vue')
+        },
+        {
+            path: '/word-count',
+            component: () => import('./routers/word-count.vue')
         }
     ]
 });

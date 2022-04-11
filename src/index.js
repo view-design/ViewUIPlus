@@ -116,6 +116,7 @@ import Tree from './components/tree';
 import Trend from './components/trend';
 import Upload from './components/upload';
 import UserName from './components/user-name';
+import WordCount from './components/word-count';
 // import locale from './locale/index';
 
 const components = {
@@ -228,7 +229,8 @@ const components = {
     Tree,
     Trend,
     Upload,
-    UserName
+    UserName,
+    WordCount
 };
 
 const iview = {
