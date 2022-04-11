@@ -305,6 +305,10 @@ const router = createRouter({
         {
             path: '/word-count',
             component: () => import('./routers/word-count.vue')
+        },
+        {
+            path: '/result',
+            component: () => import('./routers/result.vue')
         }
     ]
 });

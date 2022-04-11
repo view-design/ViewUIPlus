@@ -87,6 +87,7 @@ import Progress from './components/progress';
 import Radio from './components/radio';
 import RadioGroup from './components/radio-group';
 import Rate from './components/rate';
+import Result from './components/result';
 import Row from './components/row';
 import Scroll from './components/scroll';
 import Select from './components/select';
@@ -201,6 +202,7 @@ const components = {
     Radio,
     RadioGroup,
     Rate,
+    Result,
     Row,
     Scroll,
     Select,
