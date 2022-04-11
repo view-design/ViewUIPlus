@@ -269,6 +269,10 @@ const router = createRouter({
         {
             path: '/table-paste',
             component: () => import('./routers/table-paste.vue')
+        },
+        {
+            path: '/avatar-list',
+            component: () => import('./routers/avatar-list.vue')
         }
     ]
 });

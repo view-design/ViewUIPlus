@@ -75,6 +75,7 @@
             <span><router-link to="/auth">Auth</router-link></span>
             <span><router-link to="/ellipsis">Ellipsis</router-link></span>
             <span><router-link to="/table-paste">TablePaste</router-link></span>
+            <span><router-link to="/avatar-list">AvatarList</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>

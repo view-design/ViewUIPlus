@@ -13,6 +13,7 @@ import AnchorLink from './components/anchor-link';
 import Auth from './components/auth';
 import AutoComplete from './components/auto-complete';
 import Avatar from './components/avatar';
+import AvatarList from './components/avatar-list';
 import BackTop from './components/back-top';
 import Badge from './components/badge';
 import Breadcrumb from './components/breadcrumb';
@@ -118,6 +119,7 @@ const components = {
     Auth,
     AutoComplete,
     Avatar,
+    AvatarList,
     BackTop,
     Badge,
     Breadcrumb,
