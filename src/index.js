@@ -35,6 +35,7 @@ import Col from './components/col';
 import Collapse from './components/collapse';
 import ColorPicker from './components/color-picker';
 import Content from './components/content';
+import CountDown from './components/count-down';
 import DatePicker from './components/date-picker';
 import Description from './components/description';
 import DescriptionList from './components/description-list';
@@ -141,6 +142,7 @@ const components = {
     Collapse,
     ColorPicker,
     Content,
+    CountDown,
     DatePicker,
     Description,
     DescriptionList,

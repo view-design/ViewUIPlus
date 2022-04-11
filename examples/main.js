@@ -273,6 +273,10 @@ const router = createRouter({
         {
             path: '/avatar-list',
             component: () => import('./routers/avatar-list.vue')
+        },
+        {
+            path: '/count-down',
+            component: () => import('./routers/count-down.vue')
         }
     ]
 });
