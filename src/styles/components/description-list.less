@@ -1,0 +1,37 @@
+.ivu-description{
+    &-list{
+        &-title{
+            margin-bottom: 16px;
+            color: @title-color;
+            font-weight: 500;
+            font-size: 14px;
+        }
+    }
+
+    &-term{
+        display: table-cell;
+        padding-bottom: 16px;
+        color: @title-color;
+        // Line-height is 22px IE dom height will calculate error
+        line-height: 20px;
+        white-space: nowrap;
+    }
+
+    &-detail{
+        display: table-cell;
+        width: 100%;
+        padding-bottom: 16px;
+        color: @text-color;
+        line-height: 20px;
+    }
+
+    &-list-vertical{
+        .ivu-description-term{
+            display: block;
+            padding-bottom: 8px;
+        }
+        .ivu-description-detail{
+            display: block;
+        }
+    }
+}

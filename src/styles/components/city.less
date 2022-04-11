@@ -1,0 +1,112 @@
+.ivu-city{
+    display: inline-block;
+    width: 100%;
+    position: relative;
+
+    .ivu-dropdown{
+        width: 100%;
+    }
+
+    &-rel{
+        display: inline-block;
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+    }
+
+    &-disabled &-rel{
+        cursor: @cursor-disabled;
+    }
+
+    &-arrow{
+        transition: all @transition-time @ease-in-out;
+    }
+
+    &-visible &-arrow:nth-of-type(2) {
+        transform: rotate(180deg);
+    }
+
+    @city-width: 400px;
+    .ivu-select-dropdown{
+        width: @city-width;
+    }
+
+    &-drop{
+        width: @city-width;
+        padding: 2px 8px;
+
+        &-cities{
+            margin-bottom: 8px;
+            span{
+                display: inline-block;
+                margin-right: 4px;
+                cursor: pointer;
+                &:hover{
+                    color: @link-hover-color;
+                }
+            }
+        }
+
+        &-menu{
+            margin-bottom: 8px;
+        }
+
+        &-type{
+            display: inline-block;
+        }
+        &-search{
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        &-list{
+            &-letter{
+                margin-bottom: 8px;
+                .ivu-tag{
+                    cursor: pointer;
+                    &:hover{
+                        .ivu-tag-text{
+                            color: @link-hover-color;
+                        }
+                    }
+                }
+            }
+            &-main{
+                max-height: 200px;
+                overflow: auto;
+                dl{
+
+                }
+                dt{
+                    float: left;
+                    font-weight: bold;
+                }
+                dd{
+                    white-space: normal;
+                    margin-inline-start: 40px;
+                    margin-bottom: 8px;
+                    li{
+                        display: inline-block;
+                        margin-right: 9px;
+                        cursor: pointer;
+
+                        &:hover{
+                            color: @link-hover-color;
+                        }
+                    }
+                }
+
+                &-city{
+                    dd{
+                        margin-inline-start: 24px;
+                    }
+                }
+            }
+        }
+    }
+
+    &-transfer.ivu-select-dropdown{
+        max-height: none;
+        overflow: visible;
+    }
+}

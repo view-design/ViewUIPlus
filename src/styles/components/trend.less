@@ -1,0 +1,49 @@
+.ivu-trend{
+    display: inline-block;
+    &-text{
+        vertical-align: middle;
+    }
+
+    &-colorful&-up{
+        .ivu-trend-flag{
+            color: @error-color;
+        }
+    }
+    &-colorful&-down{
+        .ivu-trend-flag{
+            color: @success-color;
+        }
+    }
+
+    &-reverse-color&-colorful&-up{
+        .ivu-trend-flag{
+            color: @success-color;
+        }
+    }
+    &-reverse-color&-colorful&-down{
+        .ivu-trend-flag{
+            color: @error-color;
+        }
+    }
+
+    &-colorful&-text-color&-up{
+        .ivu-trend-text{
+            color: @error-color;
+        }
+    }
+    &-colorful&-text-color&-down{
+        .ivu-trend-text{
+            color: @success-color;
+        }
+    }
+    &-reverse-color&-colorful&-text-color&-up{
+        .ivu-trend-text{
+            color: @success-color;
+        }
+    }
+    &-reverse-color&-colorful&-text-color&-down{
+        .ivu-trend-text{
+            color: @error-color;
+        }
+    }
+}

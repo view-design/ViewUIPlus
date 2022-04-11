@@ -1,0 +1,43 @@
+.ivu-number-info{
+    &-title{
+        margin-bottom: 16px;
+        color: @title-color;
+        font-size: @font-size-large;
+        transition: all @transition-time;
+    }
+    &-subTitle{
+        height: 22px;
+        overflow: hidden;
+        color: @subsidiary-color;
+        font-size: @font-size-base;
+        line-height: 22px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        word-break: break-all;
+    }
+    &-value{
+        margin-top: 4px;
+        overflow: hidden;
+        font-size: 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        word-break: break-all;
+    }
+    &-total{
+        display: inline-block;
+        height: 32px;
+        margin-right: 32px;
+        color: @text-color;
+        font-size: 24px;
+        line-height: 32px;
+    }
+    &-subTotal{
+        display: inline-block;
+        height: 32px;
+        line-height: 32px;
+        margin-right: 0;
+        vertical-align: top;
+        font-size: 14px;
+        color: @subsidiary-color;
+    }
+}

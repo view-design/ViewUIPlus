@@ -1,0 +1,189 @@
+.ivu-page-header{
+    padding: 16px 32px 0 32px;
+    background: @component-background;
+    border-bottom: @border-width-base @border-style-base @border-color-split;
+
+    &-wide{
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    &-detail{
+        display: flex;
+    }
+
+    &-row{
+        display: flex;
+        width: 100%;
+    }
+
+    &-breadcrumb{
+        margin-bottom: 16px;
+    }
+
+    &-tabs{
+        margin: 0 0 0 -8px;
+        .ivu-tabs-bar{
+            margin-bottom: 0;
+            border-bottom-color: transparent;
+        }
+    }
+
+    &-logo{
+        flex: 0 1 auto;
+        margin-right: 16px;
+        padding-top: 1px;
+
+        > img {
+            display: block;
+            width: 28px;
+            height: 28px;
+            border-radius: @border-radius-small;
+        }
+    }
+    &-back{
+        display: flex;
+        height: 30px;
+        flex: 0 1 auto;
+        margin-right: 8px;
+        cursor: pointer;
+        transition: color @transition-time @ease-in-out;
+        &:hover{
+            color: @primary-color;
+        }
+        .ivu-icon{
+            font-size: 20px;
+            line-height: inherit;
+        }
+        .ivu-divider{
+            height: 14px;
+            line-height: inherit;
+            top: 8px;
+        }
+    }
+    &-main &-back{
+        display: none;
+    }
+
+    &-title{
+        display: inline-block;
+        color: @title-color;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    &-action{
+        min-width: 266px;
+        margin-left: 56px;
+
+        .ivu-btn-group:not(:last-child),
+        .ivu-btn:not(:last-child){
+            margin-right: 8px;
+        }
+
+        .ivu-btn-group > .ivu-btn {
+            margin-right: 0;
+        }
+    }
+
+    &-content, &-extra{
+        font-size: 14px;
+    }
+
+    &-title, &-content{
+        flex: auto;
+    }
+
+    &-action, &-extra, &-main{
+        flex: 0 1 auto;
+    }
+
+    &-main{
+        width: 100%;
+    }
+
+    &-title, &-action{
+        margin-bottom: 16px;
+    }
+
+    &-logo,
+    &-content,
+    &-extra {
+        margin-bottom: 16px;
+    }
+
+    &-action,
+    &-extra {
+        text-align: right;
+    }
+
+    &-extra{
+        min-width: 242px;
+        margin-left: 88px;
+    }
+}
+
+@media screen and (max-width: @screen-xl) {
+    .ivu-page-header {
+        &-extra {
+            margin-left: 44px;
+        }
+    }
+}
+
+@media screen and (max-width: @screen-lg) {
+    .ivu-page-header {
+        &-extra {
+            margin-left: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: @screen-md) {
+    .ivu-page-header {
+        &-row {
+            display: block;
+        }
+
+        &-action,
+        &-extra {
+            margin-left: 0;
+            text-align: left;
+        }
+    }
+}
+
+@media screen and (max-width: @screen-sm) {
+    .ivu-page-header {
+        &-detail > &-back{
+            display: none;
+        }
+        &-main &-back{
+            display: inline-block;
+            position: relative;
+            top: -4px;
+            .ivu-divider{
+                top: 0;
+            }
+        }
+        &-detail {
+            display: block;
+        }
+    }
+}
+
+@media screen and (max-width: @screen-xs) {
+    .ivu-page-header {
+        &-action {
+            .ivu-btn-group,
+            .ivu-btn {
+                display: block;
+                margin-bottom: 8px;
+            }
+            .ivu-btn-group > .ivu-btn {
+                display: inline-block;
+                margin-bottom: 0;
+            }
+        }
+    }
+}

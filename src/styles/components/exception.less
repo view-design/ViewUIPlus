@@ -1,0 +1,87 @@
+.ivu-exception{
+    display: flex;
+    align-items: center;
+    height: 80%;
+    min-height: 500px;
+
+    &-img{
+        flex: 0 0 62.5%;
+        width: 62.5%;
+        padding-right: 152px;
+        zoom: 1;
+        &::before,
+        &::after {
+            content: ' ';
+            display: table;
+        }
+        &::after {
+            clear: both;
+            height: 0;
+            font-size: 0;
+            visibility: hidden;
+        }
+
+        &-element {
+            float: right;
+            width: 100%;
+            max-width: 430px;
+            height: 360px;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: contain;
+        }
+    }
+
+    &-content{
+        flex: auto;
+
+        h1 {
+            margin-bottom: 24px;
+            color: @text-color;
+            font-weight: 600;
+            font-size: 72px;
+            line-height: 72px;
+        }
+
+        &-desc {
+            margin-bottom: 16px;
+            color: @subsidiary-color;
+            font-size: 20px;
+            line-height: 28px;
+        }
+
+        &-actions {
+            button:not(:last-child) {
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: @screen-md) {
+    .ivu-exception {
+        &-img {
+            padding-right: 88px;
+        }
+    }
+}
+
+@media screen and (max-width: @screen-sm) {
+    .ivu-exception {
+        display: block;
+        text-align: center;
+        &-img {
+            margin: 0 auto 24px;
+            padding-right: 0;
+        }
+    }
+}
+
+@media screen and (max-width: @screen-xs) {
+    .ivu-exception {
+        &-img {
+            margin-bottom: -24px;
+            overflow: hidden;
+        }
+    }
+}

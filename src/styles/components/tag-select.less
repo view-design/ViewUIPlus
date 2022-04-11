@@ -1,0 +1,30 @@
+.ivu-tag-select{
+    position: relative;
+    max-height: 32px;
+    margin-left: -8px;
+    overflow: hidden;
+    line-height: 32px;
+    user-select: none;
+
+    &-expanded{
+        max-height: 200px;
+    }
+
+    &-option{
+        display: inline-block;
+
+        .ivu-tag{
+            margin-right: 24px;
+        }
+    }
+
+    &-expand-btn{
+        position: absolute;
+        top: 1px;
+        right: 0;
+    }
+
+    &-with-expanded{
+        padding-right: 50px;
+    }
+}

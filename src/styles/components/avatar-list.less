@@ -1,0 +1,36 @@
+.ivu-avatar-list{
+    display: inline-block;
+    &-item{
+        display: inline-block;
+        margin-left: -8px;
+        cursor: pointer;
+        &:first-child{
+            margin-left: 0;
+        }
+        .ivu-avatar{
+            border: 1px solid #fff;
+        }
+        &-excess{
+            cursor: auto;
+        }
+    }
+    &-large{
+        .ivu-avatar-list-item{
+            margin-left: -16px;
+            &:first-child{
+                margin-left: 0;
+            }
+        }
+        .ivu-avatar-list-item-excess{
+            font-size: @font-size-large;
+        }
+    }
+    &-default{
+        .ivu-avatar-list-item{
+            margin-left: -12px;
+            &:first-child{
+                margin-left: 0;
+            }
+        }
+    }
+}

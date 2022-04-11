@@ -1,0 +1,48 @@
+.ivu-grid{
+    &:after{
+        content: '';
+        display: block;
+        clear: both;
+    }
+    &-item{
+        position: relative;
+        float: left;
+        width: 33.33%;
+        box-sizing: border-box;
+        border: 0;
+        border-radius: 0;
+
+        transition: box-shadow @transition-time @ease-in-out;
+
+        &-main{
+            padding: 24px;
+        }
+    }
+
+    &-border{
+        .ivu-grid-item{
+            box-shadow: 1px 0 0 0 @border-color-split, 0 1px 0 0 @border-color-split,
+            1px 1px 0 0 @border-color-split, 1px 0 0 0 @border-color-split inset,
+            0 1px 0 0 @border-color-split inset;
+        }
+    }
+
+    &-hover{
+        .ivu-grid-item{
+            &:hover {
+                z-index: 1;
+                box-shadow: @shadow-base;
+            }
+        }
+    }
+
+    &-center{
+        .ivu-grid-item-main{
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,158 @@
+// iView 已经占用了 .ivu-notification 名称
+.ivu-notifications{
+    display: inline-block;
+
+    &-rel{
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    &-list{
+        width: 300px;
+        line-height: normal;
+        &-wide{
+            width: auto;
+        }
+    }
+
+    &,&-transfer{
+        .ivu-tabs-nav-scroll{
+            text-align: center;
+        }
+        .ivu-tabs-nav{
+            display: inline-block;
+            float: none;
+        }
+    }
+
+    &-tabs{
+        .ivu-badge{
+            margin-left: 3px;
+        }
+        .ivu-badge-count{
+            background: @normal-color;
+            color: @subsidiary-color;
+            min-width: 16px;
+            height: 16px;
+            line-height: 14px;
+            border-radius: 8px;
+            padding: 0 4px;
+        }
+        .ivu-tabs-tab:last-child{
+            margin-right: 0;
+        }
+        .ivu-tabs-bar{
+            margin-bottom: 0;
+        }
+    }
+
+    &-extra{
+        border-top: 1px solid @border-color-split;
+    }
+
+    &-tab{
+        &-empty{
+            text-align: center;
+            padding: 64px 0;
+            &-img{
+                display: inline-block;
+                height: 64px;
+            }
+            &-text{
+                color: @subsidiary-color;
+            }
+        }
+
+        &-clear{
+            border-top: 1px solid @border-color-split;
+            text-align: center;
+            font-size: @font-size-base;
+            cursor: pointer;
+            padding: 6px 0;
+            color: @text-color;
+            transition: color @transition-time @ease-in-out;
+
+            &:hover{
+                color: @link-hover-color;
+            }
+        }
+
+        &-loading{
+            &-item{
+                border-top: 1px solid @border-color-split;
+                text-align: center;
+                font-size: @font-size-base;
+                padding: 6px 0;
+                color: @text-color;
+                transition: color @transition-time @ease-in-out;
+            }
+            &-show, &-all{
+                color: @btn-disable-color;
+            }
+            &-more{
+                cursor: pointer;
+                color: @link-color;
+
+                &:hover{
+                    color: @link-hover-color;
+                }
+            }
+        }
+    }
+
+    &-container{
+        max-height: 400px;
+        overflow: auto;
+    }
+
+    &-item{
+        padding: 12px 24px;
+        border-bottom: 1px solid @border-color-split;
+        cursor: pointer;
+        transition: background-color @transition-time @ease-in-out;
+        text-align: left;
+
+        &:last-child{
+            border-bottom: none;
+        }
+
+        &:hover{
+            background-color: ~`colorPalette("@{primary-color}", 1)`;
+        }
+
+        &-unread{
+            background-color: #f8f8f9;
+        }
+
+        &-title{
+            margin-bottom: 4px;
+            h4{
+                font-size: @font-size-base;
+                font-weight: normal;
+                line-height: 22px;
+                color: @text-color;
+            }
+        }
+        &-tag{
+            float: right;
+            margin-top: -2px;
+            .ivu-tag{
+                margin-right: 0;
+            }
+        }
+        &-desc{
+            color: @subsidiary-color;
+            font-size: @font-size-small;
+            margin-bottom: 4px;
+        }
+        &-time{
+            font-size: @font-size-small;
+            color: @subsidiary-color;
+        }
+    }
+
+    &-transfer.ivu-select-dropdown{
+        max-height: none;
+        overflow: visible;
+    }
+}

@@ -1,0 +1,33 @@
+.ivu-tree-select{
+    .ivu-select-dropdown{
+        padding: 0;
+    }
+    &,&-transfer{
+        .ivu-tree{
+            padding: 0 6px;
+            li{
+                font-size: @font-size-base;
+            }
+        }
+
+        .ivu-tree-title{
+            display: inline-block;
+            width: calc(~'100% - 18px');
+            vertical-align: middle;
+        }
+        .ivu-checkbox-wrapper+.ivu-tree-title{
+            width: calc(~'100% - 44px');
+        }
+    }
+
+    .ivu-tree-title{
+        padding: 2px 4px 4px;
+    }
+
+    &-transfer{
+        padding: 0;
+        .ivu-tree-title{
+            padding: 0 4px 2px;
+        }
+    }
+}
