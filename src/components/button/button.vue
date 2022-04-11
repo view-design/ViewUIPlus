@@ -28,7 +28,7 @@
                 validator (value) {
                     return oneOf(value, ['small', 'large', 'default']);
                 },
-                default (props) {
+                default () {
                     const global = getCurrentInstance().appContext.config.globalProperties;
                     return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
