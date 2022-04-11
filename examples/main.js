@@ -249,6 +249,10 @@ const router = createRouter({
         {
             path: '/login',
             component: () => import('./routers/login.vue')
+        },
+        {
+            path: '/notification',
+            component: () => import('./routers/notification.vue')
         }
     ]
 });

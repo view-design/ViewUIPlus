@@ -63,6 +63,9 @@ import Message from './components/message';
 import Mobile from './components/mobile';
 import Modal from './components/modal';
 import Notice from './components/notice';
+import Notification from './components/notification';
+import NotificationItem from './components/notification-item';
+import NotificationTab from './components/notification-tab';
 import Option from './components/option';
 import OptionGroup from './components/option-group';
 import Page from './components/page';
@@ -161,6 +164,9 @@ const components = {
     Mobile,
     Modal,
     Notice,
+    Notification,
+    NotificationItem,
+    NotificationTab,
     Option,
     OptionGroup,
     Page,
