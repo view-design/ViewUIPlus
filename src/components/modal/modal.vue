@@ -34,7 +34,6 @@
     import Icon from '../icon';
     import iButton from '../button/button.vue';
     import Locale from '../../mixins/locale';
-    import Emitter from '../../mixins/emitter';
     import ScrollbarMixins from './mixins-scrollbar';
 
     import { on, off } from '../../utils/dom';
@@ -56,7 +55,7 @@
 
     export default {
         name: 'Modal',
-        mixins: [ Locale, Emitter, ScrollbarMixins ],
+        mixins: [ Locale, ScrollbarMixins ],
         components: { Icon, iButton },
         emits: ['on-cancel', 'on-ok', 'on-hidden', 'on-visible-change', 'update:modelValue'],
         provide () {

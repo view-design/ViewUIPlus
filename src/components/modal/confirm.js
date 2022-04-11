@@ -37,13 +37,13 @@ Modal.newInstance = properties => {
                 footerVNodes.push(h(Button, {
                     type: 'text',
                     onClick: this.cancel
-                }, this.localeCancelText));
+                }, () => this.localeCancelText));
             }
             footerVNodes.push(h(Button, {
                 type: 'primary',
                 loading: this.buttonLoading,
                 onClick: this.ok
-            }, this.localeOkText));
+            }, () => this.localeOkText));
 
             // render content
             let body_render;
