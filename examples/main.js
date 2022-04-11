@@ -281,6 +281,10 @@ const router = createRouter({
         {
             path: '/count-up',
             component: () => import('./routers/count-up.vue')
+        },
+        {
+            path: '/numeral',
+            component: () => import('./routers/numeral.vue')
         }
     ]
 });

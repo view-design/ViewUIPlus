@@ -72,6 +72,7 @@ import Notice from './components/notice';
 import Notification from './components/notification';
 import NotificationItem from './components/notification-item';
 import NotificationTab from './components/notification-tab';
+import Numeral from './components/numeral';
 import Option from './components/option';
 import OptionGroup from './components/option-group';
 import Page from './components/page';
@@ -180,6 +181,7 @@ const components = {
     Notification,
     NotificationItem,
     NotificationTab,
+    Numeral,
     Option,
     OptionGroup,
     Page,
