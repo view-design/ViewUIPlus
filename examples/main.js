@@ -277,6 +277,10 @@ const router = createRouter({
         {
             path: '/count-down',
             component: () => import('./routers/count-down.vue')
+        },
+        {
+            path: '/count-up',
+            component: () => import('./routers/count-up.vue')
         }
     ]
 });

@@ -38,6 +38,7 @@
     },
     "dependencies": {
         "async-validator": "^3.3.0",
+        "countup.js": "^1.9.3",
         "dayjs": "^1.11.0",
         "deepmerge": "^2.2.1",
         "element-resize-detector": "^1.2.0",
