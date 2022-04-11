@@ -9,6 +9,7 @@
     </div>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import Spin from '../spin';
     import { oneOf } from '../../utils/assist';
 
@@ -52,8 +53,9 @@
                 validator (value) {
                     return oneOf(value, ['small', 'large', 'default']);
                 },
-                default (props) {
-                    return !props.$IVIEW || props.$IVIEW.size === '' ? 'default' : props.$IVIEW.size;
+                default () {
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             split: {

@@ -19,7 +19,7 @@
     </div>
 </template>
 <script>
-    import { nextTick } from 'vue';
+    import { nextTick, getCurrentInstance } from 'vue';
     import Drop from '../select/dropdown.vue';
     import clickOutside from '../../directives/clickoutside';
     import { oneOf, findComponentUpward } from '../../utils/assist';
@@ -50,8 +50,9 @@
             },
             transfer: {
                 type: Boolean,
-                default (props) {
-                    return !props.$IVIEW || props.$IVIEW.transfer === '' ? false : props.$IVIEW.transfer;
+                default () {
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
                 }
             },
             transferClassName: {
@@ -64,8 +65,9 @@
             // 4.0.0
             capture: {
                 type: Boolean,
-                default (props) {
-                    return !props.$IVIEW ? true : props.$IVIEW.capture;
+                default () {
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW ? true : global.$IVIEW.capture;
                 }
             },
             // 4.6.0

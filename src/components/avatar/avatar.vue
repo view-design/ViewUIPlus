@@ -6,6 +6,7 @@
     </span>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import Icon from '../icon';
     import { oneOf } from '../../utils/assist';
 
@@ -26,8 +27,9 @@
             },
             size: {
                 type: [String, Number],
-                default (props) {
-                    return !props.$IVIEW || props.$IVIEW.size === '' ? 'default' : props.$IVIEW.size;
+                default () {
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
                 }
             },
             src: {
