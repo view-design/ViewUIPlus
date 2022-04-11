@@ -84,6 +84,8 @@ import Table from './components/table';
 import TabPane from './components/tab-pane';
 import Tabs from './components/tabs';
 import Tag from './components/tag';
+import TagSelect from './components/tag-select';
+import TagSelectOption from './components/tag-select-option';
 import Time from './components/time';
 import Timeline from './components/timeline';
 import TimelineItem from './components/timeline-item';
@@ -173,6 +175,8 @@ const components = {
     Tabs,
     TabPane,
     Tag,
+    TagSelect,
+    TagSelectOption,
     Time,
     Timeline,
     TimelineItem,

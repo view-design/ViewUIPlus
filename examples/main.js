@@ -241,6 +241,10 @@ const router = createRouter({
         {
             path: '/page-header',
             component: () => import('./routers/page-header.vue')
+        },
+        {
+            path: '/tag-select',
+            component: () => import('./routers/tag-select.vue')
         }
     ]
 });
