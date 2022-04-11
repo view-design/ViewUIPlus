@@ -110,11 +110,11 @@
             if (this.$slots.text) {
                 buttonSlot = this.$slots.text;
             } else if (this.limitCountDown !== 0) {
-                buttonSlot = `${this.limitCountDown} ${this.unitText}`;
+                buttonSlot = () => `${this.limitCountDown} ${this.unitText}`;
             } else if (this.text) {
-                buttonSlot = this.text;
+                buttonSlot = () => this.text;
             } else {
-                buttonSlot = '获取验证码';
+                buttonSlot = () => '获取验证码';
             }
 
             const $button = h(Button, {
@@ -130,20 +130,20 @@
 
             const $colinput = h(Col, {
                 span: 16
-            }, [$input]);
+            }, () => [$input]);
 
             const $colbutton = h(Col, {
                 span: 8
-            }, [$button]);
+            }, () => [$button]);
 
             const $row = h(Row, {
                 gutter: 8
-            }, [$colinput, $colbutton]);
+            }, () => [$colinput, $colbutton]);
 
             const $formitem = h(FormItem, {
                 prop: this.prop,
                 rules: this.rules
-            }, [$row]);
+            }, () => [$row]);
 
             return h('div', {
                 class: this.className
