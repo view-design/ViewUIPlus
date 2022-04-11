@@ -72,6 +72,7 @@ import Notice from './components/notice';
 import Notification from './components/notification';
 import NotificationItem from './components/notification-item';
 import NotificationTab from './components/notification-tab';
+import NumberInfo from './components/number-info';
 import Numeral from './components/numeral';
 import Option from './components/option';
 import OptionGroup from './components/option-group';
@@ -110,6 +111,7 @@ import TimePicker from './components/time-picker';
 import Tooltip from './components/tooltip';
 import Transfer from './components/transfer';
 import Tree from './components/tree';
+import Trend from './components/trend';
 import Upload from './components/upload';
 import UserName from './components/user-name';
 // import locale from './locale/index';
@@ -181,6 +183,7 @@ const components = {
     Notification,
     NotificationItem,
     NotificationTab,
+    NumberInfo,
     Numeral,
     Option,
     OptionGroup,
@@ -219,6 +222,7 @@ const components = {
     Tooltip,
     Transfer,
     Tree,
+    Trend,
     Upload,
     UserName
 };

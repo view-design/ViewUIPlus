@@ -285,6 +285,14 @@ const router = createRouter({
         {
             path: '/numeral',
             component: () => import('./routers/numeral.vue')
+        },
+        {
+            path: '/number-info',
+            component: () => import('./routers/number-info.vue')
+        },
+        {
+            path: '/trend',
+            component: () => import('./routers/trend.vue')
         }
     ]
 });

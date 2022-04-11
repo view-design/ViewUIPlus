@@ -79,6 +79,8 @@
             <span><router-link to="/count-down">CountDown</router-link></span>
             <span><router-link to="/count-up">CountUp</router-link></span>
             <span><router-link to="/numeral">Numeral</router-link></span>
+            <span><router-link to="/number-info">NumberInfo</router-link></span>
+            <span><router-link to="/trend">Trend</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>
