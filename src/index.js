@@ -93,6 +93,7 @@ import Submenu from './components/submenu';
 import Submit from './components/submit';
 import Switch from './components/switch';
 import Table from './components/table';
+import TablePaste from './components/table-paste';
 import TabPane from './components/tab-pane';
 import Tabs from './components/tabs';
 import Tag from './components/tag';
@@ -197,6 +198,7 @@ const components = {
     Submit,
     Switch,
     Table,
+    TablePaste,
     Tabs,
     TabPane,
     Tag,

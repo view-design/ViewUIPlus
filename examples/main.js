@@ -265,6 +265,10 @@ const router = createRouter({
         {
             path: '/ellipsis',
             component: () => import('./routers/ellipsis.vue')
+        },
+        {
+            path: '/table-paste',
+            component: () => import('./routers/table-paste.vue')
         }
     ]
 });
