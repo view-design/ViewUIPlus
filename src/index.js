@@ -129,6 +129,9 @@ import lineClamp from './directives/line-clamp';
 import resize from './directives/resize';
 import style from './directives/style';
 
+// libraries
+import dayjs from 'dayjs';
+
 const components = {
     Affix,
     Alert,
@@ -355,6 +358,8 @@ const install = function(app, opts = {}) {
     app.config.globalProperties.$Copy = Copy;
     app.config.globalProperties.$ScrollIntoView = ScrollIntoView;
     app.config.globalProperties.$ScrollTop = ScrollTop;
+
+    app.config.globalProperties.$Date = dayjs;
 };
 
 // auto install
