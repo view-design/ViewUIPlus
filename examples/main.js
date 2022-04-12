@@ -198,10 +198,10 @@ const router = createRouter({
             path: '/color-picker',
             component: () => import('./routers/color-picker.vue')
         },
-        // {
-        //     path: '/auto-complete',
-        //     component: (resolve) => require(['./routers/auto-complete.vue'], resolve)
-        // },
+        {
+            path: '/auto-complete',
+            component: () => import('./routers/auto-complete.vue')
+        },
         {
             path: '/scroll',
             component: () => import('./routers/scroll.vue')
