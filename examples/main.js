@@ -337,6 +337,10 @@ const router = createRouter({
         {
             path: '/scroll-into-view',
             component: () => import('./routers/scroll-into-view.vue')
+        },
+        {
+            path: '/tree-select',
+            component: () => import('./routers/tree-select.vue')
         }
     ]
 });

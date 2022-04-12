@@ -118,6 +118,7 @@ import TimePicker from './components/time-picker';
 import Tooltip from './components/tooltip';
 import Transfer from './components/transfer';
 import Tree from './components/tree';
+import TreeSelect from './components/tree-select';
 import Trend from './components/trend';
 import Upload from './components/upload';
 import UserName from './components/user-name';
@@ -242,6 +243,7 @@ const components = {
     Tooltip,
     Transfer,
     Tree,
+    TreeSelect,
     Trend,
     Upload,
     UserName,
