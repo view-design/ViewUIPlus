@@ -31,6 +31,7 @@ import CellGroup from './components/cell-group';
 import Checkbox from './components/checkbox';
 import CheckboxGroup from './components/checkbox-group';
 import Circle from './components/circle';
+import City from './components/city';
 import Col from './components/col';
 import Collapse from './components/collapse';
 import ColorPicker from './components/color-picker';
@@ -159,6 +160,7 @@ const components = {
     Checkbox,
     CheckboxGroup,
     Circle,
+    City,
     Col,
     Collapse,
     ColorPicker,

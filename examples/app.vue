@@ -87,7 +87,7 @@
             <span><router-link to="/result">Result</router-link></span>
             <span><router-link to="/exception">Exception</router-link></span>
             <span><Tag color="green">未完成</Tag><router-link to="/tree-select">TreeSelect</router-link></span>
-            <span><Tag color="red">未开始</Tag><router-link to="/city">City</router-link></span>
+            <span><Tag color="green">未完成</Tag><router-link to="/city">City</router-link></span>
             <span><router-link to="/v-style">v-style</router-link></span>
             <span><router-link to="/v-resize">v-resize</router-link></span>
             <span><router-link to="/v-line-clamp">v-line-clamp</router-link></span>

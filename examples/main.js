@@ -341,6 +341,10 @@ const router = createRouter({
         {
             path: '/tree-select',
             component: () => import('./routers/tree-select.vue')
+        },
+        {
+            path: '/city',
+            component: () => import('./routers/city.vue')
         }
     ]
 });
