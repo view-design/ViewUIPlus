@@ -329,6 +329,10 @@ const router = createRouter({
         {
             path: '/copy',
             component: () => import('./routers/copy.vue')
+        },
+        {
+            path: '/scroll-top',
+            component: () => import('./routers/scroll-top.vue')
         }
     ]
 });
