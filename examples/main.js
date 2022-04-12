@@ -333,6 +333,10 @@ const router = createRouter({
         {
             path: '/scroll-top',
             component: () => import('./routers/scroll-top.vue')
+        },
+        {
+            path: '/scroll-into-view',
+            component: () => import('./routers/scroll-into-view.vue')
         }
     ]
 });

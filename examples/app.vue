@@ -93,6 +93,7 @@
             <span><router-link to="/v-line-clamp">v-line-clamp</router-link></span>
             <span><router-link to="/copy">$Copy</router-link></span>
             <span><router-link to="/scroll-top">$ScrollTop</router-link></span>
+            <span><router-link to="/scroll-into-view">$ScrollIntoView</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>

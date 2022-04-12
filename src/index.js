@@ -92,6 +92,7 @@ import Rate from './components/rate';
 import Result from './components/result';
 import Row from './components/row';
 import Scroll from './components/scroll';
+import ScrollIntoView from './components/scroll-into-view';
 import ScrollTop from './components/scroll-top';
 import Select from './components/select';
 import Sider from './components/sider';
@@ -352,6 +353,7 @@ const install = function(app, opts = {}) {
     app.config.globalProperties.$Notice = Notice;
     app.config.globalProperties.$Modal = Modal;
     app.config.globalProperties.$Copy = Copy;
+    app.config.globalProperties.$ScrollIntoView = ScrollIntoView;
     app.config.globalProperties.$ScrollTop = ScrollTop;
 };
 
