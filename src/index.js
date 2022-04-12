@@ -35,6 +35,7 @@ import Col from './components/col';
 import Collapse from './components/collapse';
 import ColorPicker from './components/color-picker';
 import Content from './components/content';
+import Copy from './components/copy';
 import CountDown from './components/count-down';
 import CountUp from './components/count-up';
 import DatePicker from './components/date-picker';
@@ -251,7 +252,6 @@ const directives = {
     font: style.font,
     color: style.color,
     'bg-color': style.bgColor,
-
     resize,
     'line-clamp': lineClamp
 };
@@ -350,6 +350,7 @@ const install = function(app, opts = {}) {
     app.config.globalProperties.$Message = Message;
     app.config.globalProperties.$Notice = Notice;
     app.config.globalProperties.$Modal = Modal;
+    app.config.globalProperties.$Copy = Copy;
 };
 
 // auto install

@@ -325,6 +325,10 @@ const router = createRouter({
         {
             path: '/v-line-clamp',
             component: () => import('./routers/v-line-clamp.vue')
+        },
+        {
+            path: '/copy',
+            component: () => import('./routers/copy.vue')
         }
     ]
 });
