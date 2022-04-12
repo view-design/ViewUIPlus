@@ -1,3 +1,3 @@
-import Select from './select-next.vue';
+import Select from './index.vue';
 
 export default Select;

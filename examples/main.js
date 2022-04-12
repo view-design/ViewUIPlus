@@ -198,10 +198,10 @@ const router = createRouter({
             path: '/color-picker',
             component: () => import('./routers/color-picker.vue')
         },
-        // {
-        //     path: '/auto-complete',
-        //     component: (resolve) => require(['./routers/auto-complete.vue'], resolve)
-        // },
+        {
+            path: '/auto-complete',
+            component: () => import('./routers/auto-complete.vue')
+        },
         {
             path: '/scroll',
             component: () => import('./routers/scroll.vue')
@@ -327,8 +327,28 @@ const router = createRouter({
             component: () => import('./routers/v-line-clamp.vue')
         },
         {
+            path: '/copy',
+            component: () => import('./routers/copy.vue')
+        },
+        {
             path: '/select-next',
             component: () => import('./routers/select-next.vue')
+        },
+        {
+            path: '/scroll-top',
+            component: () => import('./routers/scroll-top.vue')
+        },
+        {
+            path: '/scroll-into-view',
+            component: () => import('./routers/scroll-into-view.vue')
+        },
+        {
+            path: '/tree-select',
+            component: () => import('./routers/tree-select.vue')
+        },
+        {
+            path: '/city',
+            component: () => import('./routers/city.vue')
         }
     ]
 });

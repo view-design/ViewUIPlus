@@ -102,7 +102,7 @@
             // 渲染为普通文本
             EllipsisText (h, { text, length }) {
                 if (typeof text !== 'string') {
-                    throw new Error('[iView Pro Warn] Ellipsis children must be string.');
+                    throw new Error('[View UI Warn] Ellipsis children must be string.');
                 }
 
                 const textLength = this.fullWidthRecognition ? getStrFullLength(text) : text.length;

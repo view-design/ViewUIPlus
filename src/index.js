@@ -31,10 +31,12 @@ import CellGroup from './components/cell-group';
 import Checkbox from './components/checkbox';
 import CheckboxGroup from './components/checkbox-group';
 import Circle from './components/circle';
+import City from './components/city';
 import Col from './components/col';
 import Collapse from './components/collapse';
 import ColorPicker from './components/color-picker';
 import Content from './components/content';
+import Copy from './components/copy';
 import CountDown from './components/count-down';
 import CountUp from './components/count-up';
 import DatePicker from './components/date-picker';
@@ -91,6 +93,8 @@ import Rate from './components/rate';
 import Result from './components/result';
 import Row from './components/row';
 import Scroll from './components/scroll';
+import ScrollIntoView from './components/scroll-into-view';
+import ScrollTop from './components/scroll-top';
 import Select from './components/select';
 import Sider from './components/sider';
 import Slider from './components/slider';
@@ -115,6 +119,7 @@ import TimePicker from './components/time-picker';
 import Tooltip from './components/tooltip';
 import Transfer from './components/transfer';
 import Tree from './components/tree';
+import TreeSelect from './components/tree-select';
 import Trend from './components/trend';
 import Upload from './components/upload';
 import UserName from './components/user-name';
@@ -126,6 +131,9 @@ import SelectNext from './components/select-next';
 import lineClamp from './directives/line-clamp';
 import resize from './directives/resize';
 import style from './directives/style';
+
+// libraries
+import dayjs from 'dayjs';
 
 const components = {
     Affix,
@@ -153,6 +161,7 @@ const components = {
     Checkbox,
     CheckboxGroup,
     Circle,
+    City,
     Col,
     Collapse,
     ColorPicker,
@@ -237,6 +246,7 @@ const components = {
     Tooltip,
     Transfer,
     Tree,
+    TreeSelect,
     Trend,
     Upload,
     UserName,
@@ -253,7 +263,6 @@ const directives = {
     font: style.font,
     color: style.color,
     'bg-color': style.bgColor,
-
     resize,
     'line-clamp': lineClamp
 };
@@ -352,6 +361,11 @@ const install = function(app, opts = {}) {
     app.config.globalProperties.$Message = Message;
     app.config.globalProperties.$Notice = Notice;
     app.config.globalProperties.$Modal = Modal;
+    app.config.globalProperties.$Copy = Copy;
+    app.config.globalProperties.$ScrollIntoView = ScrollIntoView;
+    app.config.globalProperties.$ScrollTop = ScrollTop;
+
+    app.config.globalProperties.$Date = dayjs;
 };
 
 // auto install
