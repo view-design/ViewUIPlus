@@ -14,7 +14,7 @@
         "ui",
         "framework"
     ],
-    "main": "dist/iview.js",
+    "main": "dist/viewuiplus.min.js",
     "typings": "types/index.d.ts",
     "files": [
         "dist",
