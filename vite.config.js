@@ -43,6 +43,9 @@ const config = defineConfig({
                     globals: {vue: 'Vue'}
                 }
             ]
+        },
+        commonjsOptions: {
+            include: ['**/*']
         }
     },
     resolve: {
