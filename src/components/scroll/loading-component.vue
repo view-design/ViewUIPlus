@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
     <div :class="wrapperClasses">
         <div :class="spinnerClasses">
             <Spin fix>
@@ -9,7 +9,6 @@
         </div>
     </div>
 </template>
-
 <script>
     import Spin from '../spin/spin.vue';
     import Icon from '../icon/icon.vue';

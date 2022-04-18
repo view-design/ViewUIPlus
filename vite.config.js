@@ -22,19 +22,7 @@ const config = defineConfig({
                     format: 'umd',
                     exports: 'named',
                     sourcemap: false,
-                    entryFileNames: 'viewuiplus.js',
-                    chunkFileNames: '[name].js',
-                    assetFileNames: '[name].[ext]',
-                    namespaceToStringTag: true,
-                    inlineDynamicImports: false,
-                    manualChunks: undefined,
-                    globals: {vue: 'Vue'}
-                },
-                {
-                    format: 'es',
-                    exports: 'named',
-                    sourcemap: false,
-                    entryFileNames: 'viewuiplus.esm.js',
+                    entryFileNames: 'viewuiplus.min.js',
                     chunkFileNames: '[name].js',
                     assetFileNames: '[name].[ext]',
                     namespaceToStringTag: true,
@@ -43,6 +31,9 @@ const config = defineConfig({
                     globals: {vue: 'Vue'}
                 }
             ]
+        },
+        commonjsOptions: {
+            include: ['**/*']
         }
     },
     resolve: {
