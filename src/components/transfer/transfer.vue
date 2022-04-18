@@ -19,8 +19,8 @@
         render () {
 
             function cloneVNode (vnode) {
-                const clonedChildren = vnode.children && vnode.children.map(vnode => cloneVNode(vnode));
-                const cloned = h(vnode.tag, vnode.data, clonedChildren);
+                const clonedChildren = vnode.children && Array.isArray(vnode.children) && vnode.children.map(vnode => cloneVNode(vnode));
+                const cloned = h(vnode.type, vnode.props, clonedChildren?clonedChildren:"Refresh");
                 cloned.text = vnode.text;
                 cloned.isComment = vnode.isComment;
                 cloned.componentOptions = vnode.componentOptions;
@@ -29,13 +29,11 @@
                 cloned.ns = vnode.ns;
                 cloned.isStatic = vnode.isStatic;
                 cloned.key = vnode.key;
-
                 return cloned;
             }
 
-            const vNodes = this.$slots.default === undefined ? [] : this.$slots.default;
-            const clonedVNodes = this.$slots.default === undefined ? [] : vNodes.map(vnode => cloneVNode(vnode));
-
+            const vNodes = this.$slots.default === undefined ? [] : this.$slots.default();
+            const clonedVNodes =this.$slots.default === undefined ? [] :this.$slots.default().map(vnode => cloneVNode(vnode));
             return h('div', {
                 'class': this.classes
             }, [
@@ -52,10 +50,8 @@
                     filterPlaceholder: this.localeFilterPlaceholder,
                     filterMethod: this.filterMethod,
                     notFoundText: this.localeNotFoundText,
-                    on: {
-                        'on-checked-keys-change': this.handleLeftCheckedKeysChange
-                    }
-                }, vNodes),
+                    'onOn-checked-keys-change':this.handleLeftCheckedKeysChange
+                }, () => this.$slots.default()),
 
                 h(Operation, {
                     prefixCls: this.prefixCls,
@@ -78,10 +74,8 @@
                     filterPlaceholder: this.localeFilterPlaceholder,
                     filterMethod: this.filterMethod,
                     notFoundText: this.localeNotFoundText,
-                    on: {
-                        'on-checked-keys-change': this.handleRightCheckedKeysChange
-                    }
-                }, clonedVNodes)
+                    'onOn-checked-keys-change':this.handleRightCheckedKeysChange
+                }, () => this.$slots.default())
             ]);
         },
         props: {

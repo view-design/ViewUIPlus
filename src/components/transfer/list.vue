@@ -1,7 +1,7 @@
 <template>
     <div :class="classes" :style="listStyle">
         <div :class="prefixCls + '-header'">
-            <Checkbox :value="checkedAll" :disabled="checkedAllDisabled" @on-change="toggleSelectAll"></Checkbox>
+            <Checkbox :modelValue="checkedAll" :disabled="checkedAllDisabled" @update:modelValue="toggleSelectAll"></Checkbox>
             <span :class="prefixCls + '-header-title'" @click="toggleSelectAll(!checkedAll)">{{ title }}</span>
             <span :class="prefixCls + '-header-count'">{{ count }}</span>
         </div>
@@ -20,7 +20,7 @@
                     :key="index"
                     :class="itemClasses(item)"
                     @click.prevent="select(item)">
-                    <Checkbox :value="isCheck(item)" :disabled="item.disabled"></Checkbox>
+                    <Checkbox :modelValue="isCheck(item)" :disabled="item.disabled"></Checkbox>
                     <span v-html="showLabel(item)"></span>
                 </li>
                 <li :class="prefixCls + '-content-not-found'">{{ notFoundText }}</li>
