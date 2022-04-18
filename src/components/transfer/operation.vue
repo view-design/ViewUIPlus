@@ -1,30 +1,30 @@
 <template>
     <div :class="prefixCls + '-operation'">
         <template v-if="reverseOperation">
-            <i-button type="primary" size="small" :disabled="!leftActive" @click="moveToRight">
-                <span>{{ operations[1] }}</span> <Icon type="ios-arrow-forward"></Icon>
-            </i-button>
-            <i-button type="primary" size="small" :disabled="!rightActive" @click="moveToLeft">
-                <Icon type="ios-arrow-back"></Icon> <span>{{ operations[0] }}</span>
-            </i-button>
+            <Button type="primary" size="small" :disabled="!leftActive" @click="moveToRight">
+                <span v-if="operations[1]">{{ operations[1] }}</span><Icon type="ios-arrow-forward"></Icon>
+            </Button>
+            <Button type="primary" size="small" :disabled="!rightActive" @click="moveToLeft">
+                <Icon type="ios-arrow-back"></Icon><span v-if="operations[0]">{{ operations[0] }}</span>
+            </Button>
         </template>
         <template v-else>
-            <i-button type="primary" size="small" :disabled="!rightActive" @click="moveToLeft">
-                <Icon type="ios-arrow-back"></Icon> <span>{{ operations[0] }}</span>
-            </i-button>
-            <i-button type="primary" size="small" :disabled="!leftActive" @click="moveToRight">
-                <span>{{ operations[1] }}</span> <Icon type="ios-arrow-forward"></Icon>
-            </i-button>
+            <Button type="primary" size="small" :disabled="!rightActive" @click="moveToLeft">
+                <Icon type="ios-arrow-back"></Icon><span v-if="operations[0]">{{ operations[0] }}</span>
+            </Button>
+            <Button type="primary" size="small" :disabled="!leftActive" @click="moveToRight">
+                <span v-if="operations[1]">{{ operations[1] }}</span><Icon type="ios-arrow-forward"></Icon>
+            </Button>
         </template>
     </div>
 </template>
 <script>
-    import iButton from '../button/button.vue';
+    import Button from '../button/button.vue';
     import Icon from '../icon/icon.vue';
 
     export default {
         name: 'Operation',
-        components: { iButton, Icon },
+        components: { Button, Icon },
         inject: ['TransferInstance'],
         props: {
             prefixCls: String,

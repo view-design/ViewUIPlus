@@ -17,23 +17,8 @@
             }
         },
         render () {
+            const defaultSlot = this.$slots.default ? this.$slots.default() : '';
 
-            function cloneVNode (vnode) {
-                const clonedChildren = vnode.children && Array.isArray(vnode.children) && vnode.children.map(vnode => cloneVNode(vnode));
-                const cloned = h(vnode.type, vnode.props, clonedChildren?clonedChildren:"Refresh");
-                cloned.text = vnode.text;
-                cloned.isComment = vnode.isComment;
-                cloned.componentOptions = vnode.componentOptions;
-                cloned.elm = vnode.elm;
-                cloned.context = vnode.context;
-                cloned.ns = vnode.ns;
-                cloned.isStatic = vnode.isStatic;
-                cloned.key = vnode.key;
-                return cloned;
-            }
-
-            const vNodes = this.$slots.default === undefined ? [] : this.$slots.default();
-            const clonedVNodes =this.$slots.default === undefined ? [] :this.$slots.default().map(vnode => cloneVNode(vnode));
             return h('div', {
                 'class': this.classes
             }, [
@@ -51,7 +36,7 @@
                     filterMethod: this.filterMethod,
                     notFoundText: this.localeNotFoundText,
                     'onOn-checked-keys-change':this.handleLeftCheckedKeysChange
-                }, () => this.$slots.default()),
+                }, () => defaultSlot),
 
                 h(Operation, {
                     prefixCls: this.prefixCls,
@@ -75,7 +60,7 @@
                     filterMethod: this.filterMethod,
                     notFoundText: this.localeNotFoundText,
                     'onOn-checked-keys-change':this.handleRightCheckedKeysChange
-                }, () => this.$slots.default())
+                }, () => defaultSlot)
             ]);
         },
         props: {

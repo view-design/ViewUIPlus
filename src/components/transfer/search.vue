@@ -1,19 +1,19 @@
 <template>
     <div :class="prefixCls">
-        <i-input
+        <Input
             v-model="currentQuery"
             size="small"
             :icon="icon"
             :placeholder="placeholder"
-            @on-click="handleClick"></i-input>
+            @on-click="handleClick"></Input>
     </div>
 </template>
 <script>
-    import iInput from '../input/input.vue';
+    import Input from '../input/input.vue';
 
     export default {
         name: 'Search',
-        components: { iInput },
+        components: { Input },
         emits: ['on-query-change', 'on-query-clear'],
         props: {
             prefixCls: String,
