@@ -139,8 +139,8 @@
                 navList: [],
                 barWidth: 0,
                 barOffset: 0,
-                activeKey: this.value,
-                focusedKey: this.value,
+                activeKey: this.modelValue,
+                focusedKey: this.modelValue,
                 showSlot: false,
                 navStyle: {
                     transform: ''
@@ -576,7 +576,7 @@
             }
         },
         watch: {
-            value (val) {
+            modelValue (val) {
                 this.activeKey = val;
                 this.focusedKey = val;
             },
