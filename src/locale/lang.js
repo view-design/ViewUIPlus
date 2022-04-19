@@ -12,11 +12,11 @@ export default function (lang) {
     //         iview.langs[lang.i.locale] = lang;
     //     }
     // }
-    if (typeof window.iview !== 'undefined') {
-        if (!('langs' in iview)) {
-            iview.langs = {};
+    if (typeof window.viewuiplus !== 'undefined') {
+        if (!('langs' in viewuiplus)) {
+            viewuiplus.langs = {};
         }
-        iview.langs[lang.i.locale] = lang;
+        viewuiplus.langs[lang.i.locale] = lang;
     }
 };
 /*eslint-enable */

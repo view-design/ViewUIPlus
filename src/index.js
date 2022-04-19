@@ -124,7 +124,7 @@ import Trend from './components/trend';
 import Upload from './components/upload';
 import UserName from './components/user-name';
 import WordCount from './components/word-count';
-// import locale from './locale/index';
+import locale from './locale/index';
 
 // directives
 import lineClamp from './directives/line-clamp';
@@ -286,8 +286,12 @@ const iview = {
 
 const install = function(app, opts = {}) {
     if (install.installed) return;
-    // locale.use(opts.locale);
-    // locale.i18n(opts.i18n);
+    if (opts.locale) {
+        locale.use(opts.locale);
+    }
+    if (opts.i18n) {
+        locale.i18n(opts.i18n);
+    }
 
     Object.keys(iview).forEach(key => {
         app.component(key, iview[key]);
@@ -373,8 +377,8 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 const API = {
     version: process.env.VERSION, // eslint-disable-line no-undef
-    // locale: locale.use,
-    // i18n: locale.i18n,
+    locale: locale.use,
+    i18n: locale.i18n,
     install,
     // Circle,
     // Switch,
@@ -382,10 +386,10 @@ const API = {
 };
 
 API.lang = (code) => {
-    const langObject = window['iview/locale'].default;
+    const langObject = window['viewuiplus/locale'].default;
     if (code === langObject.i.locale) locale.use(langObject);
     else console.log(`The ${code} language pack is not loaded.`); // eslint-disable-line no-console
 };
 
-// module.exports.default = module.exports = API;   // eslint-disable-line no-undef
-export default API;
+module.exports.default = module.exports = API;   // eslint-disable-line no-undef
+// export default API;
