@@ -1,13 +1,11 @@
 import zhLang from './lang/zh-CN';
-import enLang from './lang/en-US';
 import deepmerge from 'deepmerge';
 import Format from './format';
 
 const format = Format();
 let lang = zhLang;
 const langs = {
-    zh: zhLang,
-    en: enLang
+    zh: zhLang
 };
 let nowLang = null;
 let merged = {};
