@@ -23,9 +23,10 @@
     ],
     "scripts": {
         "dev": "vue-cli-service serve",
-        "build": "npm run build:prod && npm run build:style",
+        "build": "npm run build:prod && npm run build:style && npm run build:lang",
         "build:style": "gulp --gulpfile build/build-style.js",
         "build:prod": "vite build",
+        "build:lang": "vite build --config build/vite.lang.config.js",
         "lint": "vue-cli-service lint --fix",
         "prepare": "npm run build"
     },
