@@ -3,13 +3,13 @@
     import List from './list.vue';
     import Operation from './operation.vue';
     import Locale from '../../mixins/locale';
-    import Emitter from '../../mixins/emitter';
+    import mixinsForm from '../../mixins/form';
 
     const prefixCls = 'ivu-transfer';
 
     export default {
         name: 'Transfer',
-        mixins: [ Emitter, Locale ],
+        mixins: [ Locale, mixinsForm ],
         emits: ['on-change', 'on-selected-change'],
         provide () {
             return {
@@ -214,11 +214,12 @@
 
                 this.$refs[opposite].toggleSelectAll(false);
                 this.$emit('on-change', newTargetKeys, direction, moveKeys);
-                this.dispatch('FormItem', 'on-form-change', {
+
+                this.handleFormItemChange('change', {
                     tarketKeys: newTargetKeys,
                     direction: direction,
                     moveKeys: moveKeys
-                }); // todo
+                });
             },
             handleLeftCheckedKeysChange (keys) {
                 this.leftCheckedKeys = keys;
