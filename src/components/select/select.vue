@@ -255,7 +255,7 @@
         },
         mounted () {
             // set the initial values if there are any
-            if (!this.remote){
+            if (!this.remote && this.slotOptions.length > 0){
                 this.values = this.getInitialValue().map(value => {
                     if (typeof value !== 'number' && !value) return null;
                     return this.getOptionData(value);
@@ -263,11 +263,16 @@
             }
 
             this.checkUpdateStatus();
-
             // remote search, set default-label
             if (this.remote && this.modelValue && this.defaultLabel) {
                 if (!this.multiple) {
                     this.query = this.defaultLabel;
+                    if (this.modelValue && this.defaultLabel) {
+                        this.values.push({
+                            label: this.defaultLabel,
+                            value: this.modelValue
+                        })
+                    }
                 } else if (this.multiple && (this.defaultLabel instanceof Array) && this.modelValue.length === this.defaultLabel.length) {
                     const values = this.modelValue.map((item, index) => {
                         return {
@@ -275,7 +280,7 @@
                             label: this.defaultLabel[index]
                         };
                     });
-                    this.$emit('on-set-default-options', JSON.parse(JSON.stringify(values)));
+                    // 废弃 this.$emit('on-set-default-options', JSON.parse(JSON.stringify(values)));
                     setTimeout(() => {
                         this.values = values;
                     });
@@ -574,7 +579,6 @@
             },
             onOptionClick (option) {
                 if (this.multiple){
-
                     // keep the query for remote select
                     if (this.remote) this.lastRemoteQuery = this.lastRemoteQuery || this.query;
                     else this.lastRemoteQuery = '';
@@ -758,7 +762,6 @@
                     this.$refs.dropdown.handleOnUpdatePopper();
                 } else {
                     this.$refs.dropdown.handleOnDestroyPopper();
-                    console.log(this.slotOptions, '=====dropVisible===')
                 }
             },
             visible (state) {

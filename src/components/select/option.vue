@@ -2,7 +2,7 @@
     <li
         :class="classes"
         @click.stop="select"
-        v-if="isShow"
+        v-show="isShow"
         @mousedown.prevent
     ><slot>{{ showLabel }}</slot></li>
 </template>
@@ -78,13 +78,16 @@
             isShow(){
                 const SelectInstance = this.SelectInstance;
                 const filterable = SelectInstance.filterable;
-                const valueLabel = (this.showLabel || '').toLowerCase();
-                const label = (this.label || '').toLowerCase();
                 const query = SelectInstance.query.toLowerCase().trim();
-                const queryByValueLabel = valueLabel.includes(query);
-                const queryByLabel = label.includes(query);
                 const filterByLabel = SelectInstance.filterByLabel;
-                return !filterable || filterable && (filterByLabel ? queryByLabel : queryByValueLabel)
+                const slotOptions = SelectInstance.slotOptions || [];
+                const { label, value } = slotOptions.find(item => item.value === this.value) || {};
+                let filterOption = (label || value || '').toLowerCase();
+                if (filterByLabel) {
+                    filterOption = (label || '').toLowerCase();
+                }
+                const showFilterOption = filterOption.includes(query);
+                return !filterable || filterable && showFilterOption
             },
             selected(){
                 const SelectInstance = this.SelectInstance;
@@ -109,7 +112,7 @@
                         ...this.instance,
                         id: this.id,
                         value: this.value,
-                        label: this.optionLabel,
+                        label: this.label || this.$el && this.$el.textContent,
                         tag: 'option'
                     });
                 } else {
@@ -118,10 +121,10 @@
                         ...this.instance,
                         id: this.id,
                         value: this.value,
-                        label: this.optionLabel,
-                        // option: this,
+                        label: this.label || this.$el && this.$el.textContent,
                         tag: 'option'
                     });
+                    console.log(select.slotOptions, '===select.slotOptions===')
                 }
             },
             removeOption () {

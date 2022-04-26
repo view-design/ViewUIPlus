@@ -284,7 +284,6 @@
                     this.preventRemoteCall = false;
                     return;
                 }
-
                 this.$emit('on-query-change', val);
             },
             queryProp (query ){
