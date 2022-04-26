@@ -354,9 +354,9 @@
                 let state = false;
                 if (this.allowCreate && this.query !== '') {
                     state = true;
-                    const $options = findComponentsDownward(this, 'iOption');
+                    const $options = this.slotOptions;
                     if ($options && $options.length) {
-                        if ($options.find(item => item.optionLabel === this.query)) state = false;
+                        if ($options.find(item => item.label === this.query)) state = false;
                     }
                 }
                 return  state;
@@ -651,14 +651,17 @@
                     const query = this.query;
                     this.$emit('on-create', query);
                     this.query = '';
-
                     const option = {
                         value: query,
                         label: query,
                         tag: undefined
                     };
+                    this.hideMenu();
+                    this.$refs.dropdown.handleOnUpdatePopper();
                     // 单选（和多选，#926）时如果不在 nextTick 里执行，无法赋值
-                    nextTick(() => this.onOptionClick(option));
+                    setTimeout(() => {
+                        this.onOptionClick(option)
+                    });
                 }
             },
             handleOnSelectSelected (options) {

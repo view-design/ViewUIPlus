@@ -81,13 +81,15 @@
                 const query = SelectInstance.query.toLowerCase().trim();
                 const filterByLabel = SelectInstance.filterByLabel;
                 const slotOptions = SelectInstance.slotOptions || [];
+                // 输入创建
+                const showCreateItem = SelectInstance.showCreateItem;
                 const { label, value } = slotOptions.find(item => item.value === this.value) || {};
                 let filterOption = (label || value || '').toLowerCase();
                 if (filterByLabel) {
                     filterOption = (label || '').toLowerCase();
                 }
                 const showFilterOption = filterOption.includes(query);
-                return !filterable || filterable && showFilterOption
+                return !filterable || filterable && showFilterOption || !showCreateItem
             },
             selected(){
                 const SelectInstance = this.SelectInstance;
@@ -124,7 +126,6 @@
                         label: this.label || this.$el && this.$el.textContent,
                         tag: 'option'
                     });
-                    console.log(select.slotOptions, '===select.slotOptions===')
                 }
             },
             removeOption () {

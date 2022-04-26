@@ -1,27 +1,13 @@
 <template>
     <Row>
         <Col span="12" style="padding-right:10px">
-            <Select
-                v-model="model19"
-                filterable
-                :remote-method="remoteMethod3"
-                default-label="北京"
-                :loading="loading3"
-            >
-                <Option v-for="(option, index) in options3" :value="option.value" :key="index">{{option.label}}</Option>
+            <Select v-model="model17" filterable allow-create @on-create="handleCreate1">
+                <Option v-for="item in cityList3" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
         </Col>
         <Col span="12">
-            <Select
-                v-model="model20"
-                multiple
-                filterable
-                :remote-method="remoteMethod4"
-                :default-label="['北京', '深圳']"
-                :loading="loading4"
-                @on-set-default-options="setDefaultOptions"
-            >
-                <Option v-for="(option, index) in options4" :value="option.value" :key="index">{{option.label}}</Option>
+            <Select v-model="model18" filterable multiple allow-create @on-create="handleCreate2">
+                <Option v-for="item in cityList4" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
         </Col>
     </Row>
@@ -30,59 +16,75 @@
     export default {
         data () {
             return {
-                model19: 'beijing',
-                options3: [],
-                loading3: false,
-                model20: ['beijing', 'shenzhen'],
-                options4: [],
-                loading4: false,
-                list2: [
+                cityList3: [
                     {
-                        value: 'beijing',
-                        label: '北京'
+                        value: 'New York',
+                        label: 'New York'
                     },
                     {
-                        value: 'shanghai',
-                        label: '上海'
+                        value: 'London',
+                        label: 'London'
                     },
                     {
-                        value: 'shenzhen',
-                        label: '深圳'
+                        value: 'Sydney',
+                        label: 'Sydney'
                     },
                     {
-                        value: 'hangzhou',
-                        label: '杭州'
+                        value: 'Ottawa',
+                        label: 'Ottawa'
                     },
                     {
-                        value: 'guangzhou',
-                        label: '广州'
+                        value: 'Paris',
+                        label: 'Paris'
+                    },
+                    {
+                        value: 'Canberra',
+                        label: 'Canberra'
                     }
                 ],
-            };
+                cityList4: [
+                    {
+                        value: 'New York',
+                        label: 'New York'
+                    },
+                    {
+                        value: 'London',
+                        label: 'London'
+                    },
+                    {
+                        value: 'Sydney',
+                        label: 'Sydney'
+                    },
+                    {
+                        value: 'Ottawa',
+                        label: 'Ottawa'
+                    },
+                    {
+                        value: 'Paris',
+                        label: 'Paris'
+                    },
+                    {
+                        value: 'Canberra',
+                        label: 'Canberra'
+                    }
+                ],
+                model17: '',
+                model18: []
+            }
         },
         methods: {
-            remoteMethod3 (query) {
-                if (query !== '') {
-                    this.loading3 = true;
-                    setTimeout(() => {
-                        this.loading3 = false;
-                        this.options3 = this.list2.filter(item => item.label.indexOf(query) > -1);
-                    }, 200);
-                } else {
-                    this.options3 = [];
-                }
+            handleCreate1 (val) {
+                this.cityList3.push({
+                    value: val,
+                    label: val
+                });
             },
-            remoteMethod4 (query) {
-                if (query !== '') {
-                    this.loading4 = true;
-                    setTimeout(() => {
-                        this.loading4 = false;
-                        this.options4 = this.list2.filter(item => item.label.indexOf(query) > -1);
-                    }, 200);
-                } else {
-                    this.options4 = [];
-                }
+            handleCreate2 (val) {
+                this.cityList4.push({
+                    value: val,
+                    label: val
+                });
             }
         }
-    };
+    }
 </script>
