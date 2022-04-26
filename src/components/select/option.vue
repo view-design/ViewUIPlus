@@ -2,6 +2,7 @@
     <li
         :class="classes"
         @click.stop="select"
+        v-if="isShow"
         @mousedown.prevent
     ><slot>{{ showLabel }}</slot></li>
 </template>
@@ -74,6 +75,17 @@
                 const focusOption = slotOptions[focusIndex]
                 return focusOption && focusOption.value === this.value;
             },
+            isShow(){
+                const SelectInstance = this.SelectInstance;
+                const filterable = SelectInstance.filterable;
+                const valueLabel = (this.showLabel || '').toLowerCase();
+                const label = (this.label || '').toLowerCase();
+                const query = SelectInstance.query.toLowerCase().trim();
+                const queryByValueLabel = valueLabel.includes(query);
+                const queryByLabel = label.includes(query);
+                const filterByLabel = SelectInstance.filterByLabel;
+                return !filterable || filterable && (filterByLabel ? queryByLabel : queryByValueLabel)
+            },
             selected(){
                 const SelectInstance = this.SelectInstance;
                 const values = SelectInstance.values || [];
@@ -91,8 +103,6 @@
                 });
             },
             addOption () {
-                // const group = this.OptionGroupInstance;
-                // const select = this.SelectInstance;
                 if (this.OptionGroupInstance) {
                     const group = this.OptionGroupInstance;
                     group.optionList.push({

@@ -1,5 +1,5 @@
 <template>
-    <Select v-model="model1" :max-tag-count="2" multiple style="width:200px" @on-select="handlerSelect">
+    <Select v-model="model1" filterable style="width:200px" @on-select="handlerSelect">
         <Option v-for="item in cityList" :value="item.value" :key="item.value" :disabled="item.disabled"></Option>
     </Select>
 </template>
