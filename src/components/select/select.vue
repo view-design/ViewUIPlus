@@ -102,40 +102,6 @@
     import Locale from '../../mixins/locale';
 
     const prefixCls = 'ivu-select';
-    const optionRegexp = /^i-option$|^Option$/i;
-
-    const findChild = (instance, checkFn) => {
-        let match = checkFn(instance);
-        if (match) return instance;
-        for (let i = 0, l = instance.$children.length; i < l; i++){
-            const child = instance.$children[i];
-            match = findChild(child, checkFn);
-            if (match) return match;
-        }
-    };
-
-    const findOptionsInVNode = (node) => {
-        const opts = node.componentOptions;
-        if (opts && optionRegexp.test(opts.tag)) return [node];
-        if (!node.children && (!opts || !opts.children)) return [];
-        const children = [...(node.children || []), ...(opts && opts.children || [])];
-        const options = children.reduce(
-            (arr, el) => [...arr, ...findOptionsInVNode(el)], []
-        ).filter(Boolean);
-        return options.length > 0 ? options : [];
-    };
-
-    const getNestedProperty = (obj, path) => {
-        const keys = path.split('.');
-        return keys.reduce((o, key) => o && o[key] || null, obj);
-    };
-
-    const getOptionLabel = option => {
-        if (option.componentOptions.propsData.label) return option.componentOptions.propsData.label;
-        const textContent = (option.componentOptions.children || []).reduce((str, child) => str + (child.text || ''), '');
-        const innerHTML = getNestedProperty(option, 'data.domProps.innerHTML');
-        return textContent || (typeof innerHTML === 'string' ? innerHTML : '');
-    };
 
     const checkValuesNotEqual = (value,publicValue,values) => {
         const strValue = JSON.stringify(value);
@@ -407,16 +373,9 @@
                 return slotOptions && slotOptions.length === 0 && (!remote || (remote && !loading));
             },
             publicValue(){
-                // 改变 labelInValue 实现，解决 bug:Select，label-in-value时，搜索、多选，先选一个，再选第二个，会替代第一个
-                // if (this.labelInValue){
-                //     return this.multiple ? this.values : this.values[0];
-                // } else {
-                //     return this.multiple ? this.values.map(option => option.value) : (this.values[0] || {}).value;
-                // }
                 return this.multiple ? this.values.map(option => option.value) : (this.values[0] || {}).value;
             },
             canBeCleared () {
-                // const uiStateMatch = this.hasMouseHoverHead || this.active; // active 好像没用
                 const uiStateMatch = this.hasMouseHoverHead;
                 const qualifiesForClear = !this.multiple && !this.itemDisabled && this.clearable;
                 return uiStateMatch && qualifiesForClear && this.reset; // we return a function
@@ -513,8 +472,6 @@
                             return;
                         }
                     }
-
-
                     if (this.filterable) {
                         const input = this.$el.querySelector('input[type="text"]');
                         this.caretPosition = input.selectionStart;
@@ -547,7 +504,6 @@
                 if (key === 'Backspace' || keyCode===8){
                     return; // so we don't call preventDefault
                 }
-
                 if (this.visible) {
                     e.preventDefault();
                     if (key === 'Tab'){
@@ -570,11 +526,11 @@
                     // enter
                     if (key === 'Enter') {
                         if (this.focusIndex === -1) return this.hideMenu();
-                        const optionComponent = this.flatOptions[this.focusIndex];
+                        const optionComponent = this.slotOptions[this.focusIndex];
 
                         // fix a script error when searching
                         if (optionComponent) {
-                            const option = this.getOptionData(optionComponent.componentOptions.propsData.value);
+                            const option = this.getOptionData(optionComponent.value);
                             this.onOptionClick(option);
                         } else {
                             this.hideMenu();
@@ -591,7 +547,6 @@
                 const slotOptions = this.slotOptions;
                 const optionsLength = slotOptions.length - 1;
                 if (optionsLength < 0) return;
-
                 let index = this.focusIndex + direction;
                 if (index < 0) index = optionsLength;
                 if (index > optionsLength) index = 0;
@@ -606,7 +561,7 @@
                     }
                     index = nearestActiveOption;
                 } else {
-                    let nearestActiveOption = this.flatOptions.length;
+                    let nearestActiveOption = slotOptions.length;
                     for (let i = optionsLength; i >= 0; i--){
                         const optionIsActive = !slotOptions[i].props.disabled;
                         if (optionIsActive) nearestActiveOption = i;

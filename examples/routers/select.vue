@@ -1,6 +1,6 @@
 <template>
-    <Select v-model="model1" multiple style="width:200px" @on-select="handlerSelect">
-        <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+    <Select v-model="model1" :max-tag-count="2" multiple style="width:200px" @on-select="handlerSelect">
+        <Option v-for="item in cityList" :value="item.value" :key="item.value" :disabled="item.disabled"></Option>
     </Select>
 </template>
 <script>
@@ -10,7 +10,8 @@ export default {
             cityList: [
                 {
                     value: 'New York',
-                    label: 'New York'
+                    label: 'New York',
+                    disabled: true
                 },
                 {
                     value: 'London',

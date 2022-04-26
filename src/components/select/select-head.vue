@@ -12,10 +12,10 @@
             <span class="ivu-tag-text" :class="{ 'ivu-select-multiple-tag-hidden': item.disabled }">{{ item.tag !== undefined ? item.tag : item.label }}</span>
             <Icon type="ios-close" v-if="!item.disabled" @click.stop="removeTag(item)"></Icon>
         </div>
-        <div class="ivu-tag ivu-tag-checked" v-if="maxTagCount !== undefined && selectedMultiple.length > maxTagCount">
+        <div class="ivu-tag ivu-tag-checked" v-if="maxTagCount !== undefined && values.length > maxTagCount">
             <span class="ivu-tag-text ivu-select-max-tag">
-                <template v-if="maxTagPlaceholder">{{ maxTagPlaceholder(selectedMultiple.length - maxTagCount) }}</template>
-                <template v-else>+ {{ selectedMultiple.length - maxTagCount }}...</template>
+                <template v-if="maxTagPlaceholder">{{ maxTagPlaceholder(values.length - maxTagCount) }}</template>
+                <template v-else>+ {{ values.length - maxTagCount }}...</template>
             </span>
         </div>
         <span
@@ -181,9 +181,7 @@
             },
             selectedMultiple () {
                 const values = this.multiple ? this.values : [];
-                values.filter((item, index) => this.maxTagCount === undefined || index < this.maxTagCount);
-
-                return values;
+                return values.filter((item, index) => this.maxTagCount === undefined || index < this.maxTagCount);;
             },
             // 使用 prefix 时，在 filterable
             headCls () {

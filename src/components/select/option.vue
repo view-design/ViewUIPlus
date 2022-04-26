@@ -37,10 +37,6 @@
                 type: Boolean,
                 default: false
             },
-            isFocused: {
-                type: Boolean,
-                default: false
-            },
             // 4.0.0
             tag: {
                 type: [String, Number]
@@ -71,9 +67,17 @@
             optionLabel(){
                 return this.label || (this.$el && this.$el.textContent);
             },
+            isFocused(){
+                const SelectInstance = this.SelectInstance;
+                const slotOptions = SelectInstance.slotOptions || [];
+                const focusIndex = SelectInstance.focusIndex
+                const focusOption = slotOptions[focusIndex]
+                return focusOption && focusOption.value === this.value;
+            },
             selected(){
-                const slotOptions = this.SelectInstance.values || [];
-                return slotOptions.find(item => item.value === this.value)
+                const SelectInstance = this.SelectInstance;
+                const values = SelectInstance.values || [];
+                return values.find(item => item.value === this.value)
             }
         },
         methods: {
