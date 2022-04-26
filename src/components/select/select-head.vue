@@ -11,7 +11,8 @@
             :key="index">
             <span class="ivu-tag-text" :class="{ 'ivu-select-multiple-tag-hidden': item.disabled }">{{ item.tag !== undefined ? item.tag : item.label }}</span>
             <Icon type="ios-close" v-if="!item.disabled" @click.stop="removeTag(item)"></Icon>
-        </div><div class="ivu-tag ivu-tag-checked" v-if="maxTagCount !== undefined && selectedMultiple.length > maxTagCount">
+        </div>
+        <div class="ivu-tag ivu-tag-checked" v-if="maxTagCount !== undefined && selectedMultiple.length > maxTagCount">
             <span class="ivu-tag-text ivu-select-max-tag">
                 <template v-if="maxTagPlaceholder">{{ maxTagPlaceholder(selectedMultiple.length - maxTagCount) }}</template>
                 <template v-else>+ {{ selectedMultiple.length - maxTagCount }}...</template>
@@ -275,6 +276,7 @@
                     this.preventRemoteCall = false; // this should be after the query change setter above
                     return;
                 }
+                debugger;
                 // #982
                 if (typeof value === 'undefined' || value === '' || value === null) this.query = '';
                 else this.query = value.label;

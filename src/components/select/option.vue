@@ -9,7 +9,7 @@
     import mixinsForm from '../../mixins/form';
     import { findComponentUpward } from '../../utils/assist';
     import random from '../../utils/random_str';
-
+    import { getCurrentInstance } from 'vue';
     const prefixCls = 'ivu-select-item';
 
     export default {
@@ -37,10 +37,6 @@
                 type: Boolean,
                 default: false
             },
-            selected: {
-                type: Boolean,
-                default: false
-            },
             isFocused: {
                 type: Boolean,
                 default: false
@@ -54,7 +50,8 @@
             return {
                 searchLabel: '',  // the slot value (textContent)
                 autoComplete: false,
-                id: random(6)
+                id: random(6),
+                instance: null
             };
         },
         computed: {
@@ -73,6 +70,10 @@
             },
             optionLabel(){
                 return this.label || (this.$el && this.$el.textContent);
+            },
+            selected(){
+                const slotOptions = this.SelectInstance.values || [];
+                return slotOptions.find(item => item.value === this.value)
             }
         },
         methods: {
@@ -84,25 +85,27 @@
                     label: this.optionLabel,
                     tag: this.tag
                 });
-                this.$emit('on-select-selected', {
-                    value: this.value,
-                    label: this.optionLabel,
-                    tag: this.tag
-                });
             },
             addOption () {
+                // const group = this.OptionGroupInstance;
+                // const select = this.SelectInstance;
                 if (this.OptionGroupInstance) {
                     const group = this.OptionGroupInstance;
                     group.optionList.push({
+                        ...this.instance,
                         id: this.id,
-                        option: this,
+                        value: this.value,
+                        label: this.optionLabel,
                         tag: 'option'
                     });
                 } else {
                     const select = this.SelectInstance;
                     select.slotOptions.push({
+                        ...this.instance,
                         id: this.id,
-                        option: this,
+                        value: this.value,
+                        label: this.optionLabel,
+                        // option: this,
                         tag: 'option'
                     });
                 }
@@ -119,13 +122,19 @@
                 }
             }
         },
+        created(){
+            this.instance = getCurrentInstance();
+        },
         mounted () {
             this.addOption();
             const Select = findComponentUpward(this, 'iSelect');
-            if (Select) this.autoComplete = Select.autoComplete;
+            if (Select) {
+                this.autoComplete = Select.autoComplete;
+            }
         },
         beforeUnmount () {
             this.removeOption();
+            this.instance = null;
         }
     };
 </script>

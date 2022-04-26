@@ -1,5 +1,5 @@
 <template>
-    <Select v-model="model1" style="width:200px">
+    <Select v-model="model1" multiple style="width:200px" @on-select="handlerSelect">
         <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
     </Select>
 </template>
@@ -34,6 +34,11 @@ export default {
                 }
             ],
             model1: ''
+        }
+    },
+    methods: {
+        handlerSelect(item){
+            console.log(item, '=====handlerSelect====')
         }
     }
 }
