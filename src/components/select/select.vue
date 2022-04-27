@@ -251,6 +251,10 @@
             eventsEnabled: {
                 type: Boolean,
                 default: false
+            },
+            hideNotFound: {
+                type: Boolean,
+                default: false
             }
         },
         mounted () {
@@ -374,8 +378,8 @@
                 return this.visible && status;
             },
             showNotFoundLabel () {
-                const {loading, remote, slotOptions} = this;
-                return slotOptions && slotOptions.length === 0 && (!remote || (remote && !loading));
+                const {loading, remote, slotOptions, hideNotFound} = this;
+                return slotOptions && slotOptions.length === 0 && (!remote || (remote && !loading)) && !hideNotFound;
             },
             publicValue(){
                 return this.multiple ? this.values.map(option => option.value) : (this.values[0] || {}).value;

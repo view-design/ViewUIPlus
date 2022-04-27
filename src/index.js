@@ -124,7 +124,6 @@ import Trend from './components/trend';
 import Upload from './components/upload';
 import UserName from './components/user-name';
 import WordCount from './components/word-count';
-import SelectNext from './components/select-next';
 // import locale from './locale/index';
 
 // directives
@@ -250,8 +249,7 @@ const components = {
     Trend,
     Upload,
     UserName,
-    WordCount,
-    SelectNext
+    WordCount
 };
 
 const directives = {
