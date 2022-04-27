@@ -1,7 +1,7 @@
 <template>
     <Row>
         <Col span="12" style="padding-right:10px">
-            <Select v-model="model17" filterable allow-create @on-create="handleCreate1">
+            <Select v-model="model17" transfer>
                 <Option v-for="item in cityList3" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
         </Col>

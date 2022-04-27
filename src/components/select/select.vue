@@ -476,7 +476,7 @@
                     }
 
                     if (this.transfer) {
-                        const {$el} = this.$refs.dropdown;
+                        const $el = this.$refs.dropdown.$refs.drop;
                         if ($el === event.target || $el.contains(event.target)) {
                             return;
                         }

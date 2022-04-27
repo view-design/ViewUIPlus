@@ -1,69 +1,64 @@
 <template>
-    <TreeSelect v-model="value" multiple show-checkbox :load-data="loadData" v-width="400" />
-    <Select v-model="model1" style="width:200px">
-    </Select>
+    <TreeSelect v-model="value" :data="data" v-width="200" />
 </template>
 <script>
     export default {
         data () {
             return {
-                value: [],
-                nextValue: 1,
-                cityList: [
-                    {
-                        value: 'New York',
-                        label: 'New York'
-                    },
-                    {
-                        value: 'London',
-                        label: 'London'
-                    },
-                    {
-                        value: 'Sydney',
-                        label: 'Sydney'
-                    },
-                    {
-                        value: 'Ottawa',
-                        label: 'Ottawa'
-                    },
-                    {
-                        value: 'Paris',
-                        label: 'Paris'
-                    },
-                    {
-                        value: 'Canberra',
-                        label: 'Canberra'
-                    }
-                ],
-                model1: '',
+                value: '',
                 data: [
                     {
                         title: 'parent1',
+                        expand: true,
                         value: 'parent1',
-                        loading: false,
                         selected: false,
                         checked: false,
-                        children: []
+                        children: [
+                            {
+                                title: 'parent 1-1',
+                                expand: true,
+                                value: 'parent1-1',
+                                selected: false,
+                                checked: false,
+                                children: [
+                                    {
+                                        title: 'leaf 1-1-1',
+                                        value: 'leaf1',
+                                        selected: false,
+                                        checked: false,
+                                    },
+                                    {
+                                        title: 'leaf 1-1-2',
+                                        value: 'leaf2',
+                                        selected: false,
+                                        checked: false,
+                                    }
+                                ]
+                            },
+                            {
+                                title: 'parent 1-2',
+                                expand: true,
+                                value: 'parent1-2',
+                                selected: false,
+                                checked: false,
+                                children: [
+                                    {
+                                        title: 'leaf 1-2-1',
+                                        value: 'leaf3',
+                                        selected: false,
+                                        checked: false,
+                                    },
+                                    {
+                                        title: 'leaf 1-2-1',
+                                        value: 'leaf4',
+                                        selected: false,
+                                        checked: false,
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 ]
-            }
-        },
-        methods: {
-            loadData (item, callback) {
-                this.nextValue++;
-                setTimeout(() => {
-                    const data = [
-                        {
-                            title: 'children' + this.nextValue,
-                            value: 'children' + this.nextValue,
-                            loading: false,
-                            selected: false,
-                            checked: false,
-                            children: []
-                        }
-                    ];
-                    callback(data);
-                }, 1000);
             }
         }
     }
