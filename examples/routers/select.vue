@@ -1,12 +1,16 @@
 <template>
-    <Select v-model="model7" style="width:200px">
-        <OptionGroup label="Hot Cities">
-            <Option v-for="item in cityList1" :value="item.value" :key="item.value">{{ item.label }}</Option>
-        </OptionGroup>
-        <OptionGroup label="Other Cities">
-            <Option v-for="item in cityList2" :value="item.value" :key="item.value">{{ item.label }}</Option>
-        </OptionGroup>
-    </Select>
+    <Row>
+        <Col span="12" style="padding-right:10px">
+            <Select v-model="model11" filterable>
+                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+        </Col>
+        <Col span="12">
+            <Select v-model="model12" filterable multiple>
+                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -36,37 +40,26 @@
                     {
                         value: 'Canberra',
                         label: 'Canberra'
+                    },
+                    {
+                        value: '1',
+                        label: '1'
+                    },
+                    {
+                        value: '2',
+                        label: '2'
+                    },
+                    {
+                        value: '3',
+                        label: '3'
+                    },
+                    {
+                        value: '4',
+                        label: '4'
                     }
                 ],
-                cityList1: [
-                    {
-                        value: 'New York',
-                        label: 'New York'
-                    },
-                    {
-                        value: 'London',
-                        label: 'London'
-                    },
-                    {
-                        value: 'Sydney',
-                        label: 'Sydney'
-                    }
-                ],
-                cityList2: [
-                    {
-                        value: 'Ottawa',
-                        label: 'Ottawa'
-                    },
-                    {
-                        value: 'Paris',
-                        label: 'Paris'
-                    },
-                    {
-                        value: 'Canberra',
-                        label: 'Canberra'
-                    }
-                ],
-                model7: ''
+                model11: '',
+                model12: []
             }
         }
     }

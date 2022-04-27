@@ -379,7 +379,9 @@
             },
             showNotFoundLabel () {
                 const {loading, remote, slotOptions, hideNotFound} = this;
-                return slotOptions && slotOptions.length === 0 && (!remote || (remote && !loading)) && !hideNotFound;
+                const options = slotOptions || [];
+                const filterOptions = options.find(item => item.proxy.isShow);
+                return (options.length === 0 || !filterOptions) && (!remote || (remote && !loading)) && !hideNotFound;
             },
             publicValue(){
                 return this.multiple ? this.values.map(option => option.value) : (this.values[0] || {}).value;
@@ -564,21 +566,30 @@
                 if (direction > 0){
                     let nearestActiveOption = -1;
                     for (let i = 0; i < slotOptions.length; i++){
-                        const optionIsActive = !slotOptions[i].props.disabled;
+                        const { proxy } = slotOptions[i];
+                        const optionIsActive = !proxy.disabled;
                         if (optionIsActive) nearestActiveOption = i;
+                        if (!proxy.isShow) {
+                            nearestActiveOption = i;
+                            continue
+                        }
                         if (nearestActiveOption >= index) break;
                     }
                     index = nearestActiveOption;
                 } else {
                     let nearestActiveOption = slotOptions.length;
                     for (let i = optionsLength; i >= 0; i--){
-                        const optionIsActive = !slotOptions[i].props.disabled;
+                        const { proxy } = slotOptions[i];
+                        const optionIsActive = !proxy.disabled;
                         if (optionIsActive) nearestActiveOption = i;
+                        if (!proxy.isShow) {
+                            nearestActiveOption = i;
+                            continue
+                        }
                         if (nearestActiveOption <= index) break;
                     }
                     index = nearestActiveOption;
                 }
-
                 this.focusIndex = index;
             },
             onOptionClick (option) {
@@ -747,17 +758,18 @@
             focusIndex (index) {
                 if (index < 0 || this.autoComplete) return;
                 // update scroll
-                // const optionValue = this.slotOptions[index].value;
-                // const optionInstance = this.slotOptions[index].proxy;
-
-                // let bottomOverflowDistance = optionInstance.$el.getBoundingClientRect().bottom - this.$refs.dropdown.$el.getBoundingClientRect().bottom;
-                // let topOverflowDistance = optionInstance.$el.getBoundingClientRect().top - this.$refs.dropdown.$el.getBoundingClientRect().top;
-                // if (bottomOverflowDistance > 0) {
-                //     this.$refs.dropdown.$el.scrollTop += bottomOverflowDistance;
-                // }
-                // if (topOverflowDistance < 0) {
-                //     this.$refs.dropdown.$el.scrollTop += topOverflowDistance;
-                // }
+                const optionValue = this.slotOptions[index].value;
+                const optionInstance = this.slotOptions[index].proxy;
+                const $itemEle = optionInstance.$el;
+                const $drop = this.$refs.dropdown.$refs.drop
+                let bottomOverflowDistance = $itemEle.getBoundingClientRect().bottom - $drop.getBoundingClientRect().bottom;
+                let topOverflowDistance = $itemEle.getBoundingClientRect().top - $drop.getBoundingClientRect().top;
+                if (bottomOverflowDistance > 0) {
+                    $drop.scrollTop += bottomOverflowDistance;
+                }
+                if (topOverflowDistance < 0) {
+                    $drop.scrollTop += topOverflowDistance;
+                }
             },
             dropVisible (open) {
                 if (open) {
