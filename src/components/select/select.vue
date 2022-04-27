@@ -601,7 +601,6 @@
                     this.lastRemoteQuery = '';
                     this.hideMenu();
                 }
-
                 this.focusIndex = this.slotOptions.findIndex((opt) => {
                     if (!opt) return false;
                     return opt.value === option.value;
@@ -674,15 +673,11 @@
         },
         watch: {
             modelValue (value) {
-                const { getInitialValue, getOptionData, publicValue, values } = this;
+                const { publicValue, values } = this;
 
                 this.checkUpdateStatus();
-
                 if (value === '') this.values = [];
                 else if (checkValuesNotEqual(value,publicValue,values)) {
-                    nextTick(() => {
-                        this.values = getInitialValue().map(getOptionData).filter(Boolean)
-                    });
                     if (!this.multiple) this.handleFormItemChange('change', this.publicValue);
                 }
             },

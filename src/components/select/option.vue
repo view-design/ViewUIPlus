@@ -109,7 +109,9 @@
                 });
             },
             addOption () {
-                if (this.OptionGroupInstance) {
+                const select = this.SelectInstance;
+                const group = this.OptionGroupInstance;
+                if (group) {
                     const group = this.OptionGroupInstance;
                     group.optionList.push({
                         ...this.instance,
@@ -118,8 +120,8 @@
                         label: this.label || this.$el && this.$el.textContent,
                         tag: 'option'
                     });
-                } else {
-                    const select = this.SelectInstance;
+                }
+                if (select){
                     select.slotOptions.push({
                         ...this.instance,
                         id: this.id,
@@ -130,14 +132,17 @@
                 }
             },
             removeOption () {
-                if (this.OptionGroupInstance) {
-                    const group = this.OptionGroupInstance;
+                const group = this.OptionGroupInstance;
+                const select = this.SelectInstance;
+                if (group) {
                     const index = group.optionList.findIndex(item => item.id === this.id);
-                    group.optionList.splice(index, 1);
-                } else {
+                    index !== -1 && group.optionList.splice(index, 1);
+                }
+                if( select ){
                     const select = this.SelectInstance;
                     const index = select.slotOptions.findIndex(item => item.id === this.id);
-                    select.slotOptions.splice(index, 1);
+                    index !== -1 && select.slotOptions.splice(index, 1);
+
                 }
             }
         },
