@@ -83,13 +83,14 @@
                 const slotOptions = SelectInstance.slotOptions || [];
                 // 输入创建
                 const showCreateItem = SelectInstance.showCreateItem;
+                const allowCreate = SelectInstance.allowCreate;
                 const { label, value } = slotOptions.find(item => item.value === this.value) || {};
                 let filterOption = (label || value || '').toLowerCase();
                 if (filterByLabel) {
                     filterOption = (label || '').toLowerCase();
                 }
                 const showFilterOption = filterOption.includes(query);
-                return !filterable || filterable && showFilterOption || !showCreateItem
+                return !filterable || filterable && showFilterOption || !showCreateItem && allowCreate
             },
             selected(){
                 const SelectInstance = this.SelectInstance;

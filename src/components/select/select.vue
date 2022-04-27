@@ -265,7 +265,7 @@
                     return this.getOptionData(value);
                 }).filter(Boolean);
             }
-
+            
             this.checkUpdateStatus();
             // remote search, set default-label
             if (this.remote && this.modelValue && this.defaultLabel) {
