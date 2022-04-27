@@ -642,6 +642,9 @@
                     } else {
                         this.visible = true;
                     }
+                    if (this.visible) {
+                        this.$refs.dropdown.handleOnUpdatePopper();
+                    }
                 }
 
                 this.query = query;
