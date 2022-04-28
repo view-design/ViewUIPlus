@@ -67,11 +67,8 @@
         >
             <ul v-show="showNotFoundLabel && !allowCreate" :class="[prefixCls + '-not-found']"><li>{{ localeNotFoundText }}</li></ul>
 
-            <functional-options
+            <ul 
                 v-if="(!remote) || (remote && !loading)"
-                :options="selectOptions"
-                :slot-update-hook="updateSlotOptions"
-                :slot-options="slotOptions"
                 :class="prefixCls + '-dropdown-list'"
             >
                 <li :class="prefixCls + '-item'" v-if="showCreateItem" @click="handleCreateItem">
@@ -79,7 +76,8 @@
                     <Icon type="md-return-left" :class="prefixCls + '-item-enter'" />
                 </li>
                 <slot />
-            </functional-options>
+            </ul>
+
             <ul :class="prefixCls + '-dropdown-list'" v-else>
                 <li :class="prefixCls + '-item'" v-if="showCreateItem" @click="handleCreateItem">
                     {{ query }}
@@ -97,7 +95,6 @@
     import Drop from './dropdown.vue';
     import Icon from '../icon';
     import SelectHead from './select-head.vue';
-    import FunctionalOptions from './functional-options.vue';
 
     import { directive as clickOutside } from '../../directives/v-click-outside-x';
     import { oneOf } from '../../utils/assist';
@@ -105,58 +102,6 @@
     import Locale from '../../mixins/locale';
 
     const prefixCls = 'ivu-select';
-    const optionRegexp = /^i-option$|^Option$/i;
-    const optionGroupRegexp = /option-?group/i;
-
-    const findChild = (instance, checkFn) => {
-        let match = checkFn(instance);
-        if (match) return instance;
-        for (let i = 0, l = instance.$children.length; i < l; i++){
-            const child = instance.$children[i];
-            match = findChild(child, checkFn);
-            if (match) return match;
-        }
-    };
-
-    const findOptionsInVNode = (node) => {
-        const opts = node.componentOptions;
-        if (opts && optionRegexp.test(opts.tag)) return [node];
-        if (!node.children && (!opts || !opts.children)) return [];
-        const children = [...(node.children || []), ...(opts && opts.children || [])];
-        const options = children.reduce(
-            (arr, el) => [...arr, ...findOptionsInVNode(el)], []
-        ).filter(Boolean);
-        return options.length > 0 ? options : [];
-    };
-
-    const extractOptions = (options) => options.reduce((options, slotEntry) => {
-        return options.concat(findOptionsInVNode(slotEntry));
-    }, []);
-
-    const applyProp = (node, propName, value) => {
-        return {
-            ...node,
-            componentOptions: {
-                ...node.componentOptions,
-                propsData: {
-                    ...node.componentOptions.propsData,
-                    [propName]: value,
-                }
-            }
-        };
-    };
-
-    const getNestedProperty = (obj, path) => {
-        const keys = path.split('.');
-        return keys.reduce((o, key) => o && o[key] || null, obj);
-    };
-
-    const getOptionLabel = option => {
-        if (option.componentOptions.propsData.label) return option.componentOptions.propsData.label;
-        const textContent = (option.componentOptions.children || []).reduce((str, child) => str + (child.text || ''), '');
-        const innerHTML = getNestedProperty(option, 'data.domProps.innerHTML');
-        return textContent || (typeof innerHTML === 'string' ? innerHTML : '');
-    };
 
     const checkValuesNotEqual = (value,publicValue,values) => {
         const strValue = JSON.stringify(value);
@@ -173,7 +118,7 @@
     export default {
         name: 'iSelect',
         mixins: [ Locale, mixinsForm ],
-        components: { FunctionalOptions, Drop, SelectHead, Icon },
+        components: { Drop, SelectHead, Icon },
         directives: { clickOutside },
         emits: ['on-set-default-options', 'on-clear', 'on-clickoutside', 'on-select', 'on-create', 'on-change', 'on-query-change', 'on-open-change', 'update:modelValue'],
         provide () {
@@ -306,23 +251,32 @@
             eventsEnabled: {
                 type: Boolean,
                 default: false
+            },
+            hideNotFound: {
+                type: Boolean,
+                default: false
             }
         },
         mounted () {
             // set the initial values if there are any
-            if (!this.remote && this.selectOptions.length > 0){
+            if (!this.remote && this.slotOptions.length > 0){
                 this.values = this.getInitialValue().map(value => {
                     if (typeof value !== 'number' && !value) return null;
                     return this.getOptionData(value);
                 }).filter(Boolean);
             }
-
+            
             this.checkUpdateStatus();
-
             // remote search, set default-label
             if (this.remote && this.modelValue && this.defaultLabel) {
                 if (!this.multiple) {
                     this.query = this.defaultLabel;
+                    if (this.modelValue && this.defaultLabel) {
+                        this.values.push({
+                            label: this.defaultLabel,
+                            value: this.modelValue
+                        })
+                    }
                 } else if (this.multiple && (this.defaultLabel instanceof Array) && this.modelValue.length === this.defaultLabel.length) {
                     const values = this.modelValue.map((item, index) => {
                         return {
@@ -330,7 +284,7 @@
                             label: this.defaultLabel[index]
                         };
                     });
-                    this.$emit('on-set-default-options', JSON.parse(JSON.stringify(values)));
+                    // 废弃 this.$emit('on-set-default-options', JSON.parse(JSON.stringify(values)));
                     setTimeout(() => {
                         this.values = values;
                     });
@@ -404,9 +358,9 @@
                 let state = false;
                 if (this.allowCreate && this.query !== '') {
                     state = true;
-                    const $options = findComponentsDownward(this, 'iOption');
+                    const $options = this.slotOptions;
                     if ($options && $options.length) {
-                        if ($options.find(item => item.optionLabel === this.query)) state = false;
+                        if ($options.find(item => item.label === this.query)) state = false;
                     }
                 }
                 return  state;
@@ -416,7 +370,7 @@
             },
             dropVisible () {
                 let status = true;
-                const noOptions = !this.selectOptions || this.selectOptions.length === 0;
+                const noOptions = this.slotOptions.length === 0;
                 if (!this.loading && this.remote && this.query === '' && noOptions) status = false;
 
                 if (this.autoComplete && noOptions) status = false;
@@ -424,87 +378,18 @@
                 return this.visible && status;
             },
             showNotFoundLabel () {
-                const {loading, remote, selectOptions} = this;
-                return selectOptions && selectOptions.length === 0 && (!remote || (remote && !loading));
+                const {loading, remote, slotOptions, hideNotFound} = this;
+                const options = slotOptions || [];
+                const filterOptions = options.find(item => item.proxy.isShow);
+                return (options.length === 0 || !filterOptions) && (!remote || (remote && !loading)) && !hideNotFound;
             },
             publicValue(){
-                // 改变 labelInValue 实现，解决 bug:Select，label-in-value时，搜索、多选，先选一个，再选第二个，会替代第一个
-                // if (this.labelInValue){
-                //     return this.multiple ? this.values : this.values[0];
-                // } else {
-                //     return this.multiple ? this.values.map(option => option.value) : (this.values[0] || {}).value;
-                // }
                 return this.multiple ? this.values.map(option => option.value) : (this.values[0] || {}).value;
             },
-            selectOptions () {
-                const selectOptions = [];
-                const slotOptions = (this.slotOptions || []);
-                let optionCounter = -1;
-                const currentIndex = this.focusIndex;
-                const selectedValues = this.values.filter(Boolean).map(({value}) => value);
-
-                if (this.autoComplete) {
-                    const copyChildren = (node, fn) => {
-                        return {
-                            ...node,
-                            children: (node.children || []).map(fn).map(child => copyChildren(child, fn))
-                        };
-                    };
-                    const autoCompleteOptions = extractOptions(slotOptions);
-                    const selectedSlotOption = autoCompleteOptions[currentIndex];
-
-                    return slotOptions.map(node => {
-                        if (node === selectedSlotOption || getNestedProperty(node, 'componentOptions.propsData.value') === this.modelValue) return applyProp(node, 'isFocused', true);
-                        return copyChildren(node, (child) => {
-                            if (child !== selectedSlotOption) return child;
-                            return applyProp(child, 'isFocused', true);
-                        });
-                    });
-                }
-
-                for (let option of slotOptions) {
-                    const cOptions = option.componentOptions;
-                    if (!cOptions) continue;
-                    if (optionGroupRegexp.test(cOptions.tag)){
-                        let children = cOptions.children;
-
-                        // remove filtered children
-                        if (this.filterable && this.isTyping){  // #728 let option show full when reclick it
-                            children = children.filter(
-                                ({componentOptions}) => this.validateOption(componentOptions)
-                            );
-                        }
-
-                        // fix #4371
-                        children = children.map(opt => {
-                            optionCounter = optionCounter + 1;
-                            return this.processOption(opt, selectedValues, optionCounter === currentIndex);
-                        });
-
-                        // keep the group if it still has children  // fix #4371
-                        if (children.length > 0) selectOptions.push({...option,componentOptions:{...cOptions,children:children}});
-                    } else {
-                        // ignore option if not passing filter
-                        if (this.filterQueryChange) {
-                            const optionPassesFilter = this.filterable ? this.validateOption(cOptions) : option;
-                            if (!optionPassesFilter) continue;
-                        }
-
-                        optionCounter = optionCounter + 1;
-                        selectOptions.push(this.processOption(option, selectedValues, optionCounter === currentIndex));
-                    }
-                }
-
-                return selectOptions;
-            },
             canBeCleared () {
-                // const uiStateMatch = this.hasMouseHoverHead || this.active; // active 好像没用
                 const uiStateMatch = this.hasMouseHoverHead;
                 const qualifiesForClear = !this.multiple && !this.itemDisabled && this.clearable;
                 return uiStateMatch && qualifiesForClear && this.reset; // we return a function
-            },
-            flatOptions () {
-                return extractOptions(this.selectOptions);
             },
             selectTabindex () {
                 return this.itemDisabled || this.filterable ? -1 : 0;
@@ -534,49 +419,26 @@
                 if (this.clearable) this.reset();
             },
             getOptionData(value){
-                const option = this.flatOptions.find(({componentOptions}) => componentOptions.propsData.value === value);
+                const option = this.slotOptions.find(({props}) => props.value === value);
                 if (!option) return null;
-                const label = getOptionLabel(option);
-                // 修复多选时，选项有disabled属性，选中项仍然能删除的 bug
-                const disabled = option.componentOptions.propsData.disabled;
+                const { label, disabled } = option;
                 return {
-                    value: value,
-                    label: label,
-                    disabled: disabled
+                    value,
+                    label,
+                    disabled
                 };
             },
             getInitialValue(){
-                const {multiple, remote, value} = this;
-                let initialValue = Array.isArray(value) ? value : [value];
+                const {multiple, remote, modelValue} = this;
+                let initialValue = Array.isArray(modelValue) ? modelValue : [modelValue];
                 if (!multiple && (typeof initialValue[0] === 'undefined' || (String(initialValue[0]).trim() === '' && !Number.isFinite(initialValue[0])))) initialValue = [];
-                if (remote && !multiple && value) {
-                    const data = this.getOptionData(value);
-                    this.query = data ? data.label : String(value);
+                if (remote && !multiple && modelValue) {
+                    const data = this.getOptionData(modelValue);
+                    this.query = data ? data.label : String(modelValue);
                 }
                 return initialValue.filter((item) => {
                     return Boolean(item) || item === 0;
                 });
-            },
-            processOption(option, values, isFocused){
-                if (!option.componentOptions) return option;
-                const optionValue = option.componentOptions.propsData.value;
-                const disabled = option.componentOptions.propsData.disabled;
-                const isSelected = values.includes(optionValue);
-
-                const propsData = {
-                    ...option.componentOptions.propsData,
-                    selected: isSelected,
-                    isFocused: isFocused,
-                    disabled: typeof disabled === 'undefined' ? false : disabled !== false,
-                };
-
-                return {
-                    ...option,
-                    componentOptions: {
-                        ...option.componentOptions,
-                        propsData: propsData
-                    }
-                };
             },
 
             validateOption({children, elm, propsData}){
@@ -616,13 +478,11 @@
                     }
 
                     if (this.transfer) {
-                        const {$el} = this.$refs.dropdown;
+                        const $el = this.$refs.dropdown.$refs.drop;
                         if ($el === event.target || $el.contains(event.target)) {
                             return;
                         }
                     }
-
-
                     if (this.filterable) {
                         const input = this.$el.querySelector('input[type="text"]');
                         this.caretPosition = input.selectionStart;
@@ -655,7 +515,6 @@
                 if (key === 'Backspace' || keyCode===8){
                     return; // so we don't call preventDefault
                 }
-
                 if (this.visible) {
                     e.preventDefault();
                     if (key === 'Tab'){
@@ -678,11 +537,11 @@
                     // enter
                     if (key === 'Enter') {
                         if (this.focusIndex === -1) return this.hideMenu();
-                        const optionComponent = this.flatOptions[this.focusIndex];
+                        const optionComponent = this.slotOptions[this.focusIndex];
 
                         // fix a script error when searching
                         if (optionComponent) {
-                            const option = this.getOptionData(optionComponent.componentOptions.propsData.value);
+                            const option = this.getOptionData(optionComponent.value);
                             this.onOptionClick(option);
                         } else {
                             this.hideMenu();
@@ -696,9 +555,9 @@
 
             },
             navigateOptions(direction){
-                const optionsLength = this.flatOptions.length - 1;
+                const slotOptions = this.slotOptions;
+                const optionsLength = slotOptions.length - 1;
                 if (optionsLength < 0) return;
-
                 let index = this.focusIndex + direction;
                 if (index < 0) index = optionsLength;
                 if (index > optionsLength) index = 0;
@@ -706,27 +565,35 @@
                 // find nearest option in case of disabled options in between
                 if (direction > 0){
                     let nearestActiveOption = -1;
-                    for (let i = 0; i < this.flatOptions.length; i++){
-                        const optionIsActive = !this.flatOptions[i].componentOptions.propsData.disabled;
+                    for (let i = 0; i < slotOptions.length; i++){
+                        const { proxy } = slotOptions[i];
+                        const optionIsActive = !proxy.disabled;
                         if (optionIsActive) nearestActiveOption = i;
+                        if (!proxy.isShow) {
+                            nearestActiveOption = i;
+                            continue
+                        }
                         if (nearestActiveOption >= index) break;
                     }
                     index = nearestActiveOption;
                 } else {
-                    let nearestActiveOption = this.flatOptions.length;
+                    let nearestActiveOption = slotOptions.length;
                     for (let i = optionsLength; i >= 0; i--){
-                        const optionIsActive = !this.flatOptions[i].componentOptions.propsData.disabled;
+                        const { proxy } = slotOptions[i];
+                        const optionIsActive = !proxy.disabled;
                         if (optionIsActive) nearestActiveOption = i;
+                        if (!proxy.isShow) {
+                            nearestActiveOption = i;
+                            continue
+                        }
                         if (nearestActiveOption <= index) break;
                     }
                     index = nearestActiveOption;
                 }
-
                 this.focusIndex = index;
             },
             onOptionClick (option) {
                 if (this.multiple){
-
                     // keep the query for remote select
                     if (this.remote) this.lastRemoteQuery = this.lastRemoteQuery || this.query;
                     else this.lastRemoteQuery = '';
@@ -745,10 +612,9 @@
                     this.lastRemoteQuery = '';
                     this.hideMenu();
                 }
-
-                this.focusIndex = this.flatOptions.findIndex((opt) => {
-                    if (!opt || !opt.componentOptions) return false;
-                    return opt.componentOptions.propsData.value === option.value;
+                this.focusIndex = this.slotOptions.findIndex((opt) => {
+                    if (!opt) return false;
+                    return opt.value === option.value;
                 });
 
                 if (this.filterable){
@@ -788,11 +654,8 @@
                 }
                 this.isFocused = type === 'focus';
             },
-            updateSlotOptions(){
-                // this.slotOptions = this.$slots.default;
-            },
             checkUpdateStatus() {
-                if (this.getInitialValue().length > 0 && this.selectOptions.length === 0) {
+                if (this.getInitialValue().length > 0 && this.slotOptions.length === 0 ) {
                     this.hasExpectedValue = true;
                 }
             },
@@ -802,14 +665,17 @@
                     const query = this.query;
                     this.$emit('on-create', query);
                     this.query = '';
-
                     const option = {
                         value: query,
                         label: query,
                         tag: undefined
                     };
+                    this.hideMenu();
+                    this.$refs.dropdown.handleOnUpdatePopper();
                     // 单选（和多选，#926）时如果不在 nextTick 里执行，无法赋值
-                    nextTick(() => this.onOptionClick(option));
+                    setTimeout(() => {
+                        this.onOptionClick(option)
+                    });
                 }
             },
             handleOnSelectSelected (options) {
@@ -818,13 +684,11 @@
         },
         watch: {
             modelValue (value) {
-                const { getInitialValue, getOptionData, publicValue, values } = this;
+                const { publicValue, values } = this;
 
                 this.checkUpdateStatus();
-
                 if (value === '') this.values = [];
                 else if (checkValuesNotEqual(value,publicValue,values)) {
-                    nextTick(() => this.values = getInitialValue().map(getOptionData).filter(Boolean));
                     if (!this.multiple) this.handleFormItemChange('change', this.publicValue);
                 }
             },
@@ -874,13 +738,12 @@
                         });
                     }
                 }
+                if (this.visible) {
+                    this.$refs.dropdown.handleOnUpdatePopper();
+                }
                 if (query !== '' && this.remote) this.lastRemoteQuery = query;
             },
-            loading (state) {
-                if (state === false){
-                    this.updateSlotOptions();
-                }
-            },
+            loading (state) {},
             isFocused (focused) {
                 const el = this.filterable ? this.$el.querySelector('input[type="text"]') : this.$el;
                 el[this.isFocused ? 'focus' : 'blur']();
@@ -898,18 +761,17 @@
             focusIndex (index) {
                 if (index < 0 || this.autoComplete) return;
                 // update scroll
-                const optionValue = this.flatOptions[index].componentOptions.propsData.value;
-                const optionInstance = findChild(this, ({$options}) => {
-                    return $options.componentName === 'select-item' && $options.propsData.value === optionValue;
-                });
-
-                let bottomOverflowDistance = optionInstance.$el.getBoundingClientRect().bottom - this.$refs.dropdown.$el.getBoundingClientRect().bottom;
-                let topOverflowDistance = optionInstance.$el.getBoundingClientRect().top - this.$refs.dropdown.$el.getBoundingClientRect().top;
+                const optionValue = this.slotOptions[index].value;
+                const optionInstance = this.slotOptions[index].proxy;
+                const $itemEle = optionInstance.$el;
+                const $drop = this.$refs.dropdown.$refs.drop;
+                let bottomOverflowDistance = $itemEle.getBoundingClientRect().bottom - $drop.getBoundingClientRect().bottom;
+                let topOverflowDistance = $itemEle.getBoundingClientRect().top - $drop.getBoundingClientRect().top;
                 if (bottomOverflowDistance > 0) {
-                    this.$refs.dropdown.$el.scrollTop += bottomOverflowDistance;
+                    $drop.scrollTop += bottomOverflowDistance;
                 }
                 if (topOverflowDistance < 0) {
-                    this.$refs.dropdown.$el.scrollTop += topOverflowDistance;
+                    $drop.scrollTop += topOverflowDistance;
                 }
             },
             dropVisible (open) {
@@ -919,42 +781,9 @@
                     this.$refs.dropdown.handleOnDestroyPopper();
                 }
             },
-            selectOptions () {
-                if (this.hasExpectedValue && this.selectOptions.length > 0){
-                    if (this.values.length === 0) {
-                        this.values = this.getInitialValue();
-                    }
-                    this.values = this.values.map(this.getOptionData).filter(Boolean);
-                    this.hasExpectedValue = false;
-                }
-
-                if (this.slotOptions && this.slotOptions.length === 0){
-                    this.query = '';
-                }
-
-                 // 当 dropdown 一开始在控件下部显示，而滚动页面后变成在上部显示，如果选项列表的长度由内部动态变更了(搜索情况)
-                 // dropdown 的位置不会重新计算，需要重新计算
-                this.$refs.dropdown.handleOnUpdatePopper();
-            },
             visible (state) {
                 this.$emit('on-open-change', state);
-            },
-            slotOptions (options, old) {
-                // #4626，当 Options 的 label 更新时，v-model 的值未更新
-                // remote 下，调用 getInitialValue 有 bug
-                if (!this.remote) {
-                    const values = this.getInitialValue();
-                    if (this.flatOptions && this.flatOptions.length && values.length && !this.multiple) {
-                        this.values = values.map(this.getOptionData).filter(Boolean);
-                    }
-                }
-
-                // 当 dropdown 在控件上部显示时，如果选项列表的长度由外部动态变更了，
-                // dropdown 的位置会有点问题，需要重新计算
-                if (options && old && options.length !== old.length) {
-                    this.$refs.dropdown.handleOnUpdatePopper();
-                }
-            },
+            }
         }
     };
 </script>

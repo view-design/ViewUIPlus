@@ -8,6 +8,7 @@
         :transfer-class-name="transferClassName"
         @on-change="handleChange"
         @on-open-change="handleOpenChange"
+        hideNotFound
         :transfer="transfer"
     >
         <Tree

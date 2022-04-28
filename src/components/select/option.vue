@@ -2,6 +2,7 @@
     <li
         :class="classes"
         @click.stop="select"
+        v-show="isShow"
         @mousedown.prevent
     ><slot>{{ showLabel }}</slot></li>
 </template>
@@ -9,7 +10,7 @@
     import mixinsForm from '../../mixins/form';
     import { findComponentUpward } from '../../utils/assist';
     import random from '../../utils/random_str';
-
+    import { getCurrentInstance } from 'vue';
     const prefixCls = 'ivu-select-item';
 
     export default {
@@ -37,14 +38,6 @@
                 type: Boolean,
                 default: false
             },
-            selected: {
-                type: Boolean,
-                default: false
-            },
-            isFocused: {
-                type: Boolean,
-                default: false
-            },
             // 4.0.0
             tag: {
                 type: [String, Number]
@@ -54,7 +47,8 @@
             return {
                 searchLabel: '',  // the slot value (textContent)
                 autoComplete: false,
-                id: random(6)
+                id: random(6),
+                instance: null
             };
         },
         computed: {
@@ -73,6 +67,35 @@
             },
             optionLabel(){
                 return this.label || (this.$el && this.$el.textContent);
+            },
+            isFocused(){
+                const SelectInstance = this.SelectInstance;
+                const slotOptions = SelectInstance.slotOptions || [];
+                const focusIndex = SelectInstance.focusIndex
+                const focusOption = slotOptions[focusIndex]
+                return focusOption && focusOption.value === this.value;
+            },
+            isShow(){
+                const SelectInstance = this.SelectInstance;
+                const filterable = SelectInstance.filterable;
+                const query = SelectInstance.query.toLowerCase().trim();
+                const filterByLabel = SelectInstance.filterByLabel;
+                const slotOptions = SelectInstance.slotOptions || [];
+                // 输入创建
+                const showCreateItem = SelectInstance.showCreateItem;
+                const allowCreate = SelectInstance.allowCreate;
+                const { label, value } = slotOptions.find(item => item.value === this.value) || {};
+                let filterOption = (label || value || '').toLowerCase();
+                if (filterByLabel) {
+                    filterOption = (label || '').toLowerCase();
+                }
+                const showFilterOption = filterOption.includes(query);
+                return !filterable || filterable && showFilterOption || !showCreateItem && allowCreate
+            },
+            selected(){
+                const SelectInstance = this.SelectInstance;
+                const values = SelectInstance.values || [];
+                return values.find(item => item.value === this.value)
             }
         },
         methods: {
@@ -84,48 +107,58 @@
                     label: this.optionLabel,
                     tag: this.tag
                 });
-                this.$emit('on-select-selected', {
-                    value: this.value,
-                    label: this.optionLabel,
-                    tag: this.tag
-                });
             },
             addOption () {
-                if (this.OptionGroupInstance) {
+                const select = this.SelectInstance;
+                const group = this.OptionGroupInstance;
+                if (group) {
                     const group = this.OptionGroupInstance;
                     group.optionList.push({
+                        ...this.instance,
                         id: this.id,
-                        option: this,
+                        value: this.value,
+                        label: this.label || this.$el && this.$el.textContent,
                         tag: 'option'
                     });
-                } else {
-                    const select = this.SelectInstance;
+                }
+                if (select){
                     select.slotOptions.push({
+                        ...this.instance,
                         id: this.id,
-                        option: this,
+                        value: this.value,
+                        label: this.label || this.$el && this.$el.textContent,
                         tag: 'option'
                     });
                 }
             },
             removeOption () {
-                if (this.OptionGroupInstance) {
-                    const group = this.OptionGroupInstance;
+                const group = this.OptionGroupInstance;
+                const select = this.SelectInstance;
+                if (group) {
                     const index = group.optionList.findIndex(item => item.id === this.id);
-                    group.optionList.splice(index, 1);
-                } else {
+                    index !== -1 && group.optionList.splice(index, 1);
+                }
+                if( select ){
                     const select = this.SelectInstance;
                     const index = select.slotOptions.findIndex(item => item.id === this.id);
-                    select.slotOptions.splice(index, 1);
+                    index !== -1 && select.slotOptions.splice(index, 1);
+
                 }
             }
+        },
+        created(){
+            this.instance = getCurrentInstance();
         },
         mounted () {
             this.addOption();
             const Select = findComponentUpward(this, 'iSelect');
-            if (Select) this.autoComplete = Select.autoComplete;
+            if (Select) {
+                this.autoComplete = Select.autoComplete;
+            }
         },
         beforeUnmount () {
             this.removeOption();
+            this.instance = null;
         }
     };
 </script>
