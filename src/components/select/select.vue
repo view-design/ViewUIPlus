@@ -642,9 +642,6 @@
                     } else {
                         this.visible = true;
                     }
-                    if (this.visible) {
-                        this.$refs.dropdown.handleOnUpdatePopper();
-                    }
                 }
 
                 this.query = query;
@@ -741,6 +738,9 @@
                         });
                     }
                 }
+                if (this.visible) {
+                    this.$refs.dropdown.handleOnUpdatePopper();
+                }
                 if (query !== '' && this.remote) this.lastRemoteQuery = query;
             },
             loading (state) {},
@@ -764,7 +764,7 @@
                 const optionValue = this.slotOptions[index].value;
                 const optionInstance = this.slotOptions[index].proxy;
                 const $itemEle = optionInstance.$el;
-                const $drop = this.$refs.dropdown.$refs.drop
+                const $drop = this.$refs.dropdown.$refs.drop;
                 let bottomOverflowDistance = $itemEle.getBoundingClientRect().bottom - $drop.getBoundingClientRect().bottom;
                 let topOverflowDistance = $itemEle.getBoundingClientRect().top - $drop.getBoundingClientRect().top;
                 if (bottomOverflowDistance > 0) {
