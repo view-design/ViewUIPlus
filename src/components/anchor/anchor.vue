@@ -46,11 +46,6 @@
             scrollOffset: {
                 type: Number,
                 default: 0
-            },
-            // $route 改变时，是否自动滚动到 hash 位置
-            autoScroll: {
-                type: Boolean,
-                default: true
             }
         },
         data () {
@@ -197,7 +192,7 @@
             '$route' () {
                 this.handleHashChange();
                 nextTick(() => {
-                    if (this.autoScroll) this.handleScrollTo();
+                    this.handleScrollTo();
                 });
             },
             container () {
