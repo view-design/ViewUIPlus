@@ -23,22 +23,6 @@
             };
         },
         emits: ['on-change', 'on-select'],
-        data () {
-            return {
-                prefix: 'ivu-anchor',
-                isAffixed: false, // current affixed state
-                inkTop: 0,
-                animating: false, // if is scrolling now
-                currentLink: '', // current show link =>  #href -> currentLink = #href
-                currentId: '', // current show title id =>  #href -> currentId = href
-                scrollContainer: null,
-                scrollElement: null,
-                // titlesOffsetArr: [],
-                wrapperTop: 0,
-                upperFirstTitle: true,
-                links: []
-            };
-        },
         props: {
             affix: {
                 type: Boolean,
@@ -62,7 +46,28 @@
             scrollOffset: {
                 type: Number,
                 default: 0
+            },
+            // $route 改变时，是否自动滚动到 hash 位置
+            autoScroll: {
+                type: Boolean,
+                default: true
             }
+        },
+        data () {
+            return {
+                prefix: 'ivu-anchor',
+                isAffixed: false, // current affixed state
+                inkTop: 0,
+                animating: false, // if is scrolling now
+                currentLink: '', // current show link =>  #href -> currentLink = #href
+                currentId: '', // current show title id =>  #href -> currentId = href
+                scrollContainer: null,
+                scrollElement: null,
+                // titlesOffsetArr: [],
+                wrapperTop: 0,
+                upperFirstTitle: true,
+                links: []
+            };
         },
         computed: {
             wrapperComponent () {
@@ -192,7 +197,7 @@
             '$route' () {
                 this.handleHashChange();
                 nextTick(() => {
-                    this.handleScrollTo();
+                    if (this.autoScroll) this.handleScrollTo();
                 });
             },
             container () {
