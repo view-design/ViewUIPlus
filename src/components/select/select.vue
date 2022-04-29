@@ -28,6 +28,7 @@
             <slot name="input">
                 <input type="hidden" :name="name" :value="publicValue">
                 <select-head
+                    ref="selectHead"
                     :filterable="filterable"
                     :multiple="multiple"
                     :values="values"
@@ -67,7 +68,7 @@
         >
             <ul v-show="showNotFoundLabel && !allowCreate" :class="[prefixCls + '-not-found']"><li>{{ localeNotFoundText }}</li></ul>
 
-            <ul 
+            <ul
                 v-if="(!remote) || (remote && !loading)"
                 :class="prefixCls + '-dropdown-list'"
             >
@@ -265,7 +266,7 @@
                     return this.getOptionData(value);
                 }).filter(Boolean);
             }
-            
+
             this.checkUpdateStatus();
             // remote search, set default-label
             if (this.remote && this.modelValue && this.defaultLabel) {
@@ -680,6 +681,13 @@
             },
             handleOnSelectSelected (options) {
                 this.onOptionClick(options);
+            },
+            // 对外 API
+            focus () {
+                if (this.filterable) {
+                    this.$refs.selectHead.$refs.input.focus();
+                    this.toggleMenu();
+                }
             }
         },
         watch: {

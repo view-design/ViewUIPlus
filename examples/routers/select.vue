@@ -1,7 +1,8 @@
 <template>
     <Row>
+        <Button @click="h1">s1</Button>
         <Col span="12" style="padding-right:10px">
-            <Select v-model="model11" filterable>
+            <Select v-model="model11" filterable ref="s1">
                 <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
         </Col>
@@ -60,6 +61,11 @@
                 ],
                 model11: '',
                 model12: []
+            }
+        },
+        methods: {
+            h1 () {
+                this.$refs.s1.focus();
             }
         }
     }
