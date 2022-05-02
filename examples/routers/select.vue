@@ -7,13 +7,14 @@
             </Select>
         </Col>
         <Col span="12">
-            <Select v-model="model12" filterable multiple>
+            <Select v-model="model12" filterable @on-change="handlerChange">
                 <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
         </Col>
     </Row>
 </template>
 <script>
+    import { nextTick } from 'vue';
     export default {
         data () {
             return {
@@ -60,12 +61,14 @@
                     }
                 ],
                 model11: '',
-                model12: []
+                model12: ''
             }
         },
         methods: {
             h1 () {
                 this.$refs.s1.focus();
+            },
+            handlerChange(){
             }
         }
     }

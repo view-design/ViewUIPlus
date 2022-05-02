@@ -695,8 +695,10 @@
                 const { publicValue, values } = this;
 
                 this.checkUpdateStatus();
-                if (value === '') this.values = [];
-                else if (checkValuesNotEqual(value,publicValue,values)) {
+                if (value === '') {
+                    this.values = [];
+                    this.query = '';
+                } else if (checkValuesNotEqual(value,publicValue,values)) {
                     if (!this.multiple) this.handleFormItemChange('change', this.publicValue);
                 }
             },
