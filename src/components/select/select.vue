@@ -564,33 +564,40 @@
                 if (index > optionsLength) index = 0;
 
                 // find nearest option in case of disabled options in between
+                let nearestActiveOption;
+                // find first show option in case of set init focusIndex
+                let firseIndex = null
                 if (direction > 0){
-                    let nearestActiveOption = -1;
+                    nearestActiveOption = -1;
                     for (let i = 0; i < slotOptions.length; i++){
                         const { proxy } = slotOptions[i];
                         const optionIsActive = !proxy.disabled;
                         if (optionIsActive) nearestActiveOption = i;
-                        if (!proxy.isShow) {
+                        if (proxy.isShow && firseIndex === null) {
+                             firseIndex = i;
+                        } else if (!proxy.isShow) {
                             nearestActiveOption = i;
                             continue
                         }
                         if (nearestActiveOption >= index) break;
                     }
-                    index = nearestActiveOption;
                 } else {
-                    let nearestActiveOption = slotOptions.length;
+                    nearestActiveOption = slotOptions.length;
                     for (let i = optionsLength; i >= 0; i--){
                         const { proxy } = slotOptions[i];
                         const optionIsActive = !proxy.disabled;
                         if (optionIsActive) nearestActiveOption = i;
-                        if (!proxy.isShow) {
+                        if (proxy.isShow && firseIndex === null) {
+                             firseIndex = i;
+                        } else if (!proxy.isShow) {
                             nearestActiveOption = i;
                             continue
                         }
                         if (nearestActiveOption <= index) break;
                     }
-                    index = nearestActiveOption;
                 }
+                const activeSlotsOption = slotOptions[nearestActiveOption]; 
+                index = !activeSlotsOption.proxy.isShow ? firseIndex : nearestActiveOption;
                 this.focusIndex = index;
             },
             onOptionClick (option) {
