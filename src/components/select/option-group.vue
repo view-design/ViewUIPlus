@@ -47,33 +47,7 @@
                     }
                     this.hidden = !hasVisibleOption;
                 });
-            },
-            // addOptionGroup () {
-            //     const select = this.SelectInstance;
-            //     select.slotOptions.push({
-            //         id: this.id,
-            //         optionGroup: this,
-            //         tag: 'option-group'
-            //     });
-            // },
-            // removeOptionGroup () {
-            //     const select = this.SelectInstance;
-            //     const index = select.slotOptions.findIndex(item => item.id === this.id);
-            //     select.slotOptions.splice(index, 1);
-            // }
-        },
-        mounted () {
-            // this.addOptionGroup();
-            // todo
-            // this.$on('on-query-change', () => {
-            //     this.queryChange();
-            //     return true;
-            // });
-        },
-        beforeUnmount () {
-            // this.removeOptionGroup();
-            // todo
-            // this.$off('on-query-change');
+            }
         }
     };
 </script>
