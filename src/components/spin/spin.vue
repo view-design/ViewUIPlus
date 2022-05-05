@@ -9,7 +9,7 @@
     </transition>
 </template>
 <script>
-import { getCurrentInstance } from 'vue';
+    import { getCurrentInstance } from 'vue';
     import { oneOf } from '../../utils/assist';
     import ScrollbarMixins from '../modal/mixins-scrollbar';
 
