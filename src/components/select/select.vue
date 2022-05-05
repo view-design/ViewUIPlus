@@ -400,10 +400,8 @@
             }
         },
         methods: {
-            setQuery(query){ // PUBLIC API
+            setQuery(query){ // PUBLIC API               
                 if (query) {
-                    // when query word, set focusIndex init
-                    this.focusIndex = -1;
                     this.onQueryChange(query);
                     return;
                 }
@@ -707,8 +705,6 @@
                 if (value === '') {
                     this.values = [];
                     this.query = '';
-                    // when query is empty, set focusIndex -1
-                    this.focusIndex = -1;
                 } else if (checkValuesNotEqual(value,publicValue,values)) {
                     if (!this.multiple) this.handleFormItemChange('change', this.publicValue);
                 }
@@ -743,6 +739,9 @@
                 }
             },
             query (query) {
+                // when query word, set focusIndex init
+                this.focusIndex = -1;
+
                 this.$emit('on-query-change', query);
                 const {remoteMethod, lastRemoteQuery} = this;
                 const hasValidQuery = query !== '' && (query !== lastRemoteQuery || !lastRemoteQuery);
@@ -750,7 +749,6 @@
                 this.preventRemoteCall = false; // remove the flag
 
                 if (shouldCallRemoteMethod){
-                    this.focusIndex = -1;
                     const promise = this.remoteMethod(query);
                     this.initialLabel = '';
                     if (promise && promise.then){
