@@ -7,7 +7,7 @@
             </Select>
         </Col>
         <Col span="12">
-            <Select v-model="model12" filterable @on-change="handlerChange">
+            <Select v-model="model12" filterable multiple @on-change="handlerChange">
                 <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
         </Col>
