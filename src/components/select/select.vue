@@ -402,6 +402,8 @@
         methods: {
             setQuery(query){ // PUBLIC API
                 if (query) {
+                    // when query word, set focusIndex init
+                    this.focusIndex = -1;
                     this.onQueryChange(query);
                     return;
                 }
@@ -705,6 +707,8 @@
                 if (value === '') {
                     this.values = [];
                     this.query = '';
+                    // when query is empty, set focusIndex -1
+                    this.focusIndex = -1;
                 } else if (checkValuesNotEqual(value,publicValue,values)) {
                     if (!this.multiple) this.handleFormItemChange('change', this.publicValue);
                 }

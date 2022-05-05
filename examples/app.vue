@@ -43,7 +43,7 @@
             <span><router-link to="/menu">Menu</router-link></span>
             <span><router-link to="/spin">Spin</router-link></span>
             <span><router-link to="/cascader">Cascader</router-link></span>
-            <span><Tag color="red">未开始</Tag><router-link to="/select">Select</router-link></span>
+            <span><router-link to="/select">Select</router-link></span>
             <span><router-link to="/backtop">Backtop</router-link></span>
             <span><router-link to="/page">Page</router-link></span>
             <span><router-link to="/transfer">Transfer</router-link></span>
@@ -56,7 +56,7 @@
             <span><router-link to="/notice">Notice</router-link></span>
             <span><router-link to="/avatar">Avatar</router-link></span>
             <span><router-link to="/color-picker">ColorPicker</router-link></span>
-            <span><Tag color="green">未完成</Tag><router-link to="/auto-complete">AutoComplete</router-link></span>
+            <span><router-link to="/auto-complete">AutoComplete</router-link></span>
             <span><router-link to="/scroll">Scroll</router-link></span>
             <span><router-link to="/divider">Divider</router-link></span>
             <span><router-link to="/time">Time</router-link></span>
@@ -86,8 +86,8 @@
             <span><router-link to="/word-count">WordCount</router-link></span>
             <span><router-link to="/result">Result</router-link></span>
             <span><router-link to="/exception">Exception</router-link></span>
-            <span><Tag color="green">未完成</Tag><router-link to="/tree-select">TreeSelect</router-link></span>
-            <span><Tag color="green">未完成</Tag><router-link to="/city">City</router-link></span>
+            <span><router-link to="/tree-select">TreeSelect</router-link></span>
+            <span><router-link to="/city">City</router-link></span>
             <span><router-link to="/v-style">v-style</router-link></span>
             <span><router-link to="/v-resize">v-resize</router-link></span>
             <span><router-link to="/v-line-clamp">v-line-clamp</router-link></span>
