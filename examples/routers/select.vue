@@ -69,6 +69,9 @@
                 this.$refs.s1.focus();
             },
             handlerChange(){
+                // nextTick(()=> {
+                //     this.model12 = ''
+                // })
             }
         }
     }
