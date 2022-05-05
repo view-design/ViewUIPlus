@@ -109,11 +109,16 @@
             handleHashChange () {
                 const url = window.location.href;
                 const sharpLinkMatch = sharpMatcherRegx.exec(url);
-                if (!sharpLinkMatch) return;
+                if (!sharpLinkMatch) {
+                    this.currentLink = null;
+                    this.currentId = null;
+                    return;
+                }
                 this.currentLink = sharpLinkMatch[0];
                 this.currentId = sharpLinkMatch[1];
             },
             handleScrollTo () {
+                if(!this.currentId) return;
                 const anchor = document.getElementById(this.currentId);
                 const currentLinkElementA = document.querySelector(`a[data-href="${this.currentLink}"]`);
                 let offset = this.scrollOffset;
@@ -130,6 +135,10 @@
                 this.handleSetInkTop();
             },
             handleSetInkTop () {
+                if(!this.currentLink) {
+                    this.inkTop = 0;
+                    return;
+                }
                 const currentLinkElementA = document.querySelector(`a[data-href="${this.currentLink}"]`);
                 if (!currentLinkElementA) return;
                 const elementATop = currentLinkElementA.offsetTop;
