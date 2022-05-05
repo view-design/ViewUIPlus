@@ -11,6 +11,7 @@
             :classes="dropdownCls"
             :placement="placement"
             :eventsEnabled="eventsEnabled"
+            :boundariesElement="boundariesElement"
             :transfer="transfer"
             transition-name="transition-drop"
             @mouseenter="handleMouseenter"
@@ -74,6 +75,10 @@
             eventsEnabled: {
                 type: Boolean,
                 default: false
+            },
+            boundariesElement: {
+                type: [String, HTMLElement],
+                default: 'window'
             }
         },
         computed: {

@@ -58,6 +58,10 @@
             transitionName: {
                 type: String,
                 default: 'transition-drop'
+            },
+            boundariesElement: {
+                type: [String, HTMLElement],
+                default: 'window'
             }
         },
         data () {
@@ -99,7 +103,7 @@
                                     gpuAcceleration: false
                                 },
                                 preventOverflow :{
-                                    boundariesElement: 'window'
+                                    boundariesElement: this.boundariesElement
                                 }
                             },
                             onCreate:()=>{
