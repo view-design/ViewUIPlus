@@ -31,7 +31,7 @@ const directives = {
     'line-clamp': lineClamp
 };
 
-const iview = {
+const ViewUI = {
     ...components,
     iButton: components.Button,
     iCircle: components.Circle,
@@ -59,8 +59,8 @@ export const install = function(app, opts = {}) {
         localeFile.i18n(opts.i18n);
     }
 
-    Object.keys(iview).forEach(key => {
-        app.component(key, iview[key]);
+    Object.keys(ViewUI).forEach(key => {
+        app.component(key, ViewUI[key]);
         // todo i-tag
     });
 
@@ -68,7 +68,7 @@ export const install = function(app, opts = {}) {
         app.directive(key, directives[key]);
     });
 
-    app.config.globalProperties.$IVIEW = {
+    app.config.globalProperties.$VIEWUI = {
         size: opts.size || '',
         capture: 'capture' in opts ? opts.capture : true,
         transfer: 'transfer' in opts ? opts.transfer : '',

@@ -153,14 +153,14 @@
                 },
                 default () {
                     const global = getCurrentInstance().appContext.config.globalProperties;
-                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
+                    return !global.$VIEWUI || global.$VIEWUI.size === '' ? 'default' : global.$VIEWUI.size;
                 }
             },
             transfer: {
                 type: Boolean,
                 default () {
                     const global = getCurrentInstance().appContext.config.globalProperties;
-                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
+                    return !global.$VIEWUI || global.$VIEWUI.transfer === '' ? false : global.$VIEWUI.transfer;
                 }
             },
             name: {

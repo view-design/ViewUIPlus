@@ -63,7 +63,7 @@ export { Transfer } from './transfer';
 export { Tree, TreeChild } from './tree';
 export { Upload } from './upload';
 
-interface IViewGlobalOptions{
+interface ViewUIPlusGlobalOptions{
     size?: string;
     transfer?: boolean | string;
     select: {
@@ -119,7 +119,7 @@ interface IViewGlobalOptions{
     };
 }
 
-interface IViewInstallOptions extends IViewGlobalOptions{
+interface ViewUIPlusInstallOptions extends ViewUIPlusGlobalOptions{
     locale?: any;
     i18n?: any;
 }
@@ -130,7 +130,7 @@ declare const API: {
     i18n: (fn: any) => void;
     install: (
         Vue: Vue,
-        opts: IViewInstallOptions
+        opts: ViewUIPlusInstallOptions
     ) => void;
     lang: (code: string) => void;
 };
@@ -139,6 +139,6 @@ export default API;
 
 declare module 'vue/types/vue' {
     interface Vue {
-        $IVIEW: IViewGlobalOptions;
+        $VIEWUI: ViewUIPlusGlobalOptions;
     }
 }

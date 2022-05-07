@@ -1,6 +1,6 @@
 import { PluginFunction } from 'vue';
 
-interface IView extends PluginFunction<any> {}
+interface ViewUIPlus extends PluginFunction<any> {}
 
-declare const iView: IView;
-export default iView;
+declare const ViewUIPlus: ViewUIPlus;
+export default ViewUIPlus;

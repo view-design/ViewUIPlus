@@ -101,7 +101,7 @@
                 type: Boolean,
                 default () {
                     const global = getCurrentInstance().appContext.config.globalProperties;
-                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
+                    return !global.$VIEWUI || global.$VIEWUI.transfer === '' ? false : global.$VIEWUI.transfer;
                 }
             },
             popperClass: {
@@ -125,7 +125,7 @@
                 type: Boolean,
                 default () {
                     const global = getCurrentInstance().appContext.config.globalProperties;
-                    return !global.$IVIEW ? false : global.$IVIEW.capture;
+                    return !global.$VIEWUI ? false : global.$VIEWUI.capture;
                 }
             },
             transferClassName: {

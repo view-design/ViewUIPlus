@@ -180,7 +180,7 @@
                 },
                 default () {
                     const global = getCurrentInstance().appContext.config.globalProperties;
-                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
+                    return !global.$VIEWUI || global.$VIEWUI.size === '' ? 'default' : global.$VIEWUI.size;
                 }
             },
             labelInValue: {
@@ -200,7 +200,7 @@
                 type: Boolean,
                 default () {
                     const global = getCurrentInstance().appContext.config.globalProperties;
-                    return !global.$IVIEW || global.$IVIEW.transfer === '' ? false : global.$IVIEW.transfer;
+                    return !global.$VIEWUI || global.$VIEWUI.transfer === '' ? false : global.$VIEWUI.transfer;
                 }
             },
             // Use for AutoComplete
@@ -239,7 +239,7 @@
                 type: Boolean,
                 default () {
                     const global = getCurrentInstance().appContext.config.globalProperties;
-                    return !global.$IVIEW ? true : global.$IVIEW.capture;
+                    return !global.$VIEWUI ? true : global.$VIEWUI.capture;
                 }
             },
             // 4.2.0
@@ -400,7 +400,7 @@
             }
         },
         methods: {
-            setQuery(query){ // PUBLIC API               
+            setQuery(query){ // PUBLIC API
                 if (query) {
                     this.onQueryChange(query);
                     return;
@@ -596,7 +596,7 @@
                         if (nearestActiveOption <= index) break;
                     }
                 }
-                const activeSlotsOption = slotOptions[nearestActiveOption]; 
+                const activeSlotsOption = slotOptions[nearestActiveOption];
                 index = !activeSlotsOption.proxy.isShow ? firseIndex : nearestActiveOption;
                 this.focusIndex = index;
             },
