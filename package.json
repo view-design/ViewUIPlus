@@ -1,13 +1,14 @@
 {
     "name": "view-ui-plus",
     "version": "1.0.0-beta.1",
-    "title": "ViewUI",
+    "title": "ViewUIPlus",
     "description": "A high quality UI components Library with Vue.js 3",
     "homepage": "http://www.iviewui.com",
     "keywords": [
         "iview",
         "vue",
         "viewui",
+        "viewuiplus",
         "vue.js",
         "component",
         "components",
