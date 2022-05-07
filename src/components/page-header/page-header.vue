@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="ivu-page-header-tabs" v-if="tabList && tabList.length">
-            <Tabs :animated="false" :value="tabActiveKey" @on-click="handleTabChange">
+            <Tabs :animated="false" :modelValue="tabActiveKey" @on-click="handleTabChange">
                 <TabPane v-for="(item, index) in tabList" :key="index" :label="item.label" :name="item.name"></TabPane>
             </Tabs>
         </div>
