@@ -87,7 +87,7 @@
             }
         },
         mounted () {
-            this.showText = this.$slots.default().some(item => item.children && item.children.length);
+            this.showText = !!this.$slots.default && this.$slots.default().some(item => item.children && item.children.length);
         }
     };
 </script>
