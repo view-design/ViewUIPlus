@@ -5,7 +5,7 @@
 // const isServer = Vue.prototype.$isServer;
 // const Popper = isServer ? function() {} : require('popper.js/dist/umd/popper.js');  // eslint-disable-line
 import { nextTick } from 'vue';
-const Popper = require('popper.js/dist/umd/popper.js');  // eslint-disable-line
+import Popper from 'popper.js/dist/umd/popper.js';
 
 export default {
     emits: ['on-popper-show', 'on-popper-hide', 'created', 'update:modelValue'],

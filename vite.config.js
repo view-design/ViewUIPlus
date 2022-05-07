@@ -3,7 +3,6 @@ import vue from '@vitejs/plugin-vue';
 
 const path = require('path');
 
-// https://vitejs.dev/config/
 const config = defineConfig({
     plugins: [vue()],
     target: 'es2015',
@@ -28,12 +27,21 @@ const config = defineConfig({
                     namespaceToStringTag: true,
                     inlineDynamicImports: false,
                     manualChunks: undefined,
-                    globals: {vue: 'Vue'}
+                    globals: { vue: 'Vue' }
+                },
+                {
+                    format: 'es',
+                    exports: 'named',
+                    sourcemap: false,
+                    entryFileNames: 'viewuiplus.min.esm.js',
+                    chunkFileNames: '[name].js',
+                    assetFileNames: '[name].[ext]',
+                    namespaceToStringTag: true,
+                    inlineDynamicImports: false,
+                    manualChunks: undefined,
+                    globals: { vue: 'Vue' }
                 }
             ]
-        },
-        commonjsOptions: {
-            include: ['**/*']
         }
     },
     resolve: {

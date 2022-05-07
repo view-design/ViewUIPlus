@@ -136,11 +136,6 @@ export const install = function(app, opts = {}) {
     app.config.globalProperties.$Date = dayjs;
 };
 
-// auto install
-if (typeof window !== 'undefined' && window.Vue) {
-    install(window.Vue);
-}
-
 export const version = process.env.VERSION;
 
 export const locale = localeFile.use;
