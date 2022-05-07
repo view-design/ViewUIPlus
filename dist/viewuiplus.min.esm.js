@@ -21813,7 +21813,7 @@ const _sfc_main$$ = {
     }
   },
   mounted() {
-    this.showText = this.$slots.default().some((item) => item.children && item.children.length);
+    this.showText = !!this.$slots.default && this.$slots.default().some((item) => item.children && item.children.length);
   }
 };
 function _sfc_render$V(_ctx, _cache, $props, $setup, $data, $options) {
@@ -27052,7 +27052,7 @@ function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
     $props.tabList && $props.tabList.length ? (openBlock(), createElementBlock("div", _hoisted_12, [
       createVNode(_component_Tabs, {
         animated: false,
-        value: $props.tabActiveKey,
+        "model-value": $props.tabActiveKey,
         onOnClick: $options.handleTabChange
       }, {
         default: withCtx(() => [
@@ -27065,7 +27065,7 @@ function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
           }), 128))
         ]),
         _: 1
-      }, 8, ["value", "onOnClick"])
+      }, 8, ["model-value", "onOnClick"])
     ])) : createCommentVNode("", true)
   ], 2);
 }
