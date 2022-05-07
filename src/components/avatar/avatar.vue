@@ -29,7 +29,7 @@
                 type: [String, Number],
                 default () {
                     const global = getCurrentInstance().appContext.config.globalProperties;
-                    return !global.$IVIEW || global.$IVIEW.size === '' ? 'default' : global.$IVIEW.size;
+                    return !global.$VIEWUI || global.$VIEWUI.size === '' ? 'default' : global.$VIEWUI.size;
                 }
             },
             src: {

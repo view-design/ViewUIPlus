@@ -2809,7 +2809,7 @@ var globalConfig = {
   },
   created() {
     const instance = getCurrentInstance();
-    this.globalConfig = instance.appContext.config.globalProperties.$IVIEW;
+    this.globalConfig = instance.appContext.config.globalProperties.$VIEWUI;
   }
 };
 const prefixCls$1h = "ivu-select";
@@ -3348,7 +3348,7 @@ const _sfc_main$2c = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     labelInValue: {
@@ -3368,7 +3368,7 @@ const _sfc_main$2c = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     autoComplete: {
@@ -3401,7 +3401,7 @@ const _sfc_main$2c = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW ? true : global2.$IVIEW.capture;
+        return !global2.$VIEWUI ? true : global2.$VIEWUI.capture;
       }
     },
     filterByLabel: {
@@ -4363,7 +4363,7 @@ const _sfc_main$2a = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     placeholder: {
@@ -4891,7 +4891,7 @@ const _sfc_main$29 = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     icon: {
@@ -4911,7 +4911,7 @@ const _sfc_main$29 = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     name: {
@@ -4927,7 +4927,7 @@ const _sfc_main$29 = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW ? true : global2.$IVIEW.capture;
+        return !global2.$VIEWUI ? true : global2.$VIEWUI.capture;
       }
     },
     eventsEnabled: {
@@ -5088,7 +5088,7 @@ const _sfc_main$28 = {
       type: [String, Number],
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     src: {
@@ -5354,7 +5354,7 @@ const _sfc_main$27 = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     theme: {
@@ -5979,7 +5979,7 @@ const _sfc_main$21 = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     loading: Boolean,
@@ -6092,7 +6092,7 @@ const _sfc_main$20 = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     shape: {
@@ -6150,7 +6150,7 @@ const _sfc_main$1$ = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     type: {
@@ -6255,7 +6255,7 @@ const _sfc_main$1_ = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     name: {
@@ -9692,7 +9692,7 @@ const _sfc_main$1N = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     trigger: {
@@ -9725,7 +9725,7 @@ const _sfc_main$1N = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     name: {
@@ -9738,7 +9738,7 @@ const _sfc_main$1N = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW ? true : global2.$IVIEW.capture;
+        return !global2.$VIEWUI ? true : global2.$VIEWUI.capture;
       }
     },
     transferClassName: {
@@ -10443,7 +10443,7 @@ const _sfc_main$1J = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     name: {
@@ -10615,7 +10615,7 @@ const _sfc_main$1I = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     }
   },
@@ -10852,7 +10852,7 @@ const _sfc_main$1G = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     transferClassName: {
@@ -10866,7 +10866,7 @@ const _sfc_main$1G = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW ? true : global2.$IVIEW.capture;
+        return !global2.$VIEWUI ? true : global2.$VIEWUI.capture;
       }
     },
     eventsEnabled: {
@@ -11729,14 +11729,14 @@ const _sfc_main$1D = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     transfer: {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     name: {
@@ -13886,7 +13886,7 @@ const _sfc_main$1x = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     hideDropDown: {
@@ -13917,7 +13917,7 @@ const _sfc_main$1x = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     name: {
@@ -13932,7 +13932,7 @@ const _sfc_main$1x = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW ? true : global2.$IVIEW.capture;
+        return !global2.$VIEWUI ? true : global2.$VIEWUI.capture;
       }
     },
     transferClassName: {
@@ -15779,7 +15779,7 @@ const _sfc_main$1r = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     placeholder: {
@@ -15796,7 +15796,7 @@ const _sfc_main$1r = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     name: {
@@ -15824,7 +15824,7 @@ const _sfc_main$1r = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW ? true : global2.$IVIEW.capture;
+        return !global2.$VIEWUI ? true : global2.$VIEWUI.capture;
       }
     },
     transferClassName: {
@@ -18886,7 +18886,7 @@ const _sfc_main$1d = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? true : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? true : global2.$VIEWUI.transfer;
       }
     },
     className: {
@@ -19340,7 +19340,7 @@ const _sfc_main$1b = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     theme: {
@@ -21384,7 +21384,7 @@ const _sfc_main$11 = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     disabled: {
@@ -21752,7 +21752,7 @@ const _sfc_main$$ = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     fix: {
@@ -21957,7 +21957,7 @@ const _sfc_main$_ = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     split: {
@@ -22833,7 +22833,7 @@ const _sfc_main$R = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.modal.maskClosable === "" ? true : global2.$IVIEW.modal.maskClosable;
+        return !global2.$VIEWUI || global2.$VIEWUI.modal.maskClosable === "" ? true : global2.$VIEWUI.modal.maskClosable;
       }
     },
     title: {
@@ -22880,7 +22880,7 @@ const _sfc_main$R = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? true : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? true : global2.$VIEWUI.transfer;
       }
     },
     fullscreen: {
@@ -24427,7 +24427,7 @@ const _sfc_main$P = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     placement: {
@@ -26420,7 +26420,7 @@ const _sfc_main$F = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     size: {
@@ -27310,7 +27310,7 @@ const _sfc_main$A = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     },
     popperClass: {
@@ -27331,7 +27331,7 @@ const _sfc_main$A = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW ? false : global2.$IVIEW.capture;
+        return !global2.$VIEWUI ? false : global2.$VIEWUI.capture;
       }
     },
     transferClassName: {
@@ -30166,7 +30166,7 @@ const _sfc_main$m = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     name: {
@@ -31792,7 +31792,7 @@ const _sfc_main$g = {
       },
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.size === "" ? "default" : global2.$IVIEW.size;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
       }
     },
     width: {
@@ -34582,7 +34582,7 @@ const _sfc_main$6 = {
   },
   created() {
     const instance = getCurrentInstance();
-    this.globalConfig = instance.appContext.config.globalProperties.$IVIEW;
+    this.globalConfig = instance.appContext.config.globalProperties.$VIEWUI;
   }
 };
 const _hoisted_1$3 = {
@@ -34955,7 +34955,7 @@ const _sfc_main$4 = {
       type: Boolean,
       default() {
         const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$IVIEW || global2.$IVIEW.transfer === "" ? false : global2.$IVIEW.transfer;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
       }
     }
   },
@@ -36050,7 +36050,7 @@ const directives = {
   resize,
   "line-clamp": lineClamp
 };
-const iview = __spreadProps(__spreadValues({}, components), {
+const ViewUI = __spreadProps(__spreadValues({}, components), {
   iButton: _sfc_main$21,
   iCircle: Circle,
   iCol: Col,
@@ -36076,13 +36076,13 @@ const install = function(app, opts = {}) {
   if (opts.i18n) {
     localeFile.i18n(opts.i18n);
   }
-  Object.keys(iview).forEach((key2) => {
-    app.component(key2, iview[key2]);
+  Object.keys(ViewUI).forEach((key2) => {
+    app.component(key2, ViewUI[key2]);
   });
   Object.keys(directives).forEach((key2) => {
     app.directive(key2, directives[key2]);
   });
-  app.config.globalProperties.$IVIEW = {
+  app.config.globalProperties.$VIEWUI = {
     size: opts.size || "",
     capture: "capture" in opts ? opts.capture : true,
     transfer: "transfer" in opts ? opts.transfer : "",

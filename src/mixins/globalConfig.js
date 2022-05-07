@@ -7,6 +7,6 @@ export default {
     },
     created () {
         const instance = getCurrentInstance();
-        this.globalConfig = instance.appContext.config.globalProperties.$IVIEW;
+        this.globalConfig = instance.appContext.config.globalProperties.$VIEWUI;
     }
 }

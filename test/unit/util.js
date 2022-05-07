@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import iView from '../../src/index';
+import ViewUIPlus from '../../src/index';
 
-Vue.use(iView);
+Vue.use(ViewUIPlus);
 
 let id = 0;
 
