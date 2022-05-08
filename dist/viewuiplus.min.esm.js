@@ -766,6 +766,8 @@ const _sfc_main$2h = {
   },
   watch: {
     "$route"() {
+      this.currentLink = "";
+      this.currentId = "";
       this.handleHashChange();
       nextTick(() => {
         this.handleScrollTo();
