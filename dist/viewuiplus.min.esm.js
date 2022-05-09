@@ -25062,8 +25062,9 @@ const _sfc_main$M = {
       this.currentName = val;
       this.updateNav();
     },
-    label() {
-      this.updateNav();
+    label(val) {
+      if (typeof val !== "function")
+        this.updateNav();
     },
     icon() {
       this.updateNav();
