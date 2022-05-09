@@ -10,7 +10,7 @@
                 v-bind="$attrs"
                 @mouseenter="handleMouseenter"
                 @mouseleave="handleMouseleave"
-                @click="handleClick"
+                @click.stop="handleClick"
             ><slot></slot></div>
         </transition>
     </teleport>
