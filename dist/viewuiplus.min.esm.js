@@ -2514,7 +2514,7 @@ function _sfc_render$24(_ctx, _cache, $props, $setup, $data, $options) {
         }, _ctx.$attrs, {
           onMouseenter: _cache[0] || (_cache[0] = (...args) => $options.handleMouseenter && $options.handleMouseenter(...args)),
           onMouseleave: _cache[1] || (_cache[1] = (...args) => $options.handleMouseleave && $options.handleMouseleave(...args)),
-          onClick: _cache[2] || (_cache[2] = (...args) => $options.handleClick && $options.handleClick(...args))
+          onClick: _cache[2] || (_cache[2] = withModifiers((...args) => $options.handleClick && $options.handleClick(...args), ["stop"]))
         }), [
           renderSlot(_ctx.$slots, "default")
         ], 16), [
