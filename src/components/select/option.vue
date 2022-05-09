@@ -11,6 +11,7 @@
     import { findComponentUpward } from '../../utils/assist';
     import random from '../../utils/random_str';
     import { getCurrentInstance } from 'vue';
+    import { nextTick } from 'vue';
     const prefixCls = 'ivu-select-item';
 
     export default {
@@ -157,8 +158,11 @@
             }
         },
         beforeUnmount () {
-            this.removeOption();
-            this.instance = null;
+            // fix AutoComplete. when suggest the word, the dropdown will hide
+            nextTick(() => {
+                this.removeOption();
+                this.instance = null;
+            })
         }
     };
 </script>
