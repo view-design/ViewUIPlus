@@ -1,5 +1,30 @@
 <template>
     <AutoComplete
+        v-model="value1"
+        :data="data1"
+        @on-search="handleSearch1"
+        transfer
+        placeholder="input here"
+        style="width:200px"></AutoComplete>
+    <br><br>
+    <AutoComplete
+        v-model="value2"
+        transfer
+        @on-search="handleSearch2"
+        placeholder="input here"
+        style="width:200px">
+        <Option v-for="item in data2" :value="item" :key="item">{{ item }}</Option>
+    </AutoComplete>
+    <br><br>
+    <AutoComplete
+        v-model="value3"
+        :data="data3"
+        :filter-method="filterMethod"
+        placeholder="input here"
+        style="width:200px">
+    </AutoComplete>
+    <br><br>
+    <AutoComplete
         v-model="value4"
         icon="ios-search"
         placeholder="input here"
@@ -21,18 +46,27 @@
     export default {
         data () {
             return {
+                value1: '',
+                data1: [],
+
+                value2: '',
+                data2: [],
+
+                value3: '',
+                data3: ['Steve Jobs', 'Stephen Gary Wozniak', 'Jonathan Paul Ive'],
+
                 value4: '',
                 data4: [
                     {
                         title: '话题',
                         children: [
                             {
-                                title: 'iView',
+                                title: 'View UI',
                                 count: 10000,
 
                             },
                             {
-                                title: 'iView UI',
+                                title: 'View UI Plus',
                                 count: 10600,
 
                             }
@@ -42,12 +76,12 @@
                         title: '问题',
                         children: [
                             {
-                                title: 'iView UI 有多好',
+                                title: 'View UI Plus 有多好',
                                 count: 60100,
 
                             },
                             {
-                                title: 'iView 是啥',
+                                title: 'View UI Plus 是啥',
                                 count: 30010,
 
                             }
@@ -57,13 +91,32 @@
                         title: '文章',
                         children: [
                             {
-                                title: 'iView 是一个设计语言',
+                                title: 'View UI Plus 是一个设计语言',
                                 count: 100000,
 
                             }
                         ]
                     }
                 ]
+            }
+        },
+        methods: {
+             handleSearch1 (value) {
+                this.data1 = !value ? [] : [
+                    value,
+                    value + value,
+                    value + value + value
+                ];
+            },
+            handleSearch2 (value) {
+                this.data2 = !value || value.indexOf('@') >= 0 ? [] : [
+                    value + '@qq.com',
+                    value + '@sina.com',
+                    value + '@163.com'
+                ];
+            },
+            filterMethod (value, option) {
+                return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
             }
         }
     }

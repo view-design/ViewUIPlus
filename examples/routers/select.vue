@@ -1,77 +1,73 @@
 <template>
     <Row>
-        <Button @click="h1">s1</Button>
         <Col span="12" style="padding-right:10px">
-            <Select v-model="model11" filterable ref="s1">
-                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            <Select
+                v-model="model13"
+                filterable
+                :remote-method="remoteMethod1"
+                :loading="loading1">
+                <Option v-for="(option, index) in options1" :value="option.value" :key="index">{{option.label}}</Option>
             </Select>
         </Col>
         <Col span="12">
-            <Select v-model="model12" filterable multiple @on-change="handlerChange">
-                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
+        <Select
+            v-model="model14"
+            multiple
+            filterable
+            :remote-method="remoteMethod2"
+            :loading="loading2">
+            <Option v-for="(option, index) in options2" :value="option.value" :key="index">{{option.label}}</Option>
+        </Select>
         </Col>
     </Row>
 </template>
 <script>
-    import { nextTick } from 'vue';
     export default {
         data () {
             return {
-                cityList: [
-                    {
-                        value: 'New York',
-                        label: 'New York'
-                    },
-                    {
-                        value: 'London',
-                        label: 'London'
-                    },
-                    {
-                        value: 'Sydney',
-                        label: 'Sydney'
-                    },
-                    {
-                        value: 'Ottawa',
-                        label: 'Ottawa'
-                    },
-                    {
-                        value: 'Paris',
-                        label: 'Paris'
-                    },
-                    {
-                        value: 'Canberra',
-                        label: 'Canberra'
-                    },
-                    {
-                        value: '1',
-                        label: '1'
-                    },
-                    {
-                        value: '2',
-                        label: '2'
-                    },
-                    {
-                        value: '3',
-                        label: '3'
-                    },
-                    {
-                        value: '4',
-                        label: '4'
-                    }
-                ],
-                model11: '',
-                model12: ''
+                model13: '',
+                loading1: false,
+                options1: [],
+                model14: [],
+                loading2: false,
+                options2: [],
+                list: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New hampshire', 'New jersey', 'New mexico', 'New york', 'North carolina', 'North dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode island', 'South carolina', 'South dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West virginia', 'Wisconsin', 'Wyoming']
             }
         },
         methods: {
-            h1 () {
-                this.$refs.s1.focus();
+            remoteMethod1 (query) {
+                if (query !== '') {
+                    this.loading1 = true;
+                    setTimeout(() => {
+                        this.loading1 = false;
+                        const list = this.list.map(item => {
+                            return {
+                                value: item,
+                                label: item
+                            };
+                        });
+                        this.options1 = list.filter(item => item.label.toLowerCase().indexOf(query.toLowerCase()) > -1);
+                    }, 200);
+                } else {
+                    this.options1 = [];
+                }
             },
-            handlerChange(){
-                // nextTick(()=> {
-                //     this.model12 = ''
-                // })
+            remoteMethod2 (query) {
+                if (query !== '') {
+                    this.loading2 = true;
+                    setTimeout(() => {
+                        this.loading2 = false;
+                        const list = this.list.map(item => {
+                            return {
+                                value: item,
+                                label: item
+                            };
+                        });
+                        this.options2 = list.filter(item => item.label.toLowerCase().indexOf(query.toLowerCase()) > -1);
+                    }, 200);
+                } else {
+                    this.options2 = [];
+                }
             }
         }
     }
