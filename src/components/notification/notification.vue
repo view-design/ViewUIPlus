@@ -10,7 +10,7 @@
                 <DropdownMenu v-if="$slots.default" @click.stop>
                     <div class="ivu-notifications-list" :class="{ 'ivu-notifications-list-wide': wide }">
                         <div class="ivu-notifications-tabs">
-                            <Tabs :animated="false" :value="tab" @on-click="handleTabChange"><slot></slot></Tabs>
+                            <Tabs :animated="false" :model-value="tab" @on-click="handleTabChange"><slot></slot></Tabs>
                         </div>
                     </div>
                     <div class="ivu-notifications-extra" v-if="$slots.extra"><slot name="extra"></slot></div>
