@@ -87,11 +87,11 @@ Modal.newInstance = properties => {
                 closable: this.closable,
                 ref: 'modal'
             }, {
-                value: this.visible,
-                onInput: (status) => this.visible = status,
+                modelValue: this.visible,
+                'onUpdate:modelValue': (status) => this.visible = status,
                 'onOn-cancel': this.cancel
-            }), [
-                h('div', {
+            }),
+                () => h('div', {
                     class: prefixCls
                 }, [
                     head_render,
@@ -100,7 +100,7 @@ Modal.newInstance = properties => {
                         class: `${prefixCls}-footer`
                     }, footerVNodes)
                 ])
-            ]);
+            );
         },
         computed: {
             iconTypeCls () {
