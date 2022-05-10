@@ -420,12 +420,12 @@
                 if (this.clearable) this.reset();
             },
             getOptionData(value){
-                const option = this.slotOptions.find(({props}) => props.value === value);
-                if (!option) return null;
-                const { label, disabled } = option;
+                const optionItem = this.slotOptions.find(({props}) => props.value === value);
+                if (!optionItem) return null;
+                const { optionLabel, disabled } = optionItem.proxy || {};
                 return {
                     value,
-                    label,
+                    label: optionLabel,
                     disabled
                 };
             },
@@ -542,7 +542,7 @@
 
                         // fix a script error when searching
                         if (optionComponent) {
-                            const option = this.getOptionData(optionComponent.value);
+                            const option = this.getOptionData(optionComponent.props.value);
                             this.onOptionClick(option);
                         } else {
                             this.hideMenu();
@@ -622,7 +622,7 @@
                 }
                 this.focusIndex = this.slotOptions.findIndex((opt) => {
                     if (!opt) return false;
-                    return opt.value === option.value;
+                    return opt.props.value === option.value;
                 });
 
                 if (this.filterable){
@@ -781,7 +781,6 @@
                 if (index < 0 || this.autoComplete) return;
                 // update scroll
                 if (this.slotOptions[index]) {
-                    const optionValue = this.slotOptions[index].value;
                     const optionInstance = this.slotOptions[index].proxy;
                     const $itemEle = optionInstance.$el;
                     const $drop = this.$refs.dropdown.$refs.drop;
@@ -792,7 +791,7 @@
                     }
                     if (topOverflowDistance < 0) {
                         $drop.scrollTop += topOverflowDistance;
-                    }
+                    }   
                 }
             },
             dropVisible (open) {
