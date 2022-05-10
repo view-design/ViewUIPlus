@@ -780,17 +780,19 @@
             focusIndex (index) {
                 if (index < 0 || this.autoComplete) return;
                 // update scroll
-                const optionValue = this.slotOptions[index].value;
-                const optionInstance = this.slotOptions[index].proxy;
-                const $itemEle = optionInstance.$el;
-                const $drop = this.$refs.dropdown.$refs.drop;
-                let bottomOverflowDistance = $itemEle.getBoundingClientRect().bottom - $drop.getBoundingClientRect().bottom;
-                let topOverflowDistance = $itemEle.getBoundingClientRect().top - $drop.getBoundingClientRect().top;
-                if (bottomOverflowDistance > 0) {
-                    $drop.scrollTop += bottomOverflowDistance;
-                }
-                if (topOverflowDistance < 0) {
-                    $drop.scrollTop += topOverflowDistance;
+                if (this.slotOptions[index]) {
+                    const optionValue = this.slotOptions[index].value;
+                    const optionInstance = this.slotOptions[index].proxy;
+                    const $itemEle = optionInstance.$el;
+                    const $drop = this.$refs.dropdown.$refs.drop;
+                    let bottomOverflowDistance = $itemEle.getBoundingClientRect().bottom - $drop.getBoundingClientRect().bottom;
+                    let topOverflowDistance = $itemEle.getBoundingClientRect().top - $drop.getBoundingClientRect().top;
+                    if (bottomOverflowDistance > 0) {
+                        $drop.scrollTop += bottomOverflowDistance;
+                    }
+                    if (topOverflowDistance < 0) {
+                        $drop.scrollTop += topOverflowDistance;
+                    }
                 }
             },
             dropVisible (open) {
