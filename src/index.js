@@ -18,6 +18,8 @@ import style from './directives/style';
 // libraries
 import dayjs from 'dayjs';
 
+import pkg from '../package.json';
+
 const directives = {
     display: style.display,
     width: style.width,
@@ -136,7 +138,7 @@ export const install = function(app, opts = {}) {
     app.config.globalProperties.$Date = dayjs;
 };
 
-export const version = process.env.VERSION;
+export const version = pkg.version;
 
 export const locale = localeFile.use;
 
