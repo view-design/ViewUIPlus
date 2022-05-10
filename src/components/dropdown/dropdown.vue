@@ -14,6 +14,7 @@
             :boundariesElement="boundariesElement"
             :transfer="transfer"
             transition-name="transition-drop"
+            @click="onClickoutside"
             @mouseenter="handleMouseenter"
             @mouseleave="handleMouseleave"
         ><slot name="list"></slot></Drop>
