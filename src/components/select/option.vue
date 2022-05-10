@@ -144,10 +144,9 @@
         },
         created(){
             this.instance = getCurrentInstance();
-            this.addOption();
         },
         mounted () {
-            
+            this.addOption();
             const Select = findComponentUpward(this, 'iSelect');
             if (Select) {
                 this.autoComplete = Select.autoComplete;
