@@ -5,7 +5,7 @@
         </transition>
         <div :class="wrapClasses" :style="wrapStyles" @click="handleWrapClick">
             <transition :name="transitionNames[0]" @after-leave="animationFinish">
-                <div :class="classes" :style="mainStyles" v-show="visible" @mousedown="handleMousedown">
+                <div v-bind="$attrs" :class="classes" :style="mainStyles" v-show="visible" @mousedown="handleMousedown">
                     <div :class="contentClasses" ref="content" :style="contentStyles" @click="handleClickModal">
                         <a :class="[prefixCls + '-close']" v-if="closable" @click="close">
                             <slot name="close">
@@ -54,6 +54,7 @@
     };
 
     export default {
+        inheritAttrs: false,
         name: 'Modal',
         mixins: [ Locale, ScrollbarMixins ],
         components: { Icon, iButton },
@@ -158,7 +159,8 @@
                 type: Number,
                 default: 1000
             },
-            beforeClose: Function
+            beforeClose: Function,
+            render: Function
         },
         data () {
             return {
