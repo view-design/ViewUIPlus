@@ -1,14 +1,23 @@
 <template>
     <Row>
         <Col span="12" style="padding-right:10px">
-            <Select v-model="model17" filterable allow-create @on-create="handleCreate1">
-                <Option v-for="item in cityList3" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            <Select
+                v-model="model13"
+                filterable
+                :remote-method="remoteMethod1"
+                :loading="loading1">
+                <Option v-for="(option, index) in options1" :value="option.value" :key="index">{{option.label}}</Option>
             </Select>
         </Col>
         <Col span="12">
-            <Select v-model="model18" filterable multiple allow-create @on-create="handleCreate2">
-                <Option v-for="item in cityList4" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
+        <Select
+            v-model="model14"
+            multiple
+            filterable
+            :remote-method="remoteMethod2"
+            :loading="loading2">
+            <Option v-for="(option, index) in options2" :value="option.value" :key="index">{{option.label}}</Option>
+        </Select>
         </Col>
     </Row>
 </template>
@@ -16,74 +25,49 @@
     export default {
         data () {
             return {
-                cityList3: [
-                    {
-                        value: 'New York',
-                        label: 'New York'
-                    },
-                    {
-                        value: 'London',
-                        label: 'London'
-                    },
-                    {
-                        value: 'Sydney',
-                        label: 'Sydney'
-                    },
-                    {
-                        value: 'Ottawa',
-                        label: 'Ottawa'
-                    },
-                    {
-                        value: 'Paris',
-                        label: 'Paris'
-                    },
-                    {
-                        value: 'Canberra',
-                        label: 'Canberra'
-                    }
-                ],
-                cityList4: [
-                    {
-                        value: 'New York',
-                        label: 'New York'
-                    },
-                    {
-                        value: 'London',
-                        label: 'London'
-                    },
-                    {
-                        value: 'Sydney',
-                        label: 'Sydney'
-                    },
-                    {
-                        value: 'Ottawa',
-                        label: 'Ottawa'
-                    },
-                    {
-                        value: 'Paris',
-                        label: 'Paris'
-                    },
-                    {
-                        value: 'Canberra',
-                        label: 'Canberra'
-                    }
-                ],
-                model17: '',
-                model18: []
+                model13: '',
+                loading1: false,
+                options1: [],
+                model14: [],
+                loading2: false,
+                options2: [],
+                list: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New hampshire', 'New jersey', 'New mexico', 'New york', 'North carolina', 'North dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode island', 'South carolina', 'South dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West virginia', 'Wisconsin', 'Wyoming']
             }
         },
         methods: {
-            handleCreate1 (val) {
-                this.cityList3.push({
-                    value: val,
-                    label: val
-                });
+            remoteMethod1 (query) {
+                if (query !== '') {
+                    this.loading1 = true;
+                    setTimeout(() => {
+                        this.loading1 = false;
+                        const list = this.list.map(item => {
+                            return {
+                                value: item,
+                                label: item
+                            };
+                        });
+                        this.options1 = list.filter(item => item.label.toLowerCase().indexOf(query.toLowerCase()) > -1);
+                    }, 200);
+                } else {
+                    this.options1 = [];
+                }
             },
-            handleCreate2 (val) {
-                this.cityList4.push({
-                    value: val,
-                    label: val
-                });
+            remoteMethod2 (query) {
+                if (query !== '') {
+                    this.loading2 = true;
+                    setTimeout(() => {
+                        this.loading2 = false;
+                        const list = this.list.map(item => {
+                            return {
+                                value: item,
+                                label: item
+                            };
+                        });
+                        this.options2 = list.filter(item => item.label.toLowerCase().indexOf(query.toLowerCase()) > -1);
+                    }, 200);
+                } else {
+                    this.options2 = [];
+                }
             }
         }
     }
