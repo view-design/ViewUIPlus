@@ -3914,17 +3914,19 @@ const _sfc_main$2c = {
     focusIndex(index2) {
       if (index2 < 0 || this.autoComplete)
         return;
-      this.slotOptions[index2].value;
-      const optionInstance = this.slotOptions[index2].proxy;
-      const $itemEle = optionInstance.$el;
-      const $drop = this.$refs.dropdown.$refs.drop;
-      let bottomOverflowDistance = $itemEle.getBoundingClientRect().bottom - $drop.getBoundingClientRect().bottom;
-      let topOverflowDistance = $itemEle.getBoundingClientRect().top - $drop.getBoundingClientRect().top;
-      if (bottomOverflowDistance > 0) {
-        $drop.scrollTop += bottomOverflowDistance;
-      }
-      if (topOverflowDistance < 0) {
-        $drop.scrollTop += topOverflowDistance;
+      if (this.slotOptions[index2]) {
+        this.slotOptions[index2].value;
+        const optionInstance = this.slotOptions[index2].proxy;
+        const $itemEle = optionInstance.$el;
+        const $drop = this.$refs.dropdown.$refs.drop;
+        let bottomOverflowDistance = $itemEle.getBoundingClientRect().bottom - $drop.getBoundingClientRect().bottom;
+        let topOverflowDistance = $itemEle.getBoundingClientRect().top - $drop.getBoundingClientRect().top;
+        if (bottomOverflowDistance > 0) {
+          $drop.scrollTop += bottomOverflowDistance;
+        }
+        if (topOverflowDistance < 0) {
+          $drop.scrollTop += topOverflowDistance;
+        }
       }
     },
     dropVisible(open) {
@@ -14831,7 +14833,7 @@ const defaults$1 = {
   duration: 1.5
 };
 let messageInstance;
-let name$1 = 1;
+let name$2 = 1;
 const iconTypes$1 = {
   "info": "ios-information-circle",
   "success": "ios-checkmark-circle",
@@ -14857,7 +14859,7 @@ function notice$1(content = "", duration2 = defaults$1.duration, type2, onClose 
   const loadCls = type2 === "loading" ? " ivu-load-loop" : "";
   let instance = getMessageInstance();
   instance.notice({
-    name: `${prefixKey$1}${name$1}`,
+    name: `${prefixKey$1}${name$2}`,
     duration: duration2,
     styles: {},
     transitionName: transitionName$1,
@@ -14875,7 +14877,7 @@ function notice$1(content = "", duration2 = defaults$1.duration, type2, onClose 
     background
   });
   return function() {
-    let target = name$1++;
+    let target = name$2++;
     return function() {
       instance.remove(`${prefixKey$1}${target}`);
     };
@@ -22815,6 +22817,7 @@ const dragData = {
   rect: null
 };
 const _sfc_main$R = {
+  inheritAttrs: false,
   name: "Modal",
   mixins: [Locale, ScrollbarMixins],
   components: { Icon, iButton: _sfc_main$21 },
@@ -22915,7 +22918,8 @@ const _sfc_main$R = {
       type: Number,
       default: 1e3
     },
-    beforeClose: Function
+    beforeClose: Function,
+    render: Function
   },
   data() {
     return {
@@ -23276,11 +23280,11 @@ function _sfc_render$M(_ctx, _cache, $props, $setup, $data, $options) {
         onAfterLeave: $options.animationFinish
       }, {
         default: withCtx(() => [
-          withDirectives(createElementVNode("div", {
-            class: normalizeClass($options.classes),
-            style: normalizeStyle($options.mainStyles),
+          withDirectives(createElementVNode("div", mergeProps(_ctx.$attrs, {
+            class: $options.classes,
+            style: $options.mainStyles,
             onMousedown: _cache[4] || (_cache[4] = (...args) => $options.handleMousedown && $options.handleMousedown(...args))
-          }, [
+          }), [
             createElementVNode("div", {
               class: normalizeClass($options.contentClasses),
               ref: "content",
@@ -23339,7 +23343,7 @@ function _sfc_render$M(_ctx, _cache, $props, $setup, $data, $options) {
                 ])
               ], 2)) : createCommentVNode("", true)
             ], 6)
-          ], 38), [
+          ], 16), [
             [vShow, $data.visible]
           ])
         ]),
@@ -23425,20 +23429,18 @@ Modal.newInstance = (properties) => {
         closable: this.closable,
         ref: "modal"
       }, {
-        value: this.visible,
-        onInput: (status) => this.visible = status,
+        modelValue: this.visible,
+        "onUpdate:modelValue": (status) => this.visible = status,
         "onOn-cancel": this.cancel
-      }), [
+      }), () => h("div", {
+        class: prefixCls$r
+      }, [
+        head_render,
+        body_render,
         h("div", {
-          class: prefixCls$r
-        }, [
-          head_render,
-          body_render,
-          h("div", {
-            class: `${prefixCls$r}-footer`
-          }, footerVNodes)
-        ])
-      ]);
+          class: `${prefixCls$r}-footer`
+        }, footerVNodes)
+      ]));
     },
     computed: {
       iconTypeCls() {
@@ -23630,7 +23632,7 @@ const prefixKey = "ivu_notice_key_";
 let top = 24;
 let defaultDuration = 4.5;
 let noticeInstance;
-let name = 1;
+let name$1 = 1;
 const iconTypes = {
   "info": "ios-information-circle",
   "success": "ios-checkmark-circle",
@@ -23650,23 +23652,23 @@ function getNoticeInstance() {
   return noticeInstance;
 }
 function notice(type2, options) {
-  const title = options.title || "";
+  const title2 = options.title || "";
   const desc = options.desc || "";
-  const noticeKey = options.name || `${prefixKey}${name}`;
+  const noticeKey = options.name || `${prefixKey}${name$1}`;
   const onClose = options.onClose || function() {
   };
   const render = options.render;
   const duration2 = options.duration === 0 ? 0 : options.duration || defaultDuration;
-  name++;
+  name$1++;
   let instance = getNoticeInstance();
   let content;
   let withIcon;
-  const with_desc = options.render && !title ? "" : desc || options.render ? ` ${prefixCls$q}-with-desc` : "";
+  const with_desc = options.render && !title2 ? "" : desc || options.render ? ` ${prefixCls$q}-with-desc` : "";
   if (type2 === "normal") {
     withIcon = false;
     content = `
             <div class="${prefixCls$q}-custom-content ${prefixCls$q}-with-normal ${with_desc}">
-                <div class="${prefixCls$q}-title">${title}</div>
+                <div class="${prefixCls$q}-title">${title2}</div>
                 <div class="${prefixCls$q}-desc">${desc}</div>
             </div>
         `;
@@ -23679,7 +23681,7 @@ function notice(type2, options) {
                 <span class="${prefixCls$q}-icon ${prefixCls$q}-icon-${type2}">
                     <i class="${iconPrefixCls$1} ${iconPrefixCls$1}-${iconType}${outlineIcon}"></i>
                 </span>
-                <div class="${prefixCls$q}-title">${title}</div>
+                <div class="${prefixCls$q}-title">${title2}</div>
                 <div class="${prefixCls$q}-desc">${desc}</div>
             </div>
         `;
@@ -23692,7 +23694,7 @@ function notice(type2, options) {
     content,
     withIcon,
     render,
-    hasTitle: !!title,
+    hasTitle: !!title2,
     onClose,
     closable: true,
     type: "notice"
@@ -24583,14 +24585,14 @@ function _sfc_render$K(_ctx, _cache, $props, $setup, $data, $options) {
               createElementVNode("div", _hoisted_2$k, [
                 createVNode(_component_Tabs, {
                   animated: false,
-                  value: $props.tab,
+                  "model-value": $props.tab,
                   onOnClick: $options.handleTabChange
                 }, {
                   default: withCtx(() => [
                     renderSlot(_ctx.$slots, "default")
                   ]),
                   _: 3
-                }, 8, ["value", "onOnClick"])
+                }, 8, ["model-value", "onOnClick"])
               ])
             ], 2),
             _ctx.$slots.extra ? (openBlock(), createElementBlock("div", _hoisted_3$g, [
@@ -35450,11 +35452,11 @@ const _sfc_main$2 = {
       this.$refs.input.click();
     },
     handleChange(e) {
-      const files = e.target.files;
-      if (!files) {
+      const files2 = e.target.files;
+      if (!files2) {
         return;
       }
-      this.uploadFiles(files);
+      this.uploadFiles(files2);
       this.$refs.input.value = null;
     },
     onDrop(e) {
@@ -35470,8 +35472,8 @@ const _sfc_main$2 = {
         this.uploadFiles(e.clipboardData.files);
       }
     },
-    uploadFiles(files) {
-      let postFiles = Array.prototype.slice.call(files);
+    uploadFiles(files2) {
+      let postFiles = Array.prototype.slice.call(files2);
       if (!this.multiple)
         postFiles = postFiles.slice(0, 1);
       if (postFiles.length === 0)
@@ -36043,6 +36045,143 @@ var style = {
     }
   }
 };
+const name = "view-ui-plus";
+const version$1 = "1.0.0-beta.8";
+const title = "ViewUIPlus";
+const description = "A high quality UI components Library with Vue.js 3";
+const homepage = "http://www.iviewui.com";
+const keywords = [
+  "iview",
+  "vue",
+  "viewui",
+  "viewuiplus",
+  "vue.js",
+  "component",
+  "components",
+  "ui",
+  "framework"
+];
+const main = "dist/viewuiplus.min.js";
+const typings = "types/index.d.ts";
+const files = [
+  "dist",
+  "src",
+  "types"
+];
+const scripts = {
+  dev: "vue-cli-service serve",
+  build: "npm run build:prod && npm run build:style && npm run build:lang",
+  "build:style": "gulp --gulpfile build/build-style.js",
+  "build:prod": "vite build",
+  "build:lang": "vite build --config build/vite.lang.config.js",
+  lint: "vue-cli-service lint --fix",
+  prepare: "npm run build"
+};
+const repository = {
+  type: "git",
+  url: "https://github.com/view-design/ViewUIPlus"
+};
+const author = "Aresn";
+const license = "MIT";
+const bugs = {
+  url: "https://github.com/view-design/ViewUIPlus/issues"
+};
+const dependencies = {
+  "async-validator": "^3.3.0",
+  "countup.js": "^1.9.3",
+  dayjs: "^1.11.0",
+  deepmerge: "^2.2.1",
+  "element-resize-detector": "^1.2.0",
+  "js-calendar": "^1.2.3",
+  "lodash.chunk": "^4.2.0",
+  "lodash.throttle": "^4.1.1",
+  numeral: "^2.0.6",
+  "popper.js": "^1.14.6",
+  select: "^1.1.2",
+  tinycolor2: "^1.4.1",
+  "v-click-outside-x": "^3.7.1"
+};
+const devDependencies = {
+  "@vitejs/plugin-vue": "^1.9.3",
+  "@vue/cli-plugin-babel": "~4.5.0",
+  "@vue/cli-plugin-eslint": "~4.5.0",
+  "@vue/cli-service": "~4.5.0",
+  "@vue/compiler-sfc": "^3.0.0",
+  "babel-eslint": "^10.1.0",
+  "babel-plugin-import": "^1.13.3",
+  chai: "^4.2.0",
+  "copy-webpack-plugin": "^6.4.1",
+  "cross-env": "^5.2.0",
+  eslint: "^6.7.2",
+  "eslint-plugin-vue": "^7.0.0-0",
+  gulp: "^4.0.2",
+  "gulp-autoprefixer": "^8.0.0",
+  "gulp-clean-css": "^4.3.0",
+  "gulp-less": "^5.0.0",
+  "gulp-rename": "^2.0.0",
+  karma: "^2.0.5",
+  "karma-chrome-launcher": "^2.2.0",
+  "karma-coverage": "^1.1.1",
+  "karma-mocha": "^1.3.0",
+  "karma-sinon-chai": "^1.3.3",
+  "karma-sourcemap-loader": "^0.3.7",
+  "karma-spec-reporter": "^0.0.32",
+  "karma-webpack": "^2.0.13",
+  less: "^2.7.3",
+  "less-loader": "^4.1.0",
+  "lint-staged": "^10.5.4",
+  lolex: "^2.7.5",
+  mocha: "^5.0.4",
+  sinon: "^4.4.2",
+  "sinon-chai": "^3.3.0",
+  "style-loader": "^0.20.2",
+  tslint: "^5.14.0",
+  typescript: "^3.3.4000",
+  "uglifyjs-webpack-plugin": "^1.3.0",
+  "url-loader": "^1.1.2",
+  vite: "^2.6.4",
+  vue: "^3.2.31",
+  "vue-hot-reload-api": "^2.3.4",
+  "vue-html-loader": "^1.2.4",
+  "vue-loader": "^17.0.0",
+  "vue-router": "^4.0.14",
+  "vue-style-loader": "^4.1.3",
+  "vue-template-compiler": "^2.6.14"
+};
+const engines = {
+  node: ">=16.14.2",
+  npm: ">=8.5.0",
+  yarn: ">=1.3.2"
+};
+const browserslist = [
+  "last 3 Chrome versions",
+  "last 3 Firefox versions",
+  "Safari >= 10",
+  "Explorer >= 11",
+  "Edge >= 12",
+  "iOS >= 10",
+  "Android >= 6"
+];
+var pkg = {
+  name,
+  version: version$1,
+  title,
+  description,
+  homepage,
+  keywords,
+  main,
+  typings,
+  files,
+  scripts,
+  repository,
+  author,
+  license,
+  bugs,
+  dependencies,
+  devDependencies,
+  engines,
+  browserslist
+};
 const directives = {
   display: style.display,
   width: style.width,
@@ -36153,7 +36292,7 @@ const install = function(app, opts = {}) {
   app.config.globalProperties.$ScrollTop = index;
   app.config.globalProperties.$Date = dayjs;
 };
-const version = {}.VERSION;
+const version = pkg.version;
 const locale = localeFile.use;
 const i18n = localeFile.i18n;
 const lang = (code) => {
