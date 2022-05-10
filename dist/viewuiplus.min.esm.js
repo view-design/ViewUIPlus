@@ -4217,8 +4217,10 @@ const _sfc_main$2b = {
     }
   },
   beforeUnmount() {
-    this.removeOption();
-    this.instance = null;
+    nextTick(() => {
+      this.removeOption();
+      this.instance = null;
+    });
   }
 };
 function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
