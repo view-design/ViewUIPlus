@@ -125,7 +125,7 @@
         </div>
         <div class="ivu-table-resize-line" v-show="showResizeLine" ref="resizeLine"></div>
         <div class="ivu-table-context-menu" :style="contextMenuStyles" v-if="showContextMenu">
-            <Dropdown trigger="custom" :visible="contextMenuVisible" transfer @on-clickoutside="handleClickContextMenuOutside">
+            <Dropdown trigger="custom" :visible="contextMenuVisible" transfer @on-click="handleClickDropdownItem" @on-clickoutside="handleClickContextMenuOutside">
                 <template #list>
                     <DropdownMenu>
                         <slot name="contextMenu"></slot>
@@ -319,6 +319,10 @@
                     return oneOf(value, ['auto', 'show', 'hide']);
                 },
                 default: 'show'
+            },
+            autoCloseContextmenu: {
+                type: Boolean,
+                default: true
             }
         },
         data () {
@@ -1477,6 +1481,12 @@
                 if (!target || !target.tableList) return;
                 const index = target.tableList.findIndex(item => item.id === this.id);
                 target.tableList.splice(index, 1);
+            },
+            closeContextMenu () {
+                this.handleClickContextMenuOutside()
+            },
+            handleClickDropdownItem () {
+                if (this.autoCloseContextmenu) this.closeContextMenu()
             }
         },
         created () {
