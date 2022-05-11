@@ -2968,6 +2968,14 @@ const _sfc_main$2d = {
       }
       return type2;
     },
+    showPrefix() {
+      const prefix = this.$slots.prefix && this.$slots.prefix();
+      let visible = false;
+      if (prefix) {
+        visible = prefix[0].children.length > 0;
+      }
+      return visible || this.prefix;
+    },
     arrowSize() {
       const config = this.globalConfig;
       let size = "";
@@ -3061,7 +3069,7 @@ function _sfc_render$23(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[6] || (_cache[6] = (...args) => $options.onHeaderClick && $options.onHeaderClick(...args)),
     class: normalizeClass($options.headCls)
   }, [
-    _ctx.$slots.prefix || $props.prefix ? (openBlock(), createElementBlock("span", {
+    $options.showPrefix ? (openBlock(), createElementBlock("span", {
       key: 0,
       class: normalizeClass([$data.prefixCls + "-prefix"])
     }, [
@@ -36092,7 +36100,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.11";
+const version$1 = "1.0.0-beta.12";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
