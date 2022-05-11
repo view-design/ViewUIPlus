@@ -72,11 +72,11 @@
             isFocused(){
                 const SelectInstance = this.SelectInstance;
                 let slotOptions = SelectInstance.slotOptions || [];
-                const focusIndex = SelectInstance.focusIndex
+                const focusIndex = SelectInstance.focusIndex;
 
                 // when autoComplete the slotsOption index sort error
                 // use the parent default slots to get right slotsOption index
-                const defaultSlot = SelectInstance.$slots.default
+                const defaultSlot = SelectInstance.$slots.default;
                 if (this.autoComplete && defaultSlot) {
                     slotOptions = [];
                     let vNodes = defaultSlot();
