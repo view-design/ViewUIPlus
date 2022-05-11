@@ -33360,16 +33360,16 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
         _: 3
       }, 8, ["visible", "onOnClick", "onOnClickoutside"])
     ], 4)) : createCommentVNode("", true),
-    $props.loading ? (openBlock(), createBlock(_component_Spin, {
-      key: 1,
+    createVNode(_component_Spin, {
       fix: "",
-      size: "large"
+      size: "large",
+      show: $props.loading
     }, {
       default: withCtx(() => [
         renderSlot(_ctx.$slots, "loading")
       ]),
       _: 3
-    })) : createCommentVNode("", true)
+    }, 8, ["show"])
   ], 6);
 }
 var Table = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$e]]);
@@ -36108,7 +36108,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.14";
+const version$1 = "1.0.0-beta.15";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
