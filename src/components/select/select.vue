@@ -311,6 +311,7 @@
                 isTyping: false,  // #728
                 preventRemoteCall: false,
                 filterQueryChange: false,  // #4273
+                slotOptionsMap: new Map()
             };
         },
         computed: {
