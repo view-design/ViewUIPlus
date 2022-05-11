@@ -23820,6 +23820,10 @@ const _sfc_main$Q = {
     draggable: {
       type: Boolean,
       default: false
+    },
+    autoCloseContextmenu: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -24239,6 +24243,13 @@ const _sfc_main$Q = {
         navNames.splice(b, 1, ...navNames.splice(a, 1, navNames[b]));
         this.$emit("on-drag-drop", dragName, nav.name, a, b, navNames);
       }
+    },
+    closeContextMenu() {
+      this.handleClickContextMenuOutside();
+    },
+    handleClickDropdownItem() {
+      if (this.autoCloseContextmenu)
+        this.closeContextMenu();
     }
   },
   watch: {
@@ -24396,6 +24407,7 @@ function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
         trigger: "custom",
         visible: $data.contextMenuVisible,
         transfer: "",
+        onOnClick: $options.handleClickDropdownItem,
         onOnClickoutside: $options.handleClickContextMenuOutside
       }, {
         list: withCtx(() => [
@@ -24407,7 +24419,7 @@ function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
           })
         ]),
         _: 3
-      }, 8, ["visible", "onOnClickoutside"])
+      }, 8, ["visible", "onOnClick", "onOnClickoutside"])
     ], 4)
   ], 2);
 }
@@ -31914,6 +31926,10 @@ const _sfc_main$g = {
         return oneOf(value, ["auto", "show", "hide"]);
       },
       default: "show"
+    },
+    autoCloseContextmenu: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -33006,6 +33022,13 @@ const _sfc_main$g = {
         return;
       const index2 = target.tableList.findIndex((item) => item.id === this.id);
       target.tableList.splice(index2, 1);
+    },
+    closeContextMenu() {
+      this.handleClickContextMenuOutside();
+    },
+    handleClickDropdownItem() {
+      if (this.autoCloseContextmenu)
+        this.closeContextMenu();
     }
   },
   created() {
@@ -33307,6 +33330,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
         trigger: "custom",
         visible: $data.contextMenuVisible,
         transfer: "",
+        onOnClick: $options.handleClickDropdownItem,
         onOnClickoutside: $options.handleClickContextMenuOutside
       }, {
         list: withCtx(() => [
@@ -33318,7 +33342,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
           })
         ]),
         _: 3
-      }, 8, ["visible", "onOnClickoutside"])
+      }, 8, ["visible", "onOnClick", "onOnClickoutside"])
     ], 4)) : createCommentVNode("", true),
     $props.loading ? (openBlock(), createBlock(_component_Spin, {
       key: 1,
@@ -34733,6 +34757,10 @@ const _sfc_main$5 = {
     expandNode: {
       type: Boolean,
       default: false
+    },
+    autoCloseContextmenu: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -34891,6 +34919,13 @@ const _sfc_main$5 = {
     },
     handleOnContextmenu(param) {
       this.handleContextmenu(param);
+    },
+    closeContextMenu() {
+      this.handleClickContextMenuOutside();
+    },
+    handleClickDropdownItem() {
+      if (this.autoCloseContextmenu)
+        this.closeContextMenu();
     }
   },
   created() {
@@ -34928,6 +34963,7 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
         trigger: "custom",
         visible: $data.contextMenuVisible,
         transfer: "",
+        onOnClick: $options.handleClickDropdownItem,
         onOnClickoutside: $options.handleClickContextMenuOutside
       }, {
         list: withCtx(() => [
@@ -34939,7 +34975,7 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
           })
         ]),
         _: 3
-      }, 8, ["visible", "onOnClickoutside"])
+      }, 8, ["visible", "onOnClick", "onOnClickoutside"])
     ], 4)
   ], 2);
 }
@@ -36056,7 +36092,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.10";
+const version$1 = "1.0.0-beta.11";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
