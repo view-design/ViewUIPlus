@@ -2888,7 +2888,7 @@ const _sfc_main$2d = {
     singleDisplayClasses() {
       const { filterable, multiple, showPlaceholder } = this;
       return [{
-        [prefixCls$1h + "-head-with-prefix"]: this.$slots.prefix || this.prefix,
+        [prefixCls$1h + "-head-with-prefix"]: this.showPrefix,
         [prefixCls$1h + "-placeholder"]: showPlaceholder && !filterable,
         [prefixCls$1h + "-selected-value"]: !showPlaceholder && !multiple && !filterable
       }];
@@ -2943,7 +2943,7 @@ const _sfc_main$2d = {
     },
     headCls() {
       return {
-        [`${prefixCls$1h}-head-flex`]: this.filterable && (this.$slots.prefix || this.prefix)
+        [`${prefixCls$1h}-head-flex`]: this.filterable && this.showPrefix
       };
     },
     arrowType() {
@@ -10574,7 +10574,10 @@ const _sfc_main$1J = {
 };
 const _hoisted_1$W = ["disabled", "value", "name"];
 const _hoisted_2$B = ["disabled", "checked", "name"];
-const _hoisted_3$t = { key: 0 };
+const _hoisted_3$t = {
+  key: 0,
+  class: "ivu-checkbox-label-text"
+};
 function _sfc_render$1B(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("label", {
     class: normalizeClass($options.wrapClasses)
@@ -10610,9 +10613,11 @@ function _sfc_render$1B(_ctx, _cache, $props, $setup, $data, $options) {
         onBlur: _cache[6] || (_cache[6] = (...args) => $options.onBlur && $options.onBlur(...args))
       }, null, 42, _hoisted_2$B))
     ], 2),
-    renderSlot(_ctx.$slots, "default", {}, () => [
-      $data.showSlot ? (openBlock(), createElementBlock("span", _hoisted_3$t, toDisplayString($props.label), 1)) : createCommentVNode("", true)
-    ])
+    $data.showSlot ? (openBlock(), createElementBlock("span", _hoisted_3$t, [
+      renderSlot(_ctx.$slots, "default", {}, () => [
+        createTextVNode(toDisplayString($props.label), 1)
+      ])
+    ])) : createCommentVNode("", true)
   ], 2);
 }
 var Checkbox = /* @__PURE__ */ _export_sfc(_sfc_main$1J, [["render", _sfc_render$1B]]);
@@ -30566,9 +30571,11 @@ const _sfc_main$l = {
             } = this.dragState;
             const finalLeft = parseInt(resizeProxy.style.left, 10);
             const columnWidth = finalLeft - startColumnLeft;
-            const _column = table.columns.find((item) => item.__id === column.__id);
-            if (_column)
+            const _column = table.allColumns.find((item) => item.__id === column.__id);
+            if (_column) {
               _column.width = columnWidth;
+              column.width = columnWidth;
+            }
             table.$emit("on-column-width-resize", _column.width, startLeft - startColumnLeft, column, event);
             document.body.style.cursor = "";
             this.dragging = false;
@@ -36101,7 +36108,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.13";
+const version$1 = "1.0.0-beta.14";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
