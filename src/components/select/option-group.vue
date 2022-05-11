@@ -1,5 +1,5 @@
 <template>
-    <li :class="[prefixCls + '-wrap']" v-show="!hidden">
+    <li :class="[prefixCls + '-wrap']" v-show="show">
         <div :class="[prefixCls + '-title']">{{ label }}</div>
         <ul>
             <li :class="[prefixCls]" ref="options"><slot></slot></li>
@@ -34,19 +34,9 @@
                 optionList: []
             };
         },
-        methods: {
-            queryChange () {
-                nextTick(() => {
-                    const options = this.$refs.options.querySelectorAll('.ivu-select-item');
-                    let hasVisibleOption = false;
-                    for (let i = 0; i < options.length; i++) {
-                        if (options[i].style.display !== 'none') {
-                            hasVisibleOption = true;
-                            break;
-                        }
-                    }
-                    this.hidden = !hasVisibleOption;
-                });
+        computed: {
+            show () {
+                return this.optionList.find(item => item.proxy && item.proxy.isShow);
             }
         }
     };
