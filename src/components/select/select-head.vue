@@ -129,7 +129,7 @@
             singleDisplayClasses () {
                 const { filterable, multiple, showPlaceholder } = this;
                 return [{
-                    [prefixCls + '-head-with-prefix']: this.$slots.prefix || this.prefix,
+                    [prefixCls + '-head-with-prefix']: this.showPrefix,
                     [prefixCls + '-placeholder']: showPlaceholder && !filterable,
                     [prefixCls + '-selected-value']: !showPlaceholder && !multiple && !filterable,
                 }];
@@ -186,7 +186,7 @@
             // 使用 prefix 时，在 filterable
             headCls () {
                 return {
-                    [`${prefixCls}-head-flex`]: this.filterable && (this.$slots.prefix || this.prefix)
+                    [`${prefixCls}-head-flex`]: this.filterable && this.showPrefix
                 };
             },
             // 3.4.0, global setting customArrow 有值时，arrow 赋值空
