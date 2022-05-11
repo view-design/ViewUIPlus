@@ -24,7 +24,7 @@
                 @focus="onFocus"
                 @blur="onBlur">
         </span>
-        <slot><span v-if="showSlot">{{ label }}</span></slot>
+        <span class="ivu-checkbox-label-text" v-if="showSlot"><slot>{{ label }}</slot></span>
     </label>
 </template>
 <script>

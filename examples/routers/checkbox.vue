@@ -1,5 +1,8 @@
 <template>
     <div>
+        <Checkbox></Checkbox>
+        <Checkbox disabled></Checkbox>
+        <br><br>
         <Checkbox
             :indeterminate="true"
             :value="false"
