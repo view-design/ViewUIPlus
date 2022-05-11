@@ -308,9 +308,11 @@
 
                             const finalLeft = parseInt(resizeProxy.style.left, 10);
                             const columnWidth = finalLeft - startColumnLeft;
-
-                            const _column = table.columns.find(item => item.__id === column.__id);
-                            if (_column) _column.width = columnWidth;
+                            const _column = table.allColumns.find(item => item.__id === column.__id);
+                            if (_column) {
+                                _column.width = columnWidth;
+                                column.width = columnWidth;
+                            }
                             table.$emit('on-column-width-resize', _column.width, startLeft - startColumnLeft, column, event);
 
                             document.body.style.cursor = '';
