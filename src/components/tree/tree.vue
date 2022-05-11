@@ -11,7 +11,7 @@
         </TreeNode>
         <div :class="[prefixCls + '-empty']" v-if="!stateTree.length">{{ localeEmptyText }}</div>
         <div class="ivu-tree-context-menu" :style="contextMenuStyles">
-            <Dropdown trigger="custom" :visible="contextMenuVisible" transfer @on-clickoutside="handleClickContextMenuOutside">
+            <Dropdown trigger="custom" :visible="contextMenuVisible" transfer @on-click="handleClickDropdownItem" @on-clickoutside="handleClickContextMenuOutside">
                 <template #list>
                     <DropdownMenu>
                         <slot name="contextMenu"></slot>
@@ -82,6 +82,10 @@
             expandNode: {
                 type: Boolean,
                 default: false
+            },
+            autoCloseContextmenu: {
+                type: Boolean,
+                default: true
             }
         },
         data () {
@@ -244,6 +248,12 @@
             },
             handleOnContextmenu (param) {
                 this.handleContextmenu(param);
+            },
+            closeContextMenu () {
+                this.handleClickContextMenuOutside()
+            },
+            handleClickDropdownItem () {
+                if (this.autoCloseContextmenu) this.closeContextMenu()
             }
         },
         created (){

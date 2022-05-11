@@ -40,7 +40,7 @@
         </div>
         <div :class="contentClasses" :style="contentStyle" ref="panes"><slot></slot></div>
         <div class="ivu-tabs-context-menu" :style="contextMenuStyles">
-            <Dropdown trigger="custom" :visible="contextMenuVisible" transfer @on-clickoutside="handleClickContextMenuOutside">
+            <Dropdown trigger="custom" :visible="contextMenuVisible" transfer @on-click="handleClickDropdownItem" @on-clickoutside="handleClickContextMenuOutside">
                 <template #list>
                     <DropdownMenu>
                         <slot name="contextMenu"></slot>
@@ -131,6 +131,10 @@
             draggable: {
                 type: Boolean,
                 default: false
+            },
+            autoCloseContextmenu: {
+                type: Boolean,
+                default: true
             }
         },
         data () {
@@ -573,6 +577,12 @@
                     navNames.splice(b, 1, ...navNames.splice(a, 1 , navNames[b]));
                     this.$emit('on-drag-drop', dragName, nav.name, a, b, navNames);
                 }
+            },
+            closeContextMenu () {
+                this.handleClickContextMenuOutside()
+            },
+            handleClickDropdownItem () {
+                if (this.autoCloseContextmenu) this.closeContextMenu()
             }
         },
         watch: {
