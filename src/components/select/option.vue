@@ -74,7 +74,7 @@
                 const slotOptions = SelectInstance.slotOptions || [];
                 const focusIndex = SelectInstance.focusIndex
                 const focusOption = slotOptions[focusIndex]
-                return focusOption && focusOption.value === this.value;
+                return focusOption && focusOption.props && focusOption.props.value === this.value;
             },
             isShow(){
                 const SelectInstance = this.SelectInstance;
@@ -85,8 +85,9 @@
                 // 输入创建
                 const showCreateItem = SelectInstance.showCreateItem;
                 const allowCreate = SelectInstance.allowCreate;
-                const { label, value } = slotOptions.find(item => item.value === this.value) || {};
-                let filterOption = (label || value || '').toLowerCase();
+                const { props } = slotOptions.find(item => item.props && item.props.value === this.value) || { props: {} };
+                const label = this.label || this.$el && this.$el.textContent
+                let filterOption = (label || props.value || '').toLowerCase();
                 if (filterByLabel) {
                     filterOption = (label || '').toLowerCase();
                 }
@@ -102,7 +103,6 @@
         methods: {
             select () {
                 if (this.itemDisabled) return false;
-
                 this.SelectInstance.handleOnSelectSelected({
                     value: this.value,
                     label: this.optionLabel,
@@ -113,12 +113,9 @@
                 const select = this.SelectInstance;
                 const group = this.OptionGroupInstance;
                 if (group) {
-                    const group = this.OptionGroupInstance;
                     group.optionList.push({
                         ...this.instance,
                         id: this.id,
-                        value: this.value,
-                        label: this.label || this.$el && this.$el.textContent,
                         tag: 'option'
                     });
                 }
@@ -126,8 +123,6 @@
                     select.slotOptions.push({
                         ...this.instance,
                         id: this.id,
-                        value: this.value,
-                        label: this.label || this.$el && this.$el.textContent,
                         tag: 'option'
                     });
                 }
