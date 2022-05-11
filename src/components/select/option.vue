@@ -99,11 +99,11 @@
                 const filterable = SelectInstance.filterable;
                 const query = SelectInstance.query.toLowerCase().trim();
                 const filterByLabel = SelectInstance.filterByLabel;
-                const slotOptions = SelectInstance.slotOptions || [];
+                const slotOptionsMap = SelectInstance.slotOptionsMap;
                 // 输入创建
                 const showCreateItem = SelectInstance.showCreateItem;
                 const allowCreate = SelectInstance.allowCreate;
-                const { props } = slotOptions.find(item => item.props && item.props.value === this.value) || { props: {} };
+                const { props } = slotOptionsMap.get(this.value) || { props: {} };
                 const label = this.label || this.$el && this.$el.textContent
                 let filterOption = (label || props.value || '').toLowerCase();
                 if (filterByLabel) {
@@ -130,32 +130,36 @@
             addOption () {
                 const select = this.SelectInstance;
                 const group = this.OptionGroupInstance;
+                const {id, value, instance} = this;
                 if (group) {
                     group.optionList.push({
-                        ...this.instance,
-                        id: this.id,
+                        ...instance,
+                        id,
                         tag: 'option'
                     });
                 }
                 if (select){
                     select.slotOptions.push({
-                        ...this.instance,
-                        id: this.id,
+                        ...instance,
+                        id,
                         tag: 'option'
                     });
+                    select.slotOptionsMap.set(value, instance)
                 }
             },
             removeOption () {
                 const group = this.OptionGroupInstance;
                 const select = this.SelectInstance;
+                const {id, value} = this;
                 if (group) {
-                    const index = group.optionList.findIndex(item => item.id === this.id);
+                    const index = group.optionList.findIndex(item => item.id === id);
                     index !== -1 && group.optionList.splice(index, 1);
                 }
                 if( select ){
                     const select = this.SelectInstance;
-                    const index = select.slotOptions.findIndex(item => item.id === this.id);
+                    const index = select.slotOptions.findIndex(item => item.id === id);
                     index !== -1 && select.slotOptions.splice(index, 1);
+                    select.slotOptionsMap.has(value) && select.slotOptionsMap.delete(value);
                 }
             }
         },
