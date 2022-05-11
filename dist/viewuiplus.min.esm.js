@@ -32926,7 +32926,8 @@ const _sfc_main$g = {
       }
     },
     makeColumnsId(columns) {
-      return columns.map((item) => {
+      const cloneColumns = deepCopy(columns);
+      return cloneColumns.map((item) => {
         if ("children" in item)
           this.makeColumnsId(item.children);
         item.__id = getRandomStr(6);
@@ -36100,7 +36101,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.12";
+const version$1 = "1.0.0-beta.13";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
