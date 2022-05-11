@@ -1,6 +1,6 @@
 <template>
     <div @click="onHeaderClick" :class="headCls">
-        <span :class="[prefixCls + '-prefix']" v-if="$slots.prefix || prefix">
+        <span :class="[prefixCls + '-prefix']" v-if="showPrefix">
             <slot name="prefix">
                 <Icon :type="prefix" v-if="prefix" />
             </slot>
@@ -214,6 +214,14 @@
                     }
                 }
                 return type;
+            },
+            showPrefix () {
+                const prefix = this.$slots.prefix && this.$slots.prefix();
+                let visible = false;
+                if (prefix) {
+                    visible = prefix[0].children.length > 0;
+                }
+                return visible || this.prefix
             },
             // 3.4.0, global setting
             arrowSize () {
