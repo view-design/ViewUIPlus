@@ -3578,13 +3578,13 @@ const _sfc_main$2c = {
         this.reset();
     },
     getOptionData(value) {
-      const option = this.slotOptions.find(({ props }) => props.value === value);
-      if (!option)
+      const optionItem = this.slotOptions.find(({ props }) => props.value === value);
+      if (!optionItem)
         return null;
-      const { label, disabled } = option;
+      const { optionLabel, disabled } = optionItem.proxy || {};
       return {
         value,
-        label,
+        label: optionLabel,
         disabled
       };
     },
@@ -3691,7 +3691,7 @@ const _sfc_main$2c = {
             return this.hideMenu();
           const optionComponent = this.slotOptions[this.focusIndex];
           if (optionComponent) {
-            const option = this.getOptionData(optionComponent.value);
+            const option = this.getOptionData(optionComponent.props.value);
             this.onOptionClick(option);
           } else {
             this.hideMenu();
@@ -3774,7 +3774,7 @@ const _sfc_main$2c = {
       this.focusIndex = this.slotOptions.findIndex((opt) => {
         if (!opt)
           return false;
-        return opt.value === option.value;
+        return opt.props.value === option.value;
       });
       if (this.filterable) {
         const inputField = this.$el.querySelector('input[type="text"]');
@@ -3915,7 +3915,6 @@ const _sfc_main$2c = {
       if (index2 < 0 || this.autoComplete)
         return;
       if (this.slotOptions[index2]) {
-        this.slotOptions[index2].value;
         const optionInstance = this.slotOptions[index2].proxy;
         const $itemEle = optionInstance.$el;
         const $drop = this.$refs.dropdown.$refs.drop;
@@ -4136,10 +4135,25 @@ const _sfc_main$2b = {
     },
     isFocused() {
       const SelectInstance = this.SelectInstance;
-      const slotOptions = SelectInstance.slotOptions || [];
+      let slotOptions = SelectInstance.slotOptions || [];
       const focusIndex = SelectInstance.focusIndex;
+      const defaultSlot = SelectInstance.$slots.default;
+      if (this.autoComplete && defaultSlot) {
+        slotOptions = [];
+        let vNodes = defaultSlot();
+        while (vNodes.length > 0) {
+          const vNode = vNodes.shift();
+          if (vNode.type && typeof vNode.type === "object" && vNode.type.name === "iOption") {
+            slotOptions.push(vNode);
+          } else {
+            if (Array.isArray(vNode.children)) {
+              vNodes = vNodes.concat(vNode.children);
+            }
+          }
+        }
+      }
       const focusOption = slotOptions[focusIndex];
-      return focusOption && focusOption.value === this.value;
+      return focusOption && focusOption.props && focusOption.props.value === this.value;
     },
     isShow() {
       const SelectInstance = this.SelectInstance;
@@ -4149,8 +4163,9 @@ const _sfc_main$2b = {
       const slotOptions = SelectInstance.slotOptions || [];
       const showCreateItem = SelectInstance.showCreateItem;
       const allowCreate = SelectInstance.allowCreate;
-      const { label, value } = slotOptions.find((item) => item.value === this.value) || {};
-      let filterOption = (label || value || "").toLowerCase();
+      const { props } = slotOptions.find((item) => item.props && item.props.value === this.value) || { props: {} };
+      const label = this.label || this.$el && this.$el.textContent;
+      let filterOption = (label || props.value || "").toLowerCase();
       if (filterByLabel) {
         filterOption = (label || "").toLowerCase();
       }
@@ -4177,19 +4192,14 @@ const _sfc_main$2b = {
       const select2 = this.SelectInstance;
       const group = this.OptionGroupInstance;
       if (group) {
-        const group2 = this.OptionGroupInstance;
-        group2.optionList.push(__spreadProps(__spreadValues({}, this.instance), {
+        group.optionList.push(__spreadProps(__spreadValues({}, this.instance), {
           id: this.id,
-          value: this.value,
-          label: this.label || this.$el && this.$el.textContent,
           tag: "option"
         }));
       }
       if (select2) {
         select2.slotOptions.push(__spreadProps(__spreadValues({}, this.instance), {
           id: this.id,
-          value: this.value,
-          label: this.label || this.$el && this.$el.textContent,
           tag: "option"
         }));
       }
@@ -36046,7 +36056,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.8";
+const version$1 = "1.0.0-beta.10";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
