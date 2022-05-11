@@ -791,7 +791,7 @@
                     }
                     if (topOverflowDistance < 0) {
                         $drop.scrollTop += topOverflowDistance;
-                    }   
+                    }
                 }
             },
             dropVisible (open) {
