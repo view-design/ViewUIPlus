@@ -133,7 +133,7 @@
                 </template>
             </Dropdown>
         </div>
-        <Spin fix size="large" v-if="loading">
+        <Spin fix size="large" :show="loading">
             <slot name="loading"></slot>
         </Spin>
     </div>
