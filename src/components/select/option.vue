@@ -71,8 +71,26 @@
             },
             isFocused(){
                 const SelectInstance = this.SelectInstance;
-                const slotOptions = SelectInstance.slotOptions || [];
-                const focusIndex = SelectInstance.focusIndex
+                let slotOptions = SelectInstance.slotOptions || [];
+                const focusIndex = SelectInstance.focusIndex;
+
+                // when autoComplete the slotsOption index sort error
+                // use the parent default slots to get right slotsOption index
+                const defaultSlot = SelectInstance.$slots.default;
+                if (this.autoComplete && defaultSlot) {
+                    slotOptions = [];
+                    let vNodes = defaultSlot();
+                    while(vNodes.length > 0) {
+                        const vNode = vNodes.shift();
+                        if (vNode.type && typeof vNode.type === 'object' && vNode.type.name ==='iOption' ) {
+                            slotOptions.push(vNode);
+                        }else {
+                            if (Array.isArray(vNode.children)) {
+                                vNodes = vNodes.concat(vNode.children)
+                            }
+                        }           
+                    }
+                }
                 const focusOption = slotOptions[focusIndex]
                 return focusOption && focusOption.props && focusOption.props.value === this.value;
             },
@@ -138,7 +156,6 @@
                     const select = this.SelectInstance;
                     const index = select.slotOptions.findIndex(item => item.id === this.id);
                     index !== -1 && select.slotOptions.splice(index, 1);
-
                 }
             }
         },
