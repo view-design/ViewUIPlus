@@ -20,7 +20,7 @@ Notification.newInstance = properties => {
     const container = document.createElement('div');
     document.body.appendChild(container);
     Instance.mount(container);
-    const notification = _instance.ctx.$refs.notification;
+    const notification = _instance.refs.notification;
 
     return {
         notice (noticeProps) {

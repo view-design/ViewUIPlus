@@ -23,7 +23,7 @@ LoadingBar.newInstance = properties => {
     const container = document.createElement('div');
     document.body.appendChild(container);
     Instance.mount(container);
-    const loading_bar = _instance.ctx.$refs.loadingBar;
+    const loading_bar = _instance.refs.loadingBar;
 
     return {
         update (options) {

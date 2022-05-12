@@ -52,7 +52,7 @@ Spin.newInstance = properties => {
     const container = document.createElement('div');
     document.body.appendChild(container);
     Instance.mount(container);
-    const spin = _instance.ctx.$refs.spin;
+    const spin = _instance.refs.spin;
 
     return {
         show () {

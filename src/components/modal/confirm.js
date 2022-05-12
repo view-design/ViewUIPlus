@@ -172,7 +172,7 @@ Modal.newInstance = properties => {
     });
 
     Instance.mount(container);
-    const modal = _instance.ctx.$refs.modal;
+    const modal = _instance.refs.modal;
 
     return {
         show (props) {
