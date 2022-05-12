@@ -14836,7 +14836,7 @@ Notification$1.newInstance = (properties) => {
   const container = document.createElement("div");
   document.body.appendChild(container);
   Instance.mount(container);
-  const notification = _instance.ctx.$refs.notification;
+  const notification = _instance.refs.notification;
   return {
     notice(noticeProps) {
       notification.add(noticeProps);
@@ -21917,7 +21917,7 @@ Spin.newInstance = (properties) => {
   const container = document.createElement("div");
   document.body.appendChild(container);
   Instance.mount(container);
-  const spin = _instance.ctx.$refs.spin;
+  const spin = _instance.refs.spin;
   return {
     show() {
       spin.visible = true;
@@ -22284,7 +22284,7 @@ LoadingBar.newInstance = (properties) => {
   const container = document.createElement("div");
   document.body.appendChild(container);
   Instance.mount(container);
-  const loading_bar = _instance.ctx.$refs.loadingBar;
+  const loading_bar = _instance.refs.loadingBar;
   return {
     update(options) {
       if ("percent" in options) {
@@ -23551,7 +23551,7 @@ Modal.newInstance = (properties) => {
     }
   });
   Instance.mount(container);
-  const modal = _instance.ctx.$refs.modal;
+  const modal = _instance.refs.modal;
   return {
     show(props) {
       modal.$parent.showCancel = props.showCancel;
@@ -36116,7 +36116,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.19";
+const version$1 = "1.0.0-beta.22";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
