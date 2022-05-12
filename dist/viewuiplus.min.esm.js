@@ -3476,7 +3476,8 @@ const _sfc_main$2c = {
       hasExpectedValue: false,
       isTyping: false,
       preventRemoteCall: false,
-      filterQueryChange: false
+      filterQueryChange: false,
+      slotOptionsMap: /* @__PURE__ */ new Map()
     };
   },
   computed: {
@@ -3522,13 +3523,12 @@ const _sfc_main$2c = {
     },
     showCreateItem() {
       let state = false;
-      if (this.allowCreate && this.query !== "") {
+      const { allowCreate, query, slotOptions } = this;
+      if (allowCreate && query !== "") {
         state = true;
-        const $options = this.slotOptions;
-        if ($options && $options.length) {
-          if ($options.find((item) => item.label === this.query))
-            state = false;
-        }
+        const findSlotItem = (slotOptions || []).find((item) => item.proxy && item.proxy.showLabel === query);
+        if (findSlotItem)
+          state = false;
       }
       return state;
     },
@@ -3830,7 +3830,6 @@ const _sfc_main$2c = {
           label: query,
           tag: void 0
         };
-        this.hideMenu();
         this.$refs.dropdown.handleOnUpdatePopper();
         setTimeout(() => {
           this.onOptionClick(option);
@@ -4168,17 +4167,15 @@ const _sfc_main$2b = {
       const filterable = SelectInstance.filterable;
       const query = SelectInstance.query.toLowerCase().trim();
       const filterByLabel = SelectInstance.filterByLabel;
-      const slotOptions = SelectInstance.slotOptions || [];
-      const showCreateItem = SelectInstance.showCreateItem;
-      const allowCreate = SelectInstance.allowCreate;
-      const { props } = slotOptions.find((item) => item.props && item.props.value === this.value) || { props: {} };
+      const slotOptionsMap = SelectInstance.slotOptionsMap;
+      const { props } = slotOptionsMap.get(this.value) || { props: {} };
       const label = this.label || this.$el && this.$el.textContent;
       let filterOption = (label || props.value || "").toLowerCase();
       if (filterByLabel) {
         filterOption = (label || "").toLowerCase();
       }
       const showFilterOption = filterOption.includes(query);
-      return !filterable || filterable && showFilterOption || !showCreateItem && allowCreate;
+      return !filterable || filterable && showFilterOption;
     },
     selected() {
       const SelectInstance = this.SelectInstance;
@@ -4199,30 +4196,34 @@ const _sfc_main$2b = {
     addOption() {
       const select2 = this.SelectInstance;
       const group = this.OptionGroupInstance;
+      const { id, value, instance } = this;
       if (group) {
-        group.optionList.push(__spreadProps(__spreadValues({}, this.instance), {
-          id: this.id,
+        group.optionList.push(__spreadProps(__spreadValues({}, instance), {
+          id,
           tag: "option"
         }));
       }
       if (select2) {
-        select2.slotOptions.push(__spreadProps(__spreadValues({}, this.instance), {
-          id: this.id,
+        select2.slotOptions.push(__spreadProps(__spreadValues({}, instance), {
+          id,
           tag: "option"
         }));
+        select2.slotOptionsMap.set(value, instance);
       }
     },
     removeOption() {
       const group = this.OptionGroupInstance;
       const select2 = this.SelectInstance;
+      const { id, value } = this;
       if (group) {
-        const index2 = group.optionList.findIndex((item) => item.id === this.id);
+        const index2 = group.optionList.findIndex((item) => item.id === id);
         index2 !== -1 && group.optionList.splice(index2, 1);
       }
       if (select2) {
         const select3 = this.SelectInstance;
-        const index2 = select3.slotOptions.findIndex((item) => item.id === this.id);
+        const index2 = select3.slotOptions.findIndex((item) => item.id === id);
         index2 !== -1 && select3.slotOptions.splice(index2, 1);
+        select3.slotOptionsMap.has(value) && select3.slotOptionsMap.delete(value);
       }
     }
   },
@@ -26254,19 +26255,9 @@ const _sfc_main$H = {
       optionList: []
     };
   },
-  methods: {
-    queryChange() {
-      nextTick(() => {
-        const options = this.$refs.options.querySelectorAll(".ivu-select-item");
-        let hasVisibleOption = false;
-        for (let i = 0; i < options.length; i++) {
-          if (options[i].style.display !== "none") {
-            hasVisibleOption = true;
-            break;
-          }
-        }
-        this.hidden = !hasVisibleOption;
-      });
+  computed: {
+    show() {
+      return this.optionList.find((item) => item.proxy && item.proxy.isShow);
     }
   }
 };
@@ -26286,7 +26277,7 @@ function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
       ], 2)
     ])
   ], 2)), [
-    [vShow, !$data.hidden]
+    [vShow, $options.show]
   ]);
 }
 var OptionGroup = /* @__PURE__ */ _export_sfc(_sfc_main$H, [["render", _sfc_render$C]]);
@@ -36108,7 +36099,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.15";
+const version$1 = "1.0.0-beta.16";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
