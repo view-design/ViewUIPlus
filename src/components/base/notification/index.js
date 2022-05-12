@@ -1,21 +1,26 @@
 import Notification from './notification.vue';
-import { createApp, h } from 'vue';
+import { createApp, h, getCurrentInstance } from 'vue';
 
 Notification.newInstance = properties => {
     const _props = properties || {};
+
+    let _instance = null;
 
     const Instance = createApp({
         render () {
             return h(Notification, Object.assign({
                 ref: 'notification'
             }, _props));
+        },
+        created () {
+            _instance = getCurrentInstance();
         }
     });
 
     const container = document.createElement('div');
     document.body.appendChild(container);
     Instance.mount(container);
-    const notification = Instance._instance.refs.notification;
+    const notification = _instance.ctx.$refs.notification;
 
     return {
         notice (noticeProps) {

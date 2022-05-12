@@ -1,8 +1,10 @@
-import { createApp, h } from 'vue';
+import { createApp, h, getCurrentInstance } from 'vue';
 import LoadingBar from './loading-bar.vue';
 
 LoadingBar.newInstance = properties => {
     const _props = properties || {};
+
+    let _instance = null;
 
     const Instance = createApp({
         data () {
@@ -12,13 +14,16 @@ LoadingBar.newInstance = properties => {
             return h(LoadingBar, Object.assign({
                 ref: 'loadingBar'
             }, _props));
+        },
+        created () {
+            _instance = getCurrentInstance();
         }
     });
 
     const container = document.createElement('div');
     document.body.appendChild(container);
     Instance.mount(container);
-    const loading_bar = Instance._instance.refs.loadingBar;
+    const loading_bar = _instance.ctx.$refs.loadingBar;
 
     return {
         update (options) {

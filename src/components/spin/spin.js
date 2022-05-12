@@ -1,4 +1,4 @@
-import { createApp, h } from 'vue';
+import { createApp, h, getCurrentInstance } from 'vue';
 import Spin from './spin.vue';
 
 import { transferIndex, transferIncrease } from '../../utils/transfer-queue';
@@ -12,6 +12,8 @@ let tIndex = handleGetIndex();
 
 Spin.newInstance = properties => {
     const _props = properties || {};
+
+    let _instance = null;
 
     const Instance = createApp({
         data () {
@@ -41,13 +43,16 @@ Spin.newInstance = properties => {
                     'z-index': 2010 + tIndex
                 }
             }, [vnode]);
+        },
+        created () {
+            _instance = getCurrentInstance();
         }
     });
 
     const container = document.createElement('div');
     document.body.appendChild(container);
     Instance.mount(container);
-    const spin = Instance._instance.refs.spin;
+    const spin = _instance.ctx.$refs.spin;
 
     return {
         show () {

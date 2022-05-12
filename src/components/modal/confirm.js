@@ -1,4 +1,4 @@
-import { createApp, h } from 'vue';
+import { createApp, h, getCurrentInstance } from 'vue';
 import Modal from './modal.vue';
 import Button from '../button/button.vue';
 import Locale from '../../mixins/locale';
@@ -10,6 +10,8 @@ Modal.newInstance = properties => {
 
     const container = document.createElement('div');
     document.body.appendChild(container);
+
+    let _instance = null;
 
     const Instance = createApp({
         mixins: [ Locale ],
@@ -163,11 +165,14 @@ Modal.newInstance = properties => {
             onOk () {},
             onCancel () {},
             onRemove () {}
+        },
+        created () {
+            _instance = getCurrentInstance();
         }
     });
 
     Instance.mount(container);
-    const modal = Instance._instance.refs.modal;
+    const modal = _instance.ctx.$refs.modal;
 
     return {
         show (props) {
