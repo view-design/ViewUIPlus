@@ -14822,17 +14822,21 @@ function _sfc_render$1m(_ctx, _cache, $props, $setup, $data, $options) {
 var Notification$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1u, [["render", _sfc_render$1m]]);
 Notification$1.newInstance = (properties) => {
   const _props = properties || {};
+  let _instance = null;
   const Instance = createApp({
     render() {
       return h(Notification$1, Object.assign({
         ref: "notification"
       }, _props));
+    },
+    created() {
+      _instance = getCurrentInstance();
     }
   });
   const container = document.createElement("div");
   document.body.appendChild(container);
   Instance.mount(container);
-  const notification = Instance._instance.refs.notification;
+  const notification = _instance.ctx.$refs.notification;
   return {
     notice(noticeProps) {
       notification.add(noticeProps);
@@ -21878,6 +21882,7 @@ function handleGetIndex() {
 let tIndex = handleGetIndex();
 Spin.newInstance = (properties) => {
   const _props = properties || {};
+  let _instance = null;
   const Instance = createApp({
     data() {
       return Object.assign({}, _props, {});
@@ -21904,12 +21909,15 @@ Spin.newInstance = (properties) => {
           "z-index": 2010 + tIndex
         }
       }, [vnode]);
+    },
+    created() {
+      _instance = getCurrentInstance();
     }
   });
   const container = document.createElement("div");
   document.body.appendChild(container);
   Instance.mount(container);
-  const spin = Instance._instance.refs.spin;
+  const spin = _instance.ctx.$refs.spin;
   return {
     show() {
       spin.visible = true;
@@ -22259,6 +22267,7 @@ function _sfc_render$R(_ctx, _cache, $props, $setup, $data, $options) {
 var LoadingBar = /* @__PURE__ */ _export_sfc(_sfc_main$X, [["render", _sfc_render$R]]);
 LoadingBar.newInstance = (properties) => {
   const _props = properties || {};
+  let _instance = null;
   const Instance = createApp({
     data() {
       return _props;
@@ -22267,12 +22276,15 @@ LoadingBar.newInstance = (properties) => {
       return h(LoadingBar, Object.assign({
         ref: "loadingBar"
       }, _props));
+    },
+    created() {
+      _instance = getCurrentInstance();
     }
   });
   const container = document.createElement("div");
   document.body.appendChild(container);
   Instance.mount(container);
-  const loading_bar = Instance._instance.refs.loadingBar;
+  const loading_bar = _instance.ctx.$refs.loadingBar;
   return {
     update(options) {
       if ("percent" in options) {
@@ -23382,6 +23394,7 @@ Modal.newInstance = (properties) => {
   const _props = properties || {};
   const container = document.createElement("div");
   document.body.appendChild(container);
+  let _instance = null;
   const Instance = createApp({
     mixins: [Locale],
     data() {
@@ -23532,10 +23545,13 @@ Modal.newInstance = (properties) => {
       },
       onRemove() {
       }
+    },
+    created() {
+      _instance = getCurrentInstance();
     }
   });
   Instance.mount(container);
-  const modal = Instance._instance.refs.modal;
+  const modal = _instance.ctx.$refs.modal;
   return {
     show(props) {
       modal.$parent.showCancel = props.showCancel;
@@ -36100,7 +36116,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.17";
+const version$1 = "1.0.0-beta.19";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
