@@ -312,6 +312,7 @@
                             if (_column) {
                                 _column.width = columnWidth;
                                 column.width = columnWidth;
+                                table.handleResize();
                             }
                             table.$emit('on-column-width-resize', _column.width, startLeft - startColumnLeft, column, event);
 
