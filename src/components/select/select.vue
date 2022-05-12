@@ -358,12 +358,11 @@
             },
             showCreateItem () {
                 let state = false;
-                if (this.allowCreate && this.query !== '') {
+                const {allowCreate, query, slotOptions} = this;
+                if (allowCreate && query !== '') {
                     state = true;
-                    const $options = this.slotOptions;
-                    if ($options && $options.length) {
-                        if ($options.find(item => item.label === this.query)) state = false;
-                    }
+                    const findSlotItem = (slotOptions || []).find(item => item.proxy && item.proxy.showLabel === query)
+                    if (findSlotItem) state = false;
                 }
                 return  state;
             },
@@ -679,7 +678,6 @@
                         label: query,
                         tag: undefined
                     };
-                    this.hideMenu();
                     this.$refs.dropdown.handleOnUpdatePopper();
                     // 单选（和多选，#926）时如果不在 nextTick 里执行，无法赋值
                     setTimeout(() => {

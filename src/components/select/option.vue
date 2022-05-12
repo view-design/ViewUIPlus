@@ -100,9 +100,6 @@
                 const query = SelectInstance.query.toLowerCase().trim();
                 const filterByLabel = SelectInstance.filterByLabel;
                 const slotOptionsMap = SelectInstance.slotOptionsMap;
-                // 输入创建
-                const showCreateItem = SelectInstance.showCreateItem;
-                const allowCreate = SelectInstance.allowCreate;
                 const { props } = slotOptionsMap.get(this.value) || { props: {} };
                 const label = this.label || this.$el && this.$el.textContent
                 let filterOption = (label || props.value || '').toLowerCase();
@@ -110,7 +107,7 @@
                     filterOption = (label || '').toLowerCase();
                 }
                 const showFilterOption = filterOption.includes(query);
-                return !filterable || filterable && showFilterOption || !showCreateItem && allowCreate
+                return !filterable || filterable && showFilterOption
             },
             selected(){
                 const SelectInstance = this.SelectInstance;
