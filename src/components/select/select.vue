@@ -698,13 +698,13 @@
         },
         watch: {
             modelValue (value) {
-                const { publicValue, values } = this;
-
+                const { publicValue, values, getInitialValue } = this;
                 this.checkUpdateStatus();
                 if (value === '') {
                     this.values = [];
                     this.query = '';
                 } else if (checkValuesNotEqual(value,publicValue,values)) {
+                    nextTick(() => this.values = getInitialValue().map(this.getOptionData).filter(Boolean));
                     if (!this.multiple) this.handleFormItemChange('change', this.publicValue);
                 }
             },
