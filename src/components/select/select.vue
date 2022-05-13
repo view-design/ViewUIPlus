@@ -311,7 +311,9 @@
                 isTyping: false,  // #728
                 preventRemoteCall: false,
                 filterQueryChange: false,  // #4273
-                slotOptionsMap: new Map()
+                slotOptionsMap: new Map(),
+                // fix Option hide, the model value cannot selected
+                isLocking: false
             };
         },
         computed: {
@@ -694,17 +696,28 @@
                     this.$refs.selectHead.$refs.input.focus();
                     this.toggleMenu();
                 }
+            },
+            lazyUpdateValue (value) {
+                const { getInitialValue } = this;
+                // fix Option hide, the modalValue cannot selected
+                if (this.isLocking) return;
+                this.isLocking = true;
+
+                nextTick(() => {
+                    this.values = getInitialValue().map(this.getOptionData).filter(Boolean)
+                    this.isLocking = false;
+                });
             }
         },
         watch: {
             modelValue (value) {
-                const { publicValue, values, getInitialValue } = this;
+                const { publicValue, values } = this;
                 this.checkUpdateStatus();
                 if (value === '') {
                     this.values = [];
                     this.query = '';
                 } else if (checkValuesNotEqual(value,publicValue,values)) {
-                    nextTick(() => this.values = getInitialValue().map(this.getOptionData).filter(Boolean));
+                    this.lazyUpdateValue();
                     if (!this.multiple) this.handleFormItemChange('change', this.publicValue);
                 }
             },
@@ -761,7 +774,6 @@
                 }
                 if (query !== '' && this.remote) this.lastRemoteQuery = query;
             },
-            loading (state) {},
             isFocused (focused) {
                 const el = this.filterable ? this.$el.querySelector('input[type="text"]') : this.$el;
                 el[this.isFocused ? 'focus' : 'blur']();
