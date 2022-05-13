@@ -59,7 +59,7 @@
     import Icon from '../icon/icon.vue';
     import Caspanel from './caspanel.vue';
     import clickOutside from '../../directives/clickoutside';
-    import { oneOf } from '../../utils/assist';
+    import { oneOf, deepCopy } from '../../utils/assist';
     import Locale from '../../mixins/locale';
     import mixinsForm from '../../mixins/form';
     import globalConfig from '../../mixins/globalConfig';
@@ -230,8 +230,9 @@
             querySelections () {
                 let selections = [];
                 function getSelections (arr, label, value) {
-                    for (let i = 0; i < arr.length; i++) {
-                        let item = arr[i];
+                    const cloneArr = deepCopy(arr);
+                    for (let i = 0; i < cloneArr.length; i++) {
+                        let item = cloneArr[i];
                         item.__label = label ? label + ' / ' + item.label : item.label;
                         item.__value = value ? value + ',' + item.value : item.value;
 
@@ -381,6 +382,7 @@
             },
             // 排除 loading 后的 data，避免重复触发 updateSelect
             getValidData (data) {
+                const cloneData = deepCopy(data);
                 function deleteData (item) {
                     const new_item = Object.assign({}, item);
                     if ('loading' in new_item) {
@@ -398,7 +400,7 @@
                     return new_item;
                 }
 
-                return data.map(item => deleteData(item));
+                return cloneData.map(item => deleteData(item));
             },
             handleOnResultChange (params) {
                 // lastValue: is click the final val
