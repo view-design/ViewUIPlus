@@ -9836,8 +9836,9 @@ const _sfc_main$1N = {
     querySelections() {
       let selections = [];
       function getSelections(arr, label, value) {
-        for (let i = 0; i < arr.length; i++) {
-          let item = arr[i];
+        const cloneArr = deepCopy(arr);
+        for (let i = 0; i < cloneArr.length; i++) {
+          let item = cloneArr[i];
           item.__label = label ? label + " / " + item.label : item.label;
           item.__value = value ? value + "," + item.value : item.value;
           if (item.children && item.children.length) {
@@ -9979,6 +9980,7 @@ const _sfc_main$1N = {
       this.$refs.input.focus();
     },
     getValidData(data) {
+      const cloneData = deepCopy(data);
       function deleteData(item) {
         const new_item = Object.assign({}, item);
         if ("loading" in new_item) {
@@ -9995,7 +9997,7 @@ const _sfc_main$1N = {
         }
         return new_item;
       }
-      return data.map((item) => deleteData(item));
+      return cloneData.map((item) => deleteData(item));
     },
     handleOnResultChange(params) {
       const lastValue = params.lastValue;
@@ -36116,7 +36118,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.22";
+const version$1 = "1.0.0-beta.23";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
