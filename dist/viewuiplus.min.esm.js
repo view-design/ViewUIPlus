@@ -3477,7 +3477,8 @@ const _sfc_main$2c = {
       isTyping: false,
       preventRemoteCall: false,
       filterQueryChange: false,
-      slotOptionsMap: /* @__PURE__ */ new Map()
+      slotOptionsMap: /* @__PURE__ */ new Map(),
+      isLocking: false
     };
   },
   computed: {
@@ -3844,17 +3845,27 @@ const _sfc_main$2c = {
         this.$refs.selectHead.$refs.input.focus();
         this.toggleMenu();
       }
+    },
+    lazyUpdateValue() {
+      const { getInitialValue } = this;
+      if (this.isLocking)
+        return;
+      this.isLocking = true;
+      nextTick(() => {
+        this.values = getInitialValue().map(this.getOptionData).filter(Boolean);
+        this.isLocking = false;
+      });
     }
   },
   watch: {
     modelValue(value) {
-      const { publicValue, values, getInitialValue } = this;
+      const { publicValue, values } = this;
       this.checkUpdateStatus();
       if (value === "") {
         this.values = [];
         this.query = "";
       } else if (checkValuesNotEqual(value, publicValue, values)) {
-        nextTick(() => this.values = getInitialValue().map(this.getOptionData).filter(Boolean));
+        this.lazyUpdateValue();
         if (!this.multiple)
           this.handleFormItemChange("change", this.publicValue);
       }
@@ -3904,8 +3915,6 @@ const _sfc_main$2c = {
       }
       if (query !== "" && this.remote)
         this.lastRemoteQuery = query;
-    },
-    loading(state) {
     },
     isFocused(focused) {
       const el = this.filterable ? this.$el.querySelector('input[type="text"]') : this.$el;
@@ -4210,6 +4219,7 @@ const _sfc_main$2b = {
           tag: "option"
         }));
         select2.slotOptionsMap.set(value, instance);
+        select2.lazyUpdateValue(value);
       }
     },
     removeOption() {
@@ -36119,7 +36129,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.24";
+const version$1 = "1.0.0-beta.25";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
