@@ -142,6 +142,8 @@
                         tag: 'option'
                     });
                     select.slotOptionsMap.set(value, instance)
+                    // fix Option hide, the modalValue cannot selected
+                    select.lazyUpdateValue(value);
                 }
             },
             removeOption () {
