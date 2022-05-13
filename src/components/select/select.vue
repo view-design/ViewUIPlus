@@ -697,7 +697,7 @@
                     this.toggleMenu();
                 }
             },
-            lazyUpdateValue (value) {
+            lazyUpdateValue () {
                 const { getInitialValue } = this;
                 // fix Option hide, the modalValue cannot selected
                 if (this.isLocking) return;
