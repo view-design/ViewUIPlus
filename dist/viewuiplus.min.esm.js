@@ -3848,12 +3848,13 @@ const _sfc_main$2c = {
   },
   watch: {
     modelValue(value) {
-      const { publicValue, values } = this;
+      const { publicValue, values, getInitialValue } = this;
       this.checkUpdateStatus();
       if (value === "") {
         this.values = [];
         this.query = "";
       } else if (checkValuesNotEqual(value, publicValue, values)) {
+        nextTick(() => this.values = getInitialValue().map(this.getOptionData).filter(Boolean));
         if (!this.multiple)
           this.handleFormItemChange("change", this.publicValue);
       }
@@ -36118,7 +36119,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.23";
+const version$1 = "1.0.0-beta.24";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
