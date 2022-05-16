@@ -36129,7 +36129,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0-beta.25";
+const version$1 = "1.0.0";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
