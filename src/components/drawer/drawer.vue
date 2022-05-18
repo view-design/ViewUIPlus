@@ -39,6 +39,7 @@
 
     import { on, off } from '../../utils/dom';
     import random from '../../utils/random_str';
+    import { isClient } from '../../utils/index';
 
     const prefixCls = 'ivu-drawer';
 
@@ -271,7 +272,7 @@
             handleTriggerMousedown () {
                 this.canMove = true;
                 // 防止鼠标选中抽屉中文字，造成拖动trigger触发浏览器原生拖动行为
-                window.getSelection().removeAllRanges();
+                isClient && window.getSelection().removeAllRanges();
             },
             addDrawer () {
                 const root = this.$root;

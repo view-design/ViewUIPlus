@@ -1,6 +1,7 @@
 import handleEscapeMixin from './handleEscapeMixin';
 import { getTouches } from './utils';
 import { on, off } from '../../utils/dom';
+import { isClient } from '../../utils/index';
 
 export default {
     mixins: [ handleEscapeMixin ],
@@ -40,8 +41,10 @@ export default {
             this.handleChange(e, true);
             // window.addEventListener('mousemove', this.handleChange, false);
             // window.addEventListener('mouseup', this.handleMouseUp, false);
-            on(window, 'mousemove', this.handleChange);
-            on(window, 'mouseup', this.handleMouseUp);
+            if (isClient) {
+                on(window, 'mousemove', this.handleChange);
+                on(window, 'mouseup', this.handleMouseUp);
+            }
         },
         handleMouseUp () {
             this.unbindEventListeners();
@@ -49,25 +52,31 @@ export default {
         unbindEventListeners () {
             // window.removeEventListener('mousemove', this.handleChange);
             // window.removeEventListener('mouseup', this.handleMouseUp);
-            off(window, 'mousemove', this.handleChange);
-            off(window, 'mouseup', this.handleMouseUp);
+            if (isClient) {
+                off(window, 'mousemove', this.handleChange);
+                off(window, 'mouseup', this.handleMouseUp);
+            }
             // This timeout is required so that the click handler for click-outside
             // has the chance to run before the mouseup removes the dragging flag.
             setTimeout(() => this.ColorPickerInstance.handleOnDragging(false), 1);
         },
         getLeft (e) {
-            const {container} = this.$refs;
-            const xOffset = container.getBoundingClientRect().left + window.pageXOffset;
-            const pageX = e.pageX || getTouches(e, 'PageX');
+            if (isClient) {
+                const {container} = this.$refs;
+                const xOffset = container.getBoundingClientRect().left + window.pageXOffset;
+                const pageX = e.pageX || getTouches(e, 'PageX');
 
-            return pageX - xOffset;
+                return pageX - xOffset;
+            }
         },
         getTop (e) {
-            const {container} = this.$refs;
-            const yOffset = container.getBoundingClientRect().top + window.pageYOffset;
-            const pageY = e.pageY || getTouches(e, 'PageY');
+            if (isClient) {
+                const {container} = this.$refs;
+                const yOffset = container.getBoundingClientRect().top + window.pageYOffset;
+                const pageY = e.pageY || getTouches(e, 'PageY');
 
-            return pageY - yOffset;
+                return pageY - yOffset;
+            }
         }
     }
 };

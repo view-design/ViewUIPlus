@@ -9,6 +9,7 @@
 <script>
     import { nextTick } from 'vue';
     import { on, off } from '../../utils/dom';
+    import { isClient } from '../../utils/index';
     const prefixCls = 'ivu-affix';
 
     function getScroll(target, top) {
@@ -17,7 +18,7 @@
 
         let ret = target[prop];
 
-        if (typeof ret !== 'number') {
+        if (isClient && typeof ret !== 'number') {
             ret = window.document.documentElement[method];
         }
 
@@ -25,19 +26,25 @@
     }
 
     function getOffset(element) {
-        const rect = element.getBoundingClientRect();
+        if (isClient) {
+            const rect = element.getBoundingClientRect();
 
-        const scrollTop = getScroll(window, true);
-        const scrollLeft = getScroll(window);
+            const scrollTop = getScroll(window, true);
+            const scrollLeft = getScroll(window);
 
-        const docEl = window.document.body;
-        const clientTop = docEl.clientTop || 0;
-        const clientLeft = docEl.clientLeft || 0;
+            const docEl = window.document.body;
+            const clientTop = docEl.clientTop || 0;
+            const clientLeft = docEl.clientLeft || 0;
 
+            return {
+                top: rect.top + scrollTop - clientTop,
+                left: rect.left + scrollLeft - clientLeft
+            };
+        }
         return {
-            top: rect.top + scrollTop - clientTop,
-            left: rect.left + scrollLeft - clientLeft
-        };
+            top: 0,
+            left: 0
+        }
     }
 
     export default {
@@ -94,51 +101,53 @@
         },
         methods: {
             handleScroll () {
-                const affix = this.affix;
-                const scrollTop = getScroll(window, true);
-                const elOffset = getOffset(this.$el);
-                const windowHeight = window.innerHeight;
-                const elHeight = this.$el.getElementsByTagName('div')[0].offsetHeight;
+                if (isClient) {
+                    const affix = this.affix;
+                    const scrollTop = getScroll(window, true);
+                    const elOffset = getOffset(this.$el);
+                    const windowHeight = window.innerHeight;
+                    const elHeight = this.$el.getElementsByTagName('div')[0].offsetHeight;
 
-                // Fixed Top
-                if ((elOffset.top - this.offsetTop) < scrollTop && this.offsetType == 'top' && !affix) {
-                    this.affix = true;
-                    this.slotStyle = {
-                        width: this.$refs.point.clientWidth + 'px',
-                        height: this.$refs.point.clientHeight + 'px'
-                    };
-                    this.slot = true;
-                    this.styles = {
-                        top: `${this.offsetTop}px`,
-                        left: `${elOffset.left}px`,
-                        width: `${this.$el.offsetWidth}px`
-                    };
+                    // Fixed Top
+                    if ((elOffset.top - this.offsetTop) < scrollTop && this.offsetType == 'top' && !affix) {
+                        this.affix = true;
+                        this.slotStyle = {
+                            width: this.$refs.point.clientWidth + 'px',
+                            height: this.$refs.point.clientHeight + 'px'
+                        };
+                        this.slot = true;
+                        this.styles = {
+                            top: `${this.offsetTop}px`,
+                            left: `${elOffset.left}px`,
+                            width: `${this.$el.offsetWidth}px`
+                        };
 
-                    this.$emit('on-change', true);
-                } else if ((elOffset.top - this.offsetTop) > scrollTop && this.offsetType == 'top' && affix) {
-                    this.slot = false;
-                    this.slotStyle = {};
-                    this.affix = false;
-                    this.styles = null;
+                        this.$emit('on-change', true);
+                    } else if ((elOffset.top - this.offsetTop) > scrollTop && this.offsetType == 'top' && affix) {
+                        this.slot = false;
+                        this.slotStyle = {};
+                        this.affix = false;
+                        this.styles = null;
 
-                    this.$emit('on-change', false);
-                }
+                        this.$emit('on-change', false);
+                    }
 
-                // Fixed Bottom
-                if ((elOffset.top + this.offsetBottom + elHeight) > (scrollTop + windowHeight) && this.offsetType == 'bottom' && !affix) {
-                    this.affix = true;
-                    this.styles = {
-                        bottom: `${this.offsetBottom}px`,
-                        left: `${elOffset.left}px`,
-                        width: `${this.$el.offsetWidth}px`
-                    };
+                    // Fixed Bottom
+                    if ((elOffset.top + this.offsetBottom + elHeight) > (scrollTop + windowHeight) && this.offsetType == 'bottom' && !affix) {
+                        this.affix = true;
+                        this.styles = {
+                            bottom: `${this.offsetBottom}px`,
+                            left: `${elOffset.left}px`,
+                            width: `${this.$el.offsetWidth}px`
+                        };
 
-                    this.$emit('on-change', true);
-                } else if ((elOffset.top + this.offsetBottom + elHeight) < (scrollTop + windowHeight) && this.offsetType == 'bottom' && affix) {
-                    this.affix = false;
-                    this.styles = null;
+                        this.$emit('on-change', true);
+                    } else if ((elOffset.top + this.offsetBottom + elHeight) < (scrollTop + windowHeight) && this.offsetType == 'bottom' && affix) {
+                        this.affix = false;
+                        this.styles = null;
 
-                    this.$emit('on-change', false);
+                        this.$emit('on-change', false);
+                    }
                 }
             }
         }

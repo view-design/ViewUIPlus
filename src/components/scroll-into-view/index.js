@@ -21,13 +21,13 @@
   }
 });
  */
-
+import { isClient } from '../../utils/index';
 
 const COMPLETE = 'COMPLETE';
 const CANCELED = 'CANCELED';
 
 function requestAnimation(task) {
-    if ('requestAnimationFrame' in window) {
+    if (isClient && 'requestAnimationFrame' in window) {
         return window.requestAnimationFrame(task);
     }
 
@@ -44,52 +44,54 @@ function setElementScroll(element, x, y) {
 }
 
 function getTargetScrollLocation(target, parent, align) {
-    let targetPosition = target.getBoundingClientRect();
-    let parentPosition = null;
-    let x = null;
-    let y = null;
-    let differenceX = null;
-    let differenceY = null;
-    let targetWidth = null;
-    let targetHeight = null;
-    let leftAlign = align && align.left != null ? align.left : 0.5;
-    let topAlign = align && align.top != null ? align.top : 0.5;
-    let leftOffset = align && align.leftOffset != null ? align.leftOffset : 0;
-    let topOffset = align && align.topOffset != null ? align.topOffset : 0;
-    let leftScalar = leftAlign;
-    let topScalar = topAlign;
+    if (isClient) {
+        let targetPosition = target.getBoundingClientRect();
+        let parentPosition = null;
+        let x = null;
+        let y = null;
+        let differenceX = null;
+        let differenceY = null;
+        let targetWidth = null;
+        let targetHeight = null;
+        let leftAlign = align && align.left != null ? align.left : 0.5;
+        let topAlign = align && align.top != null ? align.top : 0.5;
+        let leftOffset = align && align.leftOffset != null ? align.leftOffset : 0;
+        let topOffset = align && align.topOffset != null ? align.topOffset : 0;
+        let leftScalar = leftAlign;
+        let topScalar = topAlign;
 
-    if (parent === window) {
-        targetWidth = Math.min(targetPosition.width, window.innerWidth);
-        targetHeight = Math.min(targetPosition.height, window.innerHeight);
-        x = targetPosition.left + window.pageXOffset - window.innerWidth * leftScalar + targetWidth * leftScalar;
-        y = targetPosition.top + window.pageYOffset - window.innerHeight * topScalar + targetHeight * topScalar;
-        x -= leftOffset;
-        y -= topOffset;
-        differenceX = x - window.pageXOffset;
-        differenceY = y - window.pageYOffset;
-    } else {
-        targetWidth = targetPosition.width;
-        targetHeight = targetPosition.height;
-        parentPosition = parent.getBoundingClientRect();
-        let offsetLeft = targetPosition.left - (parentPosition.left - parent.scrollLeft);
-        let offsetTop = targetPosition.top - (parentPosition.top - parent.scrollTop);
-        x = offsetLeft + (targetWidth * leftScalar) - parent.clientWidth * leftScalar;
-        y = offsetTop + (targetHeight * topScalar) - parent.clientHeight * topScalar;
-        x = Math.max(Math.min(x, parent.scrollWidth - parent.clientWidth), 0);
-        y = Math.max(Math.min(y, parent.scrollHeight - parent.clientHeight), 0);
-        x -= leftOffset;
-        y -= topOffset;
-        differenceX = x - parent.scrollLeft;
-        differenceY = y - parent.scrollTop;
+        if (parent === window) {
+            targetWidth = Math.min(targetPosition.width, window.innerWidth);
+            targetHeight = Math.min(targetPosition.height, window.innerHeight);
+            x = targetPosition.left + window.pageXOffset - window.innerWidth * leftScalar + targetWidth * leftScalar;
+            y = targetPosition.top + window.pageYOffset - window.innerHeight * topScalar + targetHeight * topScalar;
+            x -= leftOffset;
+            y -= topOffset;
+            differenceX = x - window.pageXOffset;
+            differenceY = y - window.pageYOffset;
+        } else {
+            targetWidth = targetPosition.width;
+            targetHeight = targetPosition.height;
+            parentPosition = parent.getBoundingClientRect();
+            let offsetLeft = targetPosition.left - (parentPosition.left - parent.scrollLeft);
+            let offsetTop = targetPosition.top - (parentPosition.top - parent.scrollTop);
+            x = offsetLeft + (targetWidth * leftScalar) - parent.clientWidth * leftScalar;
+            y = offsetTop + (targetHeight * topScalar) - parent.clientHeight * topScalar;
+            x = Math.max(Math.min(x, parent.scrollWidth - parent.clientWidth), 0);
+            y = Math.max(Math.min(y, parent.scrollHeight - parent.clientHeight), 0);
+            x -= leftOffset;
+            y -= topOffset;
+            differenceX = x - parent.scrollLeft;
+            differenceY = y - parent.scrollTop;
+        }
+
+        return {
+            x,
+            y,
+            differenceX,
+            differenceY
+        };
     }
-
-    return {
-        x,
-        y,
-        differenceX,
-        differenceY
-    };
 }
 
 function animate(parent) {
@@ -159,13 +161,15 @@ function transitionScrollTo(target, parent, settings, callback) {
 }
 
 function defaultIsScrollable(element) {
-    return (
-        element === window ||
-        ((
-            element.scrollHeight !== element.clientHeight ||
-            element.scrollWidth !== element.clientWidth
-        ) && getComputedStyle(element).overflow !== 'hidden')
-    );
+    if (isClient) {
+        return (
+            element === window ||
+            ((
+                element.scrollHeight !== element.clientHeight ||
+                element.scrollWidth !== element.clientWidth
+            ) && getComputedStyle(element).overflow !== 'hidden')
+        );
+    }
 }
 
 function defaultValidTarget() {

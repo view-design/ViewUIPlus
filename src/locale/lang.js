@@ -2,9 +2,10 @@
 /*eslint-disable */
 // import Vue from 'vue';
 // const isServer = Vue.prototype.$isServer;
+import { isClient } from '../utils/index';
 
 export default function (lang) {
-    if (typeof window.viewuiplus !== 'undefined') {
+    if (isClient && typeof window.viewuiplus !== 'undefined') {
         if (!('langs' in viewuiplus)) {
             viewuiplus.langs = {};
         }

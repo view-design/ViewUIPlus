@@ -1,4 +1,5 @@
 import { oneOf } from '../utils/assist';
+import { isClient } from '../utils/index';
 
 export default {
     props: {
@@ -43,30 +44,34 @@ export default {
     },
     methods: {
         handleOpenTo () {
-            const router = this.$router;
-            let to = this.to;
-            if (router) {
-                const current = this.$route;
-                const route = router.resolve(this.to, current, this.append);
-                to = route ? route.href : this.to;
+            if (isClient) {
+                const router = this.$router;
+                let to = this.to;
+                if (router) {
+                    const current = this.$route;
+                    const route = router.resolve(this.to, current, this.append);
+                    to = route ? route.href : this.to;
+                }
+                if (typeof this.to === 'string') return; // 会跳转两次 // todo Vue3这里不跳2次，待验证
+                window.open(to);
             }
-            if (typeof this.to === 'string') return; // 会跳转两次 // todo Vue3这里不跳2次，待验证
-            window.open(to);
         },
         handleClick (new_window = false) {
             const router = this.$router;
 
-            if (new_window) {
-                this.handleOpenTo();
-            } else {
-                if (router) {
-                    if ((typeof this.to === 'string') && this.to.includes('//')) {
-                        window.location.href = this.to;
-                    } else {
-                        this.replace ? this.$router.replace(this.to, () => {}) : this.$router.push(this.to, () => {});
-                    }
+            if (isClient) {
+                if (new_window) {
+                    this.handleOpenTo();
                 } else {
-                    window.location.href = this.to;
+                    if (router) {
+                        if ((typeof this.to === 'string') && this.to.includes('//')) {
+                            window.location.href = this.to;
+                        } else {
+                            this.replace ? this.$router.replace(this.to, () => {}) : this.$router.push(this.to, () => {});
+                        }
+                    } else {
+                        window.location.href = this.to;
+                    }
                 }
             }
         },

@@ -10,6 +10,7 @@
 <script>
     import { scrollTop } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
+    import { isClient } from '../../utils/index';
     const prefixCls = 'ivu-back-top';
 
     export default {
@@ -41,14 +42,18 @@
         mounted () {
 //            window.addEventListener('scroll', this.handleScroll, false);
 //            window.addEventListener('resize', this.handleScroll, false);
-            on(window, 'scroll', this.handleScroll);
-            on(window, 'resize', this.handleScroll);
+            if (isClient) {
+                on(window, 'scroll', this.handleScroll);
+                on(window, 'resize', this.handleScroll);
+            }
         },
         beforeUnmount () {
 //            window.removeEventListener('scroll', this.handleScroll, false);
 //            window.removeEventListener('resize', this.handleScroll, false);
-            off(window, 'scroll', this.handleScroll);
-            off(window, 'resize', this.handleScroll);
+            if (isClient) {
+                off(window, 'scroll', this.handleScroll);
+                off(window, 'resize', this.handleScroll);
+            }
         },
         computed: {
             classes () {
@@ -71,12 +76,16 @@
         },
         methods: {
             handleScroll () {
-                this.backTop = window.pageYOffset >= this.height;
+                if (isClient) {
+                    this.backTop = window.pageYOffset >= this.height;
+                }
             },
             back () {
-                const sTop = document.documentElement.scrollTop || document.body.scrollTop;
-                scrollTop(window, sTop, 0, this.duration);
-                this.$emit('on-click');
+                if (isClient) {
+                    const sTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    scrollTop(window, sTop, 0, this.duration);
+                    this.$emit('on-click');
+                }
             }
         }
     };

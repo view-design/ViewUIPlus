@@ -29,6 +29,7 @@
     import Prefixes from './prefixMixin';
     import { clamp, getIncrement } from './utils';
     import { on, off } from '../../utils/dom';
+    import { isClient } from '../../utils/index';
 
     export default {
         name: 'Saturation',
@@ -85,12 +86,16 @@
             handleMouseDown (e) {
                 HSAMixin.methods.handleMouseDown.call(this, e);
     //            window.addEventListener('mouseup', this.handleChange, false);
-                on(window, 'mouseup', this.handleChange);
+                if (isClient) {
+                    on(window, 'mouseup', this.handleChange);
+                }
             },
             unbindEventListeners (e) {
                 HSAMixin.methods.unbindEventListeners.call(this, e);
     //            window.removeEventListener('mouseup', this.handleChange);
-                off(window, 'mouseup', this.handleChange);
+                if (isClient) {
+                    off(window, 'mouseup', this.handleChange);
+                }
             }
         }
     };

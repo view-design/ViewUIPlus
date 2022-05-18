@@ -1,5 +1,5 @@
-// import Vue from 'vue';
-// const isServer = Vue.prototype.$isServer;
+import { isClient } from './index';
+
 // 判断参数是否是其中之一
 export function oneOf (value, validList) {
     for (let i = 0; i < validList.length; i++) {
@@ -18,7 +18,7 @@ export function camelcaseToHyphen (str) {
 let cached;
 export function getScrollBarSize (fresh) {
     // if (isServer) return 0;
-    if (fresh || cached === undefined) {
+    if (isClient && (fresh || cached === undefined)) {
         const inner = document.createElement('div');
         inner.style.width = '100%';
         inner.style.height = '200px';
@@ -56,7 +56,7 @@ export function getScrollBarSize (fresh) {
 
 // watch DOM change
 // export const MutationObserver = isServer ? false : window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false;
-export const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false;
+export const MutationObserver = isClient ? window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false : false;
 
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
 const MOZ_HACK_REGEXP = /^moz([A-Z])/;
@@ -68,16 +68,18 @@ function camelCase(name) {
 }
 // getStyle
 export function getStyle (element, styleName) {
-    if (!element || !styleName) return null;
-    styleName = camelCase(styleName);
-    if (styleName === 'float') {
-        styleName = 'cssFloat';
-    }
-    try {
-        const computed = document.defaultView.getComputedStyle(element, '');
-        return element.style[styleName] || computed ? computed[styleName] : null;
-    } catch(e) {
-        return element.style[styleName];
+    if (isClient) {
+        if (!element || !styleName) return null;
+        styleName = camelCase(styleName);
+        if (styleName === 'float') {
+            styleName = 'cssFloat';
+        }
+        try {
+            const computed = document.defaultView.getComputedStyle(element, '');
+            return element.style[styleName] || computed ? computed[styleName] : null;
+        } catch(e) {
+            return element.style[styleName];
+        }
     }
 }
 
@@ -140,38 +142,40 @@ export {deepCopy};
 
 // scrollTop animation
 export function scrollTop(el, from = 0, to, duration = 500, endCallback) {
-    if (!window.requestAnimationFrame) {
-        window.requestAnimationFrame = (
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame ||
-            window.msRequestAnimationFrame ||
-            function (callback) {
-                return window.setTimeout(callback, 1000/60);
+    if (isClient) {
+        if (!window.requestAnimationFrame) {
+            window.requestAnimationFrame = (
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.msRequestAnimationFrame ||
+                function (callback) {
+                    return window.setTimeout(callback, 1000/60);
+                }
+            );
+        }
+        const difference = Math.abs(from - to);
+        const step = Math.ceil(difference / duration * 50);
+
+        function scroll(start, end, step) {
+            if (start === end) {
+                endCallback && endCallback();
+                return;
             }
-        );
+
+            let d = (start + step > end) ? end : start + step;
+            if (start > end) {
+                d = (start - step < end) ? end : start - step;
+            }
+
+            if (el === window) {
+                window.scrollTo(d, d);
+            } else {
+                el.scrollTop = d;
+            }
+            window.requestAnimationFrame(() => scroll(d, end, step));
+        }
+        scroll(from, to, step);
     }
-    const difference = Math.abs(from - to);
-    const step = Math.ceil(difference / duration * 50);
-
-    function scroll(start, end, step) {
-        if (start === end) {
-            endCallback && endCallback();
-            return;
-        }
-
-        let d = (start + step > end) ? end : start + step;
-        if (start > end) {
-            d = (start - step < end) ? end : start - step;
-        }
-
-        if (el === window) {
-            window.scrollTo(d, d);
-        } else {
-            el.scrollTop = d;
-        }
-        window.requestAnimationFrame(() => scroll(d, end, step));
-    }
-    scroll(from, to, step);
 }
 
 // Find components upward
@@ -315,7 +319,7 @@ export const dimensionMap = {
 };
 
 export function setMatchMedia () {
-    if (typeof window !== 'undefined') {
+    if (isClient) {
         const matchMediaPolyfill = mediaQuery => {
             return {
                 media: mediaQuery,

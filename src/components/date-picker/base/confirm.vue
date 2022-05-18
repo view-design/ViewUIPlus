@@ -14,6 +14,7 @@
 <script>
     import iButton from '../../button/button.vue';
     import Locale from '../../../mixins/locale';
+    import { isClient } from '../../../utils/index';
 
     const prefixCls = 'ivu-picker';
 
@@ -71,7 +72,7 @@
                 const tabbables = [...this.$el.children];
                 const expectedFocus = tabbables[e.shiftKey ? 'shift' : 'pop']();
 
-                if (document.activeElement === expectedFocus) {
+                if (isClient && document.activeElement === expectedFocus) {
                     e.preventDefault();
                     e.stopPropagation();
                     this.PickerInstance.handleOnFocusInput();

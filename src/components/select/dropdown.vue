@@ -60,7 +60,7 @@
                 default: 'transition-drop'
             },
             boundariesElement: {
-                type: [String, HTMLElement],
+                // type: [String, HTMLElement],
                 default: 'window'
             }
         },

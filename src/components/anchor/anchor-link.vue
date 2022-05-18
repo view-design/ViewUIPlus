@@ -7,6 +7,7 @@
 <script>
     import { inject, nextTick } from 'vue';
     import random from '../../utils/random_str';
+    import { isClient } from '../../utils/index';
 
     export default {
         name: 'AnchorLink',
@@ -50,7 +51,7 @@
                 if (isRoute) {
                     this.$router.push(this.href, () => {});
                 } else {
-                    window.location.href = this.href;
+                    isClient && (window.location.href = this.href);
                 }
             }
         },

@@ -7,6 +7,7 @@
     import { oneOf } from '../../utils/assist';
     import Locale from '../../mixins/locale';
     import Time from './time';
+    import { isClient } from '../../utils/index';
 
     const prefixCls = 'ivu-time';
 
@@ -58,7 +59,7 @@
         },
         methods: {
             handleClick () {
-                if (this.hash !== '') window.location.hash = this.hash;
+                if (isClient && this.hash !== '') window.location.hash = this.hash;
             },
             setTime () {
                 const type = typeof this.time;

@@ -45,6 +45,7 @@
     import Icon from '../icon/icon.vue';
     import Checkbox from '../checkbox/checkbox.vue';
     import Tooltip from '../tooltip/tooltip.vue';
+    import { isClient } from '../../utils/index';
 
     export default {
         name: 'TableCell',
@@ -151,13 +152,15 @@
                 // 放置 Checkbox 冒泡
             },
             handleTooltipIn () {
-                const $content = this.$refs.content;
-                let range = document.createRange();
-                range.setStart($content, 0);
-                range.setEnd($content, $content.childNodes.length);
-                const rangeWidth = range.getBoundingClientRect().width;
-                this.showTooltip = rangeWidth > $content.offsetWidth;
-                range = null;
+                if (isClient) {
+                    const $content = this.$refs.content;
+                    let range = document.createRange();
+                    range.setStart($content, 0);
+                    range.setEnd($content, $content.childNodes.length);
+                    const rangeWidth = range.getBoundingClientRect().width;
+                    this.showTooltip = rangeWidth > $content.offsetWidth;
+                    range = null;
+                }
             },
             handleToggleTree () {
                 this.$parent.$parent.$parent.toggleTree(this.row._rowKey);

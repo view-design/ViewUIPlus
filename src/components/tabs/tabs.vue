@@ -59,6 +59,7 @@
     import { oneOf, MutationObserver } from '../../utils/assist';
     import globalConfig from '../../mixins/globalConfig';
     import elementResizeDetectorMaker from 'element-resize-detector';
+    import { isClient } from '../../utils/index';
 
     const prefixCls = 'ivu-tabs';
     const transitionTime = 300; // from CSS
@@ -75,7 +76,7 @@
         try {element.focus();}
         catch(err) {} // eslint-disable-line no-empty
 
-        if (document.activeElement == element && element !== root) return true;
+        if (isClient && document.activeElement == element && element !== root) return true;
 
         const candidates = element.children;
         for (let candidate of candidates) {
@@ -537,14 +538,16 @@
                 this.updateNavScroll();
             },
             isInsideHiddenElement () {
-                let parentNode = this.$el.parentNode;
-                while(parentNode && parentNode !== document.body) {
-                    if (parentNode.style && parentNode.style.display === 'none') {
-                        return parentNode;
+                if (isClient) {
+                    let parentNode = this.$el.parentNode;
+                    while(parentNode && parentNode !== document.body) {
+                        if (parentNode.style && parentNode.style.display === 'none') {
+                            return parentNode;
+                        }
+                        parentNode = parentNode.parentNode;
                     }
-                    parentNode = parentNode.parentNode;
+                    return false;
                 }
-                return false;
             },
             updateVisibility(index){
                 [...this.$refs.panes.querySelectorAll(`.${prefixCls}-tabpane`)].forEach((el, i) => {
