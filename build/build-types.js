@@ -6,7 +6,7 @@ const { parse, compileScript } = require('vue/compiler-sfc')
 
 const outDir = 'comp_types'
 
-const globFiles = ['src/index.js']
+const globFiles = ['src/components/**/*']
 
 async function main() {
     const project = new Project({
@@ -26,6 +26,7 @@ async function main() {
 
     await Promise.all(
         files.map(async file => {
+            console.log(file)
             if (/\.vue$/.test(file)) {
                 const sfc = parse(await fs.promises.readFile(file, 'utf-8'))
                 const { script, scriptSetup } = sfc.descriptor
