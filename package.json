@@ -28,6 +28,7 @@
         "build:style": "gulp --gulpfile build/build-style.js",
         "build:prod": "vite build",
         "build:lang": "vite build --config build/vite.lang.config.js",
+        "build:types": "node build/build-types.js",
         "lint": "vue-cli-service lint --fix",
         "prepare": "npm run build"
     },
@@ -68,6 +69,7 @@
         "cross-env": "^5.2.0",
         "eslint": "^6.7.2",
         "eslint-plugin-vue": "^7.0.0-0",
+        "fast-glob": "^3.2.11",
         "gulp": "^4.0.2",
         "gulp-autoprefixer": "^8.0.0",
         "gulp-clean-css": "^4.3.0",
@@ -89,6 +91,7 @@
         "sinon": "^4.4.2",
         "sinon-chai": "^3.3.0",
         "style-loader": "^0.20.2",
+        "ts-morph": "^14.0.0",
         "tslint": "^5.14.0",
         "typescript": "^3.3.4000",
         "uglifyjs-webpack-plugin": "^1.3.0",
