@@ -45,6 +45,7 @@
     import Icon from '../icon/icon.vue';
     import Checkbox from '../checkbox/checkbox.vue';
     import Tooltip from '../tooltip/tooltip.vue';
+    import { isClient } from '../../utils/index';
 
     export default {
         name: 'TableCell',
@@ -151,6 +152,7 @@
                 // 放置 Checkbox 冒泡
             },
             handleTooltipIn () {
+                if (!isClient) return;
                 const $content = this.$refs.content;
                 let range = document.createRange();
                 range.setStart($content, 0);

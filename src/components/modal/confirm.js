@@ -2,10 +2,12 @@ import { createApp, h, getCurrentInstance } from 'vue';
 import Modal from './modal.vue';
 import Button from '../button/button.vue';
 import Locale from '../../mixins/locale';
+import { isClient } from '../../utils/index';
 
 const prefixCls = 'ivu-modal-confirm';
 
 Modal.newInstance = properties => {
+    if (!isClient) return;
     const _props = properties || {};
 
     const container = document.createElement('div');

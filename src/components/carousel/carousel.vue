@@ -29,6 +29,7 @@
     import Icon from '../icon/icon.vue';
     import { getStyle, oneOf } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
+    import { isClient } from '../../utils/index';
 
     const prefixCls = 'ivu-carousel';
 
@@ -268,6 +269,7 @@
                 }
             },
             setAutoplay () {
+                if (!isClient) return;
                 window.clearInterval(this.timer);
                 if (this.autoplay) {
                     this.timer = window.setInterval(() => {

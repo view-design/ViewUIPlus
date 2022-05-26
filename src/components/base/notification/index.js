@@ -1,7 +1,9 @@
 import Notification from './notification.vue';
 import { createApp, h, getCurrentInstance } from 'vue';
+import { isClient } from '../../../utils/index';
 
 Notification.newInstance = properties => {
+    if (!isClient) return;
     const _props = properties || {};
 
     let _instance = null;
@@ -32,7 +34,7 @@ Notification.newInstance = properties => {
         component: notification,
         destroy (element) {
             notification.closeAll();
-            setTimeout(function() {
+            isClient && setTimeout(function() {
                 document.body.removeChild(document.getElementsByClassName(element)[0]);
             }, 500);
         }

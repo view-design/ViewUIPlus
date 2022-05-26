@@ -1,3 +1,5 @@
+import { isClient } from '../../utils/index';
+
 function has (browser) {
     const ua = navigator.userAgent;
     if (browser === 'ie') {
@@ -41,7 +43,7 @@ const csv = {
     _getDownloadUrl (text) {
         const BOM = '\uFEFF';
         // Add BOM to text for open in excel correctly
-        if (window.Blob && window.URL && window.URL.createObjectURL) {
+        if (isClient && window.Blob && window.URL && window.URL.createObjectURL) {
             const csvData = new Blob([BOM + text], { type: 'text/csv' });
             return URL.createObjectURL(csvData);
         } else {
@@ -50,6 +52,7 @@ const csv = {
     },
 
     download (filename, text) {
+        if (!isClient) return;
         if (has('ie') && has('ie') < 10) {
             // has module unable identify ie11 and Edge
             const oWin = window.top.open('about:blank', '_blank');

@@ -29,6 +29,7 @@
     import Prefixes from './prefixMixin';
     import { clamp, getIncrement } from './utils';
     import { on, off } from '../../utils/dom';
+    import { isClient } from '../../utils/index';
 
     export default {
         name: 'Saturation',

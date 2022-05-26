@@ -39,6 +39,7 @@
 
     import { on, off } from '../../utils/dom';
     import random from '../../utils/random_str';
+    import { isClient } from '../../utils/index';
 
     const prefixCls = 'ivu-drawer';
 

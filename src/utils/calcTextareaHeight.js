@@ -113,6 +113,8 @@
 //     };
 // }
 
+import { isClient } from './index';
+
 const HIDDEN_TEXTAREA_STYLE = `
   min-height:0 !important;
   max-height:none !important;
@@ -147,6 +149,7 @@ let computedStyleCache = {};
 let hiddenTextarea;
 
 function calculateNodeStyling(node, useCache = false) {
+    if (!isClient) return;
     const nodeRef = (
             node.getAttribute('id') ||
             node.getAttribute('data-reactid') ||
@@ -193,7 +196,7 @@ function calculateNodeStyling(node, useCache = false) {
 }
 
 export default function calcTextareaHeight(uiTextNode, minRows = null, maxRows = null, useCache = false) {
-    if (!hiddenTextarea) {
+    if (isClient && !hiddenTextarea) {
         hiddenTextarea = document.createElement('textarea');
         document.body.appendChild(hiddenTextarea);
     }

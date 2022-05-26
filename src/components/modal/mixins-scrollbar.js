@@ -1,5 +1,6 @@
 // used for Modal & $Spin & Drawer
 import { getScrollBarSize } from '../../utils/assist';
+import { isClient } from '../../utils/index';
 export default {
     props: {
         lockScroll: {
@@ -9,6 +10,7 @@ export default {
     },
     methods: {
         checkScrollBar () {
+            if (!isClient) return;
             let fullWindowWidth = window.innerWidth;
             if (!fullWindowWidth) { // workaround for missing window.innerWidth in IE8
                 const documentElementRect = document.documentElement.getBoundingClientRect();
@@ -20,26 +22,26 @@ export default {
             }
         },
         checkMaskInVisible () {
-            let masks = document.getElementsByClassName('ivu-modal-mask') || [];
+            let masks = isClient ? (document.getElementsByClassName('ivu-modal-mask') || []) : [];
             return Array.from(masks).every(m => m.style.display === 'none' || m.classList.contains('fade-leave-to'));
         },
         setScrollBar () {
-            if (this.bodyIsOverflowing && this.scrollBarWidth !== undefined) {
+            if (isClient && this.bodyIsOverflowing && this.scrollBarWidth !== undefined) {
                 document.body.style.paddingRight = `${this.scrollBarWidth}px`;
             }
         },
         resetScrollBar () {
-            document.body.style.paddingRight = '';
+            isClient && (document.body.style.paddingRight = '');
         },
         addScrollEffect () {
             if (!this.lockScroll) return;
             this.checkScrollBar();
             this.setScrollBar();
-            document.body.style.overflow = 'hidden';
+            isClient && (document.body.style.overflow = 'hidden');
         },
         removeScrollEffect() {
             if (!this.lockScroll) return;
-            if (this.checkMaskInVisible()) {
+            if (isClient && this.checkMaskInVisible()) {
                 document.body.style.overflow = '';
                 this.resetScrollBar();
             }

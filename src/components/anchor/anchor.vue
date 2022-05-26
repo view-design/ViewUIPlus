@@ -14,6 +14,7 @@
     import { nextTick } from 'vue';
     import { scrollTop, sharpMatcherRegx } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
+    import { isClient } from '../../utils/index';
 
     export default {
         name: 'Anchor',
@@ -84,7 +85,7 @@
                     return link.split('#')[1];
                 });
                 let offsetArr = [];
-                idArr.forEach(id => {
+                isClient && idArr.forEach(id => {
                     const titleEle = document.getElementById(id);
                     if (titleEle) offsetArr.push({
                         link: `#${id}`,
@@ -103,10 +104,11 @@
                 this.upperFirstTitle = !!this.titlesOffsetArr[0] && e.target.scrollTop < this.titlesOffsetArr[0].offset;
                 if (this.animating) return;
                 // this.updateTitleOffset();
-                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop || e.target.scrollTop;
+                const scrollTop = isClient ? (document.documentElement.scrollTop || document.body.scrollTop || e.target.scrollTop) : 0;
                 this.getCurrentScrollAtTitleId(scrollTop);
             },
             handleHashChange () {
+                if (!isClient) return;
                 const url = window.location.href;
                 const sharpLinkMatch = sharpMatcherRegx.exec(url);
                 if (!sharpLinkMatch) return;
@@ -114,6 +116,7 @@
                 this.currentId = sharpLinkMatch[1];
             },
             handleScrollTo () {
+                if (!isClient) return;
                 const anchor = document.getElementById(this.currentId);
                 const currentLinkElementA = document.querySelector(`a[data-href="${this.currentLink}"]`);
                 let offset = this.scrollOffset;
@@ -130,6 +133,7 @@
                 this.handleSetInkTop();
             },
             handleSetInkTop () {
+                if (!isClient) return;
                 const currentLinkElementA = document.querySelector(`a[data-href="${this.currentLink}"]`);
                 if (!currentLinkElementA) return;
                 const elementATop = currentLinkElementA.offsetTop;
@@ -156,6 +160,7 @@
                 this.handleSetInkTop();
             },
             getContainer () {
+                if (!isClient) return;
                 this.scrollContainer = this.container ? (typeof this.container === 'string' ? document.querySelector(this.container) : this.container) : window;
                 this.scrollElement = this.container ? this.scrollContainer : (document.documentElement || document.body);
             },

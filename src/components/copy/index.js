@@ -1,10 +1,12 @@
 import select from 'select';
 import $Message from '../message';
+import { isClient } from '../../utils/index';
 
 const defaultSuccessTip = '复制成功';
 const defaultErrorTip = '复制失败';
 
 export default function ({ text = '', successTip = defaultSuccessTip, errorTip = defaultErrorTip, success, error, showTip = true }) {
+    if (!isClient) return;
     const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
     const $textarea = document.createElement('textarea');
     $textarea.style.fontSize = '12pt';

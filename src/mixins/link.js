@@ -1,4 +1,5 @@
 import { oneOf } from '../utils/assist';
+import { isClient } from '../utils/index';
 
 export default {
     props: {
@@ -43,6 +44,7 @@ export default {
     },
     methods: {
         handleOpenTo () {
+            if (!isClient) return;
             const router = this.$router;
             let to = this.to;
             if (router) {
@@ -56,6 +58,7 @@ export default {
         handleClick (new_window = false) {
             const router = this.$router;
 
+            if (!isClient) return;
             if (new_window) {
                 this.handleOpenTo();
             } else {

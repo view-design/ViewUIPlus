@@ -16,6 +16,7 @@
 <script>
     import { on, off } from '../../utils/dom';
     import { oneOf, dimensionMap, setMatchMedia } from '../../utils/assist';
+    import { isClient } from '../../utils/index';
     const prefixCls = 'ivu-layout-sider';
     setMatchMedia();
 
@@ -118,6 +119,7 @@
                 this.$emit('update:modelValue', modelValue);
             },
             matchMedia () {
+                if (!isClient) return;
                 let matchMedia;
                 if (window.matchMedia) {
                     matchMedia = window.matchMedia;

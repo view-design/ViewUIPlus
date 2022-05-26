@@ -1,3 +1,5 @@
+import { isClient } from '../utils/index';
+
 export default {
     beforeMount (el, binding, vnode) {
         function documentHandler (e) {
@@ -7,10 +9,10 @@ export default {
             binding.value(e);
         }
         el.__vueClickOutside__ = documentHandler;
-        document.addEventListener('click', documentHandler);
+        isClient && document.addEventListener('click', documentHandler);
     },
     unmounted (el, binding) {
-        document.removeEventListener('click', el.__vueClickOutside__);
+        isClient && document.removeEventListener('click', el.__vueClickOutside__);
         delete el.__vueClickOutside__;
     }
 };

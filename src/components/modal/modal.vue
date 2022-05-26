@@ -39,6 +39,7 @@
     import { on, off } from '../../utils/dom';
     import { deepCopy } from '../../utils/assist';
     import random from '../../utils/random_str';
+    import { isClient } from '../../utils/index';
 
     import { transferIndex as modalIndex, transferIncrease as modalIncrease, lastVisibleIndex, lastVisibleIncrease } from '../../utils/transfer-queue';
 
@@ -374,7 +375,7 @@
                     y: distance.y - this.dragData.dragY
                 };
 
-                if (this.sticky) {
+                if (isClient && this.sticky) {
                     const clientWidth = document.documentElement.clientWidth;
                     const clientHeight = document.documentElement.clientHeight;
 
@@ -507,11 +508,11 @@
             this.addModal();
 
             // ESC close
-            document.addEventListener('keydown', this.EscClose);
+            isClient && document.addEventListener('keydown', this.EscClose);
         },
         beforeUnmount () {
             this.removeModal();
-            document.removeEventListener('keydown', this.EscClose);
+            isClient && document.removeEventListener('keydown', this.EscClose);
             this.removeScrollEffect();
         }
     };

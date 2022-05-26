@@ -9,6 +9,7 @@
 <script>
     import { nextTick } from 'vue';
     import { on, off } from '../../utils/dom';
+    import { isClient } from '../../utils/index';
     const prefixCls = 'ivu-affix';
 
     function getScroll(target, top) {
@@ -17,7 +18,7 @@
 
         let ret = target[prop];
 
-        if (typeof ret !== 'number') {
+        if (isClient && typeof ret !== 'number') {
             ret = window.document.documentElement[method];
         }
 
@@ -25,6 +26,7 @@
     }
 
     function getOffset(element) {
+        if (!isClient) return;
         const rect = element.getBoundingClientRect();
 
         const scrollTop = getScroll(window, true);
@@ -94,6 +96,7 @@
         },
         methods: {
             handleScroll () {
+                if (!isClient) return;
                 const affix = this.affix;
                 const scrollTop = getScroll(window, true);
                 const elOffset = getOffset(this.$el);

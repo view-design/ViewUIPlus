@@ -1,5 +1,7 @@
+import { isClient } from '../../utils/index';
+
 function requestAnimation(task) {
-    if ('requestAnimationFrame' in window) {
+    if (isClient && 'requestAnimationFrame' in window) {
         return window.requestAnimationFrame(task);
     }
 

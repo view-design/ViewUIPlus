@@ -89,6 +89,7 @@
     import renderHeader from './header';
     import Mixin from './mixin';
     import Locale from '../../mixins/locale';
+    import { isClient } from '../../utils/index';
 
     export default {
         name: 'TableHead',
@@ -267,7 +268,7 @@
             handleMouseDown (column, event) {
                 if (this.$isServer) return;
 
-                if (this.draggingColumn) {
+                if (isClient && this.draggingColumn) {
                     this.dragging = true;
 
                     const table = this.$parent;
@@ -316,7 +317,7 @@
                             }
                             table.$emit('on-column-width-resize', _column.width, startLeft - startColumnLeft, column, event);
 
-                            document.body.style.cursor = '';
+                            isClient && (document.body.style.cursor = '');
                             this.dragging = false;
                             this.draggingColumn = null;
                             this.dragState = {};
@@ -324,12 +325,14 @@
                             table.showResizeLine = false;
                         }
 
+                        if (!isClient) return;
                         document.removeEventListener('mousemove', handleMouseMove);
                         document.removeEventListener('mouseup', handleMouseUp);
                         document.onselectstart = null;
                         document.ondragstart = null;
                     };
 
+                    if (!isClient) return;
                     document.addEventListener('mousemove', handleMouseMove);
                     document.addEventListener('mouseup', handleMouseUp);
                 }
@@ -343,7 +346,7 @@
 
                 if (!column || !column.resizable) return;
 
-                if (!this.dragging) {
+                if (isClient && !this.dragging) {
                     let rect = target.getBoundingClientRect();
 
                     const bodyStyle = document.body.style;
@@ -359,7 +362,7 @@
             },
             handleMouseOut () {
                 if (this.$isServer) return;
-                document.body.style.cursor = '';
+                isClient && (document.body.style.cursor = '');
             },
             isChildrenSelected (objData, isSelectAll) {
                 let status = isSelectAll;

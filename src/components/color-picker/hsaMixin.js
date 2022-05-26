@@ -1,6 +1,7 @@
 import handleEscapeMixin from './handleEscapeMixin';
 import { getTouches } from './utils';
 import { on, off } from '../../utils/dom';
+import { isClient } from '../../utils/index';
 
 export default {
     mixins: [ handleEscapeMixin ],
@@ -56,6 +57,7 @@ export default {
             setTimeout(() => this.ColorPickerInstance.handleOnDragging(false), 1);
         },
         getLeft (e) {
+            if (!isClient) return;
             const {container} = this.$refs;
             const xOffset = container.getBoundingClientRect().left + window.pageXOffset;
             const pageX = e.pageX || getTouches(e, 'PageX');
@@ -63,6 +65,7 @@ export default {
             return pageX - xOffset;
         },
         getTop (e) {
+            if (!isClient) return;
             const {container} = this.$refs;
             const yOffset = container.getBoundingClientRect().top + window.pageYOffset;
             const pageY = e.pageY || getTouches(e, 'PageY');

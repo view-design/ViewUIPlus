@@ -1,5 +1,6 @@
 // Thanks to: https://github.com/airyland/vux/blob/v2/src/directives/transfer-dom/index.js
 // Thanks to: https://github.com/calebroseland/vue-dom-portal
+import { isClient } from '../utils/index';
 
 /**
  * Get target DOM Node
@@ -7,6 +8,7 @@
  * @return {Node} The target that the el will be appended to
  */
 function getTarget (node) {
+    if (!isClient) return;
     if (node === void 0) {
         node = document.body
     }
@@ -16,6 +18,7 @@ function getTarget (node) {
 
 const directive = {
     inserted (el, { value }, vnode) {
+        if (!isClient) return;
         if ( el.dataset && el.dataset.transfer !== 'true') return false;
         el.className = el.className ? el.className + ' v-transfer-dom' : 'v-transfer-dom';
         const parentNode = el.parentNode;

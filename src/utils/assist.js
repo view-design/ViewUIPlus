@@ -1,5 +1,5 @@
-// import Vue from 'vue';
-// const isServer = Vue.prototype.$isServer;
+import { isClient } from './index';
+
 // 判断参数是否是其中之一
 export function oneOf (value, validList) {
     for (let i = 0; i < validList.length; i++) {
@@ -18,7 +18,7 @@ export function camelcaseToHyphen (str) {
 let cached;
 export function getScrollBarSize (fresh) {
     // if (isServer) return 0;
-    if (fresh || cached === undefined) {
+    if (isClient && (fresh || cached === undefined)) {
         const inner = document.createElement('div');
         inner.style.width = '100%';
         inner.style.height = '200px';
@@ -56,7 +56,7 @@ export function getScrollBarSize (fresh) {
 
 // watch DOM change
 // export const MutationObserver = isServer ? false : window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false;
-export const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false;
+export const MutationObserver = isClient ? window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false : false;
 
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
 const MOZ_HACK_REGEXP = /^moz([A-Z])/;
@@ -68,6 +68,7 @@ function camelCase(name) {
 }
 // getStyle
 export function getStyle (element, styleName) {
+    if (!isClient) return;
     if (!element || !styleName) return null;
     styleName = camelCase(styleName);
     if (styleName === 'float') {
@@ -140,6 +141,7 @@ export {deepCopy};
 
 // scrollTop animation
 export function scrollTop(el, from = 0, to, duration = 500, endCallback) {
+    if (!isClient) return;
     if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = (
             window.webkitRequestAnimationFrame ||
@@ -315,17 +317,16 @@ export const dimensionMap = {
 };
 
 export function setMatchMedia () {
-    if (typeof window !== 'undefined') {
-        const matchMediaPolyfill = mediaQuery => {
-            return {
-                media: mediaQuery,
-                matches: false,
-                on() {},
-                off() {},
-            };
+    if (!isClient) return;
+    const matchMediaPolyfill = mediaQuery => {
+        return {
+            media: mediaQuery,
+            matches: false,
+            on() {},
+            off() {},
         };
-        window.matchMedia = window.matchMedia || matchMediaPolyfill;
-    }
+    };
+    window.matchMedia = window.matchMedia || matchMediaPolyfill;
 }
 
 export const sharpMatcherRegx = /#([^#]+)$/;

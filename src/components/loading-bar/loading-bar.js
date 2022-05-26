@@ -1,7 +1,9 @@
 import { createApp, h, getCurrentInstance } from 'vue';
 import LoadingBar from './loading-bar.vue';
+import { isClient } from '../../utils/index';
 
 LoadingBar.newInstance = properties => {
+    if (!isClient) return;
     const _props = properties || {};
 
     let _instance = null;

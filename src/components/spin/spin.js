@@ -2,6 +2,7 @@ import { createApp, h, getCurrentInstance } from 'vue';
 import Spin from './spin.vue';
 
 import { transferIndex, transferIncrease } from '../../utils/transfer-queue';
+import { isClient } from '../../utils/index';
 
 function handleGetIndex() {
     transferIncrease();
@@ -11,6 +12,7 @@ function handleGetIndex() {
 let tIndex = handleGetIndex();
 
 Spin.newInstance = properties => {
+    if (!isClient) return;
     const _props = properties || {};
 
     let _instance = null;

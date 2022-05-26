@@ -21,13 +21,13 @@
   }
 });
  */
-
+import { isClient } from '../../utils/index';
 
 const COMPLETE = 'COMPLETE';
 const CANCELED = 'CANCELED';
 
 function requestAnimation(task) {
-    if ('requestAnimationFrame' in window) {
+    if (isClient && 'requestAnimationFrame' in window) {
         return window.requestAnimationFrame(task);
     }
 
@@ -44,6 +44,7 @@ function setElementScroll(element, x, y) {
 }
 
 function getTargetScrollLocation(target, parent, align) {
+    if (!isClient) return;
     let targetPosition = target.getBoundingClientRect();
     let parentPosition = null;
     let x = null;
@@ -159,6 +160,7 @@ function transitionScrollTo(target, parent, settings, callback) {
 }
 
 function defaultIsScrollable(element) {
+    if (!isClient) return;
     return (
         element === window ||
         ((

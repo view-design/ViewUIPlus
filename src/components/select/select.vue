@@ -101,6 +101,7 @@
     import { oneOf } from '../../utils/assist';
     import mixinsForm from '../../mixins/form';
     import Locale from '../../mixins/locale';
+    import { isClient } from '../../utils/index';
 
     const prefixCls = 'ivu-select';
 
@@ -643,7 +644,7 @@
                   // in 'AutoComplete', when set an initial value asynchronously,
                   // the 'dropdown list' should be stay hidden.
                   // [issue #5150]
-                    if (this.autoComplete) {
+                    if (isClient && this.autoComplete) {
                         let isInputFocused =
                             document.hasFocus &&
                             document.hasFocus() &&

@@ -10,6 +10,7 @@
 <script>
     import { scrollTop } from '../../utils/assist';
     import { on, off } from '../../utils/dom';
+    import { isClient } from '../../utils/index';
     const prefixCls = 'ivu-back-top';
 
     export default {
@@ -71,9 +72,11 @@
         },
         methods: {
             handleScroll () {
+                if (!isClient) return;
                 this.backTop = window.pageYOffset >= this.height;
             },
             back () {
+                if (!isClient) return;
                 const sTop = document.documentElement.scrollTop || document.body.scrollTop;
                 scrollTop(window, sTop, 0, this.duration);
                 this.$emit('on-click');
