@@ -119,17 +119,16 @@
                 this.$emit('update:modelValue', modelValue);
             },
             matchMedia () {
-                if (isClient) {
-                    let matchMedia;
-                    if (window.matchMedia) {
-                        matchMedia = window.matchMedia;
-                    }
-                    let mediaMatched = this.mediaMatched;
-                    this.mediaMatched = matchMedia(`(max-width: ${dimensionMap[this.breakpoint]})`).matches;
+                if (!isClient) return;
+                let matchMedia;
+                if (window.matchMedia) {
+                    matchMedia = window.matchMedia;
+                }
+                let mediaMatched = this.mediaMatched;
+                this.mediaMatched = matchMedia(`(max-width: ${dimensionMap[this.breakpoint]})`).matches;
 
-                    if (this.mediaMatched !== mediaMatched) {
-                        this.$emit('update:modelValue', this.mediaMatched);
-                    }
+                if (this.mediaMatched !== mediaMatched) {
+                    this.$emit('update:modelValue', this.mediaMatched);
                 }
             },
             onWindowResize () {

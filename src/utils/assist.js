@@ -68,18 +68,17 @@ function camelCase(name) {
 }
 // getStyle
 export function getStyle (element, styleName) {
-    if (isClient) {
-        if (!element || !styleName) return null;
-        styleName = camelCase(styleName);
-        if (styleName === 'float') {
-            styleName = 'cssFloat';
-        }
-        try {
-            const computed = document.defaultView.getComputedStyle(element, '');
-            return element.style[styleName] || computed ? computed[styleName] : null;
-        } catch(e) {
-            return element.style[styleName];
-        }
+    if (!isClient) return;
+    if (!element || !styleName) return null;
+    styleName = camelCase(styleName);
+    if (styleName === 'float') {
+        styleName = 'cssFloat';
+    }
+    try {
+        const computed = document.defaultView.getComputedStyle(element, '');
+        return element.style[styleName] || computed ? computed[styleName] : null;
+    } catch(e) {
+        return element.style[styleName];
     }
 }
 
@@ -142,40 +141,39 @@ export {deepCopy};
 
 // scrollTop animation
 export function scrollTop(el, from = 0, to, duration = 500, endCallback) {
-    if (isClient) {
-        if (!window.requestAnimationFrame) {
-            window.requestAnimationFrame = (
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.msRequestAnimationFrame ||
-                function (callback) {
-                    return window.setTimeout(callback, 1000/60);
-                }
-            );
-        }
-        const difference = Math.abs(from - to);
-        const step = Math.ceil(difference / duration * 50);
-
-        function scroll(start, end, step) {
-            if (start === end) {
-                endCallback && endCallback();
-                return;
+    if (!isClient) return;
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = (
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function (callback) {
+                return window.setTimeout(callback, 1000/60);
             }
-
-            let d = (start + step > end) ? end : start + step;
-            if (start > end) {
-                d = (start - step < end) ? end : start - step;
-            }
-
-            if (el === window) {
-                window.scrollTo(d, d);
-            } else {
-                el.scrollTop = d;
-            }
-            window.requestAnimationFrame(() => scroll(d, end, step));
-        }
-        scroll(from, to, step);
+        );
     }
+    const difference = Math.abs(from - to);
+    const step = Math.ceil(difference / duration * 50);
+
+    function scroll(start, end, step) {
+        if (start === end) {
+            endCallback && endCallback();
+            return;
+        }
+
+        let d = (start + step > end) ? end : start + step;
+        if (start > end) {
+            d = (start - step < end) ? end : start - step;
+        }
+
+        if (el === window) {
+            window.scrollTo(d, d);
+        } else {
+            el.scrollTop = d;
+        }
+        window.requestAnimationFrame(() => scroll(d, end, step));
+    }
+    scroll(from, to, step);
 }
 
 // Find components upward
@@ -319,17 +317,16 @@ export const dimensionMap = {
 };
 
 export function setMatchMedia () {
-    if (isClient) {
-        const matchMediaPolyfill = mediaQuery => {
-            return {
-                media: mediaQuery,
-                matches: false,
-                on() {},
-                off() {},
-            };
+    if (!isClient) return;
+    const matchMediaPolyfill = mediaQuery => {
+        return {
+            media: mediaQuery,
+            matches: false,
+            on() {},
+            off() {},
         };
-        window.matchMedia = window.matchMedia || matchMediaPolyfill;
-    }
+    };
+    window.matchMedia = window.matchMedia || matchMediaPolyfill;
 }
 
 export const sharpMatcherRegx = /#([^#]+)$/;

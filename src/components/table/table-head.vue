@@ -325,18 +325,16 @@
                             table.showResizeLine = false;
                         }
 
-                        if (isClient) {
-                            document.removeEventListener('mousemove', handleMouseMove);
-                            document.removeEventListener('mouseup', handleMouseUp);
-                            document.onselectstart = null;
-                            document.ondragstart = null;
-                        }
+                        if (!isClient) return;
+                        document.removeEventListener('mousemove', handleMouseMove);
+                        document.removeEventListener('mouseup', handleMouseUp);
+                        document.onselectstart = null;
+                        document.ondragstart = null;
                     };
 
-                    if (isClient) {
-                        document.addEventListener('mousemove', handleMouseMove);
-                        document.addEventListener('mouseup', handleMouseUp);
-                    }
+                    if (!isClient) return;
+                    document.addEventListener('mousemove', handleMouseMove);
+                    document.addEventListener('mouseup', handleMouseUp);
                 }
             },
             handleMouseMove (column, event) {

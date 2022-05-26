@@ -269,13 +269,12 @@
                 }
             },
             setAutoplay () {
-                if (isClient) {
-                    window.clearInterval(this.timer);
-                    if (this.autoplay) {
-                        this.timer = window.setInterval(() => {
-                            this.add(1);
-                        }, this.autoplaySpeed);
-                    }
+                if (!isClient) return;
+                window.clearInterval(this.timer);
+                if (this.autoplay) {
+                    this.timer = window.setInterval(() => {
+                        this.add(1);
+                    }, this.autoplaySpeed);
                 }
             },
             updateOffset () {

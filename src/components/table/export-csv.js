@@ -52,27 +52,26 @@ const csv = {
     },
 
     download (filename, text) {
-        if (isClient) {
-            if (has('ie') && has('ie') < 10) {
-                // has module unable identify ie11 and Edge
-                const oWin = window.top.open('about:blank', '_blank');
-                oWin.document.charset = 'utf-8';
-                oWin.document.write(text);
-                oWin.document.close();
-                oWin.document.execCommand('SaveAs', filename);
-                oWin.close();
-            } else if (has('ie') === 10 || this._isIE11() || this._isEdge()) {
-                const BOM = '\uFEFF';
-                const csvData = new Blob([BOM + text], { type: 'text/csv' });
-                navigator.msSaveBlob(csvData, filename);
-            } else {
-                const link = document.createElement('a');
-                link.download = filename;
-                link.href = this._getDownloadUrl(text);
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
+        if (!isClient) return;
+        if (has('ie') && has('ie') < 10) {
+            // has module unable identify ie11 and Edge
+            const oWin = window.top.open('about:blank', '_blank');
+            oWin.document.charset = 'utf-8';
+            oWin.document.write(text);
+            oWin.document.close();
+            oWin.document.execCommand('SaveAs', filename);
+            oWin.close();
+        } else if (has('ie') === 10 || this._isIE11() || this._isEdge()) {
+            const BOM = '\uFEFF';
+            const csvData = new Blob([BOM + text], { type: 'text/csv' });
+            navigator.msSaveBlob(csvData, filename);
+        } else {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = this._getDownloadUrl(text);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     }
 };

@@ -538,16 +538,15 @@
                 this.updateNavScroll();
             },
             isInsideHiddenElement () {
-                if (isClient) {
-                    let parentNode = this.$el.parentNode;
-                    while(parentNode && parentNode !== document.body) {
-                        if (parentNode.style && parentNode.style.display === 'none') {
-                            return parentNode;
-                        }
-                        parentNode = parentNode.parentNode;
+                if (!isClient) return;
+                let parentNode = this.$el.parentNode;
+                while(parentNode && parentNode !== document.body) {
+                    if (parentNode.style && parentNode.style.display === 'none') {
+                        return parentNode;
                     }
-                    return false;
+                    parentNode = parentNode.parentNode;
                 }
+                return false;
             },
             updateVisibility(index){
                 [...this.$refs.panes.querySelectorAll(`.${prefixCls}-tabpane`)].forEach((el, i) => {

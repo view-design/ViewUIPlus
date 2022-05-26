@@ -8,37 +8,35 @@ import { isClient } from '../utils/index';
  * @return {Node} The target that the el will be appended to
  */
 function getTarget (node) {
-    if (isClient) {
-        if (node === void 0) {
-            node = document.body
-        }
-        if (node === true) { return document.body }
-        return node instanceof window.Node ? node : document.querySelector(node)
+    if (!isClient) return;
+    if (node === void 0) {
+        node = document.body
     }
+    if (node === true) { return document.body }
+    return node instanceof window.Node ? node : document.querySelector(node)
 }
 
 const directive = {
     inserted (el, { value }, vnode) {
-        if (isClient) {
-            if ( el.dataset && el.dataset.transfer !== 'true') return false;
-            el.className = el.className ? el.className + ' v-transfer-dom' : 'v-transfer-dom';
-            const parentNode = el.parentNode;
-            if (!parentNode) return;
-            const home = document.createComment('');
-            let hasMovedOut = false;
+        if (!isClient) return;
+        if ( el.dataset && el.dataset.transfer !== 'true') return false;
+        el.className = el.className ? el.className + ' v-transfer-dom' : 'v-transfer-dom';
+        const parentNode = el.parentNode;
+        if (!parentNode) return;
+        const home = document.createComment('');
+        let hasMovedOut = false;
 
-            if (value !== false) {
-                parentNode.replaceChild(home, el); // moving out, el is no longer in the document
-                getTarget(value).appendChild(el); // moving into new place
-                hasMovedOut = true
-            }
-            if (!el.__transferDomData) {
-                el.__transferDomData = {
-                    parentNode: parentNode,
-                    home: home,
-                    target: getTarget(value),
-                    hasMovedOut: hasMovedOut
-                }
+        if (value !== false) {
+            parentNode.replaceChild(home, el); // moving out, el is no longer in the document
+            getTarget(value).appendChild(el); // moving into new place
+            hasMovedOut = true
+        }
+        if (!el.__transferDomData) {
+            el.__transferDomData = {
+                parentNode: parentNode,
+                home: home,
+                target: getTarget(value),
+                hasMovedOut: hasMovedOut
             }
         }
     },

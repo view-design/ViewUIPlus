@@ -272,7 +272,7 @@
             handleTriggerMousedown () {
                 this.canMove = true;
                 // 防止鼠标选中抽屉中文字，造成拖动trigger触发浏览器原生拖动行为
-                isClient && window.getSelection().removeAllRanges();
+                window.getSelection().removeAllRanges();
             },
             addDrawer () {
                 const root = this.$root;

@@ -86,16 +86,12 @@
             handleMouseDown (e) {
                 HSAMixin.methods.handleMouseDown.call(this, e);
     //            window.addEventListener('mouseup', this.handleChange, false);
-                if (isClient) {
-                    on(window, 'mouseup', this.handleChange);
-                }
+                on(window, 'mouseup', this.handleChange);
             },
             unbindEventListeners (e) {
                 HSAMixin.methods.unbindEventListeners.call(this, e);
     //            window.removeEventListener('mouseup', this.handleChange);
-                if (isClient) {
-                    off(window, 'mouseup', this.handleChange);
-                }
+                off(window, 'mouseup', this.handleChange);
             }
         }
     };

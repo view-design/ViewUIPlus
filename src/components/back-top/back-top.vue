@@ -42,18 +42,14 @@
         mounted () {
 //            window.addEventListener('scroll', this.handleScroll, false);
 //            window.addEventListener('resize', this.handleScroll, false);
-            if (isClient) {
-                on(window, 'scroll', this.handleScroll);
-                on(window, 'resize', this.handleScroll);
-            }
+            on(window, 'scroll', this.handleScroll);
+            on(window, 'resize', this.handleScroll);
         },
         beforeUnmount () {
 //            window.removeEventListener('scroll', this.handleScroll, false);
 //            window.removeEventListener('resize', this.handleScroll, false);
-            if (isClient) {
-                off(window, 'scroll', this.handleScroll);
-                off(window, 'resize', this.handleScroll);
-            }
+            off(window, 'scroll', this.handleScroll);
+            off(window, 'resize', this.handleScroll);
         },
         computed: {
             classes () {
@@ -76,16 +72,14 @@
         },
         methods: {
             handleScroll () {
-                if (isClient) {
-                    this.backTop = window.pageYOffset >= this.height;
-                }
+                if (!isClient) return;
+                this.backTop = window.pageYOffset >= this.height;
             },
             back () {
-                if (isClient) {
-                    const sTop = document.documentElement.scrollTop || document.body.scrollTop;
-                    scrollTop(window, sTop, 0, this.duration);
-                    this.$emit('on-click');
-                }
+                if (!isClient) return;
+                const sTop = document.documentElement.scrollTop || document.body.scrollTop;
+                scrollTop(window, sTop, 0, this.duration);
+                this.$emit('on-click');
             }
         }
     };
