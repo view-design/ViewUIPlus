@@ -18,8 +18,9 @@ var __spreadValues = (a, b) => {
 };
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import { nextTick, openBlock, createElementBlock, createElementVNode, normalizeClass, normalizeStyle, renderSlot, withDirectives, vShow, resolveComponent, createBlock, Transition, withCtx, createVNode, createCommentVNode, resolveDynamicComponent, inject, withModifiers, toDisplayString, h, Teleport, mergeProps, getCurrentInstance, Fragment, renderList, createTextVNode, withKeys, vModelText, resolveDirective, vModelCheckbox, TransitionGroup, createApp, normalizeProps, guardReactiveProps, defineComponent, toHandlers, setBlockTracking, createSlots } from "vue";
+const isClient = typeof window !== "undefined";
 const on = function() {
-  if (document.addEventListener) {
+  if (isClient && document.addEventListener) {
     return function(element, event, handler, useCapture = false) {
       if (element && event && handler) {
         element.addEventListener(event, handler, useCapture);
@@ -34,7 +35,7 @@ const on = function() {
   }
 }();
 const off = function() {
-  if (document.removeEventListener) {
+  if (isClient && document.removeEventListener) {
     return function(element, event, handler, useCapture = false) {
       if (element && event) {
         element.removeEventListener(event, handler, useCapture);
@@ -60,12 +61,14 @@ function getScroll(target, top2) {
   const prop2 = top2 ? "pageYOffset" : "pageXOffset";
   const method3 = top2 ? "scrollTop" : "scrollLeft";
   let ret = target[prop2];
-  if (typeof ret !== "number") {
+  if (isClient && typeof ret !== "number") {
     ret = window.document.documentElement[method3];
   }
   return ret;
 }
 function getOffset(element) {
+  if (!isClient)
+    return;
   const rect = element.getBoundingClientRect();
   const scrollTop2 = getScroll(window, true);
   const scrollLeft = getScroll(window);
@@ -130,6 +133,8 @@ const _sfc_main$2k = {
   },
   methods: {
     handleScroll() {
+      if (!isClient)
+        return;
       const affix = this.affix;
       const scrollTop2 = getScroll(window, true);
       const elOffset = getOffset(this.$el);
@@ -240,7 +245,7 @@ function oneOf(value, validList) {
 }
 let cached;
 function getScrollBarSize(fresh) {
-  if (fresh || cached === void 0) {
+  if (isClient && (fresh || cached === void 0)) {
     const inner = document.createElement("div");
     inner.style.width = "100%";
     inner.style.height = "200px";
@@ -267,7 +272,7 @@ function getScrollBarSize(fresh) {
   }
   return cached;
 }
-const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false;
+const MutationObserver = isClient ? window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false : false;
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
 const MOZ_HACK_REGEXP = /^moz([A-Z])/;
 function camelCase(name2) {
@@ -276,6 +281,8 @@ function camelCase(name2) {
   }).replace(MOZ_HACK_REGEXP, "Moz$1");
 }
 function getStyle(element, styleName) {
+  if (!isClient)
+    return;
   if (!element || !styleName)
     return null;
   styleName = camelCase(styleName);
@@ -330,6 +337,8 @@ function deepCopy(data) {
   return o;
 }
 function scrollTop(el, from = 0, to, duration2 = 500, endCallback) {
+  if (!isClient)
+    return;
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame = window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
       return window.setTimeout(callback, 1e3 / 60);
@@ -446,19 +455,19 @@ const dimensionMap = {
   xxl: "1600px"
 };
 function setMatchMedia() {
-  if (typeof window !== "undefined") {
-    const matchMediaPolyfill = (mediaQuery) => {
-      return {
-        media: mediaQuery,
-        matches: false,
-        on() {
-        },
-        off() {
-        }
-      };
+  if (!isClient)
+    return;
+  const matchMediaPolyfill = (mediaQuery) => {
+    return {
+      media: mediaQuery,
+      matches: false,
+      on() {
+      },
+      off() {
+      }
     };
-    window.matchMedia = window.matchMedia || matchMediaPolyfill;
-  }
+  };
+  window.matchMedia = window.matchMedia || matchMediaPolyfill;
 }
 const sharpMatcherRegx = /#([^#]+)$/;
 const prefixCls$1i = "ivu-alert";
@@ -660,7 +669,7 @@ const _sfc_main$2h = {
         return link.split("#")[1];
       });
       let offsetArr = [];
-      idArr.forEach((id) => {
+      isClient && idArr.forEach((id) => {
         const titleEle = document.getElementById(id);
         if (titleEle)
           offsetArr.push({
@@ -676,13 +685,15 @@ const _sfc_main$2h = {
       this.isAffixed = this.affix && state;
     },
     handleScroll(e) {
-      this.upperFirstTitle = e.target.scrollTop < this.titlesOffsetArr[0].offset;
+      this.upperFirstTitle = !!this.titlesOffsetArr[0] && e.target.scrollTop < this.titlesOffsetArr[0].offset;
       if (this.animating)
         return;
-      const scrollTop2 = document.documentElement.scrollTop || document.body.scrollTop || e.target.scrollTop;
+      const scrollTop2 = isClient ? document.documentElement.scrollTop || document.body.scrollTop || e.target.scrollTop : 0;
       this.getCurrentScrollAtTitleId(scrollTop2);
     },
     handleHashChange() {
+      if (!isClient)
+        return;
       const url2 = window.location.href;
       const sharpLinkMatch = sharpMatcherRegx.exec(url2);
       if (!sharpLinkMatch)
@@ -691,6 +702,8 @@ const _sfc_main$2h = {
       this.currentId = sharpLinkMatch[1];
     },
     handleScrollTo() {
+      if (!isClient)
+        return;
       const anchor = document.getElementById(this.currentId);
       const currentLinkElementA = document.querySelector(`a[data-href="${this.currentLink}"]`);
       let offset = this.scrollOffset;
@@ -707,6 +720,8 @@ const _sfc_main$2h = {
       this.handleSetInkTop();
     },
     handleSetInkTop() {
+      if (!isClient)
+        return;
       const currentLinkElementA = document.querySelector(`a[data-href="${this.currentLink}"]`);
       if (!currentLinkElementA)
         return;
@@ -734,6 +749,8 @@ const _sfc_main$2h = {
       this.handleSetInkTop();
     },
     getContainer() {
+      if (!isClient)
+        return;
       this.scrollContainer = this.container ? typeof this.container === "string" ? document.querySelector(this.container) : this.container : window;
       this.scrollElement = this.container ? this.scrollContainer : document.documentElement || document.body;
     },
@@ -871,7 +888,7 @@ const _sfc_main$2g = {
         this.$router.push(this.href, () => {
         });
       } else {
-        window.location.href = this.href;
+        isClient && (window.location.href = this.href);
       }
     }
   },
@@ -944,6 +961,8 @@ var mixinsLink = {
   },
   methods: {
     handleOpenTo() {
+      if (!isClient)
+        return;
       const router = this.$router;
       let to = this.to;
       if (router) {
@@ -957,6 +976,8 @@ var mixinsLink = {
     },
     handleClick(new_window = false) {
       const router = this.$router;
+      if (!isClient)
+        return;
       if (new_window) {
         this.handleOpenTo();
       } else {
@@ -2390,7 +2411,6 @@ const _sfc_main$2e = {
       default: "transition-drop"
     },
     boundariesElement: {
-      type: [String, HTMLElement],
       default: "window"
     }
   },
@@ -2527,7 +2547,7 @@ function _sfc_render$24(_ctx, _cache, $props, $setup, $data, $options) {
 }
 var Drop = /* @__PURE__ */ _export_sfc(_sfc_main$2e, [["render", _sfc_render$24]]);
 function setLang(lang2) {
-  if (typeof window.viewuiplus !== "undefined") {
+  if (isClient && typeof window.viewuiplus !== "undefined") {
     if (!("langs" in viewuiplus)) {
       viewuiplus.langs = {};
     }
@@ -3799,7 +3819,7 @@ const _sfc_main$2c = {
     onQueryChange(query) {
       this.isTyping = true;
       if (query.length > 0 && query !== this.query) {
-        if (this.autoComplete) {
+        if (isClient && this.autoComplete) {
           let isInputFocused = document.hasFocus && document.hasFocus() && document.activeElement === this.$el.querySelector("input");
           this.visible = isInputFocused;
         } else {
@@ -4301,6 +4321,8 @@ const SIZING_STYLE = [
 let computedStyleCache = {};
 let hiddenTextarea;
 function calculateNodeStyling(node, useCache = false) {
+  if (!isClient)
+    return;
   const nodeRef = node.getAttribute("id") || node.getAttribute("data-reactid") || node.getAttribute("name");
   if (useCache && computedStyleCache[nodeRef]) {
     return computedStyleCache[nodeRef];
@@ -4322,7 +4344,7 @@ function calculateNodeStyling(node, useCache = false) {
   return nodeInfo;
 }
 function calcTextareaHeight(uiTextNode, minRows = null, maxRows = null, useCache = false) {
-  if (!hiddenTextarea) {
+  if (isClient && !hiddenTextarea) {
     hiddenTextarea = document.createElement("textarea");
     document.body.appendChild(hiddenTextarea);
   }
@@ -5707,9 +5729,13 @@ const _sfc_main$25 = {
   },
   methods: {
     handleScroll() {
+      if (!isClient)
+        return;
       this.backTop = window.pageYOffset >= this.height;
     },
     back() {
+      if (!isClient)
+        return;
       const sTop = document.documentElement.scrollTop || document.body.scrollTop;
       scrollTop(window, sTop, 0, this.duration);
       this.$emit("on-click");
@@ -9191,6 +9217,8 @@ const _sfc_main$1R = {
       }
     },
     setAutoplay() {
+      if (!isClient)
+        return;
       window.clearInterval(this.timer);
       if (this.autoplay) {
         this.timer = window.setInterval(() => {
@@ -9678,10 +9706,10 @@ var clickOutside = {
       binding.value(e);
     }
     el.__vueClickOutside__ = documentHandler;
-    document.addEventListener("click", documentHandler);
+    isClient && document.addEventListener("click", documentHandler);
   },
   unmounted(el, binding) {
-    document.removeEventListener("click", el.__vueClickOutside__);
+    isClient && document.removeEventListener("click", el.__vueClickOutside__);
     delete el.__vueClickOutside__;
   }
 };
@@ -10917,7 +10945,6 @@ const _sfc_main$1G = {
       default: false
     },
     boundariesElement: {
-      type: [String, HTMLElement],
       default: "window"
     }
   },
@@ -13587,12 +13614,16 @@ var HSAMixin = {
       setTimeout(() => this.ColorPickerInstance.handleOnDragging(false), 1);
     },
     getLeft(e) {
+      if (!isClient)
+        return;
       const { container } = this.$refs;
       const xOffset = container.getBoundingClientRect().left + window.pageXOffset;
       const pageX = e.pageX || getTouches(e, "PageX");
       return pageX - xOffset;
     },
     getTop(e) {
+      if (!isClient)
+        return;
       const { container } = this.$refs;
       const yOffset = container.getBoundingClientRect().top + window.pageYOffset;
       const pageY = e.pageY || getTouches(e, "PageY");
@@ -14629,7 +14660,7 @@ const _sfc_main$1v = {
     },
     handleLeave(el) {
       if (this.type === "message") {
-        if (document.getElementsByClassName("ivu-message-notice").length !== 1) {
+        if (isClient && document.getElementsByClassName("ivu-message-notice").length !== 1) {
           el.style.height = 0;
           el.style.paddingTop = 0;
           el.style.paddingBottom = 0;
@@ -14834,6 +14865,8 @@ function _sfc_render$1m(_ctx, _cache, $props, $setup, $data, $options) {
 }
 var Notification$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1u, [["render", _sfc_render$1m]]);
 Notification$1.newInstance = (properties) => {
+  if (!isClient)
+    return;
   const _props = properties || {};
   let _instance = null;
   const Instance = createApp({
@@ -14860,7 +14893,7 @@ Notification$1.newInstance = (properties) => {
     component: notification,
     destroy(element) {
       notification.closeAll();
-      setTimeout(function() {
+      isClient && setTimeout(function() {
         document.body.removeChild(document.getElementsByClassName(element)[0]);
       }, 500);
     }
@@ -14966,6 +14999,8 @@ var $Message = {
 const defaultSuccessTip = "\u590D\u5236\u6210\u529F";
 const defaultErrorTip = "\u590D\u5236\u5931\u8D25";
 function index$4({ text = "", successTip = defaultSuccessTip, errorTip = defaultErrorTip, success, error, showTip = true }) {
+  if (!isClient)
+    return;
   const isRTL = document.documentElement.getAttribute("dir") === "rtl";
   const $textarea = document.createElement("textarea");
   $textarea.style.fontSize = "12pt";
@@ -17470,7 +17505,7 @@ const _sfc_main$1m = {
     handleTab(e) {
       const tabbables = [...this.$el.children];
       const expectedFocus = tabbables[e.shiftKey ? "shift" : "pop"]();
-      if (document.activeElement === expectedFocus) {
+      if (isClient && document.activeElement === expectedFocus) {
         e.preventDefault();
         e.stopPropagation();
         this.PickerInstance.handleOnFocusInput();
@@ -18831,6 +18866,8 @@ var ScrollbarMixins = {
   },
   methods: {
     checkScrollBar() {
+      if (!isClient)
+        return;
       let fullWindowWidth = window.innerWidth;
       if (!fullWindowWidth) {
         const documentElementRect = document.documentElement.getBoundingClientRect();
@@ -18842,28 +18879,28 @@ var ScrollbarMixins = {
       }
     },
     checkMaskInVisible() {
-      let masks = document.getElementsByClassName("ivu-modal-mask") || [];
+      let masks = isClient ? document.getElementsByClassName("ivu-modal-mask") || [] : [];
       return Array.from(masks).every((m) => m.style.display === "none" || m.classList.contains("fade-leave-to"));
     },
     setScrollBar() {
-      if (this.bodyIsOverflowing && this.scrollBarWidth !== void 0) {
+      if (isClient && this.bodyIsOverflowing && this.scrollBarWidth !== void 0) {
         document.body.style.paddingRight = `${this.scrollBarWidth}px`;
       }
     },
     resetScrollBar() {
-      document.body.style.paddingRight = "";
+      isClient && (document.body.style.paddingRight = "");
     },
     addScrollEffect() {
       if (!this.lockScroll)
         return;
       this.checkScrollBar();
       this.setScrollBar();
-      document.body.style.overflow = "hidden";
+      isClient && (document.body.style.overflow = "hidden");
     },
     removeScrollEffect() {
       if (!this.lockScroll)
         return;
-      if (this.checkMaskInVisible()) {
+      if (isClient && this.checkMaskInVisible()) {
         document.body.style.overflow = "";
         this.resetScrollBar();
       }
@@ -21894,6 +21931,8 @@ function handleGetIndex() {
 }
 let tIndex = handleGetIndex();
 Spin.newInstance = (properties) => {
+  if (!isClient)
+    return;
   const _props = properties || {};
   let _instance = null;
   const Instance = createApp({
@@ -22279,6 +22318,8 @@ function _sfc_render$R(_ctx, _cache, $props, $setup, $data, $options) {
 }
 var LoadingBar = /* @__PURE__ */ _export_sfc(_sfc_main$X, [["render", _sfc_render$R]]);
 LoadingBar.newInstance = (properties) => {
+  if (!isClient)
+    return;
   const _props = properties || {};
   let _instance = null;
   const Instance = createApp({
@@ -23166,7 +23207,7 @@ const _sfc_main$R = {
         x: distance.x - this.dragData.dragX,
         y: distance.y - this.dragData.dragY
       };
-      if (this.sticky) {
+      if (isClient && this.sticky) {
         const clientWidth = document.documentElement.clientWidth;
         const clientHeight = document.documentElement.clientHeight;
         if (this.dragData.x + diff_distance.x <= this.stickyDistance && diff_distance.x < 0) {
@@ -23289,11 +23330,11 @@ const _sfc_main$R = {
     }
     this.showHead = showHead;
     this.addModal();
-    document.addEventListener("keydown", this.EscClose);
+    isClient && document.addEventListener("keydown", this.EscClose);
   },
   beforeUnmount() {
     this.removeModal();
-    document.removeEventListener("keydown", this.EscClose);
+    isClient && document.removeEventListener("keydown", this.EscClose);
     this.removeScrollEffect();
   }
 };
@@ -23404,6 +23445,8 @@ function _sfc_render$M(_ctx, _cache, $props, $setup, $data, $options) {
 var Modal = /* @__PURE__ */ _export_sfc(_sfc_main$R, [["render", _sfc_render$M]]);
 const prefixCls$r = "ivu-modal-confirm";
 Modal.newInstance = (properties) => {
+  if (!isClient)
+    return;
   const _props = properties || {};
   const container = document.createElement("div");
   document.body.appendChild(container);
@@ -23809,7 +23852,7 @@ const focusFirst = (element, root2) => {
     element.focus();
   } catch (err) {
   }
-  if (document.activeElement == element && element !== root2)
+  if (isClient && document.activeElement == element && element !== root2)
     return true;
   const candidates = element.children;
   for (let candidate of candidates) {
@@ -24247,6 +24290,8 @@ const _sfc_main$Q = {
       this.updateNavScroll();
     },
     isInsideHiddenElement() {
+      if (!isClient)
+        return;
       let parentNode = this.$el.parentNode;
       while (parentNode && parentNode !== document.body) {
         if (parentNode.style && parentNode.style.display === "none") {
@@ -24785,7 +24830,7 @@ const _sfc_main$O = {
   },
   methods: {
     handleClick() {
-      if (this.hash !== "")
+      if (isClient && this.hash !== "")
         window.location.hash = this.hash;
     },
     setTime() {
@@ -28547,7 +28592,7 @@ var Scroll = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$r]
 const COMPLETE = "COMPLETE";
 const CANCELED = "CANCELED";
 function requestAnimation$1(task) {
-  if ("requestAnimationFrame" in window) {
+  if (isClient && "requestAnimationFrame" in window) {
     return window.requestAnimationFrame(task);
   }
   setTimeout(task, 16);
@@ -28561,6 +28606,8 @@ function setElementScroll(element, x, y) {
   }
 }
 function getTargetScrollLocation(target, parent, align) {
+  if (!isClient)
+    return;
   let targetPosition = target.getBoundingClientRect();
   let parentPosition = null;
   let x = null;
@@ -28656,6 +28703,8 @@ function transitionScrollTo(target, parent, settings, callback) {
   }
 }
 function defaultIsScrollable(element) {
+  if (!isClient)
+    return;
   return element === window || (element.scrollHeight !== element.clientHeight || element.scrollWidth !== element.clientWidth) && getComputedStyle(element).overflow !== "hidden";
 }
 function defaultValidTarget() {
@@ -28701,7 +28750,7 @@ function index$1(target, settings, callback) {
   }
 }
 function requestAnimation(task) {
-  if ("requestAnimationFrame" in window) {
+  if (isClient && "requestAnimationFrame" in window) {
     return window.requestAnimationFrame(task);
   }
   setTimeout(task, 16);
@@ -28837,6 +28886,8 @@ const _sfc_main$u = {
       this.$emit("update:modelValue", modelValue);
     },
     matchMedia() {
+      if (!isClient)
+        return;
       let matchMedia;
       if (window.matchMedia) {
         matchMedia = window.matchMedia;
@@ -30555,7 +30606,7 @@ const _sfc_main$l = {
     handleMouseDown(column, event) {
       if (this.$isServer)
         return;
-      if (this.draggingColumn) {
+      if (isClient && this.draggingColumn) {
         this.dragging = true;
         const table = this.$parent;
         const tableEl = table.$el;
@@ -30598,17 +30649,21 @@ const _sfc_main$l = {
               table.handleResize();
             }
             table.$emit("on-column-width-resize", _column.width, startLeft - startColumnLeft, column, event);
-            document.body.style.cursor = "";
+            isClient && (document.body.style.cursor = "");
             this.dragging = false;
             this.draggingColumn = null;
             this.dragState = {};
             table.showResizeLine = false;
           }
+          if (!isClient)
+            return;
           document.removeEventListener("mousemove", handleMouseMove);
           document.removeEventListener("mouseup", handleMouseUp);
           document.onselectstart = null;
           document.ondragstart = null;
         };
+        if (!isClient)
+          return;
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
       }
@@ -30620,7 +30675,7 @@ const _sfc_main$l = {
       }
       if (!column || !column.resizable)
         return;
-      if (!this.dragging) {
+      if (isClient && !this.dragging) {
         let rect = target.getBoundingClientRect();
         const bodyStyle = document.body.style;
         if (rect.width > 12 && rect.right - event.pageX < 8) {
@@ -30635,7 +30690,7 @@ const _sfc_main$l = {
     handleMouseOut() {
       if (this.$isServer)
         return;
-      document.body.style.cursor = "";
+      isClient && (document.body.style.cursor = "");
     },
     isChildrenSelected(objData, isSelectAll) {
       let status = isSelectAll;
@@ -31103,6 +31158,8 @@ const _sfc_main$j = {
     handleClick() {
     },
     handleTooltipIn() {
+      if (!isClient)
+        return;
       const $content = this.$refs.content;
       let range2 = document.createRange();
       range2.setStart($content, 0);
@@ -31710,7 +31767,7 @@ const csv = {
   },
   _getDownloadUrl(text) {
     const BOM = "\uFEFF";
-    if (window.Blob && window.URL && window.URL.createObjectURL) {
+    if (isClient && window.Blob && window.URL && window.URL.createObjectURL) {
       const csvData = new Blob([BOM + text], { type: "text/csv" });
       return URL.createObjectURL(csvData);
     } else {
@@ -31718,6 +31775,8 @@ const csv = {
     }
   },
   download(filename, text) {
+    if (!isClient)
+      return;
     if (has("ie") && has("ie") < 10) {
       const oWin = window.top.open("about:blank", "_blank");
       oWin.document.charset = "utf-8";
@@ -33224,7 +33283,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
           createElementVNode("tbody", null, [
             createElementVNode("tr", null, [
               createElementVNode("td", {
-                style: normalizeStyle({ "height": $options.bodyStyle.height, "width": `${this.headerWidth}px` })
+                style: normalizeStyle({ "height": $options.bodyStyle.height, "width": `${$data.headerWidth}px` })
               }, [
                 !$props.data || $props.data.length === 0 ? (openBlock(), createElementBlock("span", {
                   key: 0,
@@ -36129,7 +36188,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.0.0";
+const version$1 = "1.1.0-beta.1";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
