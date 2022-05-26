@@ -100,7 +100,7 @@
                 this.isAffixed = this.affix && state;
             },
             handleScroll (e) {
-                this.upperFirstTitle = e.target.scrollTop < this.titlesOffsetArr[0].offset;
+                this.upperFirstTitle = !!this.titlesOffsetArr[0] && e.target.scrollTop < this.titlesOffsetArr[0].offset;
                 if (this.animating) return;
                 // this.updateTitleOffset();
                 const scrollTop = document.documentElement.scrollTop || document.body.scrollTop || e.target.scrollTop;
