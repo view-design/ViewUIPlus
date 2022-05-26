@@ -1,82 +1,45 @@
-// Type definitions for iview 3.3.1
-// Project: https://github.com/iview/iview
-// Definitions by: yangdan
-// Definitions: https://github.com/yangdan8/iview.git
-import Vue, { VNode, CreateElement } from "vue";
+export declare class Message {
+    /**
+     * 提示内容
+     */
+    content: string;
 
-export declare class Message extends Vue {
     /**
-     * 消息
-     * @param config MessageConfig为相关配置,string为待显示的内容
+     * 自定义描述内容，使用 Vue 的 Render 函数
      */
-    info(config?: MessageConfig | string): void;
+    render: Function;
+
     /**
-     * 成功
-     * @param config MessageConfig为相关配置,string为待显示的内容
+     * 自动关闭的延时，单位秒，不关闭可以写 0
      */
-    success(config?: MessageConfig | string): void;
+    duration: number;
+
     /**
-     * 警告
-     * @param config MessageConfig为相关配置,string为待显示的内容
+     * 关闭时的回调
      */
-    warning(config?: MessageConfig | string): void;
+    onClose: Function;
+
     /**
-     * 错误
-     * @param config MessageConfig为相关配置,string为待显示的内容
+     * 是否显示关闭按钮
      */
-    error(config?: MessageConfig | string): void;
+    closable: boolean;
+
     /**
-     * 配置
-     * @param config MessageConfig为相关配置,string为待显示的内容
+     * 是否显示背景色
      */
-    loading(options?: MessageConfig | string): void;
-    /**
-     * 配置
-     * @param config MessageConfig为相关配置,string为待显示的内容
-     */
-    config(options?: MessageConfig): void;
-    /**
-     * 销毁
-     */
-    destroy(): void;
+    background: boolean;
+
 }
 
 export declare class MessageConfig {
     /**
-     * 提示内容
-     */
-    content?: string;
-    /**
-     * 自定义描述内容，使用 Vue 的 Render 函数
-     * @param h Render函数
-     */
-    render?: (h?: CreateElement) => VNode;
-    /**
-     * 关闭时的回调
-     */
-    onClose?: () => void;
-    /**
-     * 页面是否可以滚动
-     * @default false
-     */
-    closable?: boolean;
-    /**
      * 提示组件距离顶端的距离，单位像素
-     * @default 24
      */
-    top?: number;
+    top: number;
+
     /**
      * 默认自动关闭的延时，单位秒
-     * @default 1.5
      */
-    duration?: number;
-}
+    duration: number;
 
-declare module "vue/types/vue" {
-    interface Vue {
-        /**
-         * 全局提示
-         */
-        $Message: Message;
-    }
 }

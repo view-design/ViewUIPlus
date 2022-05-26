@@ -1,224 +1,217 @@
-// Type definitions for iview 3.3.1
-// Project: https://github.com/iview/iview
-// Definitions by: yangdan
-// Definitions: https://github.com/yangdan8/iview.git
-import Vue, { VNode, CreateElement } from "vue";
-
-export declare class Modal extends Vue {
+export declare class Modal {
     /**
      * 对话框是否显示，可使用 v-model 双向绑定数据。
-     * @default false
      */
-    value?: boolean;
+    'model-value': boolean;
+
     /**
      * 对话框标题，如果使用 slot 自定义了页头，则 title 无效
      */
-    title?: string;
+    title: string;
+
     /**
-     * 是否显示右上角的关闭按钮，关闭后 Esc 按键也将关闭,
-     * @default true
+     * 是否显示右上角的关闭按钮，关闭后 Esc 按键也将关闭
      */
-    closable?: boolean;
+    closable: boolean;
+
     /**
      * 是否允许点击遮罩层关闭
-     * @default true
      */
-    "mask-closable"?: boolean;
+    'mask-closable': boolean;
+
     /**
-     * 点击确定按钮时，确定按钮是否显示 loading 状态，开启则需手动设置visible来关闭对话框,
-     * @default false
+     * 点击确定按钮时，确定按钮是否显示 loading 状态，开启则需手动设置`value`来关闭对话框
      */
-    loading?: boolean;
+    loading: boolean;
+
     /**
      * 页面是否可以滚动
-     * @default false
      */
-    scrollable?: boolean;
+    scrollable: boolean;
+
     /**
      * 是否全屏显示
-     * @default false
      */
-    fullscreen?: boolean;
+    fullscreen: boolean;
+
     /**
      * 是否可以拖拽移动
-     * @default false
      */
-    draggable?: boolean;
+    draggable: boolean;
+
     /**
-     * 是否显示遮罩层，开启 draggable 时，强制不显示
-     * @default true
+     * 拖拽时，是否吸附屏幕边缘
      */
-    mask?: boolean;
+    sticky: boolean;
+
+    /**
+     * 拖拽时，自动吸附屏幕边缘的临界距离
+     */
+    'sticky-distance': number;
+
+    /**
+     * Modal 再次打开时，是否重置拖拽的位置
+     */
+    'reset-drag-position': boolean;
+
+    /**
+     * 是否显示遮罩层，<s>开启 draggable 时，强制不显示(4.6.0不再强制)</s>
+     */
+    mask: boolean;
+
     /**
      * 确定按钮文字
-     * @default 确定
      */
-    "ok-text"?: string;
+    'ok-text': string;
+
     /**
      * 取消按钮文字
-     * @default 取消
      */
-    "cancel-text"?: string;
+    'cancel-text': string;
+
     /**
-     * 对话框宽度，单位 px。
-     * 对话框的宽度是响应式的，当屏幕尺寸小于 768px 时，宽度会变为自动auto,
-     * @default 	520
+     * 对话框宽度，对话框的宽度是响应式的，当屏幕尺寸小于 768px 时，宽度会变为自动`auto`。当其值不大于 100 时以百分比显示，大于 100 时为像素
      */
-    width?: number | string;
+    width: number;
+
     /**
      * 不显示底部
-     * @default false
      */
-    "footer-hide"?: boolean;
+    'footer-hide': boolean;
+
     /**
-     * 设置浮层样式，调整浮层位置等，该属性设置的是.ivu-modal的样式
+     * 设置浮层样式，调整浮层位置等，该属性设置的是`.ivu-modal`的样式
      */
-    style?: object;
+    styles: object;
+
     /**
-     * 设置对话框容器.ivu-modal-wrap的类名，可辅助实现垂直居中等自定义效果
+     * 设置对话框容器`.ivu-modal-wrap`的类名，可辅助实现垂直居中等自定义效果
      */
-    "class-name"?: string;
+    'class-name': string;
+
     /**
      * 层级
-     * @default 1000
      */
-    "z-index"?: number;
+    'z-index': number;
+
     /**
-     * 自定义显示动画，第一项是模态框，第二项是背景,
-     * @default ['ease', 'fade']
+     * 自定义显示动画，第一项是模态框，第二项是背景
      */
-    "transition-names"?: Array<string>;
+    'transition-names': [];
+
     /**
-     * 是否将弹层放置于 body 内，默认值true
-     * @default true
+     * 是否将弹层放置于 body 内
      */
-    transfer?: boolean;
+    transfer: boolean;
+
+    /**
+     * 是否禁止对页面滚动条的修改
+     */
+    'lock-scroll': boolean;
+
+    /**
+     * 返回 Promise 可以阻止关闭
+     */
+    'before-close': Function;
+
     /**
      * 点击确定的回调
      */
-    $emit(eventName: "on-ok"): this;
+    $emit(eventName: 'on-ok'): this;
+
     /**
-     * 开关变化时触发，返回当前的状态
+     * 点击取消的回调
      */
-    $emit(eventName: "on-cancel"): this;
+    $emit(eventName: 'on-cancel'): this;
+
     /**
-     * 开关变化时触发，返回当前的状态
+     * 显示状态发生变化时触发
      */
-    $emit(eventName: "on-visible-change", visible: boolean): this;
-    /**
-     * slot插槽对象
-     */
+    $emit(eventName: 'on-visible-change'): this;
+
     $slots: {
-        /**
-         * 对话框主体内容
-         */
-        "": VNode[];
         /**
          * 自定义页头
          */
-        header: VNode[];
+        header: [];
+
         /**
          * 自定义页脚内容
          */
-        footer: VNode[];
+        footer: [];
+
         /**
          * 自定义右上角关闭内容
          */
-        close: VNode[];
+        close: [];
+
+        /**
+         * 对话框主体内容
+         */
+        '': [];
+
     };
 }
 
-export declare class ModalInstance extends Modal {
+export declare class ModalInstance {
     /**
-     * 消息
-     * @param config ModalConfig为相关配置,string为待显示的内容
+     * 标题
      */
-    info(config?: ModalConfig | string): void;
-    /**
-     * 成功
-     * @param config ModalConfig为相关配置,string为待显示的内容
-     */
-    success(config?: ModalConfig | string): void;
-    /**
-     * 警告
-     * @param config ModalConfig为相关配置,string为待显示的内容
-     */
-    warning(config?: ModalConfig | string): void;
-    /**
-     * 错误
-     * @param config ModalConfig为相关配置,string为待显示的内容
-     */
-    error(config?: ModalConfig | string): void;
-    /**
-     * 对话框
-     * @param config ModalConfig为相关配置,string为待显示的内容
-     */
-    confirm(config?: ModalConfig | string): void;
-    /**
-     * 移除
-     */
-    remove(): void;
-}
+    title: string | Element;
 
-export declare class ModalConfig {
     /**
-     * 标题或者Element选择器字符串
+     * 内容
      */
-    title?: string;
-    /**
-     * 内容或者Element选择器字符串
-     */
-    content?: string;
+    content: string | Element;
+
     /**
      * 自定义内容，使用后不再限制类型， content 也无效。
-     * @param h Render函数
      */
-    render?: (h?: CreateElement) => void;
+    render: Function;
+
     /**
      * 宽度，单位 px
-     * @default 416
      */
-    width?: number | string;
+    width: number | string;
+
     /**
      * 确定按钮的文字
-     * @default 确定
      */
-    okText?: string;
+    okText: string;
+
     /**
-     * 取消按钮的文字，只在Modal.confirm()下有效
-     * @default 取消
+     * 取消按钮的文字，只在`Modal.confirm()`下有效
      */
-    cancelText?: string;
+    cancelText: string;
+
     /**
-     * 点击确定按钮时，确定按钮是否显示 loading 状态，开启则需手动调用Modal.remove()来关闭对话框
-     * @default false
+     * 点击确定按钮时，确定按钮是否显示 loading 状态，开启则需手动调用`Modal.remove()`来关闭对话框
      */
-    loading?: boolean;
-    /**
-     * 页面是否可以滚动
-     * @default false
-     */
-    scrollable?: boolean;
+    loading: boolean;
+
     /**
      * 页面是否可以滚动
-     * @default false
      */
-    closable?: boolean;
+    scrollable: boolean;
+
+    /**
+     * 是否可以按 Esc 键关闭
+     */
+    closable: boolean;
+
     /**
      * 点击确定的回调
      */
-    onOk?: () => void;
-    /**
-     * 点击取消的回调，只在Modal.confirm()下有效
-     */
-    onCancel?: () => void;
-}
+    onOk: Function;
 
-declare module "vue/types/vue" {
-    interface Vue {
-        /**
-         * 对话框
-         */
-        $Modal: ModalInstance;
-    }
+    /**
+     * 点击取消的回调，只在`Modal.confirm()`下有效
+     */
+    onCancel: Function;
+
+    /**
+     * 是否禁止对页面滚动条的修改
+     */
+    'lock-scroll': boolean;
+
 }

@@ -1,48 +1,49 @@
-// Type definitions for iview 3.3.1
-// Project: https://github.com/iview/iview
-// Definitions by: yangdan
-// Definitions: https://github.com/yangdan8/iview.git
-import Vue, { VNode } from 'vue';
+export declare class Alert {
+    /**
+     * 警告提示样式，可选值为`info`、`success`、`warning`、`error`
+     */
+    type: 'info' | 'success' | 'warning' | 'error';
 
-export declare class Alert extends Vue {
-  /**
-   * 警告提示样式，可选值为info、success、warning、error
-   * @default info
-   */
-  type?: 'info' | 'success' | 'warning' | 'error';
-  /**
-   * 是否可关闭
-   * @default false
-   */
-  closable?: boolean;
-  /**
-   * 是否显示图标
-   * @default false
-   */
-  'show-icon'?: boolean;
-  /**
-   * 关闭时触发
-   */
-  $emit(eventName: 'on-close', event: HTMLElement): this;
-  /**
-   * slot插槽对象
-   */
-  $slots: {
     /**
-     * 警告提示内容
+     * 是否可关闭
      */
-    '': VNode[];
+    closable: boolean;
+
     /**
-     * 警告提示辅助性文字介绍
+     * 是否显示图标
      */
-    desc: VNode[];
+    'show-icon': boolean;
+
     /**
-     * 自定义图标内容
+     * 是否应用动画，动画时长可能会引起占位的闪烁
      */
-    icon: VNode[];
+    fade: boolean;
+
     /**
-     * 自定义关闭内容
+     * 关闭时触发
      */
-    close: VNode[];
-  };
+    $emit(eventName: 'on-close'): this;
+
+    $slots: {
+        /**
+         * 警告提示内容
+         */
+        '': [];
+
+        /**
+         * 警告提示辅助性文字介绍
+         */
+        desc: [];
+
+        /**
+         * 自定义图标内容
+         */
+        icon: [];
+
+        /**
+         * 自定义关闭内容
+         */
+        close: [];
+
+    };
 }

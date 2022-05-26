@@ -1,22 +1,22 @@
-// Type definitions for iview 3.3.1
-// Project: https://github.com/iview/iview
-// Definitions by: yangdan
-// Definitions: https://github.com/yangdan8/iview.git
-import Vue from 'vue';
+export declare class Affix {
+    /**
+     * 距离窗口顶部达到指定偏移量后触发
+     */
+    'offset-top': number;
 
-export declare class Affix extends Vue {
-  /**
-   * 距离窗口顶部达到指定偏移量后触发
-   * @default 0
-   */
-  'offset-top'?: number;
-  /**
-   * 距离窗口底部达到指定偏移量后触发
-   */
-  'offset-bottom'?: number;
-  /**
-   * 在固定状态发生改变时触发
-   * @param value true | false
-   */
-  $emit(eventName: 'on-change', value: boolean): this;
+    /**
+     * 距离窗口底部达到指定偏移量后触发
+     */
+    'offset-bottom': number;
+
+    /**
+     * addEventListener 原生的 useCapture 选项
+     */
+    'use-capture': boolean;
+
+    /**
+     * 在固定状态发生改变时触发
+     */
+    $emit(eventName: 'on-change'): this;
+
 }

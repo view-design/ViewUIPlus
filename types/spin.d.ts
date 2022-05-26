@@ -1,35 +1,24 @@
-// Type definitions for iview 3.3.1
-// Project: https://github.com/iview/iview
-// Definitions by: yangdan
-// Definitions: https://github.com/yangdan8/iview.git
-import Vue, { VNode } from 'vue';
-
-export declare class Spin extends Vue {
-  /**
-   * Spin尺寸，可选值为large和small或者不设置
-   */
-  size?: 'large' | 'small';
-  /**
-   * 是否固定，需要父级有relative或absolute
-   * @default false
-   */
-  fix?: boolean;
-  /**
-   * slot插槽对象
-   */
-  $slots: {
+export declare class Spin {
     /**
-     * 自定义 Spin 的内容，设置slot后，默认的样式不生效
+     * 用于动画控制显/隐
      */
-    '': VNode[];
-  };
-}
+    show: boolean;
 
-declare module 'vue/types/vue' {
-  interface Vue {
     /**
-     * 
+     * Spin尺寸，可选值为`large`和`small`或者不设置
      */
-    $Spin: Spin;
-  }
+    size: '' | 'large' | 'small';
+
+    /**
+     * 是否固定，需要父级有`relative`或`absolute`
+     */
+    fix: boolean;
+
+    $slots: {
+        /**
+         * 自定义 Spin 的内容，设置slot后，默认的样式不生效
+         */
+        '': [];
+
+    };
 }

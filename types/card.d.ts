@@ -1,53 +1,69 @@
-// Type definitions for iview 3.3.1
-// Project: https://github.com/iview/iview
-// Definitions by: yangdan
-// Definitions: https://github.com/yangdan8/iview.git
-import Vue, { VNode } from 'vue';
+export declare class Card {
+    /**
+     * 是否显示边框，建议在灰色背景下使用
+     */
+    bordered: boolean;
 
-export declare class Card extends Vue {
-  /**
-   * 是否显示边框，建议在灰色背景下使用
-   * @default true
-   */
-  'bordered'?: boolean;
-  /**
-   * 禁用鼠标悬停显示阴影
-   * @default false
-   */
-  'dis-hover'?: boolean;
-  /**
-   * 卡片阴影，建议在灰色背景下使用
-   * @default false
-   */
-  'shadow'?: boolean;
-  /**
-   * 卡片内部间距，单位 px
-   * @default 16
-   */
-  'padding'?: number;
-  /**
-   * 标题，2.12.0 新增
-   */
-  title?: string;
-  /**
-   * 标题前的图标，2.12.0 新增
-   */
-  icon?: string;
-  /**
-   * slot插槽对象
-   */
-  $slots: {
     /**
-     * 自定义卡片标题，如果是简单文字，可以使用<p>标签包裹
+     * 禁用鼠标悬停显示阴影
      */
-    title: VNode[];
+    'dis-hover': boolean;
+
     /**
-     * 额外显示的内容，默认位置在右上角
+     * 卡片阴影，建议在灰色背景下使用
      */
-    extra: VNode[];
+    shadow: boolean;
+
     /**
-     * 卡片主体内容
+     * 卡片内部间距，单位 px
      */
-    '': VNode[];
-  };
+    padding: number;
+
+    /**
+     * 标题
+     */
+    title: string;
+
+    /**
+     * 标题前的图标
+     */
+    icon: string;
+
+    /**
+     * 跳转的链接，支持 vue-router 对象
+     */
+    to: string | object;
+
+    /**
+     * 路由跳转时，开启 replace 将不会向 history 添加新记录
+     */
+    replace: boolean;
+
+    /**
+     * 相当于 a 链接的 target 属性
+     */
+    target: string;
+
+    /**
+     * 同 vue-router append
+     */
+    append: boolean;
+
+    $slots: {
+        /**
+         * 自定义卡片标题，如果是简单文字，可以使用`&lt;p&gt;`标签包裹
+         */
+        title: [];
+
+        /**
+         * 额外显示的内容，默认位置在右上角
+         */
+        extra: [];
+
+        /**
+         * 卡片主体内容
+         */
+        '': [];
+
+    };
 }

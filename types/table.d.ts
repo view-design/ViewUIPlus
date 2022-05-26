@@ -1,212 +1,255 @@
-// Type definitions for iview 3.3.1
-// Project: https://github.com/iview/iview
-// Definitions by: yangdan
-// Definitions: https://github.com/yangdan8/iview.git
-import Vue, { VNode, CreateElement } from "vue";
-
-export declare class Table extends Vue {
+export declare class Table {
     /**
-     * 显示的结构化数据，其中，字段 cellClassName 用于设置任意单元格的样式名称，
-     * 因此数据不能使用该字段，详见示例特定样式。
-     * @default []
+     * 显示的结构化数据，其中，字段 cellClassName 用于设置任意单元格的样式名称，因此数据不能使用该字段，详见示例**特定样式**。
      */
-    data?: object[];
+    data: [];
+
     /**
      * 表格列的配置描述，具体项见后文
-     * @default []
      */
-    columns?: object[];
+    columns: [];
+
     /**
      * 是否显示间隔斑马纹
-     * @default false
      */
-    stripe?: boolean;
+    stripe: boolean;
+
     /**
      * 是否显示纵向边框
-     * @default false
      */
-    border?: boolean;
+    border: boolean;
+
     /**
      * 是否显示表头
-     * @default true
      */
-    "show-header"?: boolean;
+    'show-header': boolean;
+
     /**
      * 表格宽度，单位 px
-     * @default 自动
      */
-    width?: number | string;
+    width: number | string;
+
     /**
      * 表格高度，单位 px，设置后，如果表格内容大于此值，会固定表头
      */
-    height?: number | string;
+    height: number | string;
+
     /**
      * 表格最大高度，单位 px，设置后，如果表格内容大于此值，会固定表头
      */
-    'max-height'?: number | string;
+    'max-height': number | string;
+
     /**
      * 表格是否加载中
-     * @default false
      */
-    loading?: boolean;
+    loading: boolean;
+
     /**
      * 禁用鼠标悬停时的高亮
-     * @default false
      */
-    "disabled-hover"?: boolean;
+    'disabled-hover': boolean;
+
     /**
      * 是否支持高亮选中的行，即单选
-     * @default false
      */
-    "highlight-row"?: boolean;
+    'highlight-row': boolean;
+
     /**
-     * 行的 className 的回调方法，传入参数：
-     * row：当前行数据
-     * index：当前行的索引
+     * 行的 className 的回调方法，传入参数：`row`：当前行数据 `index`：当前行的索引
      */
-    "row-class-name"?: (row?: object, index?: number) => void;
+    'row-class-name': Function;
+
     /**
-     * 表格尺寸，可选值为 large、small、default 或者不填
+     * 表格尺寸，可选值为 `large`、`small`、`default` 或者不填
      */
-    size?: string;
+    size: string;
+
     /**
      * 数据为空时显示的提示内容
-     * @default 暂无数据
      */
-    "no-data-text"?: string;
+    'no-data-text': string;
+
     /**
      * 筛选数据为空时显示的提示内容
-     * @default 暂无筛选结果
      */
-    "no-filtered-data-text"?: string;
+    'no-filtered-data-text': string;
+
     /**
      * 是否开启拖拽调整行顺序，需配合 @on-drag-drop 事件使用
-     * @default false
      */
-    "draggable"?: boolean;
+    draggable: boolean;
+
     /**
      * 列使用 tooltip 时，配置它的主题，可选值为 dark 或 light
-     * @default dark
      */
-    "tooltip-theme"?: string;
+    'tooltip-theme': string;
+
+    /**
+     * 列使用 tooltip 时，配置 Tooltip 的最大宽，默认是 300
+     */
+    'tooltip-max-width': number;
+
     /**
      * 是否强制使用内置的 row-key，开启后可能会影响性能
-     * @default false
      */
-    "row-key"?: boolean;
+    'row-key': boolean | string;
+
     /**
-     * 开启 highlight-row 后有效，当表格的当前行发生变化的时候会触发
-     * currentRow：当前高亮行的数据
-     * oldCurrentRow：上一次高亮的数据
+     * 合并行或列的计算方法
      */
-    $emit(
-        eventName: "on-current-change",
-        currentRow: object,
-        oldCurrentRow: object
-    ): this;
+    'span-method': Function;
+
+    /**
+     * 是否在表尾显示合计行
+     */
+    'show-summary': boolean;
+
+    /**
+     * 合计行第一列的文本
+     */
+    'sum-text': string;
+
+    /**
+     * 自定义的合计计算方法
+     */
+    'summary-method': Function;
+
+    /**
+     * 树形数据缩进宽度，单位 px
+     */
+    'indent-size': number;
+
+    /**
+     * 异步加载树形数据的方法，详见示例
+     */
+    'load-data': Function;
+
+    /**
+     * 展开树形数据时，是否需要更新 `_showChildren` 字段，使用异步树形数据时建议开启
+     */
+    'update-show-children': boolean;
+
+    /**
+     * 当前行点击右键是否会阻止默认行为
+     */
+    'context-menu': boolean;
+
+    /**
+     * 点击右键弹出菜单，需配合 slot `contextMenu` 一起使用，详见示例
+     */
+    'show-context-menu': boolean;
+
+    /**
+     * 列固定时，阴影显示规则，可选值为 `auto`、`show`、`hide`
+     */
+    'fixed-shadow': string;
+
+    /**
+     * 点击右键菜单项是否自动关闭右键菜单
+     */
+    'auto-close-contextmenu': boolean;
+
+    /**
+     * 开启 `highlight-row` 后有效，当表格的当前行发生变化的时候会触发
+     */
+    $emit(eventName: 'on-current-change'): this;
+
     /**
      * 在多选模式下有效，选中某一项时触发
-     * selection：已选项数据
-     * row：刚选择的项数据
      */
-    $emit(eventName: "on-select", selection: object[], row: object): this;
+    $emit(eventName: 'on-select'): this;
+
     /**
      * 在多选模式下有效，取消选中某一项时触发
-     * selection：已选项数据
-     * row：取消选择的项数据
      */
-    $emit(
-        eventName: "on-select-cancel",
-        selection: object[],
-        row: object
-    ): this;
+    $emit(eventName: 'on-select-cancel'): this;
+
     /**
      * 在多选模式下有效，点击全选时触发
-     * selection：已选项数据
      */
-    $emit(eventName: "on-select-all", selection: object[]): this;
+    $emit(eventName: 'on-select-all'): this;
+
     /**
      * 在多选模式下有效，点击取消全选时触发
-     * selection：已选项数据
      */
-    $emit(eventName: "on-select-all-cancel", selection: object[]): this;
+    $emit(eventName: 'on-select-all-cancel'): this;
+
     /**
      * 在多选模式下有效，只要选中项发生变化时就会触发
-     * selection：已选项数据
      */
-    $emit(eventName: "on-selection-change", selection: object[]): this;
+    $emit(eventName: 'on-selection-change'): this;
+
     /**
      * 排序时有效，当点击排序时触发
-     * column：当前列数据
-     * key：排序依据的指标
-     * order：排序的顺序，值为 asc 或 desc
      */
-    $emit(
-        eventName: "on-sort-change",
-        column?: object,
-        key?: string,
-        order?: "asc" | "desc"
-    ): this;
+    $emit(eventName: 'on-sort-change'): this;
+
     /**
-     * 筛选时有效，筛选条件发生变化时触发	当前列数据
+     * 筛选时有效，筛选条件发生变化时触发
      */
-    $emit(eventName: "on-filter-change", value: any): this;
+    $emit(eventName: 'on-filter-change'): this;
+
     /**
      * 单击某一行时触发
-     * currentRow：当前行的数据
-     * index?: 当前行的索引
      */
-    $emit(eventName: "on-row-click", currentRow: object, index: number): this;
+    $emit(eventName: 'on-row-click'): this;
+
     /**
      * 双击某一行时触发
-     * currentRow：当前行的数据
-     * index?: 当前行的索引
      */
-    $emit(
-        eventName: "on-row-dblclick",
-        currentRow: object,
-        index: number
-    ): this;
+    $emit(eventName: 'on-row-dblclick'): this;
+
+    /**
+     * 点击单元格时触发
+     */
+    $emit(eventName: 'on-cell-click'): this;
+
     /**
      * 展开或收起某一行时触发
-     * row：当前行的数据
-     * status：当前的状态
      */
-    $emit(eventName: "on-expand", row: object, status: string): this;
+    $emit(eventName: 'on-expand'): this;
+
     /**
      * 拖拽排序松开时触发，返回置换的两行数据索引
-     * index1
-     * index2
      */
-    $emit(eventName: "on-drag-drop", index1: number, index2: number): this;
+    $emit(eventName: 'on-drag-drop'): this;
+
     /**
-     * 导出数据
+     * 拖拽调整列宽时触发
      */
-    exportCsv(params: TableExportCsvParams): void;
+    $emit(eventName: 'on-column-width-resize'): this;
+
     /**
-     * 执行改变大小重绘table
+     * 当前行点击右键时触发
      */
-    handleResize(): void;
+    $emit(eventName: 'on-contextmenu'): this;
+
     /**
-     * 清除高亮项，仅在开启 highlight-row 时可用
+     * 展开或收起子数据时触发
      */
-    clearCurrentRow(): void;
-    /**
-     * slot插槽对象
-     */
+    $emit(eventName: 'on-expand-tree'): this;
+
     $slots: {
         /**
          * 表头
          */
-        header: VNode[];
+        header: [];
+
         /**
          * 页脚
          */
-        footer: VNode[];
+        footer: [];
+
         /**
          * 加载中
          */
-        loading: VNode[];
+        loading: [];
+
+        /**
+         * 右键菜单，详见示例
+         */
+        contextMenu: [];
+
     };
 }
 
@@ -214,233 +257,145 @@ export declare class TableColumn {
     /**
      * 列类型，可选值为 index、selection、expand、html
      */
-    type?: "index" | "selection" | "expand" | "html";
+    type: 'index' | 'selection' | 'expand' | 'html';
+
     /**
      * 列头显示文字
-     * @default #
      */
-    title?: string;
+    title: string;
+
     /**
      * 对应列内容的字段名
      */
-    key?: string;
+    key: string;
+
     /**
      * 列宽
      */
-    width?: number;
+    width: number;
+
     /**
      * 最小列宽
      */
-    minWidth?: number;
+    minWidth: number;
+
     /**
      * 最大列宽
      */
-    maxWidth?: number;
+    maxWidth: number;
+
     /**
-     * 对齐方式，可选值为 left 左对齐、right 右对齐和 center 居中对齐,默认 left
-     * @default left
+     * 对齐方式，可选值为 `left` 左对齐、`right` 右对齐和 `center` 居中对齐
      */
-    align?: "left" | "right" | "center";
+    align: 'left' | 'right' | 'center';
+
     /**
      * 列的样式名称
      */
-    className?: string;
+    className: string;
+
     /**
-     * 列是否固定在左侧或者右侧，可选值为 left 左侧和 right 右侧
+     * 列是否固定在左侧或者右侧，可选值为 `left` 左侧和 `right` 右侧
      */
-    fixed?: "left" | "right";
+    fixed: 'left' | 'right';
+
     /**
      * 开启后，文本将不换行，超出部分显示为省略号
-     * @default false
      */
-    ellipsis?: boolean;
+    ellipsis: boolean;
+
     /**
      * 开启后，文本将不换行，超出部分显示为省略号，并用 Tooltip 组件显示完整内容
-     * @default false
      */
-    tooltip?: boolean;
+    tooltip: boolean;
+
     /**
-     * 自定义渲染列，使用 Vue 的 Render 函数。
-     * 传入两个参数，第一个是 h，第二个为对象，包含 row、column 和 index，
-     * 分别指当前行数据，当前列数据，当前行索引，详见示例。
-     * 学习 Render 函数的内容 从 rc.18 版本开始，我们将不再支持旧的用法。旧的 render 函数已被废弃。
-     * @param h Render函数
-     * @param params 对象，包含 row、column 和 index
+     * 配置 Tooltip 的主题，可选值为 dark 或 light
      */
-    render?: (
-        h?: CreateElement,
-        params?: TableColumnRenderParams
-    ) => VNode;
+    tooltipTheme: string;
+
     /**
-     * 自定义列头显示内容，传入参数有两个，column 和 index，分别为当前列数据和当前列索引，不支持渲染自定义组件
-     * @param h Render函数
-     * @param params 对象，包含 row、column 和 index
+     * 配置 Tooltip 的最大宽，默认是 300
      */
-    renderHeader?: (
-        h?: CreateElement,
-        params?: TableColumnRenderHeadParams
-    ) => VNode;
+    tooltipMaxWidth: number;
+
+    /**
+     * 自定义渲染列，使用 Vue 的 Render 函数。传入两个参数，第一个是 h，第二个为对象，包含 row、column 和
+                    index，分别指当前行数据，当前列数据，当前行索引，详见示例。
+     */
+    render: Function;
+
+    /**
+     * 自定义列头显示内容，使用 Vue 的 Render 函数。传入两个参数，第一个是 h，第二个为对象，包含 `column` 和
+                    `index`，分别为当前列数据和当前列索引。
+     */
+    renderHeader: Function;
+
     /**
      * type 为 index 时可用，自定义序号
-     * @param row 当前行数据
      */
-    indexMethod?: (row?: object) => string | number;
+    indexMethod: Function;
+
     /**
-     * 自定义渲染列，使用 slot-scope 写法
-     * 声明 slot 后，就可以在 Table 的 slot 中使用 slot-scope
+     * 对应列是否可以排序，如果设置为 `custom`，则代表用户希望远程排序，需要监听 Table 的 on-sort-change 事件
      */
-    slot?: string;
+    sortable: boolean | 'custom';
+
     /**
-     * 对应列是否可以排序，如果设置为 custom，则代表用户希望远程排序，
-     * 需要监听 Table 的 on- sort - change 事件,默认false
-     * @default false
+     * 自定义排序使用的方法，接收三个参数 a 、 b 和 type，当设置 `sortable: true` 时有效。type 值为 asc 和
+                    desc
      */
-    sortable?: boolean | "custom";
-    /**
-     * 自定义排序使用的方法，接收三个参数 a 、 b 和 type，
-     * 当设置 sortable?: true 时有效。type 值为 asc 和 desc
-     */
-    sortMethod?: (a: any, b: any, type: "asc" | "desc") => void;
+    sortMethod: Function;
+
     /**
      * 设置初始化排序。值为 asc 和 desc
      */
-    sortType?: "asc" | "desc";
+    sortType: 'asc' | 'desc';
+
     /**
-     * 过滤数据的选项，格式为数组，数组中每项包含 label 和 value 属性，使用过滤，必须同时配置filterMethod
+     * 过滤数据的选项，格式为数组，数组中每项包含 `label` 和 `value` 属性，使用过滤，必须同时配置 filterMethod
      */
-    filters?: { label: string; value: string | number | boolean }[];
+    filters: [];
+
     /**
      * 数据过滤使用的方法，如果是多选的筛选项，对每一条数据会执行多次，任意一次返回 true 就会显示
      */
-    filterMethod?: () => void;
+    filterMethod: Function;
+
     /**
      * 数据过滤的选项是否多选
-     * @default true
      */
-    filterMultiple?: boolean;
+    filterMultiple: boolean;
+
     /**
      * 在初始化时使用过滤，数组，值为需要过滤的 value 集合
      */
-    filteredValue?: (string | number | boolean)[];
+    filteredValue: [];
+
     /**
      * 使用远程过滤
      */
-    filterRemote?: () => void;
+    filterRemote: Function;
+
     /**
      * 表头分组
      */
-    children?: object[];
-}
+    children: [];
 
-export declare class TableRenderCreateElementData {
     /**
-     * 和`v-bind:class`一样的 API
+     * 该列是否允许拖拽调整宽度，需开启 border 属性，且设置 width
      */
-    class?: object;
-    /**
-     * 和`v-bind:style`一样的 API
-     */
-    style?: object;
-    /**
-     * 正常的 HTML 特性
-     */
-    attrs?: object;
-    /**
-     * 组件 props
-     */
-    props?: object;
-    /**
-     * DOM 属性
-     */
-    domProps?: object;
-    /**
-     * 事件监听器基于 "on"
-     * 所以不再支持如 v-on?:keyup.enter 修饰器
-     * 需要手动匹配 keyCode。
-     */
-    on?: object;
-    /**
-     * 仅对于组件，用于监听原生事件，而不是组件使用 vm.$emit 触发的事件。
-     */
-    nativeOn?: object;
-    /**
-     * 自定义指令. 注意事项：不能对绑定的旧值设值
-     * Vue 会为您持续追踨
-     */
-    directives?: object[];
-    /**
-     * 如果子组件有定义 slot 的名称
-     */
-    slot?: string;
-    /**
-     * 其他特殊顶层属性,myKey
-     */
-    key?: string;
-    /**
-     * myRef
-     */
-    ref?: string;
-}
+    resizable: boolean;
 
-export declare class TableColumnRenderParams {
     /**
-     * 当前行数据
+     * 指定该列为显示展开/收起图标，树形数据时使用
      */
-    row?: object;
-    /**
-     * 当前列数据
-     */
-    column?: object;
-    /**
-     * 当前行索引
-     */
-    index?: number;
-}
+    tree: boolean;
 
-export declare class TableColumnRenderHeadParams {
     /**
-     * 当前列数据
+     * 使用 slot 自定义列时，列的渲染模式。可选值为 block、inline、inline-block，当使用树形数据时，建议使用 inline 或
+                    inline-block
      */
-    column?: object;
-    /**
-     * 当前行索引
-     */
-    index?: number;
-}
+    display: string;
 
-export declare class TableExportCsvParams {
-    /**
-     * 文件名，默认为 table.csv
-     */
-    filename?: string;
-    /**
-     * 是否导出为原始数据，默认为 true
-     */
-    original?: boolean;
-    /**
-     * 不显示表头，默认为 false
-     */
-    noHeader?: boolean;
-    /**
-     * 自定义导出的列数据
-     */
-    columns?: any[];
-    /**
-     * 自定义导出的行数据
-     */
-    data?: any[];
-    /**
-     * 添加此函数后，不会下载，而是返回数据
-     */
-    callback?: (data?: string) => void;
-    /**
-     * 数据分隔符，默认是逗号(,)
-     * @default ,
-     */
-    separator?: string;
-    /**
-     * 每项数据是否加引号
-     * @default false
-     */
-    quoted?: boolean;
 }
