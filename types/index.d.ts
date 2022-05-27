@@ -1,10 +1,72 @@
-// Type definitions for iview 3.3.1
-// Project: https://github.com/iview/iview
-// Definitions by: yangdan
-// Definitions: https://github.com/yangdan8/iview.git
-import iView from './iview';
 
-export default iView;
-export as namespace iView;
+import type { App } from 'vue';
+export * from './viewuiplus.components';
 
-export * from './iview.components';
+interface ViewUIPlusGlobalOptions {
+    size?: string;
+    transfer?: boolean | string;
+    select: {
+        arrow: string;
+        customArrow: string;
+        arrowSize: number | string;
+    };
+    cell: {
+        arrow: string;
+        customArrow: string;
+        arrowSize: number | string;
+    };
+    menu: {
+        arrow: string;
+        customArrow: string;
+        arrowSize: number | string;
+    };
+    tree: {
+        arrow: string;
+        customArrow: string;
+        arrowSize: number | string;
+    };
+    cascader: {
+        arrow: string;
+        customArrow: string;
+        arrowSize: number | string;
+        itemArrow: string;
+        customItemArrow: string;
+        itemArrowSize: number | string;
+    };
+    colorPicker: {
+        arrow: string;
+        customArrow: string;
+        arrowSize: number | string;
+    };
+    datePicker: {
+        icon: string;
+        customIcon: string;
+        iconSize: number | string;
+    };
+    timePicker: {
+        icon: string;
+        customIcon: string;
+        iconSize: number | string;
+    };
+    tabs: {
+        closeIcon: string;
+        customCloseIcon: string;
+        closeIconSize: number | string;
+    };
+    modal: {
+        maskClosable: boolean | string;
+    };
+}
+
+interface ViewUIPlusInstallOptions extends ViewUIPlusGlobalOptions{
+    locale?: any;
+    i18n?: any;
+}
+
+declare module '@vue/runtime-core' {
+    interface ComponentCustomProperties {
+        $VIEWUI: ViewUIPlusGlobalOptions;
+    }
+}
+
+export const install: (app: App, options?: ViewUIPlusInstallOptions) => void;

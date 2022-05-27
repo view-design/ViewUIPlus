@@ -1,53 +1,47 @@
-// Type definitions for iview 3.3.1
-// Project: https://github.com/iview/iview
-// Definitions by: yangdan
-// Definitions: https://github.com/yangdan8/iview.git
-import Vue, { VNode } from 'vue';
+export declare class Collapse {
+    /**
+     * 当前激活的面板的 name，可以使用 v-model 双向绑定
+     */
+    'model-value': [];
 
-export declare class Collapse extends Vue {
-  /**
-   * 当前激活的面板的 name，可以使用 v-model 双向绑定
-   */
-  value?: string[] | string;
-  /**
-   * 是否开启手风琴模式，开启后每次至多展开一个面板
-   * @default false
-   */
-  accordion?: boolean;
-  /**
-   * 是否开启简洁模式
-   * @default false
-   */
-  simple?: boolean;
-  /**
-   * 切换面板时触发，返回当前已展开的面板的 key，格式为数组
-   * @default []
-   */
-  $emit(eventName: 'on-change', []): this;
+    /**
+     * 是否开启手风琴模式，开启后每次至多展开一个面板
+     */
+    accordion: boolean;
+
+    /**
+     * 是否开启简洁模式
+     */
+    simple: boolean;
+
+    /**
+     * 切换面板时触发，返回当前已展开的面板的 key，格式为数组
+     */
+    $emit(eventName: 'on-change'): this;
+
 }
 
-export declare class CollapsePanel extends Vue {
-  /**
-   * 当前面板的 name，与 Collapse的value对应，不填为索引值
-   * @default index的值
-   */
-  name?: string;
-  /**
-   * 隐藏箭头
-   * @default false
-   */
-  'hide-arrow'?: boolean;
-  /**
-   * slot插槽对象
-   */
-  $slots: {
+export declare class Panel {
     /**
-     * 面板头内容
+     * 当前面板的 name，与 Collapse的 `value` 对应，不填为索引值
      */
-    '': VNode[];
+    name: string;
+
     /**
-     * 描素内容
+     * 隐藏箭头
      */
-    content: VNode[];
-  };
+    'hide-arrow': boolean;
+
+    $slots: {
+        /**
+         * 面板头内容
+         */
+        '': [];
+
+        /**
+         * 描述内容
+         */
+        content: [];
+
+    };
 }
