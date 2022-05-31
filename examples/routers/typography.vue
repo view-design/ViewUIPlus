@@ -8,7 +8,7 @@
             implementations would be involved, which might cause designers and developers difficulties and
             duplication and reduce the efficiency of development.
         </Typography>
-        <Typography keyboard>Esc</Typography>
+        <Typography class="aa" keyboard>Esc</Typography>
         <Typography code>Esc</Typography>
         <Typography strong>Esc</Typography>
         <Typography underline>Esc</Typography>
