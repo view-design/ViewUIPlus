@@ -98,7 +98,7 @@
                 imageWidth: 0,
                 imageHeight: 0,
                 scrollElement: null,
-                observe: null
+                observer: null
             }
         },
         computed: {
@@ -120,7 +120,7 @@
             // todo it can create new Observe to privide the function to use  in the future
             handleLazy() {
                 const $el = this.$refs.image;
-                const observer = this.observe = new IntersectionObserver(this.handlerObserveImage, {
+                const observer = this.observer = new IntersectionObserver(this.handlerObserveImage, {
                     root: this.scrollElement,
                     rootMargin: "0px",
                     threshold: 1
@@ -186,9 +186,9 @@
                 image && off(image, 'error', this.handleLoadImageError)
             },
             offObserve() {
-                const {observe} = this;
-                if (observe) {
-                    observe.disconnect();
+                const {observer} = this;
+                if (observer) {
+                    observer.disconnect();
                 }
             }
         },
