@@ -124,6 +124,10 @@ export const install = function(app, opts = {}) {
             icon: opts.timePicker ? opts.timePicker.icon ? opts.timePicker.icon : '' : '',
             customIcon: opts.timePicker ? opts.timePicker.customIcon ? opts.timePicker.customIcon : '' : '',
             iconSize: opts.timePicker ? opts.timePicker.iconSize ? opts.timePicker.iconSize : '' : ''
+        },
+        typography: {
+            copyConfig: opts.typography ? opts.typography.copyConfig ? opts.typography.copyConfig : '' : '',
+            editConfig: opts.typography ? opts.typography.editConfig ? opts.typography.editConfig : '' : ''
         }
     }
     app.config.globalProperties.$Spin = components.Spin;

@@ -1,10 +1,12 @@
-<template>
-    <article class="ivu-typography">
-
-    </article>
-</template>
 <script>
+    import { h } from 'vue';
+    import baseProps from './props';
+
     export default {
-        name: 'Typography'
+        name: 'Typography',
+        mixins: [ baseProps ],
+        render () {
+            return h('div');
+        }
     }
 </script>
