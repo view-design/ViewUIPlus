@@ -30,6 +30,7 @@
     }
     export default {
         name: 'Image',
+        emits: ['on-load', 'on-error', 'on-switch', 'on-close'],
         props: {
             // 图片地址
             src: {

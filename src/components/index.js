@@ -118,3 +118,4 @@ export { default as UserName } from './user-name';
 export { default as WordCount } from './word-count';
 
 export { default as Image } from './image';
+export { default as ImagePreview } from './image-preview';
