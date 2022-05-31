@@ -21,6 +21,7 @@
 <script>
     const prefixCls = 'ivu-image';
     import {on, off} from '../../utils/dom'
+    import {isClient} from '../../utils/index';
     export default {
         name: 'Image',
         props: {
@@ -104,7 +105,7 @@
             }
         },
         mounted() {
-            this.handleImageEvent();
+            isClient && this.handleImageEvent();
         },
         methods: {
             addLazyImageListener() {
@@ -115,10 +116,13 @@
                 this.imageHeight = height;
                 this.loading = false;
                 this.imageError = false;
+
+                this.$emit('on-load')
             },
             handleLoadImageError() {
                 this.loading = false;
                 this.imageError = true;
+                this.$emit('on-error');
             },
             loadImage() {
                 this.image = new Image();
