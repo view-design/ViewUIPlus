@@ -345,6 +345,10 @@ const router = createRouter({
         {
             path: '/city',
             component: () => import('./routers/city.vue')
+        },
+        {
+            path: '/skeleton',
+            component: () => import('./routers/skeleton.vue')
         }
     ]
 });
