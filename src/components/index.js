@@ -116,3 +116,5 @@ export { default as Trend } from './trend';
 export { default as Upload } from './upload';
 export { default as UserName } from './user-name';
 export { default as WordCount } from './word-count';
+
+export { default as Image } from './image';

@@ -345,6 +345,10 @@ const router = createRouter({
         {
             path: '/city',
             component: () => import('./routers/city.vue')
+        },
+        {
+            path: '/image',
+            component: () => import('./routers/image.vue')
         }
     ]
 });
