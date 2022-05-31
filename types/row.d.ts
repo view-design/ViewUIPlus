@@ -12,7 +12,7 @@ export declare class Row {
     /**
      * 布局下的水平排列方式，可选值为`start`、`end`、`center`、`space-around`、`space-between`
      */
-    flex: 'start' | 'end' | 'center' | 'space-around' | 'space-between';
+    justify: 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 
     /**
      * 自定义的class名称
