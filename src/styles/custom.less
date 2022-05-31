@@ -11,6 +11,8 @@
 @processing-color       : @primary-color;
 @warning-color          : #ff9900;
 @error-color            : #ed4014;
+@error-hover-color      : color(~`colorPalette('@{error-color}', 5) `);
+@error-active-color     : color(~`colorPalette('@{error-color}', 7) `);
 @normal-color           : #e6ebf1;
 @link-color             : #2D8cF0;
 @link-hover-color       : tint(@link-color, 20%);
@@ -29,17 +31,31 @@
 @code-family            : Consolas,Menlo,Courier,monospace;
 @title-color            : #17233d;
 @text-color             : #515a6e;
-@text-color-secondary: fade(@black, 45%);
-@heading-color: fade(#000, 85%);
-@heading-color-dark: fade(@white, 100%);
+@text-color-secondary   : fade(@black, 45%);
+@heading-color          : fade(#000, 85%);
+@heading-color-dark     : fade(@white, 100%);
 @font-size-base         : 14px;
 @font-size-small        : 12px;
 @font-size-large        : @font-size-base + 2px;
+@heading-1-size         : ceil(@font-size-base * 2.71);
+@heading-2-size         : ceil(@font-size-base * 2.14);
+@heading-3-size         : ceil(@font-size-base * 1.71);
+@heading-4-size         : ceil(@font-size-base * 1.42);
+@heading-5-size         : ceil(@font-size-base * 1.14);
 @line-height-base       : 1.5;
 @line-height-computed   : floor((@font-size-base * @line-height-base));
 @border-radius-base     : 6px;
 @border-radius-small    : 4px;
 @cursor-disabled        : not-allowed;
+
+// LINK
+@link-decoration        : none;
+@link-hover-decoration  : none;
+@link-focus-decoration  : none;
+@link-focus-outline     : 0;
+
+// Disabled
+@disabled-color: fade(#000, 25%);
 
 // vertical paddings
 @padding-lg: 24px; // containers
@@ -236,7 +252,6 @@
 @anchor-border-width: 2px;
 
 // List
-// ---
 @list-header-background: transparent;
 @list-footer-background: transparent;
 @list-empty-text-padding: @padding-md;
@@ -244,3 +259,8 @@
 @list-item-meta-margin-bottom: @padding-md;
 @list-item-meta-avatar-margin-right: @padding-md;
 @list-item-meta-title-margin-bottom: @padding-sm;
+
+// Typography
+@typography-title-font-weight: 600;
+@typography-title-margin-top: 1.2em;
+@typography-title-margin-bottom: 0.5em;
