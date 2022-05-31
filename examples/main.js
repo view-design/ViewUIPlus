@@ -345,6 +345,10 @@ const router = createRouter({
         {
             path: '/city',
             component: () => import('./routers/city.vue')
+        },
+        {
+            path: '/typography',
+            component: () => import('./routers/typography.vue')
         }
     ]
 });
