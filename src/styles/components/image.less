@@ -3,9 +3,19 @@
 .@{image-prefix-cls} {
     position: relative;
     display: inline-block;
-    &-img {
+    overflow: hidden;
+    &-img,
+    &-error,
+    &-placeholder{
         width: 100%;
         height: 100%;
+    }
+    &-img {
         vertical-align: middle;
+    }
+    &-error {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

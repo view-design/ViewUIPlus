@@ -1,11 +1,26 @@
 <template>
     <div :class="prefixCls">
-        <img :src="src" :style="[fitStyle]" :class="[prefixCls + '-img']" />
+        <slot v-if="loading" name="placeholder">
+            <div :class="[prefixCls + '-placeholder']">LOADING</div>
+        </slot>
+        <slot v-else-if="imageError" name="error">
+            <div :class="[prefixCls + '-error']">
+                <span>FAILED</span>
+            </div>
+        </slot>
+        <img 
+            v-else
+            :src="src"
+            :alt="alt"
+            :referrerPolicy="referrerPolicy"
+            :style="[fitStyle]"
+            :class="[prefixCls + '-img']"
+        />
     </div>
 </template>
 <script>
     const prefixCls = 'ivu-image';
-
+    import {on, off} from '../../utils/dom'
     export default {
         name: 'Image',
         props: {
@@ -68,16 +83,63 @@
         },
         data() {
             return {
-                prefixCls: prefixCls
+                prefixCls: prefixCls,
+                loading: false,
+                imageError: false,
+                image: null,
+                imageWidth: 0,
+                imageHeight: 0
             }
         },
         computed: {
             fitStyle() {
                 const fitContains = ['fill', 'contain', 'cover', 'none', 'scale-down'];
-                const { fit } = this;
+                const {fit} = this;
                 return fitContains ? `object-fit:${fit};` : '';
             }
         },
-
+        watch: {
+            lazy() {
+                this.handleImageEvent();
+            }
+        },
+        mounted() {
+            this.handleImageEvent();
+        },
+        methods: {
+            addLazyImageListener() {
+            },
+            handleLoadImageLoad(event) {
+                const {width, height} = event.target;
+                this.imageWidth = width;
+                this.imageHeight = height;
+                this.loading = false;
+                this.imageError = false;
+            },
+            handleLoadImageError() {
+                this.loading = false;
+                this.imageError = true;
+            },
+            loadImage() {
+                this.image = new Image();
+                const {src, image} = this;
+                this.loading = true;
+                this.imageError = false;
+                on(image, 'load', this.handleLoadImageLoad);
+                on(image, 'error', this.handleLoadImageError);
+                image.src = src;
+            },
+            handleImageEvent() {
+                const { lazy } = this;
+                lazy ? this.addLazyImageListener() : this.loadImage();
+            }
+        },
+        beforeUnmount() {
+            const {image} = this;
+            if (image) {
+                off(image, 'load', this.handleLoadImageLoad);
+                off(image, 'error', this.handleLoadImageError)
+            }
+        }
     }
 </script>
