@@ -2,10 +2,11 @@ import { getCurrentInstance } from 'vue';
 import { oneOf } from '../../utils/assist';
 
 export default {
+    emits: ['update:modelValue'],
     props: {
         type: {
             validator (value) {
-                return oneOf(value, ['secondary', 'success', 'warning', 'danger']);
+                return oneOf(value, ['secondary', 'success', 'warning', 'danger', '']);
             },
             default: ''
         },
@@ -40,19 +41,19 @@ export default {
                 } : global.$VIEWUI.typography.editConfig;
             }
         },
-        code: {
-            type: Boolean,
-            default: false
-        },
-        delete: {
-            type: Boolean,
-            default: false
-        },
         disabled: {
             type: Boolean,
             default: false
         },
         ellipsis: {
+            type: Boolean,
+            default: false
+        },
+        code: {
+            type: Boolean,
+            default: false
+        },
+        delete: {
             type: Boolean,
             default: false
         },
@@ -71,6 +72,10 @@ export default {
         underline: {
             type: Boolean,
             default: false
+        },
+        modelValue: {
+            type: String,
+            default: ''
         }
     }
 }
