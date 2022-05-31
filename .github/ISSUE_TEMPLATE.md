@@ -1,9 +1,5 @@
 <!--
-注意：关于用法、咨询等问题，请到 iView Developer 提问：
-  
-  https://dev.iviewui.com
-  
-  Bug 反馈、新功能请求，请到下面提交 issues：
+注意：不接受关于用法、咨询等问题，Bug 反馈、新功能请求，请到下面提交 issues：
   
   https://www.iviewui.com/new-issue
 
