@@ -77,5 +77,10 @@ export default {
             type: String,
             default: ''
         }
+    },
+    methods: {
+        defaultSlots () {
+            return this.$slots.default ? () => this.$slots.default() : '';
+        }
     }
 }
