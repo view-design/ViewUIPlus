@@ -5,6 +5,7 @@
     export default {
         name: 'TypographyBase',
         mixins: [ baseProps ],
+        inheritAttrs: false,
         props: {
             component: {
                 type: String,
