@@ -10,39 +10,53 @@
                 <span>FAILED</span>
             </div>
         </slot>
-        <img 
-            v-else
-            :src="src"
-            :alt="alt"
-            :referrerPolicy="referrerPolicy"
-            :style="[fitStyle]"
-            :class="[prefixCls + '-img']"
-        />
+        <div :class="[prefixCls + '-inner']" v-else>
+            <img 
+                :src="src"
+                :alt="alt"
+                :referrerPolicy="referrerPolicy"
+                :style="[fitStyle]"
+                :class="[prefixCls + '-img']"
+            />
+            <slot v-if="preview" name="preview">
+                <div
+                    :class="[prefixCls + '-mark']"
+                    @click="handlePreview"
+                >
+                    <span>preview</span>
+                </div>
+            </slot>
+        </div>
+        <!-- preview -->
+        <template v-if="preview">
+            <image-preview 
+                v-model="imagePreviewModal"
+            />
+        </template>
     </div>
 </template>
 <script>
     const prefixCls = 'ivu-image';
     import {on, off} from '../../utils/dom'
     import {isClient} from '../../utils/index';
+    import ImagePreview  from '../image-preview';
     // is Element
     const isElement = (el)=> {
         return typeof HTMLElement === 'object' && el instanceof HTMLElement;
     }
     export default {
         name: 'Image',
+        components: { ImagePreview },
         emits: ['on-load', 'on-error', 'on-switch', 'on-close'],
         props: {
-            // 图片地址
             src: {
                 type: String,
                 default: ''
             },
-            // 图片描述
             alt: {
                 type: String,
                 default: ''
             },
-            // 是否预览
             preview: {
                 type: Boolean,
                 default: false
@@ -60,7 +74,6 @@
                 default: ''
             },
             // https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit
-            // 填充模式
             fit: {
                 type: String, // 'fill' | 'contain' | 'cover' | 'none' | 'scale'-down' 
                 default: ''
@@ -81,7 +94,7 @@
                 type: Boolean,
                 default: true
             },
-            // 预览列表
+            // preview list
             previewList: {
                 type: Array
             },
@@ -99,7 +112,8 @@
                 imageWidth: 0,
                 imageHeight: 0,
                 scrollElement: null,
-                observer: null
+                observer: null,
+                imagePreviewModal: false
             }
         },
         computed: {
@@ -132,7 +146,7 @@
                 for( let entry of entries) {
                     if (entry.isIntersecting) {
                         // destory new IntersectionObserver
-                        this.offObserve();
+                        this.offObserver();
                         // run image onload
                         this.loadImage();
                     }
@@ -186,16 +200,22 @@
                 image && off(image, 'load', this.handleLoadImageLoad);
                 image && off(image, 'error', this.handleLoadImageError)
             },
-            offObserve() {
+            offObserver() {
                 const {observer} = this;
                 if (observer) {
                     observer.disconnect();
+                }
+            },
+            handlePreview() {
+                const {preview} = this;
+                if (preview) {
+                    this.imagePreviewModal = true;
                 }
             }
         },
         beforeUnmount() {
             this.offImageEvent();
-            this.offObserve();
+            this.offObserver();
         }
     }
 </script>

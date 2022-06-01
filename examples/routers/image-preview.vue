@@ -24,7 +24,6 @@
 
 <script>
 const fitList = ['fill', 'contain', 'cover', 'none', 'scale-down']
-// const fitList = ['fill']
 export default {
 	data() {
 		return {
