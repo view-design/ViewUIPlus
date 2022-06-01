@@ -129,7 +129,7 @@
             fitStyle() {
                 const fitContains = ['fill', 'contain', 'cover', 'none', 'scale-down'];
                 const {fit} = this;
-                return fitContains ? `object-fit:${fit};` : '';
+                return fitContains.includes(fit) ? `object-fit:${fit};` : '';
             }
         },
         watch: {
