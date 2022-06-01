@@ -1,11 +1,10 @@
 <template>
     <Skeleton
         :loading="loading"
-        :paragraph="{ rows: 5 }"
-        :round="false"
-        :avatar="{type:'square', size:'large'}"
+        :paragraph="{ rows: 3 }"
+        :avatar="{ size:'large' }"
         animated
-        title
+        :title="true"
     >
         <div>业务数据</div>
     </Skeleton>

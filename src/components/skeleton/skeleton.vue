@@ -18,7 +18,6 @@
                         :style="rowStyle(row)"
                         :animated="animated"
                         type="rect"
-                        size="small"
                         :width="rowWidth(row)"
                         height="16px"
                         block
@@ -99,13 +98,30 @@
                 return this.paragraph.rows;
             },
             rowsCount() {
-                return this.rows + (this.showTitle ? 2 : 1);
+                return this.rows + Number(this.showTitle);
             },
             rowWidth() {
                 return (row) => {
-                    return this.showTitle && row === 1
-                        ? (this.titleWidth || '38%')
-                        : (row === this.rowsCount ? '62%' : '100%');
+                    if (this.showTitle && row === 1) {
+                        return this.titleWidth || '38%';
+                    }
+                    if (typeof this.paragraph === 'object') {
+                        if (typeof this.paragraph.width === 'string') {
+                            return this.paragraph.width;
+                        }
+                        if (typeof this.paragraph.width === 'number') {
+                            return `${this.paragraph.width}px`;
+                        }
+                        const index = row - 1 - Number(this.showTitle);
+                        if (Array.isArray(this.paragraph.width) && this.paragraph.width[index]) {
+                            if (typeof this.paragraph.width[index] === 'number') {
+                                return `${this.paragraph.width[index]}px`;
+                            } else {
+                                return this.paragraph.width[index];
+                            }
+                        }
+                    }
+                    return row === this.rowsCount ? '62%' : '100%';
                 };
             },
             rowClasses() {
@@ -115,25 +131,10 @@
             },
             rowStyle() {
                 return (row) => {
-                    const styleObj = {};
-                    if (typeof this.paragraph === 'object') {
-                        if (typeof this.paragraph.width === 'string') {
-                            styleObj.width = this.paragraph.width;
-                        }
-                        if (typeof this.paragraph.width === 'number') {
-                            styleObj.width = `${this.paragraph.width}px`;
-                        }
-                        if (Array.isArray(this.paragraph.width) && this.paragraph.width[row-1]) {
-                            if (typeof this.paragraph.width[row-1] === 'string') {
-                                styleObj.width = this.paragraph.width[row-1];
-                            }
-                            styleObj.width = `${this.paragraph.width[row-1]}px`;
-                        }
+                    if (this.showTitle && row === 2) {
+                        return { marginTop: '28px' };
                     }
-                    if (this.showTitle && row === 1) {
-                        styleObj.marginBottom = '28px';
-                    }
-                    return styleObj;
+                    return {};
                 }
             },
             showTitle() {
@@ -143,7 +144,7 @@
                 if (typeof this.title === 'object' && this.title.width) {
                     return typeof this.title.width === 'string' ? this.title.width : `${this.title.width}px`;
                 }
-                return null;
+                return '';
             },
             showAvatar() {
                 return Boolean(this.avatar);
