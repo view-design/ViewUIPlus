@@ -75,6 +75,10 @@ export default {
             type: Boolean,
             default: false
         },
+        italic: {
+            type: Boolean,
+            default: false
+        },
         modelValue: {
             type: String,
             default: ''

@@ -49,6 +49,7 @@
                 wrap(this.code, 'code');
                 wrap(this.mark, 'mark');
                 wrap(this.keyboard, 'kbd');
+                wrap(this.italic, 'i');
 
                 return content;
             },
