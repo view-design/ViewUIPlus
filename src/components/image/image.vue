@@ -29,7 +29,12 @@
         </div>
         <!-- preview -->
         <template v-if="preview">
+            {{infinite}}
             <image-preview 
+                :infinite="infinite"
+                :preview-list="previewList"
+                :maskClosable="maskClosable"
+                :initialIndex="initialIndex"
                 v-model="imagePreviewModal"
             />
         </template>
@@ -97,6 +102,10 @@
             // preview list
             previewList: {
                 type: Array
+            },
+            infinite: {
+                type: Boolean,
+                default: true
             },
             initialIndex: {
                 type: Number,

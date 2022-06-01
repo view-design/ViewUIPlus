@@ -29,8 +29,8 @@
                         {{item.label}}
                     </li>
                 </ul>
-                <Icon :class="[prefixCls + '-arrow-left']" type="ios-arrow-back" @click.stop="handleSwitch(false)" />
-                <Icon :class="[prefixCls + '-arrow-right']" type="ios-arrow-forward" @click.stop="handleSwitch(true)" />
+                <Icon :class="[prefixCls + '-arrow-left', { [prefixCls + '-arrow-disabled']: hasLeftSwitchEnd }]" type="ios-arrow-back" @click.stop="handleSwitch(false)" />
+                <Icon :class="[prefixCls + '-arrow-right', { [prefixCls + '-arrow-disabled']: hasRightSwitchEnd }]" type="ios-arrow-forward" @click.stop="handleSwitch(true)" />
                 <Icon @click.stop="handleClose" :class="[prefixCls + '-arrow-close']" type="md-close" />
             </div>
         </transition>
@@ -101,6 +101,15 @@
                         `,
                     };
                 }
+            },
+            hasRightSwitchEnd() {
+                const { currentIndex, infinite, previewList} = this;
+                const len = previewList.length;
+                return infinite ? false : currentIndex >= len - 1;
+            },
+            hasLeftSwitchEnd() {
+                const { currentIndex, infinite} = this;
+                return infinite ? false : currentIndex === 0;
             }
         },
         methods: {

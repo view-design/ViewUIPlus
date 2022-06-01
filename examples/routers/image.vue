@@ -7,6 +7,8 @@
 					:src="url"
 					:fit="fit"
 					:lazy="true"
+					:infinite="false"
+					:previewList="srcList"
 					preview
 					scroll-container=".demo-image" :alt="fit">
 					<!-- <template #placeholder>
@@ -24,7 +26,7 @@
     <ImagePreview
         v-model="showPreview"
         :previewList="srcList"
-        :transfer="true"
+        :transfer="false"
         :maskClosable="true"
     ></ImagePreview>
 
