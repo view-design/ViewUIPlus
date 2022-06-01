@@ -6,7 +6,8 @@
                 @mouseover.stop.prevent
                 v-if="modelValue">
                 <div
-                    :class="[prefixCls + '-mark']" v-if="previewList.length > 0"
+                    :class="[prefixCls + '-mark']"
+                    v-if="previewList.length > 0"
                     @click.stop="handleClickMark"
                 >
                     <img
@@ -40,9 +41,10 @@
     import { getCurrentInstance } from 'vue';
     import { on, off } from '../../utils/dom';
     import Locale from '../../mixins/locale';
+    import Icon from '../icon';
 
     const prefixCls = 'ivu-image-preview';
-    import Icon from '../icon';
+
     export default {
         name: 'ImagePreview',
         mixins: [ Locale ],
