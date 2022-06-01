@@ -6,7 +6,8 @@
                 @mouseover.stop.prevent
                 v-if="modelValue">
                 <div
-                    :class="[prefixCls + '-mark']" v-if="previewList.length > 0"
+                    :class="[prefixCls + '-mark']"
+                    v-if="previewList.length > 0"
                     @click.stop="handleClickMark"
                 >
                     <img
@@ -39,11 +40,14 @@
 <script>
     import { getCurrentInstance } from 'vue';
     import { on, off } from '../../utils/dom';
+    import Locale from '../../mixins/locale';
+    import Icon from '../icon';
 
     const prefixCls = 'ivu-image-preview';
-    import Icon from '../icon';
+
     export default {
         name: 'ImagePreview',
+        mixins: [ Locale ],
         components: { Icon },
         props: {
             modelValue: {
@@ -81,14 +85,14 @@
             return {
                 prefixCls,
                 operations: [
-                    {label: '放大', icon: '', value: 'enlarge'},
-                    {label: '缩小', icon: '', value: 'narrow'},
-                    {label: '左旋转', icon: '', value: 'leftRotation'},
-                    {label: '右旋转', icon: '', value: 'rightRotation'}
+                    {label: this.t('i.image.zoomIn'), icon: '', value: 'enlarge'},
+                    {label: this.t('i.image.zoomOut'), icon: '', value: 'narrow'},
+                    {label: this.t('i.image.rotateLeft'), icon: '', value: 'leftRotation'},
+                    {label: this.t('i.image.rotateRight'), icon: '', value: 'rightRotation'}
                 ],
                 currentIndex: this.initialIndex,
                 scale: 1,
-                degree: 0,
+                degree: 0
             }
         },
         computed: {
@@ -98,7 +102,7 @@
                         transform: `
                             scale(${index === this.currentIndex ? this.scale : 1})
                             rotate(${index === this.currentIndex ? this.degree : 0}deg)
-                        `,
+                        `
                     };
                 }
             },
@@ -156,17 +160,27 @@
             },
             handleKeydown(event) {
                 const { keyCode } = event;
+                // left
                 if (keyCode === 37) this.handleSwitch(false);
+                // right
                 if (keyCode === 39) this.handleSwitch(true);
+                // up
                 if (keyCode === 38) this.handleOperation('enlarge');
+                // down
                 if (keyCode === 40) this.handleOperation('narrow');
+            },
+            handleWheel(event) {
+                const { deltaY } = event;
+                this.handleOperation(deltaY > 0 ? 'enlarge' : 'narrow');
             }
         },
         mounted() {
-            on(document, 'keydown', this.handleKeydown)
+            on(document, 'keydown', this.handleKeydown);
+            on(document, 'wheel', this.handleWheel);
         },
         beforeUnmount() {
-            off(document, 'keydown', this.handleKeydown)
+            off(document, 'keydown', this.handleKeydown);
+            off(document, 'wheel', this.handleWheel);
         }
     }
 </script>
