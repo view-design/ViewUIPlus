@@ -1,10 +1,16 @@
-<template>
-    <span class="ivu-typography">
-
-    </span>
-</template>
 <script>
+    import { h } from 'vue';
+    import Base from './base';
+    import baseProps from './props';
+
     export default {
-        name: 'Text'
+        name: 'Text',
+        mixins: [ baseProps ],
+        render () {
+            return h(Base, {
+                ...this.$props,
+                component: 'span'
+            }, this.defaultSlots());
+        }
     }
 </script>

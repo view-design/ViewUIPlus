@@ -1,8 +1,10 @@
 import { getCurrentInstance } from 'vue';
 import { oneOf } from '../../utils/assist';
+import mixinsLink from '../../mixins/link';
 
 export default {
     emits: ['update:modelValue'],
+    mixins: [ mixinsLink ],
     props: {
         type: {
             validator (value) {
@@ -76,6 +78,20 @@ export default {
         modelValue: {
             type: String,
             default: ''
+        }
+    },
+    computed: {
+        isHrefPattern () {
+            const { to } = this;
+            return !!to;
+        },
+        linkProps () {
+            if (this.isHrefPattern) {
+                const { linkUrl, target } = this;
+                return { href: linkUrl, target };
+            } else {
+                return {};
+            }
         }
     },
     methods: {

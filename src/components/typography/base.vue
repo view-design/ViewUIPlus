@@ -33,13 +33,6 @@
                 ]
             }
         },
-        render () {
-            const textNode = this.wrapperDecorations();
-
-            return h(this.component, {
-                class: this.classes
-            }, textNode);
-        },
         methods: {
             wrapperDecorations () {
                 let content = this.currentContent ? this.currentContent : this.$slots.default ? this.$slots.default() : '';
@@ -58,7 +51,21 @@
                 wrap(this.keyboard, 'kbd');
 
                 return content;
+            },
+            handleClickLink (event) {
+                if (!this.isHrefPattern) return;
+                const openInNewWindow = event.ctrlKey || event.metaKey;
+                this.handleCheckClick(event, openInNewWindow);
             }
+        },
+        render () {
+            const textNode = this.wrapperDecorations();
+
+            return h(this.component, {
+                class: this.classes,
+                ...this.linkProps,
+                onClick: this.handleClickLink
+            }, textNode);
         }
     }
 </script>
