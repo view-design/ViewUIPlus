@@ -1,10 +1,15 @@
 <script>
-    import { h } from 'vue';
+    import { h, createApp, getCurrentInstance } from 'vue';
+    import Icon from '../icon/icon';
+    import Tooltip from '../tooltip/tooltip';
+    import Copy from '../copy/';
+
     import baseProps from './props';
 
     export default {
         name: 'TypographyBase',
         mixins: [ baseProps ],
+        emits: ['on-copy-success', 'on-copy-error'],
         // inheritAttrs: false,
         props: {
             component: {
@@ -57,16 +62,82 @@
                 if (!this.isHrefPattern && this.component !== 'a') return;
                 const openInNewWindow = event.ctrlKey || event.metaKey;
                 this.handleCheckClick(event, openInNewWindow);
+            },
+            handleCopy () {
+                const container = document.createElement('div');
+                document.body.appendChild(container);
+                let Instance = null;
+                let _instance = null;
+
+                let content = '';
+                if (this.copyText) content = this.copyText;
+                else if (this.currentContent) content = this.currentContent;
+                else if (this.$slots.default) {
+                    const textNode = this.wrapperDecorations();
+
+                    Instance = createApp({
+                        render () {
+                            return h('div', {
+                                ref: 'text',
+                                style: {
+                                    display: 'none'
+                                }
+                            }, textNode);
+                        },
+                        created () {
+                            _instance = getCurrentInstance();
+                        }
+                    });
+                    Instance.mount(container);
+                    content = _instance.refs.text.innerText;
+                    Instance.unmount();
+                    document.body.removeChild(container);
+                }
+
+                Copy({
+                    text: this.copyText ? this.copyText : content,
+                    showTip: this.copyConfig.showTip,
+                    successTip: this.copyConfig.successTip,
+                    errorTip: this.copyConfig.errorTip,
+                    success: () => {
+                        this.$emit('on-copy-success');
+                    },
+                    error: () => {
+                        this.$emit('on-copy-error');
+                    }
+                });
             }
         },
         render () {
+            let contentNodes = [];
+
             const textNode = this.wrapperDecorations();
+            contentNodes.push(textNode);
+
+            if (this.copyable) {
+                const copyButtonNode = h('div', {
+                    class: 'ivu-typography-copy',
+                    onClick: this.handleCopy
+                }, h(Icon, {
+                    type: 'md-copy'
+                }));
+
+                if (this.copyConfig.tooltips instanceof Array && this.copyConfig.tooltips.length === 2) {
+                    const copyTooltipNode = h(Tooltip, {
+                        content: this.copyConfig.tooltips[0],
+                        placement: 'top'
+                    }, () => copyButtonNode);
+                    contentNodes.push(copyTooltipNode);
+                } else {
+                    contentNodes.push(copyButtonNode);
+                }
+            }
 
             return h(this.component, {
                 class: this.classes,
                 ...this.linkProps,
                 onClick: this.handleClickLink
-            }, textNode);
+            }, contentNodes);
         }
     }
 </script>

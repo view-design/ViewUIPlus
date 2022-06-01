@@ -16,11 +16,16 @@ export default {
             type: Boolean,
             default: false
         },
+        copyText: {
+            type: String,
+            default: ''
+        },
         copyConfig: {
             type: Object,
             default () {
                 const global = getCurrentInstance().appContext.config.globalProperties;
                 return !global.$VIEWUI || global.$VIEWUI.typography.copyConfig === '' ? {
+                    tooltips: ['复制', '复制成功'],
                     showTip: true,
                     successTip: '复制成功',
                     errorTip: '复制失败'
