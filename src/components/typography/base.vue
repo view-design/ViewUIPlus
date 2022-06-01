@@ -54,7 +54,7 @@
                 return content;
             },
             handleClickLink (event) {
-                if (!this.isHrefPattern) return;
+                if (!this.isHrefPattern && this.component !== 'a') return;
                 const openInNewWindow = event.ctrlKey || event.metaKey;
                 this.handleCheckClick(event, openInNewWindow);
             }
