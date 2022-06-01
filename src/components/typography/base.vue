@@ -19,7 +19,9 @@
         },
         data () {
             return {
-                currentContent: this.modelValue
+                currentContent: this.modelValue,
+                copied: false,
+                copyTimeout: null
             }
         },
         watch: {
@@ -101,6 +103,11 @@
                     errorTip: this.copyConfig.errorTip,
                     success: () => {
                         this.$emit('on-copy-success');
+                        this.copied = true;
+                        if (this.copyTimeout) clearTimeout(this.copyTimeout);
+                        this.copyTimeout = setTimeout(() => {
+                            this.copied = false;
+                        }, 3000);
                     },
                     error: () => {
                         this.$emit('on-copy-error');
@@ -116,15 +123,20 @@
 
             if (this.copyable) {
                 const copyButtonNode = h('div', {
-                    class: 'ivu-typography-copy',
+                    class: [
+                        'ivu-typography-copy',
+                        {
+                            'ivu-typography-copy-success': this.copied
+                        }
+                    ],
                     onClick: this.handleCopy
                 }, h(Icon, {
-                    type: 'md-copy'
+                    type: this.copied ? 'md-checkmark' : 'md-copy'
                 }));
 
                 if (this.copyConfig.tooltips instanceof Array && this.copyConfig.tooltips.length === 2) {
                     const copyTooltipNode = h(Tooltip, {
-                        content: this.copyConfig.tooltips[0],
+                        content: this.copied ? this.copyConfig.tooltips[1] : this.copyConfig.tooltips[0],
                         placement: 'top'
                     }, () => copyButtonNode);
                     contentNodes.push(copyTooltipNode);
