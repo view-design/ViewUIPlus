@@ -2,9 +2,9 @@
 	<div class="demo-image">
 		<div>
 			<div class="demo-image-item" v-for="(fit, index) in fitList" :key="index">
-				<Image 
-					style="width: 100px; height: 100px" 
-					:src="url" 
+				<Image
+					style="width: 100px; height: 100px"
+					:src="url"
 					:fit="fit"
 					:lazy="true"
 					preview
@@ -20,16 +20,31 @@
 			</div>
 		</div>
 	</div>
+
+    <ImagePreview
+        v-model="showPreview"
+        :previewList="srcList"
+        :transfer="true"
+        :maskClosable="true"
+    ></ImagePreview>
+
+    <Button type="primary" @click="showPreview = !showPreview">Switch Preview</Button>
 </template>
 
 <script>
 const fitList = ['fill', 'contain', 'cover', 'none', 'scale-down']
 // const fitList = ['fill']
 export default {
-	data() {
+    data() {
 		return {
 			fitList,
-			url: 'https://dev-file.iviewui.com/j9IanwNpbTPM4aXv2fKyPTX1omREAaGG/large'
+			url: 'https://dev-file.iviewui.com/j9IanwNpbTPM4aXv2fKyPTX1omREAaGG/large',
+            showPreview: false,
+            srcList: [
+                'https://dev-file.iviewui.com/ll7neXYI7fzKv1SjjOl77vpfkDbJpbDB/large',
+                'https://dev-file.iviewui.com/ASzUrSpwJHqOi2G2jWzsVJyDV1ZF6xnK/large',
+                'https://dev-file.iviewui.com/YSUjM5Fx7mOjsijiI3eVDuaHGqnmT7H8/large',
+            ]
 		}
 	}
 }

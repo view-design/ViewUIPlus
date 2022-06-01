@@ -8,6 +8,18 @@
         left: 0;
         z-index: @zindex-modal;
         background-color: rgba(0, 0, 0, .15);
+        user-select: none;
+    }
+    &-mark {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &-image {
+        transition: all .3s;
+        cursor: pointer;
     }
     &-operations {
         height: 36px;
@@ -37,7 +49,6 @@
     &-arrow-left,
     &-arrow-right,
     &-arrow-close {
-        
         z-index: 1;
         width: 36px;
         color: #FFF;
