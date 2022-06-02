@@ -92,7 +92,7 @@
                     {label: this.t('i.image.rotateLeft'), icon: '', value: 'leftRotation'},
                     {label: this.t('i.image.rotateRight'), icon: '', value: 'rightRotation'}
                 ],
-                currentIndex: this.initialIndex,
+                currentIndex: 0,
                 scale: 1,
                 degree: 0,
                 translate: { x: 0, y: 0 },
@@ -230,6 +230,9 @@
         },
         watch: {
             modelValue(val) {
+                if (val && this.currentIndex !== this.initialIndex) {
+                    this.currentIndex = this.initialIndex
+                }
                 const bind = val ? on : off;
                 bind(document, 'keydown', this.handleKeydown);
                 bind(document, 'keyup', this.handleKeyup);
