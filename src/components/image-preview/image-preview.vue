@@ -231,7 +231,7 @@
         watch: {
             modelValue(val) {
                 if (val && this.currentIndex !== this.initialIndex) {
-                    this.currentIndex = this.initialIndex
+                    this.currentIndex = this.initialIndex;
                 }
                 const bind = val ? on : off;
                 bind(document, 'keydown', this.handleKeydown);
