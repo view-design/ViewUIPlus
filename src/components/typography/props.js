@@ -105,10 +105,12 @@ export default {
     },
     methods: {
         commonSlots () {
-            return {
-                default: () => this.$slots.default ? this.$slots.default() : [],
-                copyIcon: (props) => this.$slots.copyIcon ? this.$slots.copyIcon(props) : [],
-            };
+            const slots = {};
+
+            if (this.$slots.default) slots.default = () => this.$slots.default();
+            if (this.$slots.copyIcon) slots.copyIcon = (props) => this.$slots.copyIcon(props);
+
+            return slots;
         }
     }
 }
