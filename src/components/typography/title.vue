@@ -20,7 +20,7 @@
             return h(Base, {
                 ...this.$props,
                 component: `h${this.level}`
-            }, this.defaultSlots());
+            }, this.commonSlots());
         }
     }
 </script>

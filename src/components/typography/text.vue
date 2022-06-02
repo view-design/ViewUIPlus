@@ -10,7 +10,7 @@
             return h(Base, {
                 ...this.$props,
                 component: 'span'
-            }, this.defaultSlots());
+            }, this.commonSlots());
         }
     }
 </script>

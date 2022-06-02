@@ -104,8 +104,11 @@ export default {
         }
     },
     methods: {
-        defaultSlots () {
-            return this.$slots.default ? () => this.$slots.default() : '';
+        commonSlots () {
+            return {
+                default: () => this.$slots.default ? this.$slots.default() : [],
+                copyIcon: (props) => this.$slots.copyIcon ? this.$slots.copyIcon(props) : [],
+            };
         }
     }
 }

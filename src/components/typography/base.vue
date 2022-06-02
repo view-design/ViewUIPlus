@@ -122,6 +122,12 @@
             contentNodes.push(textNode);
 
             if (this.copyable) {
+                const copyDefaultIconNode = h(Icon, {
+                    type: this.copied ? 'md-checkmark' : 'md-copy'
+                });
+
+                const copyIconNode = this.$slots.copyIcon ? this.$slots.copyIcon({ copied: this.copied }) : copyDefaultIconNode;
+
                 const copyButtonNode = h('div', {
                     class: [
                         'ivu-typography-copy',
@@ -130,9 +136,7 @@
                         }
                     ],
                     onClick: this.handleCopy
-                }, h(Icon, {
-                    type: this.copied ? 'md-checkmark' : 'md-copy'
-                }));
+                }, copyIconNode);
 
                 if (this.copyConfig.tooltips instanceof Array && this.copyConfig.tooltips.length === 2) {
                     const copyTooltipNode = h(Tooltip, {
