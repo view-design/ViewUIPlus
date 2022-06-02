@@ -9,7 +9,7 @@
     export default {
         name: 'TypographyBase',
         mixins: [ baseProps ],
-        emits: ['on-copy-success', 'on-copy-error'],
+        emits: ['on-copy-success', 'on-copy-error', 'on-edit-start', 'on-edit-end'],
         // inheritAttrs: false,
         props: {
             component: {
@@ -21,7 +21,9 @@
             return {
                 currentContent: this.modelValue,
                 copied: false,
-                copyTimeout: null
+                copyTimeout: null,
+                editing: false,
+                editContent: ''
             }
         },
         watch: {
@@ -65,36 +67,40 @@
                 const openInNewWindow = event.ctrlKey || event.metaKey;
                 this.handleCheckClick(event, openInNewWindow);
             },
-            handleCopy () {
+            handleGetContent () {
                 const container = document.createElement('div');
                 document.body.appendChild(container);
+
                 let Instance = null;
                 let _instance = null;
+                let content = '';
 
+                const textNode = this.wrapperDecorations();
+
+                Instance = createApp({
+                    render () {
+                        return h('div', {
+                            ref: 'text',
+                            style: {
+                                display: 'none'
+                            }
+                        }, textNode);
+                    },
+                    created () {
+                        _instance = getCurrentInstance();
+                    }
+                });
+                Instance.mount(container);
+                content = _instance.refs.text.innerText;
+                Instance.unmount();
+                document.body.removeChild(container);
+                return content;
+            },
+            handleCopy () {
                 let content = '';
                 if (this.copyText) content = this.copyText;
                 else if (this.currentContent) content = this.currentContent;
-                else if (this.$slots.default) {
-                    const textNode = this.wrapperDecorations();
-
-                    Instance = createApp({
-                        render () {
-                            return h('div', {
-                                ref: 'text',
-                                style: {
-                                    display: 'none'
-                                }
-                            }, textNode);
-                        },
-                        created () {
-                            _instance = getCurrentInstance();
-                        }
-                    });
-                    Instance.mount(container);
-                    content = _instance.refs.text.innerText;
-                    Instance.unmount();
-                    document.body.removeChild(container);
-                }
+                else if (this.$slots.default) content = this.handleGetContent();
 
                 Copy({
                     text: this.copyText ? this.copyText : content,
@@ -113,6 +119,11 @@
                         this.$emit('on-copy-error');
                     }
                 });
+            },
+            handleEdit () {
+                this.editContent = this.currentContent ? this.currentContent : this.handleGetContent();
+                this.editing = true;
+                this.$emit('on-edit-start');
             }
         },
         render () {
@@ -120,6 +131,29 @@
 
             const textNode = this.wrapperDecorations();
             contentNodes.push(textNode);
+
+            if (this.editable) {
+                const editDefaultIconNode = h(Icon, {
+                    type: 'md-create'
+                });
+
+                const editIconNode = this.$slots.editIcon ? this.$slots.editIcon() : editDefaultIconNode;
+
+                const editButtonNode = h('div', {
+                    class: 'ivu-typography-edit',
+                    onClick: this.handleEdit
+                }, editIconNode);
+
+                if (this.mergedEditConfig.tooltip) {
+                    const editTooltipNode = h(Tooltip, {
+                        content: this.mergedEditConfig.tooltip,
+                        placement: 'top'
+                    }, () => editButtonNode);
+                    contentNodes.push(editTooltipNode);
+                } else {
+                    contentNodes.push(editButtonNode);
+                }
+            }
 
             if (this.copyable) {
                 const copyDefaultIconNode = h(Icon, {

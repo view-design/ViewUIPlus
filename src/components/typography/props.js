@@ -10,7 +10,7 @@ const defaultCopyConfig = {
 };
 
 const defaultEditConfig = {
-    tooltip: false,
+    tooltip: '编辑',
     editing: false,
     maxlength: '',
     autosize: false
@@ -119,6 +119,7 @@ export default {
 
             if (this.$slots.default) slots.default = () => this.$slots.default();
             if (this.$slots.copyIcon) slots.copyIcon = (props) => this.$slots.copyIcon(props);
+            if (this.$slots.editIcon) slots.editIcon = (props) => this.$slots.editIcon(props);
 
             return slots;
         }
