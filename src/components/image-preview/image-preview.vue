@@ -16,7 +16,7 @@
                         :src="item"
                         v-show="index === currentIndex"
                         :style="imageStyle(index)"
-                        :class="[[prefixCls + '-image']]"
+                        :class="[prefixCls + '-image']"
                         @click.stop
                         @mousedown.stop.prevent="handleMousedown"
                     />
