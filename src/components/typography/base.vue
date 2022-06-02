@@ -26,7 +26,8 @@
                 copyTimeout: null,
                 editing: false,
                 editContent: '',
-                lastKeyCode: ''
+                lastKeyCode: '',
+                isEditESC: false
             }
         },
         created () {
@@ -138,6 +139,10 @@
                 });
             },
             handleEditBlur () {
+                if (this.isEditESC) {
+                    this.isEditESC = false;
+                    return;
+                }
                 this.handleEditSave();
                 this.$emit('on-edit-end', this.editContent);
             },
@@ -147,7 +152,6 @@
                 this.$emit('on-edit-change', value);
             },
             handleEditSave () {
-                this.currentContent = this.editContent;
                 this.$emit('update:modelValue', this.editContent);
                 this.editing = false;
             },
@@ -166,6 +170,7 @@
                         this.handleEditSave();
                         this.$emit('on-edit-end', this.editContent);
                     } else if (keyCode === KeyCode.ESC) {
+                        this.isEditESC = true;
                         this.$emit('on-edit-cancel');
                         this.editing = false;
                     }
