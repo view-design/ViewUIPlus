@@ -53,7 +53,7 @@
     export default {
         name: 'Image',
         components: { ImagePreview },
-        emits: ['on-load', 'on-error', 'on-switch', 'on-close'],
+        emits: ['on-load', 'on-error', 'on-switch', 'on-close', 'on-click'],
         props: {
             src: {
                 type: String,
@@ -217,9 +217,11 @@
                 }
             },
             handlePreview() {
-                const {preview} = this;
+                const {preview, initialIndex} = this;
                 if (preview) {
                     this.imagePreviewModal = true;
+                    // reslove click image get the currentIndex to do other thing
+                    this.$emit('on-click', {initialIndex})
                 }
             },
             handleClose() {

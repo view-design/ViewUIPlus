@@ -53,6 +53,7 @@
 					:fit="fit"
 					:lazy="true"
 					:infinite="false"
+					:initialIndex="index"
 					:previewList="srcList"
 					preview
 					scroll-container=".demo-image3" :alt="fit">
