@@ -9,7 +9,8 @@
         render () {
             return h(Base, {
                 ...this.$props,
-                component: 'div'
+                component: 'div',
+                ...this.commonEvents()
             }, this.commonSlots());
         }
     }

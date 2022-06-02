@@ -19,7 +19,8 @@
         render () {
             return h(Base, {
                 ...this.$props,
-                component: `h${this.level}`
+                component: `h${this.level}`,
+                ...this.commonEvents()
             }, this.commonSlots());
         }
     }

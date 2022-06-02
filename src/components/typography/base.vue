@@ -147,6 +147,7 @@
                 this.$emit('on-edit-change', value);
             },
             handleEditSave () {
+                this.currentContent = this.editContent;
                 this.$emit('update:modelValue', this.editContent);
                 this.editing = false;
             },

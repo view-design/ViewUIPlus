@@ -122,6 +122,14 @@ export default {
             if (this.$slots.editIcon) slots.editIcon = (props) => this.$slots.editIcon(props);
 
             return slots;
+        },
+        commonEvents () {
+            return {
+                'onUpdate:modelValue': this.handleOnUpdateModelValue
+            }
+        },
+        handleOnUpdateModelValue (value) {
+            this.$emit('update:modelValue', value);
         }
     }
 }
