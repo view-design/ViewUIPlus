@@ -18,6 +18,7 @@
                         :style="imageStyle(index)"
                         :class="[[prefixCls + '-image']]"
                         @click.stop
+                        @mousedown.stop.prevent="handleMousedown"
                     />
                 </div>
                 <ul :class="[prefixCls + '-operations']">
@@ -40,6 +41,7 @@
 <script>
     import { getCurrentInstance } from 'vue';
     import { on, off } from '../../utils/dom';
+    import throttle from 'lodash.throttle';
     import Locale from '../../mixins/locale';
     import Icon from '../icon';
 
@@ -92,18 +94,42 @@
                 ],
                 currentIndex: this.initialIndex,
                 scale: 1,
-                degree: 0
+                degree: 0,
+                translate: { x: 0, y: 0 },
+                startX: 0,
+                startY: 0,
+                moving: false
             }
         },
         computed: {
             imageStyle() {
                 return (index) => {
-                    return {
+                    let translateX = this.translate.x / this.scale;
+                    let translateY = this.translate.y / this.scale;
+
+                    const mod = this.degree % 360;
+
+                    if ([90, -270].includes(mod)) {
+                        [translateX, translateY] = [translateY, -translateX];
+                    }
+                    if ([180, -180].includes(mod)) {
+                        [translateX, translateY] = [-translateX, -translateY];
+                    }
+                    if ([270, -90].includes(mod)) {
+                        [translateX, translateY] = [-translateY, translateX];
+                    }
+                    const styleObj = {
                         transform: `
                             scale(${index === this.currentIndex ? this.scale : 1})
                             rotate(${index === this.currentIndex ? this.degree : 0}deg)
+                            translate(
+                                ${index === this.currentIndex ? translateX : 0}px,
+                                ${index === this.currentIndex ? translateY : 0}px
+                            )
                         `
                     };
+                    if (!this.moving) styleObj.transition = 'transform .3s ease';
+                    return styleObj;
                 }
             },
             hasRightSwitchEnd() {
@@ -128,6 +154,8 @@
             resetStyle() {
                 this.scale = 1;
                 this.degree = 0;
+                this.translate.x = 0;
+                this.translate.y = 0;
             },
             handleSwitch(next) {
                 if (next) {
@@ -169,18 +197,44 @@
                 // down
                 if (keyCode === 40) this.handleOperation('narrow');
             },
+            handleKeyup(event) {
+                const { keyCode } = event;
+                // esc
+                if (keyCode === 27) this.handleClose();
+            },
             handleWheel(event) {
                 const { deltaY } = event;
                 this.handleOperation(deltaY > 0 ? 'enlarge' : 'narrow');
+            },
+            handleMousedown(event) {
+                this.moving = true;
+                const { pageX, pageY } = event;
+                this.startX = pageX;
+                this.startY = pageY;
+                on(document, 'mousemove', this.handleMousemove);
+                on(document, 'mouseup', this.handleMouseup);
+            },
+            handleMousemove: throttle(function(event) {
+                event.stopPropagation();
+                const { pageX, pageY } = event;
+                this.translate.x += (pageX - this.startX);
+                this.translate.y += (pageY - this.startY);
+                this.startX = pageX;
+                this.startY = pageY;
+            }),
+            handleMouseup() {
+                this.moving = false;
+                off(document, 'mousemove', this.handleMousemove);
+                off(document, 'mouseup', this.handleMouseup);
             }
         },
-        mounted() {
-            on(document, 'keydown', this.handleKeydown);
-            on(document, 'wheel', this.handleWheel);
-        },
-        beforeUnmount() {
-            off(document, 'keydown', this.handleKeydown);
-            off(document, 'wheel', this.handleWheel);
+        watch: {
+            modelValue(val) {
+                const bind = val ? on : off;
+                bind(document, 'keydown', this.handleKeydown);
+                bind(document, 'keyup', this.handleKeyup);
+                bind(document, 'wheel', this.handleWheel);
+            }
         }
     }
 </script>
