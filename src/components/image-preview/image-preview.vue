@@ -204,7 +204,7 @@
             },
             handleWheel(event) {
                 const { deltaY } = event;
-                this.handleOperation(deltaY > 0 ? 'enlarge' : 'narrow');
+                this.handleOperation(deltaY < 0 ? 'enlarge' : 'narrow');
             },
             handleMousedown(event) {
                 this.moving = true;
