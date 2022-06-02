@@ -32,6 +32,7 @@
         },
         created () {
             this.editing = this.mergedEditConfig.editing || false;
+            if (this.editing) this.editContent = this.currentContent ? this.currentContent : this.handleGetContent();
         },
         watch: {
             modelValue (val) {
