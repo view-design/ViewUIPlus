@@ -11,9 +11,9 @@
 					:previewList="srcList"
 					preview
 					scroll-container=".demo-image" :alt="fit">
-					<!-- <template #placeholder>
+					<template #placeholder>
 						<Spin size="large" fix />
-					</template> -->
+					</template>
 					<template #error>
 						<div>失败</div>
 					</template>
