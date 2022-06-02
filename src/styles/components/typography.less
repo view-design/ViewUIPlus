@@ -203,8 +203,8 @@
 
         div& {
             left: -@input-padding-horizontal - 1px;
-            margin-top: -@input-padding-vertical-base - 1px;
-            margin-bottom: calc(1em - @input-padding-vertical-base - 1px);
+            margin-top: -@input-padding-vertical-base - 1.5px;
+            margin-bottom: calc(~'1em' - (@input-padding-vertical-base + 1.5px));
         }
 
         &-confirm {

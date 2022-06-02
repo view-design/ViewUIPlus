@@ -3,6 +3,7 @@
     import Icon from '../icon/icon';
     import Tooltip from '../tooltip/tooltip';
     import Copy from '../copy/';
+    import Input from '../input/input';
 
     import baseProps from './props';
 
@@ -25,6 +26,9 @@
                 editing: false,
                 editContent: ''
             }
+        },
+        created () {
+            this.editing = this.mergedEditConfig.editing || false;
         },
         watch: {
             modelValue (val) {
@@ -183,11 +187,21 @@
                 }
             }
 
-            return h(this.component, {
-                class: this.classes,
-                ...this.linkProps,
-                onClick: this.handleClickLink
-            }, contentNodes);
+            if (this.editing) {
+                const textareaNode = h(Input, {
+                    modelValue: this.editContent,
+                    type: 'textarea'
+                });
+                return h('div', {
+                    class: ['ivu-typography', 'ivu-typography-edit-content']
+                }, [textareaNode]);
+            } else {
+                return h(this.component, {
+                    class: this.classes,
+                    ...this.linkProps,
+                    onClick: this.handleClickLink
+                }, contentNodes);
+            }
         }
     }
 </script>
