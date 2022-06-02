@@ -3,7 +3,6 @@
         <transition name="fade">
             <div
                 :class="[prefixCls + '-wrapper']"
-                @mouseover.stop.prevent
                 v-if="modelValue">
                 <div
                     :class="[prefixCls + '-mark']"
@@ -82,7 +81,7 @@
                 default: true
             }
         },
-        emits: ['update:modelValue', 'on-close'],
+        emits: ['update:modelValue', 'on-close', 'on-switch'],
         data() {
             return {
                 prefixCls,
@@ -179,6 +178,7 @@
                         this.currentIndex -= 1;
                     }
                 }
+                this.$emit('on-switch', {currentIndex})
             },
             handleOperation(val) {
                 if (val === 'enlarge' && this.scale < 6) this.scale += 0.25;

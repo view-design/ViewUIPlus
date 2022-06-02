@@ -29,13 +29,14 @@
         </div>
         <!-- preview -->
         <template v-if="preview">
-            {{infinite}}
             <image-preview 
                 :infinite="infinite"
                 :preview-list="previewList"
                 :maskClosable="maskClosable"
                 :initialIndex="initialIndex"
                 v-model="imagePreviewModal"
+                @on-close="handleClose"
+                @on-switch="handleSwitch"
             />
         </template>
     </div>
@@ -146,7 +147,7 @@
                 const $el = this.$refs.image;
                 const observer = this.observer = new IntersectionObserver(this.handlerObserveImage, {
                     root: this.scrollElement,
-                    rootMargin: "0px",
+                    rootMargin: "50%",
                     threshold: 1
                 });
                 observer.observe($el);
@@ -220,6 +221,12 @@
                 if (preview) {
                     this.imagePreviewModal = true;
                 }
+            },
+            handleClose() {
+                this.$emit('on-close')
+            },
+            handleSwitch(params) {
+                this.$emit('on-switch', params)
             }
         },
         beforeUnmount() {
