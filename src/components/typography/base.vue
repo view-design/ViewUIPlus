@@ -98,9 +98,9 @@
 
                 Copy({
                     text: this.copyText ? this.copyText : content,
-                    showTip: this.copyConfig.showTip,
-                    successTip: this.copyConfig.successTip,
-                    errorTip: this.copyConfig.errorTip,
+                    showTip: this.mergedCopyConfig.showTip,
+                    successTip: this.mergedCopyConfig.successTip,
+                    errorTip: this.mergedCopyConfig.errorTip,
                     success: () => {
                         this.$emit('on-copy-success');
                         this.copied = true;
@@ -138,9 +138,9 @@
                     onClick: this.handleCopy
                 }, copyIconNode);
 
-                if (this.copyConfig.tooltips instanceof Array && this.copyConfig.tooltips.length === 2) {
+                if (this.mergedCopyConfig.tooltips instanceof Array && this.mergedCopyConfig.tooltips.length === 2) {
                     const copyTooltipNode = h(Tooltip, {
-                        content: this.copied ? this.copyConfig.tooltips[1] : this.copyConfig.tooltips[0],
+                        content: this.copied ? this.mergedCopyConfig.tooltips[1] : this.mergedCopyConfig.tooltips[0],
                         placement: 'top'
                     }, () => copyButtonNode);
                     contentNodes.push(copyTooltipNode);

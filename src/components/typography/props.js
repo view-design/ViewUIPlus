@@ -2,6 +2,13 @@ import { getCurrentInstance } from 'vue';
 import { oneOf } from '../../utils/assist';
 import mixinsLink from '../../mixins/link';
 
+const defaultCopyConfig = {
+    tooltips: ['复制', '复制成功'],
+    showTip: true,
+    successTip: '复制成功',
+    errorTip: '复制失败'
+};
+
 export default {
     emits: ['update:modelValue'],
     mixins: [ mixinsLink ],
@@ -24,12 +31,7 @@ export default {
             type: Object,
             default () {
                 const global = getCurrentInstance().appContext.config.globalProperties;
-                return !global.$VIEWUI || global.$VIEWUI.typography.copyConfig === '' ? {
-                    tooltips: ['复制', '复制成功'],
-                    showTip: true,
-                    successTip: '复制成功',
-                    errorTip: '复制失败'
-                } : global.$VIEWUI.typography.copyConfig;
+                return !global.$VIEWUI || global.$VIEWUI.typography.copyConfig === '' ? defaultCopyConfig : global.$VIEWUI.typography.copyConfig;
             }
         },
         editable: {
@@ -101,6 +103,9 @@ export default {
             } else {
                 return {};
             }
+        },
+        mergedCopyConfig () {
+            return Object.assign({}, defaultCopyConfig, this.copyConfig);
         }
     },
     methods: {
