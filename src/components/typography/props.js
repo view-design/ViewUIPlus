@@ -9,6 +9,13 @@ const defaultCopyConfig = {
     errorTip: '复制失败'
 };
 
+const defaultEditConfig = {
+    tooltip: false,
+    editing: false,
+    maxlength: '',
+    autosize: false
+};
+
 export default {
     emits: ['update:modelValue'],
     mixins: [ mixinsLink ],
@@ -42,12 +49,7 @@ export default {
             type: Object,
             default () {
                 const global = getCurrentInstance().appContext.config.globalProperties;
-                return !global.$VIEWUI || global.$VIEWUI.typography.editConfig === '' ? {
-                    tooltip: false,
-                    editing: false,
-                    maxlength: '',
-                    autosize: false
-                } : global.$VIEWUI.typography.editConfig;
+                return !global.$VIEWUI || global.$VIEWUI.typography.editConfig === '' ? defaultEditConfig : global.$VIEWUI.typography.editConfig;
             }
         },
         disabled: {
@@ -106,6 +108,9 @@ export default {
         },
         mergedCopyConfig () {
             return Object.assign({}, defaultCopyConfig, this.copyConfig);
+        },
+        mergedEditConfig () {
+            return Object.assign({}, defaultEditConfig, this.editConfig);
         }
     },
     methods: {
