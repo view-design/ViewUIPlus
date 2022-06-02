@@ -230,8 +230,11 @@
         },
         watch: {
             modelValue(val) {
-                if (val && this.currentIndex !== this.initialIndex) {
-                    this.currentIndex = this.initialIndex;
+                if (val) {
+                    if (this.currentIndex !== this.initialIndex) {
+                        this.currentIndex = this.initialIndex;
+                    }
+                    this.resetStyle();
                 }
                 const bind = val ? on : off;
                 bind(document, 'keydown', this.handleKeydown);
