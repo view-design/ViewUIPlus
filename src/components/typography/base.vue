@@ -1,16 +1,17 @@
 <script>
-    import { h, createApp, getCurrentInstance } from 'vue';
+    import { h, createApp, getCurrentInstance, nextTick } from 'vue';
     import Icon from '../icon/icon';
     import Tooltip from '../tooltip/tooltip';
     import Copy from '../copy/';
     import Input from '../input/input';
 
     import baseProps from './props';
+    import KeyCode from '../../utils/keyCode';
 
     export default {
         name: 'TypographyBase',
         mixins: [ baseProps ],
-        emits: ['on-copy-success', 'on-copy-error', 'on-edit-start', 'on-edit-end'],
+        emits: ['on-copy-success', 'on-copy-error', 'on-edit-start', 'on-edit-end', 'on-edit-change', 'on-edit-cancel'],
         // inheritAttrs: false,
         props: {
             component: {
@@ -24,7 +25,8 @@
                 copied: false,
                 copyTimeout: null,
                 editing: false,
-                editContent: ''
+                editContent: '',
+                lastKeyCode: ''
             }
         },
         created () {
@@ -126,8 +128,47 @@
             },
             handleEdit () {
                 this.editContent = this.currentContent ? this.currentContent : this.handleGetContent();
-                this.editing = true;
-                this.$emit('on-edit-start');
+
+                nextTick(() => {
+                    this.editing = true;
+                    this.$emit('on-edit-start');
+                    nextTick(() => {
+                        this.$refs.edit.focus();
+                    });
+                });
+            },
+            handleEditBlur () {
+                this.handleEditSave();
+                this.$emit('on-edit-end', this.editContent);
+            },
+            handleEditChange (event) {
+                const value = event.target.value;
+                this.editContent = value;
+                this.$emit('on-edit-change', value);
+            },
+            handleEditSave () {
+                this.$emit('update:modelValue', this.editContent);
+                this.editing = false;
+            },
+            handleEditKeydown (e) {
+                const { keyCode } = e;
+
+                if (keyCode === KeyCode.ENTER) e.preventDefault();
+
+                this.lastKeyCode = keyCode;
+            },
+            handleEditKeyup (e) {
+                const { keyCode, ctrlKey, altKey, metaKey, shiftKey } = e;
+
+                if (this.lastKeyCode === keyCode && !ctrlKey && !altKey && !metaKey && !shiftKey) {
+                    if (keyCode === KeyCode.ENTER) {
+                        this.handleEditSave();
+                        this.$emit('on-edit-end', this.editContent);
+                    } else if (keyCode === KeyCode.ESC) {
+                        this.$emit('on-edit-cancel');
+                        this.editing = false;
+                    }
+                }
             }
         },
         render () {
@@ -189,8 +230,14 @@
 
             if (this.editing) {
                 const textareaNode = h(Input, {
+                    ref: 'edit',
                     modelValue: this.editContent,
-                    type: 'textarea'
+                    type: 'textarea',
+                    autosize: this.mergedEditConfig.autosize,
+                    'onOn-blur': this.handleEditBlur,
+                    'onOn-keydown': this.handleEditKeydown,
+                    'onOn-keyup': this.handleEditKeyup,
+                    'onOn-change': this.handleEditChange,
                 });
                 return h('div', {
                     class: ['ivu-typography', 'ivu-typography-edit-content']

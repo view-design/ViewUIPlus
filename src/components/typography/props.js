@@ -13,7 +13,7 @@ const defaultEditConfig = {
     tooltip: '编辑',
     editing: false,
     maxlength: '',
-    autosize: false
+    autosize: true
 };
 
 export default {
