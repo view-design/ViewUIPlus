@@ -178,7 +178,7 @@
                         this.currentIndex -= 1;
                     }
                 }
-                this.$emit('on-switch', {currentIndex})
+                this.$emit('on-switch', {currentIndex: this.currentIndex})
             },
             handleOperation(val) {
                 if (val === 'enlarge' && this.scale < 6) this.scale += 0.25;
