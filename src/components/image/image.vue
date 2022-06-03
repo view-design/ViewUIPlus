@@ -1,5 +1,5 @@
 <template>
-    <div :class="prefixCls" ref="image">
+    <div :class="prefixCls" ref="image" :style="imageStyles">
         <slot v-if="loading" name="placeholder">
             <div :class="[prefixCls + '-placeholder']">
                 <span>{{loadingLang}}</span>
@@ -133,6 +133,12 @@
                 const fitContains = ['fill', 'contain', 'cover', 'none', 'scale-down'];
                 const {fit} = this;
                 return fitContains.includes(fit) ? `object-fit:${fit};` : '';
+            },
+            imageStyles() {
+                return {
+                    width: `${this.width}px`,
+                    height: `${this.height}px`
+                };
             },
             loadingLang() {
                 return this.t('i.select.loading')

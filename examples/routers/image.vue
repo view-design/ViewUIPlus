@@ -3,10 +3,11 @@
 		<div style="width: 1000px;height: 300px;">
 			<div class="demo-image-item" v-for="(fit, index) in fitList" :key="index">
 				<Image
-					style="width: 100px; height: 100px"
 					:src="url"
 					:fit="fit"
 					:previewList="srcList"
+					width="100"
+					height="100"
 					preview
 					scroll-container=".demo-image" :alt="fit">
 					<template #placeholder>
