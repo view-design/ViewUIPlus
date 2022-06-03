@@ -2,12 +2,12 @@
     <div :class="prefixCls" ref="image">
         <slot v-if="loading" name="placeholder">
             <div :class="[prefixCls + '-placeholder']">
-                <span>LOADING</span>
+                <span>{{loadingLang}}</span>
             </div>
         </slot>
         <slot v-else-if="imageError" name="error">
             <div :class="[prefixCls + '-error']">
-                <span>FAILED</span>
+                <span>{{failLang}}</span>
             </div>
         </slot>
         <div :class="[prefixCls + '-inner']" v-else>
@@ -23,7 +23,7 @@
                     :class="[prefixCls + '-mark']"
                     @click="handlePreview"
                 >
-                    <span>preview</span>
+                    <span>{{previewLang}}</span>
                 </div>
             </slot>
         </div>
@@ -46,12 +46,14 @@
     import {on, off} from '../../utils/dom'
     import {isClient} from '../../utils/index';
     import ImagePreview  from '../image-preview';
+    import Locale from '../../mixins/locale';
     // is Element
     const isElement = (el)=> {
         return typeof HTMLElement === 'object' && el instanceof HTMLElement;
     }
     export default {
         name: 'Image',
+        mixins: [ Locale ],
         components: { ImagePreview },
         emits: ['on-load', 'on-error', 'on-switch', 'on-close', 'on-click'],
         props: {
@@ -131,6 +133,15 @@
                 const fitContains = ['fill', 'contain', 'cover', 'none', 'scale-down'];
                 const {fit} = this;
                 return fitContains.includes(fit) ? `object-fit:${fit};` : '';
+            },
+            loadingLang() {
+                return this.t('i.select.loading')
+            },
+            failLang() {
+                return this.t('i.image.fail')
+            },
+            previewLang() {
+                return this.t('i.image.preview')
             }
         },
         watch: {

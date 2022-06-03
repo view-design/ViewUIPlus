@@ -111,7 +111,9 @@ const lang = {
             zoomIn: '放大',
             zoomOut: '缩小',
             rotateLeft: '左旋转',
-            rotateRight: '右旋转'
+            rotateRight: '右旋转',
+            fail: '失败',
+            preview: '预览'
         }
     }
 };
