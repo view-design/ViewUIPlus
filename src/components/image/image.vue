@@ -47,6 +47,7 @@
     import {isClient} from '../../utils/index';
     import ImagePreview  from '../image-preview';
     import Locale from '../../mixins/locale';
+    import { getCurrentInstance } from 'vue';
     // is Element
     const isElement = (el)=> {
         return typeof HTMLElement === 'object' && el instanceof HTMLElement;
@@ -95,8 +96,11 @@
                 default: ''
             },
             transfer: {
-                type: Boolean,
-                default: false
+               type: Boolean,
+                default () {
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$VIEWUI || global.$VIEWUI.transfer === '' ? false : global.$VIEWUI.transfer;
+                }
             },
             maskClosable: {
                 type: Boolean,
