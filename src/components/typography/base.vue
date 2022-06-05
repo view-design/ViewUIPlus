@@ -17,6 +17,10 @@
             component: {
                 type: String,
                 default: 'div'
+            },
+            level: {
+                type: Number,
+                default: 0
             }
         },
         data () {
@@ -241,14 +245,29 @@
                     modelValue: this.editContent,
                     type: 'textarea',
                     autosize: this.mergedEditConfig.autosize,
+                    maxlength: this.mergedEditConfig.maxlength,
                     'onOn-blur': this.handleEditBlur,
                     'onOn-keydown': this.handleEditKeydown,
                     'onOn-keyup': this.handleEditKeyup,
                     'onOn-change': this.handleEditChange,
                 });
+
+                const confirmNode = h('span', {
+                    class: 'ivu-typography-edit-content-confirm'
+                }, h(Icon, {
+                    type: 'md-return-left'
+                }));
+
                 return h('div', {
-                    class: ['ivu-typography', 'ivu-typography-edit-content']
-                }, [textareaNode]);
+                    class: [
+                        'ivu-typography',
+                        'ivu-typography-edit-content',
+                        {
+                            [`ivu-typography-h${this.level}`]: this.level,
+                            ['ivu-typography-div']: !this.level
+                        }
+                    ]
+                }, [textareaNode, confirmNode]);
             } else {
                 return h(this.component, {
                     class: this.classes,
