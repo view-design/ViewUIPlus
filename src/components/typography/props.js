@@ -120,6 +120,7 @@ export default {
             if (this.$slots.default) slots.default = () => this.$slots.default();
             if (this.$slots.copyIcon) slots.copyIcon = (props) => this.$slots.copyIcon(props);
             if (this.$slots.editIcon) slots.editIcon = (props) => this.$slots.editIcon(props);
+            if (this.$slots.enterIcon) slots.enterIcon = (props) => this.$slots.enterIcon(props);
 
             return slots;
         },

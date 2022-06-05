@@ -252,11 +252,15 @@
                     'onOn-change': this.handleEditChange,
                 });
 
+                const enterDefaultIconNode = h(Icon, {
+                    type: 'md-return-left'
+                });
+
+                const enterIconNode = this.$slots.enterIcon ? this.$slots.enterIcon() : enterDefaultIconNode;
+
                 const confirmNode = h('span', {
                     class: 'ivu-typography-edit-content-confirm'
-                }, h(Icon, {
-                    type: 'md-return-left'
-                }));
+                }, enterIconNode);
 
                 return h('div', {
                     class: [
