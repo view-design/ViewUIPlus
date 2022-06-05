@@ -74,10 +74,14 @@
 
                 return content;
             },
-            handleClickLink (event) {
-                if (!this.isHrefPattern && this.component !== 'a') return;
-                const openInNewWindow = event.ctrlKey || event.metaKey;
-                this.handleCheckClick(event, openInNewWindow);
+            handleClickContent (event) {
+                if (!this.isHrefPattern && this.component !== 'a') {
+                    const triggerType = this.mergedEditConfig.triggerType;
+                    if (this.editable && (triggerType === 'text' || triggerType === 'both')) this.handleEdit();
+                } else {
+                    const openInNewWindow = event.ctrlKey || event.metaKey;
+                    this.handleCheckClick(event, openInNewWindow);
+                }
             },
             handleGetContent () {
                 const container = document.createElement('div');
@@ -189,34 +193,30 @@
             contentNodes.push(textNode);
 
             if (this.editable) {
-                const editDefaultIconNode = h(Icon, {
-                    type: 'md-create'
-                });
+                const triggerType = this.mergedEditConfig.triggerType;
 
-                const editIconNode = this.$slots.editIcon ? this.$slots.editIcon() : editDefaultIconNode;
+                if (triggerType === 'icon' || triggerType === 'both') {
+                    const editIconNode = this.$slots.editIcon ? this.$slots.editIcon() : h(Icon, { type: 'md-create'});
 
-                const editButtonNode = h('div', {
-                    class: 'ivu-typography-edit',
-                    onClick: this.handleEdit
-                }, editIconNode);
+                    const editButtonNode = h('div', {
+                        class: 'ivu-typography-edit',
+                        onClick: this.handleEdit
+                    }, editIconNode);
 
-                if (this.mergedEditConfig.tooltip) {
-                    const editTooltipNode = h(Tooltip, {
-                        content: this.mergedEditConfig.tooltip,
-                        placement: 'top'
-                    }, () => editButtonNode);
-                    contentNodes.push(editTooltipNode);
-                } else {
-                    contentNodes.push(editButtonNode);
+                    if (this.mergedEditConfig.tooltip) {
+                        const editTooltipNode = h(Tooltip, {
+                            content: this.mergedEditConfig.tooltip,
+                            placement: 'top'
+                        }, () => editButtonNode);
+                        contentNodes.push(editTooltipNode);
+                    } else {
+                        contentNodes.push(editButtonNode);
+                    }
                 }
             }
 
             if (this.copyable) {
-                const copyDefaultIconNode = h(Icon, {
-                    type: this.copied ? 'md-checkmark' : 'md-copy'
-                });
-
-                const copyIconNode = this.$slots.copyIcon ? this.$slots.copyIcon({ copied: this.copied }) : copyDefaultIconNode;
+                const copyIconNode = this.$slots.copyIcon ? this.$slots.copyIcon({ copied: this.copied }) : h(Icon, { type: this.copied ? 'md-checkmark' : 'md-copy' });
 
                 const copyButtonNode = h('div', {
                     class: [
@@ -252,11 +252,7 @@
                     'onOn-change': this.handleEditChange,
                 });
 
-                const enterDefaultIconNode = h(Icon, {
-                    type: 'md-return-left'
-                });
-
-                const enterIconNode = this.$slots.enterIcon ? this.$slots.enterIcon() : enterDefaultIconNode;
+                const enterIconNode = this.$slots.enterIcon ? this.$slots.enterIcon() : h(Icon, { type: 'md-return-left' });
 
                 const confirmNode = h('span', {
                     class: 'ivu-typography-edit-content-confirm'
@@ -276,7 +272,7 @@
                 return h(this.component, {
                     class: this.classes,
                     ...this.linkProps,
-                    onClick: this.handleClickLink
+                    onClick: this.handleClickContent
                 }, contentNodes);
             }
         }

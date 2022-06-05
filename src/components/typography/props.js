@@ -13,7 +13,8 @@ const defaultEditConfig = {
     tooltip: '编辑',
     editing: false,
     maxlength: '',
-    autosize: true
+    autosize: true,
+    triggerType: 'icon' // icon | text | both
 };
 
 export default {
