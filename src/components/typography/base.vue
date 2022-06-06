@@ -178,7 +178,9 @@
                     this.editing = true;
                     this.$emit('on-edit-start');
                     nextTick(() => {
-                        this.$refs.edit.focus();
+                        this.$refs.edit.focus({
+                            cursor: 'end'
+                        });
                     });
                 });
             },
