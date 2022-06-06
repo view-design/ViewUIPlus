@@ -55,6 +55,12 @@
                         this.handleCreateObserver();
                     });
                 }
+            },
+            isEllipsis () {
+                nextTick(() => {
+                    this.handleRemoveObserver();
+                    this.handleCreateObserver();
+                });
             }
         },
         computed: {
@@ -304,17 +310,30 @@
                 }, [textareaNode, confirmNode]);
             } else {
                 const style = {};
+
                 if (this.ellipsis && !this.ellipsisExpanded) {
                     style['-webkit-line-clamp'] = this.mergedEllipsisConfig.rows;
                 }
 
-                return h(this.component, {
+                const baseNode = h(this.component, {
                     ref: 'typography',
                     class: this.classes,
                     ...this.linkProps,
                     style,
                     onClick: this.handleClickContent
                 }, contentNodes);
+
+                if (this.ellipsis && !this.ellipsisExpanded && this.isEllipsis && this.mergedEllipsisConfig.tooltip) {
+                    return h(Tooltip, {
+                        content: this.mergedEllipsisConfig.tooltip === true ? this.handleGetContent() : this.mergedEllipsisConfig.tooltip,
+                        placement: this.placement,
+                        transfer: this.transfer,
+                        theme: this.theme,
+                        maxWidth: this.maxWidth
+                    }, () => baseNode);
+                } else {
+                    return baseNode;
+                }
             }
         },
         mounted () {

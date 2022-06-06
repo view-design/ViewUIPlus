@@ -19,7 +19,8 @@ const defaultEditConfig = {
 
 const defaultEllipsisConfig = {
     rows: 1,
-    expandable: false
+    expandable: false,
+    tooltip: false
 };
 
 export default {
@@ -104,6 +105,30 @@ export default {
         modelValue: {
             type: String,
             default: ''
+        },
+        // 以下是 tooltip 部分选项，用于 ellipsis
+        transfer: {
+            type: Boolean,
+            default () {
+                const global = getCurrentInstance().appContext.config.globalProperties;
+                return !global.$VIEWUI || global.$VIEWUI.transfer === '' ? false : global.$VIEWUI.transfer;
+            }
+        },
+        theme: {
+            validator (value) {
+                return oneOf(value, ['dark', 'light']);
+            },
+            default: 'dark'
+        },
+        maxWidth: {
+            type: [String, Number],
+            default: 250
+        },
+        placement: {
+            validator (value) {
+                return oneOf(value, ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end']);
+            },
+            default: 'top'
         }
     },
     computed: {
