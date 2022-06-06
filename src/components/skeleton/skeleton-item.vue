@@ -5,9 +5,9 @@
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue';
-import { oneOf } from '../../utils/assist';
-import Icon from '../icon'
+    import { getCurrentInstance } from 'vue';
+    import { oneOf } from '../../utils/assist';
+    import Icon from '../icon';
 
     const prefixCls = 'ivu-skeleton-item';
 
