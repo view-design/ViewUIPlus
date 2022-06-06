@@ -51,6 +51,8 @@ export { default as Grid } from './grid';
 export { default as GridItem } from './grid-item';
 export { default as Header } from './header';
 export { default as Icon } from './icon';
+export { default as Image } from './image';
+export { default as ImagePreview } from './image-preview';
 export { default as Input } from './input';
 export { default as InputNumber } from './input-number';
 export { default as Layout } from './layout';
@@ -123,6 +125,3 @@ export { default as Typography } from './typography';
 export { default as Upload } from './upload';
 export { default as UserName } from './user-name';
 export { default as WordCount } from './word-count';
-
-export { default as Image } from './image';
-export { default as ImagePreview } from './image-preview';
