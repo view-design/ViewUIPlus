@@ -100,42 +100,10 @@
             rowsCount() {
                 return this.rows + Number(this.showTitle);
             },
-            rowWidth() {
-                return (row) => {
-                    if (this.showTitle && row === 1) {
-                        return this.titleWidth || '38%';
-                    }
-                    if (typeof this.paragraph === 'object') {
-                        if (typeof this.paragraph.width === 'string') {
-                            return this.paragraph.width;
-                        }
-                        if (typeof this.paragraph.width === 'number') {
-                            return `${this.paragraph.width}px`;
-                        }
-                        const index = row - 1 - Number(this.showTitle);
-                        if (Array.isArray(this.paragraph.width) && this.paragraph.width[index]) {
-                            if (typeof this.paragraph.width[index] === 'number') {
-                                return `${this.paragraph.width[index]}px`;
-                            } else {
-                                return this.paragraph.width[index];
-                            }
-                        }
-                    }
-                    return row === this.rowsCount ? '62%' : '100%';
-                };
-            },
             rowClasses() {
                 return {
                     [prefixCls + '-item-round']: this.round
                 };
-            },
-            rowStyle() {
-                return (row) => {
-                    if (this.showTitle && row === 2) {
-                        return { marginTop: '28px' };
-                    }
-                    return {};
-                }
             },
             showTitle() {
                 return Boolean(this.title);
@@ -156,6 +124,36 @@
             avatarSize() {
                 if (typeof this.avatar === 'object' && this.avatar.size) return this.avatar.size;
                 return !this.$VIEWUI || this.$VIEWUI.size === '' ? 'default' : this.$VIEWUI.size;
+            }
+        },
+        methods: {
+            rowWidth(row) {
+                if (this.showTitle && row === 1) {
+                    return this.titleWidth || '38%';
+                }
+                if (typeof this.paragraph === 'object') {
+                    if (typeof this.paragraph.width === 'string') {
+                        return this.paragraph.width;
+                    }
+                    if (typeof this.paragraph.width === 'number') {
+                        return `${this.paragraph.width}px`;
+                    }
+                    const index = row - 1 - Number(this.showTitle);
+                    if (Array.isArray(this.paragraph.width) && this.paragraph.width[index]) {
+                        if (typeof this.paragraph.width[index] === 'number') {
+                            return `${this.paragraph.width[index]}px`;
+                        } else {
+                            return this.paragraph.width[index];
+                        }
+                    }
+                }
+                return row === this.rowsCount ? '62%' : '100%';
+            },
+            rowStyle(row) {
+                if (this.showTitle && row === 2) {
+                    return { marginTop: '28px' };
+                }
+                return {};
             }
         }
     }
