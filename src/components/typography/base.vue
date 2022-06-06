@@ -61,6 +61,19 @@
                     this.handleRemoveObserver();
                     this.handleCreateObserver();
                 });
+            },
+            ellipsis: {
+                handler (val) {
+                    if (val) {
+                        nextTick(() => {
+                            this.handleUpdateEllipsisStatus();
+                            this.handleCreateObserver();
+                        });
+                    } else {
+                        this.handleRemoveObserver();
+                    }
+                },
+                immediate: true
             }
         },
         computed: {
@@ -216,8 +229,10 @@
                 }
             },
             handleCreateObserver () {
-                this.observer = elementResizeDetectorMaker();
-                this.observer.listenTo(this.$refs.typography, this.handleUpdateEllipsisStatus);
+                if (this.ellipsis && !this.ellipsisExpanded) {
+                    this.observer = elementResizeDetectorMaker();
+                    this.observer.listenTo(this.$refs.typography, this.handleUpdateEllipsisStatus);
+                }
             },
             handleRemoveObserver () {
                 if (this.observer) {
@@ -334,12 +349,6 @@
                 } else {
                     return baseNode;
                 }
-            }
-        },
-        mounted () {
-            if (!this.editing) {
-                this.handleUpdateEllipsisStatus();
-                this.handleCreateObserver();
             }
         },
         beforeUnmount () {
