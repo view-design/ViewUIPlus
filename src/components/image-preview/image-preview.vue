@@ -44,6 +44,7 @@
     import { isClient } from '../../utils';
     import Locale from '../../mixins/locale';
     import Icon from '../icon';
+    import KeyCode from '../../utils/keyCode';
 
     const prefixCls = 'ivu-image-preview';
 
@@ -188,19 +189,14 @@
             },
             handleKeydown(event) {
                 const { keyCode } = event;
-                // left
-                if (keyCode === 37) this.handleSwitch(false);
-                // right
-                if (keyCode === 39) this.handleSwitch(true);
-                // up
-                if (keyCode === 38) this.handleOperation('enlarge');
-                // down
-                if (keyCode === 40) this.handleOperation('narrow');
+                if (keyCode === KeyCode.LEFT) this.handleSwitch(false);
+                if (keyCode === KeyCode.RIGHT) this.handleSwitch(true);
+                if (keyCode === KeyCode.UP) this.handleOperation('enlarge');
+                if (keyCode === KeyCode.DOWN) this.handleOperation('narrow');
             },
             handleKeyup(event) {
                 const { keyCode } = event;
-                // esc
-                if (keyCode === 27) this.handleClose();
+                if (keyCode === KeyCode.ESC) this.handleClose();
             },
             handleWheel(event) {
                 const { deltaY } = event;
