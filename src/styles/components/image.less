@@ -1,0 +1,46 @@
+@image-prefix-cls: ~"@{css-prefix}image";
+
+.@{image-prefix-cls} {
+    display: inline-block;
+    position: relative;
+    &-img,
+    &-error,
+    &-placeholder,
+    &-mark,
+    &-inner{
+        width: 100%;
+        height: 100%;
+    }
+    &-inner {
+        position: relative;
+    }
+    &-img {
+        vertical-align: middle;
+    }
+    &-error,
+    &-placeholder,
+    &-mark {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &-mark {
+        position: absolute;
+        left: 0;
+        background-color: rgba(0, 0, 0, .3);
+        top: 0;
+        z-index: 1;
+        color: #FFF;
+        cursor: pointer;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity .3s;
+    }
+    &-inner:hover {
+        .@{image-prefix-cls} {
+            &-mark {
+                opacity: 1;
+            }
+        }
+    }
+}

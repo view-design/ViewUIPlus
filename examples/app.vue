@@ -96,6 +96,7 @@
             <span><router-link to="/copy">$Copy</router-link></span>
             <span><router-link to="/scroll-top">$ScrollTop</router-link></span>
             <span><router-link to="/scroll-into-view">$ScrollIntoView</router-link></span>
+            <span><router-link to="/image">Image</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>

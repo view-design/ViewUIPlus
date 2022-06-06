@@ -97,6 +97,14 @@ const lang = {
         },
         tree: {
             emptyText: '暫無資料'
+        },
+        image: {
+            zoomIn: '放大',
+            zoomOut: '縮小',
+            rotateLeft: '左旋轉',
+            rotateRight: '右旋轉',
+            fail: '失敗',
+            preview: '預覽'
         }
     }
 };
