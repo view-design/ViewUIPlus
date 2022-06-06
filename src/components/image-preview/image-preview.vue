@@ -41,6 +41,7 @@
     import { getCurrentInstance } from 'vue';
     import { on, off } from '../../utils/dom';
     import throttle from 'lodash.throttle';
+    import { isClient } from '../../utils';
     import Locale from '../../mixins/locale';
     import Icon from '../icon';
 
@@ -97,7 +98,8 @@
                 translate: { x: 0, y: 0 },
                 startX: 0,
                 startY: 0,
-                moving: false
+                moving: false,
+                prevOverflow: '' // prevent body scrolling
             }
         },
         computed: {
@@ -140,6 +142,12 @@
                 if (!this.moving) styleObj.transition = 'transform .3s ease';
                 return styleObj;
             },
+            resetStyle() {
+                this.scale = 1;
+                this.degree = 0;
+                this.translate.x = 0;
+                this.translate.y = 0;
+            },
             handleClose() {
                 this.$emit('update:modelValue', false);
                 this.$emit('on-close')
@@ -147,12 +155,6 @@
             handleClickMark() {
                 if (!this.maskClosable) return;
                 this.handleClose();
-            },
-            resetStyle() {
-                this.scale = 1;
-                this.degree = 0;
-                this.translate.x = 0;
-                this.translate.y = 0;
             },
             handleSwitch(next) {
                 if (next) {
@@ -176,7 +178,7 @@
                         this.currentIndex -= 1;
                     }
                 }
-                this.$emit('on-switch', {currentIndex: this.currentIndex})
+                this.$emit('on-switch', { currentIndex: this.currentIndex });
             },
             handleOperation(val) {
                 if (val === 'enlarge' && this.scale < 6) this.scale += 0.25;
@@ -224,15 +226,24 @@
                 this.moving = false;
                 off(document, 'mousemove', this.handleMousemove);
                 off(document, 'mouseup', this.handleMouseup);
+            },
+            getBodyOverflow() {
+                return isClient ? document.body.style.overflow : '';
+            },
+            setBodyOverflow(val) {
+                if (!isClient) return;
+                document.body.style.overflow = val;
             }
         },
         watch: {
             modelValue(val) {
                 if (val) {
-                    if (this.currentIndex !== this.initialIndex) {
-                        this.currentIndex = this.initialIndex;
-                    }
+                    this.currentIndex = this.initialIndex;
                     this.resetStyle();
+                    this.prevOverflow = this.getBodyOverflow();
+                    this.setBodyOverflow('hidden');
+                } else {
+                    this.setBodyOverflow(this.prevOverflow);
                 }
             }
         },
