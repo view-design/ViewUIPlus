@@ -349,6 +349,10 @@ const router = createRouter({
         {
             path: '/skeleton',
             component: () => import('./routers/skeleton.vue')
+        },
+        {
+            path: '/typography',
+            component: () => import('./routers/typography.vue')
         }
     ]
 });
