@@ -106,6 +106,14 @@ const lang = {
         },
         tree: {
             emptyText: 'No Data'
+        },
+        image: {
+            zoomIn: 'Zoom In',
+            zoomOut: 'Zoom Out',
+            rotateLeft: 'Rotate Left',
+            rotateRight: 'Rotate Right',
+            fail: 'failed',
+            preview: 'preview'
         }
     }
 };
