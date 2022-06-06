@@ -17,6 +17,11 @@ const defaultEditConfig = {
     triggerType: 'icon' // icon | text | both
 };
 
+const defaultEllipsisConfig = {
+    rows: 1,
+    expandable: false
+};
+
 export default {
     emits: ['update:modelValue'],
     mixins: [ mixinsLink ],
@@ -53,11 +58,18 @@ export default {
                 return !global.$VIEWUI || global.$VIEWUI.typography.editConfig === '' ? defaultEditConfig : global.$VIEWUI.typography.editConfig;
             }
         },
-        disabled: {
+        ellipsis: {
             type: Boolean,
             default: false
         },
-        ellipsis: {
+        ellipsisConfig: {
+            type: Object,
+            default () {
+                const global = getCurrentInstance().appContext.config.globalProperties;
+                return !global.$VIEWUI || global.$VIEWUI.typography.ellipsisConfig === '' ? defaultEllipsisConfig : global.$VIEWUI.typography.ellipsisConfig;
+            }
+        },
+        disabled: {
             type: Boolean,
             default: false
         },
@@ -112,7 +124,11 @@ export default {
         },
         mergedEditConfig () {
             return Object.assign({}, defaultEditConfig, this.editConfig);
+        },
+        mergedEllipsisConfig () {
+            return Object.assign({}, defaultEllipsisConfig, this.ellipsisConfig);
         }
+
     },
     methods: {
         commonSlots () {

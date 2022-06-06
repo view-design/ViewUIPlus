@@ -127,7 +127,8 @@ export const install = function(app, opts = {}) {
         },
         typography: {
             copyConfig: opts.typography ? opts.typography.copyConfig ? opts.typography.copyConfig : '' : '',
-            editConfig: opts.typography ? opts.typography.editConfig ? opts.typography.editConfig : '' : ''
+            editConfig: opts.typography ? opts.typography.editConfig ? opts.typography.editConfig : '' : '',
+            ellipsisConfig: opts.typography ? opts.typography.ellipsisConfig ? opts.typography.ellipsisConfig : '' : ''
         }
     }
     app.config.globalProperties.$Spin = components.Spin;

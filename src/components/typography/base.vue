@@ -31,7 +31,10 @@
                 editing: false,
                 editContent: '',
                 lastKeyCode: '',
-                isEditESC: false
+                isEditESC: false,
+                ellipsisText: '',
+                ellipsisContent: '',
+                ellipsisExpanded: false
             }
         },
         created () {
@@ -49,7 +52,8 @@
                     'ivu-typography',
                     {
                         [`ivu-typography-${this.type}`]: this.type,
-                        [`ivu-typography-disabled`]: this.disabled
+                        [`ivu-typography-disabled`]: this.disabled,
+                        ['ivu-typography-ellipsis-line-clamp']: this.ellipsis && !this.ellipsisExpanded
                     }
                 ]
             }
@@ -269,9 +273,15 @@
                     ]
                 }, [textareaNode, confirmNode]);
             } else {
+                const style = {};
+                if (this.ellipsis && !this.ellipsisExpanded) {
+                    style['-webkit-line-clamp'] = this.mergedEllipsisConfig.rows;
+                }
+
                 return h(this.component, {
                     class: this.classes,
                     ...this.linkProps,
+                    style,
                     onClick: this.handleClickContent
                 }, contentNodes);
             }
