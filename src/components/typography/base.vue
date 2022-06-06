@@ -330,13 +330,37 @@
                     style['-webkit-line-clamp'] = this.mergedEllipsisConfig.rows;
                 }
 
+                let ellipsisExtraNode = null;
+                // let ellipsisSuffixNode = '';
+                // let ellipsisExpandNode = null;
+
+                // todo
+                // if (this.ellipsis && this.mergedEllipsisConfig.suffix) {
+                //     ellipsisSuffixNode = h('span', {
+                //         class: 'ivu-typography-ellipsis-suffix'
+                //     }, this.mergedEllipsisConfig.suffix);
+                // }
+
+                // if (this.ellipsis && !this.ellipsisExpanded && this.isEllipsis && this.mergedEllipsisConfig.expandable) {
+                //     ellipsisExpandNode = h('a', {
+                //         class: ['ivu-typography', 'ivu-typography-ellipsis-expand']
+                //     }, this.mergedEllipsisConfig.symbol);
+                // }
+                //
+                // if (ellipsisExpandNode) {
+                //     const moreNode = h('span', '...');
+                //     ellipsisExtraNode = h('span', {
+                //         class: 'ivu-typography-ellipsis-extra'
+                //     }, [moreNode, ellipsisExpandNode]);
+                // }
+
                 const baseNode = h(this.component, {
                     ref: 'typography',
                     class: this.classes,
                     ...this.linkProps,
                     style,
                     onClick: this.handleClickContent
-                }, contentNodes);
+                }, [contentNodes, ellipsisExtraNode]);
 
                 if (this.ellipsis && !this.ellipsisExpanded && this.isEllipsis && this.mergedEllipsisConfig.tooltip) {
                     return h(Tooltip, {

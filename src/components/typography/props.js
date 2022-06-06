@@ -19,8 +19,10 @@ const defaultEditConfig = {
 
 const defaultEllipsisConfig = {
     rows: 1,
+    tooltip: false,
+    suffix: false,
     expandable: false,
-    tooltip: false
+    symbol: '展开'
 };
 
 export default {
