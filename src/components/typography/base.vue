@@ -1,5 +1,6 @@
 <script>
     import { h, createApp, getCurrentInstance, nextTick } from 'vue';
+    import elementResizeDetectorMaker from 'element-resize-detector';
     import Icon from '../icon/icon';
     import Tooltip from '../tooltip/tooltip';
     import Copy from '../copy/';
@@ -34,7 +35,9 @@
                 isEditESC: false,
                 ellipsisText: '',
                 ellipsisContent: '',
-                ellipsisExpanded: false
+                isEllipsis: false,
+                ellipsisExpanded: false,
+                observer: null
             }
         },
         created () {
@@ -44,6 +47,14 @@
         watch: {
             modelValue (val) {
                 this.currentContent = val;
+            },
+            editing (val) {
+                if (!val) {
+                    nextTick(() => {
+                        this.handleRemoveObserver();
+                        this.handleCreateObserver();
+                    });
+                }
             }
         },
         computed: {
@@ -188,6 +199,24 @@
                         this.editing = false;
                     }
                 }
+            },
+            handleUpdateEllipsisStatus () {
+                if (this.ellipsis && !this.ellipsisExpanded) {
+                    const $el = this.$refs.typography;
+                    this.isEllipsis = $el.scrollHeight > $el.clientHeight;
+                } else {
+                    this.isEllipsis = false;
+                }
+            },
+            handleCreateObserver () {
+                this.observer = elementResizeDetectorMaker();
+                this.observer.listenTo(this.$refs.typography, this.handleUpdateEllipsisStatus);
+            },
+            handleRemoveObserver () {
+                if (this.observer) {
+                    this.observer.removeListener(this.$refs.typography, this.handleUpdateEllipsisStatus);
+                    this.observer = null;
+                }
             }
         },
         render () {
@@ -279,12 +308,22 @@
                 }
 
                 return h(this.component, {
+                    ref: 'typography',
                     class: this.classes,
                     ...this.linkProps,
                     style,
                     onClick: this.handleClickContent
                 }, contentNodes);
             }
+        },
+        mounted () {
+            if (!this.editing) {
+                this.handleUpdateEllipsisStatus();
+                this.handleCreateObserver();
+            }
+        },
+        beforeUnmount () {
+            this.handleRemoveObserver();
         }
     }
 </script>
