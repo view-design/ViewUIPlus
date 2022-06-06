@@ -347,6 +347,10 @@ const router = createRouter({
             component: () => import('./routers/city.vue')
         },
         {
+            path: '/skeleton',
+            component: () => import('./routers/skeleton.vue')
+        },
+        {
             path: '/image',
             component: () => import('./routers/image.vue')
         },

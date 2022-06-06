@@ -91,6 +91,8 @@ export { default as ScrollIntoView } from './scroll-into-view';
 export { default as ScrollTop } from './scroll-top';
 export { default as Select } from './select';
 export { default as Sider } from './sider';
+export { default as Skeleton } from './skeleton';
+export { default as SkeletonItem } from './skeleton-item';
 export { default as Slider } from './slider';
 export { default as Spin } from './spin';
 export { default as Split } from './split';
