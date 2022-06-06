@@ -101,36 +101,6 @@
             }
         },
         computed: {
-            imageStyle() {
-                return (index) => {
-                    let translateX = this.translate.x / this.scale;
-                    let translateY = this.translate.y / this.scale;
-
-                    const mod = this.degree % 360;
-
-                    if ([90, -270].includes(mod)) {
-                        [translateX, translateY] = [translateY, -translateX];
-                    }
-                    if ([180, -180].includes(mod)) {
-                        [translateX, translateY] = [-translateX, -translateY];
-                    }
-                    if ([270, -90].includes(mod)) {
-                        [translateX, translateY] = [-translateY, translateX];
-                    }
-                    const styleObj = {
-                        transform: `
-                            scale(${index === this.currentIndex ? this.scale : 1})
-                            rotate(${index === this.currentIndex ? this.degree : 0}deg)
-                            translate(
-                                ${index === this.currentIndex ? translateX : 0}px,
-                                ${index === this.currentIndex ? translateY : 0}px
-                            )
-                        `
-                    };
-                    if (!this.moving) styleObj.transition = 'transform .3s ease';
-                    return styleObj;
-                }
-            },
             hasRightSwitchEnd() {
                 const { currentIndex, infinite, previewList} = this;
                 const len = previewList.length;
@@ -142,6 +112,34 @@
             }
         },
         methods: {
+            imageStyle(index) {
+                let translateX = this.translate.x / this.scale;
+                let translateY = this.translate.y / this.scale;
+
+                const mod = this.degree % 360;
+
+                if ([90, -270].includes(mod)) {
+                    [translateX, translateY] = [translateY, -translateX];
+                }
+                if ([180, -180].includes(mod)) {
+                    [translateX, translateY] = [-translateX, -translateY];
+                }
+                if ([270, -90].includes(mod)) {
+                    [translateX, translateY] = [-translateY, translateX];
+                }
+                const styleObj = {
+                    transform: `
+                            scale(${index === this.currentIndex ? this.scale : 1})
+                            rotate(${index === this.currentIndex ? this.degree : 0}deg)
+                            translate(
+                                ${index === this.currentIndex ? translateX : 0}px,
+                                ${index === this.currentIndex ? translateY : 0}px
+                            )
+                        `
+                };
+                if (!this.moving) styleObj.transition = 'transform .3s ease';
+                return styleObj;
+            },
             handleClose() {
                 this.$emit('update:modelValue', false);
                 this.$emit('on-close')
@@ -236,11 +234,17 @@
                     }
                     this.resetStyle();
                 }
-                const bind = val ? on : off;
-                bind(document, 'keydown', this.handleKeydown);
-                bind(document, 'keyup', this.handleKeyup);
-                bind(document, 'wheel', this.handleWheel);
             }
+        },
+        mounted() {
+            on(document, 'keydown', this.handleKeydown);
+            on(document, 'keyup', this.handleKeyup);
+            on(document, 'wheel', this.handleWheel);
+        },
+        beforeUnmount() {
+            off(document, 'keydown', this.handleKeydown);
+            off(document, 'keyup', this.handleKeyup);
+            off(document, 'wheel', this.handleWheel);
         }
     }
 </script>
