@@ -287,6 +287,20 @@
     }
 
     // ============ Ellipsis ============
+    &-single-line {
+        white-space: nowrap;
+    }
+
+    &-ellipsis-single-line {
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        // https://blog.csdn.net/iefreer/article/details/50421025
+        a&,
+        span& {
+            vertical-align: bottom;
+        }
+    }
     &-ellipsis-line-clamp{
         display: -webkit-box;
         -webkit-box-orient: vertical;

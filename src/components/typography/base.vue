@@ -64,7 +64,8 @@
                     {
                         [`ivu-typography-${this.type}`]: this.type,
                         [`ivu-typography-disabled`]: this.disabled,
-                        ['ivu-typography-ellipsis-line-clamp']: this.ellipsis && !this.ellipsisExpanded
+                        ['ivu-typography-ellipsis-line-clamp']: this.ellipsis && !this.ellipsisExpanded,
+                        ['ivu-typography-ellipsis-single-line']: this.ellipsis && !this.ellipsisExpanded && this.mergedEllipsisConfig.rows === 1
                     }
                 ]
             }
