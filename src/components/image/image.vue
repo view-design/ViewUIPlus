@@ -27,7 +27,6 @@
                 </div>
             </slot>
         </div>
-        <!-- preview -->
         <template v-if="preview">
             <image-preview 
                 :infinite="infinite"
