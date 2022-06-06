@@ -56,7 +56,7 @@ var _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const prefixCls$1k = "ivu-affix";
+const prefixCls$1o = "ivu-affix";
 function getScroll(target, top2) {
   const prop2 = top2 ? "pageYOffset" : "pageXOffset";
   const method3 = top2 ? "scrollTop" : "scrollLeft";
@@ -80,7 +80,7 @@ function getOffset(element) {
     left: rect.left + scrollLeft - clientLeft
   };
 }
-const _sfc_main$2k = {
+const _sfc_main$2u = {
   name: "Affix",
   emits: ["on-change"],
   props: {
@@ -115,7 +115,7 @@ const _sfc_main$2k = {
     classes() {
       return [
         {
-          [`${prefixCls$1k}`]: this.affix
+          [`${prefixCls$1o}`]: this.affix
         }
       ];
     }
@@ -176,7 +176,7 @@ const _sfc_main$2k = {
     }
   }
 };
-function _sfc_render$29(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$2e(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", null, [
     createElementVNode("div", {
       ref: "point",
@@ -192,9 +192,9 @@ function _sfc_render$29(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var Affix = /* @__PURE__ */ _export_sfc(_sfc_main$2k, [["render", _sfc_render$29]]);
-const prefixCls$1j = "ivu-icon";
-const _sfc_main$2j = {
+var Affix = /* @__PURE__ */ _export_sfc(_sfc_main$2u, [["render", _sfc_render$2e]]);
+const prefixCls$1n = "ivu-icon";
+const _sfc_main$2t = {
   name: "Icon",
   props: {
     type: {
@@ -211,9 +211,9 @@ const _sfc_main$2j = {
   computed: {
     classes() {
       return [
-        `${prefixCls$1j}`,
+        `${prefixCls$1n}`,
         {
-          [`${prefixCls$1j}-${this.type}`]: this.type !== "",
+          [`${prefixCls$1n}-${this.type}`]: this.type !== "",
           [`${this.custom}`]: this.custom !== ""
         }
       ];
@@ -228,13 +228,13 @@ const _sfc_main$2j = {
     }
   }
 };
-function _sfc_render$28(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$2d(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("i", {
     class: normalizeClass($options.classes),
     style: normalizeStyle($options.styles)
   }, null, 6);
 }
-var Icon = /* @__PURE__ */ _export_sfc(_sfc_main$2j, [["render", _sfc_render$28]]);
+var Icon = /* @__PURE__ */ _export_sfc(_sfc_main$2t, [["render", _sfc_render$2d]]);
 function oneOf(value, validList) {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {
@@ -470,8 +470,8 @@ function setMatchMedia() {
   window.matchMedia = window.matchMedia || matchMediaPolyfill;
 }
 const sharpMatcherRegx = /#([^#]+)$/;
-const prefixCls$1i = "ivu-alert";
-const _sfc_main$2i = {
+const prefixCls$1m = "ivu-alert";
+const _sfc_main$2s = {
   name: "Alert",
   components: { Icon },
   props: {
@@ -507,26 +507,26 @@ const _sfc_main$2i = {
   computed: {
     wrapClasses() {
       return [
-        `${prefixCls$1i}`,
-        `${prefixCls$1i}-${this.type}`,
+        `${prefixCls$1m}`,
+        `${prefixCls$1m}-${this.type}`,
         {
-          [`${prefixCls$1i}-with-icon`]: this.showIcon,
-          [`${prefixCls$1i}-with-desc`]: this.desc,
-          [`${prefixCls$1i}-with-banner`]: this.banner
+          [`${prefixCls$1m}-with-icon`]: this.showIcon,
+          [`${prefixCls$1m}-with-desc`]: this.desc,
+          [`${prefixCls$1m}-with-banner`]: this.banner
         }
       ];
     },
     messageClasses() {
-      return `${prefixCls$1i}-message`;
+      return `${prefixCls$1m}-message`;
     },
     descClasses() {
-      return `${prefixCls$1i}-desc`;
+      return `${prefixCls$1m}-desc`;
     },
     closeClasses() {
-      return `${prefixCls$1i}-close`;
+      return `${prefixCls$1m}-close`;
     },
     iconClasses() {
-      return `${prefixCls$1i}-icon`;
+      return `${prefixCls$1m}-icon`;
     },
     iconType() {
       let type2 = "";
@@ -559,7 +559,7 @@ const _sfc_main$2i = {
     this.desc = this.$slots.desc !== void 0;
   }
 };
-function _sfc_render$27(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$2c(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createBlock(Transition, {
     name: $props.fade ? "fade" : ""
@@ -601,8 +601,8 @@ function _sfc_render$27(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["name"]);
 }
-var Alert = /* @__PURE__ */ _export_sfc(_sfc_main$2i, [["render", _sfc_render$27]]);
-const _sfc_main$2h = {
+var Alert = /* @__PURE__ */ _export_sfc(_sfc_main$2s, [["render", _sfc_render$2c]]);
+const _sfc_main$2r = {
   name: "Anchor",
   provide() {
     return {
@@ -804,7 +804,7 @@ const _sfc_main$2h = {
     this.removeListener();
   }
 };
-function _sfc_render$26(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$2b(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createBlock(resolveDynamicComponent($options.wrapperComponent), {
     "offset-top": $props.offsetTop,
     "offset-bottom": $props.offsetBottom,
@@ -835,7 +835,7 @@ function _sfc_render$26(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["offset-top", "offset-bottom", "onOnChange"]);
 }
-var Anchor = /* @__PURE__ */ _export_sfc(_sfc_main$2h, [["render", _sfc_render$26]]);
+var Anchor = /* @__PURE__ */ _export_sfc(_sfc_main$2r, [["render", _sfc_render$2b]]);
 function random(len = 32) {
   const $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   const maxPos = $chars.length;
@@ -845,7 +845,7 @@ function random(len = 32) {
   }
   return str;
 }
-const _sfc_main$2g = {
+const _sfc_main$2q = {
   name: "AnchorLink",
   inject: ["AnchorInstance"],
   props: {
@@ -902,8 +902,8 @@ const _sfc_main$2g = {
     this.AnchorInstance.removeLink(this.id);
   }
 };
-const _hoisted_1$1h = ["href", "data-scroll-offset", "data-href", "title"];
-function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$1k = ["href", "data-scroll-offset", "data-href", "title"];
+function _sfc_render$2a(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.anchorLinkClasses)
   }, [
@@ -914,11 +914,11 @@ function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
       "data-href": $props.href,
       onClick: _cache[0] || (_cache[0] = withModifiers((...args) => $options.goAnchor && $options.goAnchor(...args), ["prevent"])),
       title: $props.title
-    }, toDisplayString($props.title), 11, _hoisted_1$1h),
+    }, toDisplayString($props.title), 11, _hoisted_1$1k),
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var AnchorLink = /* @__PURE__ */ _export_sfc(_sfc_main$2g, [["render", _sfc_render$25]]);
+var AnchorLink = /* @__PURE__ */ _export_sfc(_sfc_main$2q, [["render", _sfc_render$2a]]);
 var mixinsLink = {
   props: {
     to: {
@@ -1015,7 +1015,7 @@ function includeArray(list1, list2) {
   });
   return status;
 }
-const _sfc_main$2f = {
+const _sfc_main$2p = {
   name: "Auth",
   mixins: [mixinsLink],
   emits: ["click"],
@@ -2375,7 +2375,7 @@ function transferIncrease() {
 function lastVisibleIncrease() {
   lastVisibleIndex++;
 }
-const _sfc_main$2e = {
+const _sfc_main$2o = {
   name: "Drop",
   emits: ["mouseenter", "mouseleave", "click"],
   props: {
@@ -2520,7 +2520,7 @@ const _sfc_main$2e = {
     }
   }
 };
-function _sfc_render$24(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$29(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createBlock(Teleport, {
     to: "body",
     disabled: !$props.transfer
@@ -2545,7 +2545,7 @@ function _sfc_render$24(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["name"])
   ], 8, ["disabled"]);
 }
-var Drop = /* @__PURE__ */ _export_sfc(_sfc_main$2e, [["render", _sfc_render$24]]);
+var Drop = /* @__PURE__ */ _export_sfc(_sfc_main$2o, [["render", _sfc_render$29]]);
 function setLang(lang2) {
   if (isClient && typeof window.viewuiplus !== "undefined") {
     if (!("langs" in viewuiplus)) {
@@ -2660,6 +2660,14 @@ const lang$2 = {
     },
     tree: {
       emptyText: "\u6682\u65E0\u6570\u636E"
+    },
+    image: {
+      zoomIn: "\u653E\u5927",
+      zoomOut: "\u7F29\u5C0F",
+      rotateLeft: "\u5DE6\u65CB\u8F6C",
+      rotateRight: "\u53F3\u65CB\u8F6C",
+      fail: "\u5931\u8D25",
+      preview: "\u9884\u89C8"
     }
   }
 };
@@ -2834,8 +2842,8 @@ var globalConfig = {
     this.globalConfig = instance.appContext.config.globalProperties.$VIEWUI;
   }
 };
-const prefixCls$1h = "ivu-select";
-const _sfc_main$2d = {
+const prefixCls$1l = "ivu-select";
+const _sfc_main$2n = {
   name: "iSelectHead",
   mixins: [Locale, globalConfig],
   components: { Icon },
@@ -2897,7 +2905,7 @@ const _sfc_main$2d = {
   },
   data() {
     return {
-      prefixCls: prefixCls$1h,
+      prefixCls: prefixCls$1l,
       query: "",
       inputLength: 20,
       remoteInitialLabel: this.initialLabel,
@@ -2908,9 +2916,9 @@ const _sfc_main$2d = {
     singleDisplayClasses() {
       const { filterable, multiple, showPlaceholder } = this;
       return [{
-        [prefixCls$1h + "-head-with-prefix"]: this.showPrefix,
-        [prefixCls$1h + "-placeholder"]: showPlaceholder && !filterable,
-        [prefixCls$1h + "-selected-value"]: !showPlaceholder && !multiple && !filterable
+        [prefixCls$1l + "-head-with-prefix"]: this.showPrefix,
+        [prefixCls$1l + "-placeholder"]: showPlaceholder && !filterable,
+        [prefixCls$1l + "-selected-value"]: !showPlaceholder && !multiple && !filterable
       }];
     },
     singleDisplayValue() {
@@ -2963,7 +2971,7 @@ const _sfc_main$2d = {
     },
     headCls() {
       return {
-        [`${prefixCls$1h}-head-flex`]: this.filterable && this.showPrefix
+        [`${prefixCls$1l}-head-flex`]: this.filterable && this.showPrefix
       };
     },
     arrowType() {
@@ -3077,13 +3085,13 @@ const _sfc_main$2d = {
     }
   }
 };
-const _hoisted_1$1g = {
+const _hoisted_1$1j = {
   key: 1,
   class: "ivu-tag ivu-tag-checked"
 };
-const _hoisted_2$N = { class: "ivu-tag-text ivu-select-max-tag" };
+const _hoisted_2$O = { class: "ivu-tag-text ivu-select-max-tag" };
 const _hoisted_3$z = ["id", "disabled", "placeholder"];
-function _sfc_render$23(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$28(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createElementBlock("div", {
     onClick: _cache[6] || (_cache[6] = (...args) => $options.onHeaderClick && $options.onHeaderClick(...args)),
@@ -3115,8 +3123,8 @@ function _sfc_render$23(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 8, ["onClick"])) : createCommentVNode("", true)
       ]);
     }), 128)),
-    $props.maxTagCount !== void 0 && $props.values.length > $props.maxTagCount ? (openBlock(), createElementBlock("div", _hoisted_1$1g, [
-      createElementVNode("span", _hoisted_2$N, [
+    $props.maxTagCount !== void 0 && $props.values.length > $props.maxTagCount ? (openBlock(), createElementBlock("div", _hoisted_1$1j, [
+      createElementVNode("span", _hoisted_2$O, [
         $props.maxTagPlaceholder ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
           createTextVNode(toDisplayString($props.maxTagPlaceholder($props.values.length - $props.maxTagCount)), 1)
         ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
@@ -3166,7 +3174,7 @@ function _sfc_render$23(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["type", "custom", "size", "class"])) : createCommentVNode("", true)
   ], 2);
 }
-var SelectHead = /* @__PURE__ */ _export_sfc(_sfc_main$2d, [["render", _sfc_render$23]]);
+var SelectHead = /* @__PURE__ */ _export_sfc(_sfc_main$2n, [["render", _sfc_render$28]]);
 const CLICK = "click";
 const captureInstances = /* @__PURE__ */ Object.create(null);
 const nonCaptureInstances = /* @__PURE__ */ Object.create(null);
@@ -3306,7 +3314,7 @@ var mixinsForm = {
     }
   }
 };
-const prefixCls$1g = "ivu-select";
+const prefixCls$1k = "ivu-select";
 const checkValuesNotEqual = (value, publicValue, values) => {
   const strValue = JSON.stringify(value);
   const strPublic = JSON.stringify(publicValue);
@@ -3316,7 +3324,7 @@ const checkValuesNotEqual = (value, publicValue, values) => {
   return strValue !== strPublic || strValue !== strValues || strValues !== strPublic;
 };
 const ANIMATION_TIMEOUT = 300;
-const _sfc_main$2c = {
+const _sfc_main$2m = {
   name: "iSelect",
   mixins: [Locale, mixinsForm],
   components: { Drop, SelectHead, Icon },
@@ -3480,7 +3488,7 @@ const _sfc_main$2c = {
   },
   data() {
     return {
-      prefixCls: prefixCls$1g,
+      prefixCls: prefixCls$1k,
       values: [],
       dropDownWidth: 0,
       visible: false,
@@ -3504,28 +3512,28 @@ const _sfc_main$2c = {
   computed: {
     classes() {
       return [
-        `${prefixCls$1g}`,
+        `${prefixCls$1k}`,
         {
-          [`${prefixCls$1g}-visible`]: this.visible,
-          [`${prefixCls$1g}-disabled`]: this.itemDisabled,
-          [`${prefixCls$1g}-multiple`]: this.multiple,
-          [`${prefixCls$1g}-single`]: !this.multiple,
-          [`${prefixCls$1g}-${this.size}`]: !!this.size
+          [`${prefixCls$1k}-visible`]: this.visible,
+          [`${prefixCls$1k}-disabled`]: this.itemDisabled,
+          [`${prefixCls$1k}-multiple`]: this.multiple,
+          [`${prefixCls$1k}-single`]: !this.multiple,
+          [`${prefixCls$1k}-${this.size}`]: !!this.size
         }
       ];
     },
     dropdownCls() {
       return {
-        [prefixCls$1g + "-dropdown-transfer"]: this.transfer,
-        [prefixCls$1g + "-multiple"]: this.multiple && this.transfer,
+        [prefixCls$1k + "-dropdown-transfer"]: this.transfer,
+        [prefixCls$1k + "-multiple"]: this.multiple && this.transfer,
         ["ivu-auto-complete"]: this.autoComplete,
         [this.transferClassName]: this.transferClassName
       };
     },
     selectionCls() {
       return {
-        [`${prefixCls$1g}-selection`]: !this.autoComplete,
-        [`${prefixCls$1g}-selection-focused`]: this.isFocused
+        [`${prefixCls$1k}-selection`]: !this.autoComplete,
+        [`${prefixCls$1k}-selection-focused`]: this.isFocused
       };
     },
     localeNotFoundText() {
@@ -3977,9 +3985,9 @@ const _sfc_main$2c = {
     }
   }
 };
-const _hoisted_1$1f = ["tabindex"];
-const _hoisted_2$M = ["name", "value"];
-function _sfc_render$22(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$1i = ["tabindex"];
+const _hoisted_2$N = ["name", "value"];
+function _sfc_render$27(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_select_head = resolveComponent("select-head");
   const _component_Icon = resolveComponent("Icon");
   const _component_Drop = resolveComponent("Drop");
@@ -4010,7 +4018,7 @@ function _sfc_render$22(_ctx, _cache, $props, $setup, $data, $options) {
           type: "hidden",
           name: $props.name,
           value: $options.publicValue
-        }, null, 8, _hoisted_2$M),
+        }, null, 8, _hoisted_2$N),
         createVNode(_component_select_head, {
           ref: "selectHead",
           filterable: $props.filterable,
@@ -4040,7 +4048,7 @@ function _sfc_render$22(_ctx, _cache, $props, $setup, $data, $options) {
           _: 3
         }, 8, ["filterable", "multiple", "values", "clearable", "prefix", "disabled", "remote", "input-element-id", "initial-label", "placeholder", "query-prop", "max-tag-count", "max-tag-placeholder", "allow-create", "show-create-item", "onOnQueryChange", "onOnClear", "onOnEnter"])
       ])
-    ], 42, _hoisted_1$1f),
+    ], 42, _hoisted_1$1i),
     createVNode(_component_Drop, {
       ref: "dropdown",
       classes: $options.dropdownCls,
@@ -4114,9 +4122,9 @@ function _sfc_render$22(_ctx, _cache, $props, $setup, $data, $options) {
     ]
   ]);
 }
-var Select = /* @__PURE__ */ _export_sfc(_sfc_main$2c, [["render", _sfc_render$22]]);
-const prefixCls$1f = "ivu-select-item";
-const _sfc_main$2b = {
+var Select = /* @__PURE__ */ _export_sfc(_sfc_main$2m, [["render", _sfc_render$27]]);
+const prefixCls$1j = "ivu-select-item";
+const _sfc_main$2l = {
   name: "iOption",
   componentName: "select-item",
   mixins: [mixinsForm],
@@ -4156,11 +4164,11 @@ const _sfc_main$2b = {
   computed: {
     classes() {
       return [
-        `${prefixCls$1f}`,
+        `${prefixCls$1j}`,
         {
-          [`${prefixCls$1f}-disabled`]: this.itemDisabled,
-          [`${prefixCls$1f}-selected`]: this.selected && !this.autoComplete,
-          [`${prefixCls$1f}-focus`]: this.isFocused
+          [`${prefixCls$1j}-disabled`]: this.itemDisabled,
+          [`${prefixCls$1j}-selected`]: this.selected && !this.autoComplete,
+          [`${prefixCls$1j}-focus`]: this.isFocused
         }
       ];
     },
@@ -4275,7 +4283,7 @@ const _sfc_main$2b = {
     });
   }
 };
-function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$26(_ctx, _cache, $props, $setup, $data, $options) {
   return withDirectives((openBlock(), createElementBlock("li", {
     class: normalizeClass($options.classes),
     onClick: _cache[0] || (_cache[0] = withModifiers((...args) => $options.select && $options.select(...args), ["stop"])),
@@ -4289,7 +4297,7 @@ function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
     [vShow, $options.isShow]
   ]);
 }
-var iOption = /* @__PURE__ */ _export_sfc(_sfc_main$2b, [["render", _sfc_render$21]]);
+var iOption = /* @__PURE__ */ _export_sfc(_sfc_main$2l, [["render", _sfc_render$26]]);
 const HIDDEN_TEXTAREA_STYLE = `
   min-height:0 !important;
   max-height:none !important;
@@ -4399,8 +4407,8 @@ function calcTextareaHeight(uiTextNode, minRows = null, maxRows = null, useCache
     overflowY
   };
 }
-const prefixCls$1e = "ivu-input";
-const _sfc_main$2a = {
+const prefixCls$1i = "ivu-input";
+const _sfc_main$2k = {
   name: "Input",
   mixins: [mixinsForm],
   emits: ["on-enter", "on-search", "on-keydown", "on-keypress", "on-keyup", "on-click", "on-focus", "on-blur", "on-change", "on-input-change", "on-clear", "update:modelValue"],
@@ -4512,7 +4520,7 @@ const _sfc_main$2a = {
   data() {
     return {
       currentValue: this.modelValue,
-      prefixCls: prefixCls$1e,
+      prefixCls: prefixCls$1i,
       slotReady: false,
       textareaStyles: {},
       isOnComposition: false,
@@ -4553,38 +4561,38 @@ const _sfc_main$2a = {
     },
     wrapClasses() {
       return [
-        `${prefixCls$1e}-wrapper`,
+        `${prefixCls$1i}-wrapper`,
         {
-          [`${prefixCls$1e}-wrapper-${this.size}`]: !!this.size,
-          [`${prefixCls$1e}-type-${this.type}`]: this.type,
-          [`${prefixCls$1e}-group`]: this.prepend || this.append || this.search && this.enterButton,
-          [`${prefixCls$1e}-group-${this.size}`]: (this.prepend || this.append || this.search && this.enterButton) && !!this.size,
-          [`${prefixCls$1e}-group-with-prepend`]: this.prepend,
-          [`${prefixCls$1e}-group-with-append`]: this.append || this.search && this.enterButton,
-          [`${prefixCls$1e}-hide-icon`]: this.append,
-          [`${prefixCls$1e}-with-search`]: this.search && this.enterButton,
-          [`${prefixCls$1e}-wrapper-disabled`]: this.itemDisabled
+          [`${prefixCls$1i}-wrapper-${this.size}`]: !!this.size,
+          [`${prefixCls$1i}-type-${this.type}`]: this.type,
+          [`${prefixCls$1i}-group`]: this.prepend || this.append || this.search && this.enterButton,
+          [`${prefixCls$1i}-group-${this.size}`]: (this.prepend || this.append || this.search && this.enterButton) && !!this.size,
+          [`${prefixCls$1i}-group-with-prepend`]: this.prepend,
+          [`${prefixCls$1i}-group-with-append`]: this.append || this.search && this.enterButton,
+          [`${prefixCls$1i}-hide-icon`]: this.append,
+          [`${prefixCls$1i}-with-search`]: this.search && this.enterButton,
+          [`${prefixCls$1i}-wrapper-disabled`]: this.itemDisabled
         }
       ];
     },
     inputClasses() {
       return [
-        `${prefixCls$1e}`,
+        `${prefixCls$1i}`,
         {
-          [`${prefixCls$1e}-${this.size}`]: !!this.size,
-          [`${prefixCls$1e}-disabled`]: this.itemDisabled,
-          [`${prefixCls$1e}-no-border`]: !this.border,
-          [`${prefixCls$1e}-with-prefix`]: this.showPrefix,
-          [`${prefixCls$1e}-with-suffix`]: this.showSuffix || this.search && this.enterButton === false
+          [`${prefixCls$1i}-${this.size}`]: !!this.size,
+          [`${prefixCls$1i}-disabled`]: this.itemDisabled,
+          [`${prefixCls$1i}-no-border`]: !this.border,
+          [`${prefixCls$1i}-with-prefix`]: this.showPrefix,
+          [`${prefixCls$1i}-with-suffix`]: this.showSuffix || this.search && this.enterButton === false
         }
       ];
     },
     textareaClasses() {
       return [
-        `${prefixCls$1e}`,
+        `${prefixCls$1i}`,
         {
-          [`${prefixCls$1e}-disabled`]: this.itemDisabled,
-          [`${prefixCls$1e}-no-border`]: !this.border
+          [`${prefixCls$1i}-disabled`]: this.itemDisabled,
+          [`${prefixCls$1i}-no-border`]: !this.border
         }
       ];
     },
@@ -4748,11 +4756,11 @@ const _sfc_main$2a = {
     nextTick(this.handleCalcIconOffset);
   }
 };
-const _hoisted_1$1e = {
+const _hoisted_1$1h = {
   key: 4,
   class: "ivu-input-suffix"
 };
-const _hoisted_2$L = {
+const _hoisted_2$M = {
   key: 5,
   class: "ivu-input-word-count"
 };
@@ -4778,7 +4786,7 @@ const _hoisted_9$4 = {
   key: 0,
   class: "ivu-input-word-count"
 };
-function _sfc_render$20(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
   }, [
@@ -4804,14 +4812,14 @@ function _sfc_render$20(_ctx, _cache, $props, $setup, $data, $options) {
         key: 3,
         class: normalizeClass(["ivu-icon ivu-icon-ios-search", [$data.prefixCls + "-icon", $data.prefixCls + "-icon-normal", $data.prefixCls + "-search-icon"]]),
         onClick: _cache[2] || (_cache[2] = (...args) => $options.handleSearch && $options.handleSearch(...args))
-      }, null, 2)) : $options.showSuffix ? (openBlock(), createElementBlock("span", _hoisted_1$1e, [
+      }, null, 2)) : $options.showSuffix ? (openBlock(), createElementBlock("span", _hoisted_1$1h, [
         renderSlot(_ctx.$slots, "suffix", {}, () => [
           $props.suffix ? (openBlock(), createElementBlock("i", {
             key: 0,
             class: normalizeClass(["ivu-icon", ["ivu-icon-" + $props.suffix]])
           }, null, 2)) : createCommentVNode("", true)
         ])
-      ])) : $props.showWordLimit ? (openBlock(), createElementBlock("span", _hoisted_2$L, toDisplayString($options.textLength) + "/" + toDisplayString($options.upperLimit), 1)) : $props.password ? (openBlock(), createElementBlock("span", {
+      ])) : $props.showWordLimit ? (openBlock(), createElementBlock("span", _hoisted_2$M, toDisplayString($options.textLength) + "/" + toDisplayString($options.upperLimit), 1)) : $props.password ? (openBlock(), createElementBlock("span", {
         key: 6,
         class: "ivu-input-suffix",
         onClick: _cache[3] || (_cache[3] = (...args) => $options.handleToggleShowPassword && $options.handleToggleShowPassword(...args))
@@ -4913,8 +4921,8 @@ function _sfc_render$20(_ctx, _cache, $props, $setup, $data, $options) {
     ], 64))
   ], 2);
 }
-var Input = /* @__PURE__ */ _export_sfc(_sfc_main$2a, [["render", _sfc_render$20]]);
-const _sfc_main$29 = {
+var Input = /* @__PURE__ */ _export_sfc(_sfc_main$2k, [["render", _sfc_render$25]]);
+const _sfc_main$2j = {
   name: "AutoComplete",
   mixins: [mixinsForm],
   components: { iSelect: Select, iOption, iInput: Input },
@@ -5067,7 +5075,7 @@ const _sfc_main$29 = {
     }
   }
 };
-function _sfc_render$1$(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$24(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_i_input = resolveComponent("i-input");
   const _component_i_option = resolveComponent("i-option");
   const _component_i_select = resolveComponent("i-select");
@@ -5128,10 +5136,10 @@ function _sfc_render$1$(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["label", "disabled", "clearable", "placeholder", "size", "placement", "model-value", "transfer-class-name", "remote-method", "onOnSelect", "onOnClickoutside", "transfer", "capture", "eventsEnabled"]);
 }
-var AutoComplete = /* @__PURE__ */ _export_sfc(_sfc_main$29, [["render", _sfc_render$1$]]);
-const prefixCls$1d = "ivu-avatar";
+var AutoComplete = /* @__PURE__ */ _export_sfc(_sfc_main$2j, [["render", _sfc_render$24]]);
+const prefixCls$1h = "ivu-avatar";
 const sizeList = ["small", "large", "default"];
-const _sfc_main$28 = {
+const _sfc_main$2i = {
   name: "Avatar",
   components: { Icon },
   emits: ["on-error"],
@@ -5162,7 +5170,7 @@ const _sfc_main$28 = {
   },
   data() {
     return {
-      prefixCls: prefixCls$1d,
+      prefixCls: prefixCls$1h,
       scale: 1,
       childrenWidth: 0,
       isSlotShow: false,
@@ -5172,12 +5180,12 @@ const _sfc_main$28 = {
   computed: {
     classes() {
       return [
-        `${prefixCls$1d}`,
-        `${prefixCls$1d}-${this.shape}`,
+        `${prefixCls$1h}`,
+        `${prefixCls$1h}-${this.shape}`,
         {
-          [`${prefixCls$1d}-image`]: !!this.src,
-          [`${prefixCls$1d}-icon`]: !!this.icon || !!this.customIcon,
-          [`${prefixCls$1d}-${this.size}`]: oneOf(this.size, sizeList)
+          [`${prefixCls$1h}-image`]: !!this.src,
+          [`${prefixCls$1h}-icon`]: !!this.icon || !!this.customIcon,
+          [`${prefixCls$1h}-${this.size}`]: oneOf(this.size, sizeList)
         }
       ];
     },
@@ -5241,8 +5249,8 @@ const _sfc_main$28 = {
       this.setScale();
   }
 };
-const _hoisted_1$1d = ["src"];
-function _sfc_render$1_(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$1g = ["src"];
+function _sfc_render$23(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createElementBlock("span", {
     class: normalizeClass($options.classes),
@@ -5252,7 +5260,7 @@ function _sfc_render$1_(_ctx, _cache, $props, $setup, $data, $options) {
       key: 0,
       src: $props.src,
       onError: _cache[0] || (_cache[0] = (...args) => $options.handleError && $options.handleError(...args))
-    }, null, 40, _hoisted_1$1d)) : $props.icon || $props.customIcon ? (openBlock(), createBlock(_component_Icon, {
+    }, null, 40, _hoisted_1$1g)) : $props.icon || $props.customIcon ? (openBlock(), createBlock(_component_Icon, {
       key: 1,
       type: $props.icon,
       custom: $props.customIcon
@@ -5266,7 +5274,7 @@ function _sfc_render$1_(_ctx, _cache, $props, $setup, $data, $options) {
     ], 6))
   ], 6);
 }
-var Avatar = /* @__PURE__ */ _export_sfc(_sfc_main$28, [["render", _sfc_render$1_]]);
+var Avatar = /* @__PURE__ */ _export_sfc(_sfc_main$2i, [["render", _sfc_render$23]]);
 var Popper = {
   emits: ["on-popper-show", "on-popper-hide", "created", "update:modelValue"],
   props: {
@@ -5377,8 +5385,8 @@ var Popper = {
     }
   }
 };
-const prefixCls$1c = "ivu-tooltip";
-const _sfc_main$27 = {
+const prefixCls$1g = "ivu-tooltip";
+const _sfc_main$2h = {
   name: "Tooltip",
   mixins: [Popper],
   props: {
@@ -5430,7 +5438,7 @@ const _sfc_main$27 = {
   },
   data() {
     return {
-      prefixCls: prefixCls$1c,
+      prefixCls: prefixCls$1g,
       tIndex: this.handleGetIndex()
     };
   },
@@ -5443,9 +5451,9 @@ const _sfc_main$27 = {
     },
     innerClasses() {
       return [
-        `${prefixCls$1c}-inner`,
+        `${prefixCls$1g}-inner`,
         {
-          [`${prefixCls$1c}-inner-with-width`]: !!this.maxWidth
+          [`${prefixCls$1g}-inner-with-width`]: !!this.maxWidth
         }
       ];
     },
@@ -5457,10 +5465,10 @@ const _sfc_main$27 = {
     },
     dropdownCls() {
       return [
-        `${prefixCls$1c}-popper`,
-        `${prefixCls$1c}-${this.theme}`,
+        `${prefixCls$1g}-popper`,
+        `${prefixCls$1g}-${this.theme}`,
         {
-          [prefixCls$1c + "-transfer"]: this.transfer,
+          [prefixCls$1g + "-transfer"]: this.transfer,
           [this.transferClassName]: this.transferClassName
         }
       ];
@@ -5501,7 +5509,7 @@ const _sfc_main$27 = {
     }
   }
 };
-function _sfc_render$1Z(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$22(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass([$data.prefixCls]),
     onMouseenter: _cache[2] || (_cache[2] = (...args) => $options.handleShowPopper && $options.handleShowPopper(...args)),
@@ -5550,8 +5558,8 @@ function _sfc_render$1Z(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, ["disabled"]))
   ], 34);
 }
-var Tooltip = /* @__PURE__ */ _export_sfc(_sfc_main$27, [["render", _sfc_render$1Z]]);
-const _sfc_main$26 = {
+var Tooltip = /* @__PURE__ */ _export_sfc(_sfc_main$2h, [["render", _sfc_render$22]]);
+const _sfc_main$2g = {
   name: "AvatarList",
   components: { Avatar, Tooltip },
   props: {
@@ -5605,15 +5613,15 @@ const _sfc_main$26 = {
     }
   }
 };
-const _hoisted_1$1c = {
+const _hoisted_1$1f = {
   key: 0,
   class: "ivu-avatar-list-item ivu-avatar-list-item-excess"
 };
-const _hoisted_2$K = {
+const _hoisted_2$L = {
   key: 1,
   class: "ivu-avatar-list-item ivu-avatar-list-item-excess"
 };
-function _sfc_render$1Y(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Avatar = resolveComponent("Avatar");
   const _component_Tooltip = resolveComponent("Tooltip");
   return openBlock(), createElementBlock("div", {
@@ -5645,7 +5653,7 @@ function _sfc_render$1Y(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 8, ["src", "size", "shape"]))
       ]);
     }), 128)),
-    _ctx.$slots.extra ? (openBlock(), createElementBlock("div", _hoisted_1$1c, [
+    _ctx.$slots.extra ? (openBlock(), createElementBlock("div", _hoisted_1$1f, [
       createVNode(_component_Avatar, {
         size: $props.size,
         shape: $props.shape,
@@ -5656,7 +5664,7 @@ function _sfc_render$1Y(_ctx, _cache, $props, $setup, $data, $options) {
         ]),
         _: 3
       }, 8, ["size", "shape", "style"])
-    ])) : $props.list.length > $props.max ? (openBlock(), createElementBlock("div", _hoisted_2$K, [
+    ])) : $props.list.length > $props.max ? (openBlock(), createElementBlock("div", _hoisted_2$L, [
       createVNode(_component_Avatar, {
         size: $props.size,
         shape: $props.shape,
@@ -5672,9 +5680,9 @@ function _sfc_render$1Y(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 2);
 }
-var AvatarList = /* @__PURE__ */ _export_sfc(_sfc_main$26, [["render", _sfc_render$1Y]]);
-const prefixCls$1b = "ivu-back-top";
-const _sfc_main$25 = {
+var AvatarList = /* @__PURE__ */ _export_sfc(_sfc_main$2g, [["render", _sfc_render$21]]);
+const prefixCls$1f = "ivu-back-top";
+const _sfc_main$2f = {
   name: "BackTop",
   emits: ["on-click"],
   props: {
@@ -5711,9 +5719,9 @@ const _sfc_main$25 = {
   computed: {
     classes() {
       return [
-        `${prefixCls$1b}`,
+        `${prefixCls$1f}`,
         {
-          [`${prefixCls$1b}-show`]: this.backTop
+          [`${prefixCls$1f}-show`]: this.backTop
         }
       ];
     },
@@ -5724,7 +5732,7 @@ const _sfc_main$25 = {
       };
     },
     innerClasses() {
-      return `${prefixCls$1b}-inner`;
+      return `${prefixCls$1f}-inner`;
     }
   },
   methods: {
@@ -5742,11 +5750,11 @@ const _sfc_main$25 = {
     }
   }
 };
-const _hoisted_1$1b = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-arrow-up" }, null, -1);
-const _hoisted_2$J = [
-  _hoisted_1$1b
+const _hoisted_1$1e = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-arrow-up" }, null, -1);
+const _hoisted_2$K = [
+  _hoisted_1$1e
 ];
-function _sfc_render$1X(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$20(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes),
     style: normalizeStyle($options.styles),
@@ -5755,14 +5763,14 @@ function _sfc_render$1X(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default", {}, () => [
       createElementVNode("div", {
         class: normalizeClass($options.innerClasses)
-      }, _hoisted_2$J, 2)
+      }, _hoisted_2$K, 2)
     ])
   ], 6);
 }
-var BackTop = /* @__PURE__ */ _export_sfc(_sfc_main$25, [["render", _sfc_render$1X]]);
+var BackTop = /* @__PURE__ */ _export_sfc(_sfc_main$2f, [["render", _sfc_render$20]]);
 const initColorList$1 = ["blue", "green", "red", "yellow", "pink", "magenta", "volcano", "orange", "gold", "lime", "cyan", "geekblue", "purple"];
-const prefixCls$1a = "ivu-badge";
-const _sfc_main$24 = {
+const prefixCls$1e = "ivu-badge";
+const _sfc_main$2e = {
   name: "Badge",
   props: {
     count: Number,
@@ -5802,25 +5810,25 @@ const _sfc_main$24 = {
   },
   computed: {
     classes() {
-      return `${prefixCls$1a}`;
+      return `${prefixCls$1e}`;
     },
     dotClasses() {
-      return `${prefixCls$1a}-dot`;
+      return `${prefixCls$1e}-dot`;
     },
     countClasses() {
       return [
-        `${prefixCls$1a}-count`,
+        `${prefixCls$1e}-count`,
         {
           [`${this.className}`]: !!this.className,
-          [`${prefixCls$1a}-count-alone`]: this.alone,
-          [`${prefixCls$1a}-count-${this.type}`]: !!this.type
+          [`${prefixCls$1e}-count-alone`]: this.alone,
+          [`${prefixCls$1e}-count-${this.type}`]: !!this.type
         }
       ];
     },
     customCountClasses() {
       return [
-        `${prefixCls$1a}-count`,
-        `${prefixCls$1a}-count-custom`,
+        `${prefixCls$1e}-count`,
+        `${prefixCls$1e}-count-custom`,
         {
           [`${this.className}`]: !!this.className
         }
@@ -5828,10 +5836,10 @@ const _sfc_main$24 = {
     },
     statusClasses() {
       return [
-        `${prefixCls$1a}-status-dot`,
+        `${prefixCls$1e}-status-dot`,
         {
-          [`${prefixCls$1a}-status-${this.status}`]: !!this.status,
-          [`${prefixCls$1a}-status-${this.color}`]: !!this.color && oneOf(this.color, initColorList$1)
+          [`${prefixCls$1e}-status-${this.status}`]: !!this.status,
+          [`${prefixCls$1e}-status-${this.color}`]: !!this.color && oneOf(this.color, initColorList$1)
         }
       ];
     },
@@ -5881,8 +5889,8 @@ const _sfc_main$24 = {
     }
   }
 };
-const _hoisted_1$1a = { class: "ivu-badge-status-text" };
-function _sfc_render$1W(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$1d = { class: "ivu-badge-status-text" };
+function _sfc_render$1$(_ctx, _cache, $props, $setup, $data, $options) {
   return $props.dot ? (openBlock(), createElementBlock("span", {
     key: 0,
     class: normalizeClass($options.classes),
@@ -5904,7 +5912,7 @@ function _sfc_render$1W(_ctx, _cache, $props, $setup, $data, $options) {
       class: normalizeClass($options.statusClasses),
       style: normalizeStyle($options.statusStyles)
     }, null, 6),
-    createElementVNode("span", _hoisted_1$1a, [
+    createElementVNode("span", _hoisted_1$1d, [
       renderSlot(_ctx.$slots, "text", {}, () => [
         createTextVNode(toDisplayString($props.text), 1)
       ])
@@ -5934,8 +5942,8 @@ function _sfc_render$1W(_ctx, _cache, $props, $setup, $data, $options) {
     ]) : createCommentVNode("", true)
   ], 2));
 }
-var Badge = /* @__PURE__ */ _export_sfc(_sfc_main$24, [["render", _sfc_render$1W]]);
-const _sfc_main$23 = {
+var Badge = /* @__PURE__ */ _export_sfc(_sfc_main$2e, [["render", _sfc_render$1$]]);
+const _sfc_main$2d = {
   name: "Breadcrumb",
   provide() {
     return {
@@ -5949,15 +5957,15 @@ const _sfc_main$23 = {
     }
   }
 };
-const _hoisted_1$19 = { class: "ivu-breadcrumb" };
-function _sfc_render$1V(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$19, [
+const _hoisted_1$1c = { class: "ivu-breadcrumb" };
+function _sfc_render$1_(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", _hoisted_1$1c, [
     renderSlot(_ctx.$slots, "default")
   ]);
 }
-var Breadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$23, [["render", _sfc_render$1V]]);
-const prefixCls$19 = "ivu-breadcrumb-item";
-const _sfc_main$22 = {
+var Breadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$2d, [["render", _sfc_render$1_]]);
+const prefixCls$1d = "ivu-breadcrumb-item";
+const _sfc_main$2c = {
   name: "BreadcrumbItem",
   mixins: [mixinsLink],
   inject: ["BreadcrumbInstance"],
@@ -5969,10 +5977,10 @@ const _sfc_main$22 = {
   },
   computed: {
     linkClasses() {
-      return `${prefixCls$19}-link`;
+      return `${prefixCls$1d}-link`;
     },
     separatorClasses() {
-      return `${prefixCls$19}-separator`;
+      return `${prefixCls$1d}-separator`;
     },
     separator() {
       return this.BreadcrumbInstance.separator;
@@ -5982,9 +5990,9 @@ const _sfc_main$22 = {
     this.showSeparator = this.$slots.separator !== void 0;
   }
 };
-const _hoisted_1$18 = ["href", "target"];
-const _hoisted_2$I = ["innerHTML"];
-function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$1b = ["href", "target"];
+const _hoisted_2$J = ["innerHTML"];
+function _sfc_render$1Z(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", null, [
     _ctx.to ? (openBlock(), createElementBlock("a", {
       key: 0,
@@ -5998,7 +6006,7 @@ function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
       ]
     }, [
       renderSlot(_ctx.$slots, "default")
-    ], 10, _hoisted_1$18)) : (openBlock(), createElementBlock("span", {
+    ], 10, _hoisted_1$1b)) : (openBlock(), createElementBlock("span", {
       key: 1,
       class: normalizeClass($options.linkClasses)
     }, [
@@ -6008,7 +6016,7 @@ function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
       key: 2,
       class: normalizeClass($options.separatorClasses),
       innerHTML: $options.separator
-    }, null, 10, _hoisted_2$I)) : (openBlock(), createElementBlock("span", {
+    }, null, 10, _hoisted_2$J)) : (openBlock(), createElementBlock("span", {
       key: 3,
       class: normalizeClass($options.separatorClasses)
     }, [
@@ -6016,9 +6024,9 @@ function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2))
   ]);
 }
-var BreadcrumbItem = /* @__PURE__ */ _export_sfc(_sfc_main$22, [["render", _sfc_render$1U]]);
-const prefixCls$18 = "ivu-btn";
-const _sfc_main$21 = {
+var BreadcrumbItem = /* @__PURE__ */ _export_sfc(_sfc_main$2c, [["render", _sfc_render$1Z]]);
+const prefixCls$1c = "ivu-btn";
+const _sfc_main$2b = {
   name: "Button",
   mixins: [mixinsLink, mixinsForm],
   components: { Icon },
@@ -6075,15 +6083,15 @@ const _sfc_main$21 = {
     },
     classes() {
       return [
-        `${prefixCls$18}`,
-        `${prefixCls$18}-${this.type}`,
+        `${prefixCls$1c}`,
+        `${prefixCls$1c}-${this.type}`,
         {
-          [`${prefixCls$18}-long`]: this.long,
-          [`${prefixCls$18}-${this.shape}`]: !!this.shape,
-          [`${prefixCls$18}-${this.size}`]: this.size !== "default",
-          [`${prefixCls$18}-loading`]: this.loading != null && this.loading,
-          [`${prefixCls$18}-icon-only`]: !this.showSlot && (!!this.icon || !!this.customIcon || this.loading),
-          [`${prefixCls$18}-ghost`]: this.ghost
+          [`${prefixCls$1c}-long`]: this.long,
+          [`${prefixCls$1c}-${this.shape}`]: !!this.shape,
+          [`${prefixCls$1c}-${this.size}`]: this.size !== "default",
+          [`${prefixCls$1c}-loading`]: this.loading != null && this.loading,
+          [`${prefixCls$1c}-icon-only`]: !this.showSlot && (!!this.icon || !!this.customIcon || this.loading),
+          [`${prefixCls$1c}-ghost`]: this.ghost
         }
       ];
     },
@@ -6144,8 +6152,8 @@ const _sfc_main$21 = {
     }, this.tagProps), slots);
   }
 };
-const prefixCls$17 = "ivu-btn-group";
-const _sfc_main$20 = {
+const prefixCls$1b = "ivu-btn-group";
+const _sfc_main$2a = {
   name: "ButtonGroup",
   props: {
     size: {
@@ -6170,29 +6178,29 @@ const _sfc_main$20 = {
   computed: {
     classes() {
       return [
-        `${prefixCls$17}`,
+        `${prefixCls$1b}`,
         {
-          [`${prefixCls$17}-${this.size}`]: !!this.size,
-          [`${prefixCls$17}-${this.shape}`]: !!this.shape,
-          [`${prefixCls$17}-vertical`]: this.vertical
+          [`${prefixCls$1b}-${this.size}`]: !!this.size,
+          [`${prefixCls$1b}-${this.shape}`]: !!this.shape,
+          [`${prefixCls$1b}-vertical`]: this.vertical
         }
       ];
     }
   }
 };
-function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1Y(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var ButtonGroup = /* @__PURE__ */ _export_sfc(_sfc_main$20, [["render", _sfc_render$1T]]);
-const prefixCls$16 = "ivu-radio-group";
+var ButtonGroup = /* @__PURE__ */ _export_sfc(_sfc_main$2a, [["render", _sfc_render$1Y]]);
+const prefixCls$1a = "ivu-radio-group";
 let seed$1 = 0;
 const now$2 = Date.now();
 const getUuid$1 = () => `ivuRadioGroup_${now$2}_${seed$1++}`;
-const _sfc_main$1$ = {
+const _sfc_main$29 = {
   name: "RadioGroup",
   mixins: [mixinsForm],
   emits: ["update:modelValue", "on-change"],
@@ -6244,13 +6252,13 @@ const _sfc_main$1$ = {
   computed: {
     classes() {
       return [
-        `${prefixCls$16}`,
+        `${prefixCls$1a}`,
         {
-          [`${prefixCls$16}-${this.size}`]: !!this.size,
+          [`${prefixCls$1a}-${this.size}`]: !!this.size,
           [`ivu-radio-${this.size}`]: !!this.size,
-          [`${prefixCls$16}-${this.type}`]: !!this.type,
-          [`${prefixCls$16}-button-${this.buttonStyle}`]: this.type === "button" && this.buttonStyle !== "default",
-          [`${prefixCls$16}-vertical`]: this.vertical
+          [`${prefixCls$1a}-${this.type}`]: !!this.type,
+          [`${prefixCls$1a}-button-${this.buttonStyle}`]: this.type === "button" && this.buttonStyle !== "default",
+          [`${prefixCls$1a}-vertical`]: this.vertical
         }
       ];
     }
@@ -6271,18 +6279,18 @@ const _sfc_main$1$ = {
     }
   }
 };
-const _hoisted_1$17 = ["name"];
-function _sfc_render$1S(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$1a = ["name"];
+function _sfc_render$1X(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes),
     name: $props.name
   }, [
     renderSlot(_ctx.$slots, "default")
-  ], 10, _hoisted_1$17);
+  ], 10, _hoisted_1$1a);
 }
-var RadioGroup = /* @__PURE__ */ _export_sfc(_sfc_main$1$, [["render", _sfc_render$1S]]);
-const prefixCls$15 = "ivu-radio";
-const _sfc_main$1_ = {
+var RadioGroup = /* @__PURE__ */ _export_sfc(_sfc_main$29, [["render", _sfc_render$1X]]);
+const prefixCls$19 = "ivu-radio";
+const _sfc_main$28 = {
   name: "Radio",
   mixins: [mixinsForm],
   emits: ["update:modelValue", "on-change"],
@@ -6339,36 +6347,36 @@ const _sfc_main$1_ = {
   computed: {
     wrapClasses() {
       return [
-        `${prefixCls$15}-wrapper`,
+        `${prefixCls$19}-wrapper`,
         {
-          [`${prefixCls$15}-group-item`]: this.group,
-          [`${prefixCls$15}-wrapper-checked`]: this.currentValue,
-          [`${prefixCls$15}-wrapper-disabled`]: this.itemDisabled,
-          [`${prefixCls$15}-${this.size}`]: !!this.size,
-          [`${prefixCls$15}-focus`]: this.focusWrapper,
-          [`${prefixCls$15}-border`]: this.border
+          [`${prefixCls$19}-group-item`]: this.group,
+          [`${prefixCls$19}-wrapper-checked`]: this.currentValue,
+          [`${prefixCls$19}-wrapper-disabled`]: this.itemDisabled,
+          [`${prefixCls$19}-${this.size}`]: !!this.size,
+          [`${prefixCls$19}-focus`]: this.focusWrapper,
+          [`${prefixCls$19}-border`]: this.border
         }
       ];
     },
     radioClasses() {
       return [
-        `${prefixCls$15}`,
+        `${prefixCls$19}`,
         {
-          [`${prefixCls$15}-checked`]: this.currentValue,
-          [`${prefixCls$15}-disabled`]: this.itemDisabled
+          [`${prefixCls$19}-checked`]: this.currentValue,
+          [`${prefixCls$19}-disabled`]: this.itemDisabled
         }
       ];
     },
     innerClasses() {
       return [
-        `${prefixCls$15}-inner`,
+        `${prefixCls$19}-inner`,
         {
-          [`${prefixCls$15}-focus`]: this.focusInner
+          [`${prefixCls$19}-focus`]: this.focusInner
         }
       ];
     },
     inputClasses() {
-      return `${prefixCls$15}-input`;
+      return `${prefixCls$19}-input`;
     },
     currentValue() {
       if (this.RadioGroupInstance) {
@@ -6434,8 +6442,8 @@ const _sfc_main$1_ = {
     }
   }
 };
-const _hoisted_1$16 = ["disabled", "checked", "name"];
-function _sfc_render$1R(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$19 = ["disabled", "checked", "name"];
+function _sfc_render$1W(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("label", {
     class: normalizeClass($options.wrapClasses)
   }, [
@@ -6454,14 +6462,14 @@ function _sfc_render$1R(_ctx, _cache, $props, $setup, $data, $options) {
         onChange: _cache[0] || (_cache[0] = (...args) => $options.change && $options.change(...args)),
         onFocus: _cache[1] || (_cache[1] = (...args) => $options.onFocus && $options.onFocus(...args)),
         onBlur: _cache[2] || (_cache[2] = (...args) => $options.onBlur && $options.onBlur(...args))
-      }, null, 42, _hoisted_1$16)
+      }, null, 42, _hoisted_1$19)
     ], 2),
     renderSlot(_ctx.$slots, "default", {}, () => [
       createTextVNode(toDisplayString($props.label), 1)
     ])
   ], 2);
 }
-var Radio = /* @__PURE__ */ _export_sfc(_sfc_main$1_, [["render", _sfc_render$1R]]);
+var Radio = /* @__PURE__ */ _export_sfc(_sfc_main$28, [["render", _sfc_render$1W]]);
 var dayjs_min = { exports: {} };
 (function(module, exports) {
   !function(t2, e) {
@@ -6794,7 +6802,7 @@ var events = {
     }
   }
 };
-const _sfc_main$1Z = {
+const _sfc_main$27 = {
   name: "CalendarMonth",
   mixins: [events],
   inject: ["CalendarInstance"],
@@ -6869,17 +6877,17 @@ const _sfc_main$1Z = {
     }
   }
 };
-const _hoisted_1$15 = {
+const _hoisted_1$18 = {
   class: "ivu-calendar-table",
   cellspacing: "0",
   cellpadding: "0"
 };
-const _hoisted_2$H = ["onClick", "onContextmenu"];
+const _hoisted_2$I = ["onClick", "onContextmenu"];
 const _hoisted_3$x = ["onClick"];
 const _hoisted_4$r = { class: "ivu-calendar-table-day-title" };
 const _hoisted_5$k = { class: "ivu-calendar-table-day-slot" };
-function _sfc_render$1Q(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("table", _hoisted_1$15, [
+function _sfc_render$1V(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("table", _hoisted_1$18, [
     createElementVNode("thead", null, [
       (openBlock(true), createElementBlock(Fragment, null, renderList($options.finalWeekDays, (item) => {
         return openBlock(), createElementBlock("th", { key: item }, toDisplayString(item), 1);
@@ -6907,15 +6915,15 @@ function _sfc_render$1Q(_ctx, _cache, $props, $setup, $data, $options) {
                   })
                 ])
               ], 14, _hoisted_3$x)
-            ], 40, _hoisted_2$H);
+            ], 40, _hoisted_2$I);
           }), 128))
         ]);
       }), 128))
     ])
   ]);
 }
-var CalendarMonth = /* @__PURE__ */ _export_sfc(_sfc_main$1Z, [["render", _sfc_render$1Q]]);
-const _sfc_main$1Y = {
+var CalendarMonth = /* @__PURE__ */ _export_sfc(_sfc_main$27, [["render", _sfc_render$1V]]);
+const _sfc_main$26 = {
   name: "CalendarYear",
   mixins: [events],
   inject: ["CalendarInstance"],
@@ -6959,17 +6967,17 @@ const _sfc_main$1Y = {
     }
   }
 };
-const _hoisted_1$14 = {
+const _hoisted_1$17 = {
   class: "ivu-calendar-table ivu-calendar-table-year",
   cellspacing: "0",
   cellpadding: "0"
 };
-const _hoisted_2$G = ["onClick", "onContextmenu"];
+const _hoisted_2$H = ["onClick", "onContextmenu"];
 const _hoisted_3$w = ["onClick"];
 const _hoisted_4$q = { class: "ivu-calendar-table-day-title" };
 const _hoisted_5$j = { class: "ivu-calendar-table-day-slot" };
-function _sfc_render$1P(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("table", _hoisted_1$14, [
+function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("table", _hoisted_1$17, [
     createElementVNode("tbody", null, [
       (openBlock(true), createElementBlock(Fragment, null, renderList($options.chunkMonths, (item, index2) => {
         return openBlock(), createElementBlock("tr", { key: index2 }, [
@@ -6992,17 +7000,17 @@ function _sfc_render$1P(_ctx, _cache, $props, $setup, $data, $options) {
                   })
                 ])
               ], 14, _hoisted_3$w)
-            ], 40, _hoisted_2$G);
+            ], 40, _hoisted_2$H);
           }), 128))
         ]);
       }), 128))
     ])
   ]);
 }
-var CalendarYear = /* @__PURE__ */ _export_sfc(_sfc_main$1Y, [["render", _sfc_render$1P]]);
-const _sfc_main$1X = {
+var CalendarYear = /* @__PURE__ */ _export_sfc(_sfc_main$26, [["render", _sfc_render$1U]]);
+const _sfc_main$25 = {
   name: "Calendar",
-  components: { CalendarMonth, CalendarYear, ButtonGroup, Button: _sfc_main$21, RadioGroup, Radio, Icon },
+  components: { CalendarMonth, CalendarYear, ButtonGroup, Button: _sfc_main$2b, RadioGroup, Radio, Icon },
   emits: ["on-type-change", "on-prev", "on-next", "on-today", "on-change", "update:modelValue", "on-cell-click", "on-cell-contextmenu"],
   provide() {
     return {
@@ -7126,15 +7134,15 @@ const _sfc_main$1X = {
     }
   }
 };
-const _hoisted_1$13 = { class: "ivu-calendar" };
-const _hoisted_2$F = {
+const _hoisted_1$16 = { class: "ivu-calendar" };
+const _hoisted_2$G = {
   key: 0,
   class: "ivu-calendar-header"
 };
 const _hoisted_3$v = { class: "ivu-calendar-header-title" };
 const _hoisted_4$p = { class: "ivu-calendar-header-action" };
 const _hoisted_5$i = { class: "ivu-calendar-body" };
-function _sfc_render$1O(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Button = resolveComponent("Button");
   const _component_ButtonGroup = resolveComponent("ButtonGroup");
@@ -7142,8 +7150,8 @@ function _sfc_render$1O(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_RadioGroup = resolveComponent("RadioGroup");
   const _component_CalendarMonth = resolveComponent("CalendarMonth");
   const _component_CalendarYear = resolveComponent("CalendarYear");
-  return openBlock(), createElementBlock("div", _hoisted_1$13, [
-    $props.showHeader ? (openBlock(), createElementBlock("div", _hoisted_2$F, [
+  return openBlock(), createElementBlock("div", _hoisted_1$16, [
+    $props.showHeader ? (openBlock(), createElementBlock("div", _hoisted_2$G, [
       renderSlot(_ctx.$slots, "header", {}, () => [
         createElementVNode("div", _hoisted_3$v, [
           renderSlot(_ctx.$slots, "headerTitle", {}, () => [
@@ -7230,8 +7238,8 @@ function _sfc_render$1O(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$1X, [["render", _sfc_render$1O]]);
-const prefixCls$14 = "ivu-col";
+var Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$25, [["render", _sfc_render$1T]]);
+const prefixCls$18 = "ivu-col";
 function parseFlex(flex) {
   if (typeof flex === "number") {
     return `${flex} ${flex} auto`;
@@ -7241,7 +7249,7 @@ function parseFlex(flex) {
   }
   return flex;
 }
-const _sfc_main$1W = {
+const _sfc_main$24 = {
   name: "iCol",
   inject: ["RowInstance"],
   props: {
@@ -7268,23 +7276,23 @@ const _sfc_main$1W = {
     },
     classes() {
       let classList = [
-        `${prefixCls$14}`,
+        `${prefixCls$18}`,
         {
-          [`${prefixCls$14}-span-${this.span}`]: this.span,
-          [`${prefixCls$14}-order-${this.order}`]: this.order,
-          [`${prefixCls$14}-offset-${this.offset}`]: this.offset,
-          [`${prefixCls$14}-push-${this.push}`]: this.push,
-          [`${prefixCls$14}-pull-${this.pull}`]: this.pull,
+          [`${prefixCls$18}-span-${this.span}`]: this.span,
+          [`${prefixCls$18}-order-${this.order}`]: this.order,
+          [`${prefixCls$18}-offset-${this.offset}`]: this.offset,
+          [`${prefixCls$18}-push-${this.push}`]: this.push,
+          [`${prefixCls$18}-pull-${this.pull}`]: this.pull,
           [`${this.className}`]: !!this.className
         }
       ];
       ["xs", "sm", "md", "lg", "xl", "xxl"].forEach((size) => {
         if (typeof this[size] === "number") {
-          classList.push(`${prefixCls$14}-span-${size}-${this[size]}`);
+          classList.push(`${prefixCls$18}-span-${size}-${this[size]}`);
         } else if (typeof this[size] === "object") {
           let props = this[size];
           Object.keys(props).forEach((prop2) => {
-            classList.push(prop2 !== "span" ? `${prefixCls$14}-${size}-${prop2}-${props[prop2]}` : `${prefixCls$14}-span-${size}-${props[prop2]}`);
+            classList.push(prop2 !== "span" ? `${prefixCls$18}-${size}-${prop2}-${props[prop2]}` : `${prefixCls$18}-span-${size}-${props[prop2]}`);
           });
         }
       });
@@ -7305,7 +7313,7 @@ const _sfc_main$1W = {
     }
   }
 };
-function _sfc_render$1N(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1S(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes),
     style: normalizeStyle($options.styles)
@@ -7313,9 +7321,9 @@ function _sfc_render$1N(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 6);
 }
-var Col = /* @__PURE__ */ _export_sfc(_sfc_main$1W, [["render", _sfc_render$1N]]);
-const prefixCls$13 = "ivu-row";
-const _sfc_main$1V = {
+var Col = /* @__PURE__ */ _export_sfc(_sfc_main$24, [["render", _sfc_render$1S]]);
+const prefixCls$17 = "ivu-row";
+const _sfc_main$23 = {
   name: "Row",
   provide() {
     return {
@@ -7351,15 +7359,15 @@ const _sfc_main$1V = {
   computed: {
     classes() {
       return [
-        `${prefixCls$13}`,
+        `${prefixCls$17}`,
         {
-          [`${prefixCls$13}-${this.type}`]: !!this.type,
-          [`${prefixCls$13}-${this.type}-${this.align}`]: !!this.align && this.type,
-          [`${prefixCls$13}-${this.type}-${this.justify}`]: !!this.justify && this.type,
-          [`${prefixCls$13}-${this.align}`]: !!this.align,
-          [`${prefixCls$13}-${this.justify}`]: !!this.justify,
+          [`${prefixCls$17}-${this.type}`]: !!this.type,
+          [`${prefixCls$17}-${this.type}-${this.align}`]: !!this.align && this.type,
+          [`${prefixCls$17}-${this.type}-${this.justify}`]: !!this.justify && this.type,
+          [`${prefixCls$17}-${this.align}`]: !!this.align,
+          [`${prefixCls$17}-${this.justify}`]: !!this.justify,
           [`${this.className}`]: !!this.className,
-          [`${prefixCls$13}-no-wrap`]: !this.wrap
+          [`${prefixCls$17}-no-wrap`]: !this.wrap
         }
       ];
     },
@@ -7375,7 +7383,7 @@ const _sfc_main$1V = {
     }
   }
 };
-function _sfc_render$1M(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1R(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes),
     style: normalizeStyle($options.styles)
@@ -7383,7 +7391,7 @@ function _sfc_render$1M(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 6);
 }
-var Row = /* @__PURE__ */ _export_sfc(_sfc_main$1V, [["render", _sfc_render$1M]]);
+var Row = /* @__PURE__ */ _export_sfc(_sfc_main$23, [["render", _sfc_render$1R]]);
 function _extends() {
   _extends = Object.assign || function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -8378,7 +8386,7 @@ Schema.register = function register(type2, validator) {
 Schema.warning = warning;
 Schema.messages = messages;
 Schema.validators = validators;
-const prefixCls$12 = "ivu-form-item";
+const prefixCls$16 = "ivu-form-item";
 function getPropByPath(obj, path) {
   let tempObj = obj;
   path = path.replace(/\[(\w+)\]/g, ".$1");
@@ -8399,7 +8407,7 @@ function getPropByPath(obj, path) {
     v: tempObj[keyArr[i]]
   };
 }
-const _sfc_main$1U = {
+const _sfc_main$22 = {
   name: "FormItem",
   inject: ["FormInstance"],
   provide() {
@@ -8441,7 +8449,7 @@ const _sfc_main$1U = {
   },
   data() {
     return {
-      prefixCls: prefixCls$12,
+      prefixCls: prefixCls$16,
       isRequired: false,
       validateState: "",
       validateMessage: "",
@@ -8473,11 +8481,11 @@ const _sfc_main$1U = {
   computed: {
     classes() {
       return [
-        `${prefixCls$12}`,
+        `${prefixCls$16}`,
         {
-          [`${prefixCls$12}-required`]: this.required || this.isRequired,
-          [`${prefixCls$12}-error`]: this.validateState === "error",
-          [`${prefixCls$12}-validating`]: this.validateState === "validating"
+          [`${prefixCls$16}-required`]: this.required || this.isRequired,
+          [`${prefixCls$16}-error`]: this.validateState === "error",
+          [`${prefixCls$16}-validating`]: this.validateState === "validating"
         }
       ];
     },
@@ -8605,8 +8613,8 @@ const _sfc_main$1U = {
     this.FormInstance.removeField(this);
   }
 };
-const _hoisted_1$12 = ["for"];
-function _sfc_render$1L(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$15 = ["for"];
+function _sfc_render$1Q(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
@@ -8619,7 +8627,7 @@ function _sfc_render$1L(_ctx, _cache, $props, $setup, $data, $options) {
       renderSlot(_ctx.$slots, "label", {}, () => [
         createTextVNode(toDisplayString($props.label) + toDisplayString($options.FormInstance.colon), 1)
       ])
-    ], 14, _hoisted_1$12)) : createCommentVNode("", true),
+    ], 14, _hoisted_1$15)) : createCommentVNode("", true),
     createElementVNode("div", {
       class: normalizeClass([$data.prefixCls + "-content"]),
       style: normalizeStyle($options.contentStyles)
@@ -8637,7 +8645,7 @@ function _sfc_render$1L(_ctx, _cache, $props, $setup, $data, $options) {
     ], 6)
   ], 2);
 }
-var FormItem = /* @__PURE__ */ _export_sfc(_sfc_main$1U, [["render", _sfc_render$1L]]);
+var FormItem = /* @__PURE__ */ _export_sfc(_sfc_main$22, [["render", _sfc_render$1Q]]);
 var defaultValidateMessage = {
   UserName: "\u8BF7\u8F93\u5165\u7528\u6237\u540D\uFF01",
   Password: "\u8BF7\u8F93\u5165\u5BC6\u7801\uFF01",
@@ -8732,7 +8740,7 @@ var LoginItem = {
     this.handleSetValue();
   }
 };
-const _sfc_main$1T = {
+const _sfc_main$21 = {
   name: "Captcha",
   mixins: [LoginItem],
   emits: ["on-get-captcha"],
@@ -8831,7 +8839,7 @@ const _sfc_main$1T = {
     } else {
       buttonSlot = () => "\u83B7\u53D6\u9A8C\u8BC1\u7801";
     }
-    const $button = h(_sfc_main$21, __spreadProps(__spreadValues({}, defaultButtonProps), {
+    const $button = h(_sfc_main$2b, __spreadProps(__spreadValues({}, defaultButtonProps), {
       onClick: this.handleClickCaptcha
     }), buttonSlot);
     const $input = h(Input, __spreadProps(__spreadValues({}, finalProps), {
@@ -8860,9 +8868,9 @@ const _sfc_main$1T = {
       clearTimeout(this.timer);
   }
 };
-const prefixCls$11 = "ivu-card";
+const prefixCls$15 = "ivu-card";
 const defaultPadding = 16;
-const _sfc_main$1S = {
+const _sfc_main$20 = {
   name: "Card",
   mixins: [mixinsLink],
   components: { Icon },
@@ -8899,22 +8907,22 @@ const _sfc_main$1S = {
   computed: {
     classes() {
       return [
-        `${prefixCls$11}`,
+        `${prefixCls$15}`,
         {
-          [`${prefixCls$11}-bordered`]: this.bordered && !this.shadow,
-          [`${prefixCls$11}-dis-hover`]: this.disHover || this.shadow,
-          [`${prefixCls$11}-shadow`]: this.shadow
+          [`${prefixCls$15}-bordered`]: this.bordered && !this.shadow,
+          [`${prefixCls$15}-dis-hover`]: this.disHover || this.shadow,
+          [`${prefixCls$15}-shadow`]: this.shadow
         }
       ];
     },
     headClasses() {
-      return `${prefixCls$11}-head`;
+      return `${prefixCls$15}-head`;
     },
     extraClasses() {
-      return `${prefixCls$11}-extra`;
+      return `${prefixCls$15}-extra`;
     },
     bodyClasses() {
-      return `${prefixCls$11}-body`;
+      return `${prefixCls$15}-body`;
     },
     bodyStyles() {
       if (this.padding !== defaultPadding) {
@@ -8956,8 +8964,8 @@ const _sfc_main$1S = {
     this.showExtra = this.$slots.extra !== void 0;
   }
 };
-const _hoisted_1$11 = { key: 0 };
-function _sfc_render$1K(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$14 = { key: 0 };
+function _sfc_render$1P(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createBlock(resolveDynamicComponent($options.tagName), mergeProps({ class: $options.classes }, $options.tagProps, { onClick: $options.handleClickLink }), {
     default: withCtx(() => [
@@ -8966,7 +8974,7 @@ function _sfc_render$1K(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass($options.headClasses)
       }, [
         renderSlot(_ctx.$slots, "title", {}, () => [
-          $props.title ? (openBlock(), createElementBlock("p", _hoisted_1$11, [
+          $props.title ? (openBlock(), createElementBlock("p", _hoisted_1$14, [
             $props.icon ? (openBlock(), createBlock(_component_Icon, {
               key: 0,
               type: $props.icon
@@ -8991,9 +8999,9 @@ function _sfc_render$1K(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 16, ["class", "onClick"]);
 }
-var Card = /* @__PURE__ */ _export_sfc(_sfc_main$1S, [["render", _sfc_render$1K]]);
-const prefixCls$10 = "ivu-carousel";
-const _sfc_main$1R = {
+var Card = /* @__PURE__ */ _export_sfc(_sfc_main$20, [["render", _sfc_render$1P]]);
+const prefixCls$14 = "ivu-carousel";
+const _sfc_main$1$ = {
   name: "Carousel",
   provide() {
     return {
@@ -9058,7 +9066,7 @@ const _sfc_main$1R = {
   },
   data() {
     return {
-      prefixCls: prefixCls$10,
+      prefixCls: prefixCls$14,
       listWidth: 0,
       trackWidth: 0,
       trackOffset: 0,
@@ -9078,7 +9086,7 @@ const _sfc_main$1R = {
   computed: {
     classes() {
       return [
-        `${prefixCls$10}`
+        `${prefixCls$14}`
       ];
     },
     trackStyles() {
@@ -9100,14 +9108,14 @@ const _sfc_main$1R = {
     },
     arrowClasses() {
       return [
-        `${prefixCls$10}-arrow`,
-        `${prefixCls$10}-arrow-${this.arrow}`
+        `${prefixCls$14}-arrow`,
+        `${prefixCls$14}-arrow-${this.arrow}`
       ];
     },
     dotsClasses() {
       return [
-        `${prefixCls$10}-dots`,
-        `${prefixCls$10}-dots-${this.dots}`
+        `${prefixCls$14}-dots`,
+        `${prefixCls$14}-dots-${this.dots}`
       ];
     }
   },
@@ -9268,8 +9276,8 @@ const _sfc_main$1R = {
     off(window, "resize", this.handleResize);
   }
 };
-const _hoisted_1$10 = ["onClick", "onMouseover"];
-function _sfc_render$1J(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$13 = ["onClick", "onMouseover"];
+function _sfc_render$1O(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
@@ -9321,20 +9329,20 @@ function _sfc_render$1J(_ctx, _cache, $props, $setup, $data, $options) {
             type: "button",
             class: normalizeClass([$props.radiusDot ? "radius" : ""])
           }, null, 2)
-        ], 42, _hoisted_1$10);
+        ], 42, _hoisted_1$13);
       }), 128))
     ], 2)
   ], 2);
 }
-var Carousel = /* @__PURE__ */ _export_sfc(_sfc_main$1R, [["render", _sfc_render$1J]]);
-const prefixCls$$ = "ivu-carousel-item";
-const _sfc_main$1Q = {
+var Carousel = /* @__PURE__ */ _export_sfc(_sfc_main$1$, [["render", _sfc_render$1O]]);
+const prefixCls$13 = "ivu-carousel-item";
+const _sfc_main$1_ = {
   componentName: "carousel-item",
   name: "CarouselItem",
   inject: ["CarouselInstance"],
   data() {
     return {
-      prefixCls: prefixCls$$,
+      prefixCls: prefixCls$13,
       width: 0,
       height: "auto",
       left: 0,
@@ -9393,7 +9401,7 @@ const _sfc_main$1Q = {
     this.CarouselInstance.slotChange();
   }
 };
-function _sfc_render$1I(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1N(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($data.prefixCls),
     style: normalizeStyle($options.styles)
@@ -9401,8 +9409,8 @@ function _sfc_render$1I(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 6);
 }
-var CarouselItem = /* @__PURE__ */ _export_sfc(_sfc_main$1Q, [["render", _sfc_render$1I]]);
-const _sfc_main$1P = {
+var CarouselItem = /* @__PURE__ */ _export_sfc(_sfc_main$1_, [["render", _sfc_render$1N]]);
+const _sfc_main$1Z = {
   name: "Casitem",
   components: { Icon },
   mixins: [globalConfig],
@@ -9461,11 +9469,11 @@ const _sfc_main$1P = {
     }
   }
 };
-const _hoisted_1$$ = {
+const _hoisted_1$12 = {
   key: 1,
   class: "ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-cascader-menu-item-loading"
 };
-function _sfc_render$1H(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1M(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createElementBlock("li", {
     class: normalizeClass($options.classes)
@@ -9477,12 +9485,12 @@ function _sfc_render$1H(_ctx, _cache, $props, $setup, $data, $options) {
       custom: $options.customArrowType,
       size: $options.arrowSize
     }, null, 8, ["type", "custom", "size"])) : createCommentVNode("", true),
-    $options.showLoading ? (openBlock(), createElementBlock("i", _hoisted_1$$)) : createCommentVNode("", true)
+    $options.showLoading ? (openBlock(), createElementBlock("i", _hoisted_1$12)) : createCommentVNode("", true)
   ], 2);
 }
-var Casitem = /* @__PURE__ */ _export_sfc(_sfc_main$1P, [["render", _sfc_render$1H]]);
+var Casitem = /* @__PURE__ */ _export_sfc(_sfc_main$1Z, [["render", _sfc_render$1M]]);
 let key = 1;
-const _sfc_main$1O = {
+const _sfc_main$1Y = {
   name: "Caspanel",
   components: { Casitem },
   inject: ["CascaderInstance"],
@@ -9667,7 +9675,7 @@ const _sfc_main$1O = {
     this.removeCaspanel();
   }
 };
-function _sfc_render$1G(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1L(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Casitem = resolveComponent("Casitem");
   const _component_Caspanel = resolveComponent("Caspanel", true);
   return openBlock(), createElementBlock("span", null, [
@@ -9696,7 +9704,7 @@ function _sfc_render$1G(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["prefix-cls", "data", "disabled", "trigger", "change-on-select"])) : createCommentVNode("", true)
   ]);
 }
-var Caspanel = /* @__PURE__ */ _export_sfc(_sfc_main$1O, [["render", _sfc_render$1G]]);
+var Caspanel = /* @__PURE__ */ _export_sfc(_sfc_main$1Y, [["render", _sfc_render$1L]]);
 var clickOutside = {
   beforeMount(el, binding, vnode) {
     function documentHandler(e) {
@@ -9713,9 +9721,9 @@ var clickOutside = {
     delete el.__vueClickOutside__;
   }
 };
-const prefixCls$_ = "ivu-cascader";
+const prefixCls$12 = "ivu-cascader";
 const selectPrefixCls = "ivu-select";
-const _sfc_main$1N = {
+const _sfc_main$1X = {
   name: "Cascader",
   mixins: [Locale, mixinsForm, globalConfig],
   components: { iInput: Input, Drop, Icon, Caspanel },
@@ -9815,7 +9823,7 @@ const _sfc_main$1N = {
   },
   data() {
     return {
-      prefixCls: prefixCls$_,
+      prefixCls: prefixCls$12,
       selectPrefixCls,
       visible: false,
       selected: [],
@@ -9832,13 +9840,13 @@ const _sfc_main$1N = {
   computed: {
     classes() {
       return [
-        `${prefixCls$_}`,
+        `${prefixCls$12}`,
         {
-          [`${prefixCls$_}-show-clear`]: this.showCloseIcon,
-          [`${prefixCls$_}-size-${this.size}`]: !!this.size,
-          [`${prefixCls$_}-visible`]: this.visible,
-          [`${prefixCls$_}-disabled`]: this.itemDisabled,
-          [`${prefixCls$_}-not-found`]: this.filterable && this.query !== "" && !this.querySelections.length
+          [`${prefixCls$12}-show-clear`]: this.showCloseIcon,
+          [`${prefixCls$12}-size-${this.size}`]: !!this.size,
+          [`${prefixCls$12}-visible`]: this.visible,
+          [`${prefixCls$12}-disabled`]: this.itemDisabled,
+          [`${prefixCls$12}-not-found`]: this.filterable && this.query !== "" && !this.querySelections.length
         }
       ];
     },
@@ -9938,7 +9946,7 @@ const _sfc_main$1N = {
     },
     dropdownCls() {
       return {
-        [prefixCls$_ + "-transfer"]: this.transfer,
+        [prefixCls$12 + "-transfer"]: this.transfer,
         [this.transferClassName]: this.transferClassName
       };
     }
@@ -10123,9 +10131,9 @@ const _sfc_main$1N = {
     }
   }
 };
-const _hoisted_1$_ = ["name", "value"];
-const _hoisted_2$E = ["onClick", "innerHTML"];
-function _sfc_render$1F(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$11 = ["name", "value"];
+const _hoisted_2$F = ["onClick", "innerHTML"];
+function _sfc_render$1K(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_i_input = resolveComponent("i-input");
   const _component_Icon = resolveComponent("Icon");
   const _component_Caspanel = resolveComponent("Caspanel");
@@ -10143,7 +10151,7 @@ function _sfc_render$1F(_ctx, _cache, $props, $setup, $data, $options) {
         type: "hidden",
         name: $props.name,
         value: $data.currentValue
-      }, null, 8, _hoisted_1$_),
+      }, null, 8, _hoisted_1$11),
       renderSlot(_ctx.$slots, "default", {}, () => [
         createVNode(_component_i_input, {
           "element-id": $props.elementId,
@@ -10210,7 +10218,7 @@ function _sfc_render$1F(_ctx, _cache, $props, $setup, $data, $options) {
                   key: index2,
                   onClick: ($event) => $options.handleSelectItem(index2),
                   innerHTML: item.display
-                }, null, 10, _hoisted_2$E);
+                }, null, 10, _hoisted_2$F);
               }), 128))
             ], 2)
           ], 2), [
@@ -10231,8 +10239,8 @@ function _sfc_render$1F(_ctx, _cache, $props, $setup, $data, $options) {
     [_directive_click_outside, $options.handleClose]
   ]);
 }
-var Cascader = /* @__PURE__ */ _export_sfc(_sfc_main$1N, [["render", _sfc_render$1F]]);
-const _sfc_main$1M = {
+var Cascader = /* @__PURE__ */ _export_sfc(_sfc_main$1X, [["render", _sfc_render$1K]]);
+const _sfc_main$1W = {
   name: "CellItem",
   props: {
     title: {
@@ -10249,16 +10257,16 @@ const _sfc_main$1M = {
     }
   }
 };
-const _hoisted_1$Z = { class: "ivu-cell-item" };
-const _hoisted_2$D = { class: "ivu-cell-icon" };
+const _hoisted_1$10 = { class: "ivu-cell-item" };
+const _hoisted_2$E = { class: "ivu-cell-icon" };
 const _hoisted_3$u = { class: "ivu-cell-main" };
 const _hoisted_4$o = { class: "ivu-cell-title" };
 const _hoisted_5$h = { class: "ivu-cell-label" };
 const _hoisted_6$9 = { class: "ivu-cell-footer" };
 const _hoisted_7$8 = { class: "ivu-cell-extra" };
-function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$Z, [
-    createElementVNode("div", _hoisted_2$D, [
+function _sfc_render$1J(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", _hoisted_1$10, [
+    createElementVNode("div", _hoisted_2$E, [
       renderSlot(_ctx.$slots, "icon")
     ]),
     createElementVNode("div", _hoisted_3$u, [
@@ -10282,9 +10290,9 @@ function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var CellItem = /* @__PURE__ */ _export_sfc(_sfc_main$1M, [["render", _sfc_render$1E]]);
-const prefixCls$Z = "ivu-cell";
-const _sfc_main$1L = {
+var CellItem = /* @__PURE__ */ _export_sfc(_sfc_main$1W, [["render", _sfc_render$1J]]);
+const prefixCls$11 = "ivu-cell";
+const _sfc_main$1V = {
   name: "Cell",
   inject: ["CellGroupInstance"],
   mixins: [mixinsLink, globalConfig],
@@ -10316,17 +10324,17 @@ const _sfc_main$1L = {
   },
   data() {
     return {
-      prefixCls: prefixCls$Z
+      prefixCls: prefixCls$11
     };
   },
   computed: {
     classes() {
       return [
-        `${prefixCls$Z}`,
+        `${prefixCls$11}`,
         {
-          [`${prefixCls$Z}-disabled`]: this.disabled,
-          [`${prefixCls$Z}-selected`]: this.selected,
-          [`${prefixCls$Z}-with-link`]: this.to
+          [`${prefixCls$11}-disabled`]: this.disabled,
+          [`${prefixCls$11}-selected`]: this.selected,
+          [`${prefixCls$11}-with-link`]: this.to
         }
       ];
     },
@@ -10370,12 +10378,12 @@ const _sfc_main$1L = {
     }
   }
 };
-const _hoisted_1$Y = ["href", "target"];
-const _hoisted_2$C = {
+const _hoisted_1$$ = ["href", "target"];
+const _hoisted_2$D = {
   key: 2,
   class: "ivu-cell-arrow"
 };
-function _sfc_render$1D(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1I(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_CellItem = resolveComponent("CellItem");
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createElementBlock("div", {
@@ -10411,7 +10419,7 @@ function _sfc_render$1D(_ctx, _cache, $props, $setup, $data, $options) {
         ]),
         _: 3
       }, 8, ["title", "label", "extra"])
-    ], 8, _hoisted_1$Y)) : (openBlock(), createElementBlock("div", {
+    ], 8, _hoisted_1$$)) : (openBlock(), createElementBlock("div", {
       key: 1,
       class: "ivu-cell-link",
       onClick: _cache[3] || (_cache[3] = (...args) => $options.handleClickItem && $options.handleClickItem(...args))
@@ -10436,7 +10444,7 @@ function _sfc_render$1D(_ctx, _cache, $props, $setup, $data, $options) {
         _: 3
       }, 8, ["title", "label", "extra"])
     ])),
-    _ctx.to ? (openBlock(), createElementBlock("div", _hoisted_2$C, [
+    _ctx.to ? (openBlock(), createElementBlock("div", _hoisted_2$D, [
       renderSlot(_ctx.$slots, "arrow", {}, () => [
         createVNode(_component_Icon, {
           type: $options.arrowType,
@@ -10447,8 +10455,8 @@ function _sfc_render$1D(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 2);
 }
-var Cell = /* @__PURE__ */ _export_sfc(_sfc_main$1L, [["render", _sfc_render$1D]]);
-const _sfc_main$1K = {
+var Cell = /* @__PURE__ */ _export_sfc(_sfc_main$1V, [["render", _sfc_render$1I]]);
+const _sfc_main$1U = {
   name: "CellGroup",
   emits: ["on-click"],
   provide() {
@@ -10462,15 +10470,15 @@ const _sfc_main$1K = {
     }
   }
 };
-const _hoisted_1$X = { class: "ivu-cell-group" };
-function _sfc_render$1C(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$X, [
+const _hoisted_1$_ = { class: "ivu-cell-group" };
+function _sfc_render$1H(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", _hoisted_1$_, [
     renderSlot(_ctx.$slots, "default")
   ]);
 }
-var CellGroup = /* @__PURE__ */ _export_sfc(_sfc_main$1K, [["render", _sfc_render$1C]]);
-const prefixCls$Y = "ivu-checkbox";
-const _sfc_main$1J = {
+var CellGroup = /* @__PURE__ */ _export_sfc(_sfc_main$1U, [["render", _sfc_render$1H]]);
+const prefixCls$10 = "ivu-checkbox";
+const _sfc_main$1T = {
   name: "Checkbox",
   mixins: [mixinsForm],
   emits: ["update:modelValue", "on-change"],
@@ -10530,36 +10538,36 @@ const _sfc_main$1J = {
   computed: {
     wrapClasses() {
       return [
-        `${prefixCls$Y}-wrapper`,
+        `${prefixCls$10}-wrapper`,
         {
-          [`${prefixCls$Y}-group-item`]: this.group,
-          [`${prefixCls$Y}-wrapper-checked`]: this.currentValue,
-          [`${prefixCls$Y}-wrapper-disabled`]: this.itemDisabled,
-          [`${prefixCls$Y}-${this.size}`]: !!this.size,
-          [`${prefixCls$Y}-border`]: this.border
+          [`${prefixCls$10}-group-item`]: this.group,
+          [`${prefixCls$10}-wrapper-checked`]: this.currentValue,
+          [`${prefixCls$10}-wrapper-disabled`]: this.itemDisabled,
+          [`${prefixCls$10}-${this.size}`]: !!this.size,
+          [`${prefixCls$10}-border`]: this.border
         }
       ];
     },
     checkboxClasses() {
       return [
-        `${prefixCls$Y}`,
+        `${prefixCls$10}`,
         {
-          [`${prefixCls$Y}-checked`]: this.currentValue,
-          [`${prefixCls$Y}-disabled`]: this.itemDisabled,
-          [`${prefixCls$Y}-indeterminate`]: this.indeterminate
+          [`${prefixCls$10}-checked`]: this.currentValue,
+          [`${prefixCls$10}-disabled`]: this.itemDisabled,
+          [`${prefixCls$10}-indeterminate`]: this.indeterminate
         }
       ];
     },
     innerClasses() {
       return [
-        `${prefixCls$Y}-inner`,
+        `${prefixCls$10}-inner`,
         {
-          [`${prefixCls$Y}-focus`]: this.focusInner
+          [`${prefixCls$10}-focus`]: this.focusInner
         }
       ];
     },
     inputClasses() {
-      return `${prefixCls$Y}-input`;
+      return `${prefixCls$10}-input`;
     },
     currentValue() {
       if (this.CheckboxGroupInstance) {
@@ -10614,13 +10622,13 @@ const _sfc_main$1J = {
     }
   }
 };
-const _hoisted_1$W = ["disabled", "value", "name"];
-const _hoisted_2$B = ["disabled", "checked", "name"];
+const _hoisted_1$Z = ["disabled", "value", "name"];
+const _hoisted_2$C = ["disabled", "checked", "name"];
 const _hoisted_3$t = {
   key: 0,
   class: "ivu-checkbox-label-text"
 };
-function _sfc_render$1B(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1G(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("label", {
     class: normalizeClass($options.wrapClasses)
   }, [
@@ -10641,7 +10649,7 @@ function _sfc_render$1B(_ctx, _cache, $props, $setup, $data, $options) {
         onChange: _cache[1] || (_cache[1] = (...args) => $options.change && $options.change(...args)),
         onFocus: _cache[2] || (_cache[2] = (...args) => $options.onFocus && $options.onFocus(...args)),
         onBlur: _cache[3] || (_cache[3] = (...args) => $options.onBlur && $options.onBlur(...args))
-      }, null, 42, _hoisted_1$W)), [
+      }, null, 42, _hoisted_1$Z)), [
         [vModelCheckbox, $data.model]
       ]) : (openBlock(), createElementBlock("input", {
         key: 1,
@@ -10653,7 +10661,7 @@ function _sfc_render$1B(_ctx, _cache, $props, $setup, $data, $options) {
         onChange: _cache[4] || (_cache[4] = (...args) => $options.change && $options.change(...args)),
         onFocus: _cache[5] || (_cache[5] = (...args) => $options.onFocus && $options.onFocus(...args)),
         onBlur: _cache[6] || (_cache[6] = (...args) => $options.onBlur && $options.onBlur(...args))
-      }, null, 42, _hoisted_2$B))
+      }, null, 42, _hoisted_2$C))
     ], 2),
     $data.showSlot ? (openBlock(), createElementBlock("span", _hoisted_3$t, [
       renderSlot(_ctx.$slots, "default", {}, () => [
@@ -10662,9 +10670,9 @@ function _sfc_render$1B(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 2);
 }
-var Checkbox = /* @__PURE__ */ _export_sfc(_sfc_main$1J, [["render", _sfc_render$1B]]);
-const prefixCls$X = "ivu-checkbox-group";
-const _sfc_main$1I = {
+var Checkbox = /* @__PURE__ */ _export_sfc(_sfc_main$1T, [["render", _sfc_render$1G]]);
+const prefixCls$$ = "ivu-checkbox-group";
+const _sfc_main$1S = {
   name: "CheckboxGroup",
   mixins: [mixinsForm],
   emits: ["update:modelValue", "on-change"],
@@ -10699,7 +10707,7 @@ const _sfc_main$1I = {
   computed: {
     classes() {
       return [
-        `${prefixCls$X}`,
+        `${prefixCls$$}`,
         {
           [`ivu-checkbox-${this.size}`]: !!this.size
         }
@@ -10715,16 +10723,16 @@ const _sfc_main$1I = {
     }
   }
 };
-function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1F(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var CheckboxGroup = /* @__PURE__ */ _export_sfc(_sfc_main$1I, [["render", _sfc_render$1A]]);
-const prefixCls$W = "ivu-chart-circle";
-const _sfc_main$1H = {
+var CheckboxGroup = /* @__PURE__ */ _export_sfc(_sfc_main$1S, [["render", _sfc_render$1F]]);
+const prefixCls$_ = "ivu-chart-circle";
+const _sfc_main$1R = {
   name: "iCircle",
   props: {
     percent: {
@@ -10823,10 +10831,10 @@ const _sfc_main$1H = {
       return style2;
     },
     wrapClasses() {
-      return `${prefixCls$W}`;
+      return `${prefixCls$_}`;
     },
     innerClasses() {
-      return `${prefixCls$W}-inner`;
+      return `${prefixCls$_}-inner`;
     },
     strokeValue() {
       let color2 = this.strokeColor;
@@ -10840,20 +10848,20 @@ const _sfc_main$1H = {
     }
   }
 };
-const _hoisted_1$V = { viewBox: "0 0 100 100" };
-const _hoisted_2$A = { key: 0 };
+const _hoisted_1$Y = { viewBox: "0 0 100 100" };
+const _hoisted_2$B = { key: 0 };
 const _hoisted_3$s = ["id"];
 const _hoisted_4$n = ["stop-color"];
 const _hoisted_5$g = ["stop-color"];
 const _hoisted_6$8 = ["d", "stroke", "stroke-width", "stroke-linecap"];
 const _hoisted_7$7 = ["d", "stroke-linecap", "stroke", "stroke-width"];
-function _sfc_render$1z(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     style: normalizeStyle($options.circleSize),
     class: normalizeClass($options.wrapClasses)
   }, [
-    (openBlock(), createElementBlock("svg", _hoisted_1$V, [
-      $options.showDefs ? (openBlock(), createElementBlock("defs", _hoisted_2$A, [
+    (openBlock(), createElementBlock("svg", _hoisted_1$Y, [
+      $options.showDefs ? (openBlock(), createElementBlock("defs", _hoisted_2$B, [
         createElementVNode("linearGradient", {
           id: $data.id,
           x1: "100%",
@@ -10895,9 +10903,9 @@ function _sfc_render$1z(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 6);
 }
-var Circle = /* @__PURE__ */ _export_sfc(_sfc_main$1H, [["render", _sfc_render$1z]]);
-const prefixCls$V = "ivu-dropdown";
-const _sfc_main$1G = {
+var Circle = /* @__PURE__ */ _export_sfc(_sfc_main$1R, [["render", _sfc_render$1E]]);
+const prefixCls$Z = "ivu-dropdown";
+const _sfc_main$1Q = {
   name: "Dropdown",
   directives: { clickOutside },
   components: { Drop },
@@ -10954,22 +10962,22 @@ const _sfc_main$1G = {
     },
     dropdownCls() {
       return {
-        [prefixCls$V + "-transfer"]: this.transfer,
+        [prefixCls$Z + "-transfer"]: this.transfer,
         [this.transferClassName]: this.transferClassName
       };
     },
     relClasses() {
       return [
-        `${prefixCls$V}-rel`,
+        `${prefixCls$Z}-rel`,
         {
-          [`${prefixCls$V}-rel-user-select-none`]: this.trigger === "contextMenu"
+          [`${prefixCls$Z}-rel-user-select-none`]: this.trigger === "contextMenu"
         }
       ];
     }
   },
   data() {
     return {
-      prefixCls: prefixCls$V,
+      prefixCls: prefixCls$Z,
       currentVisible: this.visible,
       timeout: null
     };
@@ -11099,7 +11107,7 @@ const _sfc_main$1G = {
     }
   }
 };
-function _sfc_render$1y(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1D(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Drop = resolveComponent("Drop");
   const _directive_click_outside = resolveDirective("click-outside");
   return withDirectives((openBlock(), createElementBlock("div", {
@@ -11136,21 +11144,21 @@ function _sfc_render$1y(_ctx, _cache, $props, $setup, $data, $options) {
     [_directive_click_outside, $options.onClickoutside]
   ]);
 }
-var Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$1G, [["render", _sfc_render$1y]]);
-const _sfc_main$1F = {
+var Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$1Q, [["render", _sfc_render$1D]]);
+const _sfc_main$1P = {
   name: "DropdownMenu"
 };
-const _hoisted_1$U = { class: "ivu-dropdown-menu" };
-function _sfc_render$1x(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("ul", _hoisted_1$U, [
+const _hoisted_1$X = { class: "ivu-dropdown-menu" };
+function _sfc_render$1C(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("ul", _hoisted_1$X, [
     renderSlot(_ctx.$slots, "default")
   ]);
 }
-var DropdownMenu = /* @__PURE__ */ _export_sfc(_sfc_main$1F, [["render", _sfc_render$1x]]);
-const prefixCls$U = "ivu-tag";
+var DropdownMenu = /* @__PURE__ */ _export_sfc(_sfc_main$1P, [["render", _sfc_render$1C]]);
+const prefixCls$Y = "ivu-tag";
 const initColorList = ["default", "primary", "success", "warning", "error", "blue", "green", "red", "yellow", "pink", "magenta", "volcano", "orange", "gold", "lime", "cyan", "geekblue", "purple"];
 const colorList = ["pink", "magenta", "volcano", "orange", "gold", "lime", "cyan", "geekblue", "purple"];
-const _sfc_main$1E = {
+const _sfc_main$1O = {
   name: "Tag",
   components: { Icon },
   emits: ["on-change", "on-close"],
@@ -11194,14 +11202,14 @@ const _sfc_main$1E = {
   computed: {
     classes() {
       return [
-        `${prefixCls$U}`,
-        `${prefixCls$U}-size-${this.size}`,
+        `${prefixCls$Y}`,
+        `${prefixCls$Y}-size-${this.size}`,
         {
-          [`${prefixCls$U}-${this.color}`]: !!this.color && oneOf(this.color, initColorList),
-          [`${prefixCls$U}-${this.type}`]: !!this.type,
-          [`${prefixCls$U}-closable`]: this.closable,
-          [`${prefixCls$U}-checked`]: this.isChecked,
-          [`${prefixCls$U}-checkable`]: this.checkable
+          [`${prefixCls$Y}-${this.color}`]: !!this.color && oneOf(this.color, initColorList),
+          [`${prefixCls$Y}-${this.type}`]: !!this.type,
+          [`${prefixCls$Y}-closable`]: this.closable,
+          [`${prefixCls$Y}-checked`]: this.isChecked,
+          [`${prefixCls$Y}-checkable`]: this.checkable
         }
       ];
     },
@@ -11210,19 +11218,19 @@ const _sfc_main$1E = {
     },
     textClasses() {
       return [
-        `${prefixCls$U}-text`,
-        this.type === "border" ? oneOf(this.color, initColorList) ? `${prefixCls$U}-color-${this.color}` : "" : "",
-        this.type !== "dot" && this.type !== "border" && this.color !== "default" ? this.isChecked && colorList.indexOf(this.color) < 0 ? `${prefixCls$U}-color-white` : "" : ""
+        `${prefixCls$Y}-text`,
+        this.type === "border" ? oneOf(this.color, initColorList) ? `${prefixCls$Y}-color-${this.color}` : "" : "",
+        this.type !== "dot" && this.type !== "border" && this.color !== "default" ? this.isChecked && colorList.indexOf(this.color) < 0 ? `${prefixCls$Y}-color-white` : "" : ""
       ];
     },
     dotClasses() {
-      return `${prefixCls$U}-dot-inner`;
+      return `${prefixCls$Y}-dot-inner`;
     },
     iconClass() {
       if (this.type === "dot") {
         return "";
       } else if (this.type === "border") {
-        return oneOf(this.color, initColorList) ? `${prefixCls$U}-color-${this.color}` : "";
+        return oneOf(this.color, initColorList) ? `${prefixCls$Y}-color-${this.color}` : "";
       } else {
         return this.color !== void 0 ? this.color === "default" ? "" : "rgb(255, 255, 255)" : "";
       }
@@ -11281,7 +11289,7 @@ const _sfc_main$1E = {
     }
   }
 };
-function _sfc_render$1w(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1B(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes),
@@ -11308,7 +11316,7 @@ function _sfc_render$1w(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["class", "color", "onClick"])) : createCommentVNode("", true)
   ], 6);
 }
-var Tag = /* @__PURE__ */ _export_sfc(_sfc_main$1E, [["render", _sfc_render$1w]]);
+var Tag = /* @__PURE__ */ _export_sfc(_sfc_main$1O, [["render", _sfc_render$1B]]);
 var provinceData = {
   "110000": { l: "Z1", n: "\u5317\u4EAC", c: "110000", p: "86" },
   "120000": { l: "Z1", n: "\u5929\u6D25", c: "120000", p: "86" },
@@ -11762,7 +11770,7 @@ function handleGetNameByCode(cities, code) {
   const info = cities.find((item) => item.c === code);
   return info.n;
 }
-const _sfc_main$1D = {
+const _sfc_main$1N = {
   name: "City",
   mixins: [mixinsForm],
   components: { Dropdown, DropdownMenu, Select, Option: iOption, Tag, Icon, RadioGroup, Radio },
@@ -12105,8 +12113,8 @@ const _sfc_main$1D = {
     this.handleGetCityByLetter();
   }
 };
-const _hoisted_1$T = ["name", "value"];
-const _hoisted_2$z = { class: "ivu-city-drop" };
+const _hoisted_1$W = ["name", "value"];
+const _hoisted_2$A = { class: "ivu-city-drop" };
 const _hoisted_3$r = {
   key: 0,
   class: "ivu-city-drop-cities"
@@ -12137,7 +12145,7 @@ const _hoisted_16$1 = {
   ref: "list"
 };
 const _hoisted_17$1 = ["onClick"];
-function _sfc_render$1v(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Radio = resolveComponent("Radio");
   const _component_RadioGroup = resolveComponent("RadioGroup");
@@ -12165,7 +12173,7 @@ function _sfc_render$1v(_ctx, _cache, $props, $setup, $data, $options) {
           }, ["stop"]))
         }, {
           default: withCtx(() => [
-            createElementVNode("div", _hoisted_2$z, [
+            createElementVNode("div", _hoisted_2$A, [
               $props.cities.length ? (openBlock(), createElementBlock("div", _hoisted_3$r, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList($options.relCities, (item) => {
                   return openBlock(), createElementBlock("span", {
@@ -12314,7 +12322,7 @@ function _sfc_render$1v(_ctx, _cache, $props, $setup, $data, $options) {
             type: "hidden",
             name: $props.name,
             value: $data.currentValue
-          }, null, 8, _hoisted_1$T),
+          }, null, 8, _hoisted_1$W),
           renderSlot(_ctx.$slots, "default", {}, () => [
             createElementVNode("span", null, toDisplayString($options.codeToName), 1),
             withDirectives(createVNode(_component_Icon, {
@@ -12335,9 +12343,9 @@ function _sfc_render$1v(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["visible", "transfer", "transfer-class-name", "onOnVisibleChange", "onOnClickoutside"])
   ], 2);
 }
-var City = /* @__PURE__ */ _export_sfc(_sfc_main$1D, [["render", _sfc_render$1v]]);
-const prefixCls$T = "ivu-collapse";
-const _sfc_main$1C = {
+var City = /* @__PURE__ */ _export_sfc(_sfc_main$1N, [["render", _sfc_render$1A]]);
+const prefixCls$X = "ivu-collapse";
+const _sfc_main$1M = {
   name: "Collapse",
   emits: ["on-change", "update:modelValue"],
   provide() {
@@ -12367,9 +12375,9 @@ const _sfc_main$1C = {
   computed: {
     classes() {
       return [
-        `${prefixCls$T}`,
+        `${prefixCls$X}`,
         {
-          [`${prefixCls$T}-simple`]: this.simple
+          [`${prefixCls$X}-simple`]: this.simple
         }
       ];
     }
@@ -12421,14 +12429,14 @@ const _sfc_main$1C = {
     }
   }
 };
-function _sfc_render$1u(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1z(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Collapse = /* @__PURE__ */ _export_sfc(_sfc_main$1C, [["render", _sfc_render$1u]]);
+var Collapse = /* @__PURE__ */ _export_sfc(_sfc_main$1M, [["render", _sfc_render$1z]]);
 var tinycolor$1 = { exports: {} };
 (function(module) {
   (function(Math2) {
@@ -13426,7 +13434,7 @@ function toRGBAString(rgba) {
   const { r, g, b, a } = rgba;
   return `rgba(${[r, g, b, a].join(",")})`;
 }
-const _sfc_main$1B = {
+const _sfc_main$1L = {
   name: "RecommendedColors",
   mixins: [handleEscapeMixin, Prefixes],
   emits: ["picker-color", "change"],
@@ -13523,9 +13531,9 @@ const _sfc_main$1B = {
     }
   }
 };
-const _hoisted_1$S = ["data-color-id"];
-const _hoisted_2$y = { key: 0 };
-function _sfc_render$1t(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$V = ["data-color-id"];
+const _hoisted_2$z = { key: 0 };
+function _sfc_render$1y(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     ref: "reference",
     tabindex: "0",
@@ -13558,14 +13566,14 @@ function _sfc_render$1t(_ctx, _cache, $props, $setup, $data, $options) {
               ref: "color-circle-" + index2,
               class: normalizeClass([_ctx.prefixCls + "-picker-colors-wrapper-circle", $options.hideClass])
             }, null, 2)
-          ], 8, _hoisted_1$S)
+          ], 8, _hoisted_1$V)
         ], 2),
-        $options.lineBreak($props.list, index2) ? (openBlock(), createElementBlock("br", _hoisted_2$y)) : createCommentVNode("", true)
+        $options.lineBreak($props.list, index2) ? (openBlock(), createElementBlock("br", _hoisted_2$z)) : createCommentVNode("", true)
       ], 64);
     }), 128))
   ], 544);
 }
-var RecommendColors = /* @__PURE__ */ _export_sfc(_sfc_main$1B, [["render", _sfc_render$1t]]);
+var RecommendColors = /* @__PURE__ */ _export_sfc(_sfc_main$1L, [["render", _sfc_render$1y]]);
 var HSAMixin = {
   mixins: [handleEscapeMixin],
   props: {
@@ -13631,7 +13639,7 @@ var HSAMixin = {
     }
   }
 };
-const _sfc_main$1A = {
+const _sfc_main$1K = {
   name: "Saturation",
   mixins: [HSAMixin, Prefixes],
   emits: ["change"],
@@ -13688,7 +13696,7 @@ const _sfc_main$1A = {
     }
   }
 };
-function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1x(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass([_ctx.prefixCls + "-saturation-wrapper"]),
     tabindex: "0",
@@ -13724,8 +13732,8 @@ function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
     ], 38)
   ], 34);
 }
-var Saturation = /* @__PURE__ */ _export_sfc(_sfc_main$1A, [["render", _sfc_render$1s]]);
-const _sfc_main$1z = {
+var Saturation = /* @__PURE__ */ _export_sfc(_sfc_main$1K, [["render", _sfc_render$1x]]);
+const _sfc_main$1J = {
   name: "Hue",
   mixins: [HSAMixin, Prefixes],
   emits: ["change"],
@@ -13781,7 +13789,7 @@ const _sfc_main$1z = {
     }
   }
 };
-function _sfc_render$1r(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1w(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass([_ctx.prefixCls + "-hue"]),
     tabindex: "0",
@@ -13812,8 +13820,8 @@ function _sfc_render$1r(_ctx, _cache, $props, $setup, $data, $options) {
     ], 34)
   ], 34);
 }
-var Hue = /* @__PURE__ */ _export_sfc(_sfc_main$1z, [["render", _sfc_render$1r]]);
-const _sfc_main$1y = {
+var Hue = /* @__PURE__ */ _export_sfc(_sfc_main$1J, [["render", _sfc_render$1w]]);
+const _sfc_main$1I = {
   name: "Alpha",
   mixins: [HSAMixin, Prefixes],
   emits: ["change"],
@@ -13866,7 +13874,7 @@ const _sfc_main$1y = {
     }
   }
 };
-function _sfc_render$1q(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1v(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass([_ctx.prefixCls + "-alpha"]),
     tabindex: "0",
@@ -13908,10 +13916,10 @@ function _sfc_render$1q(_ctx, _cache, $props, $setup, $data, $options) {
     ], 34)
   ], 34);
 }
-var Alpha = /* @__PURE__ */ _export_sfc(_sfc_main$1y, [["render", _sfc_render$1q]]);
-const _sfc_main$1x = {
+var Alpha = /* @__PURE__ */ _export_sfc(_sfc_main$1I, [["render", _sfc_render$1v]]);
+const _sfc_main$1H = {
   name: "ColorPicker",
-  components: { Drop, RecommendColors, Saturation, Hue, Alpha, iInput: Input, iButton: _sfc_main$21, Icon },
+  components: { Drop, RecommendColors, Saturation, Hue, Alpha, iInput: Input, iButton: _sfc_main$2b, Icon },
   directives: { clickOutside: directive },
   mixins: [Locale, Prefixes, mixinsForm, globalConfig],
   emits: ["on-active-change", "on-open-change", "on-change", "on-pick-success", "on-pick-clear", "update:modelValue"],
@@ -14289,9 +14297,9 @@ const _sfc_main$1x = {
     }
   }
 };
-const _hoisted_1$R = ["name", "value"];
-const _hoisted_2$x = ["tabindex"];
-function _sfc_render$1p(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$U = ["name", "value"];
+const _hoisted_2$y = ["tabindex"];
+function _sfc_render$1u(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Saturation = resolveComponent("Saturation");
   const _component_Hue = resolveComponent("Hue");
@@ -14313,7 +14321,7 @@ function _sfc_render$1p(_ctx, _cache, $props, $setup, $data, $options) {
         name: $props.name,
         value: $data.currentValue,
         type: "hidden"
-      }, null, 8, _hoisted_1$R),
+      }, null, 8, _hoisted_1$U),
       createVNode(_component_Icon, {
         type: $options.arrowType,
         custom: $options.customArrowType,
@@ -14349,7 +14357,7 @@ function _sfc_render$1p(_ctx, _cache, $props, $setup, $data, $options) {
             [vShow, $props.modelValue || $data.visible]
           ])
         ], 2)
-      ], 42, _hoisted_2$x)
+      ], 42, _hoisted_2$y)
     ], 2),
     createVNode(_component_Drop, {
       ref: "drop",
@@ -14474,24 +14482,24 @@ function _sfc_render$1p(_ctx, _cache, $props, $setup, $data, $options) {
     [_directive_click_outside, $options.handleClose, $props.capture]
   ]);
 }
-var ColorPicker = /* @__PURE__ */ _export_sfc(_sfc_main$1x, [["render", _sfc_render$1p]]);
-const prefixCls$S = "ivu-layout";
-const _sfc_main$1w = {
+var ColorPicker = /* @__PURE__ */ _export_sfc(_sfc_main$1H, [["render", _sfc_render$1u]]);
+const prefixCls$W = "ivu-layout";
+const _sfc_main$1G = {
   name: "Content",
   computed: {
     wrapClasses() {
-      return `${prefixCls$S}-content`;
+      return `${prefixCls$W}-content`;
     }
   }
 };
-function _sfc_render$1o(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1t(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Content = /* @__PURE__ */ _export_sfc(_sfc_main$1w, [["render", _sfc_render$1o]]);
+var Content = /* @__PURE__ */ _export_sfc(_sfc_main$1G, [["render", _sfc_render$1t]]);
 function select(element) {
   var selectedText;
   if (element.nodeName === "SELECT") {
@@ -14531,7 +14539,7 @@ var Render$1 = {
     return this.render(h);
   }
 };
-const _sfc_main$1v = {
+const _sfc_main$1F = {
   components: {
     RenderCell: Render$1
   },
@@ -14686,17 +14694,17 @@ const _sfc_main$1v = {
     this.clearCloseTimer();
   }
 };
-const _hoisted_1$Q = ["innerHTML"];
-const _hoisted_2$w = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1);
+const _hoisted_1$T = ["innerHTML"];
+const _hoisted_2$x = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1);
 const _hoisted_3$q = [
-  _hoisted_2$w
+  _hoisted_2$x
 ];
 const _hoisted_4$l = ["innerHTML"];
 const _hoisted_5$e = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1);
 const _hoisted_6$6 = [
   _hoisted_5$e
 ];
-function _sfc_render$1n(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_render_cell = resolveComponent("render-cell");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes),
@@ -14707,7 +14715,7 @@ function _sfc_render$1n(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass($options.contentClasses),
         ref: "content",
         innerHTML: $props.content
-      }, null, 10, _hoisted_1$Q),
+      }, null, 10, _hoisted_1$T),
       createElementVNode("div", {
         class: normalizeClass($options.contentWithIcon)
       }, [
@@ -14741,19 +14749,19 @@ function _sfc_render$1n(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)) : createCommentVNode("", true)
   ], 6);
 }
-var Notice = /* @__PURE__ */ _export_sfc(_sfc_main$1v, [["render", _sfc_render$1n]]);
-const prefixCls$R = "ivu-notification";
+var Notice = /* @__PURE__ */ _export_sfc(_sfc_main$1F, [["render", _sfc_render$1s]]);
+const prefixCls$V = "ivu-notification";
 let seed = 0;
 const now$1 = Date.now();
 function getUuid() {
   return "ivuNotification_" + now$1 + "_" + seed++;
 }
-const _sfc_main$1u = {
+const _sfc_main$1E = {
   components: { Notice },
   props: {
     prefixCls: {
       type: String,
-      default: prefixCls$R
+      default: prefixCls$V
     },
     styles: {
       type: Object,
@@ -14828,7 +14836,7 @@ const _sfc_main$1u = {
     }
   }
 };
-function _sfc_render$1m(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1r(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Notice = resolveComponent("Notice");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes),
@@ -14863,7 +14871,7 @@ function _sfc_render$1m(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["name"])
   ], 6);
 }
-var Notification$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1u, [["render", _sfc_render$1m]]);
+var Notification$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1E, [["render", _sfc_render$1r]]);
 Notification$1.newInstance = (properties) => {
   if (!isClient)
     return;
@@ -14899,7 +14907,7 @@ Notification$1.newInstance = (properties) => {
     }
   };
 };
-const prefixCls$Q = "ivu-message";
+const prefixCls$U = "ivu-message";
 const iconPrefixCls$3 = "ivu-icon";
 const prefixKey$1 = "ivu_message_key_";
 const defaults$1 = {
@@ -14918,7 +14926,7 @@ const iconTypes$1 = {
 const transitionName$1 = "move-up";
 function getMessageInstance() {
   messageInstance = messageInstance || Notification$1.newInstance({
-    prefixCls: prefixCls$Q,
+    prefixCls: prefixCls$U,
     styles: {
       top: `${defaults$1.top}px`
     },
@@ -14938,7 +14946,7 @@ function notice$1(content = "", duration2 = defaults$1.duration, type2, onClose 
     styles: {},
     transitionName: transitionName$1,
     content: `
-            <div class="${prefixCls$Q}-custom-content ${prefixCls$Q}-${type2}">
+            <div class="${prefixCls$U}-custom-content ${prefixCls$U}-${type2}">
                 <i class="${iconPrefixCls$3} ${iconPrefixCls$3}-${iconType} ${loadCls}"></i>
                 <span>${content}</span>
             </div>
@@ -14998,7 +15006,7 @@ var $Message = {
 };
 const defaultSuccessTip = "\u590D\u5236\u6210\u529F";
 const defaultErrorTip = "\u590D\u5236\u5931\u8D25";
-function index$4({ text = "", successTip = defaultSuccessTip, errorTip = defaultErrorTip, success, error, showTip = true }) {
+function Copy({ text = "", successTip = defaultSuccessTip, errorTip = defaultErrorTip, success, error, showTip = true }) {
   if (!isClient)
     return;
   const isRTL = document.documentElement.getAttribute("dir") === "rtl";
@@ -15041,7 +15049,7 @@ function index$4({ text = "", successTip = defaultSuccessTip, errorTip = default
 function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
 }
-const _sfc_main$1t = {
+const _sfc_main$1D = {
   name: "CountDown",
   emits: ["on-end"],
   props: {
@@ -15125,10 +15133,10 @@ const _sfc_main$1t = {
       clearTimeout(this.timer);
   }
 };
-function _sfc_render$1l(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1q(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", null, toDisplayString($options.result), 1);
 }
-var CountDown = /* @__PURE__ */ _export_sfc(_sfc_main$1t, [["render", _sfc_render$1l]]);
+var CountDown = /* @__PURE__ */ _export_sfc(_sfc_main$1D, [["render", _sfc_render$1q]]);
 var countUp_min = { exports: {} };
 (function(module, exports) {
   !function(a, n) {
@@ -15197,7 +15205,7 @@ var countUp_min = { exports: {} };
   });
 })(countUp_min, countUp_min.exports);
 var CountUp$1 = countUp_min.exports;
-const _sfc_main$1s = {
+const _sfc_main$1C = {
   name: "CountUp",
   props: {
     start: {
@@ -15287,11 +15295,11 @@ const _sfc_main$1s = {
     }
   }
 };
-const _hoisted_1$P = { class: "ivu-count-up" };
-function _sfc_render$1k(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("span", _hoisted_1$P);
+const _hoisted_1$S = { class: "ivu-count-up" };
+function _sfc_render$1p(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("span", _hoisted_1$S);
 }
-var CountUp = /* @__PURE__ */ _export_sfc(_sfc_main$1s, [["render", _sfc_render$1k]]);
+var CountUp = /* @__PURE__ */ _export_sfc(_sfc_main$1C, [["render", _sfc_render$1p]]);
 var fecha = {};
 var token = /d{1,4}|M{1,4}|yy(?:yy)?|S{1,3}|Do|ZZ|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g;
 var twoDigits = /\d\d?/;
@@ -15765,7 +15773,7 @@ const TYPE_VALUE_RESOLVER_MAP = {
     }
   }
 };
-const prefixCls$P = "ivu-date-picker";
+const prefixCls$T = "ivu-date-picker";
 const pickerPrefixCls = "ivu-picker";
 const isEmptyArray = (val) => val.reduce((isEmpty, str) => isEmpty && !str || typeof str === "string" && str.trim() === "", true);
 const keyValueMapper = {
@@ -15798,7 +15806,7 @@ const extractTime = (date3) => {
     date3.getSeconds()
   ];
 };
-const _sfc_main$1r = {
+const _sfc_main$1B = {
   mixins: [mixinsForm, globalConfig],
   components: { iInput: Input, Drop, Icon },
   directives: { clickOutside: directive },
@@ -15923,7 +15931,7 @@ const _sfc_main$1r = {
     const initialValue = isEmptyArray((isRange ? this.modelValue : [this.modelValue]) || []) ? emptyArray : this.parseDate(this.modelValue);
     const focusedTime = initialValue.map(extractTime);
     return {
-      prefixCls: prefixCls$P,
+      prefixCls: prefixCls$T,
       showClose: false,
       visible: false,
       internalValue: initialValue,
@@ -15947,8 +15955,8 @@ const _sfc_main$1r = {
   },
   computed: {
     wrapperClasses() {
-      return [prefixCls$P, {
-        [prefixCls$P + "-focused"]: this.isFocused
+      return [prefixCls$T, {
+        [prefixCls$T + "-focused"]: this.isFocused
       }];
     },
     publicVModelValue() {
@@ -16052,7 +16060,7 @@ const _sfc_main$1r = {
     },
     dropdownCls() {
       return {
-        [prefixCls$P + "-transfer"]: this.transfer,
+        [prefixCls$T + "-transfer"]: this.transfer,
         [this.transferClassName]: this.transferClassName
       };
     }
@@ -16454,7 +16462,7 @@ const _sfc_main$1r = {
       this.visible = this.open;
   }
 };
-function _sfc_render$1j(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1o(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_i_input = resolveComponent("i-input");
   const _component_Drop = resolveComponent("Drop");
@@ -16553,7 +16561,7 @@ function _sfc_render$1j(_ctx, _cache, $props, $setup, $data, $options) {
     [_directive_click_outside, $options.handleClose, $props.capture]
   ]);
 }
-var Picker = /* @__PURE__ */ _export_sfc(_sfc_main$1r, [["render", _sfc_render$1j]]);
+var Picker = /* @__PURE__ */ _export_sfc(_sfc_main$1B, [["render", _sfc_render$1o]]);
 var oneDay = 1e3 * 60 * 60 * 24;
 function daysInMonth(year, month) {
   return new Date(year, month + 1, 0).getDate();
@@ -16889,8 +16897,8 @@ var mixin$1 = {
     this.removePanelTable();
   }
 };
-var prefixCls$O = "ivu-date-picker-cells";
-const _sfc_main$1q = {
+var prefixCls$S = "ivu-date-picker-cells";
+const _sfc_main$1A = {
   mixins: [Locale, mixin$1],
   props: {
     showWeekNumbers: {
@@ -16901,9 +16909,9 @@ const _sfc_main$1q = {
   computed: {
     classes() {
       return [
-        `${prefixCls$O}`,
+        `${prefixCls$S}`,
         {
-          [`${prefixCls$O}-show-week-numbers`]: this.showWeekNumbers
+          [`${prefixCls$S}-show-week-numbers`]: this.showWeekNumbers
         }
       ];
     },
@@ -16948,28 +16956,28 @@ const _sfc_main$1q = {
   methods: {
     getCellCls(cell) {
       return [
-        `${prefixCls$O}-cell`,
+        `${prefixCls$S}-cell`,
         {
-          [`${prefixCls$O}-cell-selected`]: cell.selected || cell.start || cell.end,
-          [`${prefixCls$O}-cell-disabled`]: cell.disabled,
-          [`${prefixCls$O}-cell-today`]: cell.type === "today",
-          [`${prefixCls$O}-cell-prev-month`]: cell.type === "prevMonth",
-          [`${prefixCls$O}-cell-next-month`]: cell.type === "nextMonth",
-          [`${prefixCls$O}-cell-week-label`]: cell.type === "weekLabel",
-          [`${prefixCls$O}-cell-range`]: cell.range && !cell.start && !cell.end,
-          [`${prefixCls$O}-focused`]: clearHours(cell.date) === clearHours(this.focusedDate)
+          [`${prefixCls$S}-cell-selected`]: cell.selected || cell.start || cell.end,
+          [`${prefixCls$S}-cell-disabled`]: cell.disabled,
+          [`${prefixCls$S}-cell-today`]: cell.type === "today",
+          [`${prefixCls$S}-cell-prev-month`]: cell.type === "prevMonth",
+          [`${prefixCls$S}-cell-next-month`]: cell.type === "nextMonth",
+          [`${prefixCls$S}-cell-week-label`]: cell.type === "weekLabel",
+          [`${prefixCls$S}-cell-range`]: cell.range && !cell.start && !cell.end,
+          [`${prefixCls$S}-focused`]: clearHours(cell.date) === clearHours(this.focusedDate)
         }
       ];
     }
   }
 };
-const _hoisted_1$O = { class: "ivu-date-picker-cells-header" };
-const _hoisted_2$v = ["onClick", "onMouseenter"];
-function _sfc_render$1i(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$R = { class: "ivu-date-picker-cells-header" };
+const _hoisted_2$w = ["onClick", "onMouseenter"];
+function _sfc_render$1n(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
-    createElementVNode("div", _hoisted_1$O, [
+    createElementVNode("div", _hoisted_1$R, [
       (openBlock(true), createElementBlock(Fragment, null, renderList($options.headerDays, (day) => {
         return openBlock(), createElementBlock("span", { key: day }, toDisplayString(day), 1);
       }), 128))
@@ -16982,19 +16990,19 @@ function _sfc_render$1i(_ctx, _cache, $props, $setup, $data, $options) {
         onMouseenter: ($event) => _ctx.handleMouseMove(cell)
       }, [
         createElementVNode("em", null, toDisplayString(cell.desc), 1)
-      ], 42, _hoisted_2$v);
+      ], 42, _hoisted_2$w);
     }), 128))
   ], 2);
 }
-var DateTable = /* @__PURE__ */ _export_sfc(_sfc_main$1q, [["render", _sfc_render$1i]]);
-const _sfc_main$1p = {
+var DateTable = /* @__PURE__ */ _export_sfc(_sfc_main$1A, [["render", _sfc_render$1n]]);
+const _sfc_main$1z = {
   mixins: [mixin$1],
   props: {},
   computed: {
     classes() {
       return [
-        `${prefixCls$O}`,
-        `${prefixCls$O}-year`
+        `${prefixCls$S}`,
+        `${prefixCls$S}-year`
       ];
     },
     startYear() {
@@ -17024,19 +17032,19 @@ const _sfc_main$1p = {
   methods: {
     getCellCls(cell) {
       return [
-        `${prefixCls$O}-cell`,
+        `${prefixCls$S}-cell`,
         {
-          [`${prefixCls$O}-cell-selected`]: cell.selected,
-          [`${prefixCls$O}-cell-disabled`]: cell.disabled,
-          [`${prefixCls$O}-cell-focused`]: cell.focused,
-          [`${prefixCls$O}-cell-range`]: cell.range && !cell.start && !cell.end
+          [`${prefixCls$S}-cell-selected`]: cell.selected,
+          [`${prefixCls$S}-cell-disabled`]: cell.disabled,
+          [`${prefixCls$S}-cell-focused`]: cell.focused,
+          [`${prefixCls$S}-cell-range`]: cell.range && !cell.start && !cell.end
         }
       ];
     }
   }
 };
-const _hoisted_1$N = ["onClick", "onMouseenter"];
-function _sfc_render$1h(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$Q = ["onClick", "onMouseenter"];
+function _sfc_render$1m(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
@@ -17048,19 +17056,19 @@ function _sfc_render$1h(_ctx, _cache, $props, $setup, $data, $options) {
         onMouseenter: ($event) => _ctx.handleMouseMove(cell)
       }, [
         createElementVNode("em", null, toDisplayString(cell.date.getFullYear()), 1)
-      ], 42, _hoisted_1$N);
+      ], 42, _hoisted_1$Q);
     }), 128))
   ], 2);
 }
-var YearTable = /* @__PURE__ */ _export_sfc(_sfc_main$1p, [["render", _sfc_render$1h]]);
-const _sfc_main$1o = {
+var YearTable = /* @__PURE__ */ _export_sfc(_sfc_main$1z, [["render", _sfc_render$1m]]);
+const _sfc_main$1y = {
   mixins: [Locale, mixin$1],
   props: {},
   computed: {
     classes() {
       return [
-        `${prefixCls$O}`,
-        `${prefixCls$O}-month`
+        `${prefixCls$S}`,
+        `${prefixCls$S}-month`
       ];
     },
     cells() {
@@ -17089,12 +17097,12 @@ const _sfc_main$1o = {
   methods: {
     getCellCls(cell) {
       return [
-        `${prefixCls$O}-cell`,
+        `${prefixCls$S}-cell`,
         {
-          [`${prefixCls$O}-cell-selected`]: cell.selected,
-          [`${prefixCls$O}-cell-disabled`]: cell.disabled,
-          [`${prefixCls$O}-cell-focused`]: cell.focused,
-          [`${prefixCls$O}-cell-range`]: cell.range && !cell.start && !cell.end
+          [`${prefixCls$S}-cell-selected`]: cell.selected,
+          [`${prefixCls$S}-cell-disabled`]: cell.disabled,
+          [`${prefixCls$S}-cell-focused`]: cell.focused,
+          [`${prefixCls$S}-cell-range`]: cell.range && !cell.start && !cell.end
         }
       ];
     },
@@ -17103,8 +17111,8 @@ const _sfc_main$1o = {
     }
   }
 };
-const _hoisted_1$M = ["onClick", "onMouseenter"];
-function _sfc_render$1g(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$P = ["onClick", "onMouseenter"];
+function _sfc_render$1l(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
@@ -17116,11 +17124,11 @@ function _sfc_render$1g(_ctx, _cache, $props, $setup, $data, $options) {
         onMouseenter: ($event) => _ctx.handleMouseMove(cell)
       }, [
         createElementVNode("em", null, toDisplayString(cell.text), 1)
-      ], 42, _hoisted_1$M);
+      ], 42, _hoisted_1$P);
     }), 128))
   ], 2);
 }
-var MonthTable = /* @__PURE__ */ _export_sfc(_sfc_main$1o, [["render", _sfc_render$1g]]);
+var MonthTable = /* @__PURE__ */ _export_sfc(_sfc_main$1y, [["render", _sfc_render$1l]]);
 var Options$1 = {
   props: {
     disabledHours: {
@@ -17147,9 +17155,9 @@ var Options$1 = {
     }
   }
 };
-const prefixCls$N = "ivu-time-picker-cells";
+const prefixCls$R = "ivu-time-picker-cells";
 const timeParts = ["hours", "minutes", "seconds"];
-const _sfc_main$1n = {
+const _sfc_main$1x = {
   name: "TimeSpinner",
   mixins: [Options$1],
   emits: ["on-change", "on-pick-click"],
@@ -17179,7 +17187,7 @@ const _sfc_main$1n = {
   data() {
     return {
       spinerSteps: [1, 1, 1].map((one, i) => Math.abs(this.steps[i]) || one),
-      prefixCls: prefixCls$N,
+      prefixCls: prefixCls$R,
       compiled: false,
       focusedColumn: -1,
       focusedTime: [0, 0, 0],
@@ -17189,9 +17197,9 @@ const _sfc_main$1n = {
   computed: {
     classes() {
       return [
-        `${prefixCls$N}`,
+        `${prefixCls$R}`,
         {
-          [`${prefixCls$N}-with-seconds`]: this.showSeconds
+          [`${prefixCls$R}-with-seconds`]: this.showSeconds
         }
       ];
     },
@@ -17274,11 +17282,11 @@ const _sfc_main$1n = {
   methods: {
     getCellCls(cell) {
       return [
-        `${prefixCls$N}-cell`,
+        `${prefixCls$R}-cell`,
         {
-          [`${prefixCls$N}-cell-selected`]: cell.selected,
-          [`${prefixCls$N}-cell-focused`]: cell.focused,
-          [`${prefixCls$N}-cell-disabled`]: cell.disabled
+          [`${prefixCls$R}-cell-selected`]: cell.selected,
+          [`${prefixCls$R}-cell-focused`]: cell.focused,
+          [`${prefixCls$R}-cell-disabled`]: cell.disabled
         }
       ];
     },
@@ -17384,10 +17392,10 @@ const _sfc_main$1n = {
     this.removeTimeSpinner();
   }
 };
-const _hoisted_1$L = ["onClick"];
-const _hoisted_2$u = ["onClick"];
+const _hoisted_1$O = ["onClick"];
+const _hoisted_2$v = ["onClick"];
 const _hoisted_3$p = ["onClick"];
-function _sfc_render$1f(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1k(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
@@ -17403,7 +17411,7 @@ function _sfc_render$1f(_ctx, _cache, $props, $setup, $data, $options) {
             class: normalizeClass($options.getCellCls(item)),
             key: item.text,
             onClick: ($event) => $options.handleClick("hours", item)
-          }, toDisplayString($options.formatTime(item.text)), 11, _hoisted_1$L)), [
+          }, toDisplayString($options.formatTime(item.text)), 11, _hoisted_1$O)), [
             [vShow, !item.hide]
           ]);
         }), 128))
@@ -17421,7 +17429,7 @@ function _sfc_render$1f(_ctx, _cache, $props, $setup, $data, $options) {
             class: normalizeClass($options.getCellCls(item)),
             key: item.text,
             onClick: ($event) => $options.handleClick("minutes", item)
-          }, toDisplayString($options.formatTime(item.text)), 11, _hoisted_2$u)), [
+          }, toDisplayString($options.formatTime(item.text)), 11, _hoisted_2$v)), [
             [vShow, !item.hide]
           ]);
         }), 128))
@@ -17449,11 +17457,11 @@ function _sfc_render$1f(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 2);
 }
-var TimeSpinner = /* @__PURE__ */ _export_sfc(_sfc_main$1n, [["render", _sfc_render$1f]]);
-const prefixCls$M = "ivu-picker";
-const _sfc_main$1m = {
+var TimeSpinner = /* @__PURE__ */ _export_sfc(_sfc_main$1x, [["render", _sfc_render$1k]]);
+const prefixCls$Q = "ivu-picker";
+const _sfc_main$1w = {
   mixins: [Locale],
-  components: { iButton: _sfc_main$21 },
+  components: { iButton: _sfc_main$2b },
   emits: ["on-pick-clear", "on-pick-success", "on-pick-toggle-time"],
   inject: ["PickerInstance"],
   props: {
@@ -17472,12 +17480,12 @@ const _sfc_main$1m = {
   },
   data() {
     return {
-      prefixCls: prefixCls$M
+      prefixCls: prefixCls$Q
     };
   },
   computed: {
     timeClasses() {
-      return `${prefixCls$M}-confirm-time`;
+      return `${prefixCls$Q}-confirm-time`;
     },
     labels() {
       const labels2 = ["time", "clear", "ok"];
@@ -17513,7 +17521,7 @@ const _sfc_main$1m = {
     }
   }
 };
-function _sfc_render$1e(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1j(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_i_button = resolveComponent("i-button");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass([$data.prefixCls + "-confirm"]),
@@ -17556,8 +17564,8 @@ function _sfc_render$1e(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["onClick", "onKeydown"])
   ], 34);
 }
-var Confirm = /* @__PURE__ */ _export_sfc(_sfc_main$1m, [["render", _sfc_render$1e]]);
-const prefixCls$L = "ivu-picker-panel";
+var Confirm = /* @__PURE__ */ _export_sfc(_sfc_main$1w, [["render", _sfc_render$1j]]);
+const prefixCls$P = "ivu-picker-panel";
 const datePrefixCls$2 = "ivu-date-picker";
 var Mixin$1 = {
   emits: ["on-pick-clear", "on-pick-success", "on-pick-click", "on-pick"],
@@ -17570,7 +17578,7 @@ var Mixin$1 = {
   methods: {
     iconBtnCls(direction, type2 = "") {
       return [
-        `${prefixCls$L}-icon-btn`,
+        `${prefixCls$P}-icon-btn`,
         `${datePrefixCls$2}-${direction}-btn`,
         `${datePrefixCls$2}-${direction}-btn-arrow${type2}`
       ];
@@ -17613,7 +17621,7 @@ var Mixin$1 = {
     }
   }
 };
-const prefixCls$K = "ivu-picker-panel";
+const prefixCls$O = "ivu-picker-panel";
 const timePrefixCls$1 = "ivu-time-picker";
 const capitalize$1 = (str) => str[0].toUpperCase() + str.slice(1);
 const mergeDateHMS = (date3, hours, minutes, seconds) => {
@@ -17625,7 +17633,7 @@ const mergeDateHMS = (date3, hours, minutes, seconds) => {
 };
 const unique = (el, i, arr) => arr.indexOf(el) === i;
 const returnFalse = () => false;
-const _sfc_main$1l = {
+const _sfc_main$1v = {
   name: "TimePickerPanel",
   mixins: [Mixin$1, Locale, Options$1],
   components: { TimeSpinner, Confirm },
@@ -17650,7 +17658,7 @@ const _sfc_main$1l = {
   },
   data() {
     return {
-      prefixCls: prefixCls$K,
+      prefixCls: prefixCls$O,
       timePrefixCls: timePrefixCls$1,
       date: this.modelValue[0] || initTimeDate(),
       showDate: false
@@ -17715,7 +17723,7 @@ const _sfc_main$1l = {
       this.showDate = true;
   }
 };
-function _sfc_render$1d(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1i(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_time_spinner = resolveComponent("time-spinner");
   const _component_Confirm = resolveComponent("Confirm");
   return openBlock(), createElementBlock("div", {
@@ -17756,15 +17764,15 @@ function _sfc_render$1d(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 34);
 }
-var TimePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1l, [["render", _sfc_render$1d]]);
-const _sfc_main$1k = {
+var TimePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1v, [["render", _sfc_render$1i]]);
+const _sfc_main$1u = {
   props: {
     datePanelLabel: Object,
     currentView: String,
     datePrefixCls: String
   }
 };
-function _sfc_render$1c(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1h(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", null, [
     $props.datePanelLabel ? withDirectives((openBlock(), createElementBlock("span", {
       key: 0,
@@ -17785,7 +17793,7 @@ function _sfc_render$1c(_ctx, _cache, $props, $setup, $data, $options) {
     ]) : createCommentVNode("", true)
   ]);
 }
-var datePanelLabel = /* @__PURE__ */ _export_sfc(_sfc_main$1k, [["render", _sfc_render$1c]]);
+var datePanelLabel = /* @__PURE__ */ _export_sfc(_sfc_main$1u, [["render", _sfc_render$1h]]);
 var DateMixin = {
   props: {
     showTime: {
@@ -17846,9 +17854,9 @@ var DateMixin = {
     }
   }
 };
-const prefixCls$J = "ivu-picker-panel";
+const prefixCls$N = "ivu-picker-panel";
 const datePrefixCls$1 = "ivu-date-picker";
-const _sfc_main$1j = {
+const _sfc_main$1t = {
   name: "DatePickerPanel",
   mixins: [Mixin$1, Locale, DateMixin],
   components: { Icon, DateTable, YearTable, MonthTable, TimePicker: TimePickerPanel, Confirm, datePanelLabel },
@@ -17863,7 +17871,7 @@ const _sfc_main$1j = {
     const { selectionMode, modelValue } = this;
     const dates = modelValue.slice().sort();
     return {
-      prefixCls: prefixCls$J,
+      prefixCls: prefixCls$N,
       datePrefixCls: datePrefixCls$1,
       currentView: selectionMode || "date",
       pickerTable: this.getTableType(selectionMode),
@@ -17874,9 +17882,9 @@ const _sfc_main$1j = {
   computed: {
     classes() {
       return [
-        `${prefixCls$J}-body-wrapper`,
+        `${prefixCls$N}-body-wrapper`,
         {
-          [`${prefixCls$J}-with-sidebar`]: this.shortcuts.length
+          [`${prefixCls$N}-with-sidebar`]: this.shortcuts.length
         }
       ];
     },
@@ -17966,8 +17974,8 @@ const _sfc_main$1j = {
     }
   }
 };
-const _hoisted_1$K = ["onClick"];
-function _sfc_render$1b(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$N = ["onClick"];
+function _sfc_render$1g(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_date_panel_label = resolveComponent("date-panel-label");
   const _component_time_picker = resolveComponent("time-picker");
@@ -17986,7 +17994,7 @@ function _sfc_render$1b(_ctx, _cache, $props, $setup, $data, $options) {
           class: normalizeClass([$data.prefixCls + "-shortcut"]),
           key: shortcut.text,
           onClick: ($event) => _ctx.handleShortcutClick(shortcut)
-        }, toDisplayString(shortcut.text), 11, _hoisted_1$K);
+        }, toDisplayString(shortcut.text), 11, _hoisted_1$N);
       }), 128))
     ], 2)) : createCommentVNode("", true),
     createElementVNode("div", {
@@ -18081,11 +18089,11 @@ function _sfc_render$1b(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 34);
 }
-var DatePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1j, [["render", _sfc_render$1b]]);
-const prefixCls$I = "ivu-picker-panel";
+var DatePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1t, [["render", _sfc_render$1g]]);
+const prefixCls$M = "ivu-picker-panel";
 const timePrefixCls = "ivu-time-picker";
 const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
-const _sfc_main$1i = {
+const _sfc_main$1s = {
   name: "RangeTimePickerPanel",
   mixins: [Mixin$1, Locale, Options$1],
   components: { TimeSpinner, Confirm },
@@ -18107,7 +18115,7 @@ const _sfc_main$1i = {
   data() {
     const [dateStart, dateEnd] = this.modelValue.slice();
     return {
-      prefixCls: prefixCls$I,
+      prefixCls: prefixCls$M,
       timePrefixCls,
       showDate: false,
       dateStart: dateStart || initTimeDate(),
@@ -18117,7 +18125,7 @@ const _sfc_main$1i = {
   computed: {
     classes() {
       return [
-        `${prefixCls$I}-body-wrapper`,
+        `${prefixCls$M}-body-wrapper`,
         `${timePrefixCls}-with-range`,
         {
           [`${timePrefixCls}-with-seconds`]: this.showSeconds
@@ -18178,7 +18186,7 @@ const _sfc_main$1i = {
       this.showDate = true;
   }
 };
-function _sfc_render$1a(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1f(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_time_spinner = resolveComponent("time-spinner");
   const _component_Confirm = resolveComponent("Confirm");
   return openBlock(), createElementBlock("div", {
@@ -18251,15 +18259,15 @@ function _sfc_render$1a(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 34);
 }
-var RangeTimePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1i, [["render", _sfc_render$1a]]);
-const prefixCls$H = "ivu-picker-panel";
+var RangeTimePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1s, [["render", _sfc_render$1f]]);
+const prefixCls$L = "ivu-picker-panel";
 const datePrefixCls = "ivu-date-picker";
 const dateSorter = (a, b) => {
   if (!a || !b)
     return 0;
   return a.getTime() - b.getTime();
 };
-const _sfc_main$1h = {
+const _sfc_main$1r = {
   name: "RangeDatePickerPanel",
   mixins: [Mixin$1, Locale, DateMixin],
   components: { Icon, DateTable, YearTable, MonthTable, TimePicker: RangeTimePickerPanel, Confirm, datePanelLabel },
@@ -18273,7 +18281,7 @@ const _sfc_main$1h = {
     const [minDate, maxDate] = this.modelValue.map((date3) => date3 || initTimeDate());
     const leftPanelDate = this.startDate ? this.startDate : minDate;
     return {
-      prefixCls: prefixCls$H,
+      prefixCls: prefixCls$L,
       datePrefixCls,
       dates: this.modelValue,
       rangeState: { from: this.modelValue[0], to: this.modelValue[1], selecting: minDate && !maxDate },
@@ -18287,20 +18295,20 @@ const _sfc_main$1h = {
   computed: {
     classes() {
       return [
-        `${prefixCls$H}-body-wrapper`,
+        `${prefixCls$L}-body-wrapper`,
         `${datePrefixCls}-with-range`,
         {
-          [`${prefixCls$H}-with-sidebar`]: this.shortcuts.length,
+          [`${prefixCls$L}-with-sidebar`]: this.shortcuts.length,
           [`${datePrefixCls}-with-week-numbers`]: this.showWeekNumbers
         }
       ];
     },
     panelBodyClasses() {
       return [
-        prefixCls$H + "-body",
+        prefixCls$L + "-body",
         {
-          [prefixCls$H + "-body-time"]: this.showTime,
-          [prefixCls$H + "-body-date"]: !this.showTime
+          [prefixCls$L + "-body-time"]: this.showTime,
+          [prefixCls$L + "-body-date"]: !this.showTime
         }
       ];
     },
@@ -18482,8 +18490,8 @@ const _sfc_main$1h = {
     }
   }
 };
-const _hoisted_1$J = ["onClick"];
-function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$M = ["onClick"];
+function _sfc_render$1e(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_date_panel_label = resolveComponent("date-panel-label");
   const _component_time_picker = resolveComponent("time-picker");
@@ -18502,7 +18510,7 @@ function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
           class: normalizeClass([$data.prefixCls + "-shortcut"]),
           key: shortcut.text,
           onClick: ($event) => _ctx.handleShortcutClick(shortcut)
-        }, toDisplayString(shortcut.text), 11, _hoisted_1$J);
+        }, toDisplayString(shortcut.text), 11, _hoisted_1$M);
       }), 128))
     ], 2)) : createCommentVNode("", true),
     createElementVNode("div", {
@@ -18663,7 +18671,7 @@ function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 34);
 }
-var RangeDatePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1h, [["render", _sfc_render$19]]);
+var RangeDatePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1r, [["render", _sfc_render$1e]]);
 var DatePicker = {
   name: "CalendarPicker",
   mixins: [Picker],
@@ -18692,7 +18700,7 @@ var responsive = {
   3: { xs: 24, sm: 12, md: 8 },
   4: { xs: 24, sm: 12, md: 6 }
 };
-const _sfc_main$1g = {
+const _sfc_main$1q = {
   name: "Description",
   inject: ["DescriptionListInstance"],
   props: {
@@ -18734,7 +18742,7 @@ const _sfc_main$1g = {
     }), () => children);
   }
 };
-const _sfc_main$1f = {
+const _sfc_main$1p = {
   name: "DescriptionList",
   components: { Row },
   provide() {
@@ -18764,16 +18772,16 @@ const _sfc_main$1f = {
     }
   }
 };
-const _hoisted_1$I = {
+const _hoisted_1$L = {
   key: 0,
   class: "ivu-description-list-title"
 };
-function _sfc_render$18(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1d(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Row = resolveComponent("Row");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["ivu-description-list", { "ivu-description-list-vertical": $props.layout === "vertical" }])
   }, [
-    $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_1$I, [
+    $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_1$L, [
       renderSlot(_ctx.$slots, "title", {}, () => [
         createTextVNode(toDisplayString($props.title), 1)
       ])
@@ -18786,9 +18794,9 @@ function _sfc_render$18(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["gutter"])
   ], 2);
 }
-var DescriptionList = /* @__PURE__ */ _export_sfc(_sfc_main$1f, [["render", _sfc_render$18]]);
-const prefixCls$G = "ivu-divider";
-const _sfc_main$1e = {
+var DescriptionList = /* @__PURE__ */ _export_sfc(_sfc_main$1p, [["render", _sfc_render$1d]]);
+const prefixCls$K = "ivu-divider";
+const _sfc_main$1o = {
   name: "Divider",
   props: {
     type: {
@@ -18826,25 +18834,25 @@ const _sfc_main$1e = {
     },
     classes() {
       return [
-        `${prefixCls$G}`,
-        `${prefixCls$G}-${this.type}`,
-        `${prefixCls$G}-${this.size}`,
+        `${prefixCls$K}`,
+        `${prefixCls$K}-${this.type}`,
+        `${prefixCls$K}-${this.size}`,
         {
-          [`${prefixCls$G}-with-text`]: this.hasSlot && this.orientation === "center",
-          [`${prefixCls$G}-with-text-${this.orientation}`]: this.hasSlot,
-          [`${prefixCls$G}-dashed`]: !!this.dashed,
-          [`${prefixCls$G}-plain`]: this.plain
+          [`${prefixCls$K}-with-text`]: this.hasSlot && this.orientation === "center",
+          [`${prefixCls$K}-with-text-${this.orientation}`]: this.hasSlot,
+          [`${prefixCls$K}-dashed`]: !!this.dashed,
+          [`${prefixCls$K}-plain`]: this.plain
         }
       ];
     },
     slotClasses() {
       return [
-        `${prefixCls$G}-inner-text`
+        `${prefixCls$K}-inner-text`
       ];
     }
   }
 };
-function _sfc_render$17(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1c(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
@@ -18856,7 +18864,7 @@ function _sfc_render$17(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)) : createCommentVNode("", true)
   ], 2);
 }
-var Divider = /* @__PURE__ */ _export_sfc(_sfc_main$1e, [["render", _sfc_render$17]]);
+var Divider = /* @__PURE__ */ _export_sfc(_sfc_main$1o, [["render", _sfc_render$1c]]);
 var ScrollbarMixins = {
   props: {
     lockScroll: {
@@ -18907,8 +18915,8 @@ var ScrollbarMixins = {
     }
   }
 };
-const prefixCls$F = "ivu-drawer";
-const _sfc_main$1d = {
+const prefixCls$J = "ivu-drawer";
+const _sfc_main$1n = {
   name: "Drawer",
   mixins: [ScrollbarMixins],
   components: { Icon },
@@ -18988,7 +18996,7 @@ const _sfc_main$1d = {
   },
   data() {
     return {
-      prefixCls: prefixCls$F,
+      prefixCls: prefixCls$J,
       visible: this.modelValue,
       wrapShow: false,
       showHead: true,
@@ -19008,13 +19016,13 @@ const _sfc_main$1d = {
   computed: {
     wrapClasses() {
       return [
-        `${prefixCls$F}-wrap`,
+        `${prefixCls$J}-wrap`,
         {
-          [`${prefixCls$F}-hidden`]: !this.wrapShow,
+          [`${prefixCls$J}-hidden`]: !this.wrapShow,
           [`${this.className}`]: !!this.className,
-          [`${prefixCls$F}-no-mask`]: !this.mask,
-          [`${prefixCls$F}-wrap-inner`]: this.inner,
-          [`${prefixCls$F}-wrap-dragging`]: this.canMove
+          [`${prefixCls$J}-no-mask`]: !this.mask,
+          [`${prefixCls$J}-wrap-inner`]: this.inner,
+          [`${prefixCls$J}-wrap-dragging`]: this.canMove
         }
       ];
     },
@@ -19037,27 +19045,27 @@ const _sfc_main$1d = {
     },
     contentClasses() {
       return [
-        `${prefixCls$F}-content`,
+        `${prefixCls$J}-content`,
         {
-          [`${prefixCls$F}-content-no-mask`]: !this.mask
+          [`${prefixCls$J}-content-no-mask`]: !this.mask
         }
       ];
     },
     classes() {
       return [
-        `${prefixCls$F}`,
-        `${prefixCls$F}-${this.placement}`,
+        `${prefixCls$J}`,
+        `${prefixCls$J}-${this.placement}`,
         {
-          [`${prefixCls$F}-no-header`]: !this.showHead,
-          [`${prefixCls$F}-inner`]: this.inner
+          [`${prefixCls$J}-no-header`]: !this.showHead,
+          [`${prefixCls$J}-inner`]: this.inner
         }
       ];
     },
     maskClasses() {
       return [
-        `${prefixCls$F}-mask`,
+        `${prefixCls$J}-mask`,
         {
-          [`${prefixCls$F}-mask-inner`]: this.inner
+          [`${prefixCls$J}-mask-inner`]: this.inner
         }
       ];
     },
@@ -19096,7 +19104,7 @@ const _sfc_main$1d = {
     },
     handleWrapClick(event) {
       const className = event.target.getAttribute("class");
-      if (className && className.indexOf(`${prefixCls$F}-wrap`) > -1)
+      if (className && className.indexOf(`${prefixCls$J}-wrap`) > -1)
         this.handleMask();
     },
     handleMousemove(event) {
@@ -19217,8 +19225,8 @@ const _sfc_main$1d = {
     }
   }
 };
-const _hoisted_1$H = { ref: "drawer" };
-const _hoisted_2$t = /* @__PURE__ */ createElementVNode("div", { class: "ivu-drawer-drag-move-trigger" }, [
+const _hoisted_1$K = { ref: "drawer" };
+const _hoisted_2$u = /* @__PURE__ */ createElementVNode("div", { class: "ivu-drawer-drag-move-trigger" }, [
   /* @__PURE__ */ createElementVNode("div", { class: "ivu-drawer-drag-move-trigger-point" }, [
     /* @__PURE__ */ createElementVNode("i"),
     /* @__PURE__ */ createElementVNode("i"),
@@ -19227,13 +19235,13 @@ const _hoisted_2$t = /* @__PURE__ */ createElementVNode("div", { class: "ivu-dra
     /* @__PURE__ */ createElementVNode("i")
   ])
 ], -1);
-function _sfc_render$16(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1b(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createBlock(Teleport, {
     to: "body",
     disabled: !$props.transfer
   }, [
-    createElementVNode("div", _hoisted_1$H, [
+    createElementVNode("div", _hoisted_1$K, [
       createVNode(Transition, { name: "fade" }, {
         default: withCtx(() => [
           $props.mask ? withDirectives((openBlock(), createElementBlock("div", {
@@ -19293,7 +19301,7 @@ function _sfc_render$16(_ctx, _cache, $props, $setup, $data, $options) {
                 onMousedown: _cache[2] || (_cache[2] = (...args) => $options.handleTriggerMousedown && $options.handleTriggerMousedown(...args))
               }, [
                 renderSlot(_ctx.$slots, "trigger", {}, () => [
-                  _hoisted_2$t
+                  _hoisted_2$u
                 ])
               ], 34)) : createCommentVNode("", true)
             ], 6), [
@@ -19306,9 +19314,9 @@ function _sfc_render$16(_ctx, _cache, $props, $setup, $data, $options) {
     ], 512)
   ], 8, ["disabled"]);
 }
-var Drawer = /* @__PURE__ */ _export_sfc(_sfc_main$1d, [["render", _sfc_render$16]]);
-const prefixCls$E = "ivu-dropdown-item";
-const _sfc_main$1c = {
+var Drawer = /* @__PURE__ */ _export_sfc(_sfc_main$1n, [["render", _sfc_render$1b]]);
+const prefixCls$I = "ivu-dropdown-item";
+const _sfc_main$1m = {
   name: "DropdownItem",
   props: {
     name: {
@@ -19330,11 +19338,11 @@ const _sfc_main$1c = {
   computed: {
     classes() {
       return [
-        `${prefixCls$E}`,
+        `${prefixCls$I}`,
         {
-          [`${prefixCls$E}-disabled`]: this.disabled,
-          [`${prefixCls$E}-selected`]: this.selected,
-          [`${prefixCls$E}-divided`]: this.divided
+          [`${prefixCls$I}-disabled`]: this.disabled,
+          [`${prefixCls$I}-selected`]: this.selected,
+          [`${prefixCls$I}-divided`]: this.divided
         }
       ];
     }
@@ -19356,7 +19364,7 @@ const _sfc_main$1c = {
     }
   }
 };
-function _sfc_render$15(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1a(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: normalizeClass($options.classes),
     onClick: _cache[0] || (_cache[0] = (...args) => $options.handleClick && $options.handleClick(...args))
@@ -19364,7 +19372,7 @@ function _sfc_render$15(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var DropdownItem = /* @__PURE__ */ _export_sfc(_sfc_main$1c, [["render", _sfc_render$15]]);
+var DropdownItem = /* @__PURE__ */ _export_sfc(_sfc_main$1m, [["render", _sfc_render$1a]]);
 const getStrFullLength = (str = "") => str.split("").reduce((pre, cur) => {
   const charCode = cur.charCodeAt(0);
   if (charCode >= 0 && charCode <= 128) {
@@ -19387,7 +19395,7 @@ const cutStrByFullLength = (str = "", maxLength) => {
     return pre;
   }, "");
 };
-const _sfc_main$1b = {
+const _sfc_main$1l = {
   name: "Ellipsis",
   components: { Tooltip },
   emits: ["on-show", "on-hide"],
@@ -19529,8 +19537,8 @@ const _sfc_main$1b = {
     }
   }
 };
-const _hoisted_1$G = { class: "ivu-ellipsis" };
-const _hoisted_2$s = {
+const _hoisted_1$J = { class: "ivu-ellipsis" };
+const _hoisted_2$t = {
   class: "ivu-ellipsis-more",
   ref: "more"
 };
@@ -19549,9 +19557,9 @@ const _hoisted_7$5 = {
   ref: "more"
 };
 const _hoisted_8$3 = /* @__PURE__ */ createTextVNode("...");
-function _sfc_render$14(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Tooltip = resolveComponent("Tooltip");
-  return openBlock(), createElementBlock("div", _hoisted_1$G, [
+  return openBlock(), createElementBlock("div", _hoisted_1$J, [
     renderSlot(_ctx.$slots, "prefix", { class: "ivu-ellipsis-prefix" }),
     $data.computedReady ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
       $props.tooltip ? (openBlock(), createBlock(_component_Tooltip, {
@@ -19567,7 +19575,7 @@ function _sfc_render$14(_ctx, _cache, $props, $setup, $data, $options) {
             class: "ivu-ellipsis-text",
             ref: "text"
           }, toDisplayString($props.text), 513),
-          withDirectives(createElementVNode("span", _hoisted_2$s, [
+          withDirectives(createElementVNode("span", _hoisted_2$t, [
             renderSlot(_ctx.$slots, "more", {}, () => [
               _hoisted_3$o
             ])
@@ -19607,8 +19615,8 @@ function _sfc_render$14(_ctx, _cache, $props, $setup, $data, $options) {
     ]))
   ]);
 }
-var Ellipsis = /* @__PURE__ */ _export_sfc(_sfc_main$1b, [["render", _sfc_render$14]]);
-const _sfc_main$1a = {
+var Ellipsis = /* @__PURE__ */ _export_sfc(_sfc_main$1l, [["render", _sfc_render$19]]);
+const _sfc_main$1k = {
   name: "Email",
   mixins: [LoginItem],
   data() {
@@ -19659,9 +19667,9 @@ var typeConfig = {
     desc: "\u62B1\u6B49\uFF0C\u670D\u52A1\u5668\u51FA\u9519\u4E86"
   }
 };
-const _sfc_main$19 = {
+const _sfc_main$1j = {
   name: "Exception",
-  components: { Button: _sfc_main$21 },
+  components: { Button: _sfc_main$2b },
   props: {
     type: {
       validator(value) {
@@ -19703,15 +19711,15 @@ const _sfc_main$19 = {
     }
   }
 };
-const _hoisted_1$F = { class: "ivu-exception" };
-const _hoisted_2$r = { class: "ivu-exception-img" };
+const _hoisted_1$I = { class: "ivu-exception" };
+const _hoisted_2$s = { class: "ivu-exception-img" };
 const _hoisted_3$n = { class: "ivu-exception-content" };
 const _hoisted_4$j = { class: "ivu-exception-content-desc" };
 const _hoisted_5$c = { class: "ivu-exception-content-actions" };
-function _sfc_render$13(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$18(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Button = resolveComponent("Button");
-  return openBlock(), createElementBlock("div", _hoisted_1$F, [
-    createElementVNode("div", _hoisted_2$r, [
+  return openBlock(), createElementBlock("div", _hoisted_1$I, [
+    createElementVNode("div", _hoisted_2$s, [
       createElementVNode("div", {
         class: "ivu-exception-img-element",
         style: normalizeStyle({ "background-image": "url(" + $options.imgPath + ")" })
@@ -19745,25 +19753,25 @@ function _sfc_render$13(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var Exception = /* @__PURE__ */ _export_sfc(_sfc_main$19, [["render", _sfc_render$13]]);
-const prefixCls$D = "ivu-layout";
-const _sfc_main$18 = {
+var Exception = /* @__PURE__ */ _export_sfc(_sfc_main$1j, [["render", _sfc_render$18]]);
+const prefixCls$H = "ivu-layout";
+const _sfc_main$1i = {
   name: "Footer",
   computed: {
     wrapClasses() {
-      return `${prefixCls$D}-footer`;
+      return `${prefixCls$H}-footer`;
     }
   }
 };
-function _sfc_render$12(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$17(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Footer = /* @__PURE__ */ _export_sfc(_sfc_main$18, [["render", _sfc_render$12]]);
-const _sfc_main$17 = {
+var Footer = /* @__PURE__ */ _export_sfc(_sfc_main$1i, [["render", _sfc_render$17]]);
+const _sfc_main$1h = {
   name: "FooterToolbar",
   props: {
     extra: {
@@ -19771,15 +19779,15 @@ const _sfc_main$17 = {
     }
   }
 };
-const _hoisted_1$E = { class: "ivu-footer-toolbar" };
-const _hoisted_2$q = {
+const _hoisted_1$H = { class: "ivu-footer-toolbar" };
+const _hoisted_2$r = {
   key: 0,
   class: "ivu-footer-toolbar-left"
 };
 const _hoisted_3$m = { class: "ivu-footer-toolbar-right" };
-function _sfc_render$11(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$E, [
-    $props.extra || _ctx.$slots.extra ? (openBlock(), createElementBlock("div", _hoisted_2$q, [
+function _sfc_render$16(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", _hoisted_1$H, [
+    $props.extra || _ctx.$slots.extra ? (openBlock(), createElementBlock("div", _hoisted_2$r, [
       renderSlot(_ctx.$slots, "extra", {}, () => [
         createTextVNode(toDisplayString($props.extra), 1)
       ])
@@ -19789,9 +19797,9 @@ function _sfc_render$11(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var FooterToolbar = /* @__PURE__ */ _export_sfc(_sfc_main$17, [["render", _sfc_render$11]]);
-const prefixCls$C = "ivu-form";
-const _sfc_main$16 = {
+var FooterToolbar = /* @__PURE__ */ _export_sfc(_sfc_main$1h, [["render", _sfc_render$16]]);
+const prefixCls$G = "ivu-form";
+const _sfc_main$1g = {
   name: "iForm",
   emits: ["on-validate"],
   provide() {
@@ -19850,11 +19858,11 @@ const _sfc_main$16 = {
   computed: {
     classes() {
       return [
-        `${prefixCls$C}`,
-        `${prefixCls$C}-label-${this.labelPosition}`,
+        `${prefixCls$G}`,
+        `${prefixCls$G}-label-${this.labelPosition}`,
         {
-          [`${prefixCls$C}-inline`]: this.inline,
-          [`${prefixCls$C}-hide-required-mark`]: this.hideRequiredMark
+          [`${prefixCls$G}-inline`]: this.inline,
+          [`${prefixCls$G}-hide-required-mark`]: this.hideRequiredMark
         }
       ];
     },
@@ -19919,17 +19927,17 @@ const _sfc_main$16 = {
     }
   }
 };
-const _hoisted_1$D = ["autocomplete"];
-function _sfc_render$10(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$G = ["autocomplete"];
+function _sfc_render$15(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("form", {
     class: normalizeClass($options.classes),
     autocomplete: $props.autocomplete
   }, [
     renderSlot(_ctx.$slots, "default")
-  ], 10, _hoisted_1$D);
+  ], 10, _hoisted_1$G);
 }
-var Form = /* @__PURE__ */ _export_sfc(_sfc_main$16, [["render", _sfc_render$10]]);
-const _sfc_main$15 = {
+var Form = /* @__PURE__ */ _export_sfc(_sfc_main$1g, [["render", _sfc_render$15]]);
+const _sfc_main$1f = {
   name: "GlobalFooter",
   components: { Icon },
   props: {
@@ -19944,8 +19952,8 @@ const _sfc_main$15 = {
     }
   }
 };
-const _hoisted_1$C = { class: "ivu-global-footer" };
-const _hoisted_2$p = {
+const _hoisted_1$F = { class: "ivu-global-footer" };
+const _hoisted_2$q = {
   key: 0,
   class: "ivu-global-footer-links"
 };
@@ -19954,10 +19962,10 @@ const _hoisted_4$i = {
   key: 1,
   class: "ivu-global-footer-copyright"
 };
-function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$14(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
-  return openBlock(), createElementBlock("footer", _hoisted_1$C, [
-    $props.links.length || _ctx.$slots.links ? (openBlock(), createElementBlock("div", _hoisted_2$p, [
+  return openBlock(), createElementBlock("footer", _hoisted_1$F, [
+    $props.links.length || _ctx.$slots.links ? (openBlock(), createElementBlock("div", _hoisted_2$q, [
       renderSlot(_ctx.$slots, "links", {}, () => [
         (openBlock(true), createElementBlock(Fragment, null, renderList($props.links, (item) => {
           return openBlock(), createElementBlock("a", {
@@ -19985,7 +19993,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ]);
 }
-var GlobalFooter = /* @__PURE__ */ _export_sfc(_sfc_main$15, [["render", _sfc_render$$]]);
+var GlobalFooter = /* @__PURE__ */ _export_sfc(_sfc_main$1f, [["render", _sfc_render$14]]);
 var collectionUtils = { exports: {} };
 var utils$3 = collectionUtils.exports = {};
 utils$3.forEach = function(collection, callback) {
@@ -20927,7 +20935,7 @@ function toArray(collection) {
     return collection;
   }
 }
-function isElement(obj) {
+function isElement$1(obj) {
   return obj && obj.nodeType === 1;
 }
 var elementResizeDetector = function(options) {
@@ -21012,7 +21020,7 @@ var elementResizeDetector = function(options) {
     if (!listener) {
       throw new Error("Listener required.");
     }
-    if (isElement(elements)) {
+    if (isElement$1(elements)) {
       elements = [elements];
     } else if (isCollection(elements)) {
       elements = toArray(elements);
@@ -21089,7 +21097,7 @@ var elementResizeDetector = function(options) {
     if (!elements) {
       return reporter2.error("At least one element is required.");
     }
-    if (isElement(elements)) {
+    if (isElement$1(elements)) {
       elements = [elements];
     } else if (isCollection(elements)) {
       elements = toArray(elements);
@@ -21261,7 +21269,7 @@ function toNumber(value) {
   return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
 }
 var lodash_throttle = throttle;
-const _sfc_main$14 = {
+const _sfc_main$1e = {
   name: "Grid",
   provide() {
     return {
@@ -21324,7 +21332,7 @@ const _sfc_main$14 = {
     this.observer.removeListener(this.$refs.grid, this.handleResize);
   }
 };
-function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$13(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["ivu-grid", $options.classes]),
     ref: "grid"
@@ -21332,8 +21340,8 @@ function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Grid = /* @__PURE__ */ _export_sfc(_sfc_main$14, [["render", _sfc_render$_]]);
-const _sfc_main$13 = {
+var Grid = /* @__PURE__ */ _export_sfc(_sfc_main$1e, [["render", _sfc_render$13]]);
+const _sfc_main$1d = {
   name: "GridItem",
   inject: ["GridInstance"],
   data() {
@@ -21388,7 +21396,7 @@ const _sfc_main$13 = {
     this.handleChangeHeight();
   }
 };
-function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$12(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: "ivu-grid-item",
     style: normalizeStyle($options.styles),
@@ -21402,25 +21410,739 @@ function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
     ], 4)
   ], 4);
 }
-var GridItem = /* @__PURE__ */ _export_sfc(_sfc_main$13, [["render", _sfc_render$Z]]);
-const prefixCls$B = "ivu-layout";
-const _sfc_main$12 = {
+var GridItem = /* @__PURE__ */ _export_sfc(_sfc_main$1d, [["render", _sfc_render$12]]);
+const prefixCls$F = "ivu-layout";
+const _sfc_main$1c = {
   name: "Header",
   computed: {
     wrapClasses() {
-      return `${prefixCls$B}-header`;
+      return `${prefixCls$F}-header`;
     }
   }
 };
-function _sfc_render$Y(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$11(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Header = /* @__PURE__ */ _export_sfc(_sfc_main$12, [["render", _sfc_render$Y]]);
-const prefixCls$A = "ivu-input-number";
+var Header = /* @__PURE__ */ _export_sfc(_sfc_main$1c, [["render", _sfc_render$11]]);
+const KeyCode = {
+  MAC_ENTER: 3,
+  BACKSPACE: 8,
+  TAB: 9,
+  NUM_CENTER: 12,
+  ENTER: 13,
+  SHIFT: 16,
+  CTRL: 17,
+  ALT: 18,
+  PAUSE: 19,
+  CAPS_LOCK: 20,
+  ESC: 27,
+  SPACE: 32,
+  PAGE_UP: 33,
+  PAGE_DOWN: 34,
+  END: 35,
+  HOME: 36,
+  LEFT: 37,
+  UP: 38,
+  RIGHT: 39,
+  DOWN: 40,
+  PRINT_SCREEN: 44,
+  INSERT: 45,
+  DELETE: 46,
+  ZERO: 48,
+  ONE: 49,
+  TWO: 50,
+  THREE: 51,
+  FOUR: 52,
+  FIVE: 53,
+  SIX: 54,
+  SEVEN: 55,
+  EIGHT: 56,
+  NINE: 57,
+  QUESTION_MARK: 63,
+  A: 65,
+  B: 66,
+  C: 67,
+  D: 68,
+  E: 69,
+  F: 70,
+  G: 71,
+  H: 72,
+  I: 73,
+  J: 74,
+  K: 75,
+  L: 76,
+  M: 77,
+  N: 78,
+  O: 79,
+  P: 80,
+  Q: 81,
+  R: 82,
+  S: 83,
+  T: 84,
+  U: 85,
+  V: 86,
+  W: 87,
+  X: 88,
+  Y: 89,
+  Z: 90,
+  META: 91,
+  WIN_KEY_RIGHT: 92,
+  CONTEXT_MENU: 93,
+  NUM_ZERO: 96,
+  NUM_ONE: 97,
+  NUM_TWO: 98,
+  NUM_THREE: 99,
+  NUM_FOUR: 100,
+  NUM_FIVE: 101,
+  NUM_SIX: 102,
+  NUM_SEVEN: 103,
+  NUM_EIGHT: 104,
+  NUM_NINE: 105,
+  NUM_MULTIPLY: 106,
+  NUM_PLUS: 107,
+  NUM_MINUS: 109,
+  NUM_PERIOD: 110,
+  NUM_DIVISION: 111,
+  F1: 112,
+  F2: 113,
+  F3: 114,
+  F4: 115,
+  F5: 116,
+  F6: 117,
+  F7: 118,
+  F8: 119,
+  F9: 120,
+  F10: 121,
+  F11: 122,
+  F12: 123,
+  NUMLOCK: 144,
+  SEMICOLON: 186,
+  DASH: 189,
+  EQUALS: 187,
+  COMMA: 188,
+  PERIOD: 190,
+  SLASH: 191,
+  APOSTROPHE: 192,
+  SINGLE_QUOTE: 222,
+  OPEN_SQUARE_BRACKET: 219,
+  BACKSLASH: 220,
+  CLOSE_SQUARE_BRACKET: 221,
+  WIN_KEY: 224,
+  MAC_FF_META: 224,
+  WIN_IME: 229,
+  isTextModifyingKeyEvent(e) {
+    const { keyCode } = e;
+    if (e.altKey && !e.ctrlKey || e.metaKey || keyCode >= KeyCode.F1 && keyCode <= KeyCode.F12) {
+      return false;
+    }
+    switch (keyCode) {
+      case KeyCode.ALT:
+      case KeyCode.CAPS_LOCK:
+      case KeyCode.CONTEXT_MENU:
+      case KeyCode.CTRL:
+      case KeyCode.DOWN:
+      case KeyCode.END:
+      case KeyCode.ESC:
+      case KeyCode.HOME:
+      case KeyCode.INSERT:
+      case KeyCode.LEFT:
+      case KeyCode.MAC_FF_META:
+      case KeyCode.META:
+      case KeyCode.NUMLOCK:
+      case KeyCode.NUM_CENTER:
+      case KeyCode.PAGE_DOWN:
+      case KeyCode.PAGE_UP:
+      case KeyCode.PAUSE:
+      case KeyCode.PRINT_SCREEN:
+      case KeyCode.RIGHT:
+      case KeyCode.SHIFT:
+      case KeyCode.UP:
+      case KeyCode.WIN_KEY:
+      case KeyCode.WIN_KEY_RIGHT:
+        return false;
+      default:
+        return true;
+    }
+  },
+  isCharacterKey(keyCode) {
+    if (keyCode >= KeyCode.ZERO && keyCode <= KeyCode.NINE) {
+      return true;
+    }
+    if (keyCode >= KeyCode.NUM_ZERO && keyCode <= KeyCode.NUM_MULTIPLY) {
+      return true;
+    }
+    if (keyCode >= KeyCode.A && keyCode <= KeyCode.Z) {
+      return true;
+    }
+    if (window.navigator.userAgent.indexOf("WebKit") !== -1 && keyCode === 0) {
+      return true;
+    }
+    switch (keyCode) {
+      case KeyCode.SPACE:
+      case KeyCode.QUESTION_MARK:
+      case KeyCode.NUM_PLUS:
+      case KeyCode.NUM_MINUS:
+      case KeyCode.NUM_PERIOD:
+      case KeyCode.NUM_DIVISION:
+      case KeyCode.SEMICOLON:
+      case KeyCode.DASH:
+      case KeyCode.EQUALS:
+      case KeyCode.COMMA:
+      case KeyCode.PERIOD:
+      case KeyCode.SLASH:
+      case KeyCode.APOSTROPHE:
+      case KeyCode.SINGLE_QUOTE:
+      case KeyCode.OPEN_SQUARE_BRACKET:
+      case KeyCode.BACKSLASH:
+      case KeyCode.CLOSE_SQUARE_BRACKET:
+        return true;
+      default:
+        return false;
+    }
+  }
+};
+const prefixCls$E = "ivu-image-preview";
+const _sfc_main$1b = {
+  name: "ImagePreview",
+  mixins: [Locale],
+  components: { Icon },
+  props: {
+    modelValue: {
+      type: Boolean,
+      default: false
+    },
+    transfer: {
+      type: Boolean,
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
+      }
+    },
+    maskClosable: {
+      type: Boolean,
+      default: true
+    },
+    previewList: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    initialIndex: {
+      type: Number,
+      default: 0
+    },
+    infinite: {
+      type: Boolean,
+      default: true
+    }
+  },
+  emits: ["update:modelValue", "on-close", "on-switch"],
+  data() {
+    return {
+      prefixCls: prefixCls$E,
+      operations: [
+        { label: this.t("i.image.zoomIn"), icon: "", value: "enlarge" },
+        { label: this.t("i.image.zoomOut"), icon: "", value: "narrow" },
+        { label: this.t("i.image.rotateLeft"), icon: "", value: "leftRotation" },
+        { label: this.t("i.image.rotateRight"), icon: "", value: "rightRotation" }
+      ],
+      currentIndex: 0,
+      scale: 1,
+      degree: 0,
+      translate: { x: 0, y: 0 },
+      startX: 0,
+      startY: 0,
+      moving: false,
+      prevOverflow: ""
+    };
+  },
+  computed: {
+    hasRightSwitchEnd() {
+      const { currentIndex, infinite, previewList } = this;
+      const len = previewList.length;
+      return infinite ? false : currentIndex >= len - 1;
+    },
+    hasLeftSwitchEnd() {
+      const { currentIndex, infinite } = this;
+      return infinite ? false : currentIndex === 0;
+    }
+  },
+  methods: {
+    imageStyle(index2) {
+      let translateX = this.translate.x / this.scale;
+      let translateY = this.translate.y / this.scale;
+      const mod = this.degree % 360;
+      if ([90, -270].includes(mod)) {
+        [translateX, translateY] = [translateY, -translateX];
+      }
+      if ([180, -180].includes(mod)) {
+        [translateX, translateY] = [-translateX, -translateY];
+      }
+      if ([270, -90].includes(mod)) {
+        [translateX, translateY] = [-translateY, translateX];
+      }
+      const styleObj = {
+        transform: `
+                            scale(${index2 === this.currentIndex ? this.scale : 1})
+                            rotate(${index2 === this.currentIndex ? this.degree : 0}deg)
+                            translate(
+                                ${index2 === this.currentIndex ? translateX : 0}px,
+                                ${index2 === this.currentIndex ? translateY : 0}px
+                            )
+                        `
+      };
+      if (!this.moving)
+        styleObj.transition = "transform .3s ease";
+      return styleObj;
+    },
+    resetStyle() {
+      this.scale = 1;
+      this.degree = 0;
+      this.translate.x = 0;
+      this.translate.y = 0;
+    },
+    handleClose() {
+      this.$emit("update:modelValue", false);
+      this.$emit("on-close");
+    },
+    handleClickMark() {
+      if (!this.maskClosable)
+        return;
+      this.handleClose();
+    },
+    handleSwitch(next) {
+      if (next) {
+        if (this.currentIndex + 1 === this.previewList.length) {
+          if (this.infinite) {
+            this.resetStyle();
+            this.currentIndex = 0;
+          }
+        } else {
+          this.resetStyle();
+          this.currentIndex += 1;
+        }
+      } else {
+        if (this.currentIndex === 0) {
+          if (this.infinite) {
+            this.resetStyle();
+            this.currentIndex = this.previewList.length - 1;
+          }
+        } else {
+          this.resetStyle();
+          this.currentIndex -= 1;
+        }
+      }
+      this.$emit("on-switch", { currentIndex: this.currentIndex });
+    },
+    handleOperation(val) {
+      if (val === "enlarge" && this.scale < 6)
+        this.scale += 0.25;
+      if (val === "narrow" && this.scale > 0.25)
+        this.scale -= 0.25;
+      if (val === "leftRotation")
+        this.degree -= 90;
+      if (val === "rightRotation")
+        this.degree += 90;
+    },
+    handleKeydown(event) {
+      const { keyCode } = event;
+      if (keyCode === KeyCode.LEFT)
+        this.handleSwitch(false);
+      if (keyCode === KeyCode.RIGHT)
+        this.handleSwitch(true);
+      if (keyCode === KeyCode.UP)
+        this.handleOperation("enlarge");
+      if (keyCode === KeyCode.DOWN)
+        this.handleOperation("narrow");
+    },
+    handleKeyup(event) {
+      const { keyCode } = event;
+      if (keyCode === KeyCode.ESC)
+        this.handleClose();
+    },
+    handleWheel(event) {
+      const { deltaY } = event;
+      this.handleOperation(deltaY < 0 ? "enlarge" : "narrow");
+    },
+    handleMousedown(event) {
+      this.moving = true;
+      const { pageX, pageY } = event;
+      this.startX = pageX;
+      this.startY = pageY;
+      on(document, "mousemove", this.handleMousemove);
+      on(document, "mouseup", this.handleMouseup);
+    },
+    handleMousemove: lodash_throttle(function(event) {
+      event.stopPropagation();
+      const { pageX, pageY } = event;
+      this.translate.x += pageX - this.startX;
+      this.translate.y += pageY - this.startY;
+      this.startX = pageX;
+      this.startY = pageY;
+    }),
+    handleMouseup() {
+      this.moving = false;
+      off(document, "mousemove", this.handleMousemove);
+      off(document, "mouseup", this.handleMouseup);
+    },
+    getBodyOverflow() {
+      return isClient ? document.body.style.overflow : "";
+    },
+    setBodyOverflow(val) {
+      if (!isClient)
+        return;
+      document.body.style.overflow = val;
+    }
+  },
+  watch: {
+    modelValue(val) {
+      if (val) {
+        this.currentIndex = this.initialIndex;
+        this.resetStyle();
+        this.prevOverflow = this.getBodyOverflow();
+        this.setBodyOverflow("hidden");
+      } else {
+        this.setBodyOverflow(this.prevOverflow);
+      }
+    }
+  },
+  mounted() {
+    on(document, "keydown", this.handleKeydown);
+    on(document, "keyup", this.handleKeyup);
+    on(document, "wheel", this.handleWheel);
+  },
+  beforeUnmount() {
+    off(document, "keydown", this.handleKeydown);
+    off(document, "keyup", this.handleKeyup);
+    off(document, "wheel", this.handleWheel);
+  }
+};
+const _hoisted_1$E = ["src"];
+const _hoisted_2$p = ["onClick"];
+function _sfc_render$10(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_Icon = resolveComponent("Icon");
+  return openBlock(), createBlock(Teleport, {
+    to: "body",
+    disabled: !$props.transfer
+  }, [
+    createVNode(Transition, { name: "fade" }, {
+      default: withCtx(() => [
+        $props.modelValue ? (openBlock(), createElementBlock("div", {
+          key: 0,
+          class: normalizeClass([$data.prefixCls + "-wrapper"])
+        }, [
+          $props.previewList.length > 0 ? (openBlock(), createElementBlock("div", {
+            key: 0,
+            class: normalizeClass([$data.prefixCls + "-mark"]),
+            onClick: _cache[2] || (_cache[2] = withModifiers((...args) => $options.handleClickMark && $options.handleClickMark(...args), ["stop"]))
+          }, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList($props.previewList, (item, index2) => {
+              return withDirectives((openBlock(), createElementBlock("img", {
+                key: index2,
+                src: item,
+                style: normalizeStyle($options.imageStyle(index2)),
+                class: normalizeClass([$data.prefixCls + "-image"]),
+                onClick: _cache[0] || (_cache[0] = withModifiers(() => {
+                }, ["stop"])),
+                onMousedown: _cache[1] || (_cache[1] = withModifiers((...args) => $options.handleMousedown && $options.handleMousedown(...args), ["stop", "prevent"]))
+              }, null, 46, _hoisted_1$E)), [
+                [vShow, index2 === $data.currentIndex]
+              ]);
+            }), 128))
+          ], 2)) : createCommentVNode("", true),
+          createElementVNode("ul", {
+            class: normalizeClass([$data.prefixCls + "-operations"])
+          }, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList($data.operations, (item) => {
+              return openBlock(), createElementBlock("li", {
+                class: normalizeClass([$data.prefixCls + "-operations-item"]),
+                key: item.value,
+                onClick: withModifiers(($event) => $options.handleOperation(item.value), ["stop"])
+              }, toDisplayString(item.label), 11, _hoisted_2$p);
+            }), 128))
+          ], 2),
+          createVNode(_component_Icon, {
+            class: normalizeClass([$data.prefixCls + "-arrow-left", { [$data.prefixCls + "-arrow-disabled"]: $options.hasLeftSwitchEnd }]),
+            type: "ios-arrow-back",
+            onClick: _cache[3] || (_cache[3] = withModifiers(($event) => $options.handleSwitch(false), ["stop"]))
+          }, null, 8, ["class"]),
+          createVNode(_component_Icon, {
+            class: normalizeClass([$data.prefixCls + "-arrow-right", { [$data.prefixCls + "-arrow-disabled"]: $options.hasRightSwitchEnd }]),
+            type: "ios-arrow-forward",
+            onClick: _cache[4] || (_cache[4] = withModifiers(($event) => $options.handleSwitch(true), ["stop"]))
+          }, null, 8, ["class"]),
+          createVNode(_component_Icon, {
+            onClick: withModifiers($options.handleClose, ["stop"]),
+            class: normalizeClass([$data.prefixCls + "-arrow-close"]),
+            type: "md-close"
+          }, null, 8, ["onClick", "class"])
+        ], 2)) : createCommentVNode("", true)
+      ]),
+      _: 1
+    })
+  ], 8, ["disabled"]);
+}
+var ImagePreview = /* @__PURE__ */ _export_sfc(_sfc_main$1b, [["render", _sfc_render$10]]);
+const prefixCls$D = "ivu-image";
+const isElement = (el) => {
+  return typeof HTMLElement === "object" && el instanceof HTMLElement;
+};
+const _sfc_main$1a = {
+  name: "Image",
+  mixins: [Locale],
+  components: { ImagePreview },
+  emits: ["on-load", "on-error", "on-switch", "on-close", "on-click"],
+  props: {
+    src: {
+      type: String,
+      default: ""
+    },
+    alt: {
+      type: String,
+      default: ""
+    },
+    preview: {
+      type: Boolean,
+      default: false
+    },
+    referrerPolicy: {
+      type: String,
+      default: ""
+    },
+    width: {
+      type: [String, Number],
+      default: ""
+    },
+    height: {
+      type: [String, Number],
+      default: ""
+    },
+    fit: {
+      type: String,
+      default: ""
+    },
+    lazy: {
+      type: Boolean,
+      default: false
+    },
+    scrollContainer: {
+      type: [String],
+      default: ""
+    },
+    transfer: {
+      type: Boolean,
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
+      }
+    },
+    maskClosable: {
+      type: Boolean,
+      default: true
+    },
+    previewList: {
+      type: Array
+    },
+    infinite: {
+      type: Boolean,
+      default: true
+    },
+    initialIndex: {
+      type: Number,
+      default: 0
+    }
+  },
+  data() {
+    return {
+      prefixCls: prefixCls$D,
+      loading: false,
+      imageError: false,
+      image: null,
+      imageWidth: 0,
+      imageHeight: 0,
+      scrollElement: null,
+      observer: null,
+      imagePreviewModal: false
+    };
+  },
+  computed: {
+    fitStyle() {
+      const fitContains = ["fill", "contain", "cover", "none", "scale-down"];
+      const { fit } = this;
+      return fitContains.includes(fit) ? `object-fit:${fit};` : "";
+    },
+    imageStyles() {
+      return {
+        width: `${this.width}px`,
+        height: `${this.height}px`
+      };
+    },
+    loadingLang() {
+      return this.t("i.select.loading");
+    },
+    failLang() {
+      return this.t("i.image.fail");
+    },
+    previewLang() {
+      return this.t("i.image.preview");
+    }
+  },
+  watch: {
+    lazy() {
+      this.handleImageEvent();
+    }
+  },
+  mounted() {
+    isClient && this.handleImageEvent();
+  },
+  methods: {
+    handleLazy() {
+      const $el = this.$refs.image;
+      const observer = this.observer = new IntersectionObserver(this.handlerObserveImage, {
+        root: this.scrollElement,
+        rootMargin: "50%",
+        threshold: 1
+      });
+      observer.observe($el);
+    },
+    handlerObserveImage(entries) {
+      for (let entry of entries) {
+        if (entry.isIntersecting) {
+          this.offObserver();
+          this.loadImage();
+        }
+      }
+    },
+    addLazyImageListener() {
+      const { scrollContainer } = this;
+      this.scrollElement = window;
+      if (isElement(scrollContainer)) {
+        this.scrollElement = scrollContainer;
+      } else if (typeof scrollContainer === "string") {
+        this.scrollElement = document.querySelector(scrollContainer);
+      }
+      this.loading = true;
+      this.imageError = false;
+      this.handleLazy();
+    },
+    handleLoadImageLoad(event) {
+      const { width, height: height2 } = event.target;
+      this.imageWidth = width;
+      this.imageHeight = height2;
+      this.loading = false;
+      this.imageError = false;
+      this.$emit("on-load");
+      this.offImageEvent();
+    },
+    handleLoadImageError() {
+      this.loading = false;
+      this.imageError = true;
+      this.$emit("on-error");
+      this.offImageEvent();
+    },
+    loadImage() {
+      this.image = new Image();
+      const { src, image } = this;
+      this.loading = true;
+      this.imageError = false;
+      on(image, "load", this.handleLoadImageLoad);
+      on(image, "error", this.handleLoadImageError);
+      image.src = src;
+    },
+    handleImageEvent() {
+      const { lazy } = this;
+      lazy ? this.addLazyImageListener() : this.loadImage();
+    },
+    offImageEvent() {
+      const { image } = this;
+      image && off(image, "load", this.handleLoadImageLoad);
+      image && off(image, "error", this.handleLoadImageError);
+    },
+    offObserver() {
+      const { observer } = this;
+      if (observer) {
+        observer.disconnect();
+      }
+    },
+    handlePreview() {
+      const { preview, initialIndex } = this;
+      if (preview) {
+        this.imagePreviewModal = true;
+        this.$emit("on-click", { initialIndex });
+      }
+    },
+    handleClose() {
+      this.$emit("on-close");
+    },
+    handleSwitch(params) {
+      this.$emit("on-switch", params);
+    }
+  },
+  beforeUnmount() {
+    this.offImageEvent();
+    this.offObserver();
+  }
+};
+const _hoisted_1$D = ["src", "alt", "referrerPolicy"];
+function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_image_preview = resolveComponent("image-preview");
+  return openBlock(), createElementBlock("div", {
+    class: normalizeClass($data.prefixCls),
+    ref: "image",
+    style: normalizeStyle($options.imageStyles)
+  }, [
+    $data.loading ? renderSlot(_ctx.$slots, "placeholder", { key: 0 }, () => [
+      createElementVNode("div", {
+        class: normalizeClass([$data.prefixCls + "-placeholder"])
+      }, [
+        createElementVNode("span", null, toDisplayString($options.loadingLang), 1)
+      ], 2)
+    ]) : $data.imageError ? renderSlot(_ctx.$slots, "error", { key: 1 }, () => [
+      createElementVNode("div", {
+        class: normalizeClass([$data.prefixCls + "-error"])
+      }, [
+        createElementVNode("span", null, toDisplayString($options.failLang), 1)
+      ], 2)
+    ]) : (openBlock(), createElementBlock("div", {
+      key: 2,
+      class: normalizeClass([$data.prefixCls + "-inner"])
+    }, [
+      createElementVNode("img", {
+        src: $props.src,
+        alt: $props.alt,
+        referrerPolicy: $props.referrerPolicy,
+        style: normalizeStyle([$options.fitStyle]),
+        class: normalizeClass([$data.prefixCls + "-img"])
+      }, null, 14, _hoisted_1$D),
+      $props.preview ? renderSlot(_ctx.$slots, "preview", { key: 0 }, () => [
+        createElementVNode("div", {
+          class: normalizeClass([$data.prefixCls + "-mark"]),
+          onClick: _cache[0] || (_cache[0] = (...args) => $options.handlePreview && $options.handlePreview(...args))
+        }, [
+          createElementVNode("span", null, toDisplayString($options.previewLang), 1)
+        ], 2)
+      ]) : createCommentVNode("", true)
+    ], 2)),
+    $props.preview ? (openBlock(), createBlock(_component_image_preview, {
+      key: 3,
+      infinite: $props.infinite,
+      "preview-list": $props.previewList,
+      maskClosable: $props.maskClosable,
+      initialIndex: $props.initialIndex,
+      modelValue: $data.imagePreviewModal,
+      "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.imagePreviewModal = $event),
+      onOnClose: $options.handleClose,
+      onOnSwitch: $options.handleSwitch
+    }, null, 8, ["infinite", "preview-list", "maskClosable", "initialIndex", "modelValue", "onOnClose", "onOnSwitch"])) : createCommentVNode("", true)
+  ], 6);
+}
+var Image$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1a, [["render", _sfc_render$$]]);
+const prefixCls$C = "ivu-input-number";
 const iconPrefixCls$2 = "ivu-icon";
 function addNum(num1, num2) {
   let sq1, sq2, m;
@@ -21437,7 +22159,7 @@ function addNum(num1, num2) {
   m = Math.pow(10, Math.max(sq1, sq2));
   return (Math.round(num1 * m) + Math.round(num2 * m)) / m;
 }
-const _sfc_main$11 = {
+const _sfc_main$19 = {
   name: "InputNumber",
   mixins: [mixinsForm],
   emits: ["on-change", "on-focus", "on-blur", "update:modelValue"],
@@ -21522,47 +22244,47 @@ const _sfc_main$11 = {
   computed: {
     wrapClasses() {
       return [
-        `${prefixCls$A}`,
+        `${prefixCls$C}`,
         {
-          [`${prefixCls$A}-${this.size}`]: !!this.size,
-          [`${prefixCls$A}-disabled`]: this.itemDisabled,
-          [`${prefixCls$A}-focused`]: this.focused,
-          [`${prefixCls$A}-controls-outside`]: this.controlsOutside
+          [`${prefixCls$C}-${this.size}`]: !!this.size,
+          [`${prefixCls$C}-disabled`]: this.itemDisabled,
+          [`${prefixCls$C}-focused`]: this.focused,
+          [`${prefixCls$C}-controls-outside`]: this.controlsOutside
         }
       ];
     },
     handlerClasses() {
-      return `${prefixCls$A}-handler-wrap`;
+      return `${prefixCls$C}-handler-wrap`;
     },
     upClasses() {
       return [
-        `${prefixCls$A}-handler`,
-        `${prefixCls$A}-handler-up`,
+        `${prefixCls$C}-handler`,
+        `${prefixCls$C}-handler-up`,
         {
-          [`${prefixCls$A}-handler-up-disabled`]: this.upDisabled
+          [`${prefixCls$C}-handler-up-disabled`]: this.upDisabled
         }
       ];
     },
     innerUpClasses() {
-      return `${prefixCls$A}-handler-up-inner ${iconPrefixCls$2} ${iconPrefixCls$2}-ios-arrow-up`;
+      return `${prefixCls$C}-handler-up-inner ${iconPrefixCls$2} ${iconPrefixCls$2}-ios-arrow-up`;
     },
     downClasses() {
       return [
-        `${prefixCls$A}-handler`,
-        `${prefixCls$A}-handler-down`,
+        `${prefixCls$C}-handler`,
+        `${prefixCls$C}-handler-down`,
         {
-          [`${prefixCls$A}-handler-down-disabled`]: this.downDisabled
+          [`${prefixCls$C}-handler-down-disabled`]: this.downDisabled
         }
       ];
     },
     innerDownClasses() {
-      return `${prefixCls$A}-handler-down-inner ${iconPrefixCls$2} ${iconPrefixCls$2}-ios-arrow-down`;
+      return `${prefixCls$C}-handler-down-inner ${iconPrefixCls$2} ${iconPrefixCls$2}-ios-arrow-down`;
     },
     inputWrapClasses() {
-      return `${prefixCls$A}-input-wrap`;
+      return `${prefixCls$C}-input-wrap`;
     },
     inputClasses() {
-      return `${prefixCls$A}-input`;
+      return `${prefixCls$C}-input`;
     },
     precisionValue() {
       if (!this.currentValue)
@@ -21719,16 +22441,16 @@ const _sfc_main$11 = {
     }
   }
 };
-const _hoisted_1$B = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-remove" }, null, -1);
+const _hoisted_1$C = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-remove" }, null, -1);
 const _hoisted_2$o = [
-  _hoisted_1$B
+  _hoisted_1$C
 ];
 const _hoisted_3$k = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-add" }, null, -1);
 const _hoisted_4$h = [
   _hoisted_3$k
 ];
 const _hoisted_5$b = ["id", "disabled", "autofocus", "readonly", "name", "value", "placeholder"];
-function _sfc_render$X(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
   }, [
@@ -21789,9 +22511,9 @@ function _sfc_render$X(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 2);
 }
-var InputNumber = /* @__PURE__ */ _export_sfc(_sfc_main$11, [["render", _sfc_render$X]]);
-const prefixCls$z = "ivu-layout";
-const _sfc_main$10 = {
+var InputNumber = /* @__PURE__ */ _export_sfc(_sfc_main$19, [["render", _sfc_render$_]]);
+const prefixCls$B = "ivu-layout";
+const _sfc_main$18 = {
   name: "Layout",
   data() {
     return {
@@ -21801,9 +22523,9 @@ const _sfc_main$10 = {
   computed: {
     wrapClasses() {
       return [
-        `${prefixCls$z}`,
+        `${prefixCls$B}`,
         {
-          [`${prefixCls$z}-has-sider`]: this.hasSider
+          [`${prefixCls$B}-has-sider`]: this.hasSider
         }
       ];
     }
@@ -21817,16 +22539,527 @@ const _sfc_main$10 = {
     this.hasSider = this.findSider();
   }
 };
-function _sfc_render$W(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Layout = /* @__PURE__ */ _export_sfc(_sfc_main$10, [["render", _sfc_render$W]]);
-const prefixCls$y = "ivu-spin";
-const _sfc_main$$ = {
+var Layout = /* @__PURE__ */ _export_sfc(_sfc_main$18, [["render", _sfc_render$Z]]);
+const defaultCopyConfig = {
+  tooltips: ["\u590D\u5236", "\u590D\u5236\u6210\u529F"],
+  showTip: false,
+  successTip: "\u590D\u5236\u6210\u529F",
+  errorTip: "\u590D\u5236\u5931\u8D25"
+};
+const defaultEditConfig = {
+  tooltip: "\u7F16\u8F91",
+  editing: false,
+  maxlength: "",
+  autosize: true,
+  triggerType: "icon"
+};
+const defaultEllipsisConfig = {
+  rows: 1,
+  tooltip: false,
+  suffix: false,
+  expandable: false,
+  symbol: "\u5C55\u5F00"
+};
+var baseProps = {
+  emits: ["update:modelValue"],
+  mixins: [mixinsLink],
+  props: {
+    type: {
+      validator(value) {
+        return oneOf(value, ["secondary", "success", "warning", "danger", ""]);
+      },
+      default: ""
+    },
+    copyable: {
+      type: Boolean,
+      default: false
+    },
+    copyText: {
+      type: String,
+      default: ""
+    },
+    copyConfig: {
+      type: Object,
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || global2.$VIEWUI.typography.copyConfig === "" ? defaultCopyConfig : global2.$VIEWUI.typography.copyConfig;
+      }
+    },
+    editable: {
+      type: Boolean,
+      default: false
+    },
+    editConfig: {
+      type: Object,
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || global2.$VIEWUI.typography.editConfig === "" ? defaultEditConfig : global2.$VIEWUI.typography.editConfig;
+      }
+    },
+    ellipsis: {
+      type: Boolean,
+      default: false
+    },
+    ellipsisConfig: {
+      type: Object,
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || global2.$VIEWUI.typography.ellipsisConfig === "" ? defaultEllipsisConfig : global2.$VIEWUI.typography.ellipsisConfig;
+      }
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    code: {
+      type: Boolean,
+      default: false
+    },
+    delete: {
+      type: Boolean,
+      default: false
+    },
+    keyboard: {
+      type: Boolean,
+      default: false
+    },
+    mark: {
+      type: Boolean,
+      default: false
+    },
+    strong: {
+      type: Boolean,
+      default: false
+    },
+    underline: {
+      type: Boolean,
+      default: false
+    },
+    italic: {
+      type: Boolean,
+      default: false
+    },
+    modelValue: {
+      type: String,
+      default: ""
+    },
+    transfer: {
+      type: Boolean,
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
+      }
+    },
+    theme: {
+      validator(value) {
+        return oneOf(value, ["dark", "light"]);
+      },
+      default: "dark"
+    },
+    maxWidth: {
+      type: [String, Number],
+      default: 250
+    },
+    placement: {
+      validator(value) {
+        return oneOf(value, ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end", "right", "right-start", "right-end"]);
+      },
+      default: "top"
+    }
+  },
+  computed: {
+    isHrefPattern() {
+      const { to } = this;
+      return !!to;
+    },
+    linkProps() {
+      if (this.isHrefPattern) {
+        const { linkUrl, target } = this;
+        return { href: linkUrl, target };
+      } else {
+        return {};
+      }
+    },
+    mergedCopyConfig() {
+      return Object.assign({}, defaultCopyConfig, this.copyConfig);
+    },
+    mergedEditConfig() {
+      return Object.assign({}, defaultEditConfig, this.editConfig);
+    },
+    mergedEllipsisConfig() {
+      return Object.assign({}, defaultEllipsisConfig, this.ellipsisConfig);
+    }
+  },
+  methods: {
+    commonSlots() {
+      const slots = {};
+      if (this.$slots.default)
+        slots.default = () => this.$slots.default();
+      if (this.$slots.copyIcon)
+        slots.copyIcon = (props) => this.$slots.copyIcon(props);
+      if (this.$slots.editIcon)
+        slots.editIcon = (props) => this.$slots.editIcon(props);
+      if (this.$slots.enterIcon)
+        slots.enterIcon = (props) => this.$slots.enterIcon(props);
+      return slots;
+    },
+    commonEvents() {
+      return {
+        "onUpdate:modelValue": this.handleOnUpdateModelValue
+      };
+    },
+    handleOnUpdateModelValue(value) {
+      this.$emit("update:modelValue", value);
+    }
+  }
+};
+const _sfc_main$17 = {
+  name: "TypographyBase",
+  mixins: [baseProps],
+  emits: ["on-copy-success", "on-copy-error", "on-edit-start", "on-edit-end", "on-edit-change", "on-edit-cancel"],
+  props: {
+    component: {
+      type: String,
+      default: "div"
+    },
+    level: {
+      type: Number,
+      default: 0
+    }
+  },
+  data() {
+    return {
+      currentContent: this.modelValue,
+      copied: false,
+      copyTimeout: null,
+      editing: false,
+      editContent: "",
+      lastKeyCode: "",
+      isEditESC: false,
+      ellipsisText: "",
+      ellipsisContent: "",
+      isEllipsis: false,
+      ellipsisExpanded: false,
+      observer: null
+    };
+  },
+  created() {
+    this.editing = this.mergedEditConfig.editing || false;
+    if (this.editing)
+      this.editContent = this.currentContent ? this.currentContent : this.handleGetContent();
+  },
+  watch: {
+    modelValue(val) {
+      this.currentContent = val;
+    },
+    editing(val) {
+      if (!val) {
+        nextTick(() => {
+          this.handleRemoveObserver();
+          this.handleCreateObserver();
+        });
+      }
+    },
+    isEllipsis() {
+      nextTick(() => {
+        this.handleRemoveObserver();
+        this.handleCreateObserver();
+      });
+    },
+    ellipsis: {
+      handler(val) {
+        if (val) {
+          nextTick(() => {
+            this.handleUpdateEllipsisStatus();
+            this.handleCreateObserver();
+          });
+        } else {
+          this.handleRemoveObserver();
+        }
+      },
+      immediate: true
+    }
+  },
+  computed: {
+    classes() {
+      return [
+        "ivu-typography",
+        {
+          [`ivu-typography-${this.type}`]: this.type,
+          [`ivu-typography-disabled`]: this.disabled,
+          ["ivu-typography-ellipsis-line-clamp"]: this.ellipsis && !this.ellipsisExpanded,
+          ["ivu-typography-ellipsis-single-line"]: this.ellipsis && !this.ellipsisExpanded && this.mergedEllipsisConfig.rows === 1
+        }
+      ];
+    }
+  },
+  methods: {
+    wrapperDecorations() {
+      let content = this.currentContent ? this.currentContent : this.$slots.default ? this.$slots.default() : "";
+      function wrap(needed, tag) {
+        if (!needed)
+          return;
+        content = h(tag, content);
+      }
+      wrap(this.strong, "strong");
+      wrap(this.underline, "u");
+      wrap(this.delete, "del");
+      wrap(this.code, "code");
+      wrap(this.mark, "mark");
+      wrap(this.keyboard, "kbd");
+      wrap(this.italic, "i");
+      return content;
+    },
+    handleClickContent(event) {
+      if (!this.isHrefPattern && this.component !== "a") {
+        const triggerType = this.mergedEditConfig.triggerType;
+        if (this.editable && (triggerType === "text" || triggerType === "both"))
+          this.handleEdit();
+      } else {
+        const openInNewWindow = event.ctrlKey || event.metaKey;
+        this.handleCheckClick(event, openInNewWindow);
+      }
+    },
+    handleGetContent() {
+      const container = document.createElement("div");
+      document.body.appendChild(container);
+      let Instance = null;
+      let _instance = null;
+      let content = "";
+      const textNode = this.wrapperDecorations();
+      Instance = createApp({
+        render() {
+          return h("div", {
+            ref: "text",
+            style: {
+              display: "none"
+            }
+          }, textNode);
+        },
+        created() {
+          _instance = getCurrentInstance();
+        }
+      });
+      Instance.mount(container);
+      content = _instance.refs.text.innerText;
+      Instance.unmount();
+      document.body.removeChild(container);
+      return content;
+    },
+    handleCopy() {
+      let content = "";
+      if (this.copyText)
+        content = this.copyText;
+      else if (this.currentContent)
+        content = this.currentContent;
+      else if (this.$slots.default)
+        content = this.handleGetContent();
+      Copy({
+        text: this.copyText ? this.copyText : content,
+        showTip: this.mergedCopyConfig.showTip,
+        successTip: this.mergedCopyConfig.successTip,
+        errorTip: this.mergedCopyConfig.errorTip,
+        success: () => {
+          this.$emit("on-copy-success");
+          this.copied = true;
+          if (this.copyTimeout)
+            clearTimeout(this.copyTimeout);
+          this.copyTimeout = setTimeout(() => {
+            this.copied = false;
+          }, 3e3);
+        },
+        error: () => {
+          this.$emit("on-copy-error");
+        }
+      });
+    },
+    handleEdit() {
+      this.editContent = this.currentContent ? this.currentContent : this.handleGetContent();
+      nextTick(() => {
+        this.editing = true;
+        this.$emit("on-edit-start");
+        nextTick(() => {
+          this.$refs.edit.focus({
+            cursor: "end"
+          });
+        });
+      });
+    },
+    handleEditBlur() {
+      if (this.isEditESC) {
+        this.isEditESC = false;
+        return;
+      }
+      this.handleEditSave();
+      this.$emit("on-edit-end", this.editContent);
+    },
+    handleEditChange(event) {
+      const value = event.target.value;
+      this.editContent = value;
+      this.$emit("on-edit-change", value);
+    },
+    handleEditSave() {
+      this.$emit("update:modelValue", this.editContent);
+      this.editing = false;
+    },
+    handleEditKeydown(e) {
+      const { keyCode } = e;
+      if (keyCode === KeyCode.ENTER)
+        e.preventDefault();
+      this.lastKeyCode = keyCode;
+    },
+    handleEditKeyup(e) {
+      const { keyCode, ctrlKey, altKey, metaKey, shiftKey } = e;
+      if (this.lastKeyCode === keyCode && !ctrlKey && !altKey && !metaKey && !shiftKey) {
+        if (keyCode === KeyCode.ENTER) {
+          this.handleEditSave();
+          this.$emit("on-edit-end", this.editContent);
+        } else if (keyCode === KeyCode.ESC) {
+          this.isEditESC = true;
+          this.$emit("on-edit-cancel");
+          this.editing = false;
+        }
+      }
+    },
+    handleUpdateEllipsisStatus() {
+      if (this.ellipsis && !this.ellipsisExpanded) {
+        const $el = this.$refs.typography;
+        this.isEllipsis = $el.scrollHeight > $el.clientHeight;
+      } else {
+        this.isEllipsis = false;
+      }
+    },
+    handleCreateObserver() {
+      if (this.ellipsis && !this.ellipsisExpanded) {
+        this.observer = elementResizeDetector();
+        this.observer.listenTo(this.$refs.typography, this.handleUpdateEllipsisStatus);
+      }
+    },
+    handleRemoveObserver() {
+      if (this.observer) {
+        this.observer.removeListener(this.$refs.typography, this.handleUpdateEllipsisStatus);
+        this.observer = null;
+      }
+    }
+  },
+  render() {
+    let contentNodes = [];
+    const textNode = this.wrapperDecorations();
+    contentNodes.push(textNode);
+    if (this.editable) {
+      const triggerType = this.mergedEditConfig.triggerType;
+      if (triggerType === "icon" || triggerType === "both") {
+        const editIconNode = this.$slots.editIcon ? this.$slots.editIcon() : h(Icon, { type: "md-create" });
+        const editButtonNode = h("div", {
+          class: "ivu-typography-edit",
+          onClick: this.handleEdit
+        }, editIconNode);
+        if (this.mergedEditConfig.tooltip) {
+          const editTooltipNode = h(Tooltip, {
+            content: this.mergedEditConfig.tooltip,
+            placement: "top"
+          }, () => editButtonNode);
+          contentNodes.push(editTooltipNode);
+        } else {
+          contentNodes.push(editButtonNode);
+        }
+      }
+    }
+    if (this.copyable) {
+      const copyIconNode = this.$slots.copyIcon ? this.$slots.copyIcon({ copied: this.copied }) : h(Icon, { type: this.copied ? "md-checkmark" : "md-copy" });
+      const copyButtonNode = h("div", {
+        class: [
+          "ivu-typography-copy",
+          {
+            "ivu-typography-copy-success": this.copied
+          }
+        ],
+        onClick: this.handleCopy
+      }, copyIconNode);
+      if (this.mergedCopyConfig.tooltips instanceof Array && this.mergedCopyConfig.tooltips.length === 2) {
+        const copyTooltipNode = h(Tooltip, {
+          content: this.copied ? this.mergedCopyConfig.tooltips[1] : this.mergedCopyConfig.tooltips[0],
+          placement: "top"
+        }, () => copyButtonNode);
+        contentNodes.push(copyTooltipNode);
+      } else {
+        contentNodes.push(copyButtonNode);
+      }
+    }
+    if (this.editing) {
+      const textareaNode = h(Input, {
+        ref: "edit",
+        modelValue: this.editContent,
+        type: "textarea",
+        autosize: this.mergedEditConfig.autosize,
+        maxlength: this.mergedEditConfig.maxlength,
+        "onOn-blur": this.handleEditBlur,
+        "onOn-keydown": this.handleEditKeydown,
+        "onOn-keyup": this.handleEditKeyup,
+        "onOn-change": this.handleEditChange
+      });
+      const enterIconNode = this.$slots.enterIcon ? this.$slots.enterIcon() : h(Icon, { type: "md-return-left" });
+      const confirmNode = h("span", {
+        class: "ivu-typography-edit-content-confirm"
+      }, enterIconNode);
+      return h("div", {
+        class: [
+          "ivu-typography",
+          "ivu-typography-edit-content",
+          {
+            [`ivu-typography-h${this.level}`]: this.level,
+            ["ivu-typography-div"]: !this.level
+          }
+        ]
+      }, [textareaNode, confirmNode]);
+    } else {
+      const style2 = {};
+      if (this.ellipsis && !this.ellipsisExpanded) {
+        style2["-webkit-line-clamp"] = this.mergedEllipsisConfig.rows;
+      }
+      let ellipsisExtraNode = null;
+      const baseNode = h(this.component, __spreadProps(__spreadValues({
+        ref: "typography",
+        class: this.classes
+      }, this.linkProps), {
+        style: style2,
+        onClick: this.handleClickContent
+      }), [contentNodes, ellipsisExtraNode]);
+      if (this.ellipsis && !this.ellipsisExpanded && this.isEllipsis && this.mergedEllipsisConfig.tooltip) {
+        return h(Tooltip, {
+          content: this.mergedEllipsisConfig.tooltip === true ? this.handleGetContent() : this.mergedEllipsisConfig.tooltip,
+          placement: this.placement,
+          transfer: this.transfer,
+          theme: this.theme,
+          maxWidth: this.maxWidth
+        }, () => baseNode);
+      } else {
+        return baseNode;
+      }
+    }
+  },
+  beforeUnmount() {
+    this.handleRemoveObserver();
+  }
+};
+const _sfc_main$16 = {
+  name: "Link",
+  mixins: [baseProps],
+  render() {
+    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+      component: "a"
+    }), this.commonEvents()), this.commonSlots());
+  }
+};
+const prefixCls$A = "ivu-spin";
+const _sfc_main$15 = {
   name: "Spin",
   mixins: [ScrollbarMixins],
   props: {
@@ -21861,23 +23094,23 @@ const _sfc_main$$ = {
   computed: {
     classes() {
       return [
-        `${prefixCls$y}`,
+        `${prefixCls$A}`,
         {
-          [`${prefixCls$y}-${this.size}`]: !!this.size,
-          [`${prefixCls$y}-fix`]: this.fix,
-          [`${prefixCls$y}-show-text`]: this.showText,
-          [`${prefixCls$y}-fullscreen`]: this.fullscreen
+          [`${prefixCls$A}-${this.size}`]: !!this.size,
+          [`${prefixCls$A}-fix`]: this.fix,
+          [`${prefixCls$A}-show-text`]: this.showText,
+          [`${prefixCls$A}-fullscreen`]: this.fullscreen
         }
       ];
     },
     mainClasses() {
-      return `${prefixCls$y}-main`;
+      return `${prefixCls$A}-main`;
     },
     dotClasses() {
-      return `${prefixCls$y}-dot`;
+      return `${prefixCls$A}-dot`;
     },
     textClasses() {
-      return `${prefixCls$y}-text`;
+      return `${prefixCls$A}-text`;
     },
     fullscreenVisible() {
       if (this.fullscreen) {
@@ -21900,7 +23133,7 @@ const _sfc_main$$ = {
     this.showText = !!this.$slots.default && this.$slots.default().some((item) => item.children && item.children.length);
   }
 };
-function _sfc_render$V(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$Y(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createBlock(Transition, { name: "fade" }, {
     default: withCtx(() => [
       $options.fullscreenVisible && $props.show ? (openBlock(), createElementBlock("div", {
@@ -21924,7 +23157,7 @@ function _sfc_render$V(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   });
 }
-var Spin = /* @__PURE__ */ _export_sfc(_sfc_main$$, [["render", _sfc_render$V]]);
+var Spin = /* @__PURE__ */ _export_sfc(_sfc_main$15, [["render", _sfc_render$Y]]);
 function handleGetIndex() {
   transferIncrease();
   return transferIndex;
@@ -22009,8 +23242,8 @@ Spin.hide = function() {
     spinInstance = null;
   });
 };
-const prefixCls$x = "ivu-list";
-const _sfc_main$_ = {
+const prefixCls$z = "ivu-list";
+const _sfc_main$14 = {
   name: "List",
   provide() {
     return {
@@ -22061,19 +23294,19 @@ const _sfc_main$_ = {
   computed: {
     classes() {
       return [
-        `${prefixCls$x}`,
-        `${prefixCls$x}-${this.size}`,
-        `${prefixCls$x}-${this.itemLayout}`,
+        `${prefixCls$z}`,
+        `${prefixCls$z}-${this.size}`,
+        `${prefixCls$z}-${this.itemLayout}`,
         {
-          [`${prefixCls$x}-bordered`]: this.border,
-          [`${prefixCls$x}-split`]: this.split
+          [`${prefixCls$z}-bordered`]: this.border,
+          [`${prefixCls$z}-split`]: this.split
         }
       ];
     }
   },
   methods: {}
 };
-const _hoisted_1$A = {
+const _hoisted_1$B = {
   key: 0,
   class: "ivu-list-header"
 };
@@ -22083,12 +23316,12 @@ const _hoisted_4$g = {
   key: 2,
   class: "ivu-list-footer"
 };
-function _sfc_render$U(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$X(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Spin = resolveComponent("Spin");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
-    $props.header || _ctx.$slots.header ? (openBlock(), createElementBlock("div", _hoisted_1$A, [
+    $props.header || _ctx.$slots.header ? (openBlock(), createElementBlock("div", _hoisted_1$B, [
       renderSlot(_ctx.$slots, "header", {}, () => [
         createTextVNode(toDisplayString($props.header), 1)
       ])
@@ -22115,8 +23348,8 @@ function _sfc_render$U(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 2);
 }
-var List$1 = /* @__PURE__ */ _export_sfc(_sfc_main$_, [["render", _sfc_render$U]]);
-const _sfc_main$Z = {
+var List$1 = /* @__PURE__ */ _export_sfc(_sfc_main$14, [["render", _sfc_render$X]]);
+const _sfc_main$13 = {
   name: "ListItem",
   inject: ["ListInstance"],
   props: {},
@@ -22149,7 +23382,7 @@ const _sfc_main$Z = {
     }
   }
 };
-const _hoisted_1$z = { class: "ivu-list-item-main" };
+const _hoisted_1$A = { class: "ivu-list-item-main" };
 const _hoisted_2$m = {
   key: 0,
   class: "ivu-list-item-action"
@@ -22160,12 +23393,12 @@ const _hoisted_4$f = {
   class: "ivu-list-item-action"
 };
 const _hoisted_5$a = { class: "ivu-list-item-extra" };
-function _sfc_render$T(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$W(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: normalizeClass(["ivu-list-item", $options.classes])
   }, [
     $options.itemLayout === "vertical" && _ctx.$slots.extra ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-      createElementVNode("div", _hoisted_1$z, [
+      createElementVNode("div", _hoisted_1$A, [
         renderSlot(_ctx.$slots, "default"),
         _ctx.$slots.action ? (openBlock(), createElementBlock("ul", _hoisted_2$m, [
           renderSlot(_ctx.$slots, "action")
@@ -22185,8 +23418,8 @@ function _sfc_render$T(_ctx, _cache, $props, $setup, $data, $options) {
     ], 64))
   ], 2);
 }
-var ListItem = /* @__PURE__ */ _export_sfc(_sfc_main$Z, [["render", _sfc_render$T]]);
-const _sfc_main$Y = {
+var ListItem = /* @__PURE__ */ _export_sfc(_sfc_main$13, [["render", _sfc_render$W]]);
+const _sfc_main$12 = {
   name: "ListItemMeta",
   components: { Avatar },
   props: {
@@ -22204,7 +23437,7 @@ const _sfc_main$Y = {
     }
   }
 };
-const _hoisted_1$y = { class: "ivu-list-item-meta" };
+const _hoisted_1$z = { class: "ivu-list-item-meta" };
 const _hoisted_2$l = {
   key: 0,
   class: "ivu-list-item-meta-avatar"
@@ -22218,9 +23451,9 @@ const _hoisted_5$9 = {
   key: 1,
   class: "ivu-list-item-meta-description"
 };
-function _sfc_render$S(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$V(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Avatar = resolveComponent("Avatar");
-  return openBlock(), createElementBlock("div", _hoisted_1$y, [
+  return openBlock(), createElementBlock("div", _hoisted_1$z, [
     $props.avatar || _ctx.$slots.avatar ? (openBlock(), createElementBlock("div", _hoisted_2$l, [
       renderSlot(_ctx.$slots, "avatar", {}, () => [
         createVNode(_component_Avatar, { src: $props.avatar }, null, 8, ["src"])
@@ -22240,9 +23473,9 @@ function _sfc_render$S(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var ListItemMeta = /* @__PURE__ */ _export_sfc(_sfc_main$Y, [["render", _sfc_render$S]]);
-const prefixCls$w = "ivu-loading-bar";
-const _sfc_main$X = {
+var ListItemMeta = /* @__PURE__ */ _export_sfc(_sfc_main$12, [["render", _sfc_render$V]]);
+const prefixCls$y = "ivu-loading-bar";
+const _sfc_main$11 = {
   name: "LoadingBar",
   props: {
     color: {
@@ -22267,14 +23500,14 @@ const _sfc_main$X = {
   },
   computed: {
     classes() {
-      return `${prefixCls$w}`;
+      return `${prefixCls$y}`;
     },
     innerClasses() {
       return [
-        `${prefixCls$w}-inner`,
+        `${prefixCls$y}-inner`,
         {
-          [`${prefixCls$w}-inner-color-primary`]: this.color === "primary" && this.status === "success",
-          [`${prefixCls$w}-inner-failed-color-error`]: this.failedColor === "error" && this.status === "error"
+          [`${prefixCls$y}-inner-color-primary`]: this.color === "primary" && this.status === "success",
+          [`${prefixCls$y}-inner-failed-color-error`]: this.failedColor === "error" && this.status === "error"
         }
       ];
     },
@@ -22298,7 +23531,7 @@ const _sfc_main$X = {
     }
   }
 };
-function _sfc_render$R(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$U(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createBlock(Transition, { name: "fade" }, {
     default: withCtx(() => [
       withDirectives(createElementVNode("div", {
@@ -22316,7 +23549,7 @@ function _sfc_render$R(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
   });
 }
-var LoadingBar = /* @__PURE__ */ _export_sfc(_sfc_main$X, [["render", _sfc_render$R]]);
+var LoadingBar = /* @__PURE__ */ _export_sfc(_sfc_main$11, [["render", _sfc_render$U]]);
 LoadingBar.newInstance = (properties) => {
   if (!isClient)
     return;
@@ -22463,7 +23696,7 @@ var index$3 = {
     instance.destroy();
   }
 };
-const _sfc_main$W = {
+const _sfc_main$10 = {
   name: "Login",
   components: { Form },
   emits: ["on-submit"],
@@ -22496,10 +23729,10 @@ const _sfc_main$W = {
     }
   }
 };
-const _hoisted_1$x = { class: "ivu-login" };
-function _sfc_render$Q(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$y = { class: "ivu-login" };
+function _sfc_render$T(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Form = resolveComponent("Form");
-  return openBlock(), createElementBlock("div", _hoisted_1$x, [
+  return openBlock(), createElementBlock("div", _hoisted_1$y, [
     createVNode(_component_Form, {
       ref: "form",
       model: $data.formValidate,
@@ -22513,9 +23746,9 @@ function _sfc_render$Q(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["model"])
   ]);
 }
-var Login = /* @__PURE__ */ _export_sfc(_sfc_main$W, [["render", _sfc_render$Q]]);
-const prefixCls$v = "ivu-menu";
-const _sfc_main$V = {
+var Login = /* @__PURE__ */ _export_sfc(_sfc_main$10, [["render", _sfc_render$T]]);
+const prefixCls$x = "ivu-menu";
+const _sfc_main$$ = {
   name: "Menu",
   emits: ["on-select", "on-open-change"],
   provide() {
@@ -22569,10 +23802,10 @@ const _sfc_main$V = {
       if (this.mode === "vertical" && this.theme === "primary")
         theme = "light";
       return [
-        `${prefixCls$v}`,
-        `${prefixCls$v}-${theme}`,
+        `${prefixCls$x}`,
+        `${prefixCls$x}-${theme}`,
         {
-          [`${prefixCls$v}-${this.mode}`]: this.mode
+          [`${prefixCls$x}-${this.mode}`]: this.mode
         }
       ];
     },
@@ -22680,7 +23913,7 @@ const _sfc_main$V = {
     }
   }
 };
-function _sfc_render$P(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$S(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("ul", {
     class: normalizeClass($options.classes),
     style: normalizeStyle($options.styles)
@@ -22688,7 +23921,7 @@ function _sfc_render$P(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 6);
 }
-var Menu = /* @__PURE__ */ _export_sfc(_sfc_main$V, [["render", _sfc_render$P]]);
+var Menu = /* @__PURE__ */ _export_sfc(_sfc_main$$, [["render", _sfc_render$S]]);
 var mixin = {
   inject: {
     MenuInstance: {
@@ -22715,8 +23948,8 @@ var mixin = {
     }
   }
 };
-const prefixCls$u = "ivu-menu";
-const _sfc_main$U = {
+const prefixCls$w = "ivu-menu";
+const _sfc_main$_ = {
   name: "MenuGroup",
   mixins: [mixin],
   props: {
@@ -22727,7 +23960,7 @@ const _sfc_main$U = {
   },
   data() {
     return {
-      prefixCls: prefixCls$u
+      prefixCls: prefixCls$w
     };
   },
   computed: {
@@ -22738,7 +23971,7 @@ const _sfc_main$U = {
     }
   }
 };
-function _sfc_render$O(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$R(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: normalizeClass([$data.prefixCls + "-item-group"])
   }, [
@@ -22751,9 +23984,9 @@ function _sfc_render$O(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 2);
 }
-var MenuGroup = /* @__PURE__ */ _export_sfc(_sfc_main$U, [["render", _sfc_render$O]]);
-const prefixCls$t = "ivu-menu";
-const _sfc_main$T = {
+var MenuGroup = /* @__PURE__ */ _export_sfc(_sfc_main$_, [["render", _sfc_render$R]]);
+const prefixCls$v = "ivu-menu";
+const _sfc_main$Z = {
   name: "MenuItem",
   mixins: [mixin, mixinsLink],
   props: {
@@ -22775,11 +24008,11 @@ const _sfc_main$T = {
   computed: {
     classes() {
       return [
-        `${prefixCls$t}-item`,
+        `${prefixCls$v}-item`,
         {
-          [`${prefixCls$t}-item-active`]: this.active,
-          [`${prefixCls$t}-item-selected`]: this.active,
-          [`${prefixCls$t}-item-disabled`]: this.disabled
+          [`${prefixCls$v}-item-active`]: this.active,
+          [`${prefixCls$v}-item-selected`]: this.active,
+          [`${prefixCls$v}-item-disabled`]: this.disabled
         }
       ];
     },
@@ -22841,8 +24074,8 @@ const _sfc_main$T = {
     this.removeMenuItem();
   }
 };
-const _hoisted_1$w = ["href", "target"];
-function _sfc_render$N(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$x = ["href", "target"];
+function _sfc_render$Q(_ctx, _cache, $props, $setup, $data, $options) {
   return _ctx.to ? (openBlock(), createElementBlock("a", {
     key: 0,
     href: _ctx.linkUrl,
@@ -22856,7 +24089,7 @@ function _sfc_render$N(_ctx, _cache, $props, $setup, $data, $options) {
     style: normalizeStyle($options.itemStyle)
   }, [
     renderSlot(_ctx.$slots, "default")
-  ], 14, _hoisted_1$w)) : (openBlock(), createElementBlock("li", {
+  ], 14, _hoisted_1$x)) : (openBlock(), createElementBlock("li", {
     key: 1,
     class: normalizeClass($options.classes),
     onClick: _cache[3] || (_cache[3] = withModifiers((...args) => $options.handleClickItem && $options.handleClickItem(...args), ["stop"])),
@@ -22865,8 +24098,8 @@ function _sfc_render$N(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 6));
 }
-var MenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$T, [["render", _sfc_render$N]]);
-const _sfc_main$S = {
+var MenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$Z, [["render", _sfc_render$Q]]);
+const _sfc_main$Y = {
   name: "Mobile",
   mixins: [LoginItem],
   data() {
@@ -22897,7 +24130,7 @@ const _sfc_main$S = {
     }
   }
 };
-const prefixCls$s = "ivu-modal";
+const prefixCls$u = "ivu-modal";
 const dragData = {
   x: null,
   y: null,
@@ -22906,11 +24139,11 @@ const dragData = {
   dragging: false,
   rect: null
 };
-const _sfc_main$R = {
+const _sfc_main$X = {
   inheritAttrs: false,
   name: "Modal",
   mixins: [Locale, ScrollbarMixins],
-  components: { Icon, iButton: _sfc_main$21 },
+  components: { Icon, iButton: _sfc_main$2b },
   emits: ["on-cancel", "on-ok", "on-hidden", "on-visible-change", "update:modelValue"],
   provide() {
     return {
@@ -23013,7 +24246,7 @@ const _sfc_main$R = {
   },
   data() {
     return {
-      prefixCls: prefixCls$s,
+      prefixCls: prefixCls$u,
       wrapShow: false,
       showHead: true,
       buttonLoading: false,
@@ -23029,11 +24262,11 @@ const _sfc_main$R = {
   computed: {
     wrapClasses() {
       return [
-        `${prefixCls$s}-wrap`,
+        `${prefixCls$u}-wrap`,
         {
-          [`${prefixCls$s}-hidden`]: !this.wrapShow,
+          [`${prefixCls$u}-hidden`]: !this.wrapShow,
           [`${this.className}`]: !!this.className,
-          [`${prefixCls$s}-no-mask`]: !this.showMask
+          [`${prefixCls$u}-no-mask`]: !this.showMask
         }
       ];
     },
@@ -23043,25 +24276,25 @@ const _sfc_main$R = {
       };
     },
     maskClasses() {
-      return `${prefixCls$s}-mask`;
+      return `${prefixCls$u}-mask`;
     },
     classes() {
       return [
-        `${prefixCls$s}`,
+        `${prefixCls$u}`,
         {
-          [`${prefixCls$s}-fullscreen`]: this.fullscreen,
-          [`${prefixCls$s}-fullscreen-no-header`]: this.fullscreen && !this.showHead,
-          [`${prefixCls$s}-fullscreen-no-footer`]: this.fullscreen && this.footerHide
+          [`${prefixCls$u}-fullscreen`]: this.fullscreen,
+          [`${prefixCls$u}-fullscreen-no-header`]: this.fullscreen && !this.showHead,
+          [`${prefixCls$u}-fullscreen-no-footer`]: this.fullscreen && this.footerHide
         }
       ];
     },
     contentClasses() {
       return [
-        `${prefixCls$s}-content`,
+        `${prefixCls$u}-content`,
         {
-          [`${prefixCls$s}-content-no-mask`]: !this.showMask,
-          [`${prefixCls$s}-content-drag`]: this.draggable && !this.fullscreen,
-          [`${prefixCls$s}-content-dragging`]: this.draggable && this.dragData.dragging
+          [`${prefixCls$u}-content-no-mask`]: !this.showMask,
+          [`${prefixCls$u}-content-drag`]: this.draggable && !this.fullscreen,
+          [`${prefixCls$u}-content-dragging`]: this.draggable && this.dragData.dragging
         }
       ];
     },
@@ -23144,7 +24377,7 @@ const _sfc_main$R = {
         return;
       }
       const className = event.target.getAttribute("class");
-      if (className && className.indexOf(`${prefixCls$s}-wrap`) > -1)
+      if (className && className.indexOf(`${prefixCls$u}-wrap`) > -1)
         this.handleMask();
     },
     handleMousedown() {
@@ -23338,7 +24571,7 @@ const _sfc_main$R = {
     this.removeScrollEffect();
   }
 };
-function _sfc_render$M(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$P(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_i_button = resolveComponent("i-button");
   return openBlock(), createBlock(Teleport, {
@@ -23442,8 +24675,8 @@ function _sfc_render$M(_ctx, _cache, $props, $setup, $data, $options) {
     ], 6)
   ], 8, ["disabled"]);
 }
-var Modal = /* @__PURE__ */ _export_sfc(_sfc_main$R, [["render", _sfc_render$M]]);
-const prefixCls$r = "ivu-modal-confirm";
+var Modal = /* @__PURE__ */ _export_sfc(_sfc_main$X, [["render", _sfc_render$P]]);
+const prefixCls$t = "ivu-modal-confirm";
 Modal.newInstance = (properties) => {
   if (!isClient)
     return;
@@ -23474,12 +24707,12 @@ Modal.newInstance = (properties) => {
     render() {
       let footerVNodes = [];
       if (this.showCancel) {
-        footerVNodes.push(h(_sfc_main$21, {
+        footerVNodes.push(h(_sfc_main$2b, {
           type: "text",
           onClick: this.cancel
         }, () => this.localeCancelText));
       }
-      footerVNodes.push(h(_sfc_main$21, {
+      footerVNodes.push(h(_sfc_main$2b, {
         type: "primary",
         loading: this.buttonLoading,
         onClick: this.ok
@@ -23487,11 +24720,11 @@ Modal.newInstance = (properties) => {
       let body_render;
       if (this.render) {
         body_render = h("div", {
-          class: `${prefixCls$r}-body ${prefixCls$r}-body-render`
+          class: `${prefixCls$t}-body ${prefixCls$t}-body-render`
         }, [this.render(h)]);
       } else {
         body_render = h("div", {
-          class: `${prefixCls$r}-body`
+          class: `${prefixCls$t}-body`
         }, [
           h("div", {
             innerHTML: this.body
@@ -23501,7 +24734,7 @@ Modal.newInstance = (properties) => {
       let head_render;
       if (this.title) {
         head_render = h("div", {
-          class: `${prefixCls$r}-head`
+          class: `${prefixCls$t}-head`
         }, [
           h("div", {
             class: this.iconTypeCls
@@ -23511,7 +24744,7 @@ Modal.newInstance = (properties) => {
             })
           ]),
           h("div", {
-            class: `${prefixCls$r}-head-title`,
+            class: `${prefixCls$t}-head-title`,
             innerHTML: this.title
           })
         ]);
@@ -23526,20 +24759,20 @@ Modal.newInstance = (properties) => {
         "onUpdate:modelValue": (status) => this.visible = status,
         "onOn-cancel": this.cancel
       }), () => h("div", {
-        class: prefixCls$r
+        class: prefixCls$t
       }, [
         head_render,
         body_render,
         h("div", {
-          class: `${prefixCls$r}-footer`
+          class: `${prefixCls$t}-footer`
         }, footerVNodes)
       ]));
     },
     computed: {
       iconTypeCls() {
         return [
-          `${prefixCls$r}-head-icon`,
-          `${prefixCls$r}-head-icon-${this.iconType}`
+          `${prefixCls$t}-head-icon`,
+          `${prefixCls$t}-head-icon-${this.iconType}`
         ];
       },
       iconNameCls() {
@@ -23722,7 +24955,7 @@ Modal.remove = function() {
   const instance = getModalInstance();
   instance.remove();
 };
-const prefixCls$q = "ivu-notice";
+const prefixCls$s = "ivu-notice";
 const iconPrefixCls$1 = "ivu-icon";
 const prefixKey = "ivu_notice_key_";
 let top = 24;
@@ -23738,7 +24971,7 @@ const iconTypes = {
 const transitionName = "move-notice";
 function getNoticeInstance() {
   noticeInstance = noticeInstance || Notification$1.newInstance({
-    prefixCls: prefixCls$q,
+    prefixCls: prefixCls$s,
     styles: {
       top: `${top}px`,
       right: 0
@@ -23759,13 +24992,13 @@ function notice(type2, options) {
   let instance = getNoticeInstance();
   let content;
   let withIcon;
-  const with_desc = options.render && !title2 ? "" : desc || options.render ? ` ${prefixCls$q}-with-desc` : "";
+  const with_desc = options.render && !title2 ? "" : desc || options.render ? ` ${prefixCls$s}-with-desc` : "";
   if (type2 === "normal") {
     withIcon = false;
     content = `
-            <div class="${prefixCls$q}-custom-content ${prefixCls$q}-with-normal ${with_desc}">
-                <div class="${prefixCls$q}-title">${title2}</div>
-                <div class="${prefixCls$q}-desc">${desc}</div>
+            <div class="${prefixCls$s}-custom-content ${prefixCls$s}-with-normal ${with_desc}">
+                <div class="${prefixCls$s}-title">${title2}</div>
+                <div class="${prefixCls$s}-desc">${desc}</div>
             </div>
         `;
   } else {
@@ -23773,12 +25006,12 @@ function notice(type2, options) {
     const outlineIcon = with_desc === "" ? "" : "-outline";
     withIcon = true;
     content = `
-            <div class="${prefixCls$q}-custom-content ${prefixCls$q}-with-icon ${prefixCls$q}-with-${type2} ${with_desc}">
-                <span class="${prefixCls$q}-icon ${prefixCls$q}-icon-${type2}">
+            <div class="${prefixCls$s}-custom-content ${prefixCls$s}-with-icon ${prefixCls$s}-with-${type2} ${with_desc}">
+                <span class="${prefixCls$s}-icon ${prefixCls$s}-icon-${type2}">
                     <i class="${iconPrefixCls$1} ${iconPrefixCls$1}-${iconType}${outlineIcon}"></i>
                 </span>
-                <div class="${prefixCls$q}-title">${title2}</div>
-                <div class="${prefixCls$q}-desc">${desc}</div>
+                <div class="${prefixCls$s}-title">${title2}</div>
+                <div class="${prefixCls$s}-desc">${desc}</div>
             </div>
         `;
   }
@@ -23836,7 +25069,7 @@ var index$2 = {
     instance.destroy("ivu-notice");
   }
 };
-const prefixCls$p = "ivu-tabs";
+const prefixCls$r = "ivu-tabs";
 const transitionTime = 300;
 const getNextTab = (list, activeKey, direction, countDisabledAlso) => {
   const currentIndex = list.findIndex((tab) => tab.name === activeKey);
@@ -23861,7 +25094,7 @@ const focusFirst = (element, root2) => {
   }
   return false;
 };
-const _sfc_main$Q = {
+const _sfc_main$W = {
   name: "Tabs",
   mixins: [globalConfig],
   emits: ["on-click", "on-dblclick", "on-contextmenu", "on-tab-remove", "on-drag-drop", "update:modelValue"],
@@ -23914,7 +25147,7 @@ const _sfc_main$Q = {
   },
   data() {
     return {
-      prefixCls: prefixCls$p,
+      prefixCls: prefixCls$r,
       navList: [],
       barWidth: 0,
       barOffset: 0,
@@ -23938,27 +25171,27 @@ const _sfc_main$Q = {
   computed: {
     classes() {
       return [
-        `${prefixCls$p}`,
+        `${prefixCls$r}`,
         {
-          [`${prefixCls$p}-card`]: this.type === "card",
-          [`${prefixCls$p}-mini`]: this.size === "small" && this.type === "line",
-          [`${prefixCls$p}-no-animation`]: !this.animated
+          [`${prefixCls$r}-card`]: this.type === "card",
+          [`${prefixCls$r}-mini`]: this.size === "small" && this.type === "line",
+          [`${prefixCls$r}-no-animation`]: !this.animated
         }
       ];
     },
     contentClasses() {
       return [
-        `${prefixCls$p}-content`,
+        `${prefixCls$r}-content`,
         {
-          [`${prefixCls$p}-content-animated`]: this.animated
+          [`${prefixCls$r}-content-animated`]: this.animated
         }
       ];
     },
     barClasses() {
       return [
-        `${prefixCls$p}-ink-bar`,
+        `${prefixCls$r}-ink-bar`,
         {
-          [`${prefixCls$p}-ink-bar-animated`]: this.animated
+          [`${prefixCls$r}-ink-bar-animated`]: this.animated
         }
       ];
     },
@@ -24067,7 +25300,7 @@ const _sfc_main$Q = {
         const index2 = this.getTabIndex(this.activeKey);
         if (!this.$refs.nav)
           return;
-        const prevTabs = this.$refs.nav.querySelectorAll(`.${prefixCls$p}-tab`);
+        const prevTabs = this.$refs.nav.querySelectorAll(`.${prefixCls$r}-tab`);
         const tab = prevTabs[index2];
         this.barWidth = tab ? parseFloat(tab.offsetWidth) : 0;
         if (index2 > 0) {
@@ -24089,11 +25322,11 @@ const _sfc_main$Q = {
     },
     tabCls(item) {
       return [
-        `${prefixCls$p}-tab`,
+        `${prefixCls$r}-tab`,
         {
-          [`${prefixCls$p}-tab-disabled`]: item.disabled,
-          [`${prefixCls$p}-tab-active`]: item.name === this.activeKey,
-          [`${prefixCls$p}-tab-focused`]: item.name === this.focusedKey
+          [`${prefixCls$r}-tab-disabled`]: item.disabled,
+          [`${prefixCls$r}-tab-active`]: item.name === this.activeKey,
+          [`${prefixCls$r}-tab-focused`]: item.name === this.focusedKey
         }
       ];
     },
@@ -24235,7 +25468,7 @@ const _sfc_main$Q = {
       if (!this.scrollable)
         return;
       const nav = this.$refs.nav;
-      const activeTab = this.$el.querySelector(`.${prefixCls$p}-tab-active`);
+      const activeTab = this.$el.querySelector(`.${prefixCls$r}-tab-active`);
       if (!activeTab)
         return;
       const navScroll = this.$refs.navScroll;
@@ -24302,14 +25535,14 @@ const _sfc_main$Q = {
       return false;
     },
     updateVisibility(index2) {
-      [...this.$refs.panes.querySelectorAll(`.${prefixCls$p}-tabpane`)].forEach((el, i) => {
+      [...this.$refs.panes.querySelectorAll(`.${prefixCls$r}-tabpane`)].forEach((el, i) => {
         if (index2 === i) {
-          [...el.children].filter((child) => child.classList.contains(`${prefixCls$p}-tabpane`)).forEach((child) => child.style.visibility = "visible");
+          [...el.children].filter((child) => child.classList.contains(`${prefixCls$r}-tabpane`)).forEach((child) => child.style.visibility = "visible");
           if (this.captureFocus)
             setTimeout(() => focusFirst(el, el), transitionTime);
         } else {
           setTimeout(() => {
-            [...el.children].filter((child) => child.classList.contains(`${prefixCls$p}-tabpane`)).forEach((child) => child.style.visibility = "hidden");
+            [...el.children].filter((child) => child.classList.contains(`${prefixCls$r}-tabpane`)).forEach((child) => child.style.visibility = "hidden");
           }, transitionTime);
         }
       });
@@ -24382,8 +25615,8 @@ const _sfc_main$Q = {
       this.mutationObserver.disconnect();
   }
 };
-const _hoisted_1$v = ["onClick", "onDblclick", "onContextmenu", "onSelectstart", "draggable", "onDragstart", "onDrop"];
-function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$w = ["onClick", "onDblclick", "onContextmenu", "onSelectstart", "draggable", "onDragstart", "onDrop"];
+function _sfc_render$O(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Render = resolveComponent("Render");
   const _component_DropdownMenu = resolveComponent("DropdownMenu");
@@ -24473,7 +25706,7 @@ function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
                     size: $options.arrowSize,
                     onClick: withModifiers(($event) => $options.handleRemove(index2), ["stop"])
                   }, null, 8, ["class", "type", "custom", "size", "onClick"])) : createCommentVNode("", true)
-                ], 42, _hoisted_1$v);
+                ], 42, _hoisted_1$w);
               }), 128))
             ], 6)
           ], 34)
@@ -24511,8 +25744,8 @@ function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
     ], 4)
   ], 2);
 }
-var Tabs = /* @__PURE__ */ _export_sfc(_sfc_main$Q, [["render", _sfc_render$L]]);
-const _sfc_main$P = {
+var Tabs = /* @__PURE__ */ _export_sfc(_sfc_main$W, [["render", _sfc_render$O]]);
+const _sfc_main$V = {
   name: "Notification",
   components: { Dropdown, DropdownMenu, Badge, Tabs },
   emits: ["on-visible-change", "on-item-click", "on-clear", "on-load-more", "on-tab-change"],
@@ -24657,7 +25890,7 @@ const _sfc_main$P = {
     }
   }
 };
-const _hoisted_1$u = {
+const _hoisted_1$v = {
   class: "ivu-notifications",
   ref: "notice"
 };
@@ -24666,13 +25899,13 @@ const _hoisted_3$g = {
   key: 0,
   class: "ivu-notifications-extra"
 };
-function _sfc_render$K(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$N(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Badge = resolveComponent("Badge");
   const _component_Tabs = resolveComponent("Tabs");
   const _component_DropdownMenu = resolveComponent("DropdownMenu");
   const _component_Dropdown = resolveComponent("Dropdown");
-  return openBlock(), createElementBlock("div", _hoisted_1$u, [
+  return openBlock(), createElementBlock("div", _hoisted_1$v, [
     createVNode(_component_Dropdown, {
       trigger: "custom",
       visible: $data.visible,
@@ -24734,7 +25967,7 @@ function _sfc_render$K(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["visible", "transfer", "placement", "transfer-class-name", "onOnVisibleChange", "onOnClickoutside"])
   ], 512);
 }
-var Notification = /* @__PURE__ */ _export_sfc(_sfc_main$P, [["render", _sfc_render$K]]);
+var Notification = /* @__PURE__ */ _export_sfc(_sfc_main$V, [["render", _sfc_render$N]]);
 const isEarly = (timeStamp, currentTime) => {
   return timeStamp <= currentTime;
 };
@@ -24783,8 +26016,8 @@ const getRelativeTime = (timeStamp, locale2) => {
 function Time$1(timestamp, locale2) {
   return getRelativeTime(timestamp, locale2);
 }
-const prefixCls$o = "ivu-time";
-const _sfc_main$O = {
+const prefixCls$q = "ivu-time";
+const _sfc_main$U = {
   name: "Time",
   mixins: [Locale],
   props: {
@@ -24816,9 +26049,9 @@ const _sfc_main$O = {
   computed: {
     classes() {
       return [
-        `${prefixCls$o}`,
+        `${prefixCls$q}`,
         {
-          [`${prefixCls$o}-with-hash`]: this.hash
+          [`${prefixCls$q}-with-hash`]: this.hash
         }
       ];
     }
@@ -24873,14 +26106,14 @@ const _sfc_main$O = {
       clearInterval(this.timer);
   }
 };
-function _sfc_render$J(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$M(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", {
     class: normalizeClass($options.classes),
     onClick: _cache[0] || (_cache[0] = (...args) => $options.handleClick && $options.handleClick(...args))
   }, toDisplayString($data.date), 3);
 }
-var Time = /* @__PURE__ */ _export_sfc(_sfc_main$O, [["render", _sfc_render$J]]);
-const _sfc_main$N = {
+var Time = /* @__PURE__ */ _export_sfc(_sfc_main$U, [["render", _sfc_render$M]]);
+const _sfc_main$T = {
   name: "NotificationItem",
   inject: ["NotificationTabInstance", "NotificationInstance"],
   components: { Row, Col, Avatar, Tag, Time },
@@ -25009,7 +26242,7 @@ const _sfc_main$N = {
     this.removeItem();
   }
 };
-const _hoisted_1$t = { class: "ivu-notifications-item-title" };
+const _hoisted_1$u = { class: "ivu-notifications-item-title" };
 const _hoisted_2$j = { key: 0 };
 const _hoisted_3$f = {
   key: 0,
@@ -25023,7 +26256,7 @@ const _hoisted_5$8 = {
   key: 1,
   class: "ivu-notifications-item-time"
 };
-function _sfc_render$I(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Avatar = resolveComponent("Avatar");
   const _component_Col = resolveComponent("Col");
   const _component_Tag = resolveComponent("Tag");
@@ -25068,7 +26301,7 @@ function _sfc_render$I(_ctx, _cache, $props, $setup, $data, $options) {
             class: "ivu-notifications-item-content"
           }, {
             default: withCtx(() => [
-              createElementVNode("div", _hoisted_1$t, [
+              createElementVNode("div", _hoisted_1$u, [
                 $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("h4", _hoisted_2$j, [
                   renderSlot(_ctx.$slots, "title", {}, () => [
                     createTextVNode(toDisplayString($props.title), 1)
@@ -25102,9 +26335,9 @@ function _sfc_render$I(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 2);
 }
-var NotificationItem = /* @__PURE__ */ _export_sfc(_sfc_main$N, [["render", _sfc_render$I]]);
-const prefixCls$n = "ivu-tabs-tabpane";
-const _sfc_main$M = {
+var NotificationItem = /* @__PURE__ */ _export_sfc(_sfc_main$T, [["render", _sfc_render$L]]);
+const prefixCls$p = "ivu-tabs-tabpane";
+const _sfc_main$S = {
   name: "TabPane",
   inject: ["TabsInstance"],
   props: {
@@ -25139,7 +26372,7 @@ const _sfc_main$M = {
   },
   data() {
     return {
-      prefixCls: prefixCls$n,
+      prefixCls: prefixCls$p,
       show: true,
       currentName: this.name,
       id: random(6)
@@ -25198,7 +26431,7 @@ const _sfc_main$M = {
     this.updateNav();
   }
 };
-function _sfc_render$H(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$K(_ctx, _cache, $props, $setup, $data, $options) {
   return withDirectives((openBlock(), createElementBlock("div", {
     class: normalizeClass($data.prefixCls),
     style: normalizeStyle($options.contentStyle)
@@ -25208,8 +26441,8 @@ function _sfc_render$H(_ctx, _cache, $props, $setup, $data, $options) {
     [vShow, $data.show]
   ]);
 }
-var TabPane = /* @__PURE__ */ _export_sfc(_sfc_main$M, [["render", _sfc_render$H]]);
-const _sfc_main$L = {
+var TabPane = /* @__PURE__ */ _export_sfc(_sfc_main$S, [["render", _sfc_render$K]]);
+const _sfc_main$R = {
   name: "NotificationTab",
   inject: ["NotificationInstance"],
   components: { TabPane, Icon },
@@ -25345,7 +26578,7 @@ const _sfc_main$L = {
     this.removeTab();
   }
 };
-const _hoisted_1$s = { class: "ivu-notifications-container-list" };
+const _hoisted_1$t = { class: "ivu-notifications-container-list" };
 const _hoisted_2$i = {
   key: 0,
   class: "ivu-notifications-tab-empty"
@@ -25361,7 +26594,7 @@ const _hoisted_7$4 = {
   key: 2,
   class: "ivu-notifications-tab-loading-item ivu-notifications-tab-loading-all"
 };
-function _sfc_render$G(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$J(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_TabPane = resolveComponent("TabPane");
   return openBlock(), createBlock(_component_TabPane, {
@@ -25377,7 +26610,7 @@ function _sfc_render$G(_ctx, _cache, $props, $setup, $data, $options) {
         ref: "scroll"
       }, [
         renderSlot(_ctx.$slots, "top"),
-        createElementVNode("div", _hoisted_1$s, [
+        createElementVNode("div", _hoisted_1$t, [
           renderSlot(_ctx.$slots, "default")
         ]),
         !$props.loading && $data.itemCount === 0 ? (openBlock(), createElementBlock("div", _hoisted_2$i, [
@@ -25431,8 +26664,8 @@ function _sfc_render$G(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["label", "name"]);
 }
-var NotificationTab = /* @__PURE__ */ _export_sfc(_sfc_main$L, [["render", _sfc_render$G]]);
-const _sfc_main$K = {
+var NotificationTab = /* @__PURE__ */ _export_sfc(_sfc_main$R, [["render", _sfc_render$J]]);
+const _sfc_main$Q = {
   name: "Trend",
   components: { Icon },
   props: {
@@ -25475,13 +26708,13 @@ const _sfc_main$K = {
     }
   }
 };
-const _hoisted_1$r = { class: "ivu-trend-text" };
-function _sfc_render$F(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$s = { class: "ivu-trend-text" };
+function _sfc_render$I(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["ivu-trend", $options.classes])
   }, [
-    createElementVNode("span", _hoisted_1$r, [
+    createElementVNode("span", _hoisted_1$s, [
       renderSlot(_ctx.$slots, "default")
     ]),
     createVNode(_component_Icon, {
@@ -25490,8 +26723,8 @@ function _sfc_render$F(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["type"])
   ], 2);
 }
-var Trend = /* @__PURE__ */ _export_sfc(_sfc_main$K, [["render", _sfc_render$F]]);
-const _sfc_main$J = {
+var Trend = /* @__PURE__ */ _export_sfc(_sfc_main$Q, [["render", _sfc_render$I]]);
+const _sfc_main$P = {
   name: "NumberInfo",
   components: { Trend },
   props: {
@@ -25525,7 +26758,7 @@ const _sfc_main$J = {
     }
   }
 };
-const _hoisted_1$q = { class: "ivu-number-info" };
+const _hoisted_1$r = { class: "ivu-number-info" };
 const _hoisted_2$h = {
   key: 0,
   class: "ivu-number-info-title"
@@ -25539,9 +26772,9 @@ const _hoisted_5$6 = {
   key: 0,
   class: "ivu-number-info-subTotal"
 };
-function _sfc_render$E(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$H(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Trend = resolveComponent("Trend");
-  return openBlock(), createElementBlock("div", _hoisted_1$q, [
+  return openBlock(), createElementBlock("div", _hoisted_1$r, [
     $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_2$h, [
       renderSlot(_ctx.$slots, "title", {}, () => [
         createTextVNode(toDisplayString($props.title), 1)
@@ -25574,7 +26807,7 @@ function _sfc_render$E(_ctx, _cache, $props, $setup, $data, $options) {
     ], 4)
   ]);
 }
-var NumberInfo = /* @__PURE__ */ _export_sfc(_sfc_main$J, [["render", _sfc_render$E]]);
+var NumberInfo = /* @__PURE__ */ _export_sfc(_sfc_main$P, [["render", _sfc_render$H]]);
 var numeral = { exports: {} };
 /*! @preserve
  * numeral.js
@@ -26243,7 +27476,7 @@ var numeral = { exports: {} };
   });
 })(numeral);
 var Numeral$1 = numeral.exports;
-const _sfc_main$I = {
+const _sfc_main$O = {
   name: "Numeral",
   emits: ["on-change"],
   props: {
@@ -26293,9 +27526,9 @@ const _sfc_main$I = {
     this.init();
   }
 };
-const _hoisted_1$p = { class: "ivu-numeral" };
-function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("span", _hoisted_1$p, [
+const _hoisted_1$q = { class: "ivu-numeral" };
+function _sfc_render$G(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("span", _hoisted_1$q, [
     renderSlot(_ctx.$slots, "prefix", {}, () => [
       createTextVNode(toDisplayString($props.prefix), 1)
     ]),
@@ -26305,9 +27538,9 @@ function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var Numeral = /* @__PURE__ */ _export_sfc(_sfc_main$I, [["render", _sfc_render$D]]);
-const prefixCls$m = "ivu-select-group";
-const _sfc_main$H = {
+var Numeral = /* @__PURE__ */ _export_sfc(_sfc_main$O, [["render", _sfc_render$G]]);
+const prefixCls$o = "ivu-select-group";
+const _sfc_main$N = {
   name: "OptionGroup",
   props: {
     label: {
@@ -26323,7 +27556,7 @@ const _sfc_main$H = {
   inject: ["SelectInstance"],
   data() {
     return {
-      prefixCls: prefixCls$m,
+      prefixCls: prefixCls$o,
       hidden: false,
       id: random(6),
       optionList: []
@@ -26335,7 +27568,7 @@ const _sfc_main$H = {
     }
   }
 };
-function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$F(_ctx, _cache, $props, $setup, $data, $options) {
   return withDirectives((openBlock(), createElementBlock("li", {
     class: normalizeClass([$data.prefixCls + "-wrap"])
   }, [
@@ -26354,12 +27587,12 @@ function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
     [vShow, $options.show]
   ]);
 }
-var OptionGroup = /* @__PURE__ */ _export_sfc(_sfc_main$H, [["render", _sfc_render$C]]);
-const prefixCls$l = "ivu-page";
+var OptionGroup = /* @__PURE__ */ _export_sfc(_sfc_main$N, [["render", _sfc_render$F]]);
+const prefixCls$n = "ivu-page";
 function isValueNumber(value) {
   return /^[1-9][0-9]*$/.test(value + "");
 }
-const _sfc_main$G = {
+const _sfc_main$M = {
   name: "PageOption",
   mixins: [Locale],
   components: { iSelect: Select, iOption },
@@ -26394,17 +27627,17 @@ const _sfc_main$G = {
     },
     optsClasses() {
       return [
-        `${prefixCls$l}-options`
+        `${prefixCls$n}-options`
       ];
     },
     sizerClasses() {
       return [
-        `${prefixCls$l}-options-sizer`
+        `${prefixCls$n}-options-sizer`
       ];
     },
     ElevatorClasses() {
       return [
-        `${prefixCls$l}-options-elevator`
+        `${prefixCls$n}-options-elevator`
       ];
     }
   },
@@ -26435,8 +27668,8 @@ const _sfc_main$G = {
     }
   }
 };
-const _hoisted_1$o = ["value", "disabled"];
-function _sfc_render$B(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$p = ["value", "disabled"];
+function _sfc_render$E(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_i_option = resolveComponent("i-option");
   const _component_i_select = resolveComponent("i-select");
   return $props.showSizer || $props.showElevator ? (openBlock(), createElementBlock("div", {
@@ -26486,14 +27719,14 @@ function _sfc_render$B(_ctx, _cache, $props, $setup, $data, $options) {
         spellcheck: "false",
         disabled: $props.disabled,
         onKeyup: _cache[1] || (_cache[1] = withKeys((...args) => $options.changePage && $options.changePage(...args), ["enter"]))
-      }, null, 40, _hoisted_1$o),
+      }, null, 40, _hoisted_1$p),
       createTextVNode(" " + toDisplayString(_ctx.t("i.page.p")), 1)
     ], 2)) : createCommentVNode("", true)
   ], 2)) : createCommentVNode("", true);
 }
-var Options = /* @__PURE__ */ _export_sfc(_sfc_main$G, [["render", _sfc_render$B]]);
-const prefixCls$k = "ivu-page";
-const _sfc_main$F = {
+var Options = /* @__PURE__ */ _export_sfc(_sfc_main$M, [["render", _sfc_render$E]]);
+const prefixCls$m = "ivu-page";
+const _sfc_main$L = {
   name: "Page",
   mixins: [Locale],
   components: { Options },
@@ -26576,7 +27809,7 @@ const _sfc_main$F = {
   },
   data() {
     return {
-      prefixCls: prefixCls$k,
+      prefixCls: prefixCls$m,
       currentPage: this.modelValue,
       currentPageSize: this.pageSize
     };
@@ -26605,57 +27838,57 @@ const _sfc_main$F = {
     },
     simpleWrapClasses() {
       return [
-        `${prefixCls$k}`,
-        `${prefixCls$k}-simple`,
+        `${prefixCls$m}`,
+        `${prefixCls$m}-simple`,
         {
           [`${this.className}`]: !!this.className
         }
       ];
     },
     simplePagerClasses() {
-      return `${prefixCls$k}-simple-pager`;
+      return `${prefixCls$m}-simple-pager`;
     },
     wrapClasses() {
       return [
-        `${prefixCls$k}`,
+        `${prefixCls$m}`,
         {
           [`${this.className}`]: !!this.className,
-          [`${prefixCls$k}-with-disabled`]: this.disabled,
+          [`${prefixCls$m}-with-disabled`]: this.disabled,
           "mini": this.size === "small"
         }
       ];
     },
     prevClasses() {
       return [
-        `${prefixCls$k}-prev`,
+        `${prefixCls$m}-prev`,
         {
-          [`${prefixCls$k}-disabled`]: this.currentPage === 1 || this.disabled,
-          [`${prefixCls$k}-custom-text`]: this.prevText !== ""
+          [`${prefixCls$m}-disabled`]: this.currentPage === 1 || this.disabled,
+          [`${prefixCls$m}-custom-text`]: this.prevText !== ""
         }
       ];
     },
     nextClasses() {
       return [
-        `${prefixCls$k}-next`,
+        `${prefixCls$m}-next`,
         {
-          [`${prefixCls$k}-disabled`]: this.currentPage === this.allPages || this.disabled,
-          [`${prefixCls$k}-custom-text`]: this.nextText !== ""
+          [`${prefixCls$m}-disabled`]: this.currentPage === this.allPages || this.disabled,
+          [`${prefixCls$m}-custom-text`]: this.nextText !== ""
         }
       ];
     },
     firstPageClasses() {
       return [
-        `${prefixCls$k}-item`,
+        `${prefixCls$m}-item`,
         {
-          [`${prefixCls$k}-item-active`]: this.currentPage === 1
+          [`${prefixCls$m}-item-active`]: this.currentPage === 1
         }
       ];
     },
     lastPageClasses() {
       return [
-        `${prefixCls$k}-item`,
+        `${prefixCls$m}-item`,
         {
-          [`${prefixCls$k}-item-active`]: this.currentPage === this.allPages
+          [`${prefixCls$m}-item-active`]: this.currentPage === this.allPages
         }
       ];
     }
@@ -26751,7 +27984,7 @@ const _sfc_main$F = {
     }
   }
 };
-const _hoisted_1$n = ["title"];
+const _hoisted_1$o = ["title"];
 const _hoisted_2$g = /* @__PURE__ */ createElementVNode("a", null, [
   /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-arrow-back" })
 ], -1);
@@ -26806,7 +28039,7 @@ const _hoisted_29 = {
   key: 1,
   class: "ivu-icon ivu-icon-ios-arrow-forward"
 };
-function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Options = resolveComponent("Options");
   return $props.simple ? (openBlock(), createElementBlock("ul", {
     key: 0,
@@ -26817,7 +28050,7 @@ function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
       title: _ctx.t("i.page.prev"),
       class: normalizeClass($options.prevClasses),
       onClick: _cache[0] || (_cache[0] = (...args) => $options.prev && $options.prev(...args))
-    }, _hoisted_3$c, 10, _hoisted_1$n),
+    }, _hoisted_3$c, 10, _hoisted_1$o),
     createElementVNode("div", {
       class: normalizeClass($options.simplePagerClasses),
       title: $data.currentPage + "/" + $options.allPages
@@ -26978,8 +28211,8 @@ function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["show-sizer", "page-size", "page-size-opts", "placement", "transfer", "show-elevator", "_current", "current", "disabled", "all-pages", "is-small", "eventsEnabled", "onOnSize", "onOnPage"])
   ], 6));
 }
-var Page = /* @__PURE__ */ _export_sfc(_sfc_main$F, [["render", _sfc_render$A]]);
-const _sfc_main$E = {
+var Page = /* @__PURE__ */ _export_sfc(_sfc_main$L, [["render", _sfc_render$D]]);
+const _sfc_main$K = {
   name: "PageHeader",
   components: { Breadcrumb, BreadcrumbItem, Divider, Icon, Tabs, TabPane },
   emits: ["on-tab-change", "on-back"],
@@ -27038,7 +28271,7 @@ const _sfc_main$E = {
     }
   }
 };
-const _hoisted_1$m = {
+const _hoisted_1$n = {
   key: 0,
   class: "ivu-page-header-breadcrumb"
 };
@@ -27071,7 +28304,7 @@ const _hoisted_12 = {
   key: 1,
   class: "ivu-page-header-tabs"
 };
-function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_BreadcrumbItem = resolveComponent("BreadcrumbItem");
   const _component_Breadcrumb = resolveComponent("Breadcrumb");
   const _component_Icon = resolveComponent("Icon");
@@ -27081,7 +28314,7 @@ function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["ivu-page-header", $options.classes])
   }, [
-    _ctx.$slots.breadcrumb || !$props.hiddenBreadcrumb ? (openBlock(), createElementBlock("div", _hoisted_1$m, [
+    _ctx.$slots.breadcrumb || !$props.hiddenBreadcrumb ? (openBlock(), createElementBlock("div", _hoisted_1$n, [
       renderSlot(_ctx.$slots, "breadcrumb", {}, () => [
         createVNode(_component_Breadcrumb, null, {
           default: withCtx(() => [
@@ -27176,8 +28409,8 @@ function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 2);
 }
-var PageHeader = /* @__PURE__ */ _export_sfc(_sfc_main$E, [["render", _sfc_render$z]]);
-const _sfc_main$D = defineComponent({
+var PageHeader = /* @__PURE__ */ _export_sfc(_sfc_main$K, [["render", _sfc_render$C]]);
+const _sfc_main$J = defineComponent({
   name: "CollapseTransition",
   props: {
     ready: {
@@ -27256,7 +28489,7 @@ const _sfc_main$D = defineComponent({
     };
   }
 });
-function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$B(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createBlock(Transition, toHandlers(_ctx.on), {
     default: withCtx(() => [
       renderSlot(_ctx.$slots, "default")
@@ -27264,9 +28497,9 @@ function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 16);
 }
-var CollapseTransition = /* @__PURE__ */ _export_sfc(_sfc_main$D, [["render", _sfc_render$y]]);
-const prefixCls$j = "ivu-collapse";
-const _sfc_main$C = {
+var CollapseTransition = /* @__PURE__ */ _export_sfc(_sfc_main$J, [["render", _sfc_render$B]]);
+const prefixCls$l = "ivu-collapse";
+const _sfc_main$I = {
   name: "Panel",
   components: { Icon, CollapseTransition },
   inject: ["CollapseInstance"],
@@ -27288,20 +28521,20 @@ const _sfc_main$C = {
   computed: {
     itemClasses() {
       return [
-        `${prefixCls$j}-item`,
+        `${prefixCls$l}-item`,
         {
-          [`${prefixCls$j}-item-active`]: this.isActive
+          [`${prefixCls$l}-item-active`]: this.isActive
         }
       ];
     },
     headerClasses() {
-      return `${prefixCls$j}-header`;
+      return `${prefixCls$l}-header`;
     },
     contentClasses() {
-      return `${prefixCls$j}-content`;
+      return `${prefixCls$l}-content`;
     },
     boxClasses() {
-      return `${prefixCls$j}-content-box`;
+      return `${prefixCls$l}-content-box`;
     },
     isActive() {
       const activeKey = this.CollapseInstance.getActiveKey();
@@ -27326,7 +28559,7 @@ const _sfc_main$C = {
     this.mounted = true;
   }
 };
-function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_collapse_transition = resolveComponent("collapse-transition");
   return openBlock(), createElementBlock("div", {
@@ -27360,8 +28593,17 @@ function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
     })) : createCommentVNode("", true)
   ], 2);
 }
-var Panel = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["render", _sfc_render$x]]);
-const _sfc_main$B = {
+var Panel = /* @__PURE__ */ _export_sfc(_sfc_main$I, [["render", _sfc_render$A]]);
+const _sfc_main$H = {
+  name: "Paragraph",
+  mixins: [baseProps],
+  render() {
+    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+      component: "div"
+    }), this.commonEvents()), this.commonSlots());
+  }
+};
+const _sfc_main$G = {
   name: "Password",
   mixins: [LoginItem],
   data() {
@@ -27373,13 +28615,13 @@ const _sfc_main$B = {
     };
   }
 };
-const prefixCls$i = "ivu-poptip";
-const _sfc_main$A = {
+const prefixCls$k = "ivu-poptip";
+const _sfc_main$F = {
   name: "Poptip",
   mixins: [Popper, Locale],
   emits: ["on-ok", "on-cancel"],
   directives: { clickOutside },
-  components: { iButton: _sfc_main$21 },
+  components: { iButton: _sfc_main$2b },
   props: {
     trigger: {
       validator(value) {
@@ -27447,7 +28689,7 @@ const _sfc_main$A = {
   },
   data() {
     return {
-      prefixCls: prefixCls$i,
+      prefixCls: prefixCls$k,
       showTitle: true,
       isInput: false,
       disableCloseUnderTransfer: false,
@@ -27457,19 +28699,19 @@ const _sfc_main$A = {
   computed: {
     classes() {
       return [
-        `${prefixCls$i}`,
+        `${prefixCls$k}`,
         {
-          [`${prefixCls$i}-confirm`]: this.confirm
+          [`${prefixCls$k}-confirm`]: this.confirm
         }
       ];
     },
     popperClasses() {
       return [
-        `${prefixCls$i}-popper`,
+        `${prefixCls$k}-popper`,
         {
-          [`${prefixCls$i}-confirm`]: this.transfer && this.confirm,
+          [`${prefixCls$k}-confirm`]: this.transfer && this.confirm,
           [`${this.popperClass}`]: !!this.popperClass,
-          [prefixCls$i + "-transfer"]: this.transfer,
+          [prefixCls$k + "-transfer"]: this.transfer,
           [this.transferClassName]: this.transferClassName
         }
       ];
@@ -27499,9 +28741,9 @@ const _sfc_main$A = {
     },
     contentClasses() {
       return [
-        `${prefixCls$i}-body-content`,
+        `${prefixCls$k}-body-content`,
         {
-          [`${prefixCls$i}-body-content-word-wrap`]: this.wordWrap
+          [`${prefixCls$k}-body-content-word-wrap`]: this.wordWrap
         }
       ];
     },
@@ -27630,8 +28872,8 @@ const _sfc_main$A = {
     }
   }
 };
-const _hoisted_1$l = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-help-circle" }, null, -1);
-function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$m = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-help-circle" }, null, -1);
+function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_i_button = resolveComponent("i-button");
   const _directive_click_outside = resolveDirective("click-outside");
   return withDirectives((openBlock(), createElementBlock("div", {
@@ -27675,7 +28917,7 @@ function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
                 createElementVNode("div", {
                   class: normalizeClass([$data.prefixCls + "-body"])
                 }, [
-                  _hoisted_1$l,
+                  _hoisted_1$m,
                   createElementVNode("div", {
                     class: normalizeClass([$data.prefixCls + "-body-message"])
                   }, [
@@ -27752,9 +28994,9 @@ function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
     [_directive_click_outside, $options.handleClose]
   ]);
 }
-var Poptip = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["render", _sfc_render$w]]);
-const prefixCls$h = "ivu-progress";
-const _sfc_main$z = {
+var Poptip = /* @__PURE__ */ _export_sfc(_sfc_main$F, [["render", _sfc_render$z]]);
+const prefixCls$j = "ivu-progress";
+const _sfc_main$E = {
   name: "Progress",
   components: { Icon },
   props: {
@@ -27841,31 +29083,31 @@ const _sfc_main$z = {
     },
     wrapClasses() {
       return [
-        `${prefixCls$h}`,
-        `${prefixCls$h}-${this.currentStatus}`,
+        `${prefixCls$j}`,
+        `${prefixCls$j}-${this.currentStatus}`,
         {
-          [`${prefixCls$h}-show-info`]: !this.hideInfo && !this.textInside,
-          [`${prefixCls$h}-vertical`]: this.vertical
+          [`${prefixCls$j}-show-info`]: !this.hideInfo && !this.textInside,
+          [`${prefixCls$j}-vertical`]: this.vertical
         }
       ];
     },
     textClasses() {
-      return `${prefixCls$h}-text`;
+      return `${prefixCls$j}-text`;
     },
     textInnerClasses() {
-      return `${prefixCls$h}-text-inner`;
+      return `${prefixCls$j}-text-inner`;
     },
     outerClasses() {
-      return `${prefixCls$h}-outer`;
+      return `${prefixCls$j}-outer`;
     },
     innerClasses() {
-      return `${prefixCls$h}-inner`;
+      return `${prefixCls$j}-inner`;
     },
     bgClasses() {
-      return `${prefixCls$h}-bg`;
+      return `${prefixCls$j}-bg`;
     },
     successBgClasses() {
-      return `${prefixCls$h}-success-bg`;
+      return `${prefixCls$j}-success-bg`;
     }
   },
   created() {
@@ -27897,11 +29139,11 @@ const _sfc_main$z = {
     }
   }
 };
-const _hoisted_1$k = {
+const _hoisted_1$l = {
   key: 0,
   class: "ivu-progress-inner-text"
 };
-function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
@@ -27916,7 +29158,7 @@ function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
           class: normalizeClass($options.bgClasses),
           style: normalizeStyle($options.bgStyle)
         }, [
-          $props.textInside ? (openBlock(), createElementBlock("div", _hoisted_1$k, toDisplayString($props.percent) + "%", 1)) : createCommentVNode("", true)
+          $props.textInside ? (openBlock(), createElementBlock("div", _hoisted_1$l, toDisplayString($props.percent) + "%", 1)) : createCommentVNode("", true)
         ], 6),
         createElementVNode("div", {
           class: normalizeClass($options.successBgClasses),
@@ -27942,9 +29184,9 @@ function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)) : createCommentVNode("", true)
   ], 2);
 }
-var iProgress = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$v]]);
-const prefixCls$g = "ivu-rate";
-const _sfc_main$y = {
+var iProgress = /* @__PURE__ */ _export_sfc(_sfc_main$E, [["render", _sfc_render$y]]);
+const prefixCls$i = "ivu-rate";
+const _sfc_main$D = {
   name: "Rate",
   mixins: [Locale, mixinsForm],
   emits: ["update:modelValue", "on-change"],
@@ -27992,7 +29234,7 @@ const _sfc_main$y = {
   data() {
     const value = this.modelValue || 0;
     return {
-      prefixCls: prefixCls$g,
+      prefixCls: prefixCls$i,
       hoverIndex: -1,
       isHover: false,
       isHalf: this.allowHalf && value.toString().indexOf(".") >= 0,
@@ -28002,9 +29244,9 @@ const _sfc_main$y = {
   computed: {
     classes() {
       return [
-        `${prefixCls$g}`,
+        `${prefixCls$i}`,
         {
-          [`${prefixCls$g}-disabled`]: this.itemDisabled
+          [`${prefixCls$i}-disabled`]: this.itemDisabled
         }
       ];
     },
@@ -28044,11 +29286,11 @@ const _sfc_main$y = {
       }
       return [
         {
-          [`${prefixCls$g}-star`]: !this.showCharacter,
-          [`${prefixCls$g}-star-chart`]: this.showCharacter,
-          [`${prefixCls$g}-star-full`]: !isLast && full || isLast && !this.isHalf,
-          [`${prefixCls$g}-star-half`]: isLast && this.isHalf,
-          [`${prefixCls$g}-star-zero`]: !full
+          [`${prefixCls$i}-star`]: !this.showCharacter,
+          [`${prefixCls$i}-star-chart`]: this.showCharacter,
+          [`${prefixCls$i}-star-full`]: !isLast && full || isLast && !this.isHalf,
+          [`${prefixCls$i}-star-half`]: isLast && this.isHalf,
+          [`${prefixCls$i}-star-zero`]: !full
         }
       ];
     },
@@ -28089,12 +29331,12 @@ const _sfc_main$y = {
     }
   }
 };
-const _hoisted_1$j = ["name", "value"];
+const _hoisted_1$k = ["name", "value"];
 const _hoisted_2$e = ["onMousemove", "onClick"];
 const _hoisted_3$a = /* @__PURE__ */ createTextVNode();
 const _hoisted_4$8 = { key: 0 };
 const _hoisted_5$3 = { key: 1 };
-function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes),
     onMouseleave: _cache[0] || (_cache[0] = (...args) => $options.handleMouseleave && $options.handleMouseleave(...args))
@@ -28103,7 +29345,7 @@ function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
       type: "hidden",
       name: $props.name,
       value: $data.currentValue
-    }, null, 8, _hoisted_1$j),
+    }, null, 8, _hoisted_1$k),
     (openBlock(true), createElementBlock(Fragment, null, renderList($props.count, (item) => {
       return openBlock(), createElementBlock("div", {
         class: normalizeClass($options.starCls(item)),
@@ -28155,8 +29397,8 @@ function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
     ]) : createCommentVNode("", true)
   ], 34);
 }
-var Rate = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["render", _sfc_render$u]]);
-const _sfc_main$x = {
+var Rate = /* @__PURE__ */ _export_sfc(_sfc_main$D, [["render", _sfc_render$x]]);
+const _sfc_main$C = {
   name: "Result",
   components: { Icon },
   props: {
@@ -28184,7 +29426,7 @@ const _sfc_main$x = {
     }
   }
 };
-const _hoisted_1$i = { class: "ivu-result" };
+const _hoisted_1$j = { class: "ivu-result" };
 const _hoisted_2$d = {
   key: 0,
   class: "ivu-result-title"
@@ -28201,9 +29443,9 @@ const _hoisted_5$2 = {
   key: 3,
   class: "ivu-result-actions"
 };
-function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
-  return openBlock(), createElementBlock("div", _hoisted_1$i, [
+  return openBlock(), createElementBlock("div", _hoisted_1$j, [
     createElementVNode("div", {
       class: normalizeClass(["ivu-result-icon", $options.iconClasses])
     }, [
@@ -28236,32 +29478,32 @@ function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ]);
 }
-var Result = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", _sfc_render$t]]);
-const prefixCls$f = "ivu-scroll";
-const _sfc_main$w = {
+var Result = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["render", _sfc_render$w]]);
+const prefixCls$h = "ivu-scroll";
+const _sfc_main$B = {
   props: ["text", "active", "spinnerHeight"],
   components: { Spin, Icon },
   computed: {
     wrapperClasses() {
       return [
-        `${prefixCls$f}-loader-wrapper`,
+        `${prefixCls$h}-loader-wrapper`,
         {
-          [`${prefixCls$f}-loader-wrapper-active`]: this.active
+          [`${prefixCls$h}-loader-wrapper-active`]: this.active
         }
       ];
     },
     spinnerClasses() {
-      return `${prefixCls$f}-spinner`;
+      return `${prefixCls$h}-spinner`;
     },
     iconClasses() {
-      return `${prefixCls$f}-spinner-icon`;
+      return `${prefixCls$h}-spinner-icon`;
     },
     textClasses() {
-      return `${prefixCls$f}-loader-text`;
+      return `${prefixCls$h}-loader-text`;
     }
   }
 };
-function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Spin = resolveComponent("Spin");
   return openBlock(), createElementBlock("div", {
@@ -28287,14 +29529,14 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 2);
 }
-var loader = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["render", _sfc_render$s]]);
-const prefixCls$e = "ivu-scroll";
+var loader = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["render", _sfc_render$v]]);
+const prefixCls$g = "ivu-scroll";
 const dragConfig = {
   sensitivity: 10,
   minimumStartDragOffset: 5
 };
 const noop = () => Promise.resolve();
-const _sfc_main$v = {
+const _sfc_main$A = {
   name: "Scroll",
   mixins: [Locale],
   components: { loader },
@@ -28348,26 +29590,26 @@ const _sfc_main$v = {
   },
   computed: {
     wrapClasses() {
-      return `${prefixCls$e}-wrapper`;
+      return `${prefixCls$g}-wrapper`;
     },
     scrollContainerClasses() {
       return [
-        `${prefixCls$e}-container`,
+        `${prefixCls$g}-container`,
         {
-          [`${prefixCls$e}-container-loading`]: this.showBodyLoader && this.stopSlide
+          [`${prefixCls$g}-container-loading`]: this.showBodyLoader && this.stopSlide
         }
       ];
     },
     slotContainerClasses() {
       return [
-        `${prefixCls$e}-content`,
+        `${prefixCls$g}-content`,
         {
-          [`${prefixCls$e}-content-loading`]: this.showBodyLoader
+          [`${prefixCls$g}-content-loading`]: this.showBodyLoader
         }
       ];
     },
     loaderClasses() {
-      return `${prefixCls$e}-loader`;
+      return `${prefixCls$g}-loader`;
     },
     wrapperPadding() {
       return {
@@ -28545,7 +29787,7 @@ const _sfc_main$v = {
     this.pointerMoveHandler = lodash_throttle(this.onPointerMove, 50, { leading: false });
   }
 };
-function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_loader = resolveComponent("loader");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses),
@@ -28588,7 +29830,7 @@ function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
     ], 38)
   ], 2);
 }
-var Scroll = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$r]]);
+var Scroll = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["render", _sfc_render$u]]);
 const COMPLETE = "COMPLETE";
 const CANCELED = "CANCELED";
 function requestAnimation$1(task) {
@@ -28785,9 +30027,9 @@ function index(el, settings, callback) {
   }
   scroll2(from, to, step);
 }
-const prefixCls$d = "ivu-layout-sider";
+const prefixCls$f = "ivu-layout-sider";
 setMatchMedia();
-const _sfc_main$u = {
+const _sfc_main$z = {
   name: "Sider",
   emits: ["on-collapse", "update:modelValue"],
   props: {
@@ -28828,16 +30070,16 @@ const _sfc_main$u = {
   },
   data() {
     return {
-      prefixCls: prefixCls$d,
+      prefixCls: prefixCls$f,
       mediaMatched: false
     };
   },
   computed: {
     wrapClasses() {
       return [
-        `${prefixCls$d}`,
-        this.siderWidth ? "" : `${prefixCls$d}-zero-width`,
-        this.modelValue ? `${prefixCls$d}-collapsed` : ""
+        `${prefixCls$f}`,
+        this.siderWidth ? "" : `${prefixCls$f}-zero-width`,
+        this.modelValue ? `${prefixCls$f}-collapsed` : ""
       ];
     },
     wrapStyles() {
@@ -28850,8 +30092,8 @@ const _sfc_main$u = {
     },
     triggerClasses() {
       return [
-        `${prefixCls$d}-trigger`,
-        this.modelValue ? `${prefixCls$d}-trigger-collapsed` : ""
+        `${prefixCls$f}-trigger`,
+        this.modelValue ? `${prefixCls$f}-trigger-collapsed` : ""
       ];
     },
     childClasses() {
@@ -28859,15 +30101,15 @@ const _sfc_main$u = {
     },
     zeroWidthTriggerClasses() {
       return [
-        `${prefixCls$d}-zero-width-trigger`,
-        this.reverseArrow ? `${prefixCls$d}-zero-width-trigger-left` : ""
+        `${prefixCls$f}-zero-width-trigger`,
+        this.reverseArrow ? `${prefixCls$f}-zero-width-trigger-left` : ""
       ];
     },
     triggerIconClasses() {
       return [
         "ivu-icon",
         `ivu-icon-ios-arrow-${this.reverseArrow ? "forward" : "back"}`,
-        `${prefixCls$d}-trigger-icon`
+        `${prefixCls$f}-trigger-icon`
       ];
     },
     siderWidth() {
@@ -28922,11 +30164,11 @@ const _sfc_main$u = {
     }
   }
 };
-const _hoisted_1$h = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-menu" }, null, -1);
+const _hoisted_1$i = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-menu" }, null, -1);
 const _hoisted_2$c = [
-  _hoisted_1$h
+  _hoisted_1$i
 ];
-function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses),
     style: normalizeStyle($options.wrapStyles)
@@ -28957,7 +30199,279 @@ function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 6);
 }
-var Sider = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["render", _sfc_render$q]]);
+var Sider = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$t]]);
+const prefixCls$e = "ivu-skeleton-item";
+const _sfc_main$y = {
+  name: "SkeletonItem",
+  components: { Icon },
+  props: {
+    animated: {
+      type: Boolean,
+      default: false
+    },
+    type: {
+      validator(value) {
+        return oneOf(value, ["circle", "square", "rect", "image"]);
+      },
+      default: "circle"
+    },
+    size: {
+      validator(value) {
+        return oneOf(value, ["small", "large", "default"]);
+      },
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
+      }
+    },
+    width: {
+      type: [String, Number]
+    },
+    height: {
+      type: [String, Number]
+    },
+    block: {
+      type: Boolean,
+      default: false
+    },
+    imgSrc: {
+      type: String
+    }
+  },
+  computed: {
+    classes() {
+      return {
+        [prefixCls$e]: true,
+        [prefixCls$e + "-animated"]: this.animated,
+        [prefixCls$e + "-" + this.type]: true,
+        [prefixCls$e + "-" + this.type + "-" + this.size]: true,
+        [prefixCls$e + "-inline"]: !this.block
+      };
+    },
+    styles() {
+      const styleObj = {};
+      if (["rect", "image"].includes(this.type)) {
+        if (this.width) {
+          styleObj.width = typeof this.width === "number" ? `${this.width}px` : this.width;
+        }
+        if (this.height) {
+          styleObj.height = typeof this.height === "number" ? `${this.height}px` : this.height;
+        }
+        if (this.type === "image" && this.imgSrc) {
+          styleObj.background = `no-repeat url(${this.imgSrc}) center center`;
+          styleObj.backgroundSize = "contain";
+        }
+      }
+      return styleObj;
+    },
+    showIcon() {
+      return this.type === "image" && !this.imgSrc;
+    },
+    iconClasses() {
+      return {
+        [prefixCls$e + "-image-icon"]: true
+      };
+    },
+    iconSize() {
+      let iconSize = 16;
+      if (this.size === "large")
+        iconSize = 32;
+      if (this.size === "small")
+        iconSize = 10;
+      return iconSize;
+    }
+  }
+};
+function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_Icon = resolveComponent("Icon");
+  return openBlock(), createElementBlock("div", {
+    class: normalizeClass($options.classes),
+    style: normalizeStyle($options.styles)
+  }, [
+    $options.showIcon ? (openBlock(), createBlock(_component_Icon, {
+      key: 0,
+      class: normalizeClass($options.iconClasses),
+      type: "ios-image-outline",
+      size: $options.iconSize
+    }, null, 8, ["class", "size"])) : createCommentVNode("", true)
+  ], 6);
+}
+var SkeletonItem = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["render", _sfc_render$s]]);
+const prefixCls$d = "ivu-skeleton";
+const _sfc_main$x = {
+  name: "Skeleton",
+  components: { SkeletonItem, Row, Col },
+  props: {
+    animated: {
+      type: Boolean,
+      default: false
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    round: {
+      type: Boolean,
+      default: false
+    },
+    paragraph: {
+      validator(value) {
+        if (typeof value === "number") {
+          return value >= 1;
+        }
+        return typeof value.rows === "number" && value.rows >= 1;
+      },
+      type: [Number, Object],
+      default: 3
+    },
+    title: {
+      validator(value) {
+        if (typeof value === "object") {
+          if (value.width)
+            return ["number", "string"].includes(typeof value.width);
+        }
+        return true;
+      },
+      type: [Boolean, Object],
+      default: true
+    },
+    avatar: {
+      validator(value) {
+        if (typeof value === "object") {
+          if (value.type)
+            return oneOf(value.type, ["circle", "square"]);
+          if (value.size)
+            return oneOf(value.size, ["small", "large", "default"]);
+        }
+        return true;
+      },
+      type: [Boolean, Object],
+      default: false
+    }
+  },
+  computed: {
+    classes() {
+      return {
+        [prefixCls$d]: true
+      };
+    },
+    rows() {
+      if (typeof this.paragraph === "number") {
+        return this.paragraph;
+      }
+      return this.paragraph.rows;
+    },
+    rowsCount() {
+      return this.rows + Number(this.showTitle);
+    },
+    rowClasses() {
+      return {
+        [prefixCls$d + "-item-round"]: this.round
+      };
+    },
+    showTitle() {
+      return Boolean(this.title);
+    },
+    titleWidth() {
+      if (typeof this.title === "object" && this.title.width) {
+        return typeof this.title.width === "string" ? this.title.width : `${this.title.width}px`;
+      }
+      return "";
+    },
+    showAvatar() {
+      return Boolean(this.avatar);
+    },
+    avatarType() {
+      if (typeof this.avatar === "object" && this.avatar.type)
+        return this.avatar.type;
+      return "circle";
+    },
+    avatarSize() {
+      if (typeof this.avatar === "object" && this.avatar.size)
+        return this.avatar.size;
+      return !this.$VIEWUI || this.$VIEWUI.size === "" ? "default" : this.$VIEWUI.size;
+    }
+  },
+  methods: {
+    rowWidth(row) {
+      if (this.showTitle && row === 1) {
+        return this.titleWidth || "38%";
+      }
+      if (typeof this.paragraph === "object") {
+        if (typeof this.paragraph.width === "string") {
+          return this.paragraph.width;
+        }
+        if (typeof this.paragraph.width === "number") {
+          return `${this.paragraph.width}px`;
+        }
+        const index2 = row - 1 - Number(this.showTitle);
+        if (Array.isArray(this.paragraph.width) && this.paragraph.width[index2]) {
+          if (typeof this.paragraph.width[index2] === "number") {
+            return `${this.paragraph.width[index2]}px`;
+          } else {
+            return this.paragraph.width[index2];
+          }
+        }
+      }
+      return row === this.rowsCount ? "62%" : "100%";
+    },
+    rowStyle(row) {
+      if (this.showTitle && row === 2) {
+        return { marginTop: "28px" };
+      }
+      return {};
+    }
+  }
+};
+function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_SkeletonItem = resolveComponent("SkeletonItem");
+  const _component_Col = resolveComponent("Col");
+  const _component_Row = resolveComponent("Row");
+  return $props.loading ? (openBlock(), createElementBlock("div", mergeProps({
+    key: 0,
+    class: $options.classes
+  }, _ctx.$attrs), [
+    $props.loading ? renderSlot(_ctx.$slots, "template", { key: 0 }, () => [
+      createVNode(_component_Row, null, {
+        default: withCtx(() => [
+          $options.showAvatar ? (openBlock(), createBlock(_component_Col, {
+            key: 0,
+            flex: "0"
+          }, {
+            default: withCtx(() => [
+              createVNode(_component_SkeletonItem, {
+                type: $options.avatarType,
+                size: $options.avatarSize,
+                animated: $props.animated,
+                style: { "margin-right": "16px" }
+              }, null, 8, ["type", "size", "animated"])
+            ]),
+            _: 1
+          })) : createCommentVNode("", true),
+          createVNode(_component_Col, { flex: "1" }, {
+            default: withCtx(() => [
+              (openBlock(true), createElementBlock(Fragment, null, renderList($options.rowsCount, (row) => {
+                return openBlock(), createBlock(_component_SkeletonItem, {
+                  key: row,
+                  class: normalizeClass($options.rowClasses),
+                  style: normalizeStyle($options.rowStyle(row)),
+                  animated: $props.animated,
+                  type: "rect",
+                  width: $options.rowWidth(row),
+                  height: "16px",
+                  block: ""
+                }, null, 8, ["class", "style", "animated", "width"]);
+              }), 128))
+            ]),
+            _: 1
+          })
+        ]),
+        _: 1
+      })
+    ]) : createCommentVNode("", true)
+  ], 16)) : renderSlot(_ctx.$slots, "default", { key: 1 });
+}
+var Skeleton = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", _sfc_render$r]]);
 var SliderMarker = {
   name: "SliderMarker",
   props: {
@@ -28974,7 +30488,7 @@ var SliderMarker = {
   }
 };
 const prefixCls$c = "ivu-slider";
-const _sfc_main$t = {
+const _sfc_main$w = {
   name: "Slider",
   mixins: [mixinsForm],
   emits: ["update:modelValue", "on-input", "on-change"],
@@ -29365,9 +30879,9 @@ const _sfc_main$t = {
     this.observer.removeListener(this.$refs.slider, this.handleSetSliderWidth);
   }
 };
-const _hoisted_1$g = ["name", "value"];
+const _hoisted_1$h = ["name", "value"];
 const _hoisted_2$b = { class: "ivu-slider-marks" };
-function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Input_number = resolveComponent("Input-number");
   const _component_SliderMarker = resolveComponent("SliderMarker");
   const _component_Tooltip = resolveComponent("Tooltip");
@@ -29394,7 +30908,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
         type: "hidden",
         name: $props.name,
         value: $options.exportValue
-      }, null, 8, _hoisted_1$g),
+      }, null, 8, _hoisted_1$h),
       createElementVNode("div", {
         class: normalizeClass([$data.prefixCls + "-bar"]),
         style: normalizeStyle($options.barStyle),
@@ -29494,8 +31008,8 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 2);
 }
-var Slider = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$p]]);
-const _sfc_main$s = {
+var Slider = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["render", _sfc_render$q]]);
+const _sfc_main$v = {
   name: "Trigger",
   props: {
     mode: String
@@ -29524,7 +31038,7 @@ const _sfc_main$s = {
     }
   }
 };
-function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
@@ -29540,8 +31054,8 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 2);
 }
-var Trigger = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$o]]);
-const _sfc_main$r = {
+var Trigger = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$p]]);
+const _sfc_main$u = {
   name: "Split",
   components: { Trigger },
   emits: ["update:modelValue", "on-move-start", "on-moving", "on-move-end"],
@@ -29690,7 +31204,7 @@ const _sfc_main$r = {
     off(window, "resize", this.computeOffset);
   }
 };
-function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_trigger = resolveComponent("trigger");
   return openBlock(), createElementBlock("div", {
     ref: "outerWrapper",
@@ -29749,10 +31263,10 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2))
   ], 2);
 }
-var Split = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$n]]);
+var Split = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["render", _sfc_render$o]]);
 const prefixCls$b = "ivu-steps";
 const iconPrefixCls = "ivu-icon";
-const _sfc_main$q = {
+const _sfc_main$t = {
   name: "Step",
   inject: ["StepsInstance"],
   props: {
@@ -29855,16 +31369,16 @@ const _sfc_main$q = {
     this.StepsInstance.removeStep(this.id);
   }
 };
-const _hoisted_1$f = /* @__PURE__ */ createElementVNode("i", null, null, -1);
+const _hoisted_1$g = /* @__PURE__ */ createElementVNode("i", null, null, -1);
 const _hoisted_2$a = [
-  _hoisted_1$f
+  _hoisted_1$g
 ];
 const _hoisted_3$8 = { key: 0 };
 const _hoisted_4$6 = {
   key: 1,
   class: "ivu-steps-icon"
 };
-function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
   }, [
@@ -29906,9 +31420,9 @@ function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 2);
 }
-var Step = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$m]]);
+var Step = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$n]]);
 const prefixCls$a = "ivu-steps";
-const _sfc_main$p = {
+const _sfc_main$s = {
   name: "Steps",
   provide() {
     return {
@@ -29967,16 +31481,16 @@ const _sfc_main$p = {
     }
   }
 };
-function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Steps = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$l]]);
+var Steps = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$m]]);
 const prefixCls$9 = "ivu-menu";
-const _sfc_main$o = {
+const _sfc_main$r = {
   name: "Submenu",
   mixins: [mixin, globalConfig],
   components: { Icon, Drop, CollapseTransition },
@@ -30169,7 +31683,7 @@ const _sfc_main$o = {
     this.removeSubmenu();
   }
 };
-function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_collapse_transition = resolveComponent("collapse-transition");
   const _component_Drop = resolveComponent("Drop");
@@ -30226,8 +31740,8 @@ function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["visible", "styles"])) : createCommentVNode("", true)
   ], 34);
 }
-var Submenu = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$k]]);
-const _sfc_main$n = {
+var Submenu = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$l]]);
+const _sfc_main$q = {
   name: "Submit",
   inject: ["LoginInstance"],
   props: {},
@@ -30243,7 +31757,7 @@ const _sfc_main$n = {
       long: true
     };
     const finalProps = Object.assign(defaultProps, this.$attrs);
-    const $button = h(_sfc_main$21, __spreadProps(__spreadValues({}, finalProps), {
+    const $button = h(_sfc_main$2b, __spreadProps(__spreadValues({}, finalProps), {
       onClick: this.handleSubmit
     }), this.$slots.default || (() => "\u767B\u5F55"));
     return h("div", {
@@ -30252,7 +31766,7 @@ const _sfc_main$n = {
   }
 };
 const prefixCls$8 = "ivu-switch";
-const _sfc_main$m = {
+const _sfc_main$p = {
   name: "iSwitch",
   mixins: [mixinsForm],
   emits: ["update:modelValue", "on-change"],
@@ -30364,8 +31878,8 @@ const _sfc_main$m = {
     }
   }
 };
-const _hoisted_1$e = ["name", "value"];
-function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$f = ["name", "value"];
+function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", {
     tabindex: "0",
     class: normalizeClass($options.wrapClasses),
@@ -30377,7 +31891,7 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
       type: "hidden",
       name: $props.name,
       value: $data.currentValue
-    }, null, 8, _hoisted_1$e),
+    }, null, 8, _hoisted_1$f),
     createElementVNode("span", {
       class: normalizeClass($options.innerClasses)
     }, [
@@ -30386,7 +31900,7 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 38);
 }
-var Switch = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$j]]);
+var Switch = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$k]]);
 var renderHeader = {
   name: "TableRenderHeader",
   props: {
@@ -30435,10 +31949,10 @@ var Mixin = {
     }
   }
 };
-const _sfc_main$l = {
+const _sfc_main$o = {
   name: "TableHead",
   mixins: [Mixin, Locale],
-  components: { CheckboxGroup, Checkbox, Poptip, iButton: _sfc_main$21, renderHeader },
+  components: { CheckboxGroup, Checkbox, Poptip, iButton: _sfc_main$2b, renderHeader },
   props: {
     prefixCls: String,
     styleObject: Object,
@@ -30733,7 +32247,7 @@ const _sfc_main$l = {
     }
   }
 };
-const _hoisted_1$d = ["width"];
+const _hoisted_1$e = ["width"];
 const _hoisted_2$9 = ["width"];
 const _hoisted_3$7 = ["colspan", "rowspan"];
 const _hoisted_4$5 = { key: 0 };
@@ -30742,7 +32256,7 @@ const _hoisted_6$1 = ["onClick"];
 const _hoisted_7$1 = ["onClick"];
 const _hoisted_8 = ["onMousedown", "onMousemove"];
 const _hoisted_9 = ["rowspan"];
-function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_render_header = resolveComponent("render-header");
   const _component_Checkbox = resolveComponent("Checkbox");
   const _component_checkbox = resolveComponent("checkbox");
@@ -30760,7 +32274,7 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
         return openBlock(), createElementBlock("col", {
           key: index2,
           width: _ctx.setCellWidth(column)
-        }, null, 8, _hoisted_1$d);
+        }, null, 8, _hoisted_1$e);
       }), 128)),
       _ctx.$parent.showVerticalScrollBar ? (openBlock(), createElementBlock("col", {
         key: 0,
@@ -30941,8 +32455,8 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 4);
 }
-var tableHead = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$i]]);
-const _sfc_main$k = {
+var tableHead = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$j]]);
+const _sfc_main$n = {
   props: {
     row: Object,
     prefixCls: String,
@@ -30982,8 +32496,8 @@ const _sfc_main$k = {
     }
   }
 };
-const _hoisted_1$c = ["draggable"];
-function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$d = ["draggable"];
+function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
   return $props.draggable ? (openBlock(), createElementBlock("tr", {
     key: 0,
     class: normalizeClass($options.rowClasses($props.row._index)),
@@ -30993,7 +32507,7 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     onDragover: _cache[2] || (_cache[2] = ($event) => $options.allowDrop($event))
   }, [
     renderSlot(_ctx.$slots, "default")
-  ], 42, _hoisted_1$c)) : (openBlock(), createElementBlock("tr", {
+  ], 42, _hoisted_1$d)) : (openBlock(), createElementBlock("tr", {
     key: 1,
     class: normalizeClass($options.rowClasses($props.row._index)),
     draggable: false
@@ -31001,7 +32515,7 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2));
 }
-var TableTr = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$h]]);
+var TableTr = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$i]]);
 var Expand = {
   name: "TableExpand",
   props: {
@@ -31052,7 +32566,7 @@ var TableSlot = {
     }));
   }
 };
-const _sfc_main$j = {
+const _sfc_main$m = {
   name: "TableCell",
   components: { Icon, Checkbox, TableExpand: Expand, TableSlot, Tooltip },
   inject: ["TableInstance"],
@@ -31190,14 +32704,14 @@ const _sfc_main$j = {
     }
   }
 };
-const _hoisted_1$b = { key: 0 };
+const _hoisted_1$c = { key: 0 };
 const _hoisted_2$8 = {
   key: 4,
   class: "ivu-table-cell-tree ivu-table-cell-tree-empty"
 };
 const _hoisted_3$6 = ["innerHTML"];
 const _hoisted_4$4 = { key: 1 };
-function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Checkbox = resolveComponent("Checkbox");
   const _component_Icon = resolveComponent("Icon");
   const _component_Tooltip = resolveComponent("Tooltip");
@@ -31207,7 +32721,7 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
     class: normalizeClass($options.classes),
     ref: "cell"
   }, [
-    $data.renderType === "index" ? (openBlock(), createElementBlock("span", _hoisted_1$b, toDisplayString($props.column.indexMethod ? $props.column.indexMethod($props.row, $props.naturalIndex) : $props.naturalIndex + 1), 1)) : createCommentVNode("", true),
+    $data.renderType === "index" ? (openBlock(), createElementBlock("span", _hoisted_1$c, toDisplayString($props.column.indexMethod ? $props.column.indexMethod($props.row, $props.naturalIndex) : $props.naturalIndex + 1), 1)) : createCommentVNode("", true),
     $data.renderType === "selection" ? (openBlock(), createBlock(_component_Checkbox, {
       key: 1,
       "model-value": $props.checked,
@@ -31284,8 +32798,8 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["row", "column", "display", "index"])) : createCommentVNode("", true)
   ], 2);
 }
-var TableCell = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$g]]);
-const _sfc_main$i = {
+var TableCell = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$h]]);
+const _sfc_main$l = {
   name: "TableBody",
   mixins: [Mixin],
   components: { TableCell, Expand, TableTr },
@@ -31611,7 +33125,7 @@ const _sfc_main$i = {
     }, [$colgroup, $tbody]);
   }
 };
-const _sfc_main$h = {
+const _sfc_main$k = {
   name: "TableSummary",
   mixins: [Mixin],
   props: {
@@ -31635,11 +33149,11 @@ const _sfc_main$h = {
     }
   }
 };
-const _hoisted_1$a = { style: { "overflow": "hidden" } };
+const _hoisted_1$b = { style: { "overflow": "hidden" } };
 const _hoisted_2$7 = ["width"];
 const _hoisted_3$5 = { class: "ivu-table-row" };
-function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$a, [
+function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", _hoisted_1$b, [
     createElementVNode("table", {
       class: "ivu-table-summary",
       cellspacing: "0",
@@ -31676,7 +33190,7 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
     ], 4)
   ]);
 }
-var tableSummary = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$f]]);
+var tableSummary = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$g]]);
 const newLine = "\r\n";
 const appendLine = (content, row, { separator, quoted }) => {
   const line = row.map((data) => {
@@ -31876,10 +33390,10 @@ const getRandomStr = function(len = 32) {
 const prefixCls$7 = "ivu-table";
 let rowKey = 1;
 let columnKey = 1;
-const _sfc_main$g = {
+const _sfc_main$j = {
   name: "Table",
   mixins: [Locale],
-  components: { tableHead, tableBody: _sfc_main$i, tableSummary, Spin, Dropdown, DropdownMenu },
+  components: { tableHead, tableBody: _sfc_main$l, tableSummary, Spin, Dropdown, DropdownMenu },
   emits: ["on-current-change", "on-row-click", "on-row-dblclick", "on-contextmenu", "on-select", "on-select-cancel", "on-selection-change", "on-expand", "on-expand-tree", "on-select-all", "on-select-all-cancel", "on-sort-change", "on-filter-change", "on-drag-drop", "on-cell-click", "on-column-width-resize"],
   provide() {
     return {
@@ -33196,7 +34710,7 @@ const _sfc_main$g = {
     }
   }
 };
-const _hoisted_1$9 = {
+const _hoisted_1$a = {
   cellspacing: "0",
   cellpadding: "0",
   border: "0"
@@ -33207,7 +34721,7 @@ const _hoisted_4$3 = {
   class: "ivu-table-resize-line",
   ref: "resizeLine"
 };
-function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_table_head = resolveComponent("table-head");
   const _component_table_body = resolveComponent("table-body");
   const _component_table_summary = resolveComponent("table-summary");
@@ -33279,7 +34793,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
         style: normalizeStyle($options.bodyStyle),
         onScroll: _cache[2] || (_cache[2] = (...args) => $options.handleBodyScroll && $options.handleBodyScroll(...args))
       }, [
-        createElementVNode("table", _hoisted_1$9, [
+        createElementVNode("table", _hoisted_1$a, [
           createElementVNode("tbody", null, [
             createElementVNode("tr", null, [
               createElementVNode("td", {
@@ -33452,8 +34966,8 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["show"])
   ], 6);
 }
-var Table = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$e]]);
-const _sfc_main$f = {
+var Table = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$f]]);
+const _sfc_main$i = {
   name: "TablePaste",
   components: { Row, Col, Input, Table },
   emits: ["on-change", "on-error", "on-success"],
@@ -33555,7 +35069,7 @@ const _sfc_main$f = {
     }
   }
 };
-const _hoisted_1$8 = { class: "ivu-table-paste" };
+const _hoisted_1$9 = { class: "ivu-table-paste" };
 const _hoisted_2$5 = {
   key: 0,
   class: "ivu-table-paste-input"
@@ -33564,12 +35078,12 @@ const _hoisted_3$3 = {
   key: 0,
   class: "ivu-table-paste-input"
 };
-function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Input = resolveComponent("Input");
   const _component_Col = resolveComponent("Col");
   const _component_Table = resolveComponent("Table");
   const _component_Row = resolveComponent("Row");
-  return openBlock(), createElementBlock("div", _hoisted_1$8, [
+  return openBlock(), createElementBlock("div", _hoisted_1$9, [
     !$props.hideTable ? (openBlock(), createBlock(_component_Row, {
       key: 0,
       gutter: 32
@@ -33613,8 +35127,8 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     ], 64))
   ]);
 }
-var TablePaste = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$d]]);
-const _sfc_main$e = {
+var TablePaste = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$e]]);
+const _sfc_main$h = {
   name: "TagSelect",
   mixins: [mixinsForm],
   components: { Tag, Icon },
@@ -33721,20 +35235,20 @@ const _sfc_main$e = {
     this.handleUpdateTags();
   }
 };
-const _hoisted_1$7 = {
+const _hoisted_1$8 = {
   key: 0,
   class: "ivu-tag-select-option"
 };
 const _hoisted_2$4 = /* @__PURE__ */ createTextVNode("\u5168\u90E8");
 const _hoisted_3$2 = { key: 0 };
 const _hoisted_4$2 = { key: 1 };
-function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Tag = resolveComponent("Tag");
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["ivu-tag-select", $options.classes])
   }, [
-    !$props.hideCheckAll ? (openBlock(), createElementBlock("div", _hoisted_1$7, [
+    !$props.hideCheckAll ? (openBlock(), createElementBlock("div", _hoisted_1$8, [
       createVNode(_component_Tag, {
         checkable: "",
         checked: $data.checkedAll,
@@ -33764,8 +35278,8 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 2);
 }
-var TagSelect = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$c]]);
-const _sfc_main$d = {
+var TagSelect = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$d]]);
+const _sfc_main$g = {
   name: "TagSelectOption",
   components: { Tag },
   inject: ["TagSelectInstance"],
@@ -33816,10 +35330,10 @@ const _sfc_main$d = {
     this.removeOption();
   }
 };
-const _hoisted_1$6 = { class: "ivu-tag-select-option" };
-function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$7 = { class: "ivu-tag-select-option" };
+function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Tag = resolveComponent("Tag");
-  return openBlock(), createElementBlock("div", _hoisted_1$6, [
+  return openBlock(), createElementBlock("div", _hoisted_1$7, [
     createVNode(_component_Tag, mergeProps({
       checkable: "",
       checked: $data.checked,
@@ -33833,9 +35347,18 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
     }, 16, ["checked", "onOnChange", "color"])
   ]);
 }
-var TagSelectOption = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$b]]);
+var TagSelectOption = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$c]]);
+const _sfc_main$f = {
+  name: "Text",
+  mixins: [baseProps],
+  render() {
+    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+      component: "span"
+    }), this.commonEvents()), this.commonSlots());
+  }
+};
 const prefixCls$6 = "ivu-timeline";
-const _sfc_main$c = {
+const _sfc_main$e = {
   name: "Timeline",
   props: {
     pending: {
@@ -33854,16 +35377,16 @@ const _sfc_main$c = {
     }
   }
 };
-function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("ul", {
     class: normalizeClass($options.classes)
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Timeline = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$a]]);
+var Timeline = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$b]]);
 const prefixCls$5 = "ivu-timeline";
-const _sfc_main$b = {
+const _sfc_main$d = {
   name: "TimelineItem",
   props: {
     color: {
@@ -33915,7 +35438,7 @@ const _sfc_main$b = {
     }
   }
 };
-function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: normalizeClass($options.itemClasses)
   }, [
@@ -33936,7 +35459,7 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 2);
 }
-var TimelineItem = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$9]]);
+var TimelineItem = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$a]]);
 var TimePicker = {
   mixins: [Picker, Options$1],
   components: { TimePickerPanel, RangeTimePickerPanel },
@@ -33973,7 +35496,25 @@ var TimePicker = {
     }
   }
 };
-const _sfc_main$a = {
+const _sfc_main$c = {
+  name: "Title",
+  mixins: [baseProps],
+  props: {
+    level: {
+      type: Number,
+      validator(value) {
+        return oneOf(value, [1, 2, 3, 4, 5]);
+      },
+      default: 1
+    }
+  },
+  render() {
+    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+      component: `h${this.level}`
+    }), this.commonEvents()), this.commonSlots());
+  }
+};
+const _sfc_main$b = {
   name: "Search",
   components: { Input },
   emits: ["on-query-change", "on-query-clear"],
@@ -34009,7 +35550,7 @@ const _sfc_main$a = {
     }
   }
 };
-function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Input = resolveComponent("Input");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($props.prefixCls)
@@ -34024,8 +35565,8 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["modelValue", "icon", "placeholder", "onOnClick"])
   ], 2);
 }
-var Search = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$8]]);
-const _sfc_main$9 = {
+var Search = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$9]]);
+const _sfc_main$a = {
   name: "TransferList",
   components: { Search, Checkbox },
   inject: ["TransferInstance"],
@@ -34130,9 +35671,9 @@ const _sfc_main$9 = {
     this.showFooter = this.$slots.default !== void 0;
   }
 };
-const _hoisted_1$5 = ["onClick"];
+const _hoisted_1$6 = ["onClick"];
 const _hoisted_2$3 = ["innerHTML"];
-function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Checkbox = resolveComponent("Checkbox");
   const _component_Search = resolveComponent("Search");
   return openBlock(), createElementBlock("div", {
@@ -34186,7 +35727,7 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
             createElementVNode("span", {
               innerHTML: $options.showLabel(item)
             }, null, 8, _hoisted_2$3)
-          ], 10, _hoisted_1$5);
+          ], 10, _hoisted_1$6);
         }), 128)),
         createElementVNode("li", {
           class: normalizeClass($props.prefixCls + "-content-not-found")
@@ -34201,10 +35742,10 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)) : createCommentVNode("", true)
   ], 6);
 }
-var List = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$7]]);
-const _sfc_main$8 = {
+var List = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$8]]);
+const _sfc_main$9 = {
   name: "Operation",
-  components: { Button: _sfc_main$21, Icon },
+  components: { Button: _sfc_main$2b, Icon },
   inject: ["TransferInstance"],
   props: {
     prefixCls: String,
@@ -34222,11 +35763,11 @@ const _sfc_main$8 = {
     }
   }
 };
-const _hoisted_1$4 = { key: 0 };
+const _hoisted_1$5 = { key: 0 };
 const _hoisted_2$2 = { key: 0 };
 const _hoisted_3$1 = { key: 0 };
 const _hoisted_4$1 = { key: 0 };
-function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Button = resolveComponent("Button");
   return openBlock(), createElementBlock("div", {
@@ -34240,7 +35781,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: $options.moveToRight
       }, {
         default: withCtx(() => [
-          $props.operations[1] ? (openBlock(), createElementBlock("span", _hoisted_1$4, toDisplayString($props.operations[1]), 1)) : createCommentVNode("", true),
+          $props.operations[1] ? (openBlock(), createElementBlock("span", _hoisted_1$5, toDisplayString($props.operations[1]), 1)) : createCommentVNode("", true),
           createVNode(_component_Icon, { type: "ios-arrow-forward" })
         ]),
         _: 1
@@ -34285,9 +35826,9 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
     ], 64))
   ], 2);
 }
-var Operation = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$6]]);
+var Operation = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$7]]);
 const prefixCls$4 = "ivu-transfer";
-const _sfc_main$7 = {
+const _sfc_main$8 = {
   name: "Transfer",
   mixins: [Locale, mixinsForm],
   emits: ["on-change", "on-selected-change"],
@@ -34530,7 +36071,7 @@ var Render = {
   }
 };
 const prefixCls$3 = "ivu-tree";
-const _sfc_main$6 = {
+const _sfc_main$7 = {
   name: "TreeNode",
   inject: ["TreeInstance"],
   components: { Checkbox, Icon, CollapseTransition, Render },
@@ -34722,11 +36263,11 @@ const _sfc_main$6 = {
     this.globalConfig = instance.appContext.config.globalProperties.$VIEWUI;
   }
 };
-const _hoisted_1$3 = {
+const _hoisted_1$4 = {
   key: 0,
   class: "ivu-tree-expand"
 };
-function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Checkbox = resolveComponent("Checkbox");
   const _component_Render = resolveComponent("Render");
@@ -34782,7 +36323,7 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
       ], 2),
       createVNode(_component_collapse_transition, { appear: $props.appear }, {
         default: withCtx(() => [
-          $props.data.expand ? (openBlock(), createElementBlock("div", _hoisted_1$3, [
+          $props.data.expand ? (openBlock(), createElementBlock("div", _hoisted_1$4, [
             (openBlock(true), createElementBlock(Fragment, null, renderList($options.children, (item, i) => {
               return openBlock(), createBlock(_component_TreeNode, {
                 appear: $data.appearByClickArrow,
@@ -34800,9 +36341,9 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
     ], 32)
   ], 2);
 }
-var TreeNode = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5]]);
+var TreeNode = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6]]);
 const prefixCls$2 = "ivu-tree";
-const _sfc_main$5 = {
+const _sfc_main$6 = {
   name: "Tree",
   mixins: [Locale],
   components: { TreeNode, Dropdown, DropdownMenu },
@@ -35029,7 +36570,7 @@ const _sfc_main$5 = {
     this.rebuildTree();
   }
 };
-function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_TreeNode = resolveComponent("TreeNode");
   const _component_DropdownMenu = resolveComponent("DropdownMenu");
   const _component_Dropdown = resolveComponent("Dropdown");
@@ -35075,8 +36616,8 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
     ], 4)
   ], 2);
 }
-var Tree = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4]]);
-const _sfc_main$4 = {
+var Tree = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5]]);
+const _sfc_main$5 = {
   name: "TreeSelect",
   components: { Select, Tree },
   emits: ["on-change", "update:modelValue", "on-open-change"],
@@ -35253,7 +36794,7 @@ const _sfc_main$4 = {
     this.handleUpdateTreeNodes(this.data, true);
   }
 };
-function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Tree = resolveComponent("Tree");
   const _component_Select = resolveComponent("Select");
   return openBlock(), createBlock(_component_Select, mergeProps({ ref: "select" }, _ctx.$attrs, {
@@ -35280,7 +36821,17 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
   }, 16, ["multiple", "class", "transfer-class-name", "onOnChange", "onOnOpenChange", "transfer"]);
 }
-var TreeSelect = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3]]);
+var TreeSelect = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4]]);
+const _sfc_main$4 = {
+  name: "Typography"
+};
+const _hoisted_1$3 = { class: "ivu-typography" };
+function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("article", _hoisted_1$3, [
+    renderSlot(_ctx.$slots, "default")
+  ]);
+}
+var Typography = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3]]);
 const prefixCls$1 = "ivu-upload";
 const _sfc_main$3 = {
   name: "UploadList",
@@ -35913,7 +37464,7 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   Alert,
   Anchor,
   AnchorLink,
-  Auth: _sfc_main$2f,
+  Auth: _sfc_main$2p,
   AutoComplete,
   Avatar,
   AvatarList,
@@ -35921,10 +37472,10 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   Badge,
   Breadcrumb,
   BreadcrumbItem,
-  Button: _sfc_main$21,
+  Button: _sfc_main$2b,
   ButtonGroup,
   Calendar,
-  Captcha: _sfc_main$1T,
+  Captcha: _sfc_main$21,
   Card,
   Carousel,
   CarouselItem,
@@ -35939,11 +37490,11 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   Collapse,
   ColorPicker,
   Content,
-  Copy: index$4,
+  Copy,
   CountDown,
   CountUp,
   DatePicker,
-  Description: _sfc_main$1g,
+  Description: _sfc_main$1q,
   DescriptionList,
   Divider,
   Drawer,
@@ -35951,7 +37502,7 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   DropdownItem,
   DropdownMenu,
   Ellipsis,
-  Email: _sfc_main$1a,
+  Email: _sfc_main$1k,
   Exception,
   Footer,
   FooterToolbar,
@@ -35962,9 +37513,12 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   GridItem,
   Header,
   Icon,
+  Image: Image$1,
+  ImagePreview,
   Input,
   InputNumber,
   Layout,
+  Link: _sfc_main$16,
   List: List$1,
   ListItem,
   ListItemMeta,
@@ -35974,7 +37528,7 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   MenuGroup,
   MenuItem,
   Message: $Message,
-  Mobile: _sfc_main$S,
+  Mobile: _sfc_main$Y,
   Modal,
   Notice: index$2,
   Notification,
@@ -35987,7 +37541,8 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   Page,
   PageHeader,
   Panel,
-  Password: _sfc_main$B,
+  Paragraph: _sfc_main$H,
+  Password: _sfc_main$G,
   Poptip,
   Progress: iProgress,
   Radio,
@@ -36000,13 +37555,15 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   ScrollTop: index,
   Select,
   Sider,
+  Skeleton,
+  SkeletonItem,
   Slider,
   Spin,
   Split,
   Step,
   Steps,
   Submenu,
-  Submit: _sfc_main$n,
+  Submit: _sfc_main$q,
   Switch,
   Table,
   TablePaste,
@@ -36015,15 +37572,18 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   Tag,
   TagSelect,
   TagSelectOption,
+  Text: _sfc_main$f,
   Time,
   Timeline,
   TimelineItem,
   TimePicker,
+  Title: _sfc_main$c,
   Tooltip,
-  Transfer: _sfc_main$7,
+  Transfer: _sfc_main$8,
   Tree,
   TreeSelect,
   Trend,
+  Typography,
   Upload,
   UserName: _sfc_main$1,
   WordCount
@@ -36337,7 +37897,7 @@ const directives = {
   "line-clamp": lineClamp
 };
 const ViewUI = __spreadProps(__spreadValues({}, components), {
-  iButton: _sfc_main$21,
+  iButton: _sfc_main$2b,
   iCircle: Circle,
   iCol: Col,
   iContent: Content,
@@ -36422,6 +37982,11 @@ const install = function(app, opts = {}) {
       icon: opts.timePicker ? opts.timePicker.icon ? opts.timePicker.icon : "" : "",
       customIcon: opts.timePicker ? opts.timePicker.customIcon ? opts.timePicker.customIcon : "" : "",
       iconSize: opts.timePicker ? opts.timePicker.iconSize ? opts.timePicker.iconSize : "" : ""
+    },
+    typography: {
+      copyConfig: opts.typography ? opts.typography.copyConfig ? opts.typography.copyConfig : "" : "",
+      editConfig: opts.typography ? opts.typography.editConfig ? opts.typography.editConfig : "" : "",
+      ellipsisConfig: opts.typography ? opts.typography.ellipsisConfig ? opts.typography.ellipsisConfig : "" : ""
     }
   };
   app.config.globalProperties.$Spin = Spin;
@@ -36429,7 +37994,7 @@ const install = function(app, opts = {}) {
   app.config.globalProperties.$Message = $Message;
   app.config.globalProperties.$Notice = index$2;
   app.config.globalProperties.$Modal = Modal;
-  app.config.globalProperties.$Copy = index$4;
+  app.config.globalProperties.$Copy = Copy;
   app.config.globalProperties.$ScrollIntoView = index$1;
   app.config.globalProperties.$ScrollTop = index;
   app.config.globalProperties.$Date = dayjs;
@@ -36451,4 +38016,4 @@ const API = __spreadValues({
   install,
   lang
 }, components);
-export { Affix, Alert, Anchor, AnchorLink, _sfc_main$2f as Auth, AutoComplete, Avatar, AvatarList, BackTop, Badge, Breadcrumb, BreadcrumbItem, _sfc_main$21 as Button, ButtonGroup, Calendar, _sfc_main$1T as Captcha, Card, Carousel, CarouselItem, Cascader, Cell, CellGroup, Checkbox, CheckboxGroup, Circle, City, Col, Collapse, ColorPicker, Content, index$4 as Copy, CountDown, CountUp, DatePicker, _sfc_main$1g as Description, DescriptionList, Divider, Drawer, Dropdown, DropdownItem, DropdownMenu, Ellipsis, _sfc_main$1a as Email, Exception, Footer, FooterToolbar, Form, FormItem, GlobalFooter, Grid, GridItem, Header, Icon, Input, InputNumber, Layout, List$1 as List, ListItem, ListItemMeta, index$3 as LoadingBar, Login, Menu, MenuGroup, MenuItem, $Message as Message, _sfc_main$S as Mobile, Modal, index$2 as Notice, Notification, NotificationItem, NotificationTab, NumberInfo, Numeral, iOption as Option, OptionGroup, Page, PageHeader, Panel, _sfc_main$B as Password, Poptip, iProgress as Progress, Radio, RadioGroup, Rate, Result, Row, Scroll, index$1 as ScrollIntoView, index as ScrollTop, Select, Sider, Slider, Spin, Split, Step, Steps, Submenu, _sfc_main$n as Submit, Switch, TabPane, Table, TablePaste, Tabs, Tag, TagSelect, TagSelectOption, Time, TimePicker, Timeline, TimelineItem, Tooltip, _sfc_main$7 as Transfer, Tree, TreeSelect, Trend, Upload, _sfc_main$1 as UserName, WordCount, API as default, i18n, install, lang, locale, version };
+export { Affix, Alert, Anchor, AnchorLink, _sfc_main$2p as Auth, AutoComplete, Avatar, AvatarList, BackTop, Badge, Breadcrumb, BreadcrumbItem, _sfc_main$2b as Button, ButtonGroup, Calendar, _sfc_main$21 as Captcha, Card, Carousel, CarouselItem, Cascader, Cell, CellGroup, Checkbox, CheckboxGroup, Circle, City, Col, Collapse, ColorPicker, Content, Copy, CountDown, CountUp, DatePicker, _sfc_main$1q as Description, DescriptionList, Divider, Drawer, Dropdown, DropdownItem, DropdownMenu, Ellipsis, _sfc_main$1k as Email, Exception, Footer, FooterToolbar, Form, FormItem, GlobalFooter, Grid, GridItem, Header, Icon, Image$1 as Image, ImagePreview, Input, InputNumber, Layout, _sfc_main$16 as Link, List$1 as List, ListItem, ListItemMeta, index$3 as LoadingBar, Login, Menu, MenuGroup, MenuItem, $Message as Message, _sfc_main$Y as Mobile, Modal, index$2 as Notice, Notification, NotificationItem, NotificationTab, NumberInfo, Numeral, iOption as Option, OptionGroup, Page, PageHeader, Panel, _sfc_main$H as Paragraph, _sfc_main$G as Password, Poptip, iProgress as Progress, Radio, RadioGroup, Rate, Result, Row, Scroll, index$1 as ScrollIntoView, index as ScrollTop, Select, Sider, Skeleton, SkeletonItem, Slider, Spin, Split, Step, Steps, Submenu, _sfc_main$q as Submit, Switch, TabPane, Table, TablePaste, Tabs, Tag, TagSelect, TagSelectOption, _sfc_main$f as Text, Time, TimePicker, Timeline, TimelineItem, _sfc_main$c as Title, Tooltip, _sfc_main$8 as Transfer, Tree, TreeSelect, Trend, Typography, Upload, _sfc_main$1 as UserName, WordCount, API as default, i18n, install, lang, locale, version };

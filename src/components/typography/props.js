@@ -4,7 +4,7 @@ import mixinsLink from '../../mixins/link';
 
 const defaultCopyConfig = {
     tooltips: ['复制', '复制成功'],
-    showTip: true,
+    showTip: false,
     successTip: '复制成功',
     errorTip: '复制失败'
 };
