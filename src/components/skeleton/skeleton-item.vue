@@ -1,6 +1,6 @@
 <template>
     <div :class="classes" :style="styles">
-        <Icon v-if="showIcon" :class="iconClasses" type="ios-image-outline" :size="iconSize"/>
+        <Icon v-if="showIcon" :class="iconClasses" type="ios-image" :size="iconSize"/>
     </div>
 </template>
 
@@ -14,6 +14,11 @@
     export default {
         name: 'SkeletonItem',
         components: { Icon },
+        inject: {
+            SkeletonInstance: {
+                default: null
+            }
+        },
         props: {
             animated: {
                 type: Boolean,
@@ -52,10 +57,11 @@
             classes() {
                 return {
                     [prefixCls]: true,
-                    [prefixCls + '-animated']: this.animated,
+                    [prefixCls + '-animated']: this.animated || Boolean(this.SkeletonInstance) && this.SkeletonInstance.animated,
                     [prefixCls + '-' + this.type]: true,
                     [prefixCls + '-' + this.type + '-' + this.size]: true,
-                    [prefixCls + '-inline']: !this.block
+                    [prefixCls + '-inline']: !this.block,
+                    [prefixCls + '-round']: Boolean(this.SkeletonInstance) && this.SkeletonInstance.round
                 };
             },
             styles() {

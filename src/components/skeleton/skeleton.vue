@@ -40,6 +40,11 @@
     export default {
         name: 'Skeleton',
         components: { SkeletonItem, Row, Col },
+        provide () {
+            return {
+                SkeletonInstance : this
+            };
+        },
         props: {
             animated: {
                 type: Boolean,
