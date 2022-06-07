@@ -87,12 +87,6 @@
         data() {
             return {
                 prefixCls,
-                operations: [
-                    {label: this.t('i.image.zoomIn'), icon: '', value: 'enlarge'},
-                    {label: this.t('i.image.zoomOut'), icon: '', value: 'narrow'},
-                    {label: this.t('i.image.rotateLeft'), icon: '', value: 'leftRotation'},
-                    {label: this.t('i.image.rotateRight'), icon: '', value: 'rightRotation'}
-                ],
                 currentIndex: 0,
                 scale: 1,
                 degree: 0,
@@ -104,6 +98,14 @@
             }
         },
         computed: {
+            operations() {
+                return [
+                    {label: this.t('i.image.zoomIn'), icon: '', value: 'enlarge'},
+                    {label: this.t('i.image.zoomOut'), icon: '', value: 'narrow'},
+                    {label: this.t('i.image.rotateLeft'), icon: '', value: 'leftRotation'},
+                    {label: this.t('i.image.rotateRight'), icon: '', value: 'rightRotation'}
+                ]
+            },
             hasRightSwitchEnd() {
                 const { currentIndex, infinite, previewList} = this;
                 const len = previewList.length;
