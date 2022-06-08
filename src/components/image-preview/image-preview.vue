@@ -17,14 +17,29 @@
                 </div>
                 <div :class="[prefixCls + '-operations']">
                     <Icon
-                        v-for="item in operations"
-                        :key="item.value"
-                        :class="[
-                            prefixCls + '-operations-item',
-                            {[prefixCls + '-operations-rotate']: item.value === 'rotateLeft'}
-                        ]"
-                        :type="item.icon"
-                        @click.stop="handleOperation(item.value)"
+                        type="ios-add-circle-outline"
+                        :class="[prefixCls + '-operations-item']"
+                        @click.stop="handleOperation('zoomIn')"
+                    />
+                    <Icon
+                        type="ios-remove-circle-outline"
+                        :class="[prefixCls + '-operations-item']"
+                        @click.stop="handleOperation('zoomOut')"
+                    />
+                    <Icon
+                        :type="this.original ? 'ios-barcode-outline' : 'ios-qr-scanner'"
+                        :class="[prefixCls + '-operations-item']"
+                        @click.stop="handleOperation('original')"
+                    />
+                    <Icon
+                        type="ios-refresh"
+                        :class="[prefixCls + '-operations-item']"
+                        @click.stop="handleOperation('rotateLeft')"
+                    />
+                    <Icon
+                        type="ios-refresh"
+                        :class="[prefixCls + '-operations-item']"
+                        @click.stop="handleOperation('rotateRight')"
                     />
                 </div>
                 <Icon

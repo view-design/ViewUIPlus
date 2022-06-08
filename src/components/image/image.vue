@@ -28,7 +28,7 @@
             </slot>
         </div>
         <template v-if="preview">
-            <imagePreview
+            <ImagePreview
                 :infinite="infinite"
                 :preview-list="previewList"
                 :mask-closable="maskClosable"
