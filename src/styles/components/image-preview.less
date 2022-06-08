@@ -1,13 +1,8 @@
 @image-preview-prefix-cls: ~"@{css-prefix}image-preview";
+
 .@{image-preview-prefix-cls} {
     &-wrapper {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: @zindex-modal;
-        background-color: rgba(0, 0, 0, .15);
+        .mask;
         user-select: none;
     }
     &-mark {
@@ -18,9 +13,13 @@
         align-items: center;
     }
     &-image {
-        max-width: 100%;
-        max-height: 100%;
-        user-select: none;
+        &-transition {
+            transition: transform .3s ease;
+        }
+        &-limit {
+            max-width: 100%;
+            max-height: 100%;
+        }
     }
     &-operations {
         height: 36px;
@@ -29,21 +28,28 @@
         bottom: 30px;
         transform: translate(-50%);
         z-index: 1;
-        background-color: rgba(0, 0, 0, .15);
+        background: @image-preview-operations-background;
         border-radius: 22px;
         padding: 0 20px;
         display: flex;
+        justify-content: center;
         align-items: center;
+        overflow: hidden;
         &-item {
-            list-style: none;
+            color: #f1f2f5;
+            font-size: @image-preview-operations-fontsize;
             cursor: pointer;
             margin: 0 5px;
-            color: #FFF;
             padding: 4px 10px;
-            border-radius: 6px;
             &:hover {
-                background-color: rgba(255, 255, 255, .15);
+                opacity: @image-preview-operations-hover;
             }
+            &:active {
+                opacity: @image-preview-operations-active;
+            }
+        }
+        &-rotate {
+            transform: rotateY(180deg);
         }
     }
     &-arrow-left,
@@ -51,13 +57,19 @@
     &-arrow-close {
         z-index: 1;
         width: 36px;
-        color: #FFF;
-        font-size: 28px;
+        color: @white;
+        font-size: @image-preview-operations-fontsize;
         height: 36px;
         cursor: pointer;
         line-height: 36px;
         border-radius: 50%;
-        background: rgba(0, 0, 0, .65);
+        background: @image-preview-operations-background;
+        &:not(.@{image-preview-prefix-cls}-arrow-disabled):hover {
+            opacity: @image-preview-operations-hover;
+        }
+        &:not(.@{image-preview-prefix-cls}-arrow-disabled):active {
+            opacity: @image-preview-operations-active;
+        }
     }
     &-arrow-close {
         position: absolute;
@@ -78,7 +90,7 @@
     }
     &-arrow-disabled {
         cursor: @cursor-disabled;
-        color: #ccc;
-        background-color: @background-color-select-hover;
+        color: @image-preview-operations-disabled-color;
+        background-color: @image-preview-operations-disabled-background;
     }
 }

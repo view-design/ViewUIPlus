@@ -11,7 +11,7 @@
             </div>
         </slot>
         <div :class="[prefixCls + '-inner']" v-else>
-            <img 
+            <img
                 :src="src"
                 :alt="alt"
                 :referrerPolicy="referrerPolicy"
@@ -28,11 +28,11 @@
             </slot>
         </div>
         <template v-if="preview">
-            <image-preview 
+            <imagePreview
                 :infinite="infinite"
                 :preview-list="previewList"
-                :maskClosable="maskClosable"
-                :initialIndex="initialIndex"
+                :mask-closable="maskClosable"
+                :initial-index="initialIndex"
                 v-model="imagePreviewModal"
                 @on-close="handleClose"
                 @on-switch="handleSwitch"
@@ -83,7 +83,7 @@
             },
             // https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit
             fit: {
-                type: String, // 'fill' | 'contain' | 'cover' | 'none' | 'scale'-down' 
+                type: String, // 'fill' | 'contain' | 'cover' | 'none' | 'scale'-down'
                 default: ''
             },
             lazy: {
