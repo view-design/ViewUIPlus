@@ -71,9 +71,7 @@
     <ImagePreview
         v-model="showPreview"
         :previewList="srcList"
-		:initialIndex="2"
-        :transfer="false"
-        :maskClosable="true"
+        :infinite="false"
     ></ImagePreview>
 
     <Button type="primary" @click="showPreview = !showPreview">Switch Preview</Button>
@@ -89,6 +87,7 @@ export default {
 			url: 'https://dev-file.iviewui.com/j9IanwNpbTPM4aXv2fKyPTX1omREAaGG/large',
             showPreview: false,
             srcList: [
+                'https://file.iviewui.com/DSCF6873.JPG',
                 'https://dev-file.iviewui.com/ll7neXYI7fzKv1SjjOl77vpfkDbJpbDB/large',
                 'https://dev-file.iviewui.com/ASzUrSpwJHqOi2G2jWzsVJyDV1ZF6xnK/large',
                 'https://dev-file.iviewui.com/YSUjM5Fx7mOjsijiI3eVDuaHGqnmT7H8/large',
