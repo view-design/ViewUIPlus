@@ -5,12 +5,12 @@ export declare class Row {
     gutter: number;
 
     /**
-     * flex 布局下的垂直对齐方式，可选值为`top`、`middle`、`bottom`
+     * flex 布局下的垂直对齐方式，可选值为 `top`、`middle`、`bottom`
      */
     align: 'top' | 'middle' | 'bottom';
 
     /**
-     * 布局下的水平排列方式，可选值为`start`、`end`、`center`、`space-around`、`space-between`
+     * 布局下的水平排列方式，可选值为 `start`、`end`、`center`、`space-around`、`space-between`
      */
     justify: 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 
@@ -28,7 +28,7 @@ export declare class Row {
 
 export declare class Col {
     /**
-     * 栅格的占位格数，可选值为0~24的整数，为 0 时，相当于`display:none`
+     * 栅格的占位格数，可选值为0~24的整数，为 0 时，相当于 `display:none`
      */
     span: number | string;
 
@@ -38,7 +38,7 @@ export declare class Col {
     flex: number | string;
 
     /**
-     * 栅格的顺序，在`flex`布局模式下有效
+     * 栅格的顺序，在 `flex` 布局模式下有效
      */
     order: number | string;
 
