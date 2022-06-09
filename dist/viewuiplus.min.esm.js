@@ -3089,7 +3089,7 @@ const _hoisted_1$1j = {
   key: 1,
   class: "ivu-tag ivu-tag-checked"
 };
-const _hoisted_2$O = { class: "ivu-tag-text ivu-select-max-tag" };
+const _hoisted_2$N = { class: "ivu-tag-text ivu-select-max-tag" };
 const _hoisted_3$z = ["id", "disabled", "placeholder"];
 function _sfc_render$28(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
@@ -3124,7 +3124,7 @@ function _sfc_render$28(_ctx, _cache, $props, $setup, $data, $options) {
       ]);
     }), 128)),
     $props.maxTagCount !== void 0 && $props.values.length > $props.maxTagCount ? (openBlock(), createElementBlock("div", _hoisted_1$1j, [
-      createElementVNode("span", _hoisted_2$O, [
+      createElementVNode("span", _hoisted_2$N, [
         $props.maxTagPlaceholder ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
           createTextVNode(toDisplayString($props.maxTagPlaceholder($props.values.length - $props.maxTagCount)), 1)
         ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
@@ -3986,7 +3986,7 @@ const _sfc_main$2m = {
   }
 };
 const _hoisted_1$1i = ["tabindex"];
-const _hoisted_2$N = ["name", "value"];
+const _hoisted_2$M = ["name", "value"];
 function _sfc_render$27(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_select_head = resolveComponent("select-head");
   const _component_Icon = resolveComponent("Icon");
@@ -4018,7 +4018,7 @@ function _sfc_render$27(_ctx, _cache, $props, $setup, $data, $options) {
           type: "hidden",
           name: $props.name,
           value: $options.publicValue
-        }, null, 8, _hoisted_2$N),
+        }, null, 8, _hoisted_2$M),
         createVNode(_component_select_head, {
           ref: "selectHead",
           filterable: $props.filterable,
@@ -4760,7 +4760,7 @@ const _hoisted_1$1h = {
   key: 4,
   class: "ivu-input-suffix"
 };
-const _hoisted_2$M = {
+const _hoisted_2$L = {
   key: 5,
   class: "ivu-input-word-count"
 };
@@ -4819,7 +4819,7 @@ function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
             class: normalizeClass(["ivu-icon", ["ivu-icon-" + $props.suffix]])
           }, null, 2)) : createCommentVNode("", true)
         ])
-      ])) : $props.showWordLimit ? (openBlock(), createElementBlock("span", _hoisted_2$M, toDisplayString($options.textLength) + "/" + toDisplayString($options.upperLimit), 1)) : $props.password ? (openBlock(), createElementBlock("span", {
+      ])) : $props.showWordLimit ? (openBlock(), createElementBlock("span", _hoisted_2$L, toDisplayString($options.textLength) + "/" + toDisplayString($options.upperLimit), 1)) : $props.password ? (openBlock(), createElementBlock("span", {
         key: 6,
         class: "ivu-input-suffix",
         onClick: _cache[3] || (_cache[3] = (...args) => $options.handleToggleShowPassword && $options.handleToggleShowPassword(...args))
@@ -5617,7 +5617,7 @@ const _hoisted_1$1f = {
   key: 0,
   class: "ivu-avatar-list-item ivu-avatar-list-item-excess"
 };
-const _hoisted_2$L = {
+const _hoisted_2$K = {
   key: 1,
   class: "ivu-avatar-list-item ivu-avatar-list-item-excess"
 };
@@ -5664,7 +5664,7 @@ function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
         ]),
         _: 3
       }, 8, ["size", "shape", "style"])
-    ])) : $props.list.length > $props.max ? (openBlock(), createElementBlock("div", _hoisted_2$L, [
+    ])) : $props.list.length > $props.max ? (openBlock(), createElementBlock("div", _hoisted_2$K, [
       createVNode(_component_Avatar, {
         size: $props.size,
         shape: $props.shape,
@@ -5751,7 +5751,7 @@ const _sfc_main$2f = {
   }
 };
 const _hoisted_1$1e = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-arrow-up" }, null, -1);
-const _hoisted_2$K = [
+const _hoisted_2$J = [
   _hoisted_1$1e
 ];
 function _sfc_render$20(_ctx, _cache, $props, $setup, $data, $options) {
@@ -5763,7 +5763,7 @@ function _sfc_render$20(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default", {}, () => [
       createElementVNode("div", {
         class: normalizeClass($options.innerClasses)
-      }, _hoisted_2$K, 2)
+      }, _hoisted_2$J, 2)
     ])
   ], 6);
 }
@@ -5991,7 +5991,7 @@ const _sfc_main$2c = {
   }
 };
 const _hoisted_1$1b = ["href", "target"];
-const _hoisted_2$J = ["innerHTML"];
+const _hoisted_2$I = ["innerHTML"];
 function _sfc_render$1Z(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", null, [
     _ctx.to ? (openBlock(), createElementBlock("a", {
@@ -6016,7 +6016,7 @@ function _sfc_render$1Z(_ctx, _cache, $props, $setup, $data, $options) {
       key: 2,
       class: normalizeClass($options.separatorClasses),
       innerHTML: $options.separator
-    }, null, 10, _hoisted_2$J)) : (openBlock(), createElementBlock("span", {
+    }, null, 10, _hoisted_2$I)) : (openBlock(), createElementBlock("span", {
       key: 3,
       class: normalizeClass($options.separatorClasses)
     }, [
@@ -6882,7 +6882,7 @@ const _hoisted_1$18 = {
   cellspacing: "0",
   cellpadding: "0"
 };
-const _hoisted_2$I = ["onClick", "onContextmenu"];
+const _hoisted_2$H = ["onClick", "onContextmenu"];
 const _hoisted_3$x = ["onClick"];
 const _hoisted_4$r = { class: "ivu-calendar-table-day-title" };
 const _hoisted_5$k = { class: "ivu-calendar-table-day-slot" };
@@ -6915,7 +6915,7 @@ function _sfc_render$1V(_ctx, _cache, $props, $setup, $data, $options) {
                   })
                 ])
               ], 14, _hoisted_3$x)
-            ], 40, _hoisted_2$I);
+            ], 40, _hoisted_2$H);
           }), 128))
         ]);
       }), 128))
@@ -6972,7 +6972,7 @@ const _hoisted_1$17 = {
   cellspacing: "0",
   cellpadding: "0"
 };
-const _hoisted_2$H = ["onClick", "onContextmenu"];
+const _hoisted_2$G = ["onClick", "onContextmenu"];
 const _hoisted_3$w = ["onClick"];
 const _hoisted_4$q = { class: "ivu-calendar-table-day-title" };
 const _hoisted_5$j = { class: "ivu-calendar-table-day-slot" };
@@ -7000,7 +7000,7 @@ function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
                   })
                 ])
               ], 14, _hoisted_3$w)
-            ], 40, _hoisted_2$H);
+            ], 40, _hoisted_2$G);
           }), 128))
         ]);
       }), 128))
@@ -7135,7 +7135,7 @@ const _sfc_main$25 = {
   }
 };
 const _hoisted_1$16 = { class: "ivu-calendar" };
-const _hoisted_2$G = {
+const _hoisted_2$F = {
   key: 0,
   class: "ivu-calendar-header"
 };
@@ -7151,7 +7151,7 @@ function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_CalendarMonth = resolveComponent("CalendarMonth");
   const _component_CalendarYear = resolveComponent("CalendarYear");
   return openBlock(), createElementBlock("div", _hoisted_1$16, [
-    $props.showHeader ? (openBlock(), createElementBlock("div", _hoisted_2$G, [
+    $props.showHeader ? (openBlock(), createElementBlock("div", _hoisted_2$F, [
       renderSlot(_ctx.$slots, "header", {}, () => [
         createElementVNode("div", _hoisted_3$v, [
           renderSlot(_ctx.$slots, "headerTitle", {}, () => [
@@ -10132,7 +10132,7 @@ const _sfc_main$1X = {
   }
 };
 const _hoisted_1$11 = ["name", "value"];
-const _hoisted_2$F = ["onClick", "innerHTML"];
+const _hoisted_2$E = ["onClick", "innerHTML"];
 function _sfc_render$1K(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_i_input = resolveComponent("i-input");
   const _component_Icon = resolveComponent("Icon");
@@ -10218,7 +10218,7 @@ function _sfc_render$1K(_ctx, _cache, $props, $setup, $data, $options) {
                   key: index2,
                   onClick: ($event) => $options.handleSelectItem(index2),
                   innerHTML: item.display
-                }, null, 10, _hoisted_2$F);
+                }, null, 10, _hoisted_2$E);
               }), 128))
             ], 2)
           ], 2), [
@@ -10258,7 +10258,7 @@ const _sfc_main$1W = {
   }
 };
 const _hoisted_1$10 = { class: "ivu-cell-item" };
-const _hoisted_2$E = { class: "ivu-cell-icon" };
+const _hoisted_2$D = { class: "ivu-cell-icon" };
 const _hoisted_3$u = { class: "ivu-cell-main" };
 const _hoisted_4$o = { class: "ivu-cell-title" };
 const _hoisted_5$h = { class: "ivu-cell-label" };
@@ -10266,7 +10266,7 @@ const _hoisted_6$9 = { class: "ivu-cell-footer" };
 const _hoisted_7$8 = { class: "ivu-cell-extra" };
 function _sfc_render$1J(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", _hoisted_1$10, [
-    createElementVNode("div", _hoisted_2$E, [
+    createElementVNode("div", _hoisted_2$D, [
       renderSlot(_ctx.$slots, "icon")
     ]),
     createElementVNode("div", _hoisted_3$u, [
@@ -10379,7 +10379,7 @@ const _sfc_main$1V = {
   }
 };
 const _hoisted_1$$ = ["href", "target"];
-const _hoisted_2$D = {
+const _hoisted_2$C = {
   key: 2,
   class: "ivu-cell-arrow"
 };
@@ -10444,7 +10444,7 @@ function _sfc_render$1I(_ctx, _cache, $props, $setup, $data, $options) {
         _: 3
       }, 8, ["title", "label", "extra"])
     ])),
-    _ctx.to ? (openBlock(), createElementBlock("div", _hoisted_2$D, [
+    _ctx.to ? (openBlock(), createElementBlock("div", _hoisted_2$C, [
       renderSlot(_ctx.$slots, "arrow", {}, () => [
         createVNode(_component_Icon, {
           type: $options.arrowType,
@@ -10623,7 +10623,7 @@ const _sfc_main$1T = {
   }
 };
 const _hoisted_1$Z = ["disabled", "value", "name"];
-const _hoisted_2$C = ["disabled", "checked", "name"];
+const _hoisted_2$B = ["disabled", "checked", "name"];
 const _hoisted_3$t = {
   key: 0,
   class: "ivu-checkbox-label-text"
@@ -10661,7 +10661,7 @@ function _sfc_render$1G(_ctx, _cache, $props, $setup, $data, $options) {
         onChange: _cache[4] || (_cache[4] = (...args) => $options.change && $options.change(...args)),
         onFocus: _cache[5] || (_cache[5] = (...args) => $options.onFocus && $options.onFocus(...args)),
         onBlur: _cache[6] || (_cache[6] = (...args) => $options.onBlur && $options.onBlur(...args))
-      }, null, 42, _hoisted_2$C))
+      }, null, 42, _hoisted_2$B))
     ], 2),
     $data.showSlot ? (openBlock(), createElementBlock("span", _hoisted_3$t, [
       renderSlot(_ctx.$slots, "default", {}, () => [
@@ -10849,7 +10849,7 @@ const _sfc_main$1R = {
   }
 };
 const _hoisted_1$Y = { viewBox: "0 0 100 100" };
-const _hoisted_2$B = { key: 0 };
+const _hoisted_2$A = { key: 0 };
 const _hoisted_3$s = ["id"];
 const _hoisted_4$n = ["stop-color"];
 const _hoisted_5$g = ["stop-color"];
@@ -10861,7 +10861,7 @@ function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
     class: normalizeClass($options.wrapClasses)
   }, [
     (openBlock(), createElementBlock("svg", _hoisted_1$Y, [
-      $options.showDefs ? (openBlock(), createElementBlock("defs", _hoisted_2$B, [
+      $options.showDefs ? (openBlock(), createElementBlock("defs", _hoisted_2$A, [
         createElementVNode("linearGradient", {
           id: $data.id,
           x1: "100%",
@@ -12114,7 +12114,7 @@ const _sfc_main$1N = {
   }
 };
 const _hoisted_1$W = ["name", "value"];
-const _hoisted_2$A = { class: "ivu-city-drop" };
+const _hoisted_2$z = { class: "ivu-city-drop" };
 const _hoisted_3$r = {
   key: 0,
   class: "ivu-city-drop-cities"
@@ -12173,7 +12173,7 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
           }, ["stop"]))
         }, {
           default: withCtx(() => [
-            createElementVNode("div", _hoisted_2$A, [
+            createElementVNode("div", _hoisted_2$z, [
               $props.cities.length ? (openBlock(), createElementBlock("div", _hoisted_3$r, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList($options.relCities, (item) => {
                   return openBlock(), createElementBlock("span", {
@@ -13532,7 +13532,7 @@ const _sfc_main$1L = {
   }
 };
 const _hoisted_1$V = ["data-color-id"];
-const _hoisted_2$z = { key: 0 };
+const _hoisted_2$y = { key: 0 };
 function _sfc_render$1y(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     ref: "reference",
@@ -13568,7 +13568,7 @@ function _sfc_render$1y(_ctx, _cache, $props, $setup, $data, $options) {
             }, null, 2)
           ], 8, _hoisted_1$V)
         ], 2),
-        $options.lineBreak($props.list, index2) ? (openBlock(), createElementBlock("br", _hoisted_2$z)) : createCommentVNode("", true)
+        $options.lineBreak($props.list, index2) ? (openBlock(), createElementBlock("br", _hoisted_2$y)) : createCommentVNode("", true)
       ], 64);
     }), 128))
   ], 544);
@@ -14298,7 +14298,7 @@ const _sfc_main$1H = {
   }
 };
 const _hoisted_1$U = ["name", "value"];
-const _hoisted_2$y = ["tabindex"];
+const _hoisted_2$x = ["tabindex"];
 function _sfc_render$1u(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Saturation = resolveComponent("Saturation");
@@ -14357,7 +14357,7 @@ function _sfc_render$1u(_ctx, _cache, $props, $setup, $data, $options) {
             [vShow, $props.modelValue || $data.visible]
           ])
         ], 2)
-      ], 42, _hoisted_2$y)
+      ], 42, _hoisted_2$x)
     ], 2),
     createVNode(_component_Drop, {
       ref: "drop",
@@ -14695,9 +14695,9 @@ const _sfc_main$1F = {
   }
 };
 const _hoisted_1$T = ["innerHTML"];
-const _hoisted_2$x = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1);
+const _hoisted_2$w = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1);
 const _hoisted_3$q = [
-  _hoisted_2$x
+  _hoisted_2$w
 ];
 const _hoisted_4$l = ["innerHTML"];
 const _hoisted_5$e = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1);
@@ -16972,7 +16972,7 @@ const _sfc_main$1A = {
   }
 };
 const _hoisted_1$R = { class: "ivu-date-picker-cells-header" };
-const _hoisted_2$w = ["onClick", "onMouseenter"];
+const _hoisted_2$v = ["onClick", "onMouseenter"];
 function _sfc_render$1n(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes)
@@ -16990,7 +16990,7 @@ function _sfc_render$1n(_ctx, _cache, $props, $setup, $data, $options) {
         onMouseenter: ($event) => _ctx.handleMouseMove(cell)
       }, [
         createElementVNode("em", null, toDisplayString(cell.desc), 1)
-      ], 42, _hoisted_2$w);
+      ], 42, _hoisted_2$v);
     }), 128))
   ], 2);
 }
@@ -17393,7 +17393,7 @@ const _sfc_main$1x = {
   }
 };
 const _hoisted_1$O = ["onClick"];
-const _hoisted_2$v = ["onClick"];
+const _hoisted_2$u = ["onClick"];
 const _hoisted_3$p = ["onClick"];
 function _sfc_render$1k(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
@@ -17429,7 +17429,7 @@ function _sfc_render$1k(_ctx, _cache, $props, $setup, $data, $options) {
             class: normalizeClass($options.getCellCls(item)),
             key: item.text,
             onClick: ($event) => $options.handleClick("minutes", item)
-          }, toDisplayString($options.formatTime(item.text)), 11, _hoisted_2$v)), [
+          }, toDisplayString($options.formatTime(item.text)), 11, _hoisted_2$u)), [
             [vShow, !item.hide]
           ]);
         }), 128))
@@ -19226,7 +19226,7 @@ const _sfc_main$1n = {
   }
 };
 const _hoisted_1$K = { ref: "drawer" };
-const _hoisted_2$u = /* @__PURE__ */ createElementVNode("div", { class: "ivu-drawer-drag-move-trigger" }, [
+const _hoisted_2$t = /* @__PURE__ */ createElementVNode("div", { class: "ivu-drawer-drag-move-trigger" }, [
   /* @__PURE__ */ createElementVNode("div", { class: "ivu-drawer-drag-move-trigger-point" }, [
     /* @__PURE__ */ createElementVNode("i"),
     /* @__PURE__ */ createElementVNode("i"),
@@ -19301,7 +19301,7 @@ function _sfc_render$1b(_ctx, _cache, $props, $setup, $data, $options) {
                 onMousedown: _cache[2] || (_cache[2] = (...args) => $options.handleTriggerMousedown && $options.handleTriggerMousedown(...args))
               }, [
                 renderSlot(_ctx.$slots, "trigger", {}, () => [
-                  _hoisted_2$u
+                  _hoisted_2$t
                 ])
               ], 34)) : createCommentVNode("", true)
             ], 6), [
@@ -19538,7 +19538,7 @@ const _sfc_main$1l = {
   }
 };
 const _hoisted_1$J = { class: "ivu-ellipsis" };
-const _hoisted_2$t = {
+const _hoisted_2$s = {
   class: "ivu-ellipsis-more",
   ref: "more"
 };
@@ -19575,7 +19575,7 @@ function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
             class: "ivu-ellipsis-text",
             ref: "text"
           }, toDisplayString($props.text), 513),
-          withDirectives(createElementVNode("span", _hoisted_2$t, [
+          withDirectives(createElementVNode("span", _hoisted_2$s, [
             renderSlot(_ctx.$slots, "more", {}, () => [
               _hoisted_3$o
             ])
@@ -19712,14 +19712,14 @@ const _sfc_main$1j = {
   }
 };
 const _hoisted_1$I = { class: "ivu-exception" };
-const _hoisted_2$s = { class: "ivu-exception-img" };
+const _hoisted_2$r = { class: "ivu-exception-img" };
 const _hoisted_3$n = { class: "ivu-exception-content" };
 const _hoisted_4$j = { class: "ivu-exception-content-desc" };
 const _hoisted_5$c = { class: "ivu-exception-content-actions" };
 function _sfc_render$18(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Button = resolveComponent("Button");
   return openBlock(), createElementBlock("div", _hoisted_1$I, [
-    createElementVNode("div", _hoisted_2$s, [
+    createElementVNode("div", _hoisted_2$r, [
       createElementVNode("div", {
         class: "ivu-exception-img-element",
         style: normalizeStyle({ "background-image": "url(" + $options.imgPath + ")" })
@@ -19780,14 +19780,14 @@ const _sfc_main$1h = {
   }
 };
 const _hoisted_1$H = { class: "ivu-footer-toolbar" };
-const _hoisted_2$r = {
+const _hoisted_2$q = {
   key: 0,
   class: "ivu-footer-toolbar-left"
 };
 const _hoisted_3$m = { class: "ivu-footer-toolbar-right" };
 function _sfc_render$16(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", _hoisted_1$H, [
-    $props.extra || _ctx.$slots.extra ? (openBlock(), createElementBlock("div", _hoisted_2$r, [
+    $props.extra || _ctx.$slots.extra ? (openBlock(), createElementBlock("div", _hoisted_2$q, [
       renderSlot(_ctx.$slots, "extra", {}, () => [
         createTextVNode(toDisplayString($props.extra), 1)
       ])
@@ -19953,7 +19953,7 @@ const _sfc_main$1f = {
   }
 };
 const _hoisted_1$F = { class: "ivu-global-footer" };
-const _hoisted_2$q = {
+const _hoisted_2$p = {
   key: 0,
   class: "ivu-global-footer-links"
 };
@@ -19965,7 +19965,7 @@ const _hoisted_4$i = {
 function _sfc_render$14(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createElementBlock("footer", _hoisted_1$F, [
-    $props.links.length || _ctx.$slots.links ? (openBlock(), createElementBlock("div", _hoisted_2$q, [
+    $props.links.length || _ctx.$slots.links ? (openBlock(), createElementBlock("div", _hoisted_2$p, [
       renderSlot(_ctx.$slots, "links", {}, () => [
         (openBlock(true), createElementBlock(Fragment, null, renderList($props.links, (item) => {
           return openBlock(), createElementBlock("a", {
@@ -21605,11 +21605,195 @@ const KeyCode = {
     }
   }
 };
-const prefixCls$E = "ivu-image-preview";
+const prefixCls$E = "ivu-spin";
 const _sfc_main$1b = {
+  name: "Spin",
+  mixins: [ScrollbarMixins],
+  props: {
+    size: {
+      validator(value) {
+        return oneOf(value, ["small", "large", "default"]);
+      },
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
+      }
+    },
+    fix: {
+      type: Boolean,
+      default: false
+    },
+    fullscreen: {
+      type: Boolean,
+      default: false
+    },
+    show: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data() {
+    return {
+      showText: false,
+      visible: false
+    };
+  },
+  computed: {
+    classes() {
+      return [
+        `${prefixCls$E}`,
+        {
+          [`${prefixCls$E}-${this.size}`]: !!this.size,
+          [`${prefixCls$E}-fix`]: this.fix,
+          [`${prefixCls$E}-show-text`]: this.showText,
+          [`${prefixCls$E}-fullscreen`]: this.fullscreen
+        }
+      ];
+    },
+    mainClasses() {
+      return `${prefixCls$E}-main`;
+    },
+    dotClasses() {
+      return `${prefixCls$E}-dot`;
+    },
+    textClasses() {
+      return `${prefixCls$E}-text`;
+    },
+    fullscreenVisible() {
+      if (this.fullscreen) {
+        return this.visible;
+      } else {
+        return true;
+      }
+    }
+  },
+  watch: {
+    visible(val) {
+      if (val) {
+        this.addScrollEffect();
+      } else {
+        this.removeScrollEffect();
+      }
+    }
+  },
+  mounted() {
+    this.showText = !!this.$slots.default && this.$slots.default().some((item) => item.children && item.children.length);
+  }
+};
+function _sfc_render$10(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createBlock(Transition, { name: "fade" }, {
+    default: withCtx(() => [
+      $options.fullscreenVisible && $props.show ? (openBlock(), createElementBlock("div", {
+        key: 0,
+        class: normalizeClass($options.classes)
+      }, [
+        createElementVNode("div", {
+          class: normalizeClass($options.mainClasses)
+        }, [
+          createElementVNode("span", {
+            class: normalizeClass($options.dotClasses)
+          }, null, 2),
+          createElementVNode("div", {
+            class: normalizeClass($options.textClasses)
+          }, [
+            renderSlot(_ctx.$slots, "default")
+          ], 2)
+        ], 2)
+      ], 2)) : createCommentVNode("", true)
+    ]),
+    _: 3
+  });
+}
+var Spin = /* @__PURE__ */ _export_sfc(_sfc_main$1b, [["render", _sfc_render$10]]);
+function handleGetIndex() {
+  transferIncrease();
+  return transferIndex;
+}
+let tIndex = handleGetIndex();
+Spin.newInstance = (properties) => {
+  if (!isClient)
+    return;
+  const _props = properties || {};
+  let _instance = null;
+  const Instance = createApp({
+    data() {
+      return Object.assign({}, _props, {});
+    },
+    render() {
+      let vnode = "";
+      if (this.render) {
+        vnode = h(Spin, {
+          fix: true,
+          fullscreen: true,
+          ref: "spin"
+        }, [this.render(h)]);
+      } else {
+        vnode = h(Spin, {
+          size: "large",
+          fix: true,
+          fullscreen: true,
+          ref: "spin"
+        });
+      }
+      return h("div", {
+        "class": "ivu-spin-fullscreen ivu-spin-fullscreen-wrapper",
+        "style": {
+          "z-index": 2010 + tIndex
+        }
+      }, [vnode]);
+    },
+    created() {
+      _instance = getCurrentInstance();
+    }
+  });
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+  Instance.mount(container);
+  const spin = _instance.refs.spin;
+  return {
+    show() {
+      spin.visible = true;
+      tIndex = handleGetIndex();
+    },
+    remove(cb) {
+      spin.visible = false;
+      setTimeout(function() {
+        Instance.unmount();
+        document.body.removeChild(container);
+        cb();
+      }, 500);
+    },
+    component: spin
+  };
+};
+let spinInstance;
+function getSpinInstance(render = void 0) {
+  spinInstance = spinInstance || Spin.newInstance({
+    render
+  });
+  return spinInstance;
+}
+function loading(options) {
+  const render = "render" in options ? options.render : void 0;
+  let instance = getSpinInstance(render);
+  instance.show(options);
+}
+Spin.show = function(props = {}) {
+  return loading(props);
+};
+Spin.hide = function() {
+  if (!spinInstance)
+    return false;
+  const instance = getSpinInstance();
+  instance.remove(() => {
+    spinInstance = null;
+  });
+};
+const prefixCls$D = "ivu-image-preview";
+const _sfc_main$1a = {
   name: "ImagePreview",
   mixins: [Locale],
-  components: { Icon },
+  components: { Icon, Spin },
   props: {
     modelValue: {
       type: Boolean,
@@ -21644,36 +21828,37 @@ const _sfc_main$1b = {
   emits: ["update:modelValue", "on-close", "on-switch"],
   data() {
     return {
-      prefixCls: prefixCls$E,
-      operations: [
-        { label: this.t("i.image.zoomIn"), icon: "", value: "enlarge" },
-        { label: this.t("i.image.zoomOut"), icon: "", value: "narrow" },
-        { label: this.t("i.image.rotateLeft"), icon: "", value: "leftRotation" },
-        { label: this.t("i.image.rotateRight"), icon: "", value: "rightRotation" }
-      ],
+      prefixCls: prefixCls$D,
       currentIndex: 0,
       scale: 1,
       degree: 0,
       translate: { x: 0, y: 0 },
       startX: 0,
       startY: 0,
-      moving: false,
-      prevOverflow: ""
+      transition: true,
+      original: false,
+      prevOverflow: "",
+      status: "loading"
     };
   },
   computed: {
-    hasRightSwitchEnd() {
-      const { currentIndex, infinite, previewList } = this;
-      const len = previewList.length;
-      return infinite ? false : currentIndex >= len - 1;
+    operations() {
+      return [
+        { icon: "ios-add-circle-outline", value: "zoomIn" },
+        { icon: "ios-remove-circle-outline", value: "zoomOut" },
+        { icon: this.original ? "ios-barcode-outline" : "ios-qr-scanner", value: "original" },
+        { icon: "ios-refresh", value: "rotateLeft" },
+        { icon: "ios-refresh", value: "rotateRight" }
+      ];
     },
-    hasLeftSwitchEnd() {
-      const { currentIndex, infinite } = this;
-      return infinite ? false : currentIndex === 0;
-    }
-  },
-  methods: {
-    imageStyle(index2) {
+    imgClasses() {
+      return {
+        [prefixCls$D + "-image"]: true,
+        [prefixCls$D + "-image-transition"]: this.transition,
+        [prefixCls$D + "-image-limit"]: !this.original
+      };
+    },
+    imageStyle() {
       let translateX = this.translate.x / this.scale;
       let translateY = this.translate.y / this.scale;
       const mod = this.degree % 360;
@@ -21686,20 +21871,31 @@ const _sfc_main$1b = {
       if ([270, -90].includes(mod)) {
         [translateX, translateY] = [-translateY, translateX];
       }
-      const styleObj = {
+      return {
         transform: `
-                            scale(${index2 === this.currentIndex ? this.scale : 1})
-                            rotate(${index2 === this.currentIndex ? this.degree : 0}deg)
-                            translate(
-                                ${index2 === this.currentIndex ? translateX : 0}px,
-                                ${index2 === this.currentIndex ? translateY : 0}px
-                            )
-                        `
+                    scale(${this.scale})
+                    rotate(${this.degree}deg)
+                    translate(${translateX}px, ${translateY}px)
+                `
       };
-      if (!this.moving)
-        styleObj.transition = "transform .3s ease";
-      return styleObj;
     },
+    hasRightSwitchEnd() {
+      const { currentIndex, infinite, previewList } = this;
+      const len = previewList.length;
+      return infinite ? false : currentIndex >= len - 1;
+    },
+    hasLeftSwitchEnd() {
+      const { currentIndex, infinite } = this;
+      return infinite ? false : currentIndex === 0;
+    },
+    currentSrc() {
+      return this.previewList[this.currentIndex];
+    },
+    failLang() {
+      return this.t("i.image.fail");
+    }
+  },
+  methods: {
     resetStyle() {
       this.scale = 1;
       this.degree = 0;
@@ -21740,25 +21936,36 @@ const _sfc_main$1b = {
       this.$emit("on-switch", { currentIndex: this.currentIndex });
     },
     handleOperation(val) {
-      if (val === "enlarge" && this.scale < 6)
+      if (val === "zoomIn" && this.scale < 6)
         this.scale += 0.25;
-      if (val === "narrow" && this.scale > 0.25)
+      if (val === "zoomOut" && this.scale > 0.25)
         this.scale -= 0.25;
-      if (val === "leftRotation")
+      if (val === "rotateLeft")
         this.degree -= 90;
-      if (val === "rightRotation")
+      if (val === "rotateRight")
         this.degree += 90;
+      if (val === "original") {
+        this.original = !this.original;
+        this.transition = false;
+        this.resetStyle();
+        setTimeout(() => {
+          this.transition = true;
+        }, 0);
+      }
     },
     handleKeydown(event) {
+      event.preventDefault();
       const { keyCode } = event;
       if (keyCode === KeyCode.LEFT)
         this.handleSwitch(false);
       if (keyCode === KeyCode.RIGHT)
         this.handleSwitch(true);
       if (keyCode === KeyCode.UP)
-        this.handleOperation("enlarge");
+        this.handleOperation("zoomIn");
       if (keyCode === KeyCode.DOWN)
-        this.handleOperation("narrow");
+        this.handleOperation("zoomOut");
+      if (keyCode === KeyCode.SPACE)
+        this.original = !this.original;
     },
     handleKeyup(event) {
       const { keyCode } = event;
@@ -21767,13 +21974,15 @@ const _sfc_main$1b = {
     },
     handleWheel(event) {
       const { deltaY } = event;
-      this.handleOperation(deltaY < 0 ? "enlarge" : "narrow");
+      this.handleOperation(deltaY < 0 ? "zoomIn" : "zoomOut");
     },
     handleMousedown(event) {
-      this.moving = true;
-      const { pageX, pageY } = event;
+      const { pageX, pageY, which } = event;
+      if (which !== 1)
+        return;
       this.startX = pageX;
       this.startY = pageY;
+      this.transition = false;
       on(document, "mousemove", this.handleMousemove);
       on(document, "mouseup", this.handleMouseup);
     },
@@ -21786,7 +21995,7 @@ const _sfc_main$1b = {
       this.startY = pageY;
     }),
     handleMouseup() {
-      this.moving = false;
+      this.transition = true;
       off(document, "mousemove", this.handleMousemove);
       off(document, "mouseup", this.handleMouseup);
     },
@@ -21797,6 +22006,12 @@ const _sfc_main$1b = {
       if (!isClient)
         return;
       document.body.style.overflow = val;
+    },
+    handleImageLoad() {
+      this.status = "loaded";
+    },
+    handleImageError() {
+      this.status = "failed";
     }
   },
   watch: {
@@ -21804,11 +22019,15 @@ const _sfc_main$1b = {
       if (val) {
         this.currentIndex = this.initialIndex;
         this.resetStyle();
+        this.original = false;
         this.prevOverflow = this.getBodyOverflow();
         this.setBodyOverflow("hidden");
       } else {
         this.setBodyOverflow(this.prevOverflow);
       }
+    },
+    currentIndex() {
+      this.status = "loading";
     }
   },
   mounted() {
@@ -21823,8 +22042,8 @@ const _sfc_main$1b = {
   }
 };
 const _hoisted_1$E = ["src"];
-const _hoisted_2$p = ["onClick"];
-function _sfc_render$10(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_Spin = resolveComponent("Spin");
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createBlock(Teleport, {
     to: "body",
@@ -21839,60 +22058,87 @@ function _sfc_render$10(_ctx, _cache, $props, $setup, $data, $options) {
           $props.previewList.length > 0 ? (openBlock(), createElementBlock("div", {
             key: 0,
             class: normalizeClass([$data.prefixCls + "-mark"]),
-            onClick: _cache[2] || (_cache[2] = withModifiers((...args) => $options.handleClickMark && $options.handleClickMark(...args), ["stop"]))
+            onClick: _cache[4] || (_cache[4] = withModifiers((...args) => $options.handleClickMark && $options.handleClickMark(...args), ["stop"]))
           }, [
-            (openBlock(true), createElementBlock(Fragment, null, renderList($props.previewList, (item, index2) => {
-              return withDirectives((openBlock(), createElementBlock("img", {
-                key: index2,
-                src: item,
-                style: normalizeStyle($options.imageStyle(index2)),
-                class: normalizeClass([$data.prefixCls + "-image"]),
-                onClick: _cache[0] || (_cache[0] = withModifiers(() => {
-                }, ["stop"])),
-                onMousedown: _cache[1] || (_cache[1] = withModifiers((...args) => $options.handleMousedown && $options.handleMousedown(...args), ["stop", "prevent"]))
-              }, null, 46, _hoisted_1$E)), [
-                [vShow, index2 === $data.currentIndex]
-              ]);
-            }), 128))
+            $data.status === "loading" ? (openBlock(), createBlock(_component_Spin, {
+              key: 0,
+              size: "large"
+            })) : $data.status === "failed" ? (openBlock(), createElementBlock("div", {
+              key: 1,
+              class: normalizeClass([$data.prefixCls + "-fail"])
+            }, [
+              createElementVNode("span", null, toDisplayString($options.failLang), 1)
+            ], 2)) : createCommentVNode("", true),
+            withDirectives((openBlock(), createElementBlock("img", {
+              src: $options.currentSrc,
+              key: $data.currentIndex.toString(),
+              style: normalizeStyle($options.imageStyle),
+              class: normalizeClass($options.imgClasses),
+              onClick: _cache[0] || (_cache[0] = withModifiers(() => {
+              }, ["stop"])),
+              onMousedown: _cache[1] || (_cache[1] = withModifiers((...args) => $options.handleMousedown && $options.handleMousedown(...args), ["stop", "prevent"])),
+              onLoad: _cache[2] || (_cache[2] = (...args) => $options.handleImageLoad && $options.handleImageLoad(...args)),
+              onError: _cache[3] || (_cache[3] = (...args) => $options.handleImageError && $options.handleImageError(...args))
+            }, null, 46, _hoisted_1$E)), [
+              [vShow, $data.status === "loaded"]
+            ])
           ], 2)) : createCommentVNode("", true),
-          createElementVNode("ul", {
+          createElementVNode("div", {
             class: normalizeClass([$data.prefixCls + "-operations"])
           }, [
-            (openBlock(true), createElementBlock(Fragment, null, renderList($data.operations, (item) => {
-              return openBlock(), createElementBlock("li", {
-                class: normalizeClass([$data.prefixCls + "-operations-item"]),
-                key: item.value,
-                onClick: withModifiers(($event) => $options.handleOperation(item.value), ["stop"])
-              }, toDisplayString(item.label), 11, _hoisted_2$p);
-            }), 128))
+            createVNode(_component_Icon, {
+              type: "ios-add-circle-outline",
+              class: normalizeClass([$data.prefixCls + "-operations-item"]),
+              onClick: _cache[5] || (_cache[5] = withModifiers(($event) => $options.handleOperation("zoomIn"), ["stop"]))
+            }, null, 8, ["class"]),
+            createVNode(_component_Icon, {
+              type: "ios-remove-circle-outline",
+              class: normalizeClass([$data.prefixCls + "-operations-item"]),
+              onClick: _cache[6] || (_cache[6] = withModifiers(($event) => $options.handleOperation("zoomOut"), ["stop"]))
+            }, null, 8, ["class"]),
+            createVNode(_component_Icon, {
+              type: this.original ? "ios-barcode-outline" : "ios-qr-scanner",
+              class: normalizeClass([$data.prefixCls + "-operations-item"]),
+              onClick: _cache[7] || (_cache[7] = withModifiers(($event) => $options.handleOperation("original"), ["stop"]))
+            }, null, 8, ["type", "class"]),
+            createVNode(_component_Icon, {
+              type: "ios-refresh",
+              class: normalizeClass([$data.prefixCls + "-operations-item"]),
+              onClick: _cache[8] || (_cache[8] = withModifiers(($event) => $options.handleOperation("rotateLeft"), ["stop"]))
+            }, null, 8, ["class"]),
+            createVNode(_component_Icon, {
+              type: "ios-refresh",
+              class: normalizeClass([$data.prefixCls + "-operations-item"]),
+              onClick: _cache[9] || (_cache[9] = withModifiers(($event) => $options.handleOperation("rotateRight"), ["stop"]))
+            }, null, 8, ["class"])
           ], 2),
           createVNode(_component_Icon, {
             class: normalizeClass([$data.prefixCls + "-arrow-left", { [$data.prefixCls + "-arrow-disabled"]: $options.hasLeftSwitchEnd }]),
             type: "ios-arrow-back",
-            onClick: _cache[3] || (_cache[3] = withModifiers(($event) => $options.handleSwitch(false), ["stop"]))
+            onClick: _cache[10] || (_cache[10] = withModifiers(($event) => $options.handleSwitch(false), ["stop"]))
           }, null, 8, ["class"]),
           createVNode(_component_Icon, {
             class: normalizeClass([$data.prefixCls + "-arrow-right", { [$data.prefixCls + "-arrow-disabled"]: $options.hasRightSwitchEnd }]),
             type: "ios-arrow-forward",
-            onClick: _cache[4] || (_cache[4] = withModifiers(($event) => $options.handleSwitch(true), ["stop"]))
+            onClick: _cache[11] || (_cache[11] = withModifiers(($event) => $options.handleSwitch(true), ["stop"]))
           }, null, 8, ["class"]),
           createVNode(_component_Icon, {
-            onClick: withModifiers($options.handleClose, ["stop"]),
             class: normalizeClass([$data.prefixCls + "-arrow-close"]),
-            type: "md-close"
-          }, null, 8, ["onClick", "class"])
+            type: "md-close",
+            onClick: withModifiers($options.handleClose, ["stop"])
+          }, null, 8, ["class", "onClick"])
         ], 2)) : createCommentVNode("", true)
       ]),
       _: 1
     })
   ], 8, ["disabled"]);
 }
-var ImagePreview = /* @__PURE__ */ _export_sfc(_sfc_main$1b, [["render", _sfc_render$10]]);
-const prefixCls$D = "ivu-image";
+var ImagePreview = /* @__PURE__ */ _export_sfc(_sfc_main$1a, [["render", _sfc_render$$]]);
+const prefixCls$C = "ivu-image";
 const isElement = (el) => {
   return typeof HTMLElement === "object" && el instanceof HTMLElement;
 };
-const _sfc_main$1a = {
+const _sfc_main$19 = {
   name: "Image",
   mixins: [Locale],
   components: { ImagePreview },
@@ -21959,12 +22205,10 @@ const _sfc_main$1a = {
   },
   data() {
     return {
-      prefixCls: prefixCls$D,
+      prefixCls: prefixCls$C,
+      imageSrc: "",
       loading: false,
       imageError: false,
-      image: null,
-      imageWidth: 0,
-      imageHeight: 0,
       scrollElement: null,
       observer: null,
       imagePreviewModal: false
@@ -21990,11 +22234,6 @@ const _sfc_main$1a = {
     },
     previewLang() {
       return this.t("i.image.preview");
-    }
-  },
-  watch: {
-    lazy() {
-      this.handleImageEvent();
     }
   },
   mounted() {
@@ -22026,48 +22265,38 @@ const _sfc_main$1a = {
       } else if (typeof scrollContainer === "string") {
         this.scrollElement = document.querySelector(scrollContainer);
       }
-      this.loading = true;
-      this.imageError = false;
       this.handleLazy();
     },
-    handleLoadImageLoad(event) {
-      const { width, height: height2 } = event.target;
-      this.imageWidth = width;
-      this.imageHeight = height2;
+    handleImageLoad() {
       this.loading = false;
       this.imageError = false;
       this.$emit("on-load");
-      this.offImageEvent();
     },
-    handleLoadImageError() {
+    handleImageError(event) {
+      const currentImage = event.target;
+      if (!currentImage) {
+        return;
+      }
+      const currentSrc = currentImage.getAttribute("src");
+      if (!currentSrc) {
+        return;
+      }
       this.loading = false;
       this.imageError = true;
       this.$emit("on-error");
-      this.offImageEvent();
     },
     loadImage() {
-      this.image = new Image();
-      const { src, image } = this;
       this.loading = true;
       this.imageError = false;
-      on(image, "load", this.handleLoadImageLoad);
-      on(image, "error", this.handleLoadImageError);
-      image.src = src;
+      this.imageSrc = this.src;
     },
     handleImageEvent() {
       const { lazy } = this;
       lazy ? this.addLazyImageListener() : this.loadImage();
     },
-    offImageEvent() {
-      const { image } = this;
-      image && off(image, "load", this.handleLoadImageLoad);
-      image && off(image, "error", this.handleLoadImageError);
-    },
     offObserver() {
       const { observer } = this;
-      if (observer) {
-        observer.disconnect();
-      }
+      observer && observer.disconnect();
     },
     handlePreview() {
       const { preview, initialIndex } = this;
@@ -22084,13 +22313,12 @@ const _sfc_main$1a = {
     }
   },
   beforeUnmount() {
-    this.offImageEvent();
     this.offObserver();
   }
 };
-const _hoisted_1$D = ["src", "alt", "referrerPolicy"];
-function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_image_preview = resolveComponent("image-preview");
+const _hoisted_1$D = ["alt", "src", "referrerPolicy"];
+function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_ImagePreview = resolveComponent("ImagePreview");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($data.prefixCls),
     ref: "image",
@@ -22108,41 +22336,44 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
       }, [
         createElementVNode("span", null, toDisplayString($options.failLang), 1)
       ], 2)
-    ]) : (openBlock(), createElementBlock("div", {
+    ]) : createCommentVNode("", true),
+    $data.imageSrc ? (openBlock(), createElementBlock("div", {
       key: 2,
       class: normalizeClass([$data.prefixCls + "-inner"])
     }, [
       createElementVNode("img", {
-        src: $props.src,
         alt: $props.alt,
+        src: $data.imageSrc,
+        onLoad: _cache[0] || (_cache[0] = (...args) => $options.handleImageLoad && $options.handleImageLoad(...args)),
+        onError: _cache[1] || (_cache[1] = (...args) => $options.handleImageError && $options.handleImageError(...args)),
         referrerPolicy: $props.referrerPolicy,
         style: normalizeStyle([$options.fitStyle]),
-        class: normalizeClass([$data.prefixCls + "-img"])
-      }, null, 14, _hoisted_1$D),
+        class: normalizeClass([$data.prefixCls + "-img", $data.loading || $data.imageError ? $data.prefixCls + "-img-hidden" : ""])
+      }, null, 46, _hoisted_1$D),
       $props.preview ? renderSlot(_ctx.$slots, "preview", { key: 0 }, () => [
         createElementVNode("div", {
           class: normalizeClass([$data.prefixCls + "-mark"]),
-          onClick: _cache[0] || (_cache[0] = (...args) => $options.handlePreview && $options.handlePreview(...args))
+          onClick: _cache[2] || (_cache[2] = (...args) => $options.handlePreview && $options.handlePreview(...args))
         }, [
           createElementVNode("span", null, toDisplayString($options.previewLang), 1)
         ], 2)
       ]) : createCommentVNode("", true)
-    ], 2)),
-    $props.preview ? (openBlock(), createBlock(_component_image_preview, {
+    ], 2)) : createCommentVNode("", true),
+    $props.preview ? (openBlock(), createBlock(_component_ImagePreview, {
       key: 3,
       infinite: $props.infinite,
       "preview-list": $props.previewList,
-      maskClosable: $props.maskClosable,
-      initialIndex: $props.initialIndex,
+      "mask-closable": $props.maskClosable,
+      "initial-index": $props.initialIndex,
       modelValue: $data.imagePreviewModal,
-      "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.imagePreviewModal = $event),
+      "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => $data.imagePreviewModal = $event),
       onOnClose: $options.handleClose,
       onOnSwitch: $options.handleSwitch
-    }, null, 8, ["infinite", "preview-list", "maskClosable", "initialIndex", "modelValue", "onOnClose", "onOnSwitch"])) : createCommentVNode("", true)
+    }, null, 8, ["infinite", "preview-list", "mask-closable", "initial-index", "modelValue", "onOnClose", "onOnSwitch"])) : createCommentVNode("", true)
   ], 6);
 }
-var Image$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1a, [["render", _sfc_render$$]]);
-const prefixCls$C = "ivu-input-number";
+var Image = /* @__PURE__ */ _export_sfc(_sfc_main$19, [["render", _sfc_render$_]]);
+const prefixCls$B = "ivu-input-number";
 const iconPrefixCls$2 = "ivu-icon";
 function addNum(num1, num2) {
   let sq1, sq2, m;
@@ -22159,7 +22390,7 @@ function addNum(num1, num2) {
   m = Math.pow(10, Math.max(sq1, sq2));
   return (Math.round(num1 * m) + Math.round(num2 * m)) / m;
 }
-const _sfc_main$19 = {
+const _sfc_main$18 = {
   name: "InputNumber",
   mixins: [mixinsForm],
   emits: ["on-change", "on-focus", "on-blur", "update:modelValue"],
@@ -22244,47 +22475,47 @@ const _sfc_main$19 = {
   computed: {
     wrapClasses() {
       return [
-        `${prefixCls$C}`,
+        `${prefixCls$B}`,
         {
-          [`${prefixCls$C}-${this.size}`]: !!this.size,
-          [`${prefixCls$C}-disabled`]: this.itemDisabled,
-          [`${prefixCls$C}-focused`]: this.focused,
-          [`${prefixCls$C}-controls-outside`]: this.controlsOutside
+          [`${prefixCls$B}-${this.size}`]: !!this.size,
+          [`${prefixCls$B}-disabled`]: this.itemDisabled,
+          [`${prefixCls$B}-focused`]: this.focused,
+          [`${prefixCls$B}-controls-outside`]: this.controlsOutside
         }
       ];
     },
     handlerClasses() {
-      return `${prefixCls$C}-handler-wrap`;
+      return `${prefixCls$B}-handler-wrap`;
     },
     upClasses() {
       return [
-        `${prefixCls$C}-handler`,
-        `${prefixCls$C}-handler-up`,
+        `${prefixCls$B}-handler`,
+        `${prefixCls$B}-handler-up`,
         {
-          [`${prefixCls$C}-handler-up-disabled`]: this.upDisabled
+          [`${prefixCls$B}-handler-up-disabled`]: this.upDisabled
         }
       ];
     },
     innerUpClasses() {
-      return `${prefixCls$C}-handler-up-inner ${iconPrefixCls$2} ${iconPrefixCls$2}-ios-arrow-up`;
+      return `${prefixCls$B}-handler-up-inner ${iconPrefixCls$2} ${iconPrefixCls$2}-ios-arrow-up`;
     },
     downClasses() {
       return [
-        `${prefixCls$C}-handler`,
-        `${prefixCls$C}-handler-down`,
+        `${prefixCls$B}-handler`,
+        `${prefixCls$B}-handler-down`,
         {
-          [`${prefixCls$C}-handler-down-disabled`]: this.downDisabled
+          [`${prefixCls$B}-handler-down-disabled`]: this.downDisabled
         }
       ];
     },
     innerDownClasses() {
-      return `${prefixCls$C}-handler-down-inner ${iconPrefixCls$2} ${iconPrefixCls$2}-ios-arrow-down`;
+      return `${prefixCls$B}-handler-down-inner ${iconPrefixCls$2} ${iconPrefixCls$2}-ios-arrow-down`;
     },
     inputWrapClasses() {
-      return `${prefixCls$C}-input-wrap`;
+      return `${prefixCls$B}-input-wrap`;
     },
     inputClasses() {
-      return `${prefixCls$C}-input`;
+      return `${prefixCls$B}-input`;
     },
     precisionValue() {
       if (!this.currentValue)
@@ -22450,7 +22681,7 @@ const _hoisted_4$h = [
   _hoisted_3$k
 ];
 const _hoisted_5$b = ["id", "disabled", "autofocus", "readonly", "name", "value", "placeholder"];
-function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
   }, [
@@ -22511,9 +22742,9 @@ function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 2);
 }
-var InputNumber = /* @__PURE__ */ _export_sfc(_sfc_main$19, [["render", _sfc_render$_]]);
-const prefixCls$B = "ivu-layout";
-const _sfc_main$18 = {
+var InputNumber = /* @__PURE__ */ _export_sfc(_sfc_main$18, [["render", _sfc_render$Z]]);
+const prefixCls$A = "ivu-layout";
+const _sfc_main$17 = {
   name: "Layout",
   data() {
     return {
@@ -22523,9 +22754,9 @@ const _sfc_main$18 = {
   computed: {
     wrapClasses() {
       return [
-        `${prefixCls$B}`,
+        `${prefixCls$A}`,
         {
-          [`${prefixCls$B}-has-sider`]: this.hasSider
+          [`${prefixCls$A}-has-sider`]: this.hasSider
         }
       ];
     }
@@ -22539,14 +22770,14 @@ const _sfc_main$18 = {
     this.hasSider = this.findSider();
   }
 };
-function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$Y(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Layout = /* @__PURE__ */ _export_sfc(_sfc_main$18, [["render", _sfc_render$Z]]);
+var Layout = /* @__PURE__ */ _export_sfc(_sfc_main$17, [["render", _sfc_render$Y]]);
 const defaultCopyConfig = {
   tooltips: ["\u590D\u5236", "\u590D\u5236\u6210\u529F"],
   showTip: false,
@@ -22720,7 +22951,7 @@ var baseProps = {
     }
   }
 };
-const _sfc_main$17 = {
+const _sfc_main$16 = {
   name: "TypographyBase",
   mixins: [baseProps],
   emits: ["on-copy-success", "on-copy-error", "on-edit-start", "on-edit-end", "on-edit-change", "on-edit-cancel"],
@@ -23049,198 +23280,14 @@ const _sfc_main$17 = {
     this.handleRemoveObserver();
   }
 };
-const _sfc_main$16 = {
+const _sfc_main$15 = {
   name: "Link",
   mixins: [baseProps],
   render() {
-    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+    return h(_sfc_main$16, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
       component: "a"
     }), this.commonEvents()), this.commonSlots());
   }
-};
-const prefixCls$A = "ivu-spin";
-const _sfc_main$15 = {
-  name: "Spin",
-  mixins: [ScrollbarMixins],
-  props: {
-    size: {
-      validator(value) {
-        return oneOf(value, ["small", "large", "default"]);
-      },
-      default() {
-        const global2 = getCurrentInstance().appContext.config.globalProperties;
-        return !global2.$VIEWUI || global2.$VIEWUI.size === "" ? "default" : global2.$VIEWUI.size;
-      }
-    },
-    fix: {
-      type: Boolean,
-      default: false
-    },
-    fullscreen: {
-      type: Boolean,
-      default: false
-    },
-    show: {
-      type: Boolean,
-      default: true
-    }
-  },
-  data() {
-    return {
-      showText: false,
-      visible: false
-    };
-  },
-  computed: {
-    classes() {
-      return [
-        `${prefixCls$A}`,
-        {
-          [`${prefixCls$A}-${this.size}`]: !!this.size,
-          [`${prefixCls$A}-fix`]: this.fix,
-          [`${prefixCls$A}-show-text`]: this.showText,
-          [`${prefixCls$A}-fullscreen`]: this.fullscreen
-        }
-      ];
-    },
-    mainClasses() {
-      return `${prefixCls$A}-main`;
-    },
-    dotClasses() {
-      return `${prefixCls$A}-dot`;
-    },
-    textClasses() {
-      return `${prefixCls$A}-text`;
-    },
-    fullscreenVisible() {
-      if (this.fullscreen) {
-        return this.visible;
-      } else {
-        return true;
-      }
-    }
-  },
-  watch: {
-    visible(val) {
-      if (val) {
-        this.addScrollEffect();
-      } else {
-        this.removeScrollEffect();
-      }
-    }
-  },
-  mounted() {
-    this.showText = !!this.$slots.default && this.$slots.default().some((item) => item.children && item.children.length);
-  }
-};
-function _sfc_render$Y(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createBlock(Transition, { name: "fade" }, {
-    default: withCtx(() => [
-      $options.fullscreenVisible && $props.show ? (openBlock(), createElementBlock("div", {
-        key: 0,
-        class: normalizeClass($options.classes)
-      }, [
-        createElementVNode("div", {
-          class: normalizeClass($options.mainClasses)
-        }, [
-          createElementVNode("span", {
-            class: normalizeClass($options.dotClasses)
-          }, null, 2),
-          createElementVNode("div", {
-            class: normalizeClass($options.textClasses)
-          }, [
-            renderSlot(_ctx.$slots, "default")
-          ], 2)
-        ], 2)
-      ], 2)) : createCommentVNode("", true)
-    ]),
-    _: 3
-  });
-}
-var Spin = /* @__PURE__ */ _export_sfc(_sfc_main$15, [["render", _sfc_render$Y]]);
-function handleGetIndex() {
-  transferIncrease();
-  return transferIndex;
-}
-let tIndex = handleGetIndex();
-Spin.newInstance = (properties) => {
-  if (!isClient)
-    return;
-  const _props = properties || {};
-  let _instance = null;
-  const Instance = createApp({
-    data() {
-      return Object.assign({}, _props, {});
-    },
-    render() {
-      let vnode = "";
-      if (this.render) {
-        vnode = h(Spin, {
-          fix: true,
-          fullscreen: true,
-          ref: "spin"
-        }, [this.render(h)]);
-      } else {
-        vnode = h(Spin, {
-          size: "large",
-          fix: true,
-          fullscreen: true,
-          ref: "spin"
-        });
-      }
-      return h("div", {
-        "class": "ivu-spin-fullscreen ivu-spin-fullscreen-wrapper",
-        "style": {
-          "z-index": 2010 + tIndex
-        }
-      }, [vnode]);
-    },
-    created() {
-      _instance = getCurrentInstance();
-    }
-  });
-  const container = document.createElement("div");
-  document.body.appendChild(container);
-  Instance.mount(container);
-  const spin = _instance.refs.spin;
-  return {
-    show() {
-      spin.visible = true;
-      tIndex = handleGetIndex();
-    },
-    remove(cb) {
-      spin.visible = false;
-      setTimeout(function() {
-        Instance.unmount();
-        document.body.removeChild(container);
-        cb();
-      }, 500);
-    },
-    component: spin
-  };
-};
-let spinInstance;
-function getSpinInstance(render = void 0) {
-  spinInstance = spinInstance || Spin.newInstance({
-    render
-  });
-  return spinInstance;
-}
-function loading(options) {
-  const render = "render" in options ? options.render : void 0;
-  let instance = getSpinInstance(render);
-  instance.show(options);
-}
-Spin.show = function(props = {}) {
-  return loading(props);
-};
-Spin.hide = function() {
-  if (!spinInstance)
-    return false;
-  const instance = getSpinInstance();
-  instance.remove(() => {
-    spinInstance = null;
-  });
 };
 const prefixCls$z = "ivu-list";
 const _sfc_main$14 = {
@@ -28598,7 +28645,7 @@ const _sfc_main$H = {
   name: "Paragraph",
   mixins: [baseProps],
   render() {
-    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+    return h(_sfc_main$16, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
       component: "div"
     }), this.commonEvents()), this.commonSlots());
   }
@@ -30204,6 +30251,11 @@ const prefixCls$e = "ivu-skeleton-item";
 const _sfc_main$y = {
   name: "SkeletonItem",
   components: { Icon },
+  inject: {
+    SkeletonInstance: {
+      default: null
+    }
+  },
   props: {
     animated: {
       type: Boolean,
@@ -30242,10 +30294,11 @@ const _sfc_main$y = {
     classes() {
       return {
         [prefixCls$e]: true,
-        [prefixCls$e + "-animated"]: this.animated,
+        [prefixCls$e + "-animated"]: this.animated || Boolean(this.SkeletonInstance) && this.SkeletonInstance.animated,
         [prefixCls$e + "-" + this.type]: true,
         [prefixCls$e + "-" + this.type + "-" + this.size]: true,
-        [prefixCls$e + "-inline"]: !this.block
+        [prefixCls$e + "-inline"]: !this.block,
+        [prefixCls$e + "-round"]: Boolean(this.SkeletonInstance) && this.SkeletonInstance.round
       };
     },
     styles() {
@@ -30291,7 +30344,7 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
     $options.showIcon ? (openBlock(), createBlock(_component_Icon, {
       key: 0,
       class: normalizeClass($options.iconClasses),
-      type: "ios-image-outline",
+      type: "ios-image",
       size: $options.iconSize
     }, null, 8, ["class", "size"])) : createCommentVNode("", true)
   ], 6);
@@ -30301,6 +30354,11 @@ const prefixCls$d = "ivu-skeleton";
 const _sfc_main$x = {
   name: "Skeleton",
   components: { SkeletonItem, Row, Col },
+  provide() {
+    return {
+      SkeletonInstance: this
+    };
+  },
   props: {
     animated: {
       type: Boolean,
@@ -35352,7 +35410,7 @@ const _sfc_main$f = {
   name: "Text",
   mixins: [baseProps],
   render() {
-    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+    return h(_sfc_main$16, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
       component: "span"
     }), this.commonEvents()), this.commonSlots());
   }
@@ -35509,7 +35567,7 @@ const _sfc_main$c = {
     }
   },
   render() {
-    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+    return h(_sfc_main$16, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
       component: `h${this.level}`
     }), this.commonEvents()), this.commonSlots());
   }
@@ -37513,12 +37571,12 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   GridItem,
   Header,
   Icon,
-  Image: Image$1,
+  Image,
   ImagePreview,
   Input,
   InputNumber,
   Layout,
-  Link: _sfc_main$16,
+  Link: _sfc_main$15,
   List: List$1,
   ListItem,
   ListItemMeta,
@@ -37748,7 +37806,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.1.0";
+const version$1 = "1.2.0-beta.1";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
@@ -38016,4 +38074,4 @@ const API = __spreadValues({
   install,
   lang
 }, components);
-export { Affix, Alert, Anchor, AnchorLink, _sfc_main$2p as Auth, AutoComplete, Avatar, AvatarList, BackTop, Badge, Breadcrumb, BreadcrumbItem, _sfc_main$2b as Button, ButtonGroup, Calendar, _sfc_main$21 as Captcha, Card, Carousel, CarouselItem, Cascader, Cell, CellGroup, Checkbox, CheckboxGroup, Circle, City, Col, Collapse, ColorPicker, Content, Copy, CountDown, CountUp, DatePicker, _sfc_main$1q as Description, DescriptionList, Divider, Drawer, Dropdown, DropdownItem, DropdownMenu, Ellipsis, _sfc_main$1k as Email, Exception, Footer, FooterToolbar, Form, FormItem, GlobalFooter, Grid, GridItem, Header, Icon, Image$1 as Image, ImagePreview, Input, InputNumber, Layout, _sfc_main$16 as Link, List$1 as List, ListItem, ListItemMeta, index$3 as LoadingBar, Login, Menu, MenuGroup, MenuItem, $Message as Message, _sfc_main$Y as Mobile, Modal, index$2 as Notice, Notification, NotificationItem, NotificationTab, NumberInfo, Numeral, iOption as Option, OptionGroup, Page, PageHeader, Panel, _sfc_main$H as Paragraph, _sfc_main$G as Password, Poptip, iProgress as Progress, Radio, RadioGroup, Rate, Result, Row, Scroll, index$1 as ScrollIntoView, index as ScrollTop, Select, Sider, Skeleton, SkeletonItem, Slider, Spin, Split, Step, Steps, Submenu, _sfc_main$q as Submit, Switch, TabPane, Table, TablePaste, Tabs, Tag, TagSelect, TagSelectOption, _sfc_main$f as Text, Time, TimePicker, Timeline, TimelineItem, _sfc_main$c as Title, Tooltip, _sfc_main$8 as Transfer, Tree, TreeSelect, Trend, Typography, Upload, _sfc_main$1 as UserName, WordCount, API as default, i18n, install, lang, locale, version };
+export { Affix, Alert, Anchor, AnchorLink, _sfc_main$2p as Auth, AutoComplete, Avatar, AvatarList, BackTop, Badge, Breadcrumb, BreadcrumbItem, _sfc_main$2b as Button, ButtonGroup, Calendar, _sfc_main$21 as Captcha, Card, Carousel, CarouselItem, Cascader, Cell, CellGroup, Checkbox, CheckboxGroup, Circle, City, Col, Collapse, ColorPicker, Content, Copy, CountDown, CountUp, DatePicker, _sfc_main$1q as Description, DescriptionList, Divider, Drawer, Dropdown, DropdownItem, DropdownMenu, Ellipsis, _sfc_main$1k as Email, Exception, Footer, FooterToolbar, Form, FormItem, GlobalFooter, Grid, GridItem, Header, Icon, Image, ImagePreview, Input, InputNumber, Layout, _sfc_main$15 as Link, List$1 as List, ListItem, ListItemMeta, index$3 as LoadingBar, Login, Menu, MenuGroup, MenuItem, $Message as Message, _sfc_main$Y as Mobile, Modal, index$2 as Notice, Notification, NotificationItem, NotificationTab, NumberInfo, Numeral, iOption as Option, OptionGroup, Page, PageHeader, Panel, _sfc_main$H as Paragraph, _sfc_main$G as Password, Poptip, iProgress as Progress, Radio, RadioGroup, Rate, Result, Row, Scroll, index$1 as ScrollIntoView, index as ScrollTop, Select, Sider, Skeleton, SkeletonItem, Slider, Spin, Split, Step, Steps, Submenu, _sfc_main$q as Submit, Switch, TabPane, Table, TablePaste, Tabs, Tag, TagSelect, TagSelectOption, _sfc_main$f as Text, Time, TimePicker, Timeline, TimelineItem, _sfc_main$c as Title, Tooltip, _sfc_main$8 as Transfer, Tree, TreeSelect, Trend, Typography, Upload, _sfc_main$1 as UserName, WordCount, API as default, i18n, install, lang, locale, version };
