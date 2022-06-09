@@ -3,16 +3,26 @@
         <transition name="fade">
             <div :class="[prefixCls + '-wrapper']" v-if="modelValue">
                 <div :class="[prefixCls + '-mark']" v-if="previewList.length > 0" @click.stop="handleClickMark">
+                    <Spin
+                        v-if="status === 'loading'"
+                        size="large"
+                    />
+                    <div
+                        v-else-if="status === 'failed'"
+                        :class="[prefixCls + '-fail']"
+                    >
+                        <span>{{failLang}}</span>
+                    </div>
                     <img
-                        v-for="(item, index) in previewList"
-                        :key="index"
-                        :ref="'image' + index"
-                        :src="item"
-                        v-show="index === currentIndex"
-                        :style="imageStyle(index)"
+                        :src="currentSrc"
+                        :key="currentIndex.toString()"
+                        v-show="status === 'loaded'"
+                        :style="imageStyle"
                         :class="imgClasses"
                         @click.stop
                         @mousedown.stop.prevent="handleMousedown"
+                        @load="handleImageLoad"
+                        @error="handleImageError"
                     />
                 </div>
                 <div :class="[prefixCls + '-operations']">
@@ -69,13 +79,14 @@ import { isClient } from '../../utils';
 import Locale from '../../mixins/locale';
 import Icon from '../icon';
 import KeyCode from '../../utils/keyCode';
+import Spin  from '../spin';
 
 const prefixCls = 'ivu-image-preview';
 
 export default {
     name: 'ImagePreview',
     mixins: [ Locale ],
-    components: { Icon },
+    components: { Icon, Spin },
     props: {
         modelValue: {
             type: Boolean,
@@ -119,7 +130,8 @@ export default {
             startY: 0,
             transition: true,
             original: false, // display by original size
-            prevOverflow: '' // prevent body scrolling
+            prevOverflow: '', // prevent body scrolling
+            status: 'loading' // image status
         }
     },
     computed: {
@@ -139,18 +151,7 @@ export default {
                 [prefixCls + '-image-limit']: !this.original
             };
         },
-        hasRightSwitchEnd() {
-            const { currentIndex, infinite, previewList} = this;
-            const len = previewList.length;
-            return infinite ? false : currentIndex >= len - 1;
-        },
-        hasLeftSwitchEnd() {
-            const { currentIndex, infinite} = this;
-            return infinite ? false : currentIndex === 0;
-        }
-    },
-    methods: {
-        imageStyle(index) {
+        imageStyle() {
             let translateX = this.translate.x / this.scale;
             let translateY = this.translate.y / this.scale;
 
@@ -167,15 +168,29 @@ export default {
             }
             return {
                 transform: `
-                    scale(${index === this.currentIndex ? this.scale : 1})
-                    rotate(${index === this.currentIndex ? this.degree : 0}deg)
-                    translate(
-                        ${index === this.currentIndex ? translateX : 0}px,
-                        ${index === this.currentIndex ? translateY : 0}px
-                    )
+                    scale(${this.scale})
+                    rotate(${this.degree}deg)
+                    translate(${translateX}px, ${translateY}px)
                 `
             };
         },
+        hasRightSwitchEnd() {
+            const { currentIndex, infinite, previewList} = this;
+            const len = previewList.length;
+            return infinite ? false : currentIndex >= len - 1;
+        },
+        hasLeftSwitchEnd() {
+            const { currentIndex, infinite} = this;
+            return infinite ? false : currentIndex === 0;
+        },
+        currentSrc() {
+            return this.previewList[this.currentIndex];
+        },
+        failLang() {
+            return this.t('i.image.fail');
+        }
+    },
+    methods: {
         resetStyle() {
             this.scale = 1;
             this.degree = 0;
@@ -227,11 +242,13 @@ export default {
             }
         },
         handleKeydown(event) {
+            event.preventDefault();
             const { keyCode } = event;
             if (keyCode === KeyCode.LEFT) this.handleSwitch(false);
             if (keyCode === KeyCode.RIGHT) this.handleSwitch(true);
             if (keyCode === KeyCode.UP) this.handleOperation('zoomIn');
             if (keyCode === KeyCode.DOWN) this.handleOperation('zoomOut');
+            if (keyCode === KeyCode.SPACE) this.original = !this.original;
         },
         handleKeyup(event) {
             const { keyCode } = event;
@@ -242,10 +259,11 @@ export default {
             this.handleOperation(deltaY < 0 ? 'zoomIn' : 'zoomOut');
         },
         handleMousedown(event) {
-            this.transition = false;
-            const { pageX, pageY } = event;
+            const { pageX, pageY, which } = event;
+            if (which !== 1) return;
             this.startX = pageX;
             this.startY = pageY;
+            this.transition = false;
             on(document, 'mousemove', this.handleMousemove);
             on(document, 'mouseup', this.handleMouseup);
         },
@@ -268,6 +286,12 @@ export default {
         setBodyOverflow(val) {
             if (!isClient) return;
             document.body.style.overflow = val;
+        },
+        handleImageLoad() {
+            this.status = 'loaded';
+        },
+        handleImageError() {
+            this.status = 'failed';
         }
     },
     watch: {
@@ -281,6 +305,9 @@ export default {
             } else {
                 this.setBodyOverflow(this.prevOverflow);
             }
+        },
+        currentIndex() {
+            this.status = 'loading';
         }
     },
     mounted() {
