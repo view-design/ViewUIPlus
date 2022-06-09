@@ -2,18 +2,30 @@
     <teleport to="body" :disabled="!transfer">
         <transition name="fade">
             <div :class="[prefixCls + '-wrapper']" v-if="modelValue">
-                <div :class="[prefixCls + '-mark']" v-if="previewList.length > 0" @click.stop="handleClickMark">
-                    <img
-                        v-for="(item, index) in previewList"
-                        :key="index"
-                        :ref="'image' + index"
-                        :src="item"
-                        v-show="index === currentIndex"
-                        :style="imageStyle(index)"
-                        :class="imgClasses"
-                        @click.stop
-                        @mousedown.stop.prevent="handleMousedown"
+                <div :class="[prefixCls + '-mark']" v-if="srcList.length > 0" @click.stop="handleClickMark">
+                    <Spin
+                        v-if="srcList[currentIndex] && srcList[currentIndex].status === 'loading'"
+                        size="large"
                     />
+                    <div
+                        v-else-if="srcList[currentIndex] && srcList[currentIndex].status === 'failed'"
+                        :class="[prefixCls + '-fail']"
+                    >
+                        <span>{{failLang}}</span>
+                    </div>
+                    <template v-for="(item, index) in srcList" :key="index">
+                        <img
+                            v-if="item.src"
+                            :src="item.src"
+                            v-show="index === currentIndex && item.status === 'loaded'"
+                            :style="imageStyle(index)"
+                            :class="imgClasses"
+                            @click.stop
+                            @mousedown.stop.prevent="handleMousedown"
+                            @load="handleImageLoad(index)"
+                            @error="handleImageError(index)"
+                        />
+                    </template>
                 </div>
                 <div :class="[prefixCls + '-operations']">
                     <Icon
@@ -69,13 +81,14 @@ import { isClient } from '../../utils';
 import Locale from '../../mixins/locale';
 import Icon from '../icon';
 import KeyCode from '../../utils/keyCode';
+import Spin  from '../spin';
 
 const prefixCls = 'ivu-image-preview';
 
 export default {
     name: 'ImagePreview',
     mixins: [ Locale ],
-    components: { Icon },
+    components: { Icon, Spin },
     props: {
         modelValue: {
             type: Boolean,
@@ -119,7 +132,8 @@ export default {
             startY: 0,
             transition: true,
             original: false, // display by original size
-            prevOverflow: '' // prevent body scrolling
+            prevOverflow: '', // prevent body scrolling
+            srcList: []
         }
     },
     computed: {
@@ -147,6 +161,9 @@ export default {
         hasLeftSwitchEnd() {
             const { currentIndex, infinite} = this;
             return infinite ? false : currentIndex === 0;
+        },
+        failLang() {
+            return this.t('i.image.fail')
         }
     },
     methods: {
@@ -227,11 +244,13 @@ export default {
             }
         },
         handleKeydown(event) {
+            event.preventDefault();
             const { keyCode } = event;
             if (keyCode === KeyCode.LEFT) this.handleSwitch(false);
             if (keyCode === KeyCode.RIGHT) this.handleSwitch(true);
             if (keyCode === KeyCode.UP) this.handleOperation('zoomIn');
             if (keyCode === KeyCode.DOWN) this.handleOperation('zoomOut');
+            if (keyCode === KeyCode.SPACE) this.original = !this.original;
         },
         handleKeyup(event) {
             const { keyCode } = event;
@@ -242,10 +261,11 @@ export default {
             this.handleOperation(deltaY < 0 ? 'zoomIn' : 'zoomOut');
         },
         handleMousedown(event) {
-            this.transition = false;
-            const { pageX, pageY } = event;
+            const { pageX, pageY, which } = event;
+            if (which !== 1) return;
             this.startX = pageX;
             this.startY = pageY;
+            this.transition = false;
             on(document, 'mousemove', this.handleMousemove);
             on(document, 'mouseup', this.handleMouseup);
         },
@@ -268,6 +288,12 @@ export default {
         setBodyOverflow(val) {
             if (!isClient) return;
             document.body.style.overflow = val;
+        },
+        handleImageLoad(index) {
+            this.srcList[index].status = 'loaded';
+        },
+        handleImageError(index) {
+            this.srcList[index].status = 'failed';
         }
     },
     watch: {
@@ -278,8 +304,17 @@ export default {
                 this.original = false;
                 this.prevOverflow = this.getBodyOverflow();
                 this.setBodyOverflow('hidden');
+                this.srcList = this.previewList.map((src, index) => ({
+                    src: index === this.currentIndex ? src : null,
+                    status: 'loading'
+                }));
             } else {
                 this.setBodyOverflow(this.prevOverflow);
+            }
+        },
+        currentIndex(val) {
+            if (this.srcList[val] && !this.srcList[val].src) {
+                this.srcList[val].src = this.previewList[val];
             }
         }
     },
