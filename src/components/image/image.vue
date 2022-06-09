@@ -16,7 +16,7 @@
                 :src="image && image.src"
                 :referrerPolicy="referrerPolicy"
                 :style="[fitStyle]"
-                :class="[prefixCls + '-img']"
+                :class="[prefixCls + '-img', image && image.src ? prefixCls + '-img-visible' : '']"
             />
             <slot v-if="preview" name="preview">
                 <div
