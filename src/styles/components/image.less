@@ -17,18 +17,23 @@
     &-img {
         vertical-align: middle;
     }
+    &-img-hidden{
+        visibility: hidden;
+    }
     &-error,
     &-placeholder,
     &-mark {
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-    &-mark {
         position: absolute;
         left: 0;
-        background-color: rgba(0, 0, 0, .3);
         top: 0;
+        right: 0;
+        bottom: 0;
+    }
+    &-mark {
+        background-color: rgba(0, 0, 0, .3);
         z-index: 1;
         color: #FFF;
         cursor: pointer;
