@@ -2,30 +2,28 @@
     <teleport to="body" :disabled="!transfer">
         <transition name="fade">
             <div :class="[prefixCls + '-wrapper']" v-if="modelValue">
-                <div :class="[prefixCls + '-mark']" v-if="srcList.length > 0" @click.stop="handleClickMark">
+                <div :class="[prefixCls + '-mark']" v-if="previewList.length > 0" @click.stop="handleClickMark">
                     <Spin
-                        v-if="srcList[currentIndex] && srcList[currentIndex].status === 'loading'"
+                        v-if="status === 'loading'"
                         size="large"
                     />
                     <div
-                        v-else-if="srcList[currentIndex] && srcList[currentIndex].status === 'failed'"
+                        v-else-if="status === 'failed'"
                         :class="[prefixCls + '-fail']"
                     >
                         <span>{{failLang}}</span>
                     </div>
-                    <template v-for="(item, index) in srcList" :key="index">
-                        <img
-                            v-if="item.src"
-                            :src="item.src"
-                            v-show="index === currentIndex && item.status === 'loaded'"
-                            :style="imageStyle(index)"
-                            :class="imgClasses"
-                            @click.stop
-                            @mousedown.stop.prevent="handleMousedown"
-                            @load="handleImageLoad(index)"
-                            @error="handleImageError(index)"
-                        />
-                    </template>
+                    <img
+                        :src="currentSrc"
+                        :key="currentIndex.toString()"
+                        v-show="status === 'loaded'"
+                        :style="imageStyle"
+                        :class="imgClasses"
+                        @click.stop
+                        @mousedown.stop.prevent="handleMousedown"
+                        @load="handleImageLoad"
+                        @error="handleImageError"
+                    />
                 </div>
                 <div :class="[prefixCls + '-operations']">
                     <Icon
@@ -133,7 +131,7 @@ export default {
             transition: true,
             original: false, // display by original size
             prevOverflow: '', // prevent body scrolling
-            srcList: []
+            status: 'loading' // image status
         }
     },
     computed: {
@@ -153,21 +151,7 @@ export default {
                 [prefixCls + '-image-limit']: !this.original
             };
         },
-        hasRightSwitchEnd() {
-            const { currentIndex, infinite, previewList} = this;
-            const len = previewList.length;
-            return infinite ? false : currentIndex >= len - 1;
-        },
-        hasLeftSwitchEnd() {
-            const { currentIndex, infinite} = this;
-            return infinite ? false : currentIndex === 0;
-        },
-        failLang() {
-            return this.t('i.image.fail')
-        }
-    },
-    methods: {
-        imageStyle(index) {
+        imageStyle() {
             let translateX = this.translate.x / this.scale;
             let translateY = this.translate.y / this.scale;
 
@@ -184,15 +168,29 @@ export default {
             }
             return {
                 transform: `
-                    scale(${index === this.currentIndex ? this.scale : 1})
-                    rotate(${index === this.currentIndex ? this.degree : 0}deg)
-                    translate(
-                        ${index === this.currentIndex ? translateX : 0}px,
-                        ${index === this.currentIndex ? translateY : 0}px
-                    )
+                    scale(${this.scale})
+                    rotate(${this.degree}deg)
+                    translate(${translateX}px, ${translateY}px)
                 `
             };
         },
+        hasRightSwitchEnd() {
+            const { currentIndex, infinite, previewList} = this;
+            const len = previewList.length;
+            return infinite ? false : currentIndex >= len - 1;
+        },
+        hasLeftSwitchEnd() {
+            const { currentIndex, infinite} = this;
+            return infinite ? false : currentIndex === 0;
+        },
+        currentSrc() {
+            return this.previewList[this.currentIndex];
+        },
+        failLang() {
+            return this.t('i.image.fail');
+        }
+    },
+    methods: {
         resetStyle() {
             this.scale = 1;
             this.degree = 0;
@@ -289,11 +287,11 @@ export default {
             if (!isClient) return;
             document.body.style.overflow = val;
         },
-        handleImageLoad(index) {
-            this.srcList[index].status = 'loaded';
+        handleImageLoad() {
+            this.status = 'loaded';
         },
-        handleImageError(index) {
-            this.srcList[index].status = 'failed';
+        handleImageError() {
+            this.status = 'failed';
         }
     },
     watch: {
@@ -304,18 +302,12 @@ export default {
                 this.original = false;
                 this.prevOverflow = this.getBodyOverflow();
                 this.setBodyOverflow('hidden');
-                this.srcList = this.previewList.map((src, index) => ({
-                    src: index === this.currentIndex ? src : null,
-                    status: 'loading'
-                }));
             } else {
                 this.setBodyOverflow(this.prevOverflow);
             }
         },
-        currentIndex(val) {
-            if (this.srcList[val] && !this.srcList[val].src) {
-                this.srcList[val].src = this.previewList[val];
-            }
+        currentIndex() {
+            this.status = 'loading';
         }
     },
     mounted() {
