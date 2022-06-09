@@ -10,10 +10,10 @@
                 <span>{{failLang}}</span>
             </div>
         </slot>
-        <div :class="[prefixCls + '-inner']" v-else>
+        <div :class="[prefixCls + '-inner']" v-show="!loading && !imageError">
             <img
-                :src="src"
                 :alt="alt"
+                :src="image && image.src"
                 :referrerPolicy="referrerPolicy"
                 :style="[fitStyle]"
                 :class="[prefixCls + '-img']"
@@ -153,11 +153,6 @@
                 return this.t('i.image.preview')
             }
         },
-        watch: {
-            lazy() {
-                this.handleImageEvent();
-            }
-        },
         mounted() {
             isClient && this.handleImageEvent();
         },
@@ -190,8 +185,6 @@
                 } else if (typeof scrollContainer === 'string') {
                     this.scrollElement = document.querySelector(scrollContainer);
                 }
-                this.loading = true;
-                this.imageError = false;
                 // on scrollElement scroll
                 this.handleLazy();
             },
