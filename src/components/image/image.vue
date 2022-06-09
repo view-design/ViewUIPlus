@@ -10,13 +10,15 @@
                 <span>{{failLang}}</span>
             </div>
         </slot>
-        <div :class="[prefixCls + '-inner']" v-show="!loading && !imageError">
+        <div :class="[prefixCls + '-inner']" v-if="imageSrc">
             <img
                 :alt="alt"
-                :src="image && image.src"
+                :src="imageSrc"
+                @load="handleImageLoad"
+                @error="handleImageError"
                 :referrerPolicy="referrerPolicy"
                 :style="[fitStyle]"
-                :class="[prefixCls + '-img', image && image.src ? prefixCls + '-img-visible' : '']"
+                :class="[prefixCls + '-img', (loading || imageError) ? prefixCls + '-img-hidden' : '']"
             />
             <slot v-if="preview" name="preview">
                 <div
@@ -42,7 +44,6 @@
 </template>
 <script>
     const prefixCls = 'ivu-image';
-    import {on, off} from '../../utils/dom'
     import {isClient} from '../../utils/index';
     import ImagePreview  from '../image-preview';
     import Locale from '../../mixins/locale';
@@ -121,11 +122,9 @@
         data() {
             return {
                 prefixCls: prefixCls,
+                imageSrc: '',
                 loading: false,
                 imageError: false,
-                image: null,
-                imageWidth: 0,
-                imageHeight: 0,
                 scrollElement: null,
                 observer: null,
                 imagePreviewModal: false
@@ -188,46 +187,37 @@
                 // on scrollElement scroll
                 this.handleLazy();
             },
-            handleLoadImageLoad(event) {
-                const {width, height} = event.target;
-                this.imageWidth = width;
-                this.imageHeight = height;
+            handleImageLoad() {
                 this.loading = false;
                 this.imageError = false;
                 this.$emit('on-load');
-                // off image event
-                this.offImageEvent();
             },
-            handleLoadImageError() {
+            handleImageError(event) {
+                // deal the emputy image in case error callback
+                const currentImage = event.target;
+                if (!currentImage) {
+                    return;
+                }
+                const currentSrc= currentImage.getAttribute('src');
+                if (!currentSrc) {
+                    return;
+                }
                 this.loading = false;
                 this.imageError = true;
                 this.$emit('on-error');
-                // off image event
-                this.offImageEvent();
             },
             loadImage() {
-                this.image = new Image();
-                const {src, image} = this;
                 this.loading = true;
                 this.imageError = false;
-                on(image, 'load', this.handleLoadImageLoad);
-                on(image, 'error', this.handleLoadImageError);
-                image.src = src;
+                this.imageSrc = this.src;
             },
             handleImageEvent() {
                 const { lazy } = this;
                 lazy ? this.addLazyImageListener() : this.loadImage();
             },
-            offImageEvent() {
-                const {image} = this;
-                image && off(image, 'load', this.handleLoadImageLoad);
-                image && off(image, 'error', this.handleLoadImageError)
-            },
             offObserver() {
                 const {observer} = this;
-                if (observer) {
-                    observer.disconnect();
-                }
+                observer && observer.disconnect();
             },
             handlePreview() {
                 const {preview, initialIndex} = this;
@@ -245,7 +235,6 @@
             }
         },
         beforeUnmount() {
-            this.offImageEvent();
             this.offObserver();
         }
     }
