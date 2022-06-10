@@ -1,6 +1,6 @@
 <template>
-    <div :class="classes" :style="styles">
-        <Icon v-if="showIcon" :class="iconClasses" type="ios-image" :size="iconSize"/>
+    <div :class="[prefixCls, prefixCls + '-' + type, prefixCls + '-' + type + '-' + size, classes]" :style="styles">
+        <Icon v-if="showIcon" :class="prefixCls + '-image-icon'" type="ios-image" :size="iconSize"/>
     </div>
 </template>
 
@@ -28,7 +28,7 @@
                 validator(value) {
                     return oneOf(value, ['circle', 'square', 'rect', 'image']);
                 },
-                default: 'circle'
+                default: 'rect'
             },
             size: {
                 validator(value) {
@@ -53,14 +53,17 @@
                 type: String
             }
         },
+        data() {
+            return {
+                prefixCls
+            };
+        },
         computed: {
             classes() {
                 return {
-                    [prefixCls]: true,
                     [prefixCls + '-animated']: this.animated || Boolean(this.SkeletonInstance) && this.SkeletonInstance.animated,
-                    [prefixCls + '-' + this.type]: true,
-                    [prefixCls + '-' + this.type + '-' + this.size]: true,
                     [prefixCls + '-inline']: !this.block,
+                    [prefixCls + '-with-image']: this.showImage,
                     [prefixCls + '-round']: Boolean(this.SkeletonInstance) && this.SkeletonInstance.round
                 };
             },
@@ -73,7 +76,7 @@
                     if (this.height) {
                         styleObj.height = typeof this.height === 'number' ? `${this.height}px` : this.height;
                     }
-                    if (this.type === 'image' && this.imgSrc) {
+                    if (this.showImage) {
                         styleObj.background = `no-repeat url(${this.imgSrc}) center center`;
                         styleObj.backgroundSize = 'contain';
                     }
@@ -83,10 +86,8 @@
             showIcon() {
                 return this.type === 'image' && !this.imgSrc;
             },
-            iconClasses() {
-                return {
-                    [prefixCls + '-image-icon']: true
-                };
+            showImage() {
+                return this.type === 'image' && Boolean(this.imgSrc);
             },
             iconSize() {
                 let iconSize = 16;

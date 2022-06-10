@@ -1,5 +1,9 @@
 <template>
-    <div :class="classes" v-if="loading" v-bind="$attrs">
+    <div
+        v-if="loading"
+        v-bind="$attrs"
+        :class="[prefixCls, {[prefixCls + '-with-title']: showTitle, [prefixCls + '-with-avatar']: showAvatar}]"
+    >
         <slot name="template" v-if="loading">
             <Row>
                 <Col flex="0" v-if="showAvatar">
@@ -7,17 +11,15 @@
                         :type="avatarType"
                         :size="avatarSize"
                         :animated="animated"
-                        style="margin-right:16px"
+                        class="ivu-mr"
                     />
                 </Col>
                 <Col flex="1">
                     <SkeletonItem
                         v-for="row in rowsCount"
                         :key="row"
-                        :class="rowClasses"
-                        :style="rowStyle(row)"
+                        :class="{[prefixCls + '-item-round']: round, [prefixCls + '-item-title']: showTitle && row === 1}"
                         :animated="animated"
-                        type="rect"
                         :width="rowWidth(row)"
                         height="16px"
                         block
@@ -26,7 +28,7 @@
             </Row>
         </slot>
     </div>
-    <slot v-else></slot>
+    <slot v-else v-bind="$attrs"></slot>
 </template>
 
 <script>
@@ -90,12 +92,12 @@
                 default: false
             }
         },
+        data() {
+            return {
+                prefixCls
+            };
+        },
         computed: {
-            classes() {
-                return {
-                    [prefixCls]: true
-                };
-            },
             rows() {
                 if (typeof this.paragraph === 'number') {
                     return this.paragraph;
@@ -104,11 +106,6 @@
             },
             rowsCount() {
                 return this.rows + Number(this.showTitle);
-            },
-            rowClasses() {
-                return {
-                    [prefixCls + '-item-round']: this.round
-                };
             },
             showTitle() {
                 return Boolean(this.title);
@@ -153,12 +150,6 @@
                     }
                 }
                 return row === this.rowsCount ? '62%' : '100%';
-            },
-            rowStyle(row) {
-                if (this.showTitle && row === 2) {
-                    return { marginTop: '28px' };
-                }
-                return {};
             }
         }
     }

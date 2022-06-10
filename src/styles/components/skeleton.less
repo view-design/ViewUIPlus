@@ -61,6 +61,12 @@
             color: #ccc;
         }
     }
+    &-title {
+        margin-bottom: 28px;
+    }
+    &-round {
+        border-radius: @skeleton-border-radius-round;
+    }
     &-animated {
         position: relative;
         overflow: hidden;
@@ -92,16 +98,12 @@
     }
 }
 
-.@{skeleton-item-prefix-cls}-round {
-    border-radius: @skeleton-border-radius-round;
-}
-
 .@{skeleton-prefix-cls} {
     background: @white;
     .@{skeleton-item-prefix-cls} {
         margin-top: @skeleton-item-margin;
     }
-    .@{skeleton-item-prefix-cls}:first-child {
+    .@{skeleton-item-prefix-cls}:first-child, &-with-title .@{skeleton-item-prefix-cls}:nth-child(2) {
         margin-top: 0;
     }
 }
