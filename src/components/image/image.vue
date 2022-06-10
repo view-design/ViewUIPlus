@@ -43,15 +43,18 @@
     </div>
 </template>
 <script>
-    const prefixCls = 'ivu-image';
-    import {isClient} from '../../utils/index';
-    import ImagePreview  from '../image-preview';
-    import Locale from '../../mixins/locale';
     import { getCurrentInstance } from 'vue';
+    import { isClient } from '../../utils/index';
+    import ImagePreview  from './image-preview.vue';
+    import Locale from '../../mixins/locale';
+
+    const prefixCls = 'ivu-image';
+
     // is Element
     const isElement = (el)=> {
         return typeof HTMLElement === 'object' && el instanceof HTMLElement;
     }
+
     export default {
         name: 'Image',
         mixins: [ Locale ],
