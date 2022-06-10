@@ -31,9 +31,9 @@
 
 <script>
     import { oneOf } from '../../utils/assist';
-    import SkeletonItem from '../skeleton-item';
-    import Row from '../row';
-    import Col from '../col';
+    import SkeletonItem from './skeleton-item.vue';
+    import Row from '../row/row.vue';
+    import Col from '../col/col.vue';
 
     const prefixCls = 'ivu-skeleton';
 
