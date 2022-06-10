@@ -242,19 +242,24 @@
                 }
             },
             handleKeydown(event) {
-                event.preventDefault();
+                if (!this.modelValue) return;
                 const { keyCode } = event;
                 if (keyCode === KeyCode.LEFT) this.handleSwitch(false);
                 if (keyCode === KeyCode.RIGHT) this.handleSwitch(true);
                 if (keyCode === KeyCode.UP) this.handleOperation('zoomIn');
                 if (keyCode === KeyCode.DOWN) this.handleOperation('zoomOut');
-                if (keyCode === KeyCode.SPACE) this.original = !this.original;
+                if (keyCode === KeyCode.SPACE) {
+                    event.preventDefault();
+                    this.original = !this.original;
+                }
             },
             handleKeyup(event) {
+                if (!this.modelValue) return;
                 const { keyCode } = event;
                 if (keyCode === KeyCode.ESC) this.handleClose();
             },
             handleWheel(event) {
+                if (!this.modelValue) return;
                 const { deltaY } = event;
                 this.handleOperation(deltaY < 0 ? 'zoomIn' : 'zoomOut');
             },
