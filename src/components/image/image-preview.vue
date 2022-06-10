@@ -1,8 +1,11 @@
 <template>
     <teleport to="body" :disabled="!transfer">
         <transition name="fade">
-            <div :class="[prefixCls + '-wrapper']" v-if="modelValue">
-                <div :class="[prefixCls + '-mask']" v-if="previewList.length > 0" @click.stop="handleClickMark">
+            <div v-if="modelValue" :class="[prefixCls + '-mask']"></div>
+        </transition>
+        <div :class="[prefixCls + '-wrapper']" v-if="modelValue">
+            <transition name="fade">
+                <div :class="[prefixCls]" v-bind="$attrs" @click.stop="handleClickMask">
                     <Spin v-if="status === 'loading'" size="large" :class="[prefixCls + '-loading']" />
                     <div v-else-if="status === 'failed'" :class="[prefixCls + '-fail']">
                         <span>{{failLang}}</span>
@@ -11,57 +14,57 @@
                         :src="currentSrc"
                         :key="currentIndex.toString()"
                         :style="imageStyle"
-                        :class="imgClasses"
+                        :class="imageClasses"
                         @click.stop
                         @mousedown.stop.prevent="handleMousedown"
                         @load="handleImageLoad"
                         @error="handleImageError"
                     />
+                    <div :class="[prefixCls + '-operations']">
+                        <Icon
+                            type="ios-add-circle-outline"
+                            :class="[prefixCls + '-operations-item']"
+                            @click.stop="handleOperation('zoomIn')"
+                        />
+                        <Icon
+                            type="ios-remove-circle-outline"
+                            :class="[prefixCls + '-operations-item']"
+                            @click.stop="handleOperation('zoomOut')"
+                        />
+                        <Icon
+                            :type="this.original ? 'ios-barcode-outline' : 'ios-qr-scanner'"
+                            :class="[prefixCls + '-operations-item']"
+                            @click.stop="handleOperation('original')"
+                        />
+                        <Icon
+                            type="ios-refresh"
+                            :class="[prefixCls + '-operations-item']"
+                            @click.stop="handleOperation('rotateLeft')"
+                        />
+                        <Icon
+                            type="ios-refresh"
+                            :class="[prefixCls + '-operations-item']"
+                            @click.stop="handleOperation('rotateRight')"
+                        />
+                    </div>
+                    <Icon
+                        :class="[prefixCls + '-arrow-left', { [prefixCls + '-arrow-disabled']: hasLeftSwitchEnd }]"
+                        type="ios-arrow-back"
+                        @click.stop="handleSwitch(false)"
+                    />
+                    <Icon
+                        :class="[prefixCls + '-arrow-right', { [prefixCls + '-arrow-disabled']: hasRightSwitchEnd }]"
+                        type="ios-arrow-forward"
+                        @click.stop="handleSwitch(true)"
+                    />
+                    <Icon
+                        :class="[prefixCls + '-arrow-close']"
+                        type="md-close"
+                        @click.stop="handleClose"
+                    />
                 </div>
-                <div :class="[prefixCls + '-operations']">
-                    <Icon
-                        type="ios-add-circle-outline"
-                        :class="[prefixCls + '-operations-item']"
-                        @click.stop="handleOperation('zoomIn')"
-                    />
-                    <Icon
-                        type="ios-remove-circle-outline"
-                        :class="[prefixCls + '-operations-item']"
-                        @click.stop="handleOperation('zoomOut')"
-                    />
-                    <Icon
-                        :type="this.original ? 'ios-barcode-outline' : 'ios-qr-scanner'"
-                        :class="[prefixCls + '-operations-item']"
-                        @click.stop="handleOperation('original')"
-                    />
-                    <Icon
-                        type="ios-refresh"
-                        :class="[prefixCls + '-operations-item']"
-                        @click.stop="handleOperation('rotateLeft')"
-                    />
-                    <Icon
-                        type="ios-refresh"
-                        :class="[prefixCls + '-operations-item']"
-                        @click.stop="handleOperation('rotateRight')"
-                    />
-                </div>
-                <Icon
-                    :class="[prefixCls + '-arrow-left', { [prefixCls + '-arrow-disabled']: hasLeftSwitchEnd }]"
-                    type="ios-arrow-back"
-                    @click.stop="handleSwitch(false)"
-                />
-                <Icon
-                    :class="[prefixCls + '-arrow-right', { [prefixCls + '-arrow-disabled']: hasRightSwitchEnd }]"
-                    type="ios-arrow-forward"
-                    @click.stop="handleSwitch(true)"
-                />
-                <Icon
-                    :class="[prefixCls + '-arrow-close']"
-                    type="md-close"
-                    @click.stop="handleClose"
-                />
-            </div>
-        </transition>
+            </transition>
+        </div>
     </teleport>
 </template>
 <script>
@@ -80,6 +83,7 @@
         name: 'ImagePreview',
         mixins: [ Locale ],
         components: { Icon, Spin },
+        inheritAttrs: false,
         props: {
             modelValue: {
                 type: Boolean,
@@ -137,10 +141,11 @@
                     { icon: 'ios-refresh', value: 'rotateRight' }
                 ]
             },
-            imgClasses() {
+            imageClasses() {
                 return [
                     prefixCls + '-image',
                     {
+                        [prefixCls + '-hidden']: this.status === 'failed',
                         [prefixCls + '-transition']: this.transition,
                         [prefixCls + '-limit']: !this.original
                     }
@@ -196,7 +201,7 @@
                 this.$emit('update:modelValue', false);
                 this.$emit('on-close');
             },
-            handleClickMark() {
+            handleClickMask() {
                 if (!this.maskClosable) return;
                 this.handleClose();
             },
