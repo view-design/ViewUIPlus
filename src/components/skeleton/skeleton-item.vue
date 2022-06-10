@@ -1,5 +1,5 @@
 <template>
-    <div :class="[prefixCls, prefixCls + '-' + type, prefixCls + '-' + type + '-' + size, classes]" :style="styles">
+    <div :class="classes" :style="styles">
         <Icon v-if="showIcon" :class="prefixCls + '-image-icon'" type="ios-image" :size="iconSize"/>
     </div>
 </template>
@@ -60,12 +60,17 @@
         },
         computed: {
             classes() {
-                return {
-                    [prefixCls + '-animated']: this.animated || Boolean(this.SkeletonInstance) && this.SkeletonInstance.animated,
-                    [prefixCls + '-inline']: !this.block,
-                    [prefixCls + '-with-image']: this.showImage,
-                    [prefixCls + '-round']: Boolean(this.SkeletonInstance) && this.SkeletonInstance.round
-                };
+                return [
+                    prefixCls,
+                    prefixCls + '-' + this.type,
+                    prefixCls + '-' + this.type + '-' + this.size,
+                    {
+                        [prefixCls + '-animated']: this.animated || Boolean(this.SkeletonInstance) && this.SkeletonInstance.animated,
+                        [prefixCls + '-inline']: !this.block,
+                        [prefixCls + '-with-image']: this.showImage,
+                        [prefixCls + '-round']: Boolean(this.SkeletonInstance) && this.SkeletonInstance.round
+                    }
+                ];
             },
             styles() {
                 const styleObj = {}

@@ -2,7 +2,7 @@
     <div
         v-if="loading"
         v-bind="$attrs"
-        :class="[prefixCls, {[prefixCls + '-with-title']: showTitle, [prefixCls + '-with-avatar']: showAvatar}]"
+        :class="classes"
     >
         <slot name="template" v-if="loading">
             <Row>
@@ -15,14 +15,14 @@
                     />
                 </Col>
                 <Col flex="1">
-                    <SkeletonItem
-                        v-for="row in rowsCount"
-                        :key="row"
-                        :class="[{[prefixCls + '-item-round']: round, [prefixCls + '-item-title']: showTitle && row === 1}, prefixCls + '-item-inner']"
-                        :animated="animated"
-                        :width="rowWidth(row)"
-                        block
-                    />
+                    <template v-for="row in rows" :key="row">
+                        <SkeletonItem
+                            :class="rowClasses(row)"
+                            :animated="animated"
+                            :width="rowWidth(row)"
+                            block
+                        />
+                    </template>
                 </Col>
             </Row>
         </slot>
@@ -97,6 +97,15 @@
             };
         },
         computed: {
+            classes() {
+                return [
+                    prefixCls,
+                    {
+                        [prefixCls + '-with-title']: this.showTitle,
+                        [prefixCls + '-with-avatar']: this.showAvatar
+                    }
+                ];
+            },
             rows() {
                 if (typeof this.paragraph === 'number') {
                     return this.paragraph;
@@ -128,6 +137,15 @@
             }
         },
         methods: {
+            rowClasses(row) {
+                return [
+                    prefixCls + '-item-inner',
+                    {
+                        [prefixCls + '-item-round']: this.round,
+                        [prefixCls + '-item-title']: this.showTitle && row === 1
+                    }
+                ]
+            },
             rowWidth(row) {
                 if (this.showTitle && row === 1) {
                     return this.titleWidth || '38%';
