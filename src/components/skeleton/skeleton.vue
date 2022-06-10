@@ -1,5 +1,9 @@
 <template>
-    <div :class="classes" v-if="loading" v-bind="$attrs">
+    <div
+        v-if="loading"
+        v-bind="$attrs"
+        :class="classes"
+    >
         <slot name="template" v-if="loading">
             <Row>
                 <Col flex="0" v-if="showAvatar">
@@ -7,26 +11,23 @@
                         :type="avatarType"
                         :size="avatarSize"
                         :animated="animated"
-                        style="margin-right:16px"
+                        :class="prefixCls + '-item-avatar'"
                     />
                 </Col>
                 <Col flex="1">
-                    <SkeletonItem
-                        v-for="row in rowsCount"
-                        :key="row"
-                        :class="rowClasses"
-                        :style="rowStyle(row)"
-                        :animated="animated"
-                        type="rect"
-                        :width="rowWidth(row)"
-                        height="16px"
-                        block
-                    />
+                    <template v-for="row in rows" :key="row">
+                        <SkeletonItem
+                            :class="rowClasses(row)"
+                            :animated="animated"
+                            :width="rowWidth(row)"
+                            block
+                        />
+                    </template>
                 </Col>
             </Row>
         </slot>
     </div>
-    <slot v-else></slot>
+    <slot v-else v-bind="$attrs"></slot>
 </template>
 
 <script>
@@ -90,11 +91,20 @@
                 default: false
             }
         },
+        data() {
+            return {
+                prefixCls
+            };
+        },
         computed: {
             classes() {
-                return {
-                    [prefixCls]: true
-                };
+                return [
+                    prefixCls,
+                    {
+                        [prefixCls + '-with-title']: this.showTitle,
+                        [prefixCls + '-with-avatar']: this.showAvatar
+                    }
+                ];
             },
             rows() {
                 if (typeof this.paragraph === 'number') {
@@ -104,11 +114,6 @@
             },
             rowsCount() {
                 return this.rows + Number(this.showTitle);
-            },
-            rowClasses() {
-                return {
-                    [prefixCls + '-item-round']: this.round
-                };
             },
             showTitle() {
                 return Boolean(this.title);
@@ -132,6 +137,15 @@
             }
         },
         methods: {
+            rowClasses(row) {
+                return [
+                    prefixCls + '-item-inner',
+                    {
+                        [prefixCls + '-item-round']: this.round,
+                        [prefixCls + '-item-title']: this.showTitle && row === 1
+                    }
+                ]
+            },
             rowWidth(row) {
                 if (this.showTitle && row === 1) {
                     return this.titleWidth || '38%';
@@ -153,12 +167,6 @@
                     }
                 }
                 return row === this.rowsCount ? '62%' : '100%';
-            },
-            rowStyle(row) {
-                if (this.showTitle && row === 2) {
-                    return { marginTop: '28px' };
-                }
-                return {};
             }
         }
     }
