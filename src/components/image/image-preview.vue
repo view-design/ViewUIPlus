@@ -242,15 +242,13 @@
                 }
             },
             handleKeydown(event) {
+                event.preventDefault();
                 const { keyCode } = event;
                 if (keyCode === KeyCode.LEFT) this.handleSwitch(false);
                 if (keyCode === KeyCode.RIGHT) this.handleSwitch(true);
                 if (keyCode === KeyCode.UP) this.handleOperation('zoomIn');
                 if (keyCode === KeyCode.DOWN) this.handleOperation('zoomOut');
-                if (keyCode === KeyCode.SPACE) {
-                    event.preventDefault();
-                    this.original = !this.original;
-                }
+                if (keyCode === KeyCode.SPACE) this.original = !this.original;
             },
             handleKeyup(event) {
                 const { keyCode } = event;
