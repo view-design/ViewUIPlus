@@ -21705,90 +21705,6 @@ function _sfc_render$10(_ctx, _cache, $props, $setup, $data, $options) {
   });
 }
 var Spin = /* @__PURE__ */ _export_sfc(_sfc_main$1b, [["render", _sfc_render$10]]);
-function handleGetIndex() {
-  transferIncrease();
-  return transferIndex;
-}
-let tIndex = handleGetIndex();
-Spin.newInstance = (properties) => {
-  if (!isClient)
-    return;
-  const _props = properties || {};
-  let _instance = null;
-  const Instance = createApp({
-    data() {
-      return Object.assign({}, _props, {});
-    },
-    render() {
-      let vnode = "";
-      if (this.render) {
-        vnode = h(Spin, {
-          fix: true,
-          fullscreen: true,
-          ref: "spin"
-        }, [this.render(h)]);
-      } else {
-        vnode = h(Spin, {
-          size: "large",
-          fix: true,
-          fullscreen: true,
-          ref: "spin"
-        });
-      }
-      return h("div", {
-        "class": "ivu-spin-fullscreen ivu-spin-fullscreen-wrapper",
-        "style": {
-          "z-index": 2010 + tIndex
-        }
-      }, [vnode]);
-    },
-    created() {
-      _instance = getCurrentInstance();
-    }
-  });
-  const container = document.createElement("div");
-  document.body.appendChild(container);
-  Instance.mount(container);
-  const spin = _instance.refs.spin;
-  return {
-    show() {
-      spin.visible = true;
-      tIndex = handleGetIndex();
-    },
-    remove(cb) {
-      spin.visible = false;
-      setTimeout(function() {
-        Instance.unmount();
-        document.body.removeChild(container);
-        cb();
-      }, 500);
-    },
-    component: spin
-  };
-};
-let spinInstance;
-function getSpinInstance(render = void 0) {
-  spinInstance = spinInstance || Spin.newInstance({
-    render
-  });
-  return spinInstance;
-}
-function loading(options) {
-  const render = "render" in options ? options.render : void 0;
-  let instance = getSpinInstance(render);
-  instance.show(options);
-}
-Spin.show = function(props = {}) {
-  return loading(props);
-};
-Spin.hide = function() {
-  if (!spinInstance)
-    return false;
-  const instance = getSpinInstance();
-  instance.remove(() => {
-    spinInstance = null;
-  });
-};
 const prefixCls$D = "ivu-image-preview";
 const _sfc_main$1a = {
   name: "ImagePreview",
@@ -21873,10 +21789,10 @@ const _sfc_main$1a = {
       }
       return {
         transform: `
-                    scale(${this.scale})
-                    rotate(${this.degree}deg)
-                    translate(${translateX}px, ${translateY}px)
-                `
+                        scale(${this.scale})
+                        rotate(${this.degree}deg)
+                        translate(${translateX}px, ${translateY}px)
+                    `
       };
     },
     hasRightSwitchEnd() {
@@ -23288,6 +23204,90 @@ const _sfc_main$15 = {
       component: "a"
     }), this.commonEvents()), this.commonSlots());
   }
+};
+function handleGetIndex() {
+  transferIncrease();
+  return transferIndex;
+}
+let tIndex = handleGetIndex();
+Spin.newInstance = (properties) => {
+  if (!isClient)
+    return;
+  const _props = properties || {};
+  let _instance = null;
+  const Instance = createApp({
+    data() {
+      return Object.assign({}, _props, {});
+    },
+    render() {
+      let vnode = "";
+      if (this.render) {
+        vnode = h(Spin, {
+          fix: true,
+          fullscreen: true,
+          ref: "spin"
+        }, [this.render(h)]);
+      } else {
+        vnode = h(Spin, {
+          size: "large",
+          fix: true,
+          fullscreen: true,
+          ref: "spin"
+        });
+      }
+      return h("div", {
+        "class": "ivu-spin-fullscreen ivu-spin-fullscreen-wrapper",
+        "style": {
+          "z-index": 2010 + tIndex
+        }
+      }, [vnode]);
+    },
+    created() {
+      _instance = getCurrentInstance();
+    }
+  });
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+  Instance.mount(container);
+  const spin = _instance.refs.spin;
+  return {
+    show() {
+      spin.visible = true;
+      tIndex = handleGetIndex();
+    },
+    remove(cb) {
+      spin.visible = false;
+      setTimeout(function() {
+        Instance.unmount();
+        document.body.removeChild(container);
+        cb();
+      }, 500);
+    },
+    component: spin
+  };
+};
+let spinInstance;
+function getSpinInstance(render = void 0) {
+  spinInstance = spinInstance || Spin.newInstance({
+    render
+  });
+  return spinInstance;
+}
+function loading(options) {
+  const render = "render" in options ? options.render : void 0;
+  let instance = getSpinInstance(render);
+  instance.show(options);
+}
+Spin.show = function(props = {}) {
+  return loading(props);
+};
+Spin.hide = function() {
+  if (!spinInstance)
+    return false;
+  const instance = getSpinInstance();
+  instance.remove(() => {
+    spinInstance = null;
+  });
 };
 const prefixCls$z = "ivu-list";
 const _sfc_main$14 = {
@@ -30265,7 +30265,7 @@ const _sfc_main$y = {
       validator(value) {
         return oneOf(value, ["circle", "square", "rect", "image"]);
       },
-      default: "circle"
+      default: "rect"
     },
     size: {
       validator(value) {
@@ -30290,16 +30290,24 @@ const _sfc_main$y = {
       type: String
     }
   },
+  data() {
+    return {
+      prefixCls: prefixCls$e
+    };
+  },
   computed: {
     classes() {
-      return {
-        [prefixCls$e]: true,
-        [prefixCls$e + "-animated"]: this.animated || Boolean(this.SkeletonInstance) && this.SkeletonInstance.animated,
-        [prefixCls$e + "-" + this.type]: true,
-        [prefixCls$e + "-" + this.type + "-" + this.size]: true,
-        [prefixCls$e + "-inline"]: !this.block,
-        [prefixCls$e + "-round"]: Boolean(this.SkeletonInstance) && this.SkeletonInstance.round
-      };
+      return [
+        prefixCls$e,
+        prefixCls$e + "-" + this.type,
+        prefixCls$e + "-" + this.type + "-" + this.size,
+        {
+          [prefixCls$e + "-animated"]: this.animated || Boolean(this.SkeletonInstance) && this.SkeletonInstance.animated,
+          [prefixCls$e + "-inline"]: !this.block,
+          [prefixCls$e + "-with-image"]: this.showImage,
+          [prefixCls$e + "-round"]: Boolean(this.SkeletonInstance) && this.SkeletonInstance.round
+        }
+      ];
     },
     styles() {
       const styleObj = {};
@@ -30310,7 +30318,7 @@ const _sfc_main$y = {
         if (this.height) {
           styleObj.height = typeof this.height === "number" ? `${this.height}px` : this.height;
         }
-        if (this.type === "image" && this.imgSrc) {
+        if (this.showImage) {
           styleObj.background = `no-repeat url(${this.imgSrc}) center center`;
           styleObj.backgroundSize = "contain";
         }
@@ -30320,10 +30328,8 @@ const _sfc_main$y = {
     showIcon() {
       return this.type === "image" && !this.imgSrc;
     },
-    iconClasses() {
-      return {
-        [prefixCls$e + "-image-icon"]: true
-      };
+    showImage() {
+      return this.type === "image" && Boolean(this.imgSrc);
     },
     iconSize() {
       let iconSize = 16;
@@ -30343,7 +30349,7 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
   }, [
     $options.showIcon ? (openBlock(), createBlock(_component_Icon, {
       key: 0,
-      class: normalizeClass($options.iconClasses),
+      class: normalizeClass($data.prefixCls + "-image-icon"),
       type: "ios-image",
       size: $options.iconSize
     }, null, 8, ["class", "size"])) : createCommentVNode("", true)
@@ -30407,11 +30413,20 @@ const _sfc_main$x = {
       default: false
     }
   },
+  data() {
+    return {
+      prefixCls: prefixCls$d
+    };
+  },
   computed: {
     classes() {
-      return {
-        [prefixCls$d]: true
-      };
+      return [
+        prefixCls$d,
+        {
+          [prefixCls$d + "-with-title"]: this.showTitle,
+          [prefixCls$d + "-with-avatar"]: this.showAvatar
+        }
+      ];
     },
     rows() {
       if (typeof this.paragraph === "number") {
@@ -30421,11 +30436,6 @@ const _sfc_main$x = {
     },
     rowsCount() {
       return this.rows + Number(this.showTitle);
-    },
-    rowClasses() {
-      return {
-        [prefixCls$d + "-item-round"]: this.round
-      };
     },
     showTitle() {
       return Boolean(this.title);
@@ -30451,6 +30461,15 @@ const _sfc_main$x = {
     }
   },
   methods: {
+    rowClasses(row) {
+      return [
+        prefixCls$d + "-item-inner",
+        {
+          [prefixCls$d + "-item-round"]: this.round,
+          [prefixCls$d + "-item-title"]: this.showTitle && row === 1
+        }
+      ];
+    },
     rowWidth(row) {
       if (this.showTitle && row === 1) {
         return this.titleWidth || "38%";
@@ -30472,12 +30491,6 @@ const _sfc_main$x = {
         }
       }
       return row === this.rowsCount ? "62%" : "100%";
-    },
-    rowStyle(row) {
-      if (this.showTitle && row === 2) {
-        return { marginTop: "28px" };
-      }
-      return {};
     }
   }
 };
@@ -30485,10 +30498,7 @@ function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_SkeletonItem = resolveComponent("SkeletonItem");
   const _component_Col = resolveComponent("Col");
   const _component_Row = resolveComponent("Row");
-  return $props.loading ? (openBlock(), createElementBlock("div", mergeProps({
-    key: 0,
-    class: $options.classes
-  }, _ctx.$attrs), [
+  return $props.loading ? (openBlock(), createElementBlock("div", mergeProps({ key: 0 }, _ctx.$attrs, { class: $options.classes }), [
     $props.loading ? renderSlot(_ctx.$slots, "template", { key: 0 }, () => [
       createVNode(_component_Row, null, {
         default: withCtx(() => [
@@ -30501,24 +30511,21 @@ function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
                 type: $options.avatarType,
                 size: $options.avatarSize,
                 animated: $props.animated,
-                style: { "margin-right": "16px" }
-              }, null, 8, ["type", "size", "animated"])
+                class: normalizeClass($data.prefixCls + "-item-avatar")
+              }, null, 8, ["type", "size", "animated", "class"])
             ]),
             _: 1
           })) : createCommentVNode("", true),
           createVNode(_component_Col, { flex: "1" }, {
             default: withCtx(() => [
-              (openBlock(true), createElementBlock(Fragment, null, renderList($options.rowsCount, (row) => {
+              (openBlock(true), createElementBlock(Fragment, null, renderList($options.rows, (row) => {
                 return openBlock(), createBlock(_component_SkeletonItem, {
                   key: row,
-                  class: normalizeClass($options.rowClasses),
-                  style: normalizeStyle($options.rowStyle(row)),
+                  class: normalizeClass($options.rowClasses(row)),
                   animated: $props.animated,
-                  type: "rect",
                   width: $options.rowWidth(row),
-                  height: "16px",
                   block: ""
-                }, null, 8, ["class", "style", "animated", "width"]);
+                }, null, 8, ["class", "animated", "width"]);
               }), 128))
             ]),
             _: 1
@@ -30527,7 +30534,7 @@ function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
       })
     ]) : createCommentVNode("", true)
-  ], 16)) : renderSlot(_ctx.$slots, "default", { key: 1 });
+  ], 16)) : renderSlot(_ctx.$slots, "default", normalizeProps(mergeProps({ key: 1 }, _ctx.$attrs)));
 }
 var Skeleton = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", _sfc_render$r]]);
 var SliderMarker = {
@@ -37806,7 +37813,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.2.0-beta.1";
+const version$1 = "1.2.0-beta.2";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";

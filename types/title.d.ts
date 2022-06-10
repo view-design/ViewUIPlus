@@ -662,3 +662,67 @@ export declare class Link {
 
     };
 }
+
+export declare class CopyConfig {
+    /**
+     * Tooltip 显示内容，为 false 则不显示
+     */
+    tooltips: boolean | [];
+
+    /**
+     * 是否显示复制成功的通知
+     */
+    showTip: boolean;
+
+    /**
+     * 复制成功时的通知
+     */
+    successTip: string;
+
+    /**
+     * 复制失败时的通知
+     */
+    errorTip: string;
+
+}
+
+export declare class EditConfig {
+    /**
+     * Tooltip 显示内容，为 false 则不显示
+     */
+    tooltip: boolean | string;
+
+    /**
+     * 是否默认进入编辑状态
+     */
+    editing: boolean;
+
+    /**
+     * 最大输入长度
+     */
+    maxlength: number;
+
+    /**
+     * 自适应内容高度
+     */
+    autosize: object;
+
+    /**
+     * 触发方式，可选值为 `icon`、`text`、`both`
+     */
+    triggerType: 'icon' | 'text' | 'both';
+
+}
+
+export declare class EllipsisConfig {
+    /**
+     * 最多显示的行数
+     */
+    rows: number;
+
+    /**
+     * 是否以 Tooltip 显示完整内容或自定义内容
+     */
+    tooltip: boolean | string;
+
+}
