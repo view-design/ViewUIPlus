@@ -18,10 +18,9 @@
                     <SkeletonItem
                         v-for="row in rowsCount"
                         :key="row"
-                        :class="{[prefixCls + '-item-round']: round, [prefixCls + '-item-title']: showTitle && row === 1}"
+                        :class="[{[prefixCls + '-item-round']: round, [prefixCls + '-item-title']: showTitle && row === 1}, prefixCls + '-item-inner']"
                         :animated="animated"
                         :width="rowWidth(row)"
-                        height="16px"
                         block
                     />
                 </Col>
