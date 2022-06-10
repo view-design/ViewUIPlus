@@ -156,7 +156,6 @@
                 return this.t('i.image.preview')
             },
             loadingType() {
-                
                 return this.lazy ? 'lazy' : 'eager';
             }
         },
