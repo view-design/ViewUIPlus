@@ -10,12 +10,12 @@ export declare class Button {
     ghost: boolean;
 
     /**
-     * 按钮大小，可选值为`large`、`small`、`default`或者不设置
+     * 按钮大小，可选值为 `large`、`small`、`default` 或者不设置
      */
     size: '' | 'large' | 'small' | 'default';
 
     /**
-     * 按钮形状，可选值为`circle`或者不设置
+     * 按钮形状，可选值为 `circle` 或者不设置
      */
     shape: string;
 
@@ -25,7 +25,7 @@ export declare class Button {
     long: boolean;
 
     /**
-     * 设置`button`原生的`type`，可选值为`button`、`submit`、`reset`
+     * 设置 `button` 原生的 `type`，可选值为 `button`、`submit`、`reset`
      */
     'html-type': 'button' | 'submit' | 'reset';
 
@@ -73,12 +73,12 @@ export declare class Button {
 
 export declare class ButtonGroup {
     /**
-     * 按钮组合大小，可选值为`large`、`small`、`default`或者不设置
+     * 按钮组合大小，可选值为 `large`、`small`、`default` 或者不设置
      */
     size: 'large' | 'small' | 'default';
 
     /**
-     * 按钮组合形状，可选值为`circle`或者不设置
+     * 按钮组合形状，可选值为 `circle` 或者不设置
      */
     shape: '' | 'circle';
 

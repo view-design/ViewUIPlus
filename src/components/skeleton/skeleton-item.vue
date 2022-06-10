@@ -7,7 +7,7 @@
 <script>
     import { getCurrentInstance } from 'vue';
     import { oneOf } from '../../utils/assist';
-    import Icon from '../icon';
+    import Icon from '../icon/icon.vue';
 
     const prefixCls = 'ivu-skeleton-item';
 
