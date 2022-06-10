@@ -164,8 +164,8 @@
                 const $el = this.$refs.image;
                 const observer = this.observer = new IntersectionObserver(this.handlerObserveImage, {
                     root: this.scrollElement,
-                    rootMargin: "50%",
-                    threshold: 1
+                    rootMargin: "0px",
+                    threshold: 0
                 });
                 observer.observe($el);
             },
@@ -181,10 +181,10 @@
             },
             addLazyImageListener() {
                 const {scrollContainer} = this;
-                this.scrollElement = window;
+                this.scrollElement = null;
                 if (isElement(scrollContainer)) {
                     this.scrollElement = scrollContainer
-                } else if (typeof scrollContainer === 'string') {
+                } else if (scrollContainer && typeof scrollContainer === 'string') {
                     this.scrollElement = document.querySelector(scrollContainer);
                 }
                 // on scrollElement scroll
