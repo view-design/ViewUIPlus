@@ -2,21 +2,14 @@
     <teleport to="body" :disabled="!transfer">
         <transition name="fade">
             <div :class="[prefixCls + '-wrapper']" v-if="modelValue">
-                <div :class="[prefixCls + '-mark']" v-if="previewList.length > 0" @click.stop="handleClickMark">
-                    <Spin
-                        v-if="status === 'loading'"
-                        size="large"
-                    />
-                    <div
-                        v-else-if="status === 'failed'"
-                        :class="[prefixCls + '-fail']"
-                    >
+                <div :class="[prefixCls + '-mask']" v-if="previewList.length > 0" @click.stop="handleClickMark">
+                    <Spin v-if="status === 'loading'" size="large" :class="[prefixCls + '-loading']" />
+                    <div v-else-if="status === 'failed'" :class="[prefixCls + '-fail']">
                         <span>{{failLang}}</span>
                     </div>
                     <img
                         :src="currentSrc"
                         :key="currentIndex.toString()"
-                        v-show="status === 'loaded'"
                         :style="imageStyle"
                         :class="imgClasses"
                         @click.stop
@@ -145,11 +138,13 @@
                 ]
             },
             imgClasses() {
-                return {
-                    [prefixCls + '-image']: true,
-                    [prefixCls + '-image-transition']: this.transition,
-                    [prefixCls + '-image-limit']: !this.original
-                };
+                return [
+                    prefixCls + '-image',
+                    {
+                        [prefixCls + '-transition']: this.transition,
+                        [prefixCls + '-limit']: !this.original
+                    }
+                ];
             },
             imageStyle() {
                 let translateX = this.translate.x / this.scale;
