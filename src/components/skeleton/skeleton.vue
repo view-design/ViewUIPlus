@@ -11,7 +11,7 @@
                         :type="avatarType"
                         :size="avatarSize"
                         :animated="animated"
-                        class="ivu-mr"
+                        :class="prefixCls + '-item-avatar'"
                     />
                 </Col>
                 <Col flex="1">
