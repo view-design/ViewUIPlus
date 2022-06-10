@@ -26,56 +26,51 @@
         font-size: @font-size-large;
     }
     &-operations {
-        height: 36px;
+        display: flex;
+        height: 40px;
         position: absolute;
         left: 50%;
         bottom: 30px;
-        transform: translate(-50%);
         z-index: 1;
-        background: @image-preview-operations-background;
-        border-radius: 22px;
-        padding: 0 20px;
-        display: flex;
+        border-radius: @border-radius-small;
         justify-content: center;
         align-items: center;
         overflow: hidden;
+        background: @image-preview-operations-background;
+        transform: translate(-50%);
         &-item {
-            color: #f1f2f5;
+            margin: 0 6px;
+            padding: 4px 8px;
+            color: #fff;
             font-size: @image-preview-operations-fontsize;
             cursor: pointer;
-            margin: 0 5px;
-            padding: 4px 10px;
+            transition: opacity .1s @ease-in-out;
             &:hover {
                 opacity: @image-preview-operations-hover;
-            }
-            &:active {
-                opacity: @image-preview-operations-active;
             }
         }
     }
     &-arrow-left,
     &-arrow-right,
     &-arrow-close {
-        z-index: 1;
-        width: 36px;
-        color: @white;
-        font-size: @image-preview-operations-fontsize;
-        height: 36px;
-        cursor: pointer;
-        line-height: 36px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
         border-radius: 50%;
+        color: @white;
+        cursor: pointer;
+        z-index: 1;
+        font-size: @image-preview-operations-fontsize;
         background: @image-preview-operations-background;
+        transition: opacity .1s @ease-in-out;
         &:not(.@{image-preview-prefix-cls}-arrow-disabled):hover {
             opacity: @image-preview-operations-hover;
-        }
-        &:not(.@{image-preview-prefix-cls}-arrow-disabled):active {
-            opacity: @image-preview-operations-active;
         }
     }
     &-arrow-close {
         position: absolute;
-        right: 30px;
-        top: 30px;
+        right: 16px;
+        top: 16px;
     }
     &-arrow-left,
     &-arrow-right {
@@ -84,14 +79,13 @@
         transform: translateY(-50%);
     }
     &-arrow-left {
-        left: 30px;
+        left: 16px;
     }
     &-arrow-right {
-        right: 30px;
+        right: 16px;
     }
     &-arrow-disabled {
         cursor: @cursor-disabled;
         color: @image-preview-operations-disabled-color;
-        background-color: @image-preview-operations-disabled-background;
     }
 }
