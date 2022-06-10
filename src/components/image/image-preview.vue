@@ -1,11 +1,11 @@
 <template>
     <teleport to="body" :disabled="!transfer">
         <transition name="fade">
-            <div v-if="modelValue" :class="[prefixCls + '-mask']"></div>
+            <div v-if="modelValue" :class="[prefixCls + '-mask']" :style="maskStyle"></div>
         </transition>
-        <div :class="[prefixCls + '-wrapper']" v-if="modelValue">
+        <div :class="[prefixCls + '-wrap']" v-show="modelValue" :style="maskStyle">
             <transition name="fade">
-                <div :class="[prefixCls]" v-bind="$attrs" @click.stop="handleClickMask">
+                <div :class="[prefixCls]" v-if="modelValue" v-bind="$attrs" @click.stop="handleClickMask">
                     <Spin v-if="status === 'loading'" size="large" :class="[prefixCls + '-loading']" />
                     <div v-else-if="status === 'failed'" :class="[prefixCls + '-fail']">
                         <span>{{failLang}}</span>
@@ -76,6 +76,7 @@
     import Icon from '../icon/icon.vue';
     import KeyCode from '../../utils/keyCode';
     import Spin  from '../spin/spin.vue';
+    import { transferIndex, transferIncrease } from '../../utils/transfer-queue';
 
     const prefixCls = 'ivu-image-preview';
 
@@ -128,7 +129,9 @@
                 transition: true,
                 original: false, // display by original size
                 prevOverflow: '', // prevent body scrolling
-                status: 'loading' // image status
+                status: 'loading', // image status
+                zIndex: 1000,
+                maskIndex: this.getMaskIndex()
             }
         },
         computed: {
@@ -172,6 +175,11 @@
                         rotate(${this.degree}deg)
                         translate(${translateX}px, ${translateY}px)
                     `
+                };
+            },
+            maskStyle() {
+                return {
+                    zIndex: this.maskIndex + this.zIndex
                 };
             },
             hasRightSwitchEnd() {
@@ -297,7 +305,11 @@
             },
             handleImageError() {
                 this.status = 'failed';
-            }
+            },
+            getMaskIndex () {
+                transferIncrease();
+                return transferIndex;
+            },
         },
         watch: {
             modelValue(val) {
@@ -307,6 +319,7 @@
                     this.original = false;
                     this.prevOverflow = this.getBodyOverflow();
                     this.setBodyOverflow('hidden');
+                    this.maskIndex = this.getMaskIndex();
                 } else {
                     this.setBodyOverflow(this.prevOverflow);
                 }
