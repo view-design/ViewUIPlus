@@ -1,15 +1,15 @@
 <template>
     <div :class="prefixCls" ref="image" :style="imageStyles">
-        <slot v-if="loading" name="placeholder">
-            <div :class="[prefixCls + '-placeholder']">
+        <div v-if="loading" :class="[prefixCls + '-placeholder']">
+            <slot name="placeholder">
                 <span>{{loadingLang}}</span>
-            </div>
-        </slot>
-        <slot v-else-if="imageError" name="error">
-            <div :class="[prefixCls + '-error']">
+            </slot>
+        </div>
+        <div v-else-if="imageError" :class="[prefixCls + '-error']">
+            <slot name="error">
                 <span>{{failLang}}</span>
-            </div>
-        </slot>
+            </slot>
+        </div>
         <div :class="[prefixCls + '-inner']" v-if="loadingImage">
             <img
                 :alt="alt"
@@ -199,18 +199,10 @@
                 this.imageError = false;
                 this.$emit('on-load');
             },
-            handleImageError(event) {
-                // deal the emputy image in case error callback
-                const currentImage = event.target;
-                if (!currentImage) {
-                    return;
-                }
-                const currentSrc= currentImage.getAttribute('src');
-                if (!currentSrc) {
-                    return;
-                }
+            handleImageError() {
                 this.loading = false;
                 this.imageError = true;
+                this.loadingImage = false;
                 this.$emit('on-error');
             },
             loadImage() {
