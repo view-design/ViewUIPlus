@@ -50,6 +50,11 @@ export declare class Image {
     'mask-closable': boolean;
 
     /**
+     * 是否显示预览提示和遮罩
+     */
+    'preview-tip': boolean;
+
+    /**
      * 是否图片预览
      */
     preview: boolean;
@@ -115,19 +120,9 @@ export declare class Image {
 
 export declare class ImagePreview {
     /**
-     * 是否将弹层放置于 body 内
+     * 是否显示，可使用 v-model 双向绑定
      */
-    transfer: boolean;
-
-    /**
-     * 是否允许点击遮罩层关闭
-     */
-    'mask-closable': boolean;
-
-    /**
-     * 是否图片预览
-     */
-    preview: boolean;
+    'model-value': boolean;
 
     /**
      * 图片预览列表
@@ -135,14 +130,24 @@ export declare class ImagePreview {
     'preview-list': [];
 
     /**
+     * 打开预览的第一项
+     */
+    'initial-index': number;
+
+    /**
      * 是否循环切换
      */
     infinite: boolean;
 
     /**
-     * 打开预览的第一项
+     * 是否允许点击遮罩层关闭
      */
-    'initial-index': number;
+    'mask-closable': boolean;
+
+    /**
+     * 是否将弹层放置于 body 内
+     */
+    transfer: boolean;
 
     /**
      * 图片预览切换

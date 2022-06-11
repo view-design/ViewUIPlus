@@ -1,45 +1,40 @@
 <template>
-    <div :class="prefixCls" ref="image" :style="imageStyles">
-        <div v-if="loading" :class="[prefixCls + '-placeholder']">
+    <div class="ivu-image" ref="image" :style="imageStyles">
+        <div v-if="loading" class="ivu-image-placeholder">
             <slot name="placeholder">
-                <span>{{loadingLang}}</span>
+                <span>{{ loadingLang }}</span>
             </slot>
         </div>
-        <div v-else-if="imageError" :class="[prefixCls + '-error']">
+        <div v-else-if="imageError" class="ivu-image-error">
             <slot name="error">
-                <span>{{failLang}}</span>
+                <span>{{ failLang }}</span>
             </slot>
         </div>
-        <div 
-            v-if="loadingImage"
-            :class="[prefixCls + '-inner', preview ? prefixCls + '-cursor' : '' ]"
-            @click="handlePreview"
-        >
+        <div v-if="loadingImage" :class="innerClasses" @click="handlePreview">
             <img
+                :class="imgClasses"
+                :style="[fitStyle]"
                 :alt="alt"
                 :src="src"
+                :loading="loadingType"
+                :referrerPolicy="referrerPolicy"
                 @load="handleImageLoad"
                 @error="handleImageError"
-                :referrerPolicy="referrerPolicy"
-                :style="[fitStyle]"
-                :loading="loadingType"
-                :class="[prefixCls + '-img', (loading || imageError) ? prefixCls + '-img-hidden' : '']"
             />
             <slot v-if="preview && previewTip" name="preview">
-                <div
-                    :class="[prefixCls + '-mark']"
-                >
-                    <span>{{previewLang}}</span>
+                <div class="ivu-image-mark">
+                    <span>{{ previewLang }}</span>
                 </div>
             </slot>
         </div>
         <template v-if="preview">
             <ImagePreview
-                :infinite="infinite"
-                :preview-list="previewList"
-                :mask-closable="maskClosable"
-                :initial-index="initialIndex"
                 v-model="imagePreviewModal"
+                :preview-list="previewList"
+                :initial-index="initialIndex"
+                :infinite="infinite"
+                :mask-closable="maskClosable"
+                :transfer="transfer"
                 @on-close="handleClose"
                 @on-switch="handleSwitch"
             />
@@ -51,8 +46,6 @@
     import { isClient } from '../../utils/index';
     import ImagePreview  from './image-preview.vue';
     import Locale from '../../mixins/locale';
-
-    const prefixCls = 'ivu-image';
 
     // is Element
     const isElement = (el)=> {
@@ -103,7 +96,7 @@
                 default: ''
             },
             transfer: {
-               type: Boolean,
+                type: Boolean,
                 default () {
                     const global = getCurrentInstance().appContext.config.globalProperties;
                     return !global.$VIEWUI || global.$VIEWUI.transfer === '' ? false : global.$VIEWUI.transfer;
@@ -132,7 +125,6 @@
         },
         data() {
             return {
-                prefixCls: prefixCls,
                 loadingImage: false,
                 loading: false,
                 imageError: false,
@@ -142,9 +134,25 @@
             }
         },
         computed: {
-            fitStyle() {
+            innerClasses () {
+                return [
+                    'ivu-image-inner',
+                    {
+                        ['ivu-image-cursor'] : this.preview
+                    }
+                ];
+            },
+            imgClasses () {
+                return [
+                    'ivu-image-img',
+                    {
+                        ['ivu-image-img-hidden']: this.loading || this.imageError
+                    }
+                ];
+            },
+            fitStyle () {
                 const fitContains = ['fill', 'contain', 'cover', 'none', 'scale-down'];
-                const {fit} = this;
+                const { fit } = this;
                 return fitContains.includes(fit) ? `object-fit:${fit};` : '';
             },
             imageStyles() {
@@ -190,8 +198,8 @@
                     }
                 }
             },
-            addLazyImageListener() {
-                const {scrollContainer} = this;
+            addLazyImageListener () {
+                const { scrollContainer } = this;
                 this.scrollElement = null;
                 if (isElement(scrollContainer)) {
                     this.scrollElement = scrollContainer
@@ -201,46 +209,46 @@
                 // on scrollElement scroll
                 this.handleLazy();
             },
-            handleImageLoad() {
+            handleImageLoad () {
                 this.loading = false;
                 this.imageError = false;
                 this.$emit('on-load');
             },
-            handleImageError() {
+            handleImageError () {
                 this.loading = false;
                 this.imageError = true;
                 this.loadingImage = false;
                 this.$emit('on-error');
             },
-            loadImage() {
+            loadImage () {
                 this.loading = true;
                 this.imageError = false;
                 this.loadingImage = true;
             },
-            handleImageEvent() {
+            handleImageEvent () {
                 const { lazy } = this;
                 lazy ? this.addLazyImageListener() : this.loadImage();
             },
-            offObserver() {
-                const {observer} = this;
+            offObserver () {
+                const { observer } = this;
                 observer && observer.disconnect();
             },
-            handlePreview() {
-                const {preview, initialIndex} = this;
+            handlePreview () {
+                const { preview, initialIndex } = this;
                 if (preview) {
                     this.imagePreviewModal = true;
                     // reslove click image get the currentIndex to do other thing
-                    this.$emit('on-click', {initialIndex})
+                    this.$emit('on-click', { initialIndex });
                 }
             },
-            handleClose() {
-                this.$emit('on-close')
+            handleClose () {
+                this.$emit('on-close');
             },
-            handleSwitch(params) {
-                this.$emit('on-switch', params)
+            handleSwitch (params) {
+                this.$emit('on-switch', params);
             }
         },
-        beforeUnmount() {
+        beforeUnmount () {
             this.offObserver();
         }
     }
