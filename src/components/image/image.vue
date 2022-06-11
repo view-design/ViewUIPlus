@@ -30,10 +30,11 @@
         <template v-if="preview">
             <ImagePreview
                 v-model="imagePreviewModal"
+                :preview-list="previewList"
                 :initial-index="initialIndex"
                 :infinite="infinite"
-                :preview-list="previewList"
                 :mask-closable="maskClosable"
+                :transfer="transfer"
                 @on-close="handleClose"
                 @on-switch="handleSwitch"
             />
