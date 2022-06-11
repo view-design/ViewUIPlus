@@ -39,7 +39,6 @@
     import throttle from 'lodash.throttle';
     import { isClient } from '../../utils';
     import Locale from '../../mixins/locale';
-    import Icon from '../icon/icon.vue';
     import KeyCode from '../../utils/keyCode';
     import Spin  from '../spin/spin.vue';
     import { transferIndex, transferIncrease } from '../../utils/transfer-queue';
@@ -49,7 +48,7 @@
     export default {
         name: 'ImagePreview',
         mixins: [ Locale ],
-        components: { Icon, Spin },
+        components: { Spin },
         inheritAttrs: false,
         props: {
             modelValue: {
