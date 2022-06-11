@@ -61,6 +61,18 @@
             color: #ccc;
         }
     }
+    &-title {
+        margin-bottom: 28px;
+    }
+    &-avatar {
+        margin-right: @skeleton-item-margin;
+    }
+    &-round {
+        border-radius: @skeleton-border-radius-round;
+    }
+    &-inner {
+        height: 16px;
+    }
     &-animated {
         position: relative;
         overflow: hidden;
@@ -90,10 +102,6 @@
             background-position: 0 50%;
         }
     }
-}
-
-.@{skeleton-item-prefix-cls}-round {
-    border-radius: @skeleton-border-radius-round;
 }
 
 .@{skeleton-prefix-cls} {
