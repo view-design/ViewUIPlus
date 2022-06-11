@@ -10,7 +10,11 @@
                 <span>{{failLang}}</span>
             </div>
         </slot>
-        <div :class="[prefixCls + '-inner']" v-if="imageSrc">
+        <div 
+            v-if="imageSrc"
+            :class="[prefixCls + '-inner', preview ? prefixCls + '-cursor' : '' ]"
+            @click="handlePreview"
+        >
             <img
                 :alt="alt"
                 :src="imageSrc"
@@ -20,10 +24,9 @@
                 :style="[fitStyle]"
                 :class="[prefixCls + '-img', (loading || imageError) ? prefixCls + '-img-hidden' : '']"
             />
-            <slot v-if="preview" name="preview">
+            <slot v-if="preview && previewTip" name="preview">
                 <div
                     :class="[prefixCls + '-mark']"
-                    @click="handlePreview"
                 >
                     <span>{{previewLang}}</span>
                 </div>
@@ -120,6 +123,10 @@
             initialIndex: {
                 type: Number,
                 default: 0
+            },
+            previewTip: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
