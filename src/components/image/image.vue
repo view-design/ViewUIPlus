@@ -11,17 +11,18 @@
             </div>
         </slot>
         <div 
-            v-if="imageSrc"
+            v-if="loadingImage"
             :class="[prefixCls + '-inner', preview ? prefixCls + '-cursor' : '' ]"
             @click="handlePreview"
         >
             <img
                 :alt="alt"
-                :src="imageSrc"
+                :src="src"
                 @load="handleImageLoad"
                 @error="handleImageError"
                 :referrerPolicy="referrerPolicy"
                 :style="[fitStyle]"
+                :loading="loadingType"
                 :class="[prefixCls + '-img', (loading || imageError) ? prefixCls + '-img-hidden' : '']"
             />
             <slot v-if="preview && previewTip" name="preview">
@@ -132,7 +133,7 @@
         data() {
             return {
                 prefixCls: prefixCls,
-                imageSrc: '',
+                loadingImage: false,
                 loading: false,
                 imageError: false,
                 scrollElement: null,
@@ -160,6 +161,9 @@
             },
             previewLang() {
                 return this.t('i.image.preview')
+            },
+            loadingType() {
+                return this.lazy ? 'lazy' : 'eager';
             }
         },
         mounted() {
@@ -219,7 +223,7 @@
             loadImage() {
                 this.loading = true;
                 this.imageError = false;
-                this.imageSrc = this.src;
+                this.loadingImage = true;
             },
             handleImageEvent() {
                 const { lazy } = this;
