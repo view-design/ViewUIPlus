@@ -14,7 +14,7 @@
                         :src="currentSrc"
                         :key="currentIndex.toString()"
                         :style="imageStyle"
-                        :class="imageClasses"
+                        :class="imgClasses"
                         @click.stop
                         @mousedown.stop.prevent="handleMousedown"
                         @load="handleImageLoad"
@@ -28,6 +28,21 @@
                         <svg :class="[prefixCls + '-operations-item']" @click.stop="handleOperation('rotateLeft')" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13308" width="200" height="200"><path d="M672 418H144c-17.7 0-32 14.3-32 32v414c0 17.7 14.3 32 32 32h528c17.7 0 32-14.3 32-32V450c0-17.7-14.3-32-32-32z m-44 402H188V494h440v326z m191.3-491.5c-78.8-100.7-196-153.6-314.6-154.2l-0.2-64c0-6.5-7.6-10.1-12.6-6.1l-128 101c-4 3.1-3.9 9.1 0 12.3L492 318.6c5.1 4 12.7 0.4 12.6-6.1v-63.9c12.9 0.1 25.9 0.9 38.8 2.5 42.1 5.2 82.1 18.2 119 38.7 38.1 21.2 71.2 49.7 98.4 84.3 27.1 34.7 46.7 73.7 58.1 115.8 11 40.7 14 82.7 8.9 124.8-0.7 5.4-1.4 10.8-2.4 16.1h74.9c14.8-103.6-11.3-213-81-302.3z" p-id="13309" fill="#ffffff"></path></svg>
                         <svg :class="[prefixCls + '-operations-item']" @click.stop="handleOperation('rotateRight')" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13521" width="200" height="200"><path d="M480.5 251.2c13-1.6 25.9-2.4 38.8-2.5v63.9c0 6.5 7.5 10.1 12.6 6.1L660 217.6c4-3.2 4-9.2 0-12.3l-128-101c-5.1-4-12.6-0.4-12.6 6.1l-0.2 64c-118.6 0.5-235.8 53.4-314.6 154.2-69.6 89.2-95.7 198.6-81.1 302.4h74.9c-0.9-5.3-1.7-10.7-2.4-16.1-5.1-42.1-2.1-84.1 8.9-124.8 11.4-42.2 31-81.1 58.1-115.8 27.2-34.7 60.3-63.2 98.4-84.3 37-20.6 76.9-33.6 119.1-38.8zM880 418H352c-17.7 0-32 14.3-32 32v414c0 17.7 14.3 32 32 32h528c17.7 0 32-14.3 32-32V450c0-17.7-14.3-32-32-32z m-44 402H396V494h440v326z" p-id="13522" fill="#ffffff"></path></svg>
                     </div>
+                    <Icon
+                        :class="[prefixCls + '-arrow-left', { [prefixCls + '-arrow-disabled']: hasLeftSwitchEnd }]"
+                        type="ios-arrow-back"
+                        @click.stop="handleSwitch(false)"
+                    />
+                    <Icon
+                        :class="[prefixCls + '-arrow-right', { [prefixCls + '-arrow-disabled']: hasRightSwitchEnd }]"
+                        type="ios-arrow-forward"
+                        @click.stop="handleSwitch(true)"
+                    />
+                    <Icon
+                        :class="[prefixCls + '-arrow-close']"
+                        type="md-close"
+                        @click.stop="handleClose"
+                    />
                 </div>
             </div>
         </transition>
@@ -101,16 +116,7 @@
             }
         },
         computed: {
-            operations() {
-                return [
-                    { icon: 'ios-add-circle-outline', value: 'zoomIn' },
-                    { icon: 'ios-remove-circle-outline', value: 'zoomOut' },
-                    { icon: this.original ? 'ios-barcode-outline' : 'ios-qr-scanner', value: 'original' },
-                    { icon: 'ios-refresh', value: 'rotateLeft' },
-                    { icon: 'ios-refresh', value: 'rotateRight' }
-                ]
-            },
-            imageClasses() {
+            imgClasses() {
                 return [
                     prefixCls + '-image',
                     {
@@ -216,31 +222,26 @@
                 }
             },
             handleKeydown(event) {
-                const topPreview = this.getTopPreview();
-                if (!topPreview.modelValue) return;
+                if (!this.modelValue) return;
                 const { keyCode } = event;
-                if (keyCode === KeyCode.LEFT) topPreview.handleSwitch(false);
-                if (keyCode === KeyCode.RIGHT) topPreview.handleSwitch(true);
-                if (keyCode === KeyCode.UP) topPreview.handleOperation('zoomIn');
-                if (keyCode === KeyCode.DOWN) topPreview.handleOperation('zoomOut');
+                if (keyCode === KeyCode.LEFT) this.handleSwitch(false);
+                if (keyCode === KeyCode.RIGHT) this.handleSwitch(true);
+                if (keyCode === KeyCode.UP) this.handleOperation('zoomIn');
+                if (keyCode === KeyCode.DOWN) this.handleOperation('zoomOut');
                 if (keyCode === KeyCode.SPACE) {
                     event.preventDefault();
-                    topPreview.original = !topPreview.original;
+                    this.original = !this.original;
                 }
             },
             handleKeyup(event) {
-                const topPreview = this.getTopPreview();
-                if (!topPreview.modelValue) return;
+                if (!this.modelValue) return;
                 const { keyCode } = event;
-                if (keyCode === KeyCode.ESC) {
-                    topPreview.handleClose();
-                }
+                if (keyCode === KeyCode.ESC) this.handleClose();
             },
             handleWheel(event) {
-                const topPreview = this.getTopPreview();
-                if (!topPreview.modelValue) return;
+                if (!this.modelValue) return;
                 const { deltaY } = event;
-                topPreview.handleOperation(deltaY < 0 ? 'zoomIn' : 'zoomOut');
+                this.handleOperation(deltaY < 0 ? 'zoomIn' : 'zoomOut');
             },
             handleMousedown(event) {
                 const { pageX, pageY, which } = event;
@@ -277,32 +278,9 @@
             handleImageError() {
                 this.status = 'failed';
             },
-            getMaskIndex() {
+            getMaskIndex () {
                 transferIncrease();
                 return transferIndex;
-            },
-            addImagePreview() {
-                const root = this.$root;
-                if (!root.imagePreviewList) root.imagePreviewList = [];
-                root.imagePreviewList.push({
-                    id: this.id,
-                    modal: this
-                });
-            },
-            removeImagePreview() {
-                const root = this.$root;
-                if (!root.imagePreviewList) return;
-                const index = root.imagePreviewList.findIndex(item => item.id === this.id);
-                root.imagePreviewList.splice(index, 1);
-            },
-            getTopPreview() {
-                const previews = this.$root.imagePreviewList.map(item => item.modal).filter(item => item.modelValue);
-
-                const topPreview = previews.sort((a, b) => {
-                    return a.$data.maskIndex < b.$data.maskIndex ? 1 : -1;
-                })[0];
-
-                return topPreview && topPreview.maskIndex === this.maskIndex ? topPreview : {};
             }
         },
         watch: {
@@ -313,6 +291,7 @@
                     this.original = false;
                     this.prevOverflow = this.getBodyOverflow();
                     this.setBodyOverflow('hidden');
+                    this.maskIndex = this.getMaskIndex();
                 } else {
                     this.setBodyOverflow(this.prevOverflow);
                 }
@@ -322,14 +301,11 @@
             }
         },
         mounted() {
-            this.maskIndex = this.getMaskIndex();
-            this.addImagePreview();
             on(document, 'keydown', this.handleKeydown);
             on(document, 'keyup', this.handleKeyup);
             on(document, 'wheel', this.handleWheel);
         },
         beforeUnmount() {
-            this.removeImagePreview();
             off(document, 'keydown', this.handleKeydown);
             off(document, 'keyup', this.handleKeyup);
             off(document, 'wheel', this.handleWheel);
