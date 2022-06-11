@@ -5,7 +5,7 @@
         </transition>
         <transition name="fade">
             <div :class="[prefixCls + '-wrap']" v-if="modelValue" :style="maskStyle">
-                <div :class="[prefixCls]" v-if="modelValue" v-bind="$attrs" @click.stop="handleClickMask">
+                <div :class="[prefixCls]" v-bind="$attrs" @click.stop="handleClickMask">
                     <Spin v-if="status === 'loading'" size="large" :class="[prefixCls + '-loading']" />
                     <div v-else-if="status === 'failed'" :class="[prefixCls + '-fail']">
                         <span>{{failLang}}</span>
@@ -65,6 +65,7 @@
         name: 'ImagePreview',
         mixins: [ Locale ],
         components: { Icon, Spin },
+        inheritAttrs: false,
         props: {
             modelValue: {
                 type: Boolean,
