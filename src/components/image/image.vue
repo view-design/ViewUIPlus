@@ -1,29 +1,33 @@
 <template>
     <div :class="prefixCls" ref="image" :style="imageStyles">
-        <slot v-if="loading" name="placeholder">
-            <div :class="[prefixCls + '-placeholder']">
+        <div v-if="loading" :class="[prefixCls + '-placeholder']">
+            <slot name="placeholder">
                 <span>{{loadingLang}}</span>
-            </div>
-        </slot>
-        <slot v-else-if="imageError" name="error">
-            <div :class="[prefixCls + '-error']">
+            </slot>
+        </div>
+        <div v-else-if="imageError" :class="[prefixCls + '-error']">
+            <slot name="error">
                 <span>{{failLang}}</span>
-            </div>
-        </slot>
-        <div :class="[prefixCls + '-inner']" v-if="imageSrc">
+            </slot>
+        </div>
+        <div 
+            v-if="loadingImage"
+            :class="[prefixCls + '-inner', preview ? prefixCls + '-cursor' : '' ]"
+            @click="handlePreview"
+        >
             <img
                 :alt="alt"
-                :src="imageSrc"
+                :src="src"
                 @load="handleImageLoad"
                 @error="handleImageError"
                 :referrerPolicy="referrerPolicy"
                 :style="[fitStyle]"
+                :loading="loadingType"
                 :class="[prefixCls + '-img', (loading || imageError) ? prefixCls + '-img-hidden' : '']"
             />
-            <slot v-if="preview" name="preview">
+            <slot v-if="preview && previewTip" name="preview">
                 <div
                     :class="[prefixCls + '-mark']"
-                    @click="handlePreview"
                 >
                     <span>{{previewLang}}</span>
                 </div>
@@ -120,12 +124,16 @@
             initialIndex: {
                 type: Number,
                 default: 0
+            },
+            previewTip: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
             return {
                 prefixCls: prefixCls,
-                imageSrc: '',
+                loadingImage: false,
                 loading: false,
                 imageError: false,
                 scrollElement: null,
@@ -153,6 +161,9 @@
             },
             previewLang() {
                 return this.t('i.image.preview')
+            },
+            loadingType() {
+                return this.lazy ? 'lazy' : 'eager';
             }
         },
         mounted() {
@@ -164,8 +175,8 @@
                 const $el = this.$refs.image;
                 const observer = this.observer = new IntersectionObserver(this.handlerObserveImage, {
                     root: this.scrollElement,
-                    rootMargin: "50%",
-                    threshold: 1
+                    rootMargin: "0px",
+                    threshold: 0
                 });
                 observer.observe($el);
             },
@@ -181,10 +192,10 @@
             },
             addLazyImageListener() {
                 const {scrollContainer} = this;
-                this.scrollElement = window;
+                this.scrollElement = null;
                 if (isElement(scrollContainer)) {
                     this.scrollElement = scrollContainer
-                } else if (typeof scrollContainer === 'string') {
+                } else if (scrollContainer && typeof scrollContainer === 'string') {
                     this.scrollElement = document.querySelector(scrollContainer);
                 }
                 // on scrollElement scroll
@@ -195,24 +206,16 @@
                 this.imageError = false;
                 this.$emit('on-load');
             },
-            handleImageError(event) {
-                // deal the emputy image in case error callback
-                const currentImage = event.target;
-                if (!currentImage) {
-                    return;
-                }
-                const currentSrc= currentImage.getAttribute('src');
-                if (!currentSrc) {
-                    return;
-                }
+            handleImageError() {
                 this.loading = false;
                 this.imageError = true;
+                this.loadingImage = false;
                 this.$emit('on-error');
             },
             loadImage() {
                 this.loading = true;
                 this.imageError = false;
-                this.imageSrc = this.src;
+                this.loadingImage = true;
             },
             handleImageEvent() {
                 const { lazy } = this;
