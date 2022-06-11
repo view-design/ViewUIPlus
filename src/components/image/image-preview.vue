@@ -3,9 +3,9 @@
         <transition name="fade">
             <div v-if="modelValue" :class="[prefixCls + '-mask']" :style="maskStyle"></div>
         </transition>
-        <div :class="[prefixCls + '-wrap']" v-show="modelValue" :style="maskStyle">
-            <transition name="fade">
-                <div :class="[prefixCls]" v-if="modelValue" v-bind="$attrs" @click.stop="handleClickMask">
+        <transition name="fade">
+            <div :class="[prefixCls + '-wrap']" v-if="modelValue" :style="maskStyle">
+                <div :class="[prefixCls]" v-bind="$attrs" @click.stop="handleClickMask">
                     <Spin v-if="status === 'loading'" size="large" :class="[prefixCls + '-loading']" />
                     <div v-else-if="status === 'failed'" :class="[prefixCls + '-fail']">
                         <span>{{failLang}}</span>
@@ -63,8 +63,8 @@
                         @click.stop="handleClose"
                     />
                 </div>
-            </transition>
-        </div>
+            </div>
+        </transition>
     </teleport>
 </template>
 <script>
@@ -250,26 +250,31 @@
                 }
             },
             handleKeydown(event) {
-                if (!this.modelValue) return;
+                const topPreview = this.getTopPreview();
+                if (!topPreview.modelValue) return;
                 const { keyCode } = event;
-                if (keyCode === KeyCode.LEFT) this.handleSwitch(false);
-                if (keyCode === KeyCode.RIGHT) this.handleSwitch(true);
-                if (keyCode === KeyCode.UP) this.handleOperation('zoomIn');
-                if (keyCode === KeyCode.DOWN) this.handleOperation('zoomOut');
+                if (keyCode === KeyCode.LEFT) topPreview.handleSwitch(false);
+                if (keyCode === KeyCode.RIGHT) topPreview.handleSwitch(true);
+                if (keyCode === KeyCode.UP) topPreview.handleOperation('zoomIn');
+                if (keyCode === KeyCode.DOWN) topPreview.handleOperation('zoomOut');
                 if (keyCode === KeyCode.SPACE) {
                     event.preventDefault();
-                    this.original = !this.original;
+                    topPreview.original = !topPreview.original;
                 }
             },
             handleKeyup(event) {
-                if (!this.modelValue) return;
+                const topPreview = this.getTopPreview();
+                if (!topPreview.modelValue) return;
                 const { keyCode } = event;
-                if (keyCode === KeyCode.ESC) this.handleClose();
+                if (keyCode === KeyCode.ESC) {
+                    topPreview.handleClose();
+                }
             },
             handleWheel(event) {
-                if (!this.modelValue) return;
+                const topPreview = this.getTopPreview();
+                if (!topPreview.modelValue) return;
                 const { deltaY } = event;
-                this.handleOperation(deltaY < 0 ? 'zoomIn' : 'zoomOut');
+                topPreview.handleOperation(deltaY < 0 ? 'zoomIn' : 'zoomOut');
             },
             handleMousedown(event) {
                 const { pageX, pageY, which } = event;
@@ -306,10 +311,33 @@
             handleImageError() {
                 this.status = 'failed';
             },
-            getMaskIndex () {
+            getMaskIndex() {
                 transferIncrease();
                 return transferIndex;
             },
+            addImagePreview() {
+                const root = this.$root;
+                if (!root.imagePreviewList) root.imagePreviewList = [];
+                root.imagePreviewList.push({
+                    id: this.id,
+                    modal: this
+                });
+            },
+            removeImagePreview() {
+                const root = this.$root;
+                if (!root.imagePreviewList) return;
+                const index = root.imagePreviewList.findIndex(item => item.id === this.id);
+                root.imagePreviewList.splice(index, 1);
+            },
+            getTopPreview() {
+                const previews = this.$root.imagePreviewList.map(item => item.modal).filter(item => item.modelValue);
+
+                const topPreview = previews.sort((a, b) => {
+                    return a.$data.maskIndex < b.$data.maskIndex ? 1 : -1;
+                })[0];
+
+                return topPreview && topPreview.maskIndex === this.maskIndex ? topPreview : {};
+            }
         },
         watch: {
             modelValue(val) {
@@ -319,7 +347,6 @@
                     this.original = false;
                     this.prevOverflow = this.getBodyOverflow();
                     this.setBodyOverflow('hidden');
-                    this.maskIndex = this.getMaskIndex();
                 } else {
                     this.setBodyOverflow(this.prevOverflow);
                 }
@@ -329,11 +356,14 @@
             }
         },
         mounted() {
+            this.maskIndex = this.getMaskIndex();
+            this.addImagePreview();
             on(document, 'keydown', this.handleKeydown);
             on(document, 'keyup', this.handleKeyup);
             on(document, 'wheel', this.handleWheel);
         },
         beforeUnmount() {
+            this.removeImagePreview();
             off(document, 'keydown', this.handleKeydown);
             off(document, 'keyup', this.handleKeyup);
             off(document, 'wheel', this.handleWheel);
