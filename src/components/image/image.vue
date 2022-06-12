@@ -157,8 +157,8 @@
             },
             imageStyles() {
                 return {
-                    width: `${this.width}px`,
-                    height: `${this.height}px`
+                    width: typeof this.width === 'number' ? `${this.width}px` : this.width,
+                    height: typeof this.height === 'number' ? `${this.height}px` : this.height
                 };
             },
             loadingLang() {
