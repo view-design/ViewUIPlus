@@ -22311,8 +22311,8 @@ const _sfc_main$19 = {
     },
     imageStyles() {
       return {
-        width: `${this.width}px`,
-        height: `${this.height}px`
+        width: typeof this.width === "number" ? `${this.width}px` : this.width,
+        height: typeof this.height === "number" ? `${this.height}px` : this.height
       };
     },
     loadingLang() {
@@ -37987,7 +37987,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.2.0-beta.3";
+const version$1 = "1.2.0";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
