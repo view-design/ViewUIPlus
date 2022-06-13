@@ -1,9 +1,5 @@
 <template>
-    <div
-        v-if="loading"
-        v-bind="$attrs"
-        :class="classes"
-    >
+    <div v-if="loading" v-bind="$attrs" :class="classes">
         <slot name="template" v-if="loading">
             <Row>
                 <Col flex="0" v-if="showAvatar">
@@ -15,7 +11,7 @@
                     />
                 </Col>
                 <Col flex="1">
-                    <template v-for="row in rows" :key="row">
+                    <template v-for="row in rowsCount" :key="row">
                         <SkeletonItem
                             :class="rowClasses(row)"
                             :animated="animated"
