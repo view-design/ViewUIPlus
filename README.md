@@ -9,7 +9,6 @@ View UI Plus
     <h3>An enterprise-level UI component library and front-end solution based on Vue.js 3</h3>
 </h1>
 
-[![](https://img.shields.io/travis/view-ui-plus/view-ui-plus.svg?style=flat-square)](https://travis-ci.org/view-ui-plus/view-ui-plus)
 [![View UI Plus](https://img.shields.io/npm/v/view-ui-plus.svg?style=flat-square)](https://www.npmjs.org/package/view-ui-plus)
 [![NPM downloads](http://img.shields.io/npm/dm/view-ui-plus.svg?style=flat-square)](https://npmjs.org/package/view-ui-plus)
 [![NPM downloads](https://img.shields.io/npm/dt/view-ui-plus.svg?style=flat-square)](https://npmjs.org/package/view-ui-plus)
@@ -33,6 +32,7 @@ View UI Plus
 We provide starter kit for you.
 - [View UI Plus Project (Based on Vue CLI)](https://github.com/view-design/view-ui-project-vuecli)
 - [View UI Plus Project (Based on Vite)](https://github.com/view-design/view-ui-project-vite)
+- [View UI Plus Project (Based on Nuxt)](https://github.com/view-design/view-ui-project-nuxt)
 
 ### Install View UI Plus
 
