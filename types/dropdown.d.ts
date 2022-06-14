@@ -90,3 +90,13 @@ export declare class DropdownItem {
     selected: boolean;
 
 }
+
+export declare class DropdownMenu {
+    $slots: {
+        /**
+         * 默认插槽内容
+         */
+        default: [];
+
+    };
+}

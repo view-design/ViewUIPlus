@@ -60,3 +60,13 @@ export declare class Carousel {
     $emit(eventName: 'on-click'): this;
 
 }
+
+export declare class CarouselItem {
+    $slots: {
+        /**
+         * 默认插槽内容
+         */
+        default: [];
+
+    };
+}

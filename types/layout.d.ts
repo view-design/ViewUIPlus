@@ -7,12 +7,7 @@ export declare class Sider {
     /**
      * 触发响应式布局的断点，可选值为`xs`,`sm`,`md`,`lg`,`xl`或`xxl`，若不设此属性则不会触发响应式布局。
      */
-    breakpoint: string;
-
-    /**
-     * 侧边栏是否收起，可使用 v-model 双向绑定数据。
-     */
-    value: boolean;
+    breakpoint: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
     /**
      * 宽度
@@ -54,6 +49,46 @@ export declare class Sider {
          * 自定义触发器
          */
         trigger: [];
+
+    };
+}
+
+export declare class Layout {
+    $slots: {
+        /**
+         * 默认插槽内容
+         */
+        default: [];
+
+    };
+}
+
+export declare class Content {
+    $slots: {
+        /**
+         * 默认插槽内容
+         */
+        default: [];
+
+    };
+}
+
+export declare class Footer {
+    $slots: {
+        /**
+         * 默认插槽内容
+         */
+        default: [];
+
+    };
+}
+
+export declare class Header {
+    $slots: {
+        /**
+         * 默认插槽内容
+         */
+        default: [];
 
     };
 }
