@@ -97,6 +97,7 @@
             <span><router-link to="/scroll-top">$ScrollTop</router-link></span>
             <span><router-link to="/scroll-into-view">$ScrollIntoView</router-link></span>
             <span><router-link to="/image">Image</router-link></span>
+            <span><router-link to="/space">Space</router-link></span>
         </div>
         <div style="margin: 50px">
             <router-view></router-view>
