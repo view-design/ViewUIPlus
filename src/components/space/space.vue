@@ -1,5 +1,6 @@
 <script>
     import { getCurrentInstance, h, Fragment, Comment, Text } from 'vue';
+    import Divider from '../divider/divider.vue';
     import { oneOf } from '../../utils/assist';
 
     const spaceSize = {
@@ -25,7 +26,8 @@
                 },
                 default() {
                     const global = getCurrentInstance().appContext.config.globalProperties;
-                    return !global.$VIEWUI || global.$VIEWUI.size === '' ? 'default' : global.$VIEWUI.size;
+                    return !global.$VIEWUI || !global.$VIEWUI.space || global.$VIEWUI.space.size === ''
+                        ? 'small' : global.$VIEWUI.space.size;
                 }
             },
             direction: {
@@ -43,6 +45,10 @@
                 default: 'center'
             },
             wrap: {
+                type: Boolean,
+                default: false
+            },
+            split: {
                 type: Boolean,
                 default: false
             }
@@ -100,11 +106,17 @@
         },
         render() {
             const items = this.filterEmpty(this.$slots.default ? this.$slots.default() : []);
-            const split = this.$slots.split ? this.$slots.split() : null;
-
             const len = items.length;
 
             if (len === 0) return null;
+
+            let split = null;
+
+            if (this.split && !this.$slots.split) {
+                split = h(Divider, { type: 'vertical' });
+            } else if (this.$slots.split) {
+                split = this.$slots.split();
+            }
 
             return h(
                 'div',

@@ -1,5 +1,8 @@
 <template>
-    <Space wrap>
+    <Space split>
+        <Select v-model="model" style="width:200px" transfer>
+            <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+        </Select>
         <template v-for="i in count" :key="i">
             <Button @click="handleClick(i)">{{ i }}</Button>
         </template>
@@ -13,7 +16,34 @@
         data() {
             return {
                 count: 9,
-                switchValue: true
+                switchValue: true,
+                cityList: [
+                    {
+                        value: 'New York',
+                        label: 'New York'
+                    },
+                    {
+                        value: 'London',
+                        label: 'London'
+                    },
+                    {
+                        value: 'Sydney',
+                        label: 'Sydney'
+                    },
+                    {
+                        value: 'Ottawa',
+                        label: 'Ottawa'
+                    },
+                    {
+                        value: 'Paris',
+                        label: 'Paris'
+                    },
+                    {
+                        value: 'Canberra',
+                        label: 'Canberra'
+                    }
+                ],
+                model: ''
             }
         },
         methods: {
