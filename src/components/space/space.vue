@@ -100,13 +100,29 @@
         },
         render() {
             const items = this.filterEmpty(this.$slots.default ? this.$slots.default() : []);
+            const split = this.$slots.split ? this.$slots.split() : null;
 
-            if (items.length === 0) return null;
+            const len = items.length;
+
+            if (len === 0) return null;
 
             return h(
                 'div',
+
                 { class: this.classes, style: this.styles },
-                items.map(child => h('div', { class: 'ivu-space-item' }, child))
+
+                items.map((child, index) => {
+                    const item = h('div', { class: 'ivu-space-item' }, [child]);
+
+                    if (split && index + 1 < len) {
+                        return [
+                            item,
+                            h('div', { class: 'ivu-space-split' }, [split])
+                        ];
+                    }
+
+                    return item;
+                })
             );
         }
     }

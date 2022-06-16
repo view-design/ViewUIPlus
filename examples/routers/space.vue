@@ -37,7 +37,7 @@
         //                 resolveComponent('Switch'),
         //                 {
         //                     modelValue: this.switchValue,
-        //                     ['onUpdate:modelValue']: (val) => {
+        //                     'onUpdate:modelValue': (val) => {
         //                         this.switchValue = val;
         //                     }
         //                 }
