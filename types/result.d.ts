@@ -1,8 +1,8 @@
 export declare class Result {
     /**
-     * 类型，不同类型自带对应的图标，可选值为 success 或 error
+     * 类型，不同类型自带对应的图标，可选值为 `success`、`error`、`warning`
      */
-    type: 'success' | 'error';
+    type: 'success' | 'error' | 'warning';
 
     /**
      * 标题
