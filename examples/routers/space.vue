@@ -1,8 +1,9 @@
 <template>
-    <Space>
-        <Button>111</Button>
-        <span>444</span>
-        <!-- space -->
+    <Space wrap>
+        <template v-for="i in count" :key="i">
+            <Button @click="handleClick(i)">{{ i }}</Button>
+        </template>
+        <Switch v-model="switchValue" />
     </Space>
 </template>
 
@@ -11,14 +12,37 @@
     export default {
         data() {
             return {
-                count: 333,
-                count1: 444,
-                count2: 555
+                count: 9,
+                switchValue: true
+            }
+        },
+        methods: {
+            handleClick(index) {
+                this.$Message.info(`click button-${index}`);
             }
         },
         // render() {
         //     return h(resolveComponent('Space'), null, {
-        //         default: () => [this.count, null, undefined, []]
+        //         default: () => [
+        //             h(
+        //                 resolveComponent('Button'),
+        //                 {
+        //                     onClick: () => {
+        //                         this.$Message.info('click button')
+        //                     },
+        //                 },
+        //                 { default: () => '按钮' }
+        //             ),
+        //             h(
+        //                 resolveComponent('Switch'),
+        //                 {
+        //                     modelValue: this.switchValue,
+        //                     ['onUpdate:modelValue']: (val) => {
+        //                         this.switchValue = val;
+        //                     }
+        //                 }
+        //             )
+        //         ]
         //     })
         // }
     }

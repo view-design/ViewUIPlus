@@ -83,7 +83,7 @@
                     if (Array.isArray(child)) {
                         res.push(...child);
                     } else if (child.type === Fragment) {
-                        if (child.children) res.push(...child.children);
+                        res.push(...child.children);
                     } else {
                         res.push(child);
                     }
@@ -105,11 +105,8 @@
 
             return h(
                 'div',
-                {
-                    class: this.classes,
-                    style: this.styles
-                },
-                items.map(child => h('div', { class: 'ivu-space-item' }, [child]))
+                { class: this.classes, style: this.styles },
+                items.map(child => h('div', { class: 'ivu-space-item' }, child))
             );
         }
     }
