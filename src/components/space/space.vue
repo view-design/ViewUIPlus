@@ -41,8 +41,7 @@
                 type: String,
                 validator(value) {
                     return oneOf(value, ['start', 'end', 'center', 'baseline', 'stretch']);
-                },
-                default: 'center'
+                }
             },
             wrap: {
                 type: Boolean,
@@ -51,16 +50,31 @@
             split: {
                 type: Boolean,
                 default: false
+            },
+            type: {
+                type: String,
+                validator(value) {
+                    return oneOf(value, ['inline-flex', 'flex']);
+                },
+                default: 'inline-flex'
             }
         },
         computed: {
+            mergedAlign() {
+                if (!this.align) {
+                    if (this.direction === 'horizontal') return 'center';
+                    if (this.type === 'flex') return 'stretch';
+                }
+                return this.align;
+            },
             classes() {
                 return [
                     'ivu-space',
                     `ivu-space-${this.direction}`,
-                    `ivu-space-${this.align}`,
                     {
-                        'ivu-space-wrap': this.wrap
+                        'ivu-space-flex': this.type === 'flex',
+                        'ivu-space-wrap': this.wrap,
+                        [`ivu-space-${this.mergedAlign}`]: this.mergedAlign
                     }
                 ];
             },
