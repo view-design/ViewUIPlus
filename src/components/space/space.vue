@@ -85,9 +85,10 @@
                 }
                 if (Array.isArray(this.size)) {
                     if (this.size.length === 1) {
-                        style.rowGap = this.getSize(this.size[0]);
+                        style.columnGap = this.getSize(this.size[0]);
                     } else if (this.size.length > 1) {
-                        style.gap = `${this.getSize(this.size[0])} ${this.getSize(this.size[1])}`;
+                        style.columnGap = this.getSize(this.size[0]);
+                        style.rowGap = this.getSize(this.size[1]);
                     }
                 }
                 return style;
