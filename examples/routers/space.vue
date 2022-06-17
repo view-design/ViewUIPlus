@@ -1,5 +1,5 @@
 <template>
-    <Space direction="vertical" type="flex">
+    <Space :size="30">
         <Select v-model="model" transfer>
             <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
         </Select>
