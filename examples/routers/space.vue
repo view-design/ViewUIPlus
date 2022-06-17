@@ -1,10 +1,10 @@
 <template>
-    <Space split>
-        <Select v-model="model" style="width:200px" transfer>
+    <Space direction="vertical" type="flex">
+        <Select v-model="model" transfer>
             <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
         </Select>
         <template v-for="i in count" :key="i">
-            <Button @click="handleClick(i)">{{ i }}</Button>
+            <Button @click="handleClick(i)" long>{{ i }}</Button>
         </template>
         <Switch v-model="switchValue" />
     </Space>
