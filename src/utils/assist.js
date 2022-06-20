@@ -339,7 +339,7 @@ export function downloadFile(url, name) {
         const localUrl = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.setAttribute('href', localUrl);
-        a.setAttribute('download', name || 'download');
+        a.setAttribute('download', name || 'image');
         a.click();
         URL.revokeObjectURL(localUrl);
     })
