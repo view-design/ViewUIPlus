@@ -56,6 +56,14 @@ interface ViewUIPlusGlobalOptions {
     modal: {
         maskClosable: boolean | string;
     };
+    typography: {
+        copyConfig: object;
+        editConfig: object;
+        ellipsisConfig: object;
+    };
+    space: {
+        size: string | number | [];
+    };
 }
 
 interface ViewUIPlusInstallOptions extends ViewUIPlusGlobalOptions{

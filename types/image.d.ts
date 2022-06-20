@@ -75,6 +75,11 @@ export declare class Image {
     'initial-index': number;
 
     /**
+     * 图片预览操作栏选项，按数组顺序排序
+     */
+    toolbar: [];
+
+    /**
      * 图片加载成功
      */
     $emit(eventName: 'on-load'): this;
@@ -148,6 +153,11 @@ export declare class ImagePreview {
      * 是否将弹层放置于 body 内
      */
     transfer: boolean;
+
+    /**
+     * 操作栏选项，按数组顺序排序
+     */
+    toolbar: [];
 
     /**
      * 图片预览切换

@@ -60,8 +60,7 @@ export declare class Upload {
     accept: string;
 
     /**
-     * 支持的文件类型，与 accept 不同的是，format 是识别文件的后缀名，accept 为 input 标签原生的 accept
-                    属性，会在选择文件时过滤，可以两者结合使用
+     * 支持的文件类型，与 accept 不同的是，format 是识别文件的后缀名，accept 为 input 标签原生的 accept 属性，会在选择文件时过滤，可以两者结合使用
      */
     format: [];
 
@@ -111,8 +110,7 @@ export declare class Upload {
     'on-exceeded-size': Function;
 
     /**
-     * 默认已上传的文件列表，例如：```[{name: 'img1.jpg', url: 'http://www.xxx.com/img1.jpg'},
-                    {name: 'img2.jpg', url: 'http://www.xxx.com/img2.jpg'}]```
+     * 默认已上传的文件列表，例如：```[{name: 'img1.jpg', url: 'http://www.xxx.com/img1.jpg'}, {name: 'img2.jpg', url: 'http://www.xxx.com/img2.jpg'}]```
      */
     'default-file-list': [];
 
