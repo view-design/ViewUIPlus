@@ -332,15 +332,22 @@ export function setMatchMedia () {
 export const sharpMatcherRegx = /#([^#]+)$/;
 
 // download file
-export function downloadFile(url, name = 'unnamed') {
-    if (!isClient) return;
-    fetch(url).then(res => res.blob()).then((blob) => {
-        if (!blob) return;
+export async function downloadFile(url, name = 'unnamed') {
+    if (!isClient) return Promise.reject();
+    try {
+        const res = await fetch(url);
+        const blob = await res.blob();
+
+        if (!blob) return Promise.reject();
+
         const localUrl = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.setAttribute('href', localUrl);
         a.setAttribute('download', name);
         a.click();
         URL.revokeObjectURL(localUrl);
-    })
+        return Promise.resolve();
+    } catch(e) {
+        return Promise.reject(e);
+    }
 }

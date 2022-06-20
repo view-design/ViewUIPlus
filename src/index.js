@@ -132,6 +132,9 @@ export const install = function(app, opts = {}) {
         },
         space: {
             size: opts.space ? opts.space.size ? opts.space.size : '' : ''
+        },
+        image: {
+            toolbar: opts.image ? opts.image.toolbar ? opts.image.toolbar : '' : ''
         }
     }
     app.config.globalProperties.$Spin = components.Spin;
