@@ -102,7 +102,10 @@
             toolbar: {
                 type: Array,
                 default() {
-                    return ['zoomIn', 'zoomOut', 'original', 'rotateLeft', 'rotateRight', 'download'];
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$VIEWUI || !global.$VIEWUI.image || global.$VIEWUI.image.toolbar === ''
+                        ? ['zoomIn', 'zoomOut', 'original', 'rotateLeft', 'rotateRight', 'download']
+                        : global.$VIEWUI.image.toolbar;
                 }
             }
         },
