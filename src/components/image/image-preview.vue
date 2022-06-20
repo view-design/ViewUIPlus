@@ -105,6 +105,7 @@
                 return [
                     'ivu-image-preview-image',
                     {
+                        ['ivu-image-preview-grabbing']: !this.transition,
                         ['ivu-image-preview-hidden']: this.status === 'failed',
                         ['ivu-image-preview-transition']: this.transition,
                         ['ivu-image-preview-limit']: !this.original
