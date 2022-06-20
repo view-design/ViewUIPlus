@@ -470,6 +470,25 @@ function setMatchMedia() {
   window.matchMedia = window.matchMedia || matchMediaPolyfill;
 }
 const sharpMatcherRegx = /#([^#]+)$/;
+async function downloadFile(url2, name2 = "unnamed") {
+  if (!isClient)
+    return Promise.reject();
+  try {
+    const res = await fetch(url2);
+    const blob = await res.blob();
+    if (!blob)
+      return Promise.reject();
+    const localUrl = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.setAttribute("href", localUrl);
+    a.setAttribute("download", name2);
+    a.click();
+    URL.revokeObjectURL(localUrl);
+    return Promise.resolve();
+  } catch (e) {
+    return Promise.reject(e);
+  }
+}
 const prefixCls$1k = "ivu-alert";
 const _sfc_main$2t = {
   name: "Alert",
@@ -21713,7 +21732,7 @@ var Spin = /* @__PURE__ */ _export_sfc(_sfc_main$1c, [["render", _sfc_render$10]
 const _sfc_main$1b = {
   name: "ImagePreview",
   mixins: [Locale],
-  components: { Icon, Spin },
+  components: { Icon, Spin, Row, Col },
   inheritAttrs: false,
   emits: ["update:modelValue", "on-close", "on-switch"],
   props: {
@@ -21745,6 +21764,13 @@ const _sfc_main$1b = {
     infinite: {
       type: Boolean,
       default: true
+    },
+    toolbar: {
+      type: Array,
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || !global2.$VIEWUI.image || global2.$VIEWUI.image.toolbar === "" ? ["zoomIn", "zoomOut", "original", "rotateLeft", "rotateRight", "download"] : global2.$VIEWUI.image.toolbar;
+      }
     }
   },
   data() {
@@ -21760,7 +21786,8 @@ const _sfc_main$1b = {
       prevOverflow: "",
       status: "loading",
       zIndex: 1e3,
-      maskIndex: this.getMaskIndex()
+      maskIndex: this.getMaskIndex(),
+      downloading: false
     };
   },
   computed: {
@@ -21889,6 +21916,14 @@ const _sfc_main$1b = {
         setTimeout(() => {
           this.transition = true;
         }, 0);
+      }
+      if (val === "download") {
+        this.downloading = true;
+        downloadFile(this.previewList[this.currentIndex]).then(() => {
+          this.downloading = false;
+        }).catch(() => {
+          this.downloading = false;
+        });
       }
     },
     handleKeydown(event) {
@@ -22074,8 +22109,41 @@ const _hoisted_18$1 = /* @__PURE__ */ createElementVNode("path", {
 const _hoisted_19$1 = [
   _hoisted_18$1
 ];
+const _hoisted_20$1 = /* @__PURE__ */ createElementVNode("path", {
+  d: "M505.7 621c3.2 4.1 9.4 4.1 12.6 0l112-141.7c4.1-5.2 0.4-12.9-6.3-12.9h-72.1V120c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v346.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8z",
+  "p-id": "8826",
+  fill: "#ffffff"
+}, null, -1);
+const _hoisted_21$1 = /* @__PURE__ */ createElementVNode("path", {
+  d: "M903 516h-64c-4.4 0-8 3.6-8 8v300c0 4.4-3.6 8-8 8H199c-4.4 0-8-3.6-8-8V524c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v372c0 8.8 7.2 16 16 16h768c8.8 0 16-7.2 16-16V524c0-4.4-3.6-8-8-8z",
+  "p-id": "8827",
+  fill: "#ffffff"
+}, null, -1);
+const _hoisted_22$1 = [
+  _hoisted_20$1,
+  _hoisted_21$1
+];
+const _hoisted_23$1 = {
+  class: "ivu-image-preview-operations-item ivu-image-preview-operations-wait ivu-anim-loop",
+  viewBox: "0 0 1024 1024",
+  version: "1.1",
+  xmlns: "http://www.w3.org/2000/svg",
+  "p-id": "7816",
+  width: "200",
+  height: "200"
+};
+const _hoisted_24$1 = /* @__PURE__ */ createElementVNode("path", {
+  d: "M512 64c247.2 0 448 200.8 448 448h-64c0-212-172-384-384-384V64z m0 832c-212 0-384-172-384-384H64c0 247.2 200.8 448 448 448v-64z",
+  "p-id": "7817",
+  fill: "#ffffff"
+}, null, -1);
+const _hoisted_25$1 = [
+  _hoisted_24$1
+];
 function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Spin = resolveComponent("Spin");
+  const _component_Col = resolveComponent("Col");
+  const _component_Row = resolveComponent("Row");
   const _component_Icon = resolveComponent("Icon");
   return openBlock(), createBlock(Teleport, {
     to: "body",
@@ -22099,7 +22167,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
           style: normalizeStyle($options.maskStyle)
         }, [
           createElementVNode("div", mergeProps({ class: "ivu-image-preview" }, _ctx.$attrs, {
-            onClick: _cache[13] || (_cache[13] = withModifiers((...args) => $options.handleClickMask && $options.handleClickMask(...args), ["stop"]))
+            onClick: _cache[14] || (_cache[14] = withModifiers((...args) => $options.handleClickMask && $options.handleClickMask(...args), ["stop"]))
           }), [
             $data.status === "loading" ? (openBlock(), createBlock(_component_Spin, {
               key: 0,
@@ -22119,87 +22187,161 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
               onLoad: _cache[2] || (_cache[2] = (...args) => $options.handleImageLoad && $options.handleImageLoad(...args)),
               onError: _cache[3] || (_cache[3] = (...args) => $options.handleImageError && $options.handleImageError(...args))
             }, null, 46, _hoisted_2$q)),
-            createElementVNode("div", {
-              class: "ivu-image-preview-operations",
-              onClick: _cache[10] || (_cache[10] = withModifiers(() => {
-              }, ["stop"]))
-            }, [
-              (openBlock(), createElementBlock("svg", {
-                class: "ivu-image-preview-operations-item",
-                onClick: _cache[4] || (_cache[4] = withModifiers(($event) => $options.handleOperation("zoomIn"), ["stop"])),
-                viewBox: "0 0 1024 1024",
-                version: "1.1",
-                xmlns: "http://www.w3.org/2000/svg",
-                "p-id": "7197",
-                width: "200",
-                height: "200"
-              }, _hoisted_5$c)),
-              (openBlock(), createElementBlock("svg", {
-                class: "ivu-image-preview-operations-item",
-                onClick: _cache[5] || (_cache[5] = withModifiers(($event) => $options.handleOperation("zoomOut"), ["stop"])),
-                viewBox: "0 0 1024 1024",
-                version: "1.1",
-                xmlns: "http://www.w3.org/2000/svg",
-                "p-id": "7412",
-                width: "200",
-                height: "200"
-              }, _hoisted_8$3)),
-              withDirectives((openBlock(), createElementBlock("svg", {
-                class: "ivu-image-preview-operations-item",
-                onClick: _cache[6] || (_cache[6] = withModifiers(($event) => $options.handleOperation("original"), ["stop"])),
-                viewBox: "0 0 1024 1024",
-                version: "1.1",
-                xmlns: "http://www.w3.org/2000/svg",
-                "p-id": "26672",
-                width: "200",
-                height: "200"
-              }, _hoisted_10$2, 512)), [
-                [vShow, !this.original]
-              ]),
-              withDirectives((openBlock(), createElementBlock("svg", {
-                class: "ivu-image-preview-operations-item",
-                onClick: _cache[7] || (_cache[7] = withModifiers(($event) => $options.handleOperation("original"), ["stop"])),
-                viewBox: "0 0 1024 1024",
-                version: "1.1",
-                xmlns: "http://www.w3.org/2000/svg",
-                "p-id": "1976",
-                width: "200",
-                height: "200"
-              }, _hoisted_15$1, 512)), [
-                [vShow, this.original]
-              ]),
-              (openBlock(), createElementBlock("svg", {
-                class: "ivu-image-preview-operations-item",
-                onClick: _cache[8] || (_cache[8] = withModifiers(($event) => $options.handleOperation("rotateLeft"), ["stop"])),
-                viewBox: "0 0 1024 1024",
-                version: "1.1",
-                xmlns: "http://www.w3.org/2000/svg",
-                "p-id": "13308",
-                width: "200",
-                height: "200"
-              }, _hoisted_17$1)),
-              (openBlock(), createElementBlock("svg", {
-                class: "ivu-image-preview-operations-item",
-                onClick: _cache[9] || (_cache[9] = withModifiers(($event) => $options.handleOperation("rotateRight"), ["stop"])),
-                viewBox: "0 0 1024 1024",
-                version: "1.1",
-                xmlns: "http://www.w3.org/2000/svg",
-                "p-id": "13521",
-                width: "200",
-                height: "200"
-              }, _hoisted_19$1))
-            ]),
-            $props.previewList.length > 1 ? (openBlock(), createBlock(_component_Icon, {
+            $props.toolbar && $props.toolbar.length > 0 ? (openBlock(), createBlock(_component_Row, {
               key: 2,
-              class: normalizeClass($options.leftClasses),
-              type: "ios-arrow-back",
-              onClick: _cache[11] || (_cache[11] = withModifiers(($event) => $options.handleSwitch(false), ["stop"]))
-            }, null, 8, ["class"])) : createCommentVNode("", true),
+              "class-name": "ivu-image-preview-operations",
+              gutter: 12,
+              onClick: _cache[11] || (_cache[11] = withModifiers(() => {
+              }, ["stop"]))
+            }, {
+              default: withCtx(() => [
+                $props.toolbar.indexOf("zoomIn") > -1 ? (openBlock(), createBlock(_component_Col, {
+                  key: 0,
+                  flex: "1",
+                  order: $props.toolbar.indexOf("zoomIn") + 1
+                }, {
+                  default: withCtx(() => [
+                    (openBlock(), createElementBlock("svg", {
+                      class: "ivu-image-preview-operations-item",
+                      onClick: _cache[4] || (_cache[4] = withModifiers(($event) => $options.handleOperation("zoomIn"), ["stop"])),
+                      viewBox: "0 0 1024 1024",
+                      version: "1.1",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      "p-id": "7197",
+                      width: "200",
+                      height: "200"
+                    }, _hoisted_5$c))
+                  ]),
+                  _: 1
+                }, 8, ["order"])) : createCommentVNode("", true),
+                $props.toolbar.indexOf("zoomOut") > -1 ? (openBlock(), createBlock(_component_Col, {
+                  key: 1,
+                  flex: "1",
+                  order: $props.toolbar.indexOf("zoomOut") + 1
+                }, {
+                  default: withCtx(() => [
+                    (openBlock(), createElementBlock("svg", {
+                      class: "ivu-image-preview-operations-item",
+                      onClick: _cache[5] || (_cache[5] = withModifiers(($event) => $options.handleOperation("zoomOut"), ["stop"])),
+                      viewBox: "0 0 1024 1024",
+                      version: "1.1",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      "p-id": "7412",
+                      width: "200",
+                      height: "200"
+                    }, _hoisted_8$3))
+                  ]),
+                  _: 1
+                }, 8, ["order"])) : createCommentVNode("", true),
+                $props.toolbar.indexOf("original") > -1 ? (openBlock(), createBlock(_component_Col, {
+                  key: 2,
+                  flex: "1",
+                  order: $props.toolbar.indexOf("original") + 1
+                }, {
+                  default: withCtx(() => [
+                    withDirectives((openBlock(), createElementBlock("svg", {
+                      class: "ivu-image-preview-operations-item",
+                      onClick: _cache[6] || (_cache[6] = withModifiers(($event) => $options.handleOperation("original"), ["stop"])),
+                      viewBox: "0 0 1024 1024",
+                      version: "1.1",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      "p-id": "26672",
+                      width: "200",
+                      height: "200"
+                    }, _hoisted_10$2, 512)), [
+                      [vShow, !this.original]
+                    ]),
+                    withDirectives((openBlock(), createElementBlock("svg", {
+                      class: "ivu-image-preview-operations-item",
+                      onClick: _cache[7] || (_cache[7] = withModifiers(($event) => $options.handleOperation("original"), ["stop"])),
+                      viewBox: "0 0 1024 1024",
+                      version: "1.1",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      "p-id": "1976",
+                      width: "200",
+                      height: "200"
+                    }, _hoisted_15$1, 512)), [
+                      [vShow, this.original]
+                    ])
+                  ]),
+                  _: 1
+                }, 8, ["order"])) : createCommentVNode("", true),
+                $props.toolbar.indexOf("rotateLeft") > -1 ? (openBlock(), createBlock(_component_Col, {
+                  key: 3,
+                  flex: "1",
+                  order: $props.toolbar.indexOf("rotateLeft") + 1
+                }, {
+                  default: withCtx(() => [
+                    (openBlock(), createElementBlock("svg", {
+                      class: "ivu-image-preview-operations-item",
+                      onClick: _cache[8] || (_cache[8] = withModifiers(($event) => $options.handleOperation("rotateLeft"), ["stop"])),
+                      viewBox: "0 0 1024 1024",
+                      version: "1.1",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      "p-id": "13308",
+                      width: "200",
+                      height: "200"
+                    }, _hoisted_17$1))
+                  ]),
+                  _: 1
+                }, 8, ["order"])) : createCommentVNode("", true),
+                $props.toolbar.indexOf("rotateRight") > -1 ? (openBlock(), createBlock(_component_Col, {
+                  key: 4,
+                  flex: "1",
+                  order: $props.toolbar.indexOf("rotateRight") + 1
+                }, {
+                  default: withCtx(() => [
+                    (openBlock(), createElementBlock("svg", {
+                      class: "ivu-image-preview-operations-item",
+                      onClick: _cache[9] || (_cache[9] = withModifiers(($event) => $options.handleOperation("rotateRight"), ["stop"])),
+                      viewBox: "0 0 1024 1024",
+                      version: "1.1",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      "p-id": "13521",
+                      width: "200",
+                      height: "200"
+                    }, _hoisted_19$1))
+                  ]),
+                  _: 1
+                }, 8, ["order"])) : createCommentVNode("", true),
+                $props.toolbar.indexOf("download") > -1 ? (openBlock(), createBlock(_component_Col, {
+                  key: 5,
+                  flex: "1",
+                  order: $props.toolbar.indexOf("download") + 1
+                }, {
+                  default: withCtx(() => [
+                    withDirectives((openBlock(), createElementBlock("svg", {
+                      class: "ivu-image-preview-operations-item",
+                      onClick: _cache[10] || (_cache[10] = withModifiers(($event) => $options.handleOperation("download"), ["stop"])),
+                      viewBox: "0 0 1024 1024",
+                      version: "1.1",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      "p-id": "8825",
+                      width: "200",
+                      height: "200"
+                    }, _hoisted_22$1, 512)), [
+                      [vShow, !$data.downloading]
+                    ]),
+                    withDirectives((openBlock(), createElementBlock("svg", _hoisted_23$1, _hoisted_25$1, 512)), [
+                      [vShow, $data.downloading]
+                    ])
+                  ]),
+                  _: 1
+                }, 8, ["order"])) : createCommentVNode("", true)
+              ]),
+              _: 1
+            })) : createCommentVNode("", true),
             $props.previewList.length > 1 ? (openBlock(), createBlock(_component_Icon, {
               key: 3,
+              class: normalizeClass($options.leftClasses),
+              type: "ios-arrow-back",
+              onClick: _cache[12] || (_cache[12] = withModifiers(($event) => $options.handleSwitch(false), ["stop"]))
+            }, null, 8, ["class"])) : createCommentVNode("", true),
+            $props.previewList.length > 1 ? (openBlock(), createBlock(_component_Icon, {
+              key: 4,
               class: normalizeClass($options.rightClasses),
               type: "ios-arrow-forward",
-              onClick: _cache[12] || (_cache[12] = withModifiers(($event) => $options.handleSwitch(true), ["stop"]))
+              onClick: _cache[13] || (_cache[13] = withModifiers(($event) => $options.handleSwitch(true), ["stop"]))
             }, null, 8, ["class"])) : createCommentVNode("", true),
             createVNode(_component_Icon, {
               class: "ivu-image-preview-arrow-close",
@@ -22284,6 +22426,13 @@ const _sfc_main$1a = {
     previewTip: {
       type: Boolean,
       default: true
+    },
+    toolbar: {
+      type: Array,
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || !global2.$VIEWUI.image || global2.$VIEWUI.image.toolbar === "" ? ["zoomIn", "zoomOut", "original", "rotateLeft", "rotateRight", "download"] : global2.$VIEWUI.image.toolbar;
+      }
     }
   },
   data() {
@@ -22466,12 +22615,88 @@ function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
       infinite: $props.infinite,
       "mask-closable": $props.maskClosable,
       transfer: $props.transfer,
+      toolbar: $props.toolbar,
       onOnClose: $options.handleClose,
       onOnSwitch: $options.handleSwitch
-    }, null, 8, ["modelValue", "preview-list", "initial-index", "infinite", "mask-closable", "transfer", "onOnClose", "onOnSwitch"])) : createCommentVNode("", true)
+    }, null, 8, ["modelValue", "preview-list", "initial-index", "infinite", "mask-closable", "transfer", "toolbar", "onOnClose", "onOnSwitch"])) : createCommentVNode("", true)
   ], 4);
 }
 var Image = /* @__PURE__ */ _export_sfc(_sfc_main$1a, [["render", _sfc_render$_]]);
+ImagePreview.newInstance = (properties) => {
+  if (!isClient)
+    return;
+  const _props = properties || {};
+  let _instance = null;
+  const Instance = createApp({
+    data() {
+      return Object.assign({}, _props, {
+        visible: false,
+        previewList: [],
+        initialIndex: 0,
+        toolbar: ["zoomIn", "zoomOut", "original", "rotateLeft", "rotateRight", "download"],
+        infinite: true,
+        maskClosable: true,
+        transfer: true
+      });
+    },
+    render() {
+      return h(ImagePreview, Object.assign({}, _props, {
+        ref: "imagePreview",
+        modelValue: this.visible,
+        previewList: this.previewList,
+        initialIndex: this.initialIndex,
+        toolbar: this.toolbar,
+        infinite: this.infinite,
+        maskClosable: this.maskClosable,
+        transfer: this.transfer,
+        "onOn-close": this.close
+      }));
+    },
+    methods: {
+      close() {
+        this.visible = false;
+        setTimeout(() => {
+          this.destroy();
+          this.onRemove();
+        }, 300);
+      },
+      destroy() {
+        Instance.unmount();
+        document.body.removeChild(container);
+      },
+      onRemove() {
+      }
+    },
+    created() {
+      _instance = getCurrentInstance();
+    }
+  });
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+  Instance.mount(container);
+  const imagePreview = _instance.refs.imagePreview;
+  return {
+    show(options) {
+      Object.keys(options).forEach((key2) => {
+        imagePreview.$parent[key2] = options[key2];
+      });
+      imagePreview.$parent.visible = true;
+    },
+    component: imagePreview
+  };
+};
+let imagePreviewInstance;
+function getImagePreviewInstance() {
+  imagePreviewInstance = imagePreviewInstance || ImagePreview.newInstance();
+  return imagePreviewInstance;
+}
+ImagePreview.show = function(props = {}) {
+  const instance = getImagePreviewInstance();
+  props.onRemove = function() {
+    imagePreviewInstance = null;
+  };
+  instance.show(props);
+};
 const prefixCls$B = "ivu-input-number";
 const iconPrefixCls$2 = "ivu-icon";
 function addNum(num1, num2) {
@@ -38137,7 +38362,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.0-beta.1";
+const version$1 = "1.3.0-beta.2";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
@@ -38379,6 +38604,9 @@ const install = function(app, opts = {}) {
     },
     space: {
       size: opts.space ? opts.space.size ? opts.space.size : "" : ""
+    },
+    image: {
+      toolbar: opts.image ? opts.image.toolbar ? opts.image.toolbar : "" : ""
     }
   };
   app.config.globalProperties.$Spin = Spin;
@@ -38386,6 +38614,7 @@ const install = function(app, opts = {}) {
   app.config.globalProperties.$Message = $Message;
   app.config.globalProperties.$Notice = index$2;
   app.config.globalProperties.$Modal = Modal;
+  app.config.globalProperties.$ImagePreview = ImagePreview;
   app.config.globalProperties.$Copy = Copy;
   app.config.globalProperties.$ScrollIntoView = index$1;
   app.config.globalProperties.$ScrollTop = index;
