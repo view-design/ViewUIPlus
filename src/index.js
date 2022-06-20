@@ -139,6 +139,7 @@ export const install = function(app, opts = {}) {
     app.config.globalProperties.$Message = components.Message;
     app.config.globalProperties.$Notice = components.Notice;
     app.config.globalProperties.$Modal = components.Modal;
+    app.config.globalProperties.$ImagePreview = components.ImagePreview;
     app.config.globalProperties.$Copy = components.Copy;
     app.config.globalProperties.$ScrollIntoView = components.ScrollIntoView;
     app.config.globalProperties.$ScrollTop = components.ScrollTop;
