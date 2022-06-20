@@ -38,7 +38,8 @@
                             <svg class="ivu-image-preview-operations-item" @click.stop="handleOperation('rotateRight')" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13521" width="200" height="200"><path d="M480.5 251.2c13-1.6 25.9-2.4 38.8-2.5v63.9c0 6.5 7.5 10.1 12.6 6.1L660 217.6c4-3.2 4-9.2 0-12.3l-128-101c-5.1-4-12.6-0.4-12.6 6.1l-0.2 64c-118.6 0.5-235.8 53.4-314.6 154.2-69.6 89.2-95.7 198.6-81.1 302.4h74.9c-0.9-5.3-1.7-10.7-2.4-16.1-5.1-42.1-2.1-84.1 8.9-124.8 11.4-42.2 31-81.1 58.1-115.8 27.2-34.7 60.3-63.2 98.4-84.3 37-20.6 76.9-33.6 119.1-38.8zM880 418H352c-17.7 0-32 14.3-32 32v414c0 17.7 14.3 32 32 32h528c17.7 0 32-14.3 32-32V450c0-17.7-14.3-32-32-32z m-44 402H396V494h440v326z" p-id="13522" fill="#ffffff"></path></svg>
                         </Col>
                         <Col flex="1" v-if="toolbar.indexOf('download') > -1" :order="toolbar.indexOf('download') + 1">
-                            <svg class="ivu-image-preview-operations-item" @click.stop="handleOperation('download')" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8825" width="200" height="200"><path d="M505.7 621c3.2 4.1 9.4 4.1 12.6 0l112-141.7c4.1-5.2 0.4-12.9-6.3-12.9h-72.1V120c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v346.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8z" p-id="8826" fill="#ffffff"></path><path d="M903 516h-64c-4.4 0-8 3.6-8 8v300c0 4.4-3.6 8-8 8H199c-4.4 0-8-3.6-8-8V524c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v372c0 8.8 7.2 16 16 16h768c8.8 0 16-7.2 16-16V524c0-4.4-3.6-8-8-8z" p-id="8827" fill="#ffffff"></path></svg>
+                            <svg v-if="!downloading" class="ivu-image-preview-operations-item" @click.stop="handleOperation('download')" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8825" width="200" height="200"><path d="M505.7 621c3.2 4.1 9.4 4.1 12.6 0l112-141.7c4.1-5.2 0.4-12.9-6.3-12.9h-72.1V120c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v346.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8z" p-id="8826" fill="#ffffff"></path><path d="M903 516h-64c-4.4 0-8 3.6-8 8v300c0 4.4-3.6 8-8 8H199c-4.4 0-8-3.6-8-8V524c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v372c0 8.8 7.2 16 16 16h768c8.8 0 16-7.2 16-16V524c0-4.4-3.6-8-8-8z" p-id="8827" fill="#ffffff"></path></svg>
+                            <svg v-else class="ivu-image-preview-operations-item ivu-image-preview-operations-wait ivu-anim-loop" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7816" width="200" height="200"><path d="M512 64c247.2 0 448 200.8 448 448h-64c0-212-172-384-384-384V64z m0 832c-212 0-384-172-384-384H64c0 247.2 200.8 448 448 448v-64z" p-id="7817" fill="#ffffff"></path></svg>
                         </Col>
                     </Row>
                     <Icon v-if="previewList.length > 1" :class="leftClasses" type="ios-arrow-back" @click.stop="handleSwitch(false)" />
@@ -122,7 +123,8 @@
                 prevOverflow: '', // prevent body scrolling
                 status: 'loading', // image status
                 zIndex: 1000,
-                maskIndex: this.getMaskIndex()
+                maskIndex: this.getMaskIndex(),
+                downloading: false
             }
         },
         computed: {
@@ -247,7 +249,14 @@
                     this.resetStyle();
                     setTimeout(() => { this.transition = true; }, 0);
                 }
-                if (val === 'download') downloadFile(this.previewList[this.currentIndex]);
+                if (val === 'download') {
+                    this.downloading = true;
+                    downloadFile(this.previewList[this.currentIndex]).then(() => {
+                        this.downloading = false;
+                    }).catch(() => {
+                        this.downloading = false;
+                    });
+                }
             },
             handleKeydown (event) {
                 if (!this.modelValue) return;
