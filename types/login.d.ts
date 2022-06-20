@@ -1,11 +1,3 @@
-export declare class Login {
-    /**
-     * 提交时触发，返回值1 valid 为 表单验证是否通过，返回值2 data 包含了指定 Login 组件的绑定值
-     */
-    $emit(eventName: 'on-submit'): this;
-
-}
-
 export declare class UserName {
     /**
      * 默认值，设置后，初始化时会显示，`不能`使用 v-model
@@ -72,4 +64,99 @@ export declare class Captcha {
         text: [];
 
     };
+}
+
+export declare class Password {
+    /**
+     * 默认值，设置后，初始化时会显示，`不能`使用 v-model
+     */
+    value: string;
+
+    /**
+     * 自定义校验字段，`必填`
+     */
+    name: string;
+
+    /**
+     * 校验规则，同 Form
+     */
+    rules: object |  [];
+
+    /**
+     * 是否在按下回车时提交
+     */
+    'enter-to-submit': boolean;
+
+    /**
+     * 数据改变时触发
+     */
+    $emit(eventName: 'on-change'): this;
+
+}
+
+export declare class Email {
+    /**
+     * 默认值，设置后，初始化时会显示，`不能`使用 v-model
+     */
+    value: string;
+
+    /**
+     * 自定义校验字段，`必填`
+     */
+    name: string;
+
+    /**
+     * 校验规则，同 Form
+     */
+    rules: object |  [];
+
+    /**
+     * 是否在按下回车时提交
+     */
+    'enter-to-submit': boolean;
+
+    /**
+     * 数据改变时触发
+     */
+    $emit(eventName: 'on-change'): this;
+
+}
+
+export declare class Mobile {
+    /**
+     * 默认值，设置后，初始化时会显示，`不能`使用 v-model
+     */
+    value: string;
+
+    /**
+     * 自定义校验字段，`必填`
+     */
+    name: string;
+
+    /**
+     * 校验规则，同 Form
+     */
+    rules: object |  [];
+
+    /**
+     * 是否在按下回车时提交
+     */
+    'enter-to-submit': boolean;
+
+    /**
+     * 数据改变时触发
+     */
+    $emit(eventName: 'on-change'): this;
+
+}
+
+export declare class Submit {
+}
+
+export declare class Login {
+    /**
+     * 提交时触发，返回值1 valid 为 表单验证是否通过，返回值2 data 包含了指定 Login 组件的绑定值
+     */
+    $emit(eventName: 'on-submit'): this;
+
 }

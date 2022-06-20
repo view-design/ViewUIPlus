@@ -75,6 +75,9 @@
     ></ImagePreview>
 
     <Button type="primary" @click="showPreview = !showPreview">Switch Preview</Button>
+
+    <Button @click="showImagePreview1">$ImagePreview1</Button>
+    <Button @click="showImagePreview2">$ImagePreview2</Button>
 </template>
 
 <script>
@@ -91,9 +94,28 @@ export default {
                 'https://dev-file.iviewui.com/ASzUrSpwJHqOi2G2jWzsVJyDV1ZF6xnK/large',
                 'https://file.iviewui.com/DSCF6873.JPG',
                 'https://dev-file.iviewui.com/YSUjM5Fx7mOjsijiI3eVDuaHGqnmT7H8/large',
+            ],
+            srcList2: [
+                'https://file.iviewui.com/DSCF6873.JPG',
+                'https://dev-file.iviewui.com/ll7neXYI7fzKv1SjjOl77vpfkDbJpbDB/large',
+                'https://dev-file.iviewui.com/ASzUrSpwJHqOi2G2jWzsVJyDV1ZF6xnK/large',
+                'https://dev-file.iviewui.com/YSUjM5Fx7mOjsijiI3eVDuaHGqnmT7H8/large',
             ]
 		}
-	}
+	},
+    methods: {
+        showImagePreview1 () {
+            this.$ImagePreview.show({
+                previewList: this.srcList
+            });
+        },
+        showImagePreview2 () {
+            this.$ImagePreview.show({
+                previewList: this.srcList2,
+                initialIndex: 2
+            });
+        }
+    }
 }
 </script>
 <style lang="less">

@@ -96,6 +96,7 @@ export { default as Sider } from './sider';
 export { default as Skeleton } from './skeleton';
 export { default as SkeletonItem } from './skeleton-item';
 export { default as Slider } from './slider';
+export { default as Space } from './space';
 export { default as Spin } from './spin';
 export { default as Split } from './split';
 export { default as Step } from './step';

@@ -10,7 +10,7 @@ export declare class Dropdown {
     visible: boolean;
 
     /**
-     * 下拉菜单出现的位置，可选值为`top``top-start``top-end``bottom``bottom-start``bottom-end``left``left-start``left-end``right``right-start``right-end`, 2.12.0 版本开始支持自动识别
+     * 下拉菜单出现的位置，可选值为`top`、`top-start`、`top-end`、`bottom`、`bottom-start`、`bottom-end`、`left`、`left-start`、`left-end`、`right`、`right-start`、`right-end`
      */
     placement: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end';
 
@@ -89,4 +89,14 @@ export declare class DropdownItem {
      */
     selected: boolean;
 
+}
+
+export declare class DropdownMenu {
+    $slots: {
+        /**
+         * 默认插槽内容
+         */
+        default: [];
+
+    };
 }

@@ -53,21 +53,6 @@ export declare class List {
     };
 }
 
-export declare class ListItem {
-    $slots: {
-        /**
-         * 列表操作组，根据 item-layout 的不同, 位置在卡片底部或者最右侧
-         */
-        action: [];
-
-        /**
-         * 额外内容, 通常用在 item-layout 为 vertical 的情况下, 展示右侧内容; horizontal 展示在列表元素最右侧
-         */
-        extra: [];
-
-    };
-}
-
 export declare class ListItemMeta {
     /**
      * 列表元素的图标
@@ -99,6 +84,21 @@ export declare class ListItemMeta {
          * 自定义列表元素的描述内容
          */
         description: [];
+
+    };
+}
+
+export declare class ListItem {
+    $slots: {
+        /**
+         * 列表操作组，根据 item-layout 的不同, 位置在卡片底部或者最右侧
+         */
+        action: [];
+
+        /**
+         * 额外内容, 通常用在 item-layout 为 vertical 的情况下, 展示右侧内容; horizontal 展示在列表元素最右侧
+         */
+        extra: [];
 
     };
 }

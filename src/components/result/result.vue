@@ -3,6 +3,7 @@
         <div class="ivu-result-icon" :class="iconClasses">
             <Icon type="ios-checkmark" v-if="type === 'success'" />
             <Icon type="ios-close" v-if="type === 'error'" />
+            <Icon type="ios-information" v-if="type === 'warning'" />
         </div>
         <div class="ivu-result-title" v-if="title || $slots.title"><slot name="title">{{ title }}</slot></div>
         <div class="ivu-result-desc" v-if="desc || $slots.desc"><slot name="desc">{{ desc }}</slot></div>
@@ -21,7 +22,7 @@
         props: {
             type: {
                 validator (value) {
-                    return oneOf(value, ['success', 'error']);
+                    return oneOf(value, ['success', 'error', 'warning']);
                 }
             },
             title: {
@@ -38,7 +39,8 @@
             iconClasses () {
                 return {
                     'ivu-result-icon-success': this.type === 'success',
-                    'ivu-result-icon-error': this.type === 'error'
+                    'ivu-result-icon-error': this.type === 'error',
+                    'ivu-result-icon-warning': this.type === 'warning'
                 };
             }
         }

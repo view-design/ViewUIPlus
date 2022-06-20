@@ -30,3 +30,13 @@ export declare class Grid {
     hover: boolean;
 
 }
+
+export declare class GridItem {
+    $slots: {
+        /**
+         * 默认插槽内容
+         */
+        default: [];
+
+    };
+}

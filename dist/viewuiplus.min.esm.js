@@ -17,7 +17,7 @@ var __spreadValues = (a, b) => {
   return a;
 };
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-import { nextTick, openBlock, createElementBlock, createElementVNode, normalizeClass, normalizeStyle, renderSlot, withDirectives, vShow, resolveComponent, createBlock, Transition, withCtx, createVNode, createCommentVNode, resolveDynamicComponent, inject, withModifiers, toDisplayString, h, Teleport, mergeProps, getCurrentInstance, Fragment, renderList, createTextVNode, withKeys, vModelText, resolveDirective, vModelCheckbox, TransitionGroup, createApp, normalizeProps, guardReactiveProps, defineComponent, toHandlers, setBlockTracking, createSlots } from "vue";
+import { nextTick, openBlock, createElementBlock, createElementVNode, normalizeClass, normalizeStyle, renderSlot, withDirectives, vShow, resolveComponent, createBlock, Transition, withCtx, createVNode, createCommentVNode, resolveDynamicComponent, inject, withModifiers, toDisplayString, h, Teleport, mergeProps, getCurrentInstance, Fragment, renderList, createTextVNode, withKeys, vModelText, resolveDirective, vModelCheckbox, TransitionGroup, createApp, normalizeProps, guardReactiveProps, defineComponent, toHandlers, Comment, Text, setBlockTracking, createSlots } from "vue";
 const isClient = typeof window !== "undefined";
 const on = function() {
   if (isClient && document.addEventListener) {
@@ -80,7 +80,7 @@ function getOffset(element) {
     left: rect.left + scrollLeft - clientLeft
   };
 }
-const _sfc_main$2u = {
+const _sfc_main$2v = {
   name: "Affix",
   emits: ["on-change"],
   props: {
@@ -192,9 +192,9 @@ function _sfc_render$2e(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var Affix = /* @__PURE__ */ _export_sfc(_sfc_main$2u, [["render", _sfc_render$2e]]);
+var Affix = /* @__PURE__ */ _export_sfc(_sfc_main$2v, [["render", _sfc_render$2e]]);
 const prefixCls$1l = "ivu-icon";
-const _sfc_main$2t = {
+const _sfc_main$2u = {
   name: "Icon",
   props: {
     type: {
@@ -234,7 +234,7 @@ function _sfc_render$2d(_ctx, _cache, $props, $setup, $data, $options) {
     style: normalizeStyle($options.styles)
   }, null, 6);
 }
-var Icon = /* @__PURE__ */ _export_sfc(_sfc_main$2t, [["render", _sfc_render$2d]]);
+var Icon = /* @__PURE__ */ _export_sfc(_sfc_main$2u, [["render", _sfc_render$2d]]);
 function oneOf(value, validList) {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {
@@ -471,7 +471,7 @@ function setMatchMedia() {
 }
 const sharpMatcherRegx = /#([^#]+)$/;
 const prefixCls$1k = "ivu-alert";
-const _sfc_main$2s = {
+const _sfc_main$2t = {
   name: "Alert",
   components: { Icon },
   props: {
@@ -601,8 +601,8 @@ function _sfc_render$2c(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["name"]);
 }
-var Alert = /* @__PURE__ */ _export_sfc(_sfc_main$2s, [["render", _sfc_render$2c]]);
-const _sfc_main$2r = {
+var Alert = /* @__PURE__ */ _export_sfc(_sfc_main$2t, [["render", _sfc_render$2c]]);
+const _sfc_main$2s = {
   name: "Anchor",
   provide() {
     return {
@@ -835,7 +835,7 @@ function _sfc_render$2b(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["offset-top", "offset-bottom", "onOnChange"]);
 }
-var Anchor = /* @__PURE__ */ _export_sfc(_sfc_main$2r, [["render", _sfc_render$2b]]);
+var Anchor = /* @__PURE__ */ _export_sfc(_sfc_main$2s, [["render", _sfc_render$2b]]);
 function random(len = 32) {
   const $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   const maxPos = $chars.length;
@@ -845,7 +845,7 @@ function random(len = 32) {
   }
   return str;
 }
-const _sfc_main$2q = {
+const _sfc_main$2r = {
   name: "AnchorLink",
   inject: ["AnchorInstance"],
   props: {
@@ -918,7 +918,7 @@ function _sfc_render$2a(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var AnchorLink = /* @__PURE__ */ _export_sfc(_sfc_main$2q, [["render", _sfc_render$2a]]);
+var AnchorLink = /* @__PURE__ */ _export_sfc(_sfc_main$2r, [["render", _sfc_render$2a]]);
 var mixinsLink = {
   props: {
     to: {
@@ -1015,7 +1015,7 @@ function includeArray(list1, list2) {
   });
   return status;
 }
-const _sfc_main$2p = {
+const _sfc_main$2q = {
   name: "Auth",
   mixins: [mixinsLink],
   emits: ["click"],
@@ -2375,7 +2375,7 @@ function transferIncrease() {
 function lastVisibleIncrease() {
   lastVisibleIndex++;
 }
-const _sfc_main$2o = {
+const _sfc_main$2p = {
   name: "Drop",
   emits: ["mouseenter", "mouseleave", "click"],
   props: {
@@ -2545,7 +2545,7 @@ function _sfc_render$29(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["name"])
   ], 8, ["disabled"]);
 }
-var Drop = /* @__PURE__ */ _export_sfc(_sfc_main$2o, [["render", _sfc_render$29]]);
+var Drop = /* @__PURE__ */ _export_sfc(_sfc_main$2p, [["render", _sfc_render$29]]);
 function setLang(lang2) {
   if (isClient && typeof window.viewuiplus !== "undefined") {
     if (!("langs" in viewuiplus)) {
@@ -2843,7 +2843,7 @@ var globalConfig = {
   }
 };
 const prefixCls$1j = "ivu-select";
-const _sfc_main$2n = {
+const _sfc_main$2o = {
   name: "iSelectHead",
   mixins: [Locale, globalConfig],
   components: { Icon },
@@ -3174,7 +3174,7 @@ function _sfc_render$28(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["type", "custom", "size", "class"])) : createCommentVNode("", true)
   ], 2);
 }
-var SelectHead = /* @__PURE__ */ _export_sfc(_sfc_main$2n, [["render", _sfc_render$28]]);
+var SelectHead = /* @__PURE__ */ _export_sfc(_sfc_main$2o, [["render", _sfc_render$28]]);
 const CLICK = "click";
 const captureInstances = /* @__PURE__ */ Object.create(null);
 const nonCaptureInstances = /* @__PURE__ */ Object.create(null);
@@ -3324,7 +3324,7 @@ const checkValuesNotEqual = (value, publicValue, values) => {
   return strValue !== strPublic || strValue !== strValues || strValues !== strPublic;
 };
 const ANIMATION_TIMEOUT = 300;
-const _sfc_main$2m = {
+const _sfc_main$2n = {
   name: "iSelect",
   mixins: [Locale, mixinsForm],
   components: { Drop, SelectHead, Icon },
@@ -3874,9 +3874,13 @@ const _sfc_main$2m = {
         this.toggleMenu();
       }
     },
-    lazyUpdateValue() {
-      const { getInitialValue } = this;
-      if (this.isLocking)
+    lazyUpdateValue(checked) {
+      const { getInitialValue, isLocking, defaultLabel, remote, modelValue, values } = this;
+      const hasDefaultLabel = !!(defaultLabel && defaultLabel.length);
+      const hasModelValue = !!(modelValue && modelValue.length);
+      if ((hasModelValue || values.length || hasDefaultLabel) && remote && checked)
+        return;
+      if (isLocking)
         return;
       this.isLocking = true;
       nextTick(() => {
@@ -4122,9 +4126,9 @@ function _sfc_render$27(_ctx, _cache, $props, $setup, $data, $options) {
     ]
   ]);
 }
-var Select = /* @__PURE__ */ _export_sfc(_sfc_main$2m, [["render", _sfc_render$27]]);
+var Select = /* @__PURE__ */ _export_sfc(_sfc_main$2n, [["render", _sfc_render$27]]);
 const prefixCls$1h = "ivu-select-item";
-const _sfc_main$2l = {
+const _sfc_main$2m = {
   name: "iOption",
   componentName: "select-item",
   mixins: [mixinsForm],
@@ -4247,7 +4251,8 @@ const _sfc_main$2l = {
           tag: "option"
         }));
         select2.slotOptionsMap.set(value, instance);
-        select2.lazyUpdateValue(value);
+        const { modelValue } = select2;
+        modelValue && modelValue.length && select2.lazyUpdateValue(true);
       }
     },
     removeOption() {
@@ -4297,7 +4302,7 @@ function _sfc_render$26(_ctx, _cache, $props, $setup, $data, $options) {
     [vShow, $options.isShow]
   ]);
 }
-var iOption = /* @__PURE__ */ _export_sfc(_sfc_main$2l, [["render", _sfc_render$26]]);
+var iOption = /* @__PURE__ */ _export_sfc(_sfc_main$2m, [["render", _sfc_render$26]]);
 const HIDDEN_TEXTAREA_STYLE = `
   min-height:0 !important;
   max-height:none !important;
@@ -4408,7 +4413,7 @@ function calcTextareaHeight(uiTextNode, minRows = null, maxRows = null, useCache
   };
 }
 const prefixCls$1g = "ivu-input";
-const _sfc_main$2k = {
+const _sfc_main$2l = {
   name: "Input",
   mixins: [mixinsForm],
   emits: ["on-enter", "on-search", "on-keydown", "on-keypress", "on-keyup", "on-click", "on-focus", "on-blur", "on-change", "on-input-change", "on-clear", "update:modelValue"],
@@ -4921,8 +4926,8 @@ function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
     ], 64))
   ], 2);
 }
-var Input = /* @__PURE__ */ _export_sfc(_sfc_main$2k, [["render", _sfc_render$25]]);
-const _sfc_main$2j = {
+var Input = /* @__PURE__ */ _export_sfc(_sfc_main$2l, [["render", _sfc_render$25]]);
+const _sfc_main$2k = {
   name: "AutoComplete",
   mixins: [mixinsForm],
   components: { iSelect: Select, iOption, iInput: Input },
@@ -5136,10 +5141,10 @@ function _sfc_render$24(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["label", "disabled", "clearable", "placeholder", "size", "placement", "model-value", "transfer-class-name", "remote-method", "onOnSelect", "onOnClickoutside", "transfer", "capture", "eventsEnabled"]);
 }
-var AutoComplete = /* @__PURE__ */ _export_sfc(_sfc_main$2j, [["render", _sfc_render$24]]);
+var AutoComplete = /* @__PURE__ */ _export_sfc(_sfc_main$2k, [["render", _sfc_render$24]]);
 const prefixCls$1f = "ivu-avatar";
 const sizeList = ["small", "large", "default"];
-const _sfc_main$2i = {
+const _sfc_main$2j = {
   name: "Avatar",
   components: { Icon },
   emits: ["on-error"],
@@ -5274,7 +5279,7 @@ function _sfc_render$23(_ctx, _cache, $props, $setup, $data, $options) {
     ], 6))
   ], 6);
 }
-var Avatar = /* @__PURE__ */ _export_sfc(_sfc_main$2i, [["render", _sfc_render$23]]);
+var Avatar = /* @__PURE__ */ _export_sfc(_sfc_main$2j, [["render", _sfc_render$23]]);
 var Popper = {
   emits: ["on-popper-show", "on-popper-hide", "created", "update:modelValue"],
   props: {
@@ -5386,7 +5391,7 @@ var Popper = {
   }
 };
 const prefixCls$1e = "ivu-tooltip";
-const _sfc_main$2h = {
+const _sfc_main$2i = {
   name: "Tooltip",
   mixins: [Popper],
   props: {
@@ -5558,8 +5563,8 @@ function _sfc_render$22(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, ["disabled"]))
   ], 34);
 }
-var Tooltip = /* @__PURE__ */ _export_sfc(_sfc_main$2h, [["render", _sfc_render$22]]);
-const _sfc_main$2g = {
+var Tooltip = /* @__PURE__ */ _export_sfc(_sfc_main$2i, [["render", _sfc_render$22]]);
+const _sfc_main$2h = {
   name: "AvatarList",
   components: { Avatar, Tooltip },
   props: {
@@ -5680,9 +5685,9 @@ function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 2);
 }
-var AvatarList = /* @__PURE__ */ _export_sfc(_sfc_main$2g, [["render", _sfc_render$21]]);
+var AvatarList = /* @__PURE__ */ _export_sfc(_sfc_main$2h, [["render", _sfc_render$21]]);
 const prefixCls$1d = "ivu-back-top";
-const _sfc_main$2f = {
+const _sfc_main$2g = {
   name: "BackTop",
   emits: ["on-click"],
   props: {
@@ -5767,10 +5772,10 @@ function _sfc_render$20(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 6);
 }
-var BackTop = /* @__PURE__ */ _export_sfc(_sfc_main$2f, [["render", _sfc_render$20]]);
+var BackTop = /* @__PURE__ */ _export_sfc(_sfc_main$2g, [["render", _sfc_render$20]]);
 const initColorList$1 = ["blue", "green", "red", "yellow", "pink", "magenta", "volcano", "orange", "gold", "lime", "cyan", "geekblue", "purple"];
 const prefixCls$1c = "ivu-badge";
-const _sfc_main$2e = {
+const _sfc_main$2f = {
   name: "Badge",
   props: {
     count: Number,
@@ -5942,8 +5947,8 @@ function _sfc_render$1$(_ctx, _cache, $props, $setup, $data, $options) {
     ]) : createCommentVNode("", true)
   ], 2));
 }
-var Badge = /* @__PURE__ */ _export_sfc(_sfc_main$2e, [["render", _sfc_render$1$]]);
-const _sfc_main$2d = {
+var Badge = /* @__PURE__ */ _export_sfc(_sfc_main$2f, [["render", _sfc_render$1$]]);
+const _sfc_main$2e = {
   name: "Breadcrumb",
   provide() {
     return {
@@ -5963,9 +5968,9 @@ function _sfc_render$1_(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ]);
 }
-var Breadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$2d, [["render", _sfc_render$1_]]);
+var Breadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$2e, [["render", _sfc_render$1_]]);
 const prefixCls$1b = "ivu-breadcrumb-item";
-const _sfc_main$2c = {
+const _sfc_main$2d = {
   name: "BreadcrumbItem",
   mixins: [mixinsLink],
   inject: ["BreadcrumbInstance"],
@@ -6024,9 +6029,9 @@ function _sfc_render$1Z(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2))
   ]);
 }
-var BreadcrumbItem = /* @__PURE__ */ _export_sfc(_sfc_main$2c, [["render", _sfc_render$1Z]]);
+var BreadcrumbItem = /* @__PURE__ */ _export_sfc(_sfc_main$2d, [["render", _sfc_render$1Z]]);
 const prefixCls$1a = "ivu-btn";
-const _sfc_main$2b = {
+const _sfc_main$2c = {
   name: "Button",
   mixins: [mixinsLink, mixinsForm],
   components: { Icon },
@@ -6153,7 +6158,7 @@ const _sfc_main$2b = {
   }
 };
 const prefixCls$19 = "ivu-btn-group";
-const _sfc_main$2a = {
+const _sfc_main$2b = {
   name: "ButtonGroup",
   props: {
     size: {
@@ -6195,12 +6200,12 @@ function _sfc_render$1Y(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var ButtonGroup = /* @__PURE__ */ _export_sfc(_sfc_main$2a, [["render", _sfc_render$1Y]]);
+var ButtonGroup = /* @__PURE__ */ _export_sfc(_sfc_main$2b, [["render", _sfc_render$1Y]]);
 const prefixCls$18 = "ivu-radio-group";
 let seed$1 = 0;
 const now$2 = Date.now();
 const getUuid$1 = () => `ivuRadioGroup_${now$2}_${seed$1++}`;
-const _sfc_main$29 = {
+const _sfc_main$2a = {
   name: "RadioGroup",
   mixins: [mixinsForm],
   emits: ["update:modelValue", "on-change"],
@@ -6288,9 +6293,9 @@ function _sfc_render$1X(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 10, _hoisted_1$1a);
 }
-var RadioGroup = /* @__PURE__ */ _export_sfc(_sfc_main$29, [["render", _sfc_render$1X]]);
+var RadioGroup = /* @__PURE__ */ _export_sfc(_sfc_main$2a, [["render", _sfc_render$1X]]);
 const prefixCls$17 = "ivu-radio";
-const _sfc_main$28 = {
+const _sfc_main$29 = {
   name: "Radio",
   mixins: [mixinsForm],
   emits: ["update:modelValue", "on-change"],
@@ -6469,7 +6474,7 @@ function _sfc_render$1W(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 2);
 }
-var Radio = /* @__PURE__ */ _export_sfc(_sfc_main$28, [["render", _sfc_render$1W]]);
+var Radio = /* @__PURE__ */ _export_sfc(_sfc_main$29, [["render", _sfc_render$1W]]);
 var dayjs_min = { exports: {} };
 (function(module, exports) {
   !function(t2, e) {
@@ -6802,7 +6807,7 @@ var events = {
     }
   }
 };
-const _sfc_main$27 = {
+const _sfc_main$28 = {
   name: "CalendarMonth",
   mixins: [events],
   inject: ["CalendarInstance"],
@@ -6922,8 +6927,8 @@ function _sfc_render$1V(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var CalendarMonth = /* @__PURE__ */ _export_sfc(_sfc_main$27, [["render", _sfc_render$1V]]);
-const _sfc_main$26 = {
+var CalendarMonth = /* @__PURE__ */ _export_sfc(_sfc_main$28, [["render", _sfc_render$1V]]);
+const _sfc_main$27 = {
   name: "CalendarYear",
   mixins: [events],
   inject: ["CalendarInstance"],
@@ -7007,10 +7012,10 @@ function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var CalendarYear = /* @__PURE__ */ _export_sfc(_sfc_main$26, [["render", _sfc_render$1U]]);
-const _sfc_main$25 = {
+var CalendarYear = /* @__PURE__ */ _export_sfc(_sfc_main$27, [["render", _sfc_render$1U]]);
+const _sfc_main$26 = {
   name: "Calendar",
-  components: { CalendarMonth, CalendarYear, ButtonGroup, Button: _sfc_main$2b, RadioGroup, Radio, Icon },
+  components: { CalendarMonth, CalendarYear, ButtonGroup, Button: _sfc_main$2c, RadioGroup, Radio, Icon },
   emits: ["on-type-change", "on-prev", "on-next", "on-today", "on-change", "update:modelValue", "on-cell-click", "on-cell-contextmenu"],
   provide() {
     return {
@@ -7238,7 +7243,7 @@ function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$25, [["render", _sfc_render$1T]]);
+var Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$26, [["render", _sfc_render$1T]]);
 const prefixCls$16 = "ivu-col";
 function parseFlex(flex) {
   if (typeof flex === "number") {
@@ -7249,7 +7254,7 @@ function parseFlex(flex) {
   }
   return flex;
 }
-const _sfc_main$24 = {
+const _sfc_main$25 = {
   name: "iCol",
   inject: ["RowInstance"],
   props: {
@@ -7321,9 +7326,9 @@ function _sfc_render$1S(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 6);
 }
-var Col = /* @__PURE__ */ _export_sfc(_sfc_main$24, [["render", _sfc_render$1S]]);
+var Col = /* @__PURE__ */ _export_sfc(_sfc_main$25, [["render", _sfc_render$1S]]);
 const prefixCls$15 = "ivu-row";
-const _sfc_main$23 = {
+const _sfc_main$24 = {
   name: "Row",
   provide() {
     return {
@@ -7391,7 +7396,7 @@ function _sfc_render$1R(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 6);
 }
-var Row = /* @__PURE__ */ _export_sfc(_sfc_main$23, [["render", _sfc_render$1R]]);
+var Row = /* @__PURE__ */ _export_sfc(_sfc_main$24, [["render", _sfc_render$1R]]);
 function _extends() {
   _extends = Object.assign || function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -8407,7 +8412,7 @@ function getPropByPath(obj, path) {
     v: tempObj[keyArr[i]]
   };
 }
-const _sfc_main$22 = {
+const _sfc_main$23 = {
   name: "FormItem",
   inject: ["FormInstance"],
   provide() {
@@ -8645,7 +8650,7 @@ function _sfc_render$1Q(_ctx, _cache, $props, $setup, $data, $options) {
     ], 6)
   ], 2);
 }
-var FormItem = /* @__PURE__ */ _export_sfc(_sfc_main$22, [["render", _sfc_render$1Q]]);
+var FormItem = /* @__PURE__ */ _export_sfc(_sfc_main$23, [["render", _sfc_render$1Q]]);
 var defaultValidateMessage = {
   UserName: "\u8BF7\u8F93\u5165\u7528\u6237\u540D\uFF01",
   Password: "\u8BF7\u8F93\u5165\u5BC6\u7801\uFF01",
@@ -8740,7 +8745,7 @@ var LoginItem = {
     this.handleSetValue();
   }
 };
-const _sfc_main$21 = {
+const _sfc_main$22 = {
   name: "Captcha",
   mixins: [LoginItem],
   emits: ["on-get-captcha"],
@@ -8839,7 +8844,7 @@ const _sfc_main$21 = {
     } else {
       buttonSlot = () => "\u83B7\u53D6\u9A8C\u8BC1\u7801";
     }
-    const $button = h(_sfc_main$2b, __spreadProps(__spreadValues({}, defaultButtonProps), {
+    const $button = h(_sfc_main$2c, __spreadProps(__spreadValues({}, defaultButtonProps), {
       onClick: this.handleClickCaptcha
     }), buttonSlot);
     const $input = h(Input, __spreadProps(__spreadValues({}, finalProps), {
@@ -8870,7 +8875,7 @@ const _sfc_main$21 = {
 };
 const prefixCls$13 = "ivu-card";
 const defaultPadding = 16;
-const _sfc_main$20 = {
+const _sfc_main$21 = {
   name: "Card",
   mixins: [mixinsLink],
   components: { Icon },
@@ -8999,9 +9004,9 @@ function _sfc_render$1P(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 16, ["class", "onClick"]);
 }
-var Card = /* @__PURE__ */ _export_sfc(_sfc_main$20, [["render", _sfc_render$1P]]);
+var Card = /* @__PURE__ */ _export_sfc(_sfc_main$21, [["render", _sfc_render$1P]]);
 const prefixCls$12 = "ivu-carousel";
-const _sfc_main$1$ = {
+const _sfc_main$20 = {
   name: "Carousel",
   provide() {
     return {
@@ -9334,9 +9339,9 @@ function _sfc_render$1O(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 2);
 }
-var Carousel = /* @__PURE__ */ _export_sfc(_sfc_main$1$, [["render", _sfc_render$1O]]);
+var Carousel = /* @__PURE__ */ _export_sfc(_sfc_main$20, [["render", _sfc_render$1O]]);
 const prefixCls$11 = "ivu-carousel-item";
-const _sfc_main$1_ = {
+const _sfc_main$1$ = {
   componentName: "carousel-item",
   name: "CarouselItem",
   inject: ["CarouselInstance"],
@@ -9409,8 +9414,8 @@ function _sfc_render$1N(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 6);
 }
-var CarouselItem = /* @__PURE__ */ _export_sfc(_sfc_main$1_, [["render", _sfc_render$1N]]);
-const _sfc_main$1Z = {
+var CarouselItem = /* @__PURE__ */ _export_sfc(_sfc_main$1$, [["render", _sfc_render$1N]]);
+const _sfc_main$1_ = {
   name: "Casitem",
   components: { Icon },
   mixins: [globalConfig],
@@ -9488,9 +9493,9 @@ function _sfc_render$1M(_ctx, _cache, $props, $setup, $data, $options) {
     $options.showLoading ? (openBlock(), createElementBlock("i", _hoisted_1$12)) : createCommentVNode("", true)
   ], 2);
 }
-var Casitem = /* @__PURE__ */ _export_sfc(_sfc_main$1Z, [["render", _sfc_render$1M]]);
+var Casitem = /* @__PURE__ */ _export_sfc(_sfc_main$1_, [["render", _sfc_render$1M]]);
 let key = 1;
-const _sfc_main$1Y = {
+const _sfc_main$1Z = {
   name: "Caspanel",
   components: { Casitem },
   inject: ["CascaderInstance"],
@@ -9704,7 +9709,7 @@ function _sfc_render$1L(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["prefix-cls", "data", "disabled", "trigger", "change-on-select"])) : createCommentVNode("", true)
   ]);
 }
-var Caspanel = /* @__PURE__ */ _export_sfc(_sfc_main$1Y, [["render", _sfc_render$1L]]);
+var Caspanel = /* @__PURE__ */ _export_sfc(_sfc_main$1Z, [["render", _sfc_render$1L]]);
 var clickOutside = {
   beforeMount(el, binding, vnode) {
     function documentHandler(e) {
@@ -9723,7 +9728,7 @@ var clickOutside = {
 };
 const prefixCls$10 = "ivu-cascader";
 const selectPrefixCls = "ivu-select";
-const _sfc_main$1X = {
+const _sfc_main$1Y = {
   name: "Cascader",
   mixins: [Locale, mixinsForm, globalConfig],
   components: { iInput: Input, Drop, Icon, Caspanel },
@@ -10239,8 +10244,8 @@ function _sfc_render$1K(_ctx, _cache, $props, $setup, $data, $options) {
     [_directive_click_outside, $options.handleClose]
   ]);
 }
-var Cascader = /* @__PURE__ */ _export_sfc(_sfc_main$1X, [["render", _sfc_render$1K]]);
-const _sfc_main$1W = {
+var Cascader = /* @__PURE__ */ _export_sfc(_sfc_main$1Y, [["render", _sfc_render$1K]]);
+const _sfc_main$1X = {
   name: "CellItem",
   props: {
     title: {
@@ -10290,9 +10295,9 @@ function _sfc_render$1J(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var CellItem = /* @__PURE__ */ _export_sfc(_sfc_main$1W, [["render", _sfc_render$1J]]);
+var CellItem = /* @__PURE__ */ _export_sfc(_sfc_main$1X, [["render", _sfc_render$1J]]);
 const prefixCls$$ = "ivu-cell";
-const _sfc_main$1V = {
+const _sfc_main$1W = {
   name: "Cell",
   inject: ["CellGroupInstance"],
   mixins: [mixinsLink, globalConfig],
@@ -10455,8 +10460,8 @@ function _sfc_render$1I(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 2);
 }
-var Cell = /* @__PURE__ */ _export_sfc(_sfc_main$1V, [["render", _sfc_render$1I]]);
-const _sfc_main$1U = {
+var Cell = /* @__PURE__ */ _export_sfc(_sfc_main$1W, [["render", _sfc_render$1I]]);
+const _sfc_main$1V = {
   name: "CellGroup",
   emits: ["on-click"],
   provide() {
@@ -10476,9 +10481,9 @@ function _sfc_render$1H(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ]);
 }
-var CellGroup = /* @__PURE__ */ _export_sfc(_sfc_main$1U, [["render", _sfc_render$1H]]);
+var CellGroup = /* @__PURE__ */ _export_sfc(_sfc_main$1V, [["render", _sfc_render$1H]]);
 const prefixCls$_ = "ivu-checkbox";
-const _sfc_main$1T = {
+const _sfc_main$1U = {
   name: "Checkbox",
   mixins: [mixinsForm],
   emits: ["update:modelValue", "on-change"],
@@ -10670,9 +10675,9 @@ function _sfc_render$1G(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 2);
 }
-var Checkbox = /* @__PURE__ */ _export_sfc(_sfc_main$1T, [["render", _sfc_render$1G]]);
+var Checkbox = /* @__PURE__ */ _export_sfc(_sfc_main$1U, [["render", _sfc_render$1G]]);
 const prefixCls$Z = "ivu-checkbox-group";
-const _sfc_main$1S = {
+const _sfc_main$1T = {
   name: "CheckboxGroup",
   mixins: [mixinsForm],
   emits: ["update:modelValue", "on-change"],
@@ -10730,9 +10735,9 @@ function _sfc_render$1F(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var CheckboxGroup = /* @__PURE__ */ _export_sfc(_sfc_main$1S, [["render", _sfc_render$1F]]);
+var CheckboxGroup = /* @__PURE__ */ _export_sfc(_sfc_main$1T, [["render", _sfc_render$1F]]);
 const prefixCls$Y = "ivu-chart-circle";
-const _sfc_main$1R = {
+const _sfc_main$1S = {
   name: "iCircle",
   props: {
     percent: {
@@ -10903,9 +10908,9 @@ function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 6);
 }
-var Circle = /* @__PURE__ */ _export_sfc(_sfc_main$1R, [["render", _sfc_render$1E]]);
+var Circle = /* @__PURE__ */ _export_sfc(_sfc_main$1S, [["render", _sfc_render$1E]]);
 const prefixCls$X = "ivu-dropdown";
-const _sfc_main$1Q = {
+const _sfc_main$1R = {
   name: "Dropdown",
   directives: { clickOutside },
   components: { Drop },
@@ -11144,8 +11149,8 @@ function _sfc_render$1D(_ctx, _cache, $props, $setup, $data, $options) {
     [_directive_click_outside, $options.onClickoutside]
   ]);
 }
-var Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$1Q, [["render", _sfc_render$1D]]);
-const _sfc_main$1P = {
+var Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$1R, [["render", _sfc_render$1D]]);
+const _sfc_main$1Q = {
   name: "DropdownMenu"
 };
 const _hoisted_1$X = { class: "ivu-dropdown-menu" };
@@ -11154,11 +11159,11 @@ function _sfc_render$1C(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ]);
 }
-var DropdownMenu = /* @__PURE__ */ _export_sfc(_sfc_main$1P, [["render", _sfc_render$1C]]);
+var DropdownMenu = /* @__PURE__ */ _export_sfc(_sfc_main$1Q, [["render", _sfc_render$1C]]);
 const prefixCls$W = "ivu-tag";
 const initColorList = ["default", "primary", "success", "warning", "error", "blue", "green", "red", "yellow", "pink", "magenta", "volcano", "orange", "gold", "lime", "cyan", "geekblue", "purple"];
 const colorList = ["pink", "magenta", "volcano", "orange", "gold", "lime", "cyan", "geekblue", "purple"];
-const _sfc_main$1O = {
+const _sfc_main$1P = {
   name: "Tag",
   components: { Icon },
   emits: ["on-change", "on-close"],
@@ -11316,7 +11321,7 @@ function _sfc_render$1B(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["class", "color", "onClick"])) : createCommentVNode("", true)
   ], 6);
 }
-var Tag = /* @__PURE__ */ _export_sfc(_sfc_main$1O, [["render", _sfc_render$1B]]);
+var Tag = /* @__PURE__ */ _export_sfc(_sfc_main$1P, [["render", _sfc_render$1B]]);
 var provinceData = {
   "110000": { l: "Z1", n: "\u5317\u4EAC", c: "110000", p: "86" },
   "120000": { l: "Z1", n: "\u5929\u6D25", c: "120000", p: "86" },
@@ -11770,7 +11775,7 @@ function handleGetNameByCode(cities, code) {
   const info = cities.find((item) => item.c === code);
   return info.n;
 }
-const _sfc_main$1N = {
+const _sfc_main$1O = {
   name: "City",
   mixins: [mixinsForm],
   components: { Dropdown, DropdownMenu, Select, Option: iOption, Tag, Icon, RadioGroup, Radio },
@@ -12343,9 +12348,9 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["visible", "transfer", "transfer-class-name", "onOnVisibleChange", "onOnClickoutside"])
   ], 2);
 }
-var City = /* @__PURE__ */ _export_sfc(_sfc_main$1N, [["render", _sfc_render$1A]]);
+var City = /* @__PURE__ */ _export_sfc(_sfc_main$1O, [["render", _sfc_render$1A]]);
 const prefixCls$V = "ivu-collapse";
-const _sfc_main$1M = {
+const _sfc_main$1N = {
   name: "Collapse",
   emits: ["on-change", "update:modelValue"],
   provide() {
@@ -12436,7 +12441,7 @@ function _sfc_render$1z(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Collapse = /* @__PURE__ */ _export_sfc(_sfc_main$1M, [["render", _sfc_render$1z]]);
+var Collapse = /* @__PURE__ */ _export_sfc(_sfc_main$1N, [["render", _sfc_render$1z]]);
 var tinycolor$1 = { exports: {} };
 (function(module) {
   (function(Math2) {
@@ -13434,7 +13439,7 @@ function toRGBAString(rgba) {
   const { r, g, b, a } = rgba;
   return `rgba(${[r, g, b, a].join(",")})`;
 }
-const _sfc_main$1L = {
+const _sfc_main$1M = {
   name: "RecommendedColors",
   mixins: [handleEscapeMixin, Prefixes],
   emits: ["picker-color", "change"],
@@ -13573,7 +13578,7 @@ function _sfc_render$1y(_ctx, _cache, $props, $setup, $data, $options) {
     }), 128))
   ], 544);
 }
-var RecommendColors = /* @__PURE__ */ _export_sfc(_sfc_main$1L, [["render", _sfc_render$1y]]);
+var RecommendColors = /* @__PURE__ */ _export_sfc(_sfc_main$1M, [["render", _sfc_render$1y]]);
 var HSAMixin = {
   mixins: [handleEscapeMixin],
   props: {
@@ -13639,7 +13644,7 @@ var HSAMixin = {
     }
   }
 };
-const _sfc_main$1K = {
+const _sfc_main$1L = {
   name: "Saturation",
   mixins: [HSAMixin, Prefixes],
   emits: ["change"],
@@ -13732,8 +13737,8 @@ function _sfc_render$1x(_ctx, _cache, $props, $setup, $data, $options) {
     ], 38)
   ], 34);
 }
-var Saturation = /* @__PURE__ */ _export_sfc(_sfc_main$1K, [["render", _sfc_render$1x]]);
-const _sfc_main$1J = {
+var Saturation = /* @__PURE__ */ _export_sfc(_sfc_main$1L, [["render", _sfc_render$1x]]);
+const _sfc_main$1K = {
   name: "Hue",
   mixins: [HSAMixin, Prefixes],
   emits: ["change"],
@@ -13820,8 +13825,8 @@ function _sfc_render$1w(_ctx, _cache, $props, $setup, $data, $options) {
     ], 34)
   ], 34);
 }
-var Hue = /* @__PURE__ */ _export_sfc(_sfc_main$1J, [["render", _sfc_render$1w]]);
-const _sfc_main$1I = {
+var Hue = /* @__PURE__ */ _export_sfc(_sfc_main$1K, [["render", _sfc_render$1w]]);
+const _sfc_main$1J = {
   name: "Alpha",
   mixins: [HSAMixin, Prefixes],
   emits: ["change"],
@@ -13916,10 +13921,10 @@ function _sfc_render$1v(_ctx, _cache, $props, $setup, $data, $options) {
     ], 34)
   ], 34);
 }
-var Alpha = /* @__PURE__ */ _export_sfc(_sfc_main$1I, [["render", _sfc_render$1v]]);
-const _sfc_main$1H = {
+var Alpha = /* @__PURE__ */ _export_sfc(_sfc_main$1J, [["render", _sfc_render$1v]]);
+const _sfc_main$1I = {
   name: "ColorPicker",
-  components: { Drop, RecommendColors, Saturation, Hue, Alpha, iInput: Input, iButton: _sfc_main$2b, Icon },
+  components: { Drop, RecommendColors, Saturation, Hue, Alpha, iInput: Input, iButton: _sfc_main$2c, Icon },
   directives: { clickOutside: directive },
   mixins: [Locale, Prefixes, mixinsForm, globalConfig],
   emits: ["on-active-change", "on-open-change", "on-change", "on-pick-success", "on-pick-clear", "update:modelValue"],
@@ -14482,9 +14487,9 @@ function _sfc_render$1u(_ctx, _cache, $props, $setup, $data, $options) {
     [_directive_click_outside, $options.handleClose, $props.capture]
   ]);
 }
-var ColorPicker = /* @__PURE__ */ _export_sfc(_sfc_main$1H, [["render", _sfc_render$1u]]);
+var ColorPicker = /* @__PURE__ */ _export_sfc(_sfc_main$1I, [["render", _sfc_render$1u]]);
 const prefixCls$U = "ivu-layout";
-const _sfc_main$1G = {
+const _sfc_main$1H = {
   name: "Content",
   computed: {
     wrapClasses() {
@@ -14499,7 +14504,7 @@ function _sfc_render$1t(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Content = /* @__PURE__ */ _export_sfc(_sfc_main$1G, [["render", _sfc_render$1t]]);
+var Content = /* @__PURE__ */ _export_sfc(_sfc_main$1H, [["render", _sfc_render$1t]]);
 function select(element) {
   var selectedText;
   if (element.nodeName === "SELECT") {
@@ -14539,7 +14544,7 @@ var Render$1 = {
     return this.render(h);
   }
 };
-const _sfc_main$1F = {
+const _sfc_main$1G = {
   components: {
     RenderCell: Render$1
   },
@@ -14749,14 +14754,14 @@ function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)) : createCommentVNode("", true)
   ], 6);
 }
-var Notice = /* @__PURE__ */ _export_sfc(_sfc_main$1F, [["render", _sfc_render$1s]]);
+var Notice = /* @__PURE__ */ _export_sfc(_sfc_main$1G, [["render", _sfc_render$1s]]);
 const prefixCls$T = "ivu-notification";
 let seed = 0;
 const now$1 = Date.now();
 function getUuid() {
   return "ivuNotification_" + now$1 + "_" + seed++;
 }
-const _sfc_main$1E = {
+const _sfc_main$1F = {
   components: { Notice },
   props: {
     prefixCls: {
@@ -14871,7 +14876,7 @@ function _sfc_render$1r(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["name"])
   ], 6);
 }
-var Notification$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1E, [["render", _sfc_render$1r]]);
+var Notification$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1F, [["render", _sfc_render$1r]]);
 Notification$1.newInstance = (properties) => {
   if (!isClient)
     return;
@@ -15049,7 +15054,7 @@ function Copy({ text = "", successTip = defaultSuccessTip, errorTip = defaultErr
 function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
 }
-const _sfc_main$1D = {
+const _sfc_main$1E = {
   name: "CountDown",
   emits: ["on-end"],
   props: {
@@ -15136,7 +15141,7 @@ const _sfc_main$1D = {
 function _sfc_render$1q(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", null, toDisplayString($options.result), 1);
 }
-var CountDown = /* @__PURE__ */ _export_sfc(_sfc_main$1D, [["render", _sfc_render$1q]]);
+var CountDown = /* @__PURE__ */ _export_sfc(_sfc_main$1E, [["render", _sfc_render$1q]]);
 var countUp_min = { exports: {} };
 (function(module, exports) {
   !function(a, n) {
@@ -15205,7 +15210,7 @@ var countUp_min = { exports: {} };
   });
 })(countUp_min, countUp_min.exports);
 var CountUp$1 = countUp_min.exports;
-const _sfc_main$1C = {
+const _sfc_main$1D = {
   name: "CountUp",
   props: {
     start: {
@@ -15299,7 +15304,7 @@ const _hoisted_1$S = { class: "ivu-count-up" };
 function _sfc_render$1p(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", _hoisted_1$S);
 }
-var CountUp = /* @__PURE__ */ _export_sfc(_sfc_main$1C, [["render", _sfc_render$1p]]);
+var CountUp = /* @__PURE__ */ _export_sfc(_sfc_main$1D, [["render", _sfc_render$1p]]);
 var fecha = {};
 var token = /d{1,4}|M{1,4}|yy(?:yy)?|S{1,3}|Do|ZZ|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g;
 var twoDigits = /\d\d?/;
@@ -15806,7 +15811,7 @@ const extractTime = (date3) => {
     date3.getSeconds()
   ];
 };
-const _sfc_main$1B = {
+const _sfc_main$1C = {
   mixins: [mixinsForm, globalConfig],
   components: { iInput: Input, Drop, Icon },
   directives: { clickOutside: directive },
@@ -16561,7 +16566,7 @@ function _sfc_render$1o(_ctx, _cache, $props, $setup, $data, $options) {
     [_directive_click_outside, $options.handleClose, $props.capture]
   ]);
 }
-var Picker = /* @__PURE__ */ _export_sfc(_sfc_main$1B, [["render", _sfc_render$1o]]);
+var Picker = /* @__PURE__ */ _export_sfc(_sfc_main$1C, [["render", _sfc_render$1o]]);
 var oneDay = 1e3 * 60 * 60 * 24;
 function daysInMonth(year, month) {
   return new Date(year, month + 1, 0).getDate();
@@ -16898,7 +16903,7 @@ var mixin$1 = {
   }
 };
 var prefixCls$Q = "ivu-date-picker-cells";
-const _sfc_main$1A = {
+const _sfc_main$1B = {
   mixins: [Locale, mixin$1],
   props: {
     showWeekNumbers: {
@@ -16994,8 +16999,8 @@ function _sfc_render$1n(_ctx, _cache, $props, $setup, $data, $options) {
     }), 128))
   ], 2);
 }
-var DateTable = /* @__PURE__ */ _export_sfc(_sfc_main$1A, [["render", _sfc_render$1n]]);
-const _sfc_main$1z = {
+var DateTable = /* @__PURE__ */ _export_sfc(_sfc_main$1B, [["render", _sfc_render$1n]]);
+const _sfc_main$1A = {
   mixins: [mixin$1],
   props: {},
   computed: {
@@ -17060,8 +17065,8 @@ function _sfc_render$1m(_ctx, _cache, $props, $setup, $data, $options) {
     }), 128))
   ], 2);
 }
-var YearTable = /* @__PURE__ */ _export_sfc(_sfc_main$1z, [["render", _sfc_render$1m]]);
-const _sfc_main$1y = {
+var YearTable = /* @__PURE__ */ _export_sfc(_sfc_main$1A, [["render", _sfc_render$1m]]);
+const _sfc_main$1z = {
   mixins: [Locale, mixin$1],
   props: {},
   computed: {
@@ -17128,7 +17133,7 @@ function _sfc_render$1l(_ctx, _cache, $props, $setup, $data, $options) {
     }), 128))
   ], 2);
 }
-var MonthTable = /* @__PURE__ */ _export_sfc(_sfc_main$1y, [["render", _sfc_render$1l]]);
+var MonthTable = /* @__PURE__ */ _export_sfc(_sfc_main$1z, [["render", _sfc_render$1l]]);
 var Options$1 = {
   props: {
     disabledHours: {
@@ -17157,7 +17162,7 @@ var Options$1 = {
 };
 const prefixCls$P = "ivu-time-picker-cells";
 const timeParts = ["hours", "minutes", "seconds"];
-const _sfc_main$1x = {
+const _sfc_main$1y = {
   name: "TimeSpinner",
   mixins: [Options$1],
   emits: ["on-change", "on-pick-click"],
@@ -17457,11 +17462,11 @@ function _sfc_render$1k(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 2);
 }
-var TimeSpinner = /* @__PURE__ */ _export_sfc(_sfc_main$1x, [["render", _sfc_render$1k]]);
+var TimeSpinner = /* @__PURE__ */ _export_sfc(_sfc_main$1y, [["render", _sfc_render$1k]]);
 const prefixCls$O = "ivu-picker";
-const _sfc_main$1w = {
+const _sfc_main$1x = {
   mixins: [Locale],
-  components: { iButton: _sfc_main$2b },
+  components: { iButton: _sfc_main$2c },
   emits: ["on-pick-clear", "on-pick-success", "on-pick-toggle-time"],
   inject: ["PickerInstance"],
   props: {
@@ -17564,7 +17569,7 @@ function _sfc_render$1j(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["onClick", "onKeydown"])
   ], 34);
 }
-var Confirm = /* @__PURE__ */ _export_sfc(_sfc_main$1w, [["render", _sfc_render$1j]]);
+var Confirm = /* @__PURE__ */ _export_sfc(_sfc_main$1x, [["render", _sfc_render$1j]]);
 const prefixCls$N = "ivu-picker-panel";
 const datePrefixCls$2 = "ivu-date-picker";
 var Mixin$1 = {
@@ -17633,7 +17638,7 @@ const mergeDateHMS = (date3, hours, minutes, seconds) => {
 };
 const unique = (el, i, arr) => arr.indexOf(el) === i;
 const returnFalse = () => false;
-const _sfc_main$1v = {
+const _sfc_main$1w = {
   name: "TimePickerPanel",
   mixins: [Mixin$1, Locale, Options$1],
   components: { TimeSpinner, Confirm },
@@ -17764,8 +17769,8 @@ function _sfc_render$1i(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 34);
 }
-var TimePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1v, [["render", _sfc_render$1i]]);
-const _sfc_main$1u = {
+var TimePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1w, [["render", _sfc_render$1i]]);
+const _sfc_main$1v = {
   props: {
     datePanelLabel: Object,
     currentView: String,
@@ -17793,7 +17798,7 @@ function _sfc_render$1h(_ctx, _cache, $props, $setup, $data, $options) {
     ]) : createCommentVNode("", true)
   ]);
 }
-var datePanelLabel = /* @__PURE__ */ _export_sfc(_sfc_main$1u, [["render", _sfc_render$1h]]);
+var datePanelLabel = /* @__PURE__ */ _export_sfc(_sfc_main$1v, [["render", _sfc_render$1h]]);
 var DateMixin = {
   props: {
     showTime: {
@@ -17856,7 +17861,7 @@ var DateMixin = {
 };
 const prefixCls$L = "ivu-picker-panel";
 const datePrefixCls$1 = "ivu-date-picker";
-const _sfc_main$1t = {
+const _sfc_main$1u = {
   name: "DatePickerPanel",
   mixins: [Mixin$1, Locale, DateMixin],
   components: { Icon, DateTable, YearTable, MonthTable, TimePicker: TimePickerPanel, Confirm, datePanelLabel },
@@ -18089,11 +18094,11 @@ function _sfc_render$1g(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 34);
 }
-var DatePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1t, [["render", _sfc_render$1g]]);
+var DatePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1u, [["render", _sfc_render$1g]]);
 const prefixCls$K = "ivu-picker-panel";
 const timePrefixCls = "ivu-time-picker";
 const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
-const _sfc_main$1s = {
+const _sfc_main$1t = {
   name: "RangeTimePickerPanel",
   mixins: [Mixin$1, Locale, Options$1],
   components: { TimeSpinner, Confirm },
@@ -18259,7 +18264,7 @@ function _sfc_render$1f(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 34);
 }
-var RangeTimePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1s, [["render", _sfc_render$1f]]);
+var RangeTimePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1t, [["render", _sfc_render$1f]]);
 const prefixCls$J = "ivu-picker-panel";
 const datePrefixCls = "ivu-date-picker";
 const dateSorter = (a, b) => {
@@ -18267,7 +18272,7 @@ const dateSorter = (a, b) => {
     return 0;
   return a.getTime() - b.getTime();
 };
-const _sfc_main$1r = {
+const _sfc_main$1s = {
   name: "RangeDatePickerPanel",
   mixins: [Mixin$1, Locale, DateMixin],
   components: { Icon, DateTable, YearTable, MonthTable, TimePicker: RangeTimePickerPanel, Confirm, datePanelLabel },
@@ -18671,7 +18676,7 @@ function _sfc_render$1e(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 34);
 }
-var RangeDatePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1r, [["render", _sfc_render$1e]]);
+var RangeDatePickerPanel = /* @__PURE__ */ _export_sfc(_sfc_main$1s, [["render", _sfc_render$1e]]);
 var DatePicker = {
   name: "CalendarPicker",
   mixins: [Picker],
@@ -18700,7 +18705,7 @@ var responsive = {
   3: { xs: 24, sm: 12, md: 8 },
   4: { xs: 24, sm: 12, md: 6 }
 };
-const _sfc_main$1q = {
+const _sfc_main$1r = {
   name: "Description",
   inject: ["DescriptionListInstance"],
   props: {
@@ -18742,7 +18747,7 @@ const _sfc_main$1q = {
     }), () => children);
   }
 };
-const _sfc_main$1p = {
+const _sfc_main$1q = {
   name: "DescriptionList",
   components: { Row },
   provide() {
@@ -18794,9 +18799,9 @@ function _sfc_render$1d(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["gutter"])
   ], 2);
 }
-var DescriptionList = /* @__PURE__ */ _export_sfc(_sfc_main$1p, [["render", _sfc_render$1d]]);
+var DescriptionList = /* @__PURE__ */ _export_sfc(_sfc_main$1q, [["render", _sfc_render$1d]]);
 const prefixCls$I = "ivu-divider";
-const _sfc_main$1o = {
+const _sfc_main$1p = {
   name: "Divider",
   props: {
     type: {
@@ -18864,7 +18869,7 @@ function _sfc_render$1c(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)) : createCommentVNode("", true)
   ], 2);
 }
-var Divider = /* @__PURE__ */ _export_sfc(_sfc_main$1o, [["render", _sfc_render$1c]]);
+var Divider = /* @__PURE__ */ _export_sfc(_sfc_main$1p, [["render", _sfc_render$1c]]);
 var ScrollbarMixins = {
   props: {
     lockScroll: {
@@ -18916,7 +18921,7 @@ var ScrollbarMixins = {
   }
 };
 const prefixCls$H = "ivu-drawer";
-const _sfc_main$1n = {
+const _sfc_main$1o = {
   name: "Drawer",
   mixins: [ScrollbarMixins],
   components: { Icon },
@@ -19314,9 +19319,9 @@ function _sfc_render$1b(_ctx, _cache, $props, $setup, $data, $options) {
     ], 512)
   ], 8, ["disabled"]);
 }
-var Drawer = /* @__PURE__ */ _export_sfc(_sfc_main$1n, [["render", _sfc_render$1b]]);
+var Drawer = /* @__PURE__ */ _export_sfc(_sfc_main$1o, [["render", _sfc_render$1b]]);
 const prefixCls$G = "ivu-dropdown-item";
-const _sfc_main$1m = {
+const _sfc_main$1n = {
   name: "DropdownItem",
   props: {
     name: {
@@ -19372,7 +19377,7 @@ function _sfc_render$1a(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var DropdownItem = /* @__PURE__ */ _export_sfc(_sfc_main$1m, [["render", _sfc_render$1a]]);
+var DropdownItem = /* @__PURE__ */ _export_sfc(_sfc_main$1n, [["render", _sfc_render$1a]]);
 const getStrFullLength = (str = "") => str.split("").reduce((pre, cur) => {
   const charCode = cur.charCodeAt(0);
   if (charCode >= 0 && charCode <= 128) {
@@ -19395,7 +19400,7 @@ const cutStrByFullLength = (str = "", maxLength) => {
     return pre;
   }, "");
 };
-const _sfc_main$1l = {
+const _sfc_main$1m = {
   name: "Ellipsis",
   components: { Tooltip },
   emits: ["on-show", "on-hide"],
@@ -19615,8 +19620,8 @@ function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
     ]))
   ]);
 }
-var Ellipsis = /* @__PURE__ */ _export_sfc(_sfc_main$1l, [["render", _sfc_render$19]]);
-const _sfc_main$1k = {
+var Ellipsis = /* @__PURE__ */ _export_sfc(_sfc_main$1m, [["render", _sfc_render$19]]);
+const _sfc_main$1l = {
   name: "Email",
   mixins: [LoginItem],
   data() {
@@ -19667,9 +19672,9 @@ var typeConfig = {
     desc: "\u62B1\u6B49\uFF0C\u670D\u52A1\u5668\u51FA\u9519\u4E86"
   }
 };
-const _sfc_main$1j = {
+const _sfc_main$1k = {
   name: "Exception",
-  components: { Button: _sfc_main$2b },
+  components: { Button: _sfc_main$2c },
   props: {
     type: {
       validator(value) {
@@ -19753,9 +19758,9 @@ function _sfc_render$18(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var Exception = /* @__PURE__ */ _export_sfc(_sfc_main$1j, [["render", _sfc_render$18]]);
+var Exception = /* @__PURE__ */ _export_sfc(_sfc_main$1k, [["render", _sfc_render$18]]);
 const prefixCls$F = "ivu-layout";
-const _sfc_main$1i = {
+const _sfc_main$1j = {
   name: "Footer",
   computed: {
     wrapClasses() {
@@ -19770,8 +19775,8 @@ function _sfc_render$17(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Footer = /* @__PURE__ */ _export_sfc(_sfc_main$1i, [["render", _sfc_render$17]]);
-const _sfc_main$1h = {
+var Footer = /* @__PURE__ */ _export_sfc(_sfc_main$1j, [["render", _sfc_render$17]]);
+const _sfc_main$1i = {
   name: "FooterToolbar",
   props: {
     extra: {
@@ -19797,9 +19802,9 @@ function _sfc_render$16(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var FooterToolbar = /* @__PURE__ */ _export_sfc(_sfc_main$1h, [["render", _sfc_render$16]]);
+var FooterToolbar = /* @__PURE__ */ _export_sfc(_sfc_main$1i, [["render", _sfc_render$16]]);
 const prefixCls$E = "ivu-form";
-const _sfc_main$1g = {
+const _sfc_main$1h = {
   name: "iForm",
   emits: ["on-validate"],
   provide() {
@@ -19936,8 +19941,8 @@ function _sfc_render$15(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 10, _hoisted_1$G);
 }
-var Form = /* @__PURE__ */ _export_sfc(_sfc_main$1g, [["render", _sfc_render$15]]);
-const _sfc_main$1f = {
+var Form = /* @__PURE__ */ _export_sfc(_sfc_main$1h, [["render", _sfc_render$15]]);
+const _sfc_main$1g = {
   name: "GlobalFooter",
   components: { Icon },
   props: {
@@ -19993,7 +19998,7 @@ function _sfc_render$14(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ]);
 }
-var GlobalFooter = /* @__PURE__ */ _export_sfc(_sfc_main$1f, [["render", _sfc_render$14]]);
+var GlobalFooter = /* @__PURE__ */ _export_sfc(_sfc_main$1g, [["render", _sfc_render$14]]);
 var collectionUtils = { exports: {} };
 var utils$3 = collectionUtils.exports = {};
 utils$3.forEach = function(collection, callback) {
@@ -21269,7 +21274,7 @@ function toNumber(value) {
   return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
 }
 var lodash_throttle = throttle;
-const _sfc_main$1e = {
+const _sfc_main$1f = {
   name: "Grid",
   provide() {
     return {
@@ -21340,8 +21345,8 @@ function _sfc_render$13(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Grid = /* @__PURE__ */ _export_sfc(_sfc_main$1e, [["render", _sfc_render$13]]);
-const _sfc_main$1d = {
+var Grid = /* @__PURE__ */ _export_sfc(_sfc_main$1f, [["render", _sfc_render$13]]);
+const _sfc_main$1e = {
   name: "GridItem",
   inject: ["GridInstance"],
   data() {
@@ -21410,9 +21415,9 @@ function _sfc_render$12(_ctx, _cache, $props, $setup, $data, $options) {
     ], 4)
   ], 4);
 }
-var GridItem = /* @__PURE__ */ _export_sfc(_sfc_main$1d, [["render", _sfc_render$12]]);
+var GridItem = /* @__PURE__ */ _export_sfc(_sfc_main$1e, [["render", _sfc_render$12]]);
 const prefixCls$D = "ivu-layout";
-const _sfc_main$1c = {
+const _sfc_main$1d = {
   name: "Header",
   computed: {
     wrapClasses() {
@@ -21427,7 +21432,7 @@ function _sfc_render$11(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Header = /* @__PURE__ */ _export_sfc(_sfc_main$1c, [["render", _sfc_render$11]]);
+var Header = /* @__PURE__ */ _export_sfc(_sfc_main$1d, [["render", _sfc_render$11]]);
 const KeyCode = {
   MAC_ENTER: 3,
   BACKSPACE: 8,
@@ -21606,7 +21611,7 @@ const KeyCode = {
   }
 };
 const prefixCls$C = "ivu-spin";
-const _sfc_main$1b = {
+const _sfc_main$1c = {
   name: "Spin",
   mixins: [ScrollbarMixins],
   props: {
@@ -21704,8 +21709,8 @@ function _sfc_render$10(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   });
 }
-var Spin = /* @__PURE__ */ _export_sfc(_sfc_main$1b, [["render", _sfc_render$10]]);
-const _sfc_main$1a = {
+var Spin = /* @__PURE__ */ _export_sfc(_sfc_main$1c, [["render", _sfc_render$10]]);
+const _sfc_main$1b = {
   name: "ImagePreview",
   mixins: [Locale],
   components: { Icon, Spin },
@@ -21763,6 +21768,7 @@ const _sfc_main$1a = {
       return [
         "ivu-image-preview-image",
         {
+          ["ivu-image-preview-grabbing"]: !this.transition,
           ["ivu-image-preview-hidden"]: this.status === "failed",
           ["ivu-image-preview-transition"]: this.transition,
           ["ivu-image-preview-limit"]: !this.original
@@ -21990,84 +21996,83 @@ const _hoisted_1$E = {
   class: "ivu-image-preview-fail"
 };
 const _hoisted_2$q = ["src"];
-const _hoisted_3$m = { class: "ivu-image-preview-operations" };
-const _hoisted_4$j = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_3$m = /* @__PURE__ */ createElementVNode("path", {
   d: "M637 443H519V309c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v134H325c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h118v134c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V519h118c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z",
   "p-id": "7198",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_5$c = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_4$j = /* @__PURE__ */ createElementVNode("path", {
   d: "M921 867L775 721c122.1-148.9 113.6-369.5-26-509-148-148.1-388.4-148.1-537 0-148.1 148.6-148.1 389 0 537 139.5 139.6 360.1 148.1 509 26l146 146c3.2 2.8 8.3 2.8 11 0l43-43c2.8-2.7 2.8-7.8 0-11zM696 696c-118.8 118.7-311.2 118.7-430 0-118.7-118.8-118.7-311.2 0-430 118.8-118.7 311.2-118.7 430 0 118.7 118.8 118.7 311.2 0 430z",
   "p-id": "7199",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_6$5 = [
-  _hoisted_4$j,
-  _hoisted_5$c
+const _hoisted_5$c = [
+  _hoisted_3$m,
+  _hoisted_4$j
 ];
-const _hoisted_7$5 = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_6$5 = /* @__PURE__ */ createElementVNode("path", {
   d: "M637 443H325c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h312c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z",
   "p-id": "7413",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_8$3 = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_7$5 = /* @__PURE__ */ createElementVNode("path", {
   d: "M921 867L775 721c122.1-148.9 113.6-369.5-26-509-148-148.1-388.4-148.1-537 0-148.1 148.6-148.1 389 0 537 139.5 139.6 360.1 148.1 509 26l146 146c3.2 2.8 8.3 2.8 11 0l43-43c2.8-2.7 2.8-7.8 0-11zM696 696c-118.8 118.7-311.2 118.7-430 0-118.7-118.8-118.7-311.2 0-430 118.8-118.7 311.2-118.7 430 0 118.7 118.8 118.7 311.2 0 430z",
   "p-id": "7414",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_9$3 = [
-  _hoisted_7$5,
-  _hoisted_8$3
+const _hoisted_8$3 = [
+  _hoisted_6$5,
+  _hoisted_7$5
 ];
-const _hoisted_10$2 = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_9$3 = /* @__PURE__ */ createElementVNode("path", {
   d: "M358.058667 128H156.970667A28.970667 28.970667 0 0 0 128 157.013333v202.837334c0 7.978667 6.528 14.506667 14.506667 14.506666h43.434666a14.506667 14.506667 0 0 0 14.506667-14.506666V200.448h157.610667a14.506667 14.506667 0 0 0 14.506666-14.506667V142.506667a14.506667 14.506667 0 0 0-14.506666-14.506667zM881.493333 649.642667h-43.434666a14.506667 14.506667 0 0 0-14.506667 14.506666v159.402667h-157.610667a14.506667 14.506667 0 0 0-14.506666 14.506667v43.434666c0 7.978667 6.570667 14.506667 14.506666 14.506667h201.088c16 0 28.970667-12.928 28.970667-29.013333v-202.837334a14.506667 14.506667 0 0 0-14.506667-14.506666zM358.058667 823.552H200.448v-159.402667a14.506667 14.506667 0 0 0-14.506667-14.506666H142.506667a14.506667 14.506667 0 0 0-14.506667 14.506666v202.88c0 16 12.970667 28.970667 29.013333 28.970667h201.045334a14.506667 14.506667 0 0 0 14.506666-14.506667v-43.434666a14.506667 14.506667 0 0 0-14.506666-14.506667zM866.986667 128h-201.088a14.506667 14.506667 0 0 0-14.506667 14.506667v43.434666c0 7.978667 6.570667 14.506667 14.506667 14.506667h157.610666v159.402667c0 7.978667 6.528 14.506667 14.506667 14.506666h43.434667a14.506667 14.506667 0 0 0 14.506666-14.506666V156.970667A28.928 28.928 0 0 0 866.986667 128z",
   "p-id": "26673",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_11$2 = [
-  _hoisted_10$2
+const _hoisted_10$2 = [
+  _hoisted_9$3
 ];
-const _hoisted_12$2 = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_11$2 = /* @__PURE__ */ createElementVNode("path", {
   d: "M864 128H160c-19.2 0-32 12.8-32 32v704c0 19.2 12.8 32 32 32h704c19.2 0 32-12.8 32-32V160c0-19.2-12.8-32-32-32z m-32 704H192V192h640v640z",
   "p-id": "1977",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_13$1 = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_12$2 = /* @__PURE__ */ createElementVNode("path", {
   d: "M320 384v288c0 19.2 12.8 32 32 32s32-12.8 32-32V352c0-19.2-12.8-32-32-32h-32c-19.2 0-32 12.8-32 32s12.8 32 32 32zM640 384v288c0 19.2 12.8 32 32 32s32-12.8 32-32V352c0-19.2-12.8-32-32-32h-32c-19.2 0-32 12.8-32 32s12.8 32 32 32z",
   "p-id": "1978",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_14$1 = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_13$1 = /* @__PURE__ */ createElementVNode("path", {
   d: "M512 384m-32 0a32 32 0 1 0 64 0 32 32 0 1 0-64 0Z",
   "p-id": "1979",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_15$1 = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_14$1 = /* @__PURE__ */ createElementVNode("path", {
   d: "M512 640m-32 0a32 32 0 1 0 64 0 32 32 0 1 0-64 0Z",
   "p-id": "1980",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_16$1 = [
+const _hoisted_15$1 = [
+  _hoisted_11$2,
   _hoisted_12$2,
   _hoisted_13$1,
-  _hoisted_14$1,
-  _hoisted_15$1
+  _hoisted_14$1
 ];
-const _hoisted_17$1 = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_16$1 = /* @__PURE__ */ createElementVNode("path", {
   d: "M672 418H144c-17.7 0-32 14.3-32 32v414c0 17.7 14.3 32 32 32h528c17.7 0 32-14.3 32-32V450c0-17.7-14.3-32-32-32z m-44 402H188V494h440v326z m191.3-491.5c-78.8-100.7-196-153.6-314.6-154.2l-0.2-64c0-6.5-7.6-10.1-12.6-6.1l-128 101c-4 3.1-3.9 9.1 0 12.3L492 318.6c5.1 4 12.7 0.4 12.6-6.1v-63.9c12.9 0.1 25.9 0.9 38.8 2.5 42.1 5.2 82.1 18.2 119 38.7 38.1 21.2 71.2 49.7 98.4 84.3 27.1 34.7 46.7 73.7 58.1 115.8 11 40.7 14 82.7 8.9 124.8-0.7 5.4-1.4 10.8-2.4 16.1h74.9c14.8-103.6-11.3-213-81-302.3z",
   "p-id": "13309",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_18$1 = [
-  _hoisted_17$1
+const _hoisted_17$1 = [
+  _hoisted_16$1
 ];
-const _hoisted_19$1 = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_18$1 = /* @__PURE__ */ createElementVNode("path", {
   d: "M480.5 251.2c13-1.6 25.9-2.4 38.8-2.5v63.9c0 6.5 7.5 10.1 12.6 6.1L660 217.6c4-3.2 4-9.2 0-12.3l-128-101c-5.1-4-12.6-0.4-12.6 6.1l-0.2 64c-118.6 0.5-235.8 53.4-314.6 154.2-69.6 89.2-95.7 198.6-81.1 302.4h74.9c-0.9-5.3-1.7-10.7-2.4-16.1-5.1-42.1-2.1-84.1 8.9-124.8 11.4-42.2 31-81.1 58.1-115.8 27.2-34.7 60.3-63.2 98.4-84.3 37-20.6 76.9-33.6 119.1-38.8zM880 418H352c-17.7 0-32 14.3-32 32v414c0 17.7 14.3 32 32 32h528c17.7 0 32-14.3 32-32V450c0-17.7-14.3-32-32-32z m-44 402H396V494h440v326z",
   "p-id": "13522",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_20$1 = [
-  _hoisted_19$1
+const _hoisted_19$1 = [
+  _hoisted_18$1
 ];
 function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Spin = resolveComponent("Spin");
@@ -22094,7 +22099,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
           style: normalizeStyle($options.maskStyle)
         }, [
           createElementVNode("div", mergeProps({ class: "ivu-image-preview" }, _ctx.$attrs, {
-            onClick: _cache[12] || (_cache[12] = withModifiers((...args) => $options.handleClickMask && $options.handleClickMask(...args), ["stop"]))
+            onClick: _cache[13] || (_cache[13] = withModifiers((...args) => $options.handleClickMask && $options.handleClickMask(...args), ["stop"]))
           }), [
             $data.status === "loading" ? (openBlock(), createBlock(_component_Spin, {
               key: 0,
@@ -22114,7 +22119,11 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
               onLoad: _cache[2] || (_cache[2] = (...args) => $options.handleImageLoad && $options.handleImageLoad(...args)),
               onError: _cache[3] || (_cache[3] = (...args) => $options.handleImageError && $options.handleImageError(...args))
             }, null, 46, _hoisted_2$q)),
-            createElementVNode("div", _hoisted_3$m, [
+            createElementVNode("div", {
+              class: "ivu-image-preview-operations",
+              onClick: _cache[10] || (_cache[10] = withModifiers(() => {
+              }, ["stop"]))
+            }, [
               (openBlock(), createElementBlock("svg", {
                 class: "ivu-image-preview-operations-item",
                 onClick: _cache[4] || (_cache[4] = withModifiers(($event) => $options.handleOperation("zoomIn"), ["stop"])),
@@ -22124,7 +22133,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                 "p-id": "7197",
                 width: "200",
                 height: "200"
-              }, _hoisted_6$5)),
+              }, _hoisted_5$c)),
               (openBlock(), createElementBlock("svg", {
                 class: "ivu-image-preview-operations-item",
                 onClick: _cache[5] || (_cache[5] = withModifiers(($event) => $options.handleOperation("zoomOut"), ["stop"])),
@@ -22134,7 +22143,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                 "p-id": "7412",
                 width: "200",
                 height: "200"
-              }, _hoisted_9$3)),
+              }, _hoisted_8$3)),
               withDirectives((openBlock(), createElementBlock("svg", {
                 class: "ivu-image-preview-operations-item",
                 onClick: _cache[6] || (_cache[6] = withModifiers(($event) => $options.handleOperation("original"), ["stop"])),
@@ -22144,7 +22153,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                 "p-id": "26672",
                 width: "200",
                 height: "200"
-              }, _hoisted_11$2, 512)), [
+              }, _hoisted_10$2, 512)), [
                 [vShow, !this.original]
               ]),
               withDirectives((openBlock(), createElementBlock("svg", {
@@ -22156,7 +22165,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                 "p-id": "1976",
                 width: "200",
                 height: "200"
-              }, _hoisted_16$1, 512)), [
+              }, _hoisted_15$1, 512)), [
                 [vShow, this.original]
               ]),
               (openBlock(), createElementBlock("svg", {
@@ -22168,7 +22177,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                 "p-id": "13308",
                 width: "200",
                 height: "200"
-              }, _hoisted_18$1)),
+              }, _hoisted_17$1)),
               (openBlock(), createElementBlock("svg", {
                 class: "ivu-image-preview-operations-item",
                 onClick: _cache[9] || (_cache[9] = withModifiers(($event) => $options.handleOperation("rotateRight"), ["stop"])),
@@ -22178,19 +22187,19 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                 "p-id": "13521",
                 width: "200",
                 height: "200"
-              }, _hoisted_20$1))
+              }, _hoisted_19$1))
             ]),
             $props.previewList.length > 1 ? (openBlock(), createBlock(_component_Icon, {
               key: 2,
               class: normalizeClass($options.leftClasses),
               type: "ios-arrow-back",
-              onClick: _cache[10] || (_cache[10] = withModifiers(($event) => $options.handleSwitch(false), ["stop"]))
+              onClick: _cache[11] || (_cache[11] = withModifiers(($event) => $options.handleSwitch(false), ["stop"]))
             }, null, 8, ["class"])) : createCommentVNode("", true),
             $props.previewList.length > 1 ? (openBlock(), createBlock(_component_Icon, {
               key: 3,
               class: normalizeClass($options.rightClasses),
               type: "ios-arrow-forward",
-              onClick: _cache[11] || (_cache[11] = withModifiers(($event) => $options.handleSwitch(true), ["stop"]))
+              onClick: _cache[12] || (_cache[12] = withModifiers(($event) => $options.handleSwitch(true), ["stop"]))
             }, null, 8, ["class"])) : createCommentVNode("", true),
             createVNode(_component_Icon, {
               class: "ivu-image-preview-arrow-close",
@@ -22204,11 +22213,11 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
     })
   ], 8, ["disabled"]);
 }
-var ImagePreview = /* @__PURE__ */ _export_sfc(_sfc_main$1a, [["render", _sfc_render$$]]);
+var ImagePreview = /* @__PURE__ */ _export_sfc(_sfc_main$1b, [["render", _sfc_render$$]]);
 const isElement = (el) => {
   return typeof HTMLElement === "object" && el instanceof HTMLElement;
 };
-const _sfc_main$19 = {
+const _sfc_main$1a = {
   name: "Image",
   mixins: [Locale],
   components: { ImagePreview },
@@ -22462,7 +22471,7 @@ function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["modelValue", "preview-list", "initial-index", "infinite", "mask-closable", "transfer", "onOnClose", "onOnSwitch"])) : createCommentVNode("", true)
   ], 4);
 }
-var Image = /* @__PURE__ */ _export_sfc(_sfc_main$19, [["render", _sfc_render$_]]);
+var Image = /* @__PURE__ */ _export_sfc(_sfc_main$1a, [["render", _sfc_render$_]]);
 const prefixCls$B = "ivu-input-number";
 const iconPrefixCls$2 = "ivu-icon";
 function addNum(num1, num2) {
@@ -22480,7 +22489,7 @@ function addNum(num1, num2) {
   m = Math.pow(10, Math.max(sq1, sq2));
   return (Math.round(num1 * m) + Math.round(num2 * m)) / m;
 }
-const _sfc_main$18 = {
+const _sfc_main$19 = {
   name: "InputNumber",
   mixins: [mixinsForm],
   emits: ["on-change", "on-focus", "on-blur", "update:modelValue"],
@@ -22832,9 +22841,9 @@ function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 2);
 }
-var InputNumber = /* @__PURE__ */ _export_sfc(_sfc_main$18, [["render", _sfc_render$Z]]);
+var InputNumber = /* @__PURE__ */ _export_sfc(_sfc_main$19, [["render", _sfc_render$Z]]);
 const prefixCls$A = "ivu-layout";
-const _sfc_main$17 = {
+const _sfc_main$18 = {
   name: "Layout",
   data() {
     return {
@@ -22867,7 +22876,7 @@ function _sfc_render$Y(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var Layout = /* @__PURE__ */ _export_sfc(_sfc_main$17, [["render", _sfc_render$Y]]);
+var Layout = /* @__PURE__ */ _export_sfc(_sfc_main$18, [["render", _sfc_render$Y]]);
 const defaultCopyConfig = {
   tooltips: ["\u590D\u5236", "\u590D\u5236\u6210\u529F"],
   showTip: false,
@@ -23041,7 +23050,7 @@ var baseProps = {
     }
   }
 };
-const _sfc_main$16 = {
+const _sfc_main$17 = {
   name: "TypographyBase",
   mixins: [baseProps],
   emits: ["on-copy-success", "on-copy-error", "on-edit-start", "on-edit-end", "on-edit-change", "on-edit-cancel"],
@@ -23370,11 +23379,11 @@ const _sfc_main$16 = {
     this.handleRemoveObserver();
   }
 };
-const _sfc_main$15 = {
+const _sfc_main$16 = {
   name: "Link",
   mixins: [baseProps],
   render() {
-    return h(_sfc_main$16, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
       component: "a"
     }), this.commonEvents()), this.commonSlots());
   }
@@ -23464,7 +23473,7 @@ Spin.hide = function() {
   });
 };
 const prefixCls$z = "ivu-list";
-const _sfc_main$14 = {
+const _sfc_main$15 = {
   name: "List",
   provide() {
     return {
@@ -23569,8 +23578,8 @@ function _sfc_render$X(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 2);
 }
-var List$1 = /* @__PURE__ */ _export_sfc(_sfc_main$14, [["render", _sfc_render$X]]);
-const _sfc_main$13 = {
+var List$1 = /* @__PURE__ */ _export_sfc(_sfc_main$15, [["render", _sfc_render$X]]);
+const _sfc_main$14 = {
   name: "ListItem",
   inject: ["ListInstance"],
   props: {},
@@ -23639,8 +23648,8 @@ function _sfc_render$W(_ctx, _cache, $props, $setup, $data, $options) {
     ], 64))
   ], 2);
 }
-var ListItem = /* @__PURE__ */ _export_sfc(_sfc_main$13, [["render", _sfc_render$W]]);
-const _sfc_main$12 = {
+var ListItem = /* @__PURE__ */ _export_sfc(_sfc_main$14, [["render", _sfc_render$W]]);
+const _sfc_main$13 = {
   name: "ListItemMeta",
   components: { Avatar },
   props: {
@@ -23694,9 +23703,9 @@ function _sfc_render$V(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var ListItemMeta = /* @__PURE__ */ _export_sfc(_sfc_main$12, [["render", _sfc_render$V]]);
+var ListItemMeta = /* @__PURE__ */ _export_sfc(_sfc_main$13, [["render", _sfc_render$V]]);
 const prefixCls$y = "ivu-loading-bar";
-const _sfc_main$11 = {
+const _sfc_main$12 = {
   name: "LoadingBar",
   props: {
     color: {
@@ -23770,7 +23779,7 @@ function _sfc_render$U(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
   });
 }
-var LoadingBar = /* @__PURE__ */ _export_sfc(_sfc_main$11, [["render", _sfc_render$U]]);
+var LoadingBar = /* @__PURE__ */ _export_sfc(_sfc_main$12, [["render", _sfc_render$U]]);
 LoadingBar.newInstance = (properties) => {
   if (!isClient)
     return;
@@ -23917,7 +23926,7 @@ var index$3 = {
     instance.destroy();
   }
 };
-const _sfc_main$10 = {
+const _sfc_main$11 = {
   name: "Login",
   components: { Form },
   emits: ["on-submit"],
@@ -23967,9 +23976,9 @@ function _sfc_render$T(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["model"])
   ]);
 }
-var Login = /* @__PURE__ */ _export_sfc(_sfc_main$10, [["render", _sfc_render$T]]);
+var Login = /* @__PURE__ */ _export_sfc(_sfc_main$11, [["render", _sfc_render$T]]);
 const prefixCls$x = "ivu-menu";
-const _sfc_main$$ = {
+const _sfc_main$10 = {
   name: "Menu",
   emits: ["on-select", "on-open-change"],
   provide() {
@@ -24142,7 +24151,7 @@ function _sfc_render$S(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 6);
 }
-var Menu = /* @__PURE__ */ _export_sfc(_sfc_main$$, [["render", _sfc_render$S]]);
+var Menu = /* @__PURE__ */ _export_sfc(_sfc_main$10, [["render", _sfc_render$S]]);
 var mixin = {
   inject: {
     MenuInstance: {
@@ -24170,7 +24179,7 @@ var mixin = {
   }
 };
 const prefixCls$w = "ivu-menu";
-const _sfc_main$_ = {
+const _sfc_main$$ = {
   name: "MenuGroup",
   mixins: [mixin],
   props: {
@@ -24205,9 +24214,9 @@ function _sfc_render$R(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 2);
 }
-var MenuGroup = /* @__PURE__ */ _export_sfc(_sfc_main$_, [["render", _sfc_render$R]]);
+var MenuGroup = /* @__PURE__ */ _export_sfc(_sfc_main$$, [["render", _sfc_render$R]]);
 const prefixCls$v = "ivu-menu";
-const _sfc_main$Z = {
+const _sfc_main$_ = {
   name: "MenuItem",
   mixins: [mixin, mixinsLink],
   props: {
@@ -24319,8 +24328,8 @@ function _sfc_render$Q(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 6));
 }
-var MenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$Z, [["render", _sfc_render$Q]]);
-const _sfc_main$Y = {
+var MenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$_, [["render", _sfc_render$Q]]);
+const _sfc_main$Z = {
   name: "Mobile",
   mixins: [LoginItem],
   data() {
@@ -24360,11 +24369,11 @@ const dragData = {
   dragging: false,
   rect: null
 };
-const _sfc_main$X = {
+const _sfc_main$Y = {
   inheritAttrs: false,
   name: "Modal",
   mixins: [Locale, ScrollbarMixins],
-  components: { Icon, iButton: _sfc_main$2b },
+  components: { Icon, iButton: _sfc_main$2c },
   emits: ["on-cancel", "on-ok", "on-hidden", "on-visible-change", "update:modelValue"],
   provide() {
     return {
@@ -24896,7 +24905,7 @@ function _sfc_render$P(_ctx, _cache, $props, $setup, $data, $options) {
     ], 6)
   ], 8, ["disabled"]);
 }
-var Modal = /* @__PURE__ */ _export_sfc(_sfc_main$X, [["render", _sfc_render$P]]);
+var Modal = /* @__PURE__ */ _export_sfc(_sfc_main$Y, [["render", _sfc_render$P]]);
 const prefixCls$t = "ivu-modal-confirm";
 Modal.newInstance = (properties) => {
   if (!isClient)
@@ -24928,12 +24937,12 @@ Modal.newInstance = (properties) => {
     render() {
       let footerVNodes = [];
       if (this.showCancel) {
-        footerVNodes.push(h(_sfc_main$2b, {
+        footerVNodes.push(h(_sfc_main$2c, {
           type: "text",
           onClick: this.cancel
         }, () => this.localeCancelText));
       }
-      footerVNodes.push(h(_sfc_main$2b, {
+      footerVNodes.push(h(_sfc_main$2c, {
         type: "primary",
         loading: this.buttonLoading,
         onClick: this.ok
@@ -25315,7 +25324,7 @@ const focusFirst = (element, root2) => {
   }
   return false;
 };
-const _sfc_main$W = {
+const _sfc_main$X = {
   name: "Tabs",
   mixins: [globalConfig],
   emits: ["on-click", "on-dblclick", "on-contextmenu", "on-tab-remove", "on-drag-drop", "update:modelValue"],
@@ -25965,8 +25974,8 @@ function _sfc_render$O(_ctx, _cache, $props, $setup, $data, $options) {
     ], 4)
   ], 2);
 }
-var Tabs = /* @__PURE__ */ _export_sfc(_sfc_main$W, [["render", _sfc_render$O]]);
-const _sfc_main$V = {
+var Tabs = /* @__PURE__ */ _export_sfc(_sfc_main$X, [["render", _sfc_render$O]]);
+const _sfc_main$W = {
   name: "Notification",
   components: { Dropdown, DropdownMenu, Badge, Tabs },
   emits: ["on-visible-change", "on-item-click", "on-clear", "on-load-more", "on-tab-change"],
@@ -26188,7 +26197,7 @@ function _sfc_render$N(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["visible", "transfer", "placement", "transfer-class-name", "onOnVisibleChange", "onOnClickoutside"])
   ], 512);
 }
-var Notification = /* @__PURE__ */ _export_sfc(_sfc_main$V, [["render", _sfc_render$N]]);
+var Notification = /* @__PURE__ */ _export_sfc(_sfc_main$W, [["render", _sfc_render$N]]);
 const isEarly = (timeStamp, currentTime) => {
   return timeStamp <= currentTime;
 };
@@ -26238,7 +26247,7 @@ function Time$1(timestamp, locale2) {
   return getRelativeTime(timestamp, locale2);
 }
 const prefixCls$q = "ivu-time";
-const _sfc_main$U = {
+const _sfc_main$V = {
   name: "Time",
   mixins: [Locale],
   props: {
@@ -26333,8 +26342,8 @@ function _sfc_render$M(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = (...args) => $options.handleClick && $options.handleClick(...args))
   }, toDisplayString($data.date), 3);
 }
-var Time = /* @__PURE__ */ _export_sfc(_sfc_main$U, [["render", _sfc_render$M]]);
-const _sfc_main$T = {
+var Time = /* @__PURE__ */ _export_sfc(_sfc_main$V, [["render", _sfc_render$M]]);
+const _sfc_main$U = {
   name: "NotificationItem",
   inject: ["NotificationTabInstance", "NotificationInstance"],
   components: { Row, Col, Avatar, Tag, Time },
@@ -26556,9 +26565,9 @@ function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 2);
 }
-var NotificationItem = /* @__PURE__ */ _export_sfc(_sfc_main$T, [["render", _sfc_render$L]]);
+var NotificationItem = /* @__PURE__ */ _export_sfc(_sfc_main$U, [["render", _sfc_render$L]]);
 const prefixCls$p = "ivu-tabs-tabpane";
-const _sfc_main$S = {
+const _sfc_main$T = {
   name: "TabPane",
   inject: ["TabsInstance"],
   props: {
@@ -26662,8 +26671,8 @@ function _sfc_render$K(_ctx, _cache, $props, $setup, $data, $options) {
     [vShow, $data.show]
   ]);
 }
-var TabPane = /* @__PURE__ */ _export_sfc(_sfc_main$S, [["render", _sfc_render$K]]);
-const _sfc_main$R = {
+var TabPane = /* @__PURE__ */ _export_sfc(_sfc_main$T, [["render", _sfc_render$K]]);
+const _sfc_main$S = {
   name: "NotificationTab",
   inject: ["NotificationInstance"],
   components: { TabPane, Icon },
@@ -26885,8 +26894,8 @@ function _sfc_render$J(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["label", "name"]);
 }
-var NotificationTab = /* @__PURE__ */ _export_sfc(_sfc_main$R, [["render", _sfc_render$J]]);
-const _sfc_main$Q = {
+var NotificationTab = /* @__PURE__ */ _export_sfc(_sfc_main$S, [["render", _sfc_render$J]]);
+const _sfc_main$R = {
   name: "Trend",
   components: { Icon },
   props: {
@@ -26944,8 +26953,8 @@ function _sfc_render$I(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["type"])
   ], 2);
 }
-var Trend = /* @__PURE__ */ _export_sfc(_sfc_main$Q, [["render", _sfc_render$I]]);
-const _sfc_main$P = {
+var Trend = /* @__PURE__ */ _export_sfc(_sfc_main$R, [["render", _sfc_render$I]]);
+const _sfc_main$Q = {
   name: "NumberInfo",
   components: { Trend },
   props: {
@@ -27028,7 +27037,7 @@ function _sfc_render$H(_ctx, _cache, $props, $setup, $data, $options) {
     ], 4)
   ]);
 }
-var NumberInfo = /* @__PURE__ */ _export_sfc(_sfc_main$P, [["render", _sfc_render$H]]);
+var NumberInfo = /* @__PURE__ */ _export_sfc(_sfc_main$Q, [["render", _sfc_render$H]]);
 var numeral = { exports: {} };
 /*! @preserve
  * numeral.js
@@ -27697,7 +27706,7 @@ var numeral = { exports: {} };
   });
 })(numeral);
 var Numeral$1 = numeral.exports;
-const _sfc_main$O = {
+const _sfc_main$P = {
   name: "Numeral",
   emits: ["on-change"],
   props: {
@@ -27759,9 +27768,9 @@ function _sfc_render$G(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var Numeral = /* @__PURE__ */ _export_sfc(_sfc_main$O, [["render", _sfc_render$G]]);
+var Numeral = /* @__PURE__ */ _export_sfc(_sfc_main$P, [["render", _sfc_render$G]]);
 const prefixCls$o = "ivu-select-group";
-const _sfc_main$N = {
+const _sfc_main$O = {
   name: "OptionGroup",
   props: {
     label: {
@@ -27808,12 +27817,12 @@ function _sfc_render$F(_ctx, _cache, $props, $setup, $data, $options) {
     [vShow, $options.show]
   ]);
 }
-var OptionGroup = /* @__PURE__ */ _export_sfc(_sfc_main$N, [["render", _sfc_render$F]]);
+var OptionGroup = /* @__PURE__ */ _export_sfc(_sfc_main$O, [["render", _sfc_render$F]]);
 const prefixCls$n = "ivu-page";
 function isValueNumber(value) {
   return /^[1-9][0-9]*$/.test(value + "");
 }
-const _sfc_main$M = {
+const _sfc_main$N = {
   name: "PageOption",
   mixins: [Locale],
   components: { iSelect: Select, iOption },
@@ -27945,9 +27954,9 @@ function _sfc_render$E(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)) : createCommentVNode("", true)
   ], 2)) : createCommentVNode("", true);
 }
-var Options = /* @__PURE__ */ _export_sfc(_sfc_main$M, [["render", _sfc_render$E]]);
+var Options = /* @__PURE__ */ _export_sfc(_sfc_main$N, [["render", _sfc_render$E]]);
 const prefixCls$m = "ivu-page";
-const _sfc_main$L = {
+const _sfc_main$M = {
   name: "Page",
   mixins: [Locale],
   components: { Options },
@@ -28432,8 +28441,8 @@ function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["show-sizer", "page-size", "page-size-opts", "placement", "transfer", "show-elevator", "_current", "current", "disabled", "all-pages", "is-small", "eventsEnabled", "onOnSize", "onOnPage"])
   ], 6));
 }
-var Page = /* @__PURE__ */ _export_sfc(_sfc_main$L, [["render", _sfc_render$D]]);
-const _sfc_main$K = {
+var Page = /* @__PURE__ */ _export_sfc(_sfc_main$M, [["render", _sfc_render$D]]);
+const _sfc_main$L = {
   name: "PageHeader",
   components: { Breadcrumb, BreadcrumbItem, Divider, Icon, Tabs, TabPane },
   emits: ["on-tab-change", "on-back"],
@@ -28630,8 +28639,8 @@ function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 2);
 }
-var PageHeader = /* @__PURE__ */ _export_sfc(_sfc_main$K, [["render", _sfc_render$C]]);
-const _sfc_main$J = defineComponent({
+var PageHeader = /* @__PURE__ */ _export_sfc(_sfc_main$L, [["render", _sfc_render$C]]);
+const _sfc_main$K = defineComponent({
   name: "CollapseTransition",
   props: {
     ready: {
@@ -28718,9 +28727,9 @@ function _sfc_render$B(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 16);
 }
-var CollapseTransition = /* @__PURE__ */ _export_sfc(_sfc_main$J, [["render", _sfc_render$B]]);
+var CollapseTransition = /* @__PURE__ */ _export_sfc(_sfc_main$K, [["render", _sfc_render$B]]);
 const prefixCls$l = "ivu-collapse";
-const _sfc_main$I = {
+const _sfc_main$J = {
   name: "Panel",
   components: { Icon, CollapseTransition },
   inject: ["CollapseInstance"],
@@ -28814,17 +28823,17 @@ function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
     })) : createCommentVNode("", true)
   ], 2);
 }
-var Panel = /* @__PURE__ */ _export_sfc(_sfc_main$I, [["render", _sfc_render$A]]);
-const _sfc_main$H = {
+var Panel = /* @__PURE__ */ _export_sfc(_sfc_main$J, [["render", _sfc_render$A]]);
+const _sfc_main$I = {
   name: "Paragraph",
   mixins: [baseProps],
   render() {
-    return h(_sfc_main$16, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
       component: "div"
     }), this.commonEvents()), this.commonSlots());
   }
 };
-const _sfc_main$G = {
+const _sfc_main$H = {
   name: "Password",
   mixins: [LoginItem],
   data() {
@@ -28837,12 +28846,12 @@ const _sfc_main$G = {
   }
 };
 const prefixCls$k = "ivu-poptip";
-const _sfc_main$F = {
+const _sfc_main$G = {
   name: "Poptip",
   mixins: [Popper, Locale],
   emits: ["on-ok", "on-cancel"],
   directives: { clickOutside },
-  components: { iButton: _sfc_main$2b },
+  components: { iButton: _sfc_main$2c },
   props: {
     trigger: {
       validator(value) {
@@ -29215,9 +29224,9 @@ function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
     [_directive_click_outside, $options.handleClose]
   ]);
 }
-var Poptip = /* @__PURE__ */ _export_sfc(_sfc_main$F, [["render", _sfc_render$z]]);
+var Poptip = /* @__PURE__ */ _export_sfc(_sfc_main$G, [["render", _sfc_render$z]]);
 const prefixCls$j = "ivu-progress";
-const _sfc_main$E = {
+const _sfc_main$F = {
   name: "Progress",
   components: { Icon },
   props: {
@@ -29405,9 +29414,9 @@ function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)) : createCommentVNode("", true)
   ], 2);
 }
-var iProgress = /* @__PURE__ */ _export_sfc(_sfc_main$E, [["render", _sfc_render$y]]);
+var iProgress = /* @__PURE__ */ _export_sfc(_sfc_main$F, [["render", _sfc_render$y]]);
 const prefixCls$i = "ivu-rate";
-const _sfc_main$D = {
+const _sfc_main$E = {
   name: "Rate",
   mixins: [Locale, mixinsForm],
   emits: ["update:modelValue", "on-change"],
@@ -29618,14 +29627,14 @@ function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
     ]) : createCommentVNode("", true)
   ], 34);
 }
-var Rate = /* @__PURE__ */ _export_sfc(_sfc_main$D, [["render", _sfc_render$x]]);
-const _sfc_main$C = {
+var Rate = /* @__PURE__ */ _export_sfc(_sfc_main$E, [["render", _sfc_render$x]]);
+const _sfc_main$D = {
   name: "Result",
   components: { Icon },
   props: {
     type: {
       validator(value) {
-        return oneOf(value, ["success", "error"]);
+        return oneOf(value, ["success", "error", "warning"]);
       }
     },
     title: {
@@ -29642,7 +29651,8 @@ const _sfc_main$C = {
     iconClasses() {
       return {
         "ivu-result-icon-success": this.type === "success",
-        "ivu-result-icon-error": this.type === "error"
+        "ivu-result-icon-error": this.type === "error",
+        "ivu-result-icon-warning": this.type === "warning"
       };
     }
   }
@@ -29677,6 +29687,10 @@ function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
       $props.type === "error" ? (openBlock(), createBlock(_component_Icon, {
         key: 1,
         type: "ios-close"
+      })) : createCommentVNode("", true),
+      $props.type === "warning" ? (openBlock(), createBlock(_component_Icon, {
+        key: 2,
+        type: "ios-information"
       })) : createCommentVNode("", true)
     ], 2),
     $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_2$d, [
@@ -29699,9 +29713,9 @@ function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ]);
 }
-var Result = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["render", _sfc_render$w]]);
+var Result = /* @__PURE__ */ _export_sfc(_sfc_main$D, [["render", _sfc_render$w]]);
 const prefixCls$h = "ivu-scroll";
-const _sfc_main$B = {
+const _sfc_main$C = {
   props: ["text", "active", "spinnerHeight"],
   components: { Spin, Icon },
   computed: {
@@ -29750,14 +29764,14 @@ function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 2);
 }
-var loader = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["render", _sfc_render$v]]);
+var loader = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["render", _sfc_render$v]]);
 const prefixCls$g = "ivu-scroll";
 const dragConfig = {
   sensitivity: 10,
   minimumStartDragOffset: 5
 };
 const noop = () => Promise.resolve();
-const _sfc_main$A = {
+const _sfc_main$B = {
   name: "Scroll",
   mixins: [Locale],
   components: { loader },
@@ -30051,7 +30065,7 @@ function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
     ], 38)
   ], 2);
 }
-var Scroll = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["render", _sfc_render$u]]);
+var Scroll = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["render", _sfc_render$u]]);
 const COMPLETE = "COMPLETE";
 const CANCELED = "CANCELED";
 function requestAnimation$1(task) {
@@ -30250,7 +30264,7 @@ function index(el, settings, callback) {
 }
 const prefixCls$f = "ivu-layout-sider";
 setMatchMedia();
-const _sfc_main$z = {
+const _sfc_main$A = {
   name: "Sider",
   emits: ["on-collapse", "update:modelValue"],
   props: {
@@ -30420,9 +30434,9 @@ function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 6);
 }
-var Sider = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$t]]);
+var Sider = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["render", _sfc_render$t]]);
 const prefixCls$e = "ivu-skeleton-item";
-const _sfc_main$y = {
+const _sfc_main$z = {
   name: "SkeletonItem",
   components: { Icon },
   inject: {
@@ -30529,9 +30543,9 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["class", "size"])) : createCommentVNode("", true)
   ], 6);
 }
-var SkeletonItem = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["render", _sfc_render$s]]);
+var SkeletonItem = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$s]]);
 const prefixCls$d = "ivu-skeleton";
-const _sfc_main$x = {
+const _sfc_main$y = {
   name: "Skeleton",
   components: { SkeletonItem, Row, Col },
   provide() {
@@ -30692,7 +30706,7 @@ function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
           })) : createCommentVNode("", true),
           createVNode(_component_Col, { flex: "1" }, {
             default: withCtx(() => [
-              (openBlock(true), createElementBlock(Fragment, null, renderList($options.rows, (row) => {
+              (openBlock(true), createElementBlock(Fragment, null, renderList($options.rowsCount, (row) => {
                 return openBlock(), createBlock(_component_SkeletonItem, {
                   key: row,
                   class: normalizeClass($options.rowClasses(row)),
@@ -30710,7 +30724,7 @@ function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
     ]) : createCommentVNode("", true)
   ], 16)) : renderSlot(_ctx.$slots, "default", normalizeProps(mergeProps({ key: 1 }, _ctx.$attrs)));
 }
-var Skeleton = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", _sfc_render$r]]);
+var Skeleton = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["render", _sfc_render$r]]);
 var SliderMarker = {
   name: "SliderMarker",
   props: {
@@ -30727,7 +30741,7 @@ var SliderMarker = {
   }
 };
 const prefixCls$c = "ivu-slider";
-const _sfc_main$w = {
+const _sfc_main$x = {
   name: "Slider",
   mixins: [mixinsForm],
   emits: ["update:modelValue", "on-input", "on-change"],
@@ -31247,7 +31261,142 @@ function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 2);
 }
-var Slider = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["render", _sfc_render$q]]);
+var Slider = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", _sfc_render$q]]);
+const spaceSize = {
+  small: 8,
+  default: 16,
+  large: 24
+};
+const _sfc_main$w = {
+  name: "Space",
+  props: {
+    size: {
+      type: [String, Number, Array],
+      validator(value) {
+        const sizes = ["small", "large", "default"];
+        if (typeof value === "string") {
+          return oneOf(value, sizes);
+        }
+        if (Array.isArray(value)) {
+          return value.length > 0 && value.every((i) => typeof i === "number" || oneOf(i, sizes));
+        }
+        return true;
+      },
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || !global2.$VIEWUI.space || global2.$VIEWUI.space.size === "" ? "small" : global2.$VIEWUI.space.size;
+      }
+    },
+    direction: {
+      type: String,
+      validator(value) {
+        return oneOf(value, ["horizontal", "vertical"]);
+      },
+      default: "horizontal"
+    },
+    align: {
+      type: String,
+      validator(value) {
+        return oneOf(value, ["start", "end", "center", "baseline", "stretch"]);
+      }
+    },
+    wrap: {
+      type: Boolean,
+      default: false
+    },
+    split: {
+      type: Boolean,
+      default: false
+    },
+    type: {
+      type: String,
+      validator(value) {
+        return oneOf(value, ["inline-flex", "flex"]);
+      },
+      default: "inline-flex"
+    }
+  },
+  computed: {
+    mergedAlign() {
+      if (!this.align) {
+        if (this.direction === "horizontal")
+          return "center";
+        if (this.type === "flex")
+          return "stretch";
+      }
+      return this.align;
+    },
+    classes() {
+      return [
+        "ivu-space",
+        `ivu-space-${this.direction}`,
+        {
+          "ivu-space-flex": this.type === "flex",
+          "ivu-space-wrap": this.wrap,
+          [`ivu-space-${this.mergedAlign}`]: this.mergedAlign
+        }
+      ];
+    },
+    styles() {
+      const style2 = {};
+      if (["number", "string"].includes(typeof this.size)) {
+        style2.gap = this.getSize(this.size);
+      }
+      if (Array.isArray(this.size)) {
+        if (this.size.length === 1) {
+          style2.columnGap = this.getSize(this.size[0]);
+        } else if (this.size.length > 1) {
+          style2.columnGap = this.getSize(this.size[0]);
+          style2.rowGap = this.getSize(this.size[1]);
+        }
+      }
+      return style2;
+    }
+  },
+  methods: {
+    getSize(size) {
+      return `${typeof size === "string" ? spaceSize[size] : size || 0}px`;
+    },
+    filterEmpty(children = []) {
+      const res = [];
+      children.forEach((child) => {
+        if (Array.isArray(child)) {
+          res.push(...child);
+        } else if (child.type === Fragment) {
+          res.push(...child.children);
+        } else {
+          res.push(child);
+        }
+      });
+      return res.filter((c) => !this.isEmptyElement(c));
+    },
+    isEmptyElement(c) {
+      return c && (c.type === Comment || c.type === Fragment && c.children.length === 0 || c.type === Text && c.children.trim() === "");
+    }
+  },
+  render() {
+    const items = this.filterEmpty(this.$slots.default ? this.$slots.default() : []);
+    const len = items.length;
+    if (len === 0)
+      return null;
+    let split = null;
+    if (this.split && !this.$slots.split) {
+      split = h(Divider, { type: "vertical" });
+    } else if (this.$slots.split) {
+      split = this.$slots.split();
+    }
+    return h("div", { class: this.classes, style: this.styles }, items.map((child, index2) => {
+      const item = h("div", { class: "ivu-space-item" }, [child]);
+      if (split && index2 + 1 < len) {
+        return [
+          item,
+          h("div", { class: "ivu-space-split" }, [split])
+        ];
+      }
+      return item;
+    }));
+  }
+};
 const _sfc_main$v = {
   name: "Trigger",
   props: {
@@ -31996,7 +32145,7 @@ const _sfc_main$q = {
       long: true
     };
     const finalProps = Object.assign(defaultProps, this.$attrs);
-    const $button = h(_sfc_main$2b, __spreadProps(__spreadValues({}, finalProps), {
+    const $button = h(_sfc_main$2c, __spreadProps(__spreadValues({}, finalProps), {
       onClick: this.handleSubmit
     }), this.$slots.default || (() => "\u767B\u5F55"));
     return h("div", {
@@ -32191,7 +32340,7 @@ var Mixin = {
 const _sfc_main$o = {
   name: "TableHead",
   mixins: [Mixin, Locale],
-  components: { CheckboxGroup, Checkbox, Poptip, iButton: _sfc_main$2b, renderHeader },
+  components: { CheckboxGroup, Checkbox, Poptip, iButton: _sfc_main$2c, renderHeader },
   props: {
     prefixCls: String,
     styleObject: Object,
@@ -35591,7 +35740,7 @@ const _sfc_main$f = {
   name: "Text",
   mixins: [baseProps],
   render() {
-    return h(_sfc_main$16, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
       component: "span"
     }), this.commonEvents()), this.commonSlots());
   }
@@ -35748,7 +35897,7 @@ const _sfc_main$c = {
     }
   },
   render() {
-    return h(_sfc_main$16, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
+    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
       component: `h${this.level}`
     }), this.commonEvents()), this.commonSlots());
   }
@@ -35984,7 +36133,7 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
 var List = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$8]]);
 const _sfc_main$9 = {
   name: "Operation",
-  components: { Button: _sfc_main$2b, Icon },
+  components: { Button: _sfc_main$2c, Icon },
   inject: ["TransferInstance"],
   props: {
     prefixCls: String,
@@ -37703,7 +37852,7 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   Alert,
   Anchor,
   AnchorLink,
-  Auth: _sfc_main$2p,
+  Auth: _sfc_main$2q,
   AutoComplete,
   Avatar,
   AvatarList,
@@ -37711,10 +37860,10 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   Badge,
   Breadcrumb,
   BreadcrumbItem,
-  Button: _sfc_main$2b,
+  Button: _sfc_main$2c,
   ButtonGroup,
   Calendar,
-  Captcha: _sfc_main$21,
+  Captcha: _sfc_main$22,
   Card,
   Carousel,
   CarouselItem,
@@ -37733,7 +37882,7 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   CountDown,
   CountUp,
   DatePicker,
-  Description: _sfc_main$1q,
+  Description: _sfc_main$1r,
   DescriptionList,
   Divider,
   Drawer,
@@ -37741,7 +37890,7 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   DropdownItem,
   DropdownMenu,
   Ellipsis,
-  Email: _sfc_main$1k,
+  Email: _sfc_main$1l,
   Exception,
   Footer,
   FooterToolbar,
@@ -37757,7 +37906,7 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   Input,
   InputNumber,
   Layout,
-  Link: _sfc_main$15,
+  Link: _sfc_main$16,
   List: List$1,
   ListItem,
   ListItemMeta,
@@ -37767,7 +37916,7 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   MenuGroup,
   MenuItem,
   Message: $Message,
-  Mobile: _sfc_main$Y,
+  Mobile: _sfc_main$Z,
   Modal,
   Notice: index$2,
   Notification,
@@ -37780,8 +37929,8 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   Page,
   PageHeader,
   Panel,
-  Paragraph: _sfc_main$H,
-  Password: _sfc_main$G,
+  Paragraph: _sfc_main$I,
+  Password: _sfc_main$H,
   Poptip,
   Progress: iProgress,
   Radio,
@@ -37797,6 +37946,7 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   Skeleton,
   SkeletonItem,
   Slider,
+  Space: _sfc_main$w,
   Spin,
   Split,
   Step,
@@ -37987,7 +38137,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.2.0";
+const version$1 = "1.3.0-beta.1";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
@@ -38136,7 +38286,7 @@ const directives = {
   "line-clamp": lineClamp
 };
 const ViewUI = __spreadProps(__spreadValues({}, components), {
-  iButton: _sfc_main$2b,
+  iButton: _sfc_main$2c,
   iCircle: Circle,
   iCol: Col,
   iContent: Content,
@@ -38226,6 +38376,9 @@ const install = function(app, opts = {}) {
       copyConfig: opts.typography ? opts.typography.copyConfig ? opts.typography.copyConfig : "" : "",
       editConfig: opts.typography ? opts.typography.editConfig ? opts.typography.editConfig : "" : "",
       ellipsisConfig: opts.typography ? opts.typography.ellipsisConfig ? opts.typography.ellipsisConfig : "" : ""
+    },
+    space: {
+      size: opts.space ? opts.space.size ? opts.space.size : "" : ""
     }
   };
   app.config.globalProperties.$Spin = Spin;
@@ -38255,4 +38408,4 @@ const API = __spreadValues({
   install,
   lang
 }, components);
-export { Affix, Alert, Anchor, AnchorLink, _sfc_main$2p as Auth, AutoComplete, Avatar, AvatarList, BackTop, Badge, Breadcrumb, BreadcrumbItem, _sfc_main$2b as Button, ButtonGroup, Calendar, _sfc_main$21 as Captcha, Card, Carousel, CarouselItem, Cascader, Cell, CellGroup, Checkbox, CheckboxGroup, Circle, City, Col, Collapse, ColorPicker, Content, Copy, CountDown, CountUp, DatePicker, _sfc_main$1q as Description, DescriptionList, Divider, Drawer, Dropdown, DropdownItem, DropdownMenu, Ellipsis, _sfc_main$1k as Email, Exception, Footer, FooterToolbar, Form, FormItem, GlobalFooter, Grid, GridItem, Header, Icon, Image, ImagePreview, Input, InputNumber, Layout, _sfc_main$15 as Link, List$1 as List, ListItem, ListItemMeta, index$3 as LoadingBar, Login, Menu, MenuGroup, MenuItem, $Message as Message, _sfc_main$Y as Mobile, Modal, index$2 as Notice, Notification, NotificationItem, NotificationTab, NumberInfo, Numeral, iOption as Option, OptionGroup, Page, PageHeader, Panel, _sfc_main$H as Paragraph, _sfc_main$G as Password, Poptip, iProgress as Progress, Radio, RadioGroup, Rate, Result, Row, Scroll, index$1 as ScrollIntoView, index as ScrollTop, Select, Sider, Skeleton, SkeletonItem, Slider, Spin, Split, Step, Steps, Submenu, _sfc_main$q as Submit, Switch, TabPane, Table, TablePaste, Tabs, Tag, TagSelect, TagSelectOption, _sfc_main$f as Text, Time, TimePicker, Timeline, TimelineItem, _sfc_main$c as Title, Tooltip, _sfc_main$8 as Transfer, Tree, TreeSelect, Trend, Typography, Upload, _sfc_main$1 as UserName, WordCount, API as default, i18n, install, lang, locale, version };
+export { Affix, Alert, Anchor, AnchorLink, _sfc_main$2q as Auth, AutoComplete, Avatar, AvatarList, BackTop, Badge, Breadcrumb, BreadcrumbItem, _sfc_main$2c as Button, ButtonGroup, Calendar, _sfc_main$22 as Captcha, Card, Carousel, CarouselItem, Cascader, Cell, CellGroup, Checkbox, CheckboxGroup, Circle, City, Col, Collapse, ColorPicker, Content, Copy, CountDown, CountUp, DatePicker, _sfc_main$1r as Description, DescriptionList, Divider, Drawer, Dropdown, DropdownItem, DropdownMenu, Ellipsis, _sfc_main$1l as Email, Exception, Footer, FooterToolbar, Form, FormItem, GlobalFooter, Grid, GridItem, Header, Icon, Image, ImagePreview, Input, InputNumber, Layout, _sfc_main$16 as Link, List$1 as List, ListItem, ListItemMeta, index$3 as LoadingBar, Login, Menu, MenuGroup, MenuItem, $Message as Message, _sfc_main$Z as Mobile, Modal, index$2 as Notice, Notification, NotificationItem, NotificationTab, NumberInfo, Numeral, iOption as Option, OptionGroup, Page, PageHeader, Panel, _sfc_main$I as Paragraph, _sfc_main$H as Password, Poptip, iProgress as Progress, Radio, RadioGroup, Rate, Result, Row, Scroll, index$1 as ScrollIntoView, index as ScrollTop, Select, Sider, Skeleton, SkeletonItem, Slider, _sfc_main$w as Space, Spin, Split, Step, Steps, Submenu, _sfc_main$q as Submit, Switch, TabPane, Table, TablePaste, Tabs, Tag, TagSelect, TagSelectOption, _sfc_main$f as Text, Time, TimePicker, Timeline, TimelineItem, _sfc_main$c as Title, Tooltip, _sfc_main$8 as Transfer, Tree, TreeSelect, Trend, Typography, Upload, _sfc_main$1 as UserName, WordCount, API as default, i18n, install, lang, locale, version };

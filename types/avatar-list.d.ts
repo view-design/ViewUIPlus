@@ -1,4 +1,4 @@
-export declare class Avatar {
+export declare class AvatarList {
     /**
      * 指定头像的形状，可选值为 circle、square
      */
@@ -24,9 +24,16 @@ export declare class Avatar {
      */
     'custom-icon': string;
 
-    /**
-     * 在设置 src 且图片加载不成功时触发
-     */
-    $emit(eventName: 'on-error'): this;
+    $slots: {
+        /**
+         * 自定义超出 max 后的内容
+         */
+        excess: [];
 
+        /**
+         * 指定该 slot 后，无论超出 max 与否，都会显示自定义的额外信息，且 excess 失效
+         */
+        extra: [];
+
+    };
 }

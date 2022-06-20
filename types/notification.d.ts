@@ -145,9 +145,9 @@ export declare class NotificationTab {
     'show-clear': boolean;
 
     /**
-     * Boolean
+     * 是否显示清空按钮前的图标
      */
-    是否显示清空按钮前的图标: true;
+    'show-clear-icon': boolean;
 
     $slots: {
         /**

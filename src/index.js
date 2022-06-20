@@ -129,6 +129,9 @@ export const install = function(app, opts = {}) {
             copyConfig: opts.typography ? opts.typography.copyConfig ? opts.typography.copyConfig : '' : '',
             editConfig: opts.typography ? opts.typography.editConfig ? opts.typography.editConfig : '' : '',
             ellipsisConfig: opts.typography ? opts.typography.ellipsisConfig ? opts.typography.ellipsisConfig : '' : ''
+        },
+        space: {
+            size: opts.space ? opts.space.size ? opts.space.size : '' : ''
         }
     }
     app.config.globalProperties.$Spin = components.Spin;
@@ -136,6 +139,7 @@ export const install = function(app, opts = {}) {
     app.config.globalProperties.$Message = components.Message;
     app.config.globalProperties.$Notice = components.Notice;
     app.config.globalProperties.$Modal = components.Modal;
+    app.config.globalProperties.$ImagePreview = components.ImagePreview;
     app.config.globalProperties.$Copy = components.Copy;
     app.config.globalProperties.$ScrollIntoView = components.ScrollIntoView;
     app.config.globalProperties.$ScrollTop = components.ScrollTop;

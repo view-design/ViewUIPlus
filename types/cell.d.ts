@@ -77,3 +77,11 @@ export declare class Cell {
 
     };
 }
+
+export declare class CellGroup {
+    /**
+     * 点击单元格时触发
+     */
+    $emit(eventName: 'on-click'): this;
+
+}

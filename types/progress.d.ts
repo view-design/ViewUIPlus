@@ -15,7 +15,7 @@ export declare class Progress {
     'stroke-width': number;
 
     /**
-     * 进度条的颜色，4.0.0 开始支持传入数组，显示为渐变色
+     * 进度条的颜色，支持传入数组，显示为渐变色
      */
     'stroke-color': string | [];
 

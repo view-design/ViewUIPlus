@@ -654,7 +654,6 @@
                         this.visible = true;
                     }
                 }
-
                 this.query = query;
                 this.unchangedQuery = this.visible;
                 this.filterQueryChange = true;
@@ -698,12 +697,15 @@
                     this.toggleMenu();
                 }
             },
-            lazyUpdateValue () {
-                const { getInitialValue } = this;
-                // fix Option hide, the modalValue cannot selected
-                if (this.isLocking) return;
+            lazyUpdateValue (checked) {
+                const { getInitialValue, isLocking, defaultLabel, remote, modelValue, values } = this;
+                const hasDefaultLabel = !!(defaultLabel && defaultLabel.length);
+                const hasModelValue = !!(modelValue && modelValue.length);
+                // if checked is true, has default values, not format
+                if ((hasModelValue || values.length || hasDefaultLabel) && remote && checked) return;
+                // isLocking: option run once time
+                if (isLocking) return;
                 this.isLocking = true;
-
                 nextTick(() => {
                     this.values = getInitialValue().map(this.getOptionData).filter(Boolean)
                     this.isLocking = false;
