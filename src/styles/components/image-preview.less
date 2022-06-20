@@ -47,23 +47,20 @@
         display: none;
     }
     &-operations {
-        display: flex;
         height: 40px;
         position: absolute;
         left: 50%;
         bottom: 30px;
         z-index: 1;
         border-radius: @border-radius-small;
-        justify-content: center;
-        align-items: center;
         overflow: hidden;
         background: @image-preview-operations-background;
         transform: translate(-50%);
         &-item {
-            margin: 0 6px;
             padding: 4px 8px;
             width: 36px;
-            color: #fff;
+            height: 40px;
+            color: @white;
             cursor: pointer;
             transition: opacity .1s @ease-in-out;
             &:hover {

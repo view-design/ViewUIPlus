@@ -72,6 +72,7 @@
         v-model="showPreview"
         :previewList="srcList"
         :infinite="false"
+        :toolbar="['zoomOut', 'original', 'rotateRight', 'rotateLeft', 'zoomIn', 'download']"
     ></ImagePreview>
 
     <Button type="primary" @click="showPreview = !showPreview">Switch Preview</Button>
