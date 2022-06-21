@@ -64,6 +64,9 @@ interface ViewUIPlusGlobalOptions {
     space: {
         size: string | number | [];
     };
+    image: {
+        toolbar: [];
+    };
 }
 
 interface ViewUIPlusInstallOptions extends ViewUIPlusGlobalOptions{
