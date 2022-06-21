@@ -320,14 +320,12 @@ export declare class TableColumn {
     tooltipMaxWidth: number;
 
     /**
-     * 自定义渲染列，使用 Vue 的 Render 函数。传入两个参数，第一个是 h，第二个为对象，包含 row、column 和
-                    index，分别指当前行数据，当前列数据，当前行索引，详见示例。
+     * 自定义渲染列，使用 Vue 的 Render 函数。传入两个参数，第一个是 h，第二个为对象，包含 row、column 和 index，分别指当前行数据，当前列数据，当前行索引，详见示例。
      */
     render: Function;
 
     /**
-     * 自定义列头显示内容，使用 Vue 的 Render 函数。传入两个参数，第一个是 h，第二个为对象，包含 `column` 和
-                    `index`，分别为当前列数据和当前列索引。
+     * 自定义列头显示内容，使用 Vue 的 Render 函数。传入两个参数，第一个是 h，第二个为对象，包含 `column` 和 `index`，分别为当前列数据和当前列索引。
      */
     renderHeader: Function;
 
@@ -342,8 +340,7 @@ export declare class TableColumn {
     sortable: boolean | 'custom';
 
     /**
-     * 自定义排序使用的方法，接收三个参数 a 、 b 和 type，当设置 `sortable: true` 时有效。type 值为 asc 和
-                    desc
+     * 自定义排序使用的方法，接收三个参数 a 、 b 和 type，当设置 `sortable: true` 时有效。type 值为 asc 和 desc
      */
     sortMethod: Function;
 
@@ -393,8 +390,7 @@ export declare class TableColumn {
     tree: boolean;
 
     /**
-     * 使用 slot 自定义列时，列的渲染模式。可选值为 block、inline、inline-block，当使用树形数据时，建议使用 inline 或
-                    inline-block
+     * 使用 slot 自定义列时，列的渲染模式。可选值为 block、inline、inline-block，当使用树形数据时，建议使用 inline 或 inline-block
      */
     display: string;
 
