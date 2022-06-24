@@ -1,6 +1,6 @@
 // UserName、Password、Mobile、Mail 基于此 mixin
 
-import { h } from 'vue';
+import { h, getCurrentInstance } from 'vue';
 import Input from '../input/input.vue';
 import FormItem from '../form/form-item.vue';
 import defaultValidateMessage from './default_validate_message.js';
@@ -11,8 +11,8 @@ export default {
     props: {
         rules: {
             type: [Object, Array],
-            default (props) {
-                const componentName = props.name;
+            default () {
+                const componentName = getCurrentInstance().type.name
                 return [
                     {
                         required: true,
