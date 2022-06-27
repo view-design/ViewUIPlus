@@ -5,27 +5,27 @@ export * from './viewuiplus.components';
 interface ViewUIPlusGlobalOptions {
     size?: string;
     transfer?: boolean | string;
-    select: {
+    select?: {
         arrow: string;
         customArrow: string;
         arrowSize: number | string;
     };
-    cell: {
+    cell?: {
         arrow: string;
         customArrow: string;
         arrowSize: number | string;
     };
-    menu: {
+    menu?: {
         arrow: string;
         customArrow: string;
         arrowSize: number | string;
     };
-    tree: {
+    tree?: {
         arrow: string;
         customArrow: string;
         arrowSize: number | string;
     };
-    cascader: {
+    cascader?: {
         arrow: string;
         customArrow: string;
         arrowSize: number | string;
@@ -33,39 +33,39 @@ interface ViewUIPlusGlobalOptions {
         customItemArrow: string;
         itemArrowSize: number | string;
     };
-    colorPicker: {
+    colorPicker?: {
         arrow: string;
         customArrow: string;
         arrowSize: number | string;
     };
-    datePicker: {
+    datePicker?: {
         icon: string;
         customIcon: string;
         iconSize: number | string;
     };
-    timePicker: {
+    timePicker?: {
         icon: string;
         customIcon: string;
         iconSize: number | string;
     };
-    tabs: {
+    tabs?: {
         closeIcon: string;
         customCloseIcon: string;
         closeIconSize: number | string;
     };
-    modal: {
+    modal?: {
         maskClosable: boolean | string;
     };
-    typography: {
+    typography?: {
         copyConfig: object;
         editConfig: object;
         ellipsisConfig: object;
     };
-    space: {
-        size: string | number | [];
+    space?: {
+        size: string | number | any[];
     };
-    image: {
-        toolbar: [];
+    image?: {
+        toolbar: any[];
     };
 }
 
@@ -77,6 +77,16 @@ interface ViewUIPlusInstallOptions extends ViewUIPlusGlobalOptions{
 declare module '@vue/runtime-core' {
     interface ComponentCustomProperties {
         $VIEWUI: ViewUIPlusGlobalOptions;
+        $Spin: any;
+        $Loading: any;
+        $Message: any;
+        $Notice: any;
+        $Modal: any;
+        $ImagePreview: any;
+        $Copy: any;
+        $ScrollIntoView: any;
+        $ScrollTop: any;
+        $Date: any;
     }
 }
 

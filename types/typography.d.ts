@@ -1,728 +1,730 @@
-export declare class Title {
+import type { DefineComponent } from 'vue';
+
+export declare const Title: DefineComponent<{
     /**
      * 重要程度，相当于 `h1`、`h2`、`h3`、`h4`、`h5`
      */
-    level: 1 | 2 | 3 | 4 | 5;
+    level?: 1 | 2 | 3 | 4 | 5;
 
     /**
      * 绑定的值，可使用 v-model 双向绑定
      */
-    'model-value': string;
+    'model-value'?: string;
 
     /**
      * 文本类型，可选值为 `secondary`、`success`、`warning`、`danger`
      */
-    type: '' | 'secondary' | 'success' | 'warning' | 'danger';
+    type?: '' | 'secondary' | 'success' | 'warning' | 'danger';
 
     /**
      * 是否可以拷贝
      */
-    copyable: boolean;
+    copyable?: boolean;
 
     /**
      * 自定义拷贝内容
      */
-    'copy-text': string;
+    'copy-text'?: string;
 
     /**
      * 拷贝配置项，支持全局配置
      */
-    'copy-config': object;
+    'copy-config'?: object;
 
     /**
      * 是否可以编辑
      */
-    editable: boolean;
+    editable?: boolean;
 
     /**
      * 编辑配置项，支持全局配置
      */
-    'edit-config': object;
+    'edit-config'?: object;
 
     /**
      * 自动溢出省略
      */
-    ellipsis: boolean;
+    ellipsis?: boolean;
 
     /**
      * 自动溢出省略配置项，支持全局配置
      */
-    'ellipsis-config': object;
+    'ellipsis-config'?: object;
 
     /**
      * 禁用文本
      */
-    disabled: boolean;
+    disabled?: boolean;
 
     /**
      * 添加代码样式
      */
-    code: boolean;
+    code?: boolean;
 
     /**
      * 添加删除线样式
      */
-    delete: boolean;
+    delete?: boolean;
 
     /**
      * 添加键盘样式
      */
-    keyboard: boolean;
+    keyboard?: boolean;
 
     /**
      * 添加标记样式
      */
-    mark: boolean;
+    mark?: boolean;
 
     /**
      * 添加下划线样式
      */
-    underline: boolean;
+    underline?: boolean;
 
     /**
      * 是否加粗
      */
-    strong: boolean;
+    strong?: boolean;
 
     /**
      * 是否斜体
      */
-    italic: boolean;
+    italic?: boolean;
 
     /**
      * 是否开启 Tooltip 的 transfer 属性，仅适用于 ellipsis 模式
      */
-    transfer: boolean;
+    transfer?: boolean;
 
     /**
      * Tooltip 的 theme 属性，仅适用于 ellipsis 模式
      */
-    theme: 'dark' | 'light';
+    theme?: 'dark' | 'light';
 
     /**
      * Tooltip 的 max-width 属性，仅适用于 ellipsis 模式
      */
-    'max-width': number | string;
+    'max-width'?: number | string;
 
     /**
      * Tooltip 的 placement 属性，仅适用于 ellipsis 模式
      */
-    placement: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end';
+    placement?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end';
 
     /**
      * 拷贝成功时触发
      */
-    $emit(eventName: 'on-copy-success'): this;
+    onOnCopySuccess?: (event?: any) => any;
 
     /**
      * 拷贝失败时触发
      */
-    $emit(eventName: 'on-copy-error'): this;
+    onOnCopyError?: (event?: any) => any;
 
     /**
      * 进入编辑状态时触发
      */
-    $emit(eventName: 'on-edit-start'): this;
+    onOnEditStart?: (event?: any) => any;
 
     /**
      * 结束编辑状态时触发，即保存
      */
-    $emit(eventName: 'on-edit-end'): this;
+    onOnEditEnd?: (event?: any) => any;
 
     /**
      * 编辑内容时触发
      */
-    $emit(eventName: 'on-edit-change'): this;
+    onOnEditChange?: (event?: any) => any;
 
     /**
      * 退出编辑时触发
      */
-    $emit(eventName: 'on-edit-cancel'): this;
+    onOnEditCancel?: (event?: any) => any;
 
-    $slots: {
+    'v-slots'?: {
         /**
          * 文本内容，优先级低于 model-value
          */
-        default: [];
+        default?: () => any;
 
         /**
          * 自定义拷贝图标，可选参数 copied
          */
-        copyIcon: [];
+        copyIcon?: () => any;
 
         /**
          * 自定义编辑图标
          */
-        editIcon: [];
+        editIcon?: () => any;
 
         /**
          * 自定义回车图标
          */
-        enterIcon: [];
+        enterIcon?: () => any;
 
     };
-}
+}>
 
-export declare class Text {
+export declare const Text: DefineComponent<{
     /**
      * 绑定的值，可使用 v-model 双向绑定
      */
-    'model-value': string;
+    'model-value'?: string;
 
     /**
      * 文本类型，可选值为 `secondary`、`success`、`warning`、`danger`
      */
-    type: '' | 'secondary' | 'success' | 'warning' | 'danger';
+    type?: '' | 'secondary' | 'success' | 'warning' | 'danger';
 
     /**
      * 是否可以拷贝
      */
-    copyable: boolean;
+    copyable?: boolean;
 
     /**
      * 自定义拷贝内容
      */
-    'copy-text': string;
+    'copy-text'?: string;
 
     /**
      * 拷贝配置项，支持全局配置
      */
-    'copy-config': object;
+    'copy-config'?: object;
 
     /**
      * 是否可以编辑
      */
-    editable: boolean;
+    editable?: boolean;
 
     /**
      * 编辑配置项，支持全局配置
      */
-    'edit-config': object;
+    'edit-config'?: object;
 
     /**
      * 自动溢出省略
      */
-    ellipsis: boolean;
+    ellipsis?: boolean;
 
     /**
      * 自动溢出省略配置项，支持全局配置
      */
-    'ellipsis-config': object;
+    'ellipsis-config'?: object;
 
     /**
      * 禁用文本
      */
-    disabled: boolean;
+    disabled?: boolean;
 
     /**
      * 添加代码样式
      */
-    code: boolean;
+    code?: boolean;
 
     /**
      * 添加删除线样式
      */
-    delete: boolean;
+    delete?: boolean;
 
     /**
      * 添加键盘样式
      */
-    keyboard: boolean;
+    keyboard?: boolean;
 
     /**
      * 添加标记样式
      */
-    mark: boolean;
+    mark?: boolean;
 
     /**
      * 添加下划线样式
      */
-    underline: boolean;
+    underline?: boolean;
 
     /**
      * 是否加粗
      */
-    strong: boolean;
+    strong?: boolean;
 
     /**
      * 是否斜体
      */
-    italic: boolean;
+    italic?: boolean;
 
     /**
      * 是否开启 Tooltip 的 transfer 属性，仅适用于 ellipsis 模式
      */
-    transfer: boolean;
+    transfer?: boolean;
 
     /**
      * Tooltip 的 theme 属性，仅适用于 ellipsis 模式
      */
-    theme: 'dark' | 'light';
+    theme?: 'dark' | 'light';
 
     /**
      * Tooltip 的 max-width 属性，仅适用于 ellipsis 模式
      */
-    'max-width': number | string;
+    'max-width'?: number | string;
 
     /**
      * Tooltip 的 placement 属性，仅适用于 ellipsis 模式
      */
-    placement: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end';
+    placement?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end';
 
     /**
      * 拷贝成功时触发
      */
-    $emit(eventName: 'on-copy-success'): this;
+    onOnCopySuccess?: (event?: any) => any;
 
     /**
      * 拷贝失败时触发
      */
-    $emit(eventName: 'on-copy-error'): this;
+    onOnCopyError?: (event?: any) => any;
 
     /**
      * 进入编辑状态时触发
      */
-    $emit(eventName: 'on-edit-start'): this;
+    onOnEditStart?: (event?: any) => any;
 
     /**
      * 结束编辑状态时触发，即保存
      */
-    $emit(eventName: 'on-edit-end'): this;
+    onOnEditEnd?: (event?: any) => any;
 
     /**
      * 编辑内容时触发
      */
-    $emit(eventName: 'on-edit-change'): this;
+    onOnEditChange?: (event?: any) => any;
 
     /**
      * 退出编辑时触发
      */
-    $emit(eventName: 'on-edit-cancel'): this;
+    onOnEditCancel?: (event?: any) => any;
 
-    $slots: {
+    'v-slots'?: {
         /**
          * 文本内容，优先级低于 model-value
          */
-        default: [];
+        default?: () => any;
 
         /**
          * 自定义拷贝图标，可选参数 copied
          */
-        copyIcon: [];
+        copyIcon?: () => any;
 
         /**
          * 自定义编辑图标
          */
-        editIcon: [];
+        editIcon?: () => any;
 
         /**
          * 自定义回车图标
          */
-        enterIcon: [];
+        enterIcon?: () => any;
 
     };
-}
+}>
 
-export declare class Paragraph {
+export declare const Paragraph: DefineComponent<{
     /**
      * 绑定的值，可使用 v-model 双向绑定
      */
-    'model-value': string;
+    'model-value'?: string;
 
     /**
      * 文本类型，可选值为 `secondary`、`success`、`warning`、`danger`
      */
-    type: '' | 'secondary' | 'success' | 'warning' | 'danger';
+    type?: '' | 'secondary' | 'success' | 'warning' | 'danger';
 
     /**
      * 是否可以拷贝
      */
-    copyable: boolean;
+    copyable?: boolean;
 
     /**
      * 自定义拷贝内容
      */
-    'copy-text': string;
+    'copy-text'?: string;
 
     /**
      * 拷贝配置项，支持全局配置
      */
-    'copy-config': object;
+    'copy-config'?: object;
 
     /**
      * 是否可以编辑
      */
-    editable: boolean;
+    editable?: boolean;
 
     /**
      * 编辑配置项，支持全局配置
      */
-    'edit-config': object;
+    'edit-config'?: object;
 
     /**
      * 自动溢出省略
      */
-    ellipsis: boolean;
+    ellipsis?: boolean;
 
     /**
      * 自动溢出省略配置项，支持全局配置
      */
-    'ellipsis-config': object;
+    'ellipsis-config'?: object;
 
     /**
      * 禁用文本
      */
-    disabled: boolean;
+    disabled?: boolean;
 
     /**
      * 添加代码样式
      */
-    code: boolean;
+    code?: boolean;
 
     /**
      * 添加删除线样式
      */
-    delete: boolean;
+    delete?: boolean;
 
     /**
      * 添加键盘样式
      */
-    keyboard: boolean;
+    keyboard?: boolean;
 
     /**
      * 添加标记样式
      */
-    mark: boolean;
+    mark?: boolean;
 
     /**
      * 添加下划线样式
      */
-    underline: boolean;
+    underline?: boolean;
 
     /**
      * 是否加粗
      */
-    strong: boolean;
+    strong?: boolean;
 
     /**
      * 是否斜体
      */
-    italic: boolean;
+    italic?: boolean;
 
     /**
      * 是否开启 Tooltip 的 transfer 属性，仅适用于 ellipsis 模式
      */
-    transfer: boolean;
+    transfer?: boolean;
 
     /**
      * Tooltip 的 theme 属性，仅适用于 ellipsis 模式
      */
-    theme: 'dark' | 'light';
+    theme?: 'dark' | 'light';
 
     /**
      * Tooltip 的 max-width 属性，仅适用于 ellipsis 模式
      */
-    'max-width': number | string;
+    'max-width'?: number | string;
 
     /**
      * Tooltip 的 placement 属性，仅适用于 ellipsis 模式
      */
-    placement: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end';
+    placement?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end';
 
     /**
      * 拷贝成功时触发
      */
-    $emit(eventName: 'on-copy-success'): this;
+    onOnCopySuccess?: (event?: any) => any;
 
     /**
      * 拷贝失败时触发
      */
-    $emit(eventName: 'on-copy-error'): this;
+    onOnCopyError?: (event?: any) => any;
 
     /**
      * 进入编辑状态时触发
      */
-    $emit(eventName: 'on-edit-start'): this;
+    onOnEditStart?: (event?: any) => any;
 
     /**
      * 结束编辑状态时触发，即保存
      */
-    $emit(eventName: 'on-edit-end'): this;
+    onOnEditEnd?: (event?: any) => any;
 
     /**
      * 编辑内容时触发
      */
-    $emit(eventName: 'on-edit-change'): this;
+    onOnEditChange?: (event?: any) => any;
 
     /**
      * 退出编辑时触发
      */
-    $emit(eventName: 'on-edit-cancel'): this;
+    onOnEditCancel?: (event?: any) => any;
 
-    $slots: {
+    'v-slots'?: {
         /**
          * 文本内容，优先级低于 model-value
          */
-        default: [];
+        default?: () => any;
 
         /**
          * 自定义拷贝图标，可选参数 copied
          */
-        copyIcon: [];
+        copyIcon?: () => any;
 
         /**
          * 自定义编辑图标
          */
-        editIcon: [];
+        editIcon?: () => any;
 
         /**
          * 自定义回车图标
          */
-        enterIcon: [];
+        enterIcon?: () => any;
 
     };
-}
+}>
 
-export declare class Link {
+export declare const Link: DefineComponent<{
     /**
      * 绑定的值，可使用 v-model 双向绑定
      */
-    'model-value': string;
+    'model-value'?: string;
 
     /**
      * 跳转的链接，支持 vue-router 对象
      */
-    to: string | object;
+    to?: string | object;
 
     /**
      * 路由跳转时，开启 replace 将不会向 history 添加新记录
      */
-    replace: boolean;
+    replace?: boolean;
 
     /**
      * 相当于 a 链接的 target 属性
      */
-    target: string;
+    target?: string;
 
     /**
      * 同 vue-router append
      */
-    append: boolean;
+    append?: boolean;
 
     /**
      * 文本类型，可选值为 `secondary`、`success`、`warning`、`danger`
      */
-    type: '' | 'secondary' | 'success' | 'warning' | 'danger';
+    type?: '' | 'secondary' | 'success' | 'warning' | 'danger';
 
     /**
      * 是否可以拷贝
      */
-    copyable: boolean;
+    copyable?: boolean;
 
     /**
      * 自定义拷贝内容
      */
-    'copy-text': string;
+    'copy-text'?: string;
 
     /**
      * 拷贝配置项，支持全局配置
      */
-    'copy-config': object;
+    'copy-config'?: object;
 
     /**
      * 是否可以编辑
      */
-    editable: boolean;
+    editable?: boolean;
 
     /**
      * 编辑配置项，支持全局配置
      */
-    'edit-config': object;
+    'edit-config'?: object;
 
     /**
      * 自动溢出省略
      */
-    ellipsis: boolean;
+    ellipsis?: boolean;
 
     /**
      * 自动溢出省略配置项，支持全局配置
      */
-    'ellipsis-config': object;
+    'ellipsis-config'?: object;
 
     /**
      * 禁用文本
      */
-    disabled: boolean;
+    disabled?: boolean;
 
     /**
      * 添加代码样式
      */
-    code: boolean;
+    code?: boolean;
 
     /**
      * 添加删除线样式
      */
-    delete: boolean;
+    delete?: boolean;
 
     /**
      * 添加键盘样式
      */
-    keyboard: boolean;
+    keyboard?: boolean;
 
     /**
      * 添加标记样式
      */
-    mark: boolean;
+    mark?: boolean;
 
     /**
      * 添加下划线样式
      */
-    underline: boolean;
+    underline?: boolean;
 
     /**
      * 是否加粗
      */
-    strong: boolean;
+    strong?: boolean;
 
     /**
      * 是否斜体
      */
-    italic: boolean;
+    italic?: boolean;
 
     /**
      * 是否开启 Tooltip 的 transfer 属性，仅适用于 ellipsis 模式
      */
-    transfer: boolean;
+    transfer?: boolean;
 
     /**
      * Tooltip 的 theme 属性，仅适用于 ellipsis 模式
      */
-    theme: 'dark' | 'light';
+    theme?: 'dark' | 'light';
 
     /**
      * Tooltip 的 max-width 属性，仅适用于 ellipsis 模式
      */
-    'max-width': number | string;
+    'max-width'?: number | string;
 
     /**
      * Tooltip 的 placement 属性，仅适用于 ellipsis 模式
      */
-    placement: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end';
+    placement?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end';
 
     /**
      * 拷贝成功时触发
      */
-    $emit(eventName: 'on-copy-success'): this;
+    onOnCopySuccess?: (event?: any) => any;
 
     /**
      * 拷贝失败时触发
      */
-    $emit(eventName: 'on-copy-error'): this;
+    onOnCopyError?: (event?: any) => any;
 
     /**
      * 进入编辑状态时触发
      */
-    $emit(eventName: 'on-edit-start'): this;
+    onOnEditStart?: (event?: any) => any;
 
     /**
      * 结束编辑状态时触发，即保存
      */
-    $emit(eventName: 'on-edit-end'): this;
+    onOnEditEnd?: (event?: any) => any;
 
     /**
      * 编辑内容时触发
      */
-    $emit(eventName: 'on-edit-change'): this;
+    onOnEditChange?: (event?: any) => any;
 
     /**
      * 退出编辑时触发
      */
-    $emit(eventName: 'on-edit-cancel'): this;
+    onOnEditCancel?: (event?: any) => any;
 
-    $slots: {
+    'v-slots'?: {
         /**
          * 文本内容，优先级低于 model-value
          */
-        default: [];
+        default?: () => any;
 
         /**
          * 自定义拷贝图标，可选参数 copied
          */
-        copyIcon: [];
+        copyIcon?: () => any;
 
         /**
          * 自定义编辑图标
          */
-        editIcon: [];
+        editIcon?: () => any;
 
         /**
          * 自定义回车图标
          */
-        enterIcon: [];
+        enterIcon?: () => any;
 
     };
-}
+}>
 
-export declare class CopyConfig {
+export declare const CopyConfig: {
     /**
      * Tooltip 显示内容，为 false 则不显示
      */
-    tooltips: boolean | [];
+    tooltips?: boolean | any[];
 
     /**
      * 是否显示复制成功的通知
      */
-    showTip: boolean;
+    showTip?: boolean;
 
     /**
      * 复制成功时的通知
      */
-    successTip: string;
+    successTip?: string;
 
     /**
      * 复制失败时的通知
      */
-    errorTip: string;
+    errorTip?: string;
 
 }
 
-export declare class EditConfig {
+export declare const EditConfig: {
     /**
      * Tooltip 显示内容，为 false 则不显示
      */
-    tooltip: boolean | string;
+    tooltip?: boolean | string;
 
     /**
      * 是否默认进入编辑状态
      */
-    editing: boolean;
+    editing?: boolean;
 
     /**
      * 最大输入长度
      */
-    maxlength: number;
+    maxlength?: number;
 
     /**
      * 自适应内容高度
      */
-    autosize: object;
+    autosize?: object;
 
     /**
      * 触发方式，可选值为 `icon`、`text`、`both`
      */
-    triggerType: 'icon' | 'text' | 'both';
+    triggerType?: 'icon' | 'text' | 'both';
 
 }
 
-export declare class EllipsisConfig {
+export declare const EllipsisConfig: {
     /**
      * 最多显示的行数
      */
-    rows: number;
+    rows?: number;
 
     /**
      * 是否以 Tooltip 显示完整内容或自定义内容
      */
-    tooltip: boolean | string;
+    tooltip?: boolean | string;
 
 }

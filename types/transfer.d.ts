@@ -1,79 +1,81 @@
-export declare class Transfer {
+import type { DefineComponent } from 'vue';
+
+export declare const Transfer: DefineComponent<{
     /**
      * 数据源，其中的数据将会被渲染到左边一栏中，`targetKeys` 中指定的除外。
      */
-    data: [];
+    data?: any[];
 
     /**
      * 显示在右侧框数据的key集合
      */
-    'target-keys': [];
+    'target-keys'?: any[];
 
     /**
      * 每行数据渲染函数，该函数的入参为 `data` 中的项
      */
-    'render-format': Function;
+    'render-format'?: Function;
 
     /**
      * 设置哪些项应该被选中
      */
-    'selected-keys': [];
+    'selected-keys'?: any[];
 
     /**
      * 两个穿梭框的自定义样式
      */
-    'list-style': object;
+    'list-style'?: object;
 
     /**
      * 标题集合，顺序从左至右
      */
-    titles: [];
+    titles?: any[];
 
     /**
      * 操作文案集合，顺序从上至下
      */
-    operations: [];
+    operations?: any[];
 
     /**
      * 是否颠倒两个操作按钮的上下顺序
      */
-    'reverse-operation': boolean;
+    'reverse-operation'?: boolean;
 
     /**
      * 是否显示搜索框
      */
-    filterable: boolean;
+    filterable?: boolean;
 
     /**
      * 搜索框的占位
      */
-    'filter-placeholder': string;
+    'filter-placeholder'?: string;
 
     /**
      * 自定义搜索函数，入参为 data 和 query，data 为项，query 为当前输入的搜索词
      */
-    'filter-method': Function;
+    'filter-method'?: Function;
 
     /**
      * 当列表为空时显示的内容
      */
-    'not-found-text': string;
+    'not-found-text'?: string;
 
     /**
      * 选项在两栏之间转移时的回调函数
      */
-    $emit(eventName: 'on-change'): this;
+    onOnChange?: (event?: any) => any;
 
     /**
      * 选中项发生变化时触发
      */
-    $emit(eventName: 'on-selected-change'): this;
+    onOnSelectedChange?: (event?: any) => any;
 
-    $slots: {
+    'v-slots'?: {
         /**
          * 自定义底部内容
          */
-        '': [];
+        default?: () => any;
 
     };
-}
+}>

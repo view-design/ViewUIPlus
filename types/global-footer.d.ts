@@ -1,57 +1,59 @@
-export declare class GlobalFooter {
+import type { DefineComponent } from 'vue';
+
+export declare const GlobalFooter: DefineComponent<{
     /**
      * 链接数据，各项内容见下表
      */
-    links: [];
+    links?: any[];
 
     /**
      * 版权信息
      */
-    copyright: string;
+    copyright?: string;
 
-    $slots: {
+    'v-slots'?: {
         /**
          * 自定义链接区域
          */
-        links: [];
+        links?: () => any;
 
         /**
          * 自定义版权内容
          */
-        copyright: [];
+        copyright?: () => any;
 
     };
-}
+}>
 
-export declare class Links {
+export declare const Links: DefineComponent<{
     /**
      * 链接地址
      */
-    href: string;
+    href?: string;
 
     /**
      * 是否新窗口打开
      */
-    'blank-target': boolean;
+    'blank-target'?: boolean;
 
     /**
      * 指定 key
      */
-    key: string;
+    key?: string;
 
     /**
      * 内容
      */
-    title: string;
+    title?: string;
 
     /**
      * 图标 type
      */
-    icon: string;
+    icon?: string;
 
     /**
      * 自定义图标
      */
-    'custom-icon': string;
+    'custom-icon'?: string;
 
-}
+}>

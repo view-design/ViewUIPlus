@@ -1,65 +1,67 @@
-export declare class Anchor {
+import type { DefineComponent } from 'vue';
+
+export declare const Anchor: DefineComponent<{
     /**
      * 固定模式
      */
-    affix: boolean;
+    affix?: boolean;
 
     /**
      * 距离窗口顶部达到指定偏移量后触发
      */
-    'offset-top': number;
+    'offset-top'?: number;
 
     /**
      * 距离窗口底部达到指定偏移量后触发
      */
-    'offset-bottom': number;
+    'offset-bottom'?: number;
 
     /**
      * 锚点区域边界，单位：px
      */
-    bounds: number;
+    bounds?: number;
 
     /**
      * 点击滚动的额外距离
      */
-    'scroll-offset': number;
+    'scroll-offset'?: number;
 
     /**
      * 指定滚动的容器
      */
-    container: string | HTMLElement;
+    container?: string | HTMLElement;
 
     /**
      * 是否显示小圆点
      */
-    'show-ink': boolean;
+    'show-ink'?: boolean;
 
     /**
      * 点击锚点时触发，返回链接
      */
-    $emit(eventName: 'on-select'): this;
+    onOnSelect?: (event?: any) => any;
 
     /**
      * 链接改变时触发，返回新链接和旧链接
      */
-    $emit(eventName: 'on-change'): this;
+    onOnChange?: (event?: any) => any;
 
-}
+}>
 
-export declare class AnchorLink {
+export declare const AnchorLink: DefineComponent<{
     /**
      * 锚点链接
      */
-    href: string;
+    href?: string;
 
     /**
      * 文字内容
      */
-    title: string;
+    title?: string;
 
     /**
      * 点击滚动的额外距离
      */
-    'scroll-offset': number;
+    'scroll-offset'?: number;
 
-}
+}>

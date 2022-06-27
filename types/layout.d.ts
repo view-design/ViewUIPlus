@@ -1,94 +1,96 @@
-export declare class Sider {
+import type { DefineComponent } from 'vue';
+
+export declare const Sider: DefineComponent<{
     /**
      * 是否收起, 可以使用 v-model来进行双向绑定
      */
-    'model-value': boolean;
+    'model-value'?: boolean;
 
     /**
      * 触发响应式布局的断点，可选值为`xs`,`sm`,`md`,`lg`,`xl`或`xxl`，若不设此属性则不会触发响应式布局。
      */
-    breakpoint: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+    breakpoint?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
     /**
      * 宽度
      */
-    width: number;
+    width?: number;
 
     /**
      * 是否可收起，设为`false`后，默认触发器会隐藏，且响应式布局不会触发
      */
-    collapsible: boolean;
+    collapsible?: boolean;
 
     /**
      * 收缩宽度，设置为 0 会出现特殊 trigger
      */
-    'collapsed-width': number;
+    'collapsed-width'?: number;
 
     /**
      * 隐藏默认触发器
      */
-    'hide-trigger': boolean;
+    'hide-trigger'?: boolean;
 
     /**
      * 是否默认收起，设置了`collapsible`后设置此属性侧边栏仍会收起。
      */
-    'default-collapsed': boolean;
+    'default-collapsed'?: boolean;
 
     /**
      * 改变侧边栏触发器箭头方向，和改变侧边栏收起方向，当Sider在右边时可以使用。
      */
-    'reverse-arrow': boolean;
+    'reverse-arrow'?: boolean;
 
     /**
      * 展开-收起时的回调
      */
-    $emit(eventName: 'on-collapse'): this;
+    onOnCollapse?: (event?: any) => any;
 
-    $slots: {
+    'v-slots'?: {
         /**
          * 自定义触发器
          */
-        trigger: [];
+        trigger?: () => any;
 
     };
-}
+}>
 
-export declare class Layout {
-    $slots: {
+export declare const Layout: DefineComponent<{
+    'v-slots'?: {
         /**
          * 默认插槽内容
          */
-        default: [];
+        default?: () => any;
 
     };
-}
+}>
 
-export declare class Content {
-    $slots: {
+export declare const Content: DefineComponent<{
+    'v-slots'?: {
         /**
          * 默认插槽内容
          */
-        default: [];
+        default?: () => any;
 
     };
-}
+}>
 
-export declare class Footer {
-    $slots: {
+export declare const Footer: DefineComponent<{
+    'v-slots'?: {
         /**
          * 默认插槽内容
          */
-        default: [];
+        default?: () => any;
 
     };
-}
+}>
 
-export declare class Header {
-    $slots: {
+export declare const Header: DefineComponent<{
+    'v-slots'?: {
         /**
          * 默认插槽内容
          */
-        default: [];
+        default?: () => any;
 
     };
-}
+}>
