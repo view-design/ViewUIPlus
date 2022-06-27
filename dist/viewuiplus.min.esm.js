@@ -8683,8 +8683,8 @@ var LoginItem = {
   props: {
     rules: {
       type: [Object, Array],
-      default(props) {
-        const componentName = props.name;
+      default() {
+        const componentName = getCurrentInstance().type.name;
         return [
           {
             required: true,
@@ -14227,7 +14227,7 @@ const _sfc_main$1I = {
           return;
         }
         if (this.transfer) {
-          const { $el } = this.$refs.drop;
+          const $el = this.$refs.drop.$refs.drop;
           if ($el === event.target || $el.contains(event.target)) {
             return;
           }
@@ -22190,7 +22190,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
             $props.toolbar && $props.toolbar.length > 0 ? (openBlock(), createBlock(_component_Row, {
               key: 2,
               "class-name": "ivu-image-preview-operations",
-              gutter: 12,
+              wrap: false,
               onClick: _cache[11] || (_cache[11] = withModifiers(() => {
               }, ["stop"]))
             }, {
@@ -38362,7 +38362,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.0";
+const version$1 = "1.3.1-beta.1";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
