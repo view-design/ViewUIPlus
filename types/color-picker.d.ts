@@ -1,82 +1,84 @@
-export declare class ColorPicker {
+import type { DefineComponent } from 'vue';
+
+export declare const ColorPicker: DefineComponent<{
     /**
      * 绑定的值，可使用 v-model 双向绑定
      */
-    'model-value': string;
+    'model-value'?: string;
 
     /**
      * 是否禁用
      */
-    disabled: boolean;
+    disabled?: boolean;
 
     /**
      * 是否可以输入色值
      */
-    editable: boolean;
+    editable?: boolean;
 
     /**
      * 是否支持透明度选择
      */
-    alpha: boolean;
+    alpha?: boolean;
 
     /**
      * 是否支持色彩选择
      */
-    hue: boolean;
+    hue?: boolean;
 
     /**
      * 是否显示推荐的颜色预设
      */
-    recommend: boolean;
+    recommend?: boolean;
 
     /**
      * 自定义颜色预设
      */
-    colors: [];
+    colors?: any[];
 
     /**
      * 颜色的格式，可选值为 hsl、hsv、hex、rgb
      */
-    format: 'hsl' | 'hsv' | 'hex' | 'rgb';
+    format?: 'hsl' | 'hsv' | 'hex' | 'rgb';
 
     /**
      * 尺寸，可选值为`large`、`small`、`default`或者不设置
      */
-    size: '' | 'large' | 'small' | 'default';
+    size?: '' | 'large' | 'small' | 'default';
 
     /**
      * 是否将弹层放置于 body 内，在 Tabs、带有 fixed 的 Table 列内使用时，建议添加此属性，它将不受父级样式影响，从而达到更好的效果
      */
-    transfer: boolean;
+    transfer?: boolean;
 
     /**
      * 是否开启 capture 模式，也可通过全局配置
      */
-    capture: boolean;
+    capture?: boolean;
 
     /**
      * 开启 transfer 时，给浮层添加额外的 class 名称
      */
-    'transfer-class-name': string;
+    'transfer-class-name'?: string;
 
     /**
      * 是否开启 Popper 的 eventsEnabled 属性，开启可能会牺牲一定的性能
      */
-    'events-enabled': boolean;
+    'events-enabled'?: boolean;
 
     /**
      * 当绑定值变化时触发
      */
-    $emit(eventName: 'on-change'): this;
+    onOnChange?: (event?: any) => any;
 
     /**
      * 面板中当前显示的颜色发生改变时触发
      */
-    $emit(eventName: 'on-active-change'): this;
+    onOnActiveChange?: (event?: any) => any;
 
     /**
      * 下拉框展开或收起时触发
      */
-    $emit(eventName: 'on-open-change'): this;
+    onOnOpenChange?: (event?: any) => any;
 
-}
+}>

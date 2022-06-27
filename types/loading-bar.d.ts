@@ -1,4 +1,6 @@
-export declare class LoadingBar {
+import type { DefineComponent } from 'vue';
+
+export declare const LoadingBar: DefineComponent<{
     /**
      * 开始从 0 显示进度条，并自动加载进度
      */
@@ -19,27 +21,27 @@ export declare class LoadingBar {
      */
     update(percent?: number): void;
 
-}
+}>
 
-export declare class LoadingBarConfig {
+export declare const LoadingBarConfig: {
     /**
      * 进度条的颜色，默认为 View UI Plus 主色
      */
-    color: string;
+    color?: string;
 
     /**
      * 失败时的进度条颜色，默认为 View UI Plus 主色
      */
-    failedColor: string;
+    failedColor?: string;
 
     /**
      * 进度条高度，单位 px
      */
-    height: number;
+    height?: number;
 
     /**
      * 隐藏时的持续时间，单位 ms
      */
-    duration: number;
+    duration?: number;
 
 }
