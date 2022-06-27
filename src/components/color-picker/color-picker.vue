@@ -418,7 +418,7 @@
                     }
 
                     if (this.transfer) {
-                        const { $el } = this.$refs.drop;
+                        const $el = this.$refs.drop.$refs.drop;
                         if ($el === event.target || $el.contains(event.target)) {
                             return;
                         }

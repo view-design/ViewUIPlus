@@ -1,7 +1,7 @@
 <template>
     <Row>
         <Col span="8">
-            <ColorPicker v-model="color6" size="large" />
+            <ColorPicker v-model="color6" size="large" transfer/>
         </Col>
         <Col span="8">
             <ColorPicker v-model="color6" />
