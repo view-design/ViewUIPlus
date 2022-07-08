@@ -32,6 +32,7 @@ View UI Plus
 We provide starter kit for you.
 - [View UI Plus Project (Based on Vue CLI)](https://github.com/view-design/view-ui-project-vuecli)
 - [View UI Plus Project (Based on Vite)](https://github.com/view-design/view-ui-project-vite)
+- [View UI Plus Project (Based on TypeScript)](https://github.com/view-design/view-ui-project-ts)
 - [View UI Plus Project (Based on Nuxt)](https://github.com/view-design/view-ui-project-nuxt)
 
 ### Install View UI Plus
@@ -56,14 +57,9 @@ You can find more info [on the website](https://www.iviewui.com/view-ui-plus/gui
 <template>
     <Slider v-model="value" range />
 </template>
-<script>
-    export default {
-        data () {
-            return {
-                value: [20, 50]
-            }
-        }
-    }
+<script setup>
+    import { ref } from 'vue'
+    const value = ref([20, 50])
 </script>
 ```
 
@@ -78,7 +74,7 @@ import 'view-ui-plus/dist/styles/viewuiplus.css'
 If you want to contribute us or in case you are haiving any doubt.
 
 **Questions:** Find other users at the [Gitter chat](https://gitter.im/iview/iview) or post on [StackOverflow using `[iview-ui]` tag](https://stackoverflow.com/questions/tagged/iview-ui)  
-**Bugs:** [File a issue here](https://github.com/iview-design/iview/issues) - please provide a example so we can help you better  
+**Bugs:** [File a issue here](https://www.iviewui.com/new-issue) - please provide a example so we can help you better  
 **Contribute:** Contact us in [Gitter chat](https://gitter.im/iview/iview), WeChat or via mail to `admin@aresn.com`. PRs welcome!
 
 ## Major Contributors
