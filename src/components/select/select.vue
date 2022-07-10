@@ -5,6 +5,7 @@
         v-click-outside:[capture].mousedown="onClickOutside"
         v-click-outside:[capture].touchstart="onClickOutside"
     >
+        {{focusIndex}}
         <div
             ref="reference"
 
@@ -540,9 +541,17 @@
                     }
                     // enter
                     if (key === 'Enter') {
-                        if (this.focusIndex === -1) return this.hideMenu();
-                        const optionComponent = this.slotOptions[this.focusIndex];
-
+                        const { slotOptions, focusIndex } = this;
+                        let _slotOptions = slotOptions;
+                        let _focusIndex = focusIndex;
+                        if (focusIndex === -1 && slotOptions.length > 0) {
+                            _slotOptions = slotOptions.filter(item => item && item.proxy && item.proxy.isShow);
+                            _focusIndex = 0;
+                        }
+                        if (_focusIndex === -1) {
+                            return this.hideMenu();
+                        };
+                        const optionComponent = _slotOptions[_focusIndex];
                         // fix a script error when searching
                         if (optionComponent) {
                             const option = this.getOptionData(optionComponent.props.value);
