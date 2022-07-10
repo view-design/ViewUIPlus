@@ -5,7 +5,6 @@
         v-click-outside:[capture].mousedown="onClickOutside"
         v-click-outside:[capture].touchstart="onClickOutside"
     >
-        {{focusIndex}}
         <div
             ref="reference"
 
