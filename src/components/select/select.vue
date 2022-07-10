@@ -540,10 +540,10 @@
                     }
                     // enter
                     if (key === 'Enter') {
-                        const { slotOptions, focusIndex } = this;
+                        const { slotOptions, focusIndex, query } = this;
                         let _slotOptions = slotOptions;
                         let _focusIndex = focusIndex;
-                        if (focusIndex === -1 && slotOptions.length > 0) {
+                        if (focusIndex === -1 && slotOptions.length > 0 && query.length > 0) {
                             _slotOptions = slotOptions.filter(item => item && item.proxy && item.proxy.isShow);
                             _focusIndex = 0;
                         }
