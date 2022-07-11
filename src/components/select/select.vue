@@ -299,7 +299,7 @@
                 values: [],
                 dropDownWidth: 0,
                 visible: false,
-                focusIndex: -1,
+                focusIndex: 0,
                 isFocused: false,
                 query: '',
                 initialLabel: this.label,
@@ -464,6 +464,7 @@
 
                 this.visible = typeof force !== 'undefined' ? force : !this.visible;
                 if (this.visible){
+                    
                     this.dropDownWidth = this.$el.getBoundingClientRect().width;
                     this.$refs.dropdown.handleOnUpdatePopper();
                 }
@@ -508,7 +509,7 @@
             },
             reset(){
                 this.query = '';
-                this.focusIndex = -1;
+                this.focusIndex = 0;
                 this.unchangedQuery = true;
                 this.values = [];
                 this.filterQueryChange = false;
@@ -540,17 +541,9 @@
                     }
                     // enter
                     if (key === 'Enter') {
-                        const { slotOptions, focusIndex, query } = this;
-                        let _slotOptions = slotOptions;
-                        let _focusIndex = focusIndex;
-                        if (focusIndex === -1 && slotOptions.length > 0 && query.length > 0) {
-                            _slotOptions = slotOptions.filter(item => item && item.proxy && item.proxy.isShow);
-                            _focusIndex = 0;
-                        }
-                        if (_focusIndex === -1) {
-                            return this.hideMenu();
-                        };
-                        const optionComponent = _slotOptions[_focusIndex];
+                        const { slotOptions, focusIndex } = this;
+                        if (focusIndex === -1) return this.hideMenu();
+                        const optionComponent = slotOptions[focusIndex];
                         // fix a script error when searching
                         if (optionComponent) {
                             const option = this.getOptionData(optionComponent.props.value);
@@ -578,7 +571,7 @@
                 let nearestActiveOption;
                 // find first show option in case of set init focusIndex
                 let firseIndex = null
-                if (direction > 0){
+                if (direction >= 0){
                     nearestActiveOption = -1;
                     for (let i = 0; i < slotOptions.length; i++){
                         const { proxy } = slotOptions[i];
@@ -762,9 +755,6 @@
                 }
             },
             query (query) {
-                // when query word, set focusIndex init
-                this.focusIndex = -1;
-
                 this.$emit('on-query-change', query);
                 const {remoteMethod, lastRemoteQuery} = this;
                 const hasValidQuery = query !== '' && (query !== lastRemoteQuery || !lastRemoteQuery);
@@ -781,6 +771,11 @@
                     }
                 }
                 if (this.visible) {
+                    // when query word, set focusIndex init
+                    if (this.values.length === 0) {
+                        this.focusIndex = 0;
+                        this.navigateOptions(0);
+                    };
                     this.$refs.dropdown.handleOnUpdatePopper();
                 }
                 if (query !== '' && this.remote) this.lastRemoteQuery = query;
