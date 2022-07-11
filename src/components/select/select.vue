@@ -775,7 +775,10 @@
                     if (this.values.length === 0) {
                         this.focusIndex = 0;
                         this.navigateOptions(0);
-                    };
+                    } else {
+                        this.focusIndex = -1;
+                        this.navigateOptions(-1);
+                    }
                     this.$refs.dropdown.handleOnUpdatePopper();
                 }
                 if (query !== '' && this.remote) this.lastRemoteQuery = query;
