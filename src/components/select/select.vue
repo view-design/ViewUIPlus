@@ -257,7 +257,11 @@
             hideNotFound: {
                 type: Boolean,
                 default: false
-            }
+            },
+            quickConfirm: {
+              type: Boolean,
+              default: false  
+            },
         },
         mounted () {
             // set the initial values if there are any
@@ -540,7 +544,10 @@
                     }
                     // enter
                     if (key === 'Enter') {
-                        if (this.focusIndex === -1) return this.hideMenu();
+                        if (this.focusIndex === -1 && !this.quickConfirm) {
+                            return this.hideMenu();
+                        }
+                        this.focusIndex === -1  && this.navigateOptions(1)
                         const optionComponent = this.slotOptions[this.focusIndex];
 
                         // fix a script error when searching
