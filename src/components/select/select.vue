@@ -464,7 +464,7 @@
 
                 this.visible = typeof force !== 'undefined' ? force : !this.visible;
                 if (this.visible){
-                    
+
                     this.dropDownWidth = this.$el.getBoundingClientRect().width;
                     this.$refs.dropdown.handleOnUpdatePopper();
                 }
@@ -542,7 +542,6 @@
                     // enter
                     if (key === 'Enter') {
                         const { slotOptions, focusIndex } = this;
-                        if (focusIndex === -1) return this.hideMenu();
                         const optionComponent = slotOptions[focusIndex];
                         // fix a script error when searching
                         if (optionComponent) {
@@ -628,7 +627,6 @@
                     if (!opt) return false;
                     return opt.props.value === option.value;
                 });
-
                 if (this.filterable){
                     const inputField = this.$el.querySelector('input[type="text"]');
                     if (!this.autoComplete) nextTick(() => inputField.focus());
@@ -772,12 +770,10 @@
                 }
                 if (this.visible) {
                     // when query word, set focusIndex init
-                    if (this.values.length === 0) {
+                    const { values, multiple, filterable } = this;
+                    if (values.length === 0 || multiple || filterable) {
                         this.focusIndex = 0;
                         this.navigateOptions(0);
-                    } else {
-                        this.focusIndex = -1;
-                        this.navigateOptions(-1);
                     }
                     this.$refs.dropdown.handleOnUpdatePopper();
                 }
