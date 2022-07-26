@@ -260,6 +260,9 @@
             }
         },
         mounted () {
+            if (this.allowCreate) {
+                this.focusIndex = -1;
+            }
             // set the initial values if there are any
             if (!this.remote && this.slotOptions.length > 0){
                 this.values = this.getInitialValue().map(value => {
@@ -299,7 +302,7 @@
                 values: [],
                 dropDownWidth: 0,
                 visible: false,
-                focusIndex: -1,
+                focusIndex: 0,
                 isFocused: false,
                 query: '',
                 initialLabel: this.label,
@@ -314,7 +317,8 @@
                 filterQueryChange: false,  // #4273
                 slotOptionsMap: new Map(),
                 // fix Option hide, the model value cannot selected
-                isLocking: false
+                isLocking: false,
+                slotTimer: null
             };
         },
         computed: {
@@ -464,6 +468,7 @@
 
                 this.visible = typeof force !== 'undefined' ? force : !this.visible;
                 if (this.visible){
+
                     this.dropDownWidth = this.$el.getBoundingClientRect().width;
                     this.$refs.dropdown.handleOnUpdatePopper();
                 }
@@ -508,10 +513,36 @@
             },
             reset(){
                 this.query = '';
-                this.focusIndex = -1;
+                this.focusIndex = 0;
                 this.unchangedQuery = true;
                 this.values = [];
                 this.filterQueryChange = false;
+            },
+            getFilterFocusIndex() {
+                const { slotOptions } = this;
+                let _focusIndex = 0;
+                const slotFirstIndex = slotOptions.findIndex((item) => item.proxy.isShow);
+                return slotFirstIndex === -1 ? _focusIndex : slotFirstIndex;
+            },
+            changeSelectedFocusIndex() {
+                if (this.slotTimer || this.allowCreate) return;
+                // use setTimeout avoid to get slotOptions length wrong;
+                this.slotTimer = setTimeout(() => {
+                    const { slotOptions, values, getFilterFocusIndex, remoteMethod } = this;
+                    let _focusIndex = 0;
+                    if (typeof remoteMethod === "function") {
+                        _focusIndex = getFilterFocusIndex();
+                    } else if (values.length > 0) {
+                        const lastSlotItem = values[values.length - 1];
+                        _focusIndex = slotOptions.findIndex((slotItem) => slotItem.proxy.value === lastSlotItem.value && slotItem.proxy.isShow);
+                    } else {
+                        _focusIndex = getFilterFocusIndex();
+                    }
+                    if (_focusIndex === -1) _focusIndex = getFilterFocusIndex();
+                    this.focusIndex = _focusIndex;
+                    clearTimeout(this.slotTimer);
+                    this.slotTimer = null;
+                });
             },
             handleKeydown (e) {
                 const key = e.key || e.code;
@@ -540,9 +571,8 @@
                     }
                     // enter
                     if (key === 'Enter') {
-                        if (this.focusIndex === -1) return this.hideMenu();
-                        const optionComponent = this.slotOptions[this.focusIndex];
-
+                        const { slotOptions, focusIndex } = this;
+                        const optionComponent = slotOptions[focusIndex];
                         // fix a script error when searching
                         if (optionComponent) {
                             const option = this.getOptionData(optionComponent.props.value);
@@ -570,7 +600,7 @@
                 let nearestActiveOption;
                 // find first show option in case of set init focusIndex
                 let firseIndex = null
-                if (direction > 0){
+                if (direction >= 0){
                     nearestActiveOption = -1;
                     for (let i = 0; i < slotOptions.length; i++){
                         const { proxy } = slotOptions[i];
@@ -627,7 +657,6 @@
                     if (!opt) return false;
                     return opt.props.value === option.value;
                 });
-
                 if (this.filterable){
                     const inputField = this.$el.querySelector('input[type="text"]');
                     if (!this.autoComplete) nextTick(() => inputField.focus());
@@ -754,11 +783,8 @@
                 }
             },
             query (query) {
-                // when query word, set focusIndex init
-                this.focusIndex = -1;
-
                 this.$emit('on-query-change', query);
-                const {remoteMethod, lastRemoteQuery} = this;
+                const {remoteMethod, lastRemoteQuery, filterable, visible, remote} = this;
                 const hasValidQuery = query !== '' && (query !== lastRemoteQuery || !lastRemoteQuery);
                 const shouldCallRemoteMethod = remoteMethod && hasValidQuery && !this.preventRemoteCall;
                 this.preventRemoteCall = false; // remove the flag
@@ -772,10 +798,12 @@
                         });
                     }
                 }
-                if (this.visible) {
+                // when query word, set focusIndex init
+                filterable && this.changeSelectedFocusIndex();
+                if (visible) {
                     this.$refs.dropdown.handleOnUpdatePopper();
                 }
-                if (query !== '' && this.remote) this.lastRemoteQuery = query;
+                if (query !== '' && remote) this.lastRemoteQuery = query;
             },
             isFocused (focused) {
                 const el = this.filterable ? this.$el.querySelector('input[type="text"]') : this.$el;
