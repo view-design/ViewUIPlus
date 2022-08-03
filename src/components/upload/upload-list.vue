@@ -10,8 +10,8 @@
             </span>
             <Icon
                 type="ios-close"
-                :class="[prefixCls + '-list-remove']"
-                v-show="file.status === 'finished'"
+                :class="fileRemoveCls(file)"
+                v-show="file.status === 'finished' || file.status === 'error'"
                 @click="handleRemove(file)"></Icon>
             <transition name="fade">
                 <i-progress
@@ -50,7 +50,16 @@
                 return [
                     `${prefixCls}-list-file`,
                     {
-                        [`${prefixCls}-list-file-finish`]: file.status === 'finished'
+                        [`${prefixCls}-list-file-finish`]: file.status === 'finished',
+                        [`${prefixCls}-list-file-error`]: file.status === 'error'
+                    }
+                ];
+            },
+            fileRemoveCls (file) {
+                return [
+                    `${prefixCls}-list-remove`,
+                    {
+                        [`${prefixCls}-list-remove-error`]: file.status === 'error'
                     }
                 ];
             },
@@ -89,7 +98,13 @@
                 return type;
             },
             parsePercentage (val) {
-                return parseInt(val, 10);
+                val = parseInt(val, 10);
+                if (val < 0) {
+                    val = 0;
+                } else if (val > 100) {
+                    val = 100;
+                }
+                return val;
             }
         }
     };
