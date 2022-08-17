@@ -126,7 +126,7 @@
             if (this.showSlot) {
                 slots.push(h('span', {
                     ref: 'slot'
-                }), this.$slots.default());
+                }, this.$slots.default()));
             }
 
             return h(tag, {
