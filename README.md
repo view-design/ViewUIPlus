@@ -5,7 +5,7 @@
 </p>
 
 <h1>
-View UI Plus
+View UI Plus2
     <h3>An enterprise-level UI component library and front-end solution based on Vue.js 3</h3>
 </h1>
 
