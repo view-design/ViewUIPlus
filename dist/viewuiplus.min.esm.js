@@ -6167,7 +6167,7 @@ const _sfc_main$2c = {
     if (this.showSlot) {
       slots.push(h("span", {
         ref: "slot"
-      }), this.$slots.default());
+      }, this.$slots.default()));
     }
     return h(tag, __spreadValues({
       class: this.classes,
