@@ -28,8 +28,7 @@
         "build:style": "gulp --gulpfile build/build-style.js",
         "build:prod": "vite build",
         "build:lang": "vite build --config build/vite.lang.config.js",
-        "lint": "vue-cli-service lint --fix",
-        "prepare": "npm run build"
+        "lint": "vue-cli-service lint --fix"
     },
     "repository": {
         "type": "git",
