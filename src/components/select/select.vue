@@ -66,7 +66,7 @@
             :transfer="transfer"
             transition-name="transition-drop"
         >
-            <ul v-show="showNotFoundLabel && !allowCreate" :class="[prefixCls + '-not-found']"><li>{{ localeNotFoundText }}</li></ul>
+            <ul v-show="showNotFoundLabel" :class="[prefixCls + '-not-found']"><li>{{ localeNotFoundText }}</li></ul>
 
             <ul
                 v-if="(!remote) || (remote && !loading)"
@@ -382,10 +382,13 @@
                 return this.visible && status;
             },
             showNotFoundLabel () {
-                const {loading, remote, slotOptions, hideNotFound} = this;
+                const {loading, remote, slotOptions, hideNotFound,allowCreate,query} = this;
                 const options = slotOptions || [];
                 const filterOptions = options.find(item => item.proxy.isShow);
-                return (options.length === 0 || !filterOptions) && (!remote || (remote && !loading)) && !hideNotFound;
+                return (options.length === 0 || !filterOptions) &&
+                    (!remote || (remote && !loading)) &&
+                    (!allowCreate || (allowCreate && !query)) &&
+                    !hideNotFound;
             },
             publicValue(){
                 return this.multiple ? this.values.map(option => option.value) : (this.values[0] || {}).value;
