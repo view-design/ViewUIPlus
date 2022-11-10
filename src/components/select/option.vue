@@ -10,8 +10,8 @@
     import mixinsForm from '../../mixins/form';
     import { findComponentUpward } from '../../utils/assist';
     import random from '../../utils/random_str';
-    import { getCurrentInstance } from 'vue';
-    import { nextTick } from 'vue';
+    import { getCurrentInstance, nextTick } from 'vue';
+    import { typeOf } from '../../utils/assist';
     const prefixCls = 'ivu-select-item';
 
     export default {
@@ -107,7 +107,7 @@
                     filterOption = (label || '').toLowerCase();
                 }
                 const showFilterOption = filterOption.includes(query);
-                return !filterable || filterable && showFilterOption
+                return !filterable || filterable && showFilterOption || typeOf(SelectInstance.remoteMethod) === 'function';
             },
             selected(){
                 const SelectInstance = this.SelectInstance;
