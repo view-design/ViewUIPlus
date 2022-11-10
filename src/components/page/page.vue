@@ -78,6 +78,7 @@
     import Locale from '../../mixins/locale';
 
     const prefixCls = 'ivu-page';
+    const sizes = ['small', 'default'];
 
     export default {
         name: 'Page',
@@ -117,8 +118,13 @@
                 }
             },
             size: {
+                type: String,
+                default () {
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return global.$VIEWUI && oneOf(global.$VIEWUI.size, sizes) ? global.$VIEWUI.size : 'default';
+                },
                 validator (value) {
-                    return oneOf(value, ['small', 'default']);
+                    return oneOf(value, sizes);
                 }
             },
             simple: {
