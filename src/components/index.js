@@ -49,6 +49,7 @@ export { default as FormItem } from './form-item';
 export { default as GlobalFooter } from './global-footer';
 export { default as Grid } from './grid';
 export { default as GridItem } from './grid-item';
+export { default as Gradient } from './gradient';
 export { default as Header } from './header';
 export { default as Icon } from './icon';
 export { default as Image } from './image';

@@ -359,6 +359,10 @@ const router = createRouter({
             component: () => import('./routers/typography.vue')
         },
         {
+            path: '/gradient',
+            component: () => import('./routers/gradient.vue')
+        },
+        {
             path: '/space',
             component: () => import('./routers/space.vue')
         }

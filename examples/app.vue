@@ -66,6 +66,7 @@
             <span><router-link to="/list">List</router-link></span>
             <span><router-link to="/skeleton">Skeleton</router-link></span>
             <span><router-link to="/typography">Typography</router-link></span>
+            <span><router-link to="/gradient">Gradient</router-link></span>
             <Divider></Divider>
             <span><router-link to="/grid-component">Grid</router-link></span>
             <span><router-link to="/description-list">DescriptionList</router-link></span>
