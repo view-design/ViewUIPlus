@@ -8,6 +8,7 @@
             :class="[prefixCls + '-rel']"
             ref="reference"
             @click="handleClick"
+            @contextmenu.prevent="handleRightClick"
             @mousedown="handleFocus(false)"
             @mouseup="handleBlur(false)">
             <slot></slot>
@@ -67,7 +68,7 @@
         props: {
             trigger: {
                 validator (value) {
-                    return oneOf(value, ['click', 'focus', 'hover']);
+                    return oneOf(value, ['click', 'focus', 'contextMenu', 'hover']);
                 },
                 default: 'click'
             },
@@ -209,6 +210,14 @@
                     return true;
                 }
                 if (this.trigger !== 'click') {
+                    return false;
+                }
+                this.visible = !this.visible;
+            },
+            handleRightClick () {
+                if (this.disabled) return;
+
+                if (this.trigger !== 'contextMenu' || this.confirm) {
                     return false;
                 }
                 this.visible = !this.visible;
