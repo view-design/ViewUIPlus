@@ -247,7 +247,10 @@
                     const styleWidth = {
                         width: width <= 100 ? `${width}%` : `${width}px`
                     };
-
+                    if(this.dragData.x == null){
+                        styleWidth.width=`100%`;
+                    }
+                    
                     Object.assign(style, styleWidth);
                 }
 
