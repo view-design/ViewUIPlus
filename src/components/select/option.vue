@@ -8,7 +8,7 @@
 </template>
 <script>
     import mixinsForm from '../../mixins/form';
-    import { findComponentUpward } from '../../utils/assist';
+    import { findComponentUpward, typeOf } from '../../utils/assist';
     import random from '../../utils/random_str';
     import { getCurrentInstance } from 'vue';
     import { nextTick } from 'vue';
@@ -101,13 +101,17 @@
                 const filterByLabel = SelectInstance.filterByLabel;
                 const slotOptionsMap = SelectInstance.slotOptionsMap;
                 const { props } = slotOptionsMap.get(this.value) || { props: {} };
-                const label = this.label || this.$el && this.$el.textContent
+                const label = this.label || this.$el && this.$el.textContent;
+                let showAllFilterOption = false;                
                 let filterOption = (label || props.value || '').toLowerCase();
                 if (filterByLabel) {
                     filterOption = (label || '').toLowerCase();
                 }
+                if (filterable) {
+                    showAllFilterOption= SelectInstance.slotOptionsMap.has(SelectInstance.query);
+                }
                 const showFilterOption = filterOption.includes(query);
-                return !filterable || filterable && showFilterOption
+                return !filterable || filterable && (showFilterOption || showAllFilterOption) || typeOf(SelectInstance.remoteMethod) === 'function';
             },
             selected(){
                 const SelectInstance = this.SelectInstance;
