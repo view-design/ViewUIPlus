@@ -6167,7 +6167,7 @@ const _sfc_main$2c = {
     if (this.showSlot) {
       slots.push(h("span", {
         ref: "slot"
-      }), this.$slots.default());
+      }, this.$slots.default()));
     }
     return h(tag, __spreadValues({
       class: this.classes,
@@ -38390,8 +38390,7 @@ const scripts = {
   "build:style": "gulp --gulpfile build/build-style.js",
   "build:prod": "vite build",
   "build:lang": "vite build --config build/vite.lang.config.js",
-  lint: "vue-cli-service lint --fix",
-  prepare: "npm run build"
+  lint: "vue-cli-service lint --fix"
 };
 const repository = {
   type: "git",
