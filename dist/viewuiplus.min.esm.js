@@ -36115,7 +36115,7 @@ const _sfc_main$c = {
     level: {
       type: Number,
       validator(value) {
-        return oneOf(value, [1, 2, 3, 4, 5]);
+        return oneOf(value, [1, 2, 3, 4, 5, 6]);
       },
       default: 1
     }
@@ -38360,7 +38360,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.3";
+const version$1 = "1.3.4";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
