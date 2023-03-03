@@ -77,12 +77,19 @@
     h5 {
         .typography-title-5();
     }
+    h6&,
+    div&-h6,
+    div&-h6 textarea,
+    h6 {
+        .typography-title-6();
+    }
 
     h1&,
     h2&,
     h3&,
     h4&,
-    h5& {
+    h5&,
+    h6& {
         .@{typography-prefix-cls} + & {
             margin-top: @typography-title-margin-top;
         }
@@ -96,12 +103,14 @@
     h2,
     h3,
     h4,
-    h5 {
+    h5,
+    h6 {
         + h1,
         + h2,
         + h3,
         + h4,
-        + h5 {
+        + h5,
+        + h6 {
             margin-top: @typography-title-margin-top;
         }
     }
