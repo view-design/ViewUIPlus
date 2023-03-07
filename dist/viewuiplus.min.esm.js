@@ -4237,7 +4237,7 @@ const _sfc_main$2m = {
         filterOption = (label || "").toLowerCase();
       }
       if (filterable) {
-        showAllFilterOption = SelectInstance.slotOptionsMap.has(SelectInstance.query);
+        showAllFilterOption = SelectInstance.slotOptionsMap.has(this.value);
       }
       const showFilterOption = filterOption.includes(query);
       return !filterable || filterable && (showFilterOption || showAllFilterOption) || typeOf(SelectInstance.remoteMethod) === "function";
@@ -26957,7 +26957,7 @@ const _sfc_main$S = {
       customLabel: (h2) => {
         return h2("div", [
           h2("span", this.title),
-          h2("Badge", {
+          h2(Badge, {
             count: this.count
           })
         ]);
@@ -38363,7 +38363,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.5";
+const version$1 = "1.3.6";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
