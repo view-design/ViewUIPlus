@@ -14938,7 +14938,8 @@ const iconPrefixCls$3 = "ivu-icon";
 const prefixKey$1 = "ivu_message_key_";
 const defaults$1 = {
   top: 24,
-  duration: 1.5
+  duration: 1.5,
+  background: false
 };
 let messageInstance;
 let name$2 = 1;
@@ -14962,7 +14963,7 @@ function getMessageInstance() {
 }
 function notice$1(content = "", duration2 = defaults$1.duration, type2, onClose = function() {
 }, closable = false, render = function() {
-}, background = false) {
+}, background = defaults$1.background) {
   const iconType = iconTypes$1[type2];
   const loadCls = type2 === "loading" ? " ivu-load-loop" : "";
   let instance = getMessageInstance();
@@ -15023,6 +15024,8 @@ var $Message = {
     if (options.duration || options.duration === 0) {
       defaults$1.duration = options.duration;
     }
+    if (options.background)
+      defaults$1.background = options.background;
   },
   destroy() {
     let instance = getMessageInstance();
@@ -38360,7 +38363,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.4";
+const version$1 = "1.3.5";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
