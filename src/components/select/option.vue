@@ -108,7 +108,7 @@
                     filterOption = (label || '').toLowerCase();
                 }
                 if (filterable) {
-                    showAllFilterOption= SelectInstance.slotOptionsMap.has(SelectInstance.query);
+                    showAllFilterOption= SelectInstance.slotOptionsMap.has(this.value);
                 }
                 const showFilterOption = filterOption.includes(query);
                 return !filterable || filterable && (showFilterOption || showAllFilterOption) || typeOf(SelectInstance.remoteMethod) === 'function';
