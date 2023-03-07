@@ -6,7 +6,8 @@ const prefixKey = 'ivu_message_key_';
 
 const defaults = {
     top: 24,
-    duration: 1.5
+    duration: 1.5,
+    background: false
 };
 
 let messageInstance;
@@ -34,7 +35,7 @@ function getMessageInstance () {
     return messageInstance;
 }
 
-function notice (content = '', duration = defaults.duration, type, onClose = function () {}, closable = false, render = function () {}, background = false) {
+function notice (content = '', duration = defaults.duration, type, onClose = function () {}, closable = false, render = function () {}, background = defaults.background) {
     const iconType = iconTypes[type];
 
     // if loading
@@ -104,6 +105,7 @@ export default {
         if (options.duration || options.duration === 0) {
             defaults.duration = options.duration;
         }
+        if (options.background) defaults.background = options.background;
     },
     destroy () {
         let instance = getMessageInstance();
