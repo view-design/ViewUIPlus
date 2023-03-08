@@ -22447,6 +22447,11 @@ const _sfc_main$1a = {
       imagePreviewModal: false
     };
   },
+  watch: {
+    src() {
+      this.loadImage();
+    }
+  },
   computed: {
     innerClasses() {
       return [
@@ -38363,7 +38368,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.6";
+const version$1 = "1.3.7";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
