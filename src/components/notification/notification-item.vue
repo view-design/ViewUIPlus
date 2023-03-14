@@ -3,9 +3,11 @@
         <slot>
             <Row v-bind="rowProps">
                 <Col span="4" class="ivu-notifications-item-icon">
-                    <Avatar v-if="icon" :icon="icon" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
-                    <Avatar v-else-if="customIcon" :custom-icon="customIcon" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
-                    <Avatar v-else-if="avatar" :src="avatar" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
+                    <slot name="avatar">
+                        <Avatar v-if="icon" :icon="icon" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
+                        <Avatar v-else-if="customIcon" :custom-icon="customIcon" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
+                        <Avatar v-else-if="avatar" :src="avatar" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
+                    </slot>
                 </Col>
                 <Col :span="contentSpan" class="ivu-notifications-item-content">
                     <div class="ivu-notifications-item-title">
