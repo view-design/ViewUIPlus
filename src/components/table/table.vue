@@ -812,7 +812,7 @@
                     const objData = this.objData[i];
                     if (objData._isChecked) selectionIndexes.push(parseInt(i));
                     if (objData.children && objData.children.length) {
-                        selectionRowKeys = selectionRowKeys.concat(this.getSelectionChildrenRowKeys(objData, selectionRowKeys));
+                        selectionRowKeys = selectionRowKeys.concat(this.getSelectionChildrenRowKeys(objData));
                     }
                 }
 
@@ -826,7 +826,7 @@
                         selection = selection.concat(item);
                     }
                     if (item.children && item.children.length && selectionRowKeys.length) {
-                        selection = selection.concat(this.getSelectionChildren(item, selection, selectionRowKeys));
+                        selection = selection.concat(this.getSelectionChildren(item, selectionRowKeys));
                     }
                 });
 
@@ -834,25 +834,27 @@
                 selection = [...new Set(selection)];
                 return JSON.parse(JSON.stringify(selection));
             },
-            getSelectionChildrenRowKeys (objData, selectionRowKeys) {
+            getSelectionChildrenRowKeys (objData) {
+                let selectionRowKeys = [];
                 if (objData.children && objData.children.length) {
                     objData.children.forEach(item => {
                         if (item._isChecked) selectionRowKeys.push(item._rowKey);
                         if (item.children && item.children.length) {
-                            selectionRowKeys = selectionRowKeys.concat(this.getSelectionChildrenRowKeys(item, selectionRowKeys));
+                            selectionRowKeys = selectionRowKeys.concat(this.getSelectionChildrenRowKeys(item));
                         }
                     });
                 }
                 return selectionRowKeys;
             },
-            getSelectionChildren (data, selection, selectionRowKeys) {
+            getSelectionChildren (data, selectionRowKeys) {
+                let selection = [];
                 if (data.children && data.children.length) {
                     data.children.forEach(item => {
                         if (selectionRowKeys.indexOf(item[this.rowKey]) > -1) {
                             selection = selection.concat(item);
                         }
                         if (item.children && item.children.length) {
-                            selection = selection.concat(this.getSelectionChildren(item, selection, selectionRowKeys));
+                            selection = selection.concat(this.getSelectionChildren(item, selectionRowKeys));
                         }
                     });
                 }
