@@ -26660,7 +26660,7 @@ const _sfc_main$U = {
       };
     },
     contentSpan() {
-      return this.icon || this.customIcon || this.avatar ? 20 : 24;
+      return this.icon || this.customIcon || this.avatar || this.$slots.avatar ? 20 : 24;
     },
     iconStyle() {
       let style2 = {};
@@ -26731,33 +26731,36 @@ function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default", {}, () => [
       createVNode(_component_Row, normalizeProps(guardReactiveProps($props.rowProps)), {
         default: withCtx(() => [
-          createVNode(_component_Col, {
+          $props.icon || $props.customIcon || $props.avatar || _ctx.$slots.avatar ? (openBlock(), createBlock(_component_Col, {
+            key: 0,
             span: "4",
             class: "ivu-notifications-item-icon"
           }, {
             default: withCtx(() => [
-              $props.icon ? (openBlock(), createBlock(_component_Avatar, {
-                key: 0,
-                icon: $props.icon,
-                shape: $props.avatarShape,
-                size: $props.iconSize,
-                style: normalizeStyle($options.iconStyle)
-              }, null, 8, ["icon", "shape", "size", "style"])) : $props.customIcon ? (openBlock(), createBlock(_component_Avatar, {
-                key: 1,
-                "custom-icon": $props.customIcon,
-                shape: $props.avatarShape,
-                size: $props.iconSize,
-                style: normalizeStyle($options.iconStyle)
-              }, null, 8, ["custom-icon", "shape", "size", "style"])) : $props.avatar ? (openBlock(), createBlock(_component_Avatar, {
-                key: 2,
-                src: $props.avatar,
-                shape: $props.avatarShape,
-                size: $props.iconSize,
-                style: normalizeStyle($options.iconStyle)
-              }, null, 8, ["src", "shape", "size", "style"])) : createCommentVNode("", true)
+              renderSlot(_ctx.$slots, "avatar", {}, () => [
+                $props.icon ? (openBlock(), createBlock(_component_Avatar, {
+                  key: 0,
+                  icon: $props.icon,
+                  shape: $props.avatarShape,
+                  size: $props.iconSize,
+                  style: normalizeStyle($options.iconStyle)
+                }, null, 8, ["icon", "shape", "size", "style"])) : $props.customIcon ? (openBlock(), createBlock(_component_Avatar, {
+                  key: 1,
+                  "custom-icon": $props.customIcon,
+                  shape: $props.avatarShape,
+                  size: $props.iconSize,
+                  style: normalizeStyle($options.iconStyle)
+                }, null, 8, ["custom-icon", "shape", "size", "style"])) : $props.avatar ? (openBlock(), createBlock(_component_Avatar, {
+                  key: 2,
+                  src: $props.avatar,
+                  shape: $props.avatarShape,
+                  size: $props.iconSize,
+                  style: normalizeStyle($options.iconStyle)
+                }, null, 8, ["src", "shape", "size", "style"])) : createCommentVNode("", true)
+              ])
             ]),
-            _: 1
-          }),
+            _: 3
+          })) : createCommentVNode("", true),
           createVNode(_component_Col, {
             span: $options.contentSpan,
             class: "ivu-notifications-item-content"
@@ -38368,7 +38371,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.7";
+const version$1 = "1.3.9";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
