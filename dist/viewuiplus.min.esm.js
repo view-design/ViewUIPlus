@@ -26537,7 +26537,7 @@ const _sfc_main$V = {
       } else if (type2 === "object") {
         time = this.time.getTime();
       } else if (type2 === "string") {
-        time = new Date(this.time).getTime();
+        time = dayjs(this.time).valueOf();
       }
       if (this.type === "relative") {
         this.date = Time$1(time, this.t);
@@ -26559,9 +26559,11 @@ const _sfc_main$V = {
   },
   mounted() {
     this.setTime();
-    this.timer = setInterval(() => {
-      this.setTime();
-    }, 1e3 * this.interval);
+    if (this.interval !== 0) {
+      this.timer = setInterval(() => {
+        this.setTime();
+      }, 1e3 * this.interval);
+    }
   },
   beforeUnmount() {
     if (this.timer)
@@ -38371,7 +38373,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.9";
+const version$1 = "1.3.10";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
