@@ -108,7 +108,10 @@
                     filterOption = (label || '').toLowerCase();
                 }
                 if (filterable) {
-                    showAllFilterOption= SelectInstance.slotOptionsMap.has(this.value);
+                    // 解决过滤情况下，选中值以后第二次获取下拉不是全量数据
+                    const hasValues = SelectInstance.values.length > 0;
+                    const queryEquals = SelectInstance.slotOptionsLabelMap.has(query);
+                    showAllFilterOption = hasValues && queryEquals;
                 }
                 const showFilterOption = filterOption.includes(query);
                 return !filterable || filterable && (showFilterOption || showAllFilterOption) || typeOf(SelectInstance.remoteMethod) === 'function';
@@ -145,6 +148,8 @@
                         id,
                         tag: 'option'
                     });
+                    const label = this.label || this.$el && this.$el.textContent || '';
+                    select.slotOptionsLabelMap.set(label.toLowerCase(), instance)
                     select.slotOptionsMap.set(value, instance)
                     // fix Option hide, the modalValue cannot selected
                     const { modelValue } = select;

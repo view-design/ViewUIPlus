@@ -312,6 +312,7 @@
                 isTyping: false,  // #728
                 preventRemoteCall: false,
                 filterQueryChange: false,  // #4273
+                slotOptionsLabelMap: new Map(),
                 slotOptionsMap: new Map(),
                 // fix Option hide, the model value cannot selected
                 isLocking: false
