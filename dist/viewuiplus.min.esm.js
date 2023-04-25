@@ -18949,7 +18949,7 @@ const _sfc_main$1o = {
   name: "Drawer",
   mixins: [ScrollbarMixins],
   components: { Icon },
-  emits: ["on-close", "on-resize-width", "on-visible-change", "update:modelValue"],
+  emits: ["on-close", "on-resize-width", "on-visible-change", "update:modelValue", "on-drag"],
   provide() {
     return {
       DrawerInstance: this
@@ -19148,6 +19148,7 @@ const _sfc_main$1o = {
         width = width / this.wrapperWidth * 100;
       this.dragWidth = width;
       this.$emit("on-resize-width", parseInt(this.dragWidth));
+      this.$emit("on-drag", "dragging", parseInt(this.dragWidth));
     },
     handleSetWrapperWidth() {
       const {
@@ -19161,10 +19162,12 @@ const _sfc_main$1o = {
       if (!this.draggable)
         return;
       this.canMove = false;
+      this.$emit("on-drag", "end");
     },
     handleTriggerMousedown() {
       this.canMove = true;
       window.getSelection().removeAllRanges();
+      this.$emit("on-drag", "start");
     },
     addDrawer() {
       const root2 = this.$root;
@@ -38373,7 +38376,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.10";
+const version$1 = "1.3.11";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
