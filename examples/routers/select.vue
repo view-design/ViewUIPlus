@@ -1,80 +1,30 @@
 <template>
-    <div>
-        <Button @click="handleSetValue">set value</Button>
-        <Button @click="addCityList">set value again</Button>
-        <Select v-model="model" style="width:200px">
-            <template v-if="showOption">
-                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </template>
-        </Select>
-    </div>
+  <Alert>
+    当前 Vue 版本为 {{ vueVersion }}，View UI Plus 版本为 {{ version }}
+  </Alert>
+  <Input v-model="msg" />
+  <Select v-model="model" filterable>
+    <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+  </Select>
 </template>
-<script>
-export default {
-    data () {
-        return {
-            showOption: false,
-            cityList: [
-                {
-                    value: 'New York',
-                    label: 'New York'
-                },
-                {
-                    value: 'London',
-                    label: 'London'
-                },
-                {
-                    value: 'Sydney',
-                    label: 'Sydney'
-                },
-                {
-                    value: 'Ottawa',
-                    label: 'Ottawa'
-                },
-                {
-                    value: 'Paris',
-                    label: 'Paris'
-                },
-                {
-                    value: 'Canberra',
-                    label: 'Canberra'
-                }
-            ],
-            model: ''
-        }
+<script setup>
+  import { ref, version as vueVersion } from 'vue'
+  const model = ref('');
+  const cityList = ref([
+    {
+      value: 'New York',
+      label: '纽约'
     },
-    created(){
+    {
+      value: 'London',
+      label: '伦敦'
     },
-    methods: {
-        addCityList(){
-            this.model = 'London';
-            const randomArray = [];
-            for(let i = 0; i < 1000; i++) {
-                randomArray.push({
-                    value: 'value' + i,
-                    label: 'label' + i
-                })
-            }
-            this.cityList = this.cityList.concat(randomArray);
-        },
-        handleSetValue () {
-            this.model = 'value5';
-            this.showOption = true;
-            this.$nextTick(() => {
-                this.showOption = false;
-                setTimeout(()=> {
-                    this.showOption = true;
-                    const randomArray = [];
-                    for(let i = 0; i < 1000; i++) {
-                        randomArray.push({
-                            value: 'value' + i,
-                            label: 'label' + i
-                        })
-                    }
-                    this.cityList = this.cityList.concat(randomArray);
-                }, 500)
-            });
-        }
+    {
+      value: 'Sydney',
+      label: '悉尼'
     }
-}
+  ]);
 </script>
+<style>
+
+</style>

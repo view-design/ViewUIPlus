@@ -110,8 +110,8 @@
                 if (filterable) {
                     // 解决过滤情况下，选中值以后第二次获取下拉不是全量数据
                     const hasValues = SelectInstance.values.length > 0;
-                    const queryEquals = SelectInstance.slotOptionsLabelMap.has(query);
-                    showAllFilterOption = hasValues && queryEquals;
+                    const queryEquals = SelectInstance.slotOptionsLabelMap.has(filterOption);
+                    showAllFilterOption = hasValues && queryEquals && !SelectInstance.filterQueryChange;
                 }
                 const showFilterOption = filterOption.includes(query);
                 return !filterable || filterable && (showFilterOption || showAllFilterOption) || typeOf(SelectInstance.remoteMethod) === 'function';
