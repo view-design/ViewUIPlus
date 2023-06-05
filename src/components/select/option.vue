@@ -102,19 +102,12 @@
                 const slotOptionsMap = SelectInstance.slotOptionsMap;
                 const { props } = slotOptionsMap.get(this.value) || { props: {} };
                 const label = this.label || this.$el && this.$el.textContent;
-                let showAllFilterOption = false;                
                 let filterOption = (label || props.value || '').toLowerCase();
                 if (filterByLabel) {
                     filterOption = (label || '').toLowerCase();
                 }
-                if (filterable) {
-                    // 解决过滤情况下，选中值以后第二次获取下拉不是全量数据
-                    const hasValues = SelectInstance.values.length > 0;
-                    const queryEquals = SelectInstance.slotOptionsLabelMap.has(filterOption);
-                    showAllFilterOption = hasValues && queryEquals && !SelectInstance.filterQueryChange;
-                }
                 const showFilterOption = filterOption.includes(query);
-                return !filterable || filterable && (showFilterOption || showAllFilterOption) || typeOf(SelectInstance.remoteMethod) === 'function';
+                return !filterable || filterable && (showFilterOption || !SelectInstance.filterQueryChange) || typeOf(SelectInstance.remoteMethod) === 'function';
             },
             selected(){
                 const SelectInstance = this.SelectInstance;
@@ -148,8 +141,6 @@
                         id,
                         tag: 'option'
                     });
-                    const label = this.label || this.$el && this.$el.textContent || '';
-                    select.slotOptionsLabelMap.set(label.toLowerCase(), instance)
                     select.slotOptionsMap.set(value, instance)
                     // fix Option hide, the modalValue cannot selected
                     const { modelValue } = select;
