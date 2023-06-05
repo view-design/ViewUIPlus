@@ -4231,16 +4231,12 @@ const _sfc_main$2m = {
       const slotOptionsMap = SelectInstance.slotOptionsMap;
       const { props } = slotOptionsMap.get(this.value) || { props: {} };
       const label = this.label || this.$el && this.$el.textContent;
-      let showAllFilterOption = false;
       let filterOption = (label || props.value || "").toLowerCase();
       if (filterByLabel) {
         filterOption = (label || "").toLowerCase();
       }
-      if (filterable) {
-        showAllFilterOption = SelectInstance.slotOptionsMap.has(this.value);
-      }
       const showFilterOption = filterOption.includes(query);
-      return !filterable || filterable && (showFilterOption || showAllFilterOption) || typeOf(SelectInstance.remoteMethod) === "function";
+      return !filterable || filterable && (showFilterOption || !SelectInstance.filterQueryChange) || typeOf(SelectInstance.remoteMethod) === "function";
     },
     selected() {
       const SelectInstance = this.SelectInstance;
@@ -23670,8 +23666,10 @@ Spin.newInstance = (properties) => {
   const spin = _instance.refs.spin;
   return {
     show() {
-      spin.visible = true;
-      tIndex = handleGetIndex();
+      nextTick(() => {
+        _instance.refs.spin.visible = true;
+        tIndex = handleGetIndex();
+      });
     },
     remove(cb) {
       spin.visible = false;
@@ -38376,7 +38374,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.11";
+const version$1 = "1.3.14";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
@@ -38477,20 +38475,6 @@ const devDependencies = {
   "vue-style-loader": "^4.1.3",
   "vue-template-compiler": "^2.6.14"
 };
-const engines = {
-  node: ">=16.14.2",
-  npm: ">=8.5.0",
-  yarn: ">=1.3.2"
-};
-const browserslist = [
-  "last 3 Chrome versions",
-  "last 3 Firefox versions",
-  "Safari >= 10",
-  "Explorer >= 11",
-  "Edge >= 12",
-  "iOS >= 10",
-  "Android >= 6"
-];
 var pkg = {
   name,
   version: version$1,
@@ -38507,9 +38491,7 @@ var pkg = {
   license,
   bugs,
   dependencies,
-  devDependencies,
-  engines,
-  browserslist
+  devDependencies
 };
 const directives = {
   display: style.display,
