@@ -32,6 +32,9 @@ export default {
                 this.$Spin.hide();
             }, 3000);
         }
+    },
+    mounted() {
+        this.$Spin.show();
     }
 }
 </script>

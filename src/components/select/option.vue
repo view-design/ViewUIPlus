@@ -102,16 +102,12 @@
                 const slotOptionsMap = SelectInstance.slotOptionsMap;
                 const { props } = slotOptionsMap.get(this.value) || { props: {} };
                 const label = this.label || this.$el && this.$el.textContent;
-                let showAllFilterOption = false;                
                 let filterOption = (label || props.value || '').toLowerCase();
                 if (filterByLabel) {
                     filterOption = (label || '').toLowerCase();
                 }
-                if (filterable) {
-                    showAllFilterOption= SelectInstance.slotOptionsMap.has(this.value);
-                }
                 const showFilterOption = filterOption.includes(query);
-                return !filterable || filterable && (showFilterOption || showAllFilterOption) || typeOf(SelectInstance.remoteMethod) === 'function';
+                return !filterable || filterable && (showFilterOption || !SelectInstance.filterQueryChange) || typeOf(SelectInstance.remoteMethod) === 'function';
             },
             selected(){
                 const SelectInstance = this.SelectInstance;
