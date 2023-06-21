@@ -1,4 +1,4 @@
-import { createApp, h, getCurrentInstance } from 'vue';
+import { createApp, h, getCurrentInstance, nextTick } from 'vue';
 import Modal from './modal.vue';
 import Button from '../button/button.vue';
 import Locale from '../../mixins/locale';
@@ -178,72 +178,75 @@ Modal.newInstance = properties => {
 
     return {
         show (props) {
-            modal.$parent.showCancel = props.showCancel;
-            modal.$parent.iconType = props.icon;
+            nextTick(()=> {
+                const modal = _instance.refs.modal;
+                modal.$parent.showCancel = props.showCancel;
+                modal.$parent.iconType = props.icon;
 
-            switch (props.icon) {
-                case 'info':
-                    modal.$parent.iconName = 'ios-information-circle';
-                    break;
-                case 'success':
-                    modal.$parent.iconName = 'ios-checkmark-circle';
-                    break;
-                case 'warning':
-                    modal.$parent.iconName = 'ios-alert';
-                    break;
-                case 'error':
-                    modal.$parent.iconName = 'ios-close-circle';
-                    break;
-                case 'confirm':
-                    modal.$parent.iconName = 'ios-help-circle';
-                    break;
-            }
+                switch (props.icon) {
+                    case 'info':
+                        modal.$parent.iconName = 'ios-information-circle';
+                        break;
+                    case 'success':
+                        modal.$parent.iconName = 'ios-checkmark-circle';
+                        break;
+                    case 'warning':
+                        modal.$parent.iconName = 'ios-alert';
+                        break;
+                    case 'error':
+                        modal.$parent.iconName = 'ios-close-circle';
+                        break;
+                    case 'confirm':
+                        modal.$parent.iconName = 'ios-help-circle';
+                        break;
+                }
 
-            if ('width' in props) {
-                modal.$parent.width = props.width;
-            }
+                if ('width' in props) {
+                    modal.$parent.width = props.width;
+                }
 
-            if ('closable' in props) {
-                modal.$parent.closable = props.closable;
-            }
+                if ('closable' in props) {
+                    modal.$parent.closable = props.closable;
+                }
 
-            if ('title' in props) {
-                modal.$parent.title = props.title;
-            }
+                if ('title' in props) {
+                    modal.$parent.title = props.title;
+                }
 
-            if ('content' in props) {
-                modal.$parent.body = props.content;
-            }
+                if ('content' in props) {
+                    modal.$parent.body = props.content;
+                }
 
-            if ('okText' in props) {
-                modal.$parent.okText = props.okText;
-            }
+                if ('okText' in props) {
+                    modal.$parent.okText = props.okText;
+                }
 
-            if ('cancelText' in props) {
-                modal.$parent.cancelText = props.cancelText;
-            }
+                if ('cancelText' in props) {
+                    modal.$parent.cancelText = props.cancelText;
+                }
 
-            if ('onCancel' in props) {
-                modal.$parent.onCancel = props.onCancel;
-            }
+                if ('onCancel' in props) {
+                    modal.$parent.onCancel = props.onCancel;
+                }
 
-            if ('onOk' in props) {
-                modal.$parent.onOk = props.onOk;
-            }
+                if ('onOk' in props) {
+                    modal.$parent.onOk = props.onOk;
+                }
 
-            // async for ok
-            if ('loading' in props) {
-                modal.$parent.loading = props.loading;
-            }
+                // async for ok
+                if ('loading' in props) {
+                    modal.$parent.loading = props.loading;
+                }
 
-            if ('scrollable' in props) {
-                modal.$parent.scrollable = props.scrollable;
-            }
+                if ('scrollable' in props) {
+                    modal.$parent.scrollable = props.scrollable;
+                }
 
-            // notice when component destroy
-            modal.$parent.onRemove = props.onRemove;
+                // notice when component destroy
+                modal.$parent.onRemove = props.onRemove;
 
-            modal.visible = true;
+                modal.visible = true;
+            })
         },
         remove () {
             modal.visible = false;
