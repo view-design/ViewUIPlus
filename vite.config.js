@@ -1,7 +1,6 @@
 import {defineConfig} from 'vite';
 import vue from '@vitejs/plugin-vue';
 
-什么
 
 const config = defineConfig({
     plugins: [vue()],
