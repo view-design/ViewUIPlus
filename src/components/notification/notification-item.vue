@@ -2,10 +2,12 @@
     <div class="ivu-notifications-item" :class="classes" @click="handleClick">
         <slot>
             <Row v-bind="rowProps">
-                <Col span="4" class="ivu-notifications-item-icon">
-                    <Avatar v-if="icon" :icon="icon" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
-                    <Avatar v-else-if="customIcon" :custom-icon="customIcon" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
-                    <Avatar v-else-if="avatar" :src="avatar" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
+                <Col span="4" class="ivu-notifications-item-icon" v-if="icon || customIcon || avatar || $slots.avatar">
+                    <slot name="avatar">
+                        <Avatar v-if="icon" :icon="icon" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
+                        <Avatar v-else-if="customIcon" :custom-icon="customIcon" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
+                        <Avatar v-else-if="avatar" :src="avatar" :shape="avatarShape" :size="iconSize" :style="iconStyle" />
+                    </slot>
                 </Col>
                 <Col :span="contentSpan" class="ivu-notifications-item-content">
                     <div class="ivu-notifications-item-title">
@@ -132,7 +134,7 @@
                 };
             },
             contentSpan () {
-                return this.icon || this.customIcon || this.avatar ? 20 : 24;
+                return this.icon || this.customIcon || this.avatar || this.$slots.avatar ? 20 : 24;
             },
             iconStyle () {
                 let style= {};

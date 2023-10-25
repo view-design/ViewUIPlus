@@ -19,6 +19,7 @@
             <Icon type="ios-alarm" />
             </template>
         </Title>
+        <Title :level="6">Title 6</Title>
         <Divider>复制</Divider>
         <Paragraph copyable strong>Hello <Text code>The</Text> World</Paragraph>
         <Paragraph copyable strong :copy-config="{ showTip: false, tooltips: false }">

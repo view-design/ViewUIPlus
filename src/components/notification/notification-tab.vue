@@ -34,6 +34,7 @@
 <script>
     import TabPane from '../tabs/pane.vue';
     import Icon from '../icon/icon.vue';
+    import Badge from '../badge/badge.vue';
 
     import random from '../../utils/random_str';
 
@@ -107,7 +108,7 @@
                 customLabel: (h) => {
                     return h('div', [
                         h('span', this.title),
-                        h('Badge', {
+                        h(Badge, {
                             count: this.count
                         })
                     ]);

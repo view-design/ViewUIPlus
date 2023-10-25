@@ -852,7 +852,7 @@ function _sfc_render$2b(_ctx, _cache, $props, $setup, $data, $options) {
       ], 6)
     ]),
     _: 3
-  }, 8, ["offset-top", "offset-bottom", "onOnChange"]);
+  }, 40, ["offset-top", "offset-bottom", "onOnChange"]);
 }
 var Anchor = /* @__PURE__ */ _export_sfc(_sfc_main$2s, [["render", _sfc_render$2b]]);
 function random(len = 32) {
@@ -4236,7 +4236,7 @@ const _sfc_main$2m = {
         filterOption = (label || "").toLowerCase();
       }
       const showFilterOption = filterOption.includes(query);
-      return !filterable || filterable && showFilterOption;
+      return !filterable || filterable && (showFilterOption || !SelectInstance.filterQueryChange) || typeOf(SelectInstance.remoteMethod) === "function";
     },
     selected() {
       const SelectInstance = this.SelectInstance;
@@ -4792,20 +4792,20 @@ const _hoisted_3$A = {
   key: 0,
   class: "ivu-icon ivu-icon-ios-eye-outline"
 };
-const _hoisted_4$u = {
+const _hoisted_4$t = {
   key: 1,
   class: "ivu-icon ivu-icon-ios-eye-off-outline"
 };
-const _hoisted_5$m = ["id", "autocomplete", "spellcheck", "type", "placeholder", "disabled", "maxlength", "readonly", "name", "value", "number", "autofocus"];
-const _hoisted_6$b = {
+const _hoisted_5$l = ["id", "autocomplete", "spellcheck", "type", "placeholder", "disabled", "maxlength", "readonly", "name", "value", "number", "autofocus"];
+const _hoisted_6$a = {
   key: 0,
   class: "ivu-icon ivu-icon-ios-search"
 };
-const _hoisted_7$a = {
+const _hoisted_7$8 = {
   key: 9,
   class: "ivu-input-prefix"
 };
-const _hoisted_8$6 = ["id", "wrap", "autocomplete", "spellcheck", "placeholder", "disabled", "rows", "maxlength", "readonly", "name", "value", "autofocus"];
+const _hoisted_8$5 = ["id", "wrap", "autocomplete", "spellcheck", "placeholder", "disabled", "rows", "maxlength", "readonly", "name", "value", "autofocus"];
 const _hoisted_9$5 = {
   key: 0,
   class: "ivu-input-word-count"
@@ -4848,7 +4848,7 @@ function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
         class: "ivu-input-suffix",
         onClick: _cache[3] || (_cache[3] = (...args) => $options.handleToggleShowPassword && $options.handleToggleShowPassword(...args))
       }, [
-        $data.showPassword ? (openBlock(), createElementBlock("i", _hoisted_3$A)) : (openBlock(), createElementBlock("i", _hoisted_4$u))
+        $data.showPassword ? (openBlock(), createElementBlock("i", _hoisted_3$A)) : (openBlock(), createElementBlock("i", _hoisted_4$t))
       ])) : createCommentVNode("", true),
       createVNode(Transition, { name: "fade" }, {
         default: withCtx(() => [
@@ -4887,7 +4887,7 @@ function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
         onCompositionend: _cache[12] || (_cache[12] = (...args) => $options.handleComposition && $options.handleComposition(...args)),
         onInput: _cache[13] || (_cache[13] = (...args) => $options.handleInput && $options.handleInput(...args)),
         onChange: _cache[14] || (_cache[14] = (...args) => $options.handleChange && $options.handleChange(...args))
-      }, null, 42, _hoisted_5$m),
+      }, null, 42, _hoisted_5$l),
       $options.append ? withDirectives((openBlock(), createElementBlock("div", {
         key: 7,
         class: normalizeClass([$data.prefixCls + "-group-append"])
@@ -4900,10 +4900,10 @@ function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass([$data.prefixCls + "-group-append", $data.prefixCls + "-search"]),
         onClick: _cache[15] || (_cache[15] = (...args) => $options.handleSearch && $options.handleSearch(...args))
       }, [
-        $props.enterButton === true ? (openBlock(), createElementBlock("i", _hoisted_6$b)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+        $props.enterButton === true ? (openBlock(), createElementBlock("i", _hoisted_6$a)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
           createTextVNode(toDisplayString($props.enterButton), 1)
         ], 64))
-      ], 2)) : $options.showPrefix ? (openBlock(), createElementBlock("span", _hoisted_7$a, [
+      ], 2)) : $options.showPrefix ? (openBlock(), createElementBlock("span", _hoisted_7$8, [
         renderSlot(_ctx.$slots, "prefix", {}, () => [
           $props.prefix ? (openBlock(), createElementBlock("i", {
             key: 0,
@@ -4940,7 +4940,7 @@ function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
         onCompositionupdate: _cache[23] || (_cache[23] = (...args) => $options.handleComposition && $options.handleComposition(...args)),
         onCompositionend: _cache[24] || (_cache[24] = (...args) => $options.handleComposition && $options.handleComposition(...args)),
         onInput: _cache[25] || (_cache[25] = (...args) => $options.handleInput && $options.handleInput(...args))
-      }, "\n            ", 46, _hoisted_8$6),
+      }, "\n            ", 46, _hoisted_8$5),
       $props.showWordLimit ? (openBlock(), createElementBlock("span", _hoisted_9$5, toDisplayString($options.textLength) + "/" + toDisplayString($options.upperLimit), 1)) : createCommentVNode("", true)
     ], 64))
   ], 2);
@@ -6164,10 +6164,10 @@ const _sfc_main$2c = {
         custom: this.customIcon
       }));
     }
-    if (this.showSlot) {
+    if (this.$slots.default) {
       slots.push(h("span", {
         ref: "slot"
-      }), this.$slots.default());
+      }, this.$slots.default()));
     }
     return h(tag, __spreadValues({
       class: this.classes,
@@ -6908,8 +6908,8 @@ const _hoisted_1$18 = {
 };
 const _hoisted_2$J = ["onClick", "onContextmenu"];
 const _hoisted_3$z = ["onClick"];
-const _hoisted_4$t = { class: "ivu-calendar-table-day-title" };
-const _hoisted_5$l = { class: "ivu-calendar-table-day-slot" };
+const _hoisted_4$s = { class: "ivu-calendar-table-day-title" };
+const _hoisted_5$k = { class: "ivu-calendar-table-day-slot" };
 function _sfc_render$1V(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("table", _hoisted_1$18, [
     createElementVNode("thead", null, [
@@ -6931,8 +6931,8 @@ function _sfc_render$1V(_ctx, _cache, $props, $setup, $data, $options) {
                 style: normalizeStyle($options.dayStyles),
                 onClick: ($event) => $options.handleClickDate(date3.text)
               }, [
-                createElementVNode("div", _hoisted_4$t, toDisplayString(date3.date), 1),
-                createElementVNode("div", _hoisted_5$l, [
+                createElementVNode("div", _hoisted_4$s, toDisplayString(date3.date), 1),
+                createElementVNode("div", _hoisted_5$k, [
                   renderSlot(_ctx.$slots, "month", {
                     date: new Date(date3.date),
                     data: { type: date3.type + "-month", day: date3.text, selected: date3.text === $options.currentDate }
@@ -6998,8 +6998,8 @@ const _hoisted_1$17 = {
 };
 const _hoisted_2$I = ["onClick", "onContextmenu"];
 const _hoisted_3$y = ["onClick"];
-const _hoisted_4$s = { class: "ivu-calendar-table-day-title" };
-const _hoisted_5$k = { class: "ivu-calendar-table-day-slot" };
+const _hoisted_4$r = { class: "ivu-calendar-table-day-title" };
+const _hoisted_5$j = { class: "ivu-calendar-table-day-slot" };
 function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("table", _hoisted_1$17, [
     createElementVNode("tbody", null, [
@@ -7016,8 +7016,8 @@ function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
                 style: normalizeStyle($options.dayStyles),
                 onClick: ($event) => $options.handleClickDate(month.text)
               }, [
-                createElementVNode("div", _hoisted_4$s, toDisplayString(month.month), 1),
-                createElementVNode("div", _hoisted_5$k, [
+                createElementVNode("div", _hoisted_4$r, toDisplayString(month.month), 1),
+                createElementVNode("div", _hoisted_5$j, [
                   renderSlot(_ctx.$slots, "year", {
                     month: new Date(month.month),
                     data: { type: month.type + "-year", month: month.text, selected: month.text === $options.currentMonth }
@@ -7164,8 +7164,8 @@ const _hoisted_2$H = {
   class: "ivu-calendar-header"
 };
 const _hoisted_3$x = { class: "ivu-calendar-header-title" };
-const _hoisted_4$r = { class: "ivu-calendar-header-action" };
-const _hoisted_5$j = { class: "ivu-calendar-body" };
+const _hoisted_4$q = { class: "ivu-calendar-header-action" };
+const _hoisted_5$i = { class: "ivu-calendar-body" };
 function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Button = resolveComponent("Button");
@@ -7182,7 +7182,7 @@ function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
             createTextVNode(toDisplayString($options.headerTitle), 1)
           ])
         ]),
-        createElementVNode("div", _hoisted_4$r, [
+        createElementVNode("div", _hoisted_4$q, [
           $props.headerType === "simple" ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
             createVNode(_component_ButtonGroup, null, {
               default: withCtx(() => [
@@ -7235,7 +7235,7 @@ function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
         ])
       ])
     ])) : createCommentVNode("", true),
-    createElementVNode("div", _hoisted_5$j, [
+    createElementVNode("div", _hoisted_5$i, [
       $data.mode === "month" ? (openBlock(), createBlock(_component_CalendarMonth, {
         key: 0,
         date: $data.currentValue
@@ -10284,29 +10284,29 @@ const _sfc_main$1X = {
 const _hoisted_1$10 = { class: "ivu-cell-item" };
 const _hoisted_2$F = { class: "ivu-cell-icon" };
 const _hoisted_3$w = { class: "ivu-cell-main" };
-const _hoisted_4$q = { class: "ivu-cell-title" };
-const _hoisted_5$i = { class: "ivu-cell-label" };
-const _hoisted_6$a = { class: "ivu-cell-footer" };
-const _hoisted_7$9 = { class: "ivu-cell-extra" };
+const _hoisted_4$p = { class: "ivu-cell-title" };
+const _hoisted_5$h = { class: "ivu-cell-label" };
+const _hoisted_6$9 = { class: "ivu-cell-footer" };
+const _hoisted_7$7 = { class: "ivu-cell-extra" };
 function _sfc_render$1J(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", _hoisted_1$10, [
     createElementVNode("div", _hoisted_2$F, [
       renderSlot(_ctx.$slots, "icon")
     ]),
     createElementVNode("div", _hoisted_3$w, [
-      createElementVNode("div", _hoisted_4$q, [
+      createElementVNode("div", _hoisted_4$p, [
         renderSlot(_ctx.$slots, "default", {}, () => [
           createTextVNode(toDisplayString($props.title), 1)
         ])
       ]),
-      createElementVNode("div", _hoisted_5$i, [
+      createElementVNode("div", _hoisted_5$h, [
         renderSlot(_ctx.$slots, "label", {}, () => [
           createTextVNode(toDisplayString($props.label), 1)
         ])
       ])
     ]),
-    createElementVNode("div", _hoisted_6$a, [
-      createElementVNode("span", _hoisted_7$9, [
+    createElementVNode("div", _hoisted_6$9, [
+      createElementVNode("span", _hoisted_7$7, [
         renderSlot(_ctx.$slots, "extra", {}, () => [
           createTextVNode(toDisplayString($props.extra), 1)
         ])
@@ -10875,10 +10875,10 @@ const _sfc_main$1S = {
 const _hoisted_1$Y = { viewBox: "0 0 100 100" };
 const _hoisted_2$C = { key: 0 };
 const _hoisted_3$u = ["id"];
-const _hoisted_4$p = ["stop-color"];
-const _hoisted_5$h = ["stop-color"];
-const _hoisted_6$9 = ["d", "stroke", "stroke-width", "stroke-linecap"];
-const _hoisted_7$8 = ["d", "stroke-linecap", "stroke", "stroke-width"];
+const _hoisted_4$o = ["stop-color"];
+const _hoisted_5$g = ["stop-color"];
+const _hoisted_6$8 = ["d", "stroke", "stroke-width", "stroke-linecap"];
+const _hoisted_7$6 = ["d", "stroke-linecap", "stroke", "stroke-width"];
 function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     style: normalizeStyle($options.circleSize),
@@ -10896,11 +10896,11 @@ function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
           createElementVNode("stop", {
             offset: "0%",
             "stop-color": $props.strokeColor[0]
-          }, null, 8, _hoisted_4$p),
+          }, null, 8, _hoisted_4$o),
           createElementVNode("stop", {
             offset: "100%",
             "stop-color": $props.strokeColor[1]
-          }, null, 8, _hoisted_5$h)
+          }, null, 8, _hoisted_5$g)
         ], 8, _hoisted_3$u)
       ])) : createCommentVNode("", true),
       createElementVNode("path", {
@@ -10910,7 +10910,7 @@ function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
         "fill-opacity": 0,
         style: normalizeStyle($options.trailStyle),
         "stroke-linecap": $props.strokeLinecap
-      }, null, 12, _hoisted_6$9),
+      }, null, 12, _hoisted_6$8),
       createElementVNode("path", {
         d: $options.pathString,
         "stroke-linecap": $props.strokeLinecap,
@@ -10918,7 +10918,7 @@ function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
         "stroke-width": $options.computedStrokeWidth,
         "fill-opacity": "0",
         style: normalizeStyle($options.pathStyle)
-      }, null, 12, _hoisted_7$8)
+      }, null, 12, _hoisted_7$6)
     ])),
     createElementVNode("div", {
       class: normalizeClass($options.innerClasses)
@@ -12143,32 +12143,30 @@ const _hoisted_3$t = {
   key: 0,
   class: "ivu-city-drop-cities"
 };
-const _hoisted_4$o = ["onClick"];
-const _hoisted_5$g = { class: "ivu-city-drop-menu" };
-const _hoisted_6$8 = { class: "ivu-city-drop-type" };
-const _hoisted_7$7 = /* @__PURE__ */ createTextVNode("\u6309\u7701\u4EFD");
-const _hoisted_8$5 = /* @__PURE__ */ createTextVNode("\u6309\u57CE\u5E02");
-const _hoisted_9$4 = { class: "ivu-city-drop-search" };
-const _hoisted_10$3 = {
+const _hoisted_4$n = ["onClick"];
+const _hoisted_5$f = { class: "ivu-city-drop-menu" };
+const _hoisted_6$7 = { class: "ivu-city-drop-type" };
+const _hoisted_7$5 = { class: "ivu-city-drop-search" };
+const _hoisted_8$4 = {
   key: 1,
   class: "ivu-city-drop-list"
 };
-const _hoisted_11$3 = { class: "ivu-city-drop-list-letter" };
-const _hoisted_12$3 = {
+const _hoisted_9$4 = { class: "ivu-city-drop-list-letter" };
+const _hoisted_10$3 = {
   class: "ivu-city-drop-list-main",
   ref: "list"
 };
-const _hoisted_13$2 = ["onClick"];
-const _hoisted_14$2 = {
+const _hoisted_11$3 = ["onClick"];
+const _hoisted_12$3 = {
   key: 2,
   class: "ivu-city-drop-list"
 };
-const _hoisted_15$2 = { class: "ivu-city-drop-list-letter" };
-const _hoisted_16$2 = {
+const _hoisted_13$2 = { class: "ivu-city-drop-list-letter" };
+const _hoisted_14$2 = {
   class: "ivu-city-drop-list-main ivu-city-drop-list-main-city",
   ref: "list"
 };
-const _hoisted_17$2 = ["onClick"];
+const _hoisted_15$2 = ["onClick"];
 function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Radio = resolveComponent("Radio");
@@ -12203,11 +12201,11 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                   return openBlock(), createElementBlock("span", {
                     key: item.n,
                     onClick: ($event) => $options.handleChangeValue(item.c)
-                  }, toDisplayString(item.n), 9, _hoisted_4$o);
+                  }, toDisplayString(item.n), 9, _hoisted_4$n);
                 }), 128))
               ])) : createCommentVNode("", true),
-              createElementVNode("div", _hoisted_5$g, [
-                createElementVNode("div", _hoisted_6$8, [
+              createElementVNode("div", _hoisted_5$f, [
+                createElementVNode("div", _hoisted_6$7, [
                   createVNode(_component_RadioGroup, {
                     modelValue: $data.listType,
                     "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.listType = $event),
@@ -12217,13 +12215,13 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                     default: withCtx(() => [
                       createVNode(_component_Radio, { label: "province" }, {
                         default: withCtx(() => [
-                          _hoisted_7$7
+                          createTextVNode("\u6309\u7701\u4EFD")
                         ]),
                         _: 1
                       }),
                       createVNode(_component_Radio, { label: "city" }, {
                         default: withCtx(() => [
-                          _hoisted_8$5
+                          createTextVNode("\u6309\u57CE\u5E02")
                         ]),
                         _: 1
                       })
@@ -12231,7 +12229,7 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                     _: 1
                   }, 8, ["modelValue"])
                 ]),
-                createElementVNode("div", _hoisted_9$4, [
+                createElementVNode("div", _hoisted_7$5, [
                   createVNode(_component_Select, {
                     modelValue: $data.queryCity,
                     "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $data.queryCity = $event),
@@ -12258,8 +12256,8 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                   }, 8, ["modelValue", "placeholder", "onOnChange"])
                 ])
               ]),
-              $data.listType === "province" ? (openBlock(), createElementBlock("div", _hoisted_10$3, [
-                createElementVNode("div", _hoisted_11$3, [
+              $data.listType === "province" ? (openBlock(), createElementBlock("div", _hoisted_8$4, [
+                createElementVNode("div", _hoisted_9$4, [
                   (openBlock(true), createElementBlock(Fragment, null, renderList($data.provinceList, (item) => {
                     return openBlock(), createBlock(_component_Tag, {
                       onClick: ($event) => $options.handleClickLetter(item.n),
@@ -12274,7 +12272,7 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                     }, 1032, ["onClick"]);
                   }), 128))
                 ]),
-                createElementVNode("div", _hoisted_12$3, [
+                createElementVNode("div", _hoisted_10$3, [
                   createElementVNode("dl", null, [
                     (openBlock(true), createElementBlock(Fragment, null, renderList($data.cityListByProvince, (item) => {
                       return openBlock(), createElementBlock(Fragment, {
@@ -12288,7 +12286,7 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                             return openBlock(), createElementBlock("li", {
                               key: city.n,
                               onClick: ($event) => $options.handleChangeValue(city.c)
-                            }, toDisplayString(city.n), 9, _hoisted_13$2);
+                            }, toDisplayString(city.n), 9, _hoisted_11$3);
                           }), 128))
                         ])
                       ], 64);
@@ -12296,8 +12294,8 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                   ])
                 ], 512)
               ])) : createCommentVNode("", true),
-              $data.listType === "city" ? (openBlock(), createElementBlock("div", _hoisted_14$2, [
-                createElementVNode("div", _hoisted_15$2, [
+              $data.listType === "city" ? (openBlock(), createElementBlock("div", _hoisted_12$3, [
+                createElementVNode("div", _hoisted_13$2, [
                   (openBlock(true), createElementBlock(Fragment, null, renderList($data.cityListByLetter, (item, key2) => {
                     return openBlock(), createBlock(_component_Tag, {
                       onClick: ($event) => $options.handleClickLetter(key2),
@@ -12312,7 +12310,7 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                     }, 1032, ["onClick"]);
                   }), 128))
                 ]),
-                createElementVNode("div", _hoisted_16$2, [
+                createElementVNode("div", _hoisted_14$2, [
                   createElementVNode("dl", null, [
                     (openBlock(true), createElementBlock(Fragment, null, renderList($data.cityListByLetter, (item, key2) => {
                       return openBlock(), createElementBlock(Fragment, { key: key2 }, [
@@ -12324,7 +12322,7 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                             return openBlock(), createElementBlock("li", {
                               key: city.n,
                               onClick: ($event) => $options.handleChangeValue(city.c)
-                            }, toDisplayString(city.n), 9, _hoisted_17$2);
+                            }, toDisplayString(city.n), 9, _hoisted_15$2);
                           }), 128))
                         ])
                       ], 64);
@@ -14723,10 +14721,10 @@ const _hoisted_2$y = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon 
 const _hoisted_3$s = [
   _hoisted_2$y
 ];
-const _hoisted_4$n = ["innerHTML"];
-const _hoisted_5$f = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1);
-const _hoisted_6$7 = [
-  _hoisted_5$f
+const _hoisted_4$m = ["innerHTML"];
+const _hoisted_5$e = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1);
+const _hoisted_6$6 = [
+  _hoisted_5$e
 ];
 function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_render_cell = resolveComponent("render-cell");
@@ -14759,7 +14757,7 @@ function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
       createElementVNode("div", {
         class: normalizeClass([$options.baseClass + "-content-text"]),
         innerHTML: $props.content
-      }, null, 10, _hoisted_4$n),
+      }, null, 10, _hoisted_4$m),
       createElementVNode("div", {
         class: normalizeClass([$options.baseClass + "-content-text"])
       }, [
@@ -14769,7 +14767,7 @@ function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
         key: 0,
         class: normalizeClass([$options.baseClass + "-close"]),
         onClick: _cache[1] || (_cache[1] = (...args) => $options.close && $options.close(...args))
-      }, _hoisted_6$7, 2)) : createCommentVNode("", true)
+      }, _hoisted_6$6, 2)) : createCommentVNode("", true)
     ], 2)) : createCommentVNode("", true)
   ], 6);
 }
@@ -14936,7 +14934,8 @@ const iconPrefixCls$3 = "ivu-icon";
 const prefixKey$1 = "ivu_message_key_";
 const defaults$1 = {
   top: 24,
-  duration: 1.5
+  duration: 1.5,
+  background: false
 };
 let messageInstance;
 let name$2 = 1;
@@ -14960,7 +14959,7 @@ function getMessageInstance() {
 }
 function notice$1(content = "", duration2 = defaults$1.duration, type2, onClose = function() {
 }, closable = false, render = function() {
-}, background = false) {
+}, background = defaults$1.background) {
   const iconType = iconTypes$1[type2];
   const loadCls = type2 === "loading" ? " ivu-load-loop" : "";
   let instance = getMessageInstance();
@@ -15021,6 +15020,8 @@ var $Message = {
     if (options.duration || options.duration === 0) {
       defaults$1.duration = options.duration;
     }
+    if (options.background)
+      defaults$1.background = options.background;
   },
   destroy() {
     let instance = getMessageInstance();
@@ -18079,7 +18080,7 @@ function _sfc_render$1g(_ctx, _cache, $props, $setup, $data, $options) {
           "focused-date": _ctx.focusedDate,
           onOnPick: $options.panelPickerHandlers,
           onOnPickClick: _ctx.handlePickClick
-        }, null, 8, ["table-date", "show-week-numbers", "model-value", "selection-mode", "disabled-date", "focused-date", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
+        }, null, 40, ["table-date", "show-week-numbers", "model-value", "selection-mode", "disabled-date", "focused-date", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
       ], 2),
       withDirectives(createElementVNode("div", {
         class: normalizeClass([$data.prefixCls + "-content"])
@@ -18598,7 +18599,7 @@ function _sfc_render$1e(_ctx, _cache, $props, $setup, $data, $options) {
           onOnChangeRange: $options.handleChangeRange,
           onOnPick: $options.panelPickerHandlers.left,
           onOnPickClick: _ctx.handlePickClick
-        }, null, 8, ["table-date", "disabled-date", "range-state", "show-week-numbers", "model-value", "focused-date", "onOnChangeRange", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
+        }, null, 40, ["table-date", "disabled-date", "range-state", "show-week-numbers", "model-value", "focused-date", "onOnChangeRange", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
       ], 2), [
         [vShow, !_ctx.isTime]
       ]),
@@ -18660,7 +18661,7 @@ function _sfc_render$1e(_ctx, _cache, $props, $setup, $data, $options) {
           onOnChangeRange: $options.handleChangeRange,
           onOnPick: $options.panelPickerHandlers.right,
           onOnPickClick: _ctx.handlePickClick
-        }, null, 8, ["table-date", "range-state", "disabled-date", "show-week-numbers", "model-value", "focused-date", "onOnChangeRange", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
+        }, null, 40, ["table-date", "range-state", "disabled-date", "show-week-numbers", "model-value", "focused-date", "onOnChangeRange", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
       ], 2), [
         [vShow, !_ctx.isTime]
       ]),
@@ -18944,7 +18945,7 @@ const _sfc_main$1o = {
   name: "Drawer",
   mixins: [ScrollbarMixins],
   components: { Icon },
-  emits: ["on-close", "on-resize-width", "on-visible-change", "update:modelValue"],
+  emits: ["on-close", "on-resize-width", "on-visible-change", "update:modelValue", "on-drag"],
   provide() {
     return {
       DrawerInstance: this
@@ -19143,6 +19144,7 @@ const _sfc_main$1o = {
         width = width / this.wrapperWidth * 100;
       this.dragWidth = width;
       this.$emit("on-resize-width", parseInt(this.dragWidth));
+      this.$emit("on-drag", "dragging", parseInt(this.dragWidth));
     },
     handleSetWrapperWidth() {
       const {
@@ -19156,10 +19158,12 @@ const _sfc_main$1o = {
       if (!this.draggable)
         return;
       this.canMove = false;
+      this.$emit("on-drag", "end");
     },
     handleTriggerMousedown() {
       this.canMove = true;
       window.getSelection().removeAllRanges();
+      this.$emit("on-drag", "start");
     },
     addDrawer() {
       const root2 = this.$root;
@@ -19566,21 +19570,18 @@ const _hoisted_2$u = {
   class: "ivu-ellipsis-more",
   ref: "more"
 };
-const _hoisted_3$q = /* @__PURE__ */ createTextVNode("...");
-const _hoisted_4$m = {
+const _hoisted_3$q = {
   class: "ivu-ellipsis-more",
   ref: "more"
 };
-const _hoisted_5$e = /* @__PURE__ */ createTextVNode("...");
-const _hoisted_6$6 = {
+const _hoisted_4$l = {
   key: 1,
   class: "ivu-ellipsis-hidden"
 };
-const _hoisted_7$6 = {
+const _hoisted_5$d = {
   class: "ivu-ellipsis-more",
   ref: "more"
 };
-const _hoisted_8$4 = /* @__PURE__ */ createTextVNode("...");
 function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Tooltip = resolveComponent("Tooltip");
   return openBlock(), createElementBlock("div", _hoisted_1$J, [
@@ -19601,7 +19602,7 @@ function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
           }, toDisplayString($props.text), 513),
           withDirectives(createElementVNode("span", _hoisted_2$u, [
             renderSlot(_ctx.$slots, "more", {}, () => [
-              _hoisted_3$q
+              createTextVNode("...")
             ])
           ], 512), [
             [vShow, $data.oversize]
@@ -19614,23 +19615,23 @@ function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
           class: "ivu-ellipsis-text",
           ref: "text"
         }, toDisplayString($props.text), 513),
-        withDirectives(createElementVNode("span", _hoisted_4$m, [
+        withDirectives(createElementVNode("span", _hoisted_3$q, [
           renderSlot(_ctx.$slots, "more", {}, () => [
-            _hoisted_5$e
+            createTextVNode("...")
           ])
         ], 512), [
           [vShow, $data.oversize]
         ]),
         renderSlot(_ctx.$slots, "suffix", { class: "ivu-ellipsis-suffix" })
       ], 64))
-    ], 64)) : (openBlock(), createElementBlock("div", _hoisted_6$6, [
+    ], 64)) : (openBlock(), createElementBlock("div", _hoisted_4$l, [
       createElementVNode("span", {
         class: "ivu-ellipsis-text",
         ref: "text"
       }, toDisplayString($props.text), 513),
-      withDirectives(createElementVNode("span", _hoisted_7$6, [
+      withDirectives(createElementVNode("span", _hoisted_5$d, [
         renderSlot(_ctx.$slots, "more", {}, () => [
-          _hoisted_8$4
+          createTextVNode("...")
         ])
       ], 512), [
         [vShow, $data.oversize]
@@ -19738,8 +19739,8 @@ const _sfc_main$1k = {
 const _hoisted_1$I = { class: "ivu-exception" };
 const _hoisted_2$t = { class: "ivu-exception-img" };
 const _hoisted_3$p = { class: "ivu-exception-content" };
-const _hoisted_4$l = { class: "ivu-exception-content-desc" };
-const _hoisted_5$d = { class: "ivu-exception-content-actions" };
+const _hoisted_4$k = { class: "ivu-exception-content-desc" };
+const _hoisted_5$c = { class: "ivu-exception-content-actions" };
 function _sfc_render$18(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Button = resolveComponent("Button");
   return openBlock(), createElementBlock("div", _hoisted_1$I, [
@@ -19755,12 +19756,12 @@ function _sfc_render$18(_ctx, _cache, $props, $setup, $data, $options) {
           createTextVNode(toDisplayString($options.titleText), 1)
         ])
       ]),
-      createElementVNode("div", _hoisted_4$l, [
+      createElementVNode("div", _hoisted_4$k, [
         renderSlot(_ctx.$slots, "desc", {}, () => [
           createTextVNode(toDisplayString($options.descText), 1)
         ])
       ]),
-      createElementVNode("div", _hoisted_5$d, [
+      createElementVNode("div", _hoisted_5$c, [
         renderSlot(_ctx.$slots, "actions", {}, () => [
           createVNode(_component_Button, {
             to: $props.redirect,
@@ -19982,7 +19983,7 @@ const _hoisted_2$r = {
   class: "ivu-global-footer-links"
 };
 const _hoisted_3$n = ["href", "target", "title"];
-const _hoisted_4$k = {
+const _hoisted_4$j = {
   key: 1,
   class: "ivu-global-footer-copyright"
 };
@@ -20010,7 +20011,7 @@ function _sfc_render$14(_ctx, _cache, $props, $setup, $data, $options) {
         }), 128))
       ])
     ])) : createCommentVNode("", true),
-    $props.copyright || _ctx.$slots.copyright ? (openBlock(), createElementBlock("div", _hoisted_4$k, [
+    $props.copyright || _ctx.$slots.copyright ? (openBlock(), createElementBlock("div", _hoisted_4$j, [
       renderSlot(_ctx.$slots, "copyright", {}, () => [
         createTextVNode(toDisplayString($props.copyright), 1)
       ])
@@ -22036,28 +22037,28 @@ const _hoisted_3$m = /* @__PURE__ */ createElementVNode("path", {
   "p-id": "7198",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_4$j = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_4$i = /* @__PURE__ */ createElementVNode("path", {
   d: "M921 867L775 721c122.1-148.9 113.6-369.5-26-509-148-148.1-388.4-148.1-537 0-148.1 148.6-148.1 389 0 537 139.5 139.6 360.1 148.1 509 26l146 146c3.2 2.8 8.3 2.8 11 0l43-43c2.8-2.7 2.8-7.8 0-11zM696 696c-118.8 118.7-311.2 118.7-430 0-118.7-118.8-118.7-311.2 0-430 118.8-118.7 311.2-118.7 430 0 118.7 118.8 118.7 311.2 0 430z",
   "p-id": "7199",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_5$c = [
+const _hoisted_5$b = [
   _hoisted_3$m,
-  _hoisted_4$j
+  _hoisted_4$i
 ];
 const _hoisted_6$5 = /* @__PURE__ */ createElementVNode("path", {
   d: "M637 443H325c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h312c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z",
   "p-id": "7413",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_7$5 = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_7$4 = /* @__PURE__ */ createElementVNode("path", {
   d: "M921 867L775 721c122.1-148.9 113.6-369.5-26-509-148-148.1-388.4-148.1-537 0-148.1 148.6-148.1 389 0 537 139.5 139.6 360.1 148.1 509 26l146 146c3.2 2.8 8.3 2.8 11 0l43-43c2.8-2.7 2.8-7.8 0-11zM696 696c-118.8 118.7-311.2 118.7-430 0-118.7-118.8-118.7-311.2 0-430 118.8-118.7 311.2-118.7 430 0 118.7 118.8 118.7 311.2 0 430z",
   "p-id": "7414",
   fill: "#ffffff"
 }, null, -1);
 const _hoisted_8$3 = [
   _hoisted_6$5,
-  _hoisted_7$5
+  _hoisted_7$4
 ];
 const _hoisted_9$3 = /* @__PURE__ */ createElementVNode("path", {
   d: "M358.058667 128H156.970667A28.970667 28.970667 0 0 0 128 157.013333v202.837334c0 7.978667 6.528 14.506667 14.506667 14.506666h43.434666a14.506667 14.506667 0 0 0 14.506667-14.506666V200.448h157.610667a14.506667 14.506667 0 0 0 14.506666-14.506667V142.506667a14.506667 14.506667 0 0 0-14.506666-14.506667zM881.493333 649.642667h-43.434666a14.506667 14.506667 0 0 0-14.506667 14.506666v159.402667h-157.610667a14.506667 14.506667 0 0 0-14.506666 14.506667v43.434666c0 7.978667 6.570667 14.506667 14.506666 14.506667h201.088c16 0 28.970667-12.928 28.970667-29.013333v-202.837334a14.506667 14.506667 0 0 0-14.506667-14.506666zM358.058667 823.552H200.448v-159.402667a14.506667 14.506667 0 0 0-14.506667-14.506666H142.506667a14.506667 14.506667 0 0 0-14.506667 14.506666v202.88c0 16 12.970667 28.970667 29.013333 28.970667h201.045334a14.506667 14.506667 0 0 0 14.506666-14.506667v-43.434666a14.506667 14.506667 0 0 0-14.506666-14.506667zM866.986667 128h-201.088a14.506667 14.506667 0 0 0-14.506667 14.506667v43.434666c0 7.978667 6.570667 14.506667 14.506667 14.506667h157.610666v159.402667c0 7.978667 6.528 14.506667 14.506667 14.506666h43.434667a14.506667 14.506667 0 0 0 14.506666-14.506666V156.970667A28.928 28.928 0 0 0 866.986667 128z",
@@ -22210,7 +22211,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                       "p-id": "7197",
                       width: "200",
                       height: "200"
-                    }, _hoisted_5$c))
+                    }, _hoisted_5$b))
                   ]),
                   _: 1
                 }, 8, ["order"])) : createCommentVNode("", true),
@@ -22445,6 +22446,11 @@ const _sfc_main$1a = {
       imagePreviewModal: false
     };
   },
+  watch: {
+    src() {
+      this.loadImage();
+    }
+  },
   computed: {
     innerClasses() {
       return [
@@ -22568,7 +22574,7 @@ const _hoisted_2$p = {
   class: "ivu-image-error"
 };
 const _hoisted_3$l = ["alt", "src", "loading", "referrerPolicy"];
-const _hoisted_4$i = { class: "ivu-image-mark" };
+const _hoisted_4$h = { class: "ivu-image-mark" };
 function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ImagePreview = resolveComponent("ImagePreview");
   return openBlock(), createElementBlock("div", {
@@ -22601,7 +22607,7 @@ function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
         onError: _cache[1] || (_cache[1] = (...args) => $options.handleImageError && $options.handleImageError(...args))
       }, null, 46, _hoisted_3$l),
       $props.preview && $props.previewTip ? renderSlot(_ctx.$slots, "preview", { key: 0 }, () => [
-        createElementVNode("div", _hoisted_4$i, [
+        createElementVNode("div", _hoisted_4$h, [
           createElementVNode("span", null, toDisplayString($options.previewLang), 1)
         ])
       ]) : createCommentVNode("", true)
@@ -23001,10 +23007,10 @@ const _hoisted_2$o = [
   _hoisted_1$C
 ];
 const _hoisted_3$k = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-add" }, null, -1);
-const _hoisted_4$h = [
+const _hoisted_4$g = [
   _hoisted_3$k
 ];
-const _hoisted_5$b = ["id", "disabled", "autofocus", "readonly", "name", "value", "placeholder"];
+const _hoisted_5$a = ["id", "disabled", "autofocus", "readonly", "name", "value", "placeholder"];
 function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
@@ -23041,7 +23047,7 @@ function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
       key: 2,
       class: normalizeClass(["ivu-input-number-controls-outside-btn ivu-input-number-controls-outside-up", { "ivu-input-number-controls-outside-btn-disabled": $data.upDisabled }]),
       onClick: _cache[5] || (_cache[5] = (...args) => $options.up && $options.up(...args))
-    }, _hoisted_4$h, 2)) : createCommentVNode("", true),
+    }, _hoisted_4$g, 2)) : createCommentVNode("", true),
     createElementVNode("div", {
       class: normalizeClass($options.inputWrapClasses)
     }, [
@@ -23062,7 +23068,7 @@ function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
         name: $props.name,
         value: $options.formatterValue,
         placeholder: $props.placeholder
-      }, null, 42, _hoisted_5$b)
+      }, null, 42, _hoisted_5$a)
     ], 2)
   ], 2);
 }
@@ -23660,8 +23666,10 @@ Spin.newInstance = (properties) => {
   const spin = _instance.refs.spin;
   return {
     show() {
-      spin.visible = true;
-      tIndex = handleGetIndex();
+      nextTick(() => {
+        _instance.refs.spin.visible = true;
+        tIndex = handleGetIndex();
+      });
     },
     remove(cb) {
       spin.visible = false;
@@ -23767,7 +23775,7 @@ const _hoisted_1$B = {
 };
 const _hoisted_2$n = { class: "ivu-list-container" };
 const _hoisted_3$j = { class: "ivu-list-items" };
-const _hoisted_4$g = {
+const _hoisted_4$f = {
   key: 2,
   class: "ivu-list-footer"
 };
@@ -23796,7 +23804,7 @@ function _sfc_render$X(_ctx, _cache, $props, $setup, $data, $options) {
       ]),
       _: 3
     })) : createCommentVNode("", true),
-    $props.footer || _ctx.$slots.footer ? (openBlock(), createElementBlock("div", _hoisted_4$g, [
+    $props.footer || _ctx.$slots.footer ? (openBlock(), createElementBlock("div", _hoisted_4$f, [
       renderSlot(_ctx.$slots, "footer", {}, () => [
         createTextVNode(toDisplayString($props.footer), 1)
       ])
@@ -23843,11 +23851,11 @@ const _hoisted_2$m = {
   class: "ivu-list-item-action"
 };
 const _hoisted_3$i = { class: "ivu-list-item-extra" };
-const _hoisted_4$f = {
+const _hoisted_4$e = {
   key: 0,
   class: "ivu-list-item-action"
 };
-const _hoisted_5$a = { class: "ivu-list-item-extra" };
+const _hoisted_5$9 = { class: "ivu-list-item-extra" };
 function _sfc_render$W(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: normalizeClass(["ivu-list-item", $options.classes])
@@ -23864,10 +23872,10 @@ function _sfc_render$W(_ctx, _cache, $props, $setup, $data, $options) {
       ])
     ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
       renderSlot(_ctx.$slots, "default"),
-      _ctx.$slots.action ? (openBlock(), createElementBlock("ul", _hoisted_4$f, [
+      _ctx.$slots.action ? (openBlock(), createElementBlock("ul", _hoisted_4$e, [
         renderSlot(_ctx.$slots, "action")
       ])) : createCommentVNode("", true),
-      createElementVNode("div", _hoisted_5$a, [
+      createElementVNode("div", _hoisted_5$9, [
         renderSlot(_ctx.$slots, "extra")
       ])
     ], 64))
@@ -23898,11 +23906,11 @@ const _hoisted_2$l = {
   class: "ivu-list-item-meta-avatar"
 };
 const _hoisted_3$h = { class: "ivu-list-item-meta-content" };
-const _hoisted_4$e = {
+const _hoisted_4$d = {
   key: 0,
   class: "ivu-list-item-meta-title"
 };
-const _hoisted_5$9 = {
+const _hoisted_5$8 = {
   key: 1,
   class: "ivu-list-item-meta-description"
 };
@@ -23915,12 +23923,12 @@ function _sfc_render$V(_ctx, _cache, $props, $setup, $data, $options) {
       ])
     ])) : createCommentVNode("", true),
     createElementVNode("div", _hoisted_3$h, [
-      $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_4$e, [
+      $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_4$d, [
         renderSlot(_ctx.$slots, "title", {}, () => [
           createTextVNode(toDisplayString($props.title), 1)
         ])
       ])) : createCommentVNode("", true),
-      $props.description || _ctx.$slots.description ? (openBlock(), createElementBlock("div", _hoisted_5$9, [
+      $props.description || _ctx.$slots.description ? (openBlock(), createElementBlock("div", _hoisted_5$8, [
         renderSlot(_ctx.$slots, "description", {}, () => [
           createTextVNode(toDisplayString($props.description), 1)
         ])
@@ -26117,7 +26125,7 @@ function _sfc_render$O(_ctx, _cache, $props, $setup, $data, $options) {
           createElementVNode("div", {
             ref: "navScroll",
             class: normalizeClass([$data.prefixCls + "-nav-scroll"]),
-            onDOMMouseScroll: _cache[3] || (_cache[3] = (...args) => $options.handleScroll && $options.handleScroll(...args)),
+            "on:DOMMouseScroll": _cache[3] || (_cache[3] = (...args) => $options.handleScroll && $options.handleScroll(...args)),
             onMousewheel: _cache[4] || (_cache[4] = (...args) => $options.handleScroll && $options.handleScroll(...args))
           }, [
             createElementVNode("div", {
@@ -26530,7 +26538,7 @@ const _sfc_main$V = {
       } else if (type2 === "object") {
         time = this.time.getTime();
       } else if (type2 === "string") {
-        time = new Date(this.time).getTime();
+        time = dayjs(this.time).valueOf();
       }
       if (this.type === "relative") {
         this.date = Time$1(time, this.t);
@@ -26552,9 +26560,11 @@ const _sfc_main$V = {
   },
   mounted() {
     this.setTime();
-    this.timer = setInterval(() => {
-      this.setTime();
-    }, 1e3 * this.interval);
+    if (this.interval !== 0) {
+      this.timer = setInterval(() => {
+        this.setTime();
+      }, 1e3 * this.interval);
+    }
   },
   beforeUnmount() {
     if (this.timer)
@@ -26653,7 +26663,7 @@ const _sfc_main$U = {
       };
     },
     contentSpan() {
-      return this.icon || this.customIcon || this.avatar ? 20 : 24;
+      return this.icon || this.customIcon || this.avatar || this.$slots.avatar ? 20 : 24;
     },
     iconStyle() {
       let style2 = {};
@@ -26703,11 +26713,11 @@ const _hoisted_3$f = {
   key: 0,
   class: "ivu-notifications-item-tag"
 };
-const _hoisted_4$d = {
+const _hoisted_4$c = {
   key: 0,
   class: "ivu-notifications-item-desc"
 };
-const _hoisted_5$8 = {
+const _hoisted_5$7 = {
   key: 1,
   class: "ivu-notifications-item-time"
 };
@@ -26724,33 +26734,36 @@ function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default", {}, () => [
       createVNode(_component_Row, normalizeProps(guardReactiveProps($props.rowProps)), {
         default: withCtx(() => [
-          createVNode(_component_Col, {
+          $props.icon || $props.customIcon || $props.avatar || _ctx.$slots.avatar ? (openBlock(), createBlock(_component_Col, {
+            key: 0,
             span: "4",
             class: "ivu-notifications-item-icon"
           }, {
             default: withCtx(() => [
-              $props.icon ? (openBlock(), createBlock(_component_Avatar, {
-                key: 0,
-                icon: $props.icon,
-                shape: $props.avatarShape,
-                size: $props.iconSize,
-                style: normalizeStyle($options.iconStyle)
-              }, null, 8, ["icon", "shape", "size", "style"])) : $props.customIcon ? (openBlock(), createBlock(_component_Avatar, {
-                key: 1,
-                "custom-icon": $props.customIcon,
-                shape: $props.avatarShape,
-                size: $props.iconSize,
-                style: normalizeStyle($options.iconStyle)
-              }, null, 8, ["custom-icon", "shape", "size", "style"])) : $props.avatar ? (openBlock(), createBlock(_component_Avatar, {
-                key: 2,
-                src: $props.avatar,
-                shape: $props.avatarShape,
-                size: $props.iconSize,
-                style: normalizeStyle($options.iconStyle)
-              }, null, 8, ["src", "shape", "size", "style"])) : createCommentVNode("", true)
+              renderSlot(_ctx.$slots, "avatar", {}, () => [
+                $props.icon ? (openBlock(), createBlock(_component_Avatar, {
+                  key: 0,
+                  icon: $props.icon,
+                  shape: $props.avatarShape,
+                  size: $props.iconSize,
+                  style: normalizeStyle($options.iconStyle)
+                }, null, 8, ["icon", "shape", "size", "style"])) : $props.customIcon ? (openBlock(), createBlock(_component_Avatar, {
+                  key: 1,
+                  "custom-icon": $props.customIcon,
+                  shape: $props.avatarShape,
+                  size: $props.iconSize,
+                  style: normalizeStyle($options.iconStyle)
+                }, null, 8, ["custom-icon", "shape", "size", "style"])) : $props.avatar ? (openBlock(), createBlock(_component_Avatar, {
+                  key: 2,
+                  src: $props.avatar,
+                  shape: $props.avatarShape,
+                  size: $props.iconSize,
+                  style: normalizeStyle($options.iconStyle)
+                }, null, 8, ["src", "shape", "size", "style"])) : createCommentVNode("", true)
+              ])
             ]),
-            _: 1
-          }),
+            _: 3
+          })) : createCommentVNode("", true),
           createVNode(_component_Col, {
             span: $options.contentSpan,
             class: "ivu-notifications-item-content"
@@ -26771,12 +26784,12 @@ function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
                   ])) : createCommentVNode("", true)
                 ])) : createCommentVNode("", true)
               ]),
-              $props.content || _ctx.$slots.content ? (openBlock(), createElementBlock("div", _hoisted_4$d, [
+              $props.content || _ctx.$slots.content ? (openBlock(), createElementBlock("div", _hoisted_4$c, [
                 renderSlot(_ctx.$slots, "content", {}, () => [
                   createTextVNode(toDisplayString($props.content), 1)
                 ])
               ])) : createCommentVNode("", true),
-              $props.time || _ctx.$slots.time ? (openBlock(), createElementBlock("div", _hoisted_5$8, [
+              $props.time || _ctx.$slots.time ? (openBlock(), createElementBlock("div", _hoisted_5$7, [
                 renderSlot(_ctx.$slots, "time", {}, () => [
                   createVNode(_component_Time, mergeProps({ time: $props.time }, $props.timeProps), null, 16, ["time"])
                 ])
@@ -26955,7 +26968,7 @@ const _sfc_main$S = {
       customLabel: (h2) => {
         return h2("div", [
           h2("span", this.title),
-          h2("Badge", {
+          h2(Badge, {
             count: this.count
           })
         ]);
@@ -27039,13 +27052,13 @@ const _hoisted_2$i = {
   class: "ivu-notifications-tab-empty"
 };
 const _hoisted_3$e = ["src"];
-const _hoisted_4$c = { class: "ivu-notifications-tab-empty-text" };
-const _hoisted_5$7 = { class: "ivu-notifications-tab-loading" };
+const _hoisted_4$b = { class: "ivu-notifications-tab-empty-text" };
+const _hoisted_5$6 = { class: "ivu-notifications-tab-loading" };
 const _hoisted_6$4 = {
   key: 0,
   class: "ivu-notifications-tab-loading-item ivu-notifications-tab-loading-show"
 };
-const _hoisted_7$4 = {
+const _hoisted_7$3 = {
   key: 2,
   class: "ivu-notifications-tab-loading-item ivu-notifications-tab-loading-all"
 };
@@ -27075,10 +27088,10 @@ function _sfc_render$J(_ctx, _cache, $props, $setup, $data, $options) {
               class: "ivu-notifications-tab-empty-img",
               src: $props.emptyImage
             }, null, 8, _hoisted_3$e)) : createCommentVNode("", true),
-            createElementVNode("div", _hoisted_4$c, toDisplayString($props.emptyText), 1)
+            createElementVNode("div", _hoisted_4$b, toDisplayString($props.emptyText), 1)
           ])
         ])) : createCommentVNode("", true),
-        createElementVNode("div", _hoisted_5$7, [
+        createElementVNode("div", _hoisted_5$6, [
           $props.loading ? (openBlock(), createElementBlock("div", _hoisted_6$4, [
             renderSlot(_ctx.$slots, "loading", {}, () => [
               createVNode(_component_Icon, {
@@ -27095,7 +27108,7 @@ function _sfc_render$J(_ctx, _cache, $props, $setup, $data, $options) {
             renderSlot(_ctx.$slots, "load-more", {}, () => [
               createTextVNode(toDisplayString($options.NotificationInstance.locale.loadMore), 1)
             ])
-          ])) : $props.showLoadedAll && $props.loadedAll ? (openBlock(), createElementBlock("div", _hoisted_7$4, [
+          ])) : $props.showLoadedAll && $props.loadedAll ? (openBlock(), createElementBlock("div", _hoisted_7$3, [
             renderSlot(_ctx.$slots, "loaded-all", {}, () => [
               createTextVNode(toDisplayString($options.NotificationInstance.locale.loadedAll), 1)
             ])
@@ -27222,8 +27235,8 @@ const _hoisted_3$d = {
   key: 1,
   class: "ivu-number-info-subTitle"
 };
-const _hoisted_4$b = { class: "ivu-number-info-total" };
-const _hoisted_5$6 = {
+const _hoisted_4$a = { class: "ivu-number-info-total" };
+const _hoisted_5$5 = {
   key: 0,
   class: "ivu-number-info-subTotal"
 };
@@ -27244,12 +27257,12 @@ function _sfc_render$H(_ctx, _cache, $props, $setup, $data, $options) {
       class: "ivu-number-info-value",
       style: normalizeStyle($options.valueStyle)
     }, [
-      createElementVNode("span", _hoisted_4$b, [
+      createElementVNode("span", _hoisted_4$a, [
         renderSlot(_ctx.$slots, "total", {}, () => [
           createTextVNode(toDisplayString($props.total), 1)
         ])
       ]),
-      $props.subTotal || _ctx.$slots.subTotal ? (openBlock(), createElementBlock("span", _hoisted_5$6, [
+      $props.subTotal || _ctx.$slots.subTotal ? (openBlock(), createElementBlock("span", _hoisted_5$5, [
         renderSlot(_ctx.$slots, "subTotal", {}, () => [
           createVNode(_component_Trend, { flag: $props.status }, {
             default: withCtx(() => [
@@ -28446,10 +28459,10 @@ const _hoisted_2$g = /* @__PURE__ */ createElementVNode("a", null, [
 const _hoisted_3$c = [
   _hoisted_2$g
 ];
-const _hoisted_4$a = ["title"];
-const _hoisted_5$5 = ["value", "disabled"];
+const _hoisted_4$9 = ["title"];
+const _hoisted_5$4 = ["value", "disabled"];
 const _hoisted_6$3 = /* @__PURE__ */ createElementVNode("span", null, "/", -1);
-const _hoisted_7$3 = ["title"];
+const _hoisted_7$2 = ["title"];
 const _hoisted_8$2 = /* @__PURE__ */ createElementVNode("a", null, [
   /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-arrow-forward" })
 ], -1);
@@ -28519,15 +28532,15 @@ function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
         onKeydown: _cache[1] || (_cache[1] = (...args) => $options.keyDown && $options.keyDown(...args)),
         onKeyup: _cache[2] || (_cache[2] = (...args) => $options.keyUp && $options.keyUp(...args)),
         onChange: _cache[3] || (_cache[3] = (...args) => $options.keyUp && $options.keyUp(...args))
-      }, null, 40, _hoisted_5$5),
+      }, null, 40, _hoisted_5$4),
       _hoisted_6$3,
       createTextVNode(" " + toDisplayString($options.allPages), 1)
-    ], 10, _hoisted_4$a),
+    ], 10, _hoisted_4$9),
     createElementVNode("li", {
       title: _ctx.t("i.page.next"),
       class: normalizeClass($options.nextClasses),
       onClick: _cache[4] || (_cache[4] = (...args) => $options.next && $options.next(...args))
-    }, _hoisted_9$2, 10, _hoisted_7$3)
+    }, _hoisted_9$2, 10, _hoisted_7$2)
   ], 6)) : (openBlock(), createElementBlock("ul", {
     key: 1,
     class: normalizeClass($options.wrapClasses),
@@ -28735,10 +28748,10 @@ const _hoisted_3$b = {
   key: 1,
   class: "ivu-page-header-logo"
 };
-const _hoisted_4$9 = ["src"];
-const _hoisted_5$4 = { class: "ivu-page-header-main" };
+const _hoisted_4$8 = ["src"];
+const _hoisted_5$3 = { class: "ivu-page-header-main" };
 const _hoisted_6$2 = { class: "ivu-page-header-row" };
-const _hoisted_7$2 = {
+const _hoisted_7$1 = {
   key: 1,
   class: "ivu-page-header-title"
 };
@@ -28804,10 +28817,10 @@ function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
       ])) : createCommentVNode("", true),
       $props.logo || _ctx.$slots.logo ? (openBlock(), createElementBlock("div", _hoisted_3$b, [
         renderSlot(_ctx.$slots, "logo", {}, () => [
-          createElementVNode("img", { src: $props.logo }, null, 8, _hoisted_4$9)
+          createElementVNode("img", { src: $props.logo }, null, 8, _hoisted_4$8)
         ])
       ])) : createCommentVNode("", true),
-      createElementVNode("div", _hoisted_5$4, [
+      createElementVNode("div", _hoisted_5$3, [
         createElementVNode("div", _hoisted_6$2, [
           $props.back || _ctx.$slots.back ? (openBlock(), createElementBlock("div", {
             key: 0,
@@ -28819,7 +28832,7 @@ function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
             ]),
             createVNode(_component_Divider, { type: "vertical" })
           ])) : createCommentVNode("", true),
-          $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_7$2, [
+          $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_7$1, [
             renderSlot(_ctx.$slots, "title", {}, () => [
               createTextVNode(toDisplayString($props.title), 1)
             ])
@@ -29788,9 +29801,8 @@ const _sfc_main$E = {
 };
 const _hoisted_1$k = ["name", "value"];
 const _hoisted_2$e = ["onMousemove", "onClick"];
-const _hoisted_3$a = /* @__PURE__ */ createTextVNode();
-const _hoisted_4$8 = { key: 0 };
-const _hoisted_5$3 = { key: 1 };
+const _hoisted_3$a = { key: 0 };
+const _hoisted_4$7 = { key: 1 };
 function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes),
@@ -29844,8 +29856,8 @@ function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
     }, [
       renderSlot(_ctx.$slots, "default", {}, () => [
         createElementVNode("span", null, toDisplayString($data.currentValue), 1),
-        _hoisted_3$a,
-        $data.currentValue <= 1 ? (openBlock(), createElementBlock("span", _hoisted_4$8, toDisplayString(_ctx.t("i.rate.star")), 1)) : (openBlock(), createElementBlock("span", _hoisted_5$3, toDisplayString(_ctx.t("i.rate.stars")), 1))
+        createTextVNode(),
+        $data.currentValue <= 1 ? (openBlock(), createElementBlock("span", _hoisted_3$a, toDisplayString(_ctx.t("i.rate.star")), 1)) : (openBlock(), createElementBlock("span", _hoisted_4$7, toDisplayString(_ctx.t("i.rate.stars")), 1))
       ])
     ], 2)), [
       [vShow, $data.currentValue > 0]
@@ -29891,7 +29903,7 @@ const _hoisted_3$9 = {
   key: 1,
   class: "ivu-result-desc"
 };
-const _hoisted_4$7 = {
+const _hoisted_4$6 = {
   key: 2,
   class: "ivu-result-extra"
 };
@@ -29928,7 +29940,7 @@ function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
         createTextVNode(toDisplayString($props.desc), 1)
       ])
     ])) : createCommentVNode("", true),
-    $props.extra || _ctx.$slots.extra ? (openBlock(), createElementBlock("div", _hoisted_4$7, [
+    $props.extra || _ctx.$slots.extra ? (openBlock(), createElementBlock("div", _hoisted_4$6, [
       renderSlot(_ctx.$slots, "extra", {}, () => [
         createTextVNode(toDisplayString($props.extra), 1)
       ])
@@ -31987,7 +31999,7 @@ const _hoisted_2$a = [
   _hoisted_1$g
 ];
 const _hoisted_3$8 = { key: 0 };
-const _hoisted_4$6 = {
+const _hoisted_4$5 = {
   key: 1,
   class: "ivu-steps-icon"
 };
@@ -32004,7 +32016,7 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
       createElementVNode("div", {
         class: normalizeClass([$data.prefixCls + "-head-inner"])
       }, [
-        !$props.icon && !_ctx.$slots.icon && $options.currentStatus !== "finish" && $options.currentStatus !== "error" ? (openBlock(), createElementBlock("span", _hoisted_3$8, toDisplayString($options.stepNumber), 1)) : _ctx.$slots.icon ? (openBlock(), createElementBlock("span", _hoisted_4$6, [
+        !$props.icon && !_ctx.$slots.icon && $options.currentStatus !== "finish" && $options.currentStatus !== "error" ? (openBlock(), createElementBlock("span", _hoisted_3$8, toDisplayString($options.stepNumber), 1)) : _ctx.$slots.icon ? (openBlock(), createElementBlock("span", _hoisted_4$5, [
           renderSlot(_ctx.$slots, "icon")
         ])) : (openBlock(), createElementBlock("span", {
           key: 2,
@@ -32863,10 +32875,10 @@ const _sfc_main$o = {
 const _hoisted_1$e = ["width"];
 const _hoisted_2$9 = ["width"];
 const _hoisted_3$7 = ["colspan", "rowspan"];
-const _hoisted_4$5 = { key: 0 };
+const _hoisted_4$4 = { key: 0 };
 const _hoisted_5$1 = ["onClick"];
 const _hoisted_6$1 = ["onClick"];
-const _hoisted_7$1 = ["onClick"];
+const _hoisted_7 = ["onClick"];
 const _hoisted_8 = ["onMousedown", "onMousemove"];
 const _hoisted_9 = ["rowspan"];
 function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
@@ -32908,7 +32920,7 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                 class: normalizeClass($options.cellClasses(column))
               }, [
                 column.type === "expand" ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                  !column.renderHeader ? (openBlock(), createElementBlock("span", _hoisted_4$5, toDisplayString(column.title || ""), 1)) : (openBlock(), createBlock(_component_render_header, {
+                  !column.renderHeader ? (openBlock(), createElementBlock("span", _hoisted_4$4, toDisplayString(column.title || ""), 1)) : (openBlock(), createBlock(_component_render_header, {
                     key: 1,
                     render: column.renderHeader,
                     column,
@@ -32943,7 +32955,7 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                     createElementVNode("i", {
                       class: normalizeClass(["ivu-icon ivu-icon-md-arrow-dropdown", { on: $options.getColumn(rowIndex, index2)._sortType === "desc" }]),
                       onClick: ($event) => $options.handleSort($options.getColumn(rowIndex, index2)._index, "desc")
-                    }, null, 10, _hoisted_7$1)
+                    }, null, 10, _hoisted_7)
                   ], 2)) : createCommentVNode("", true),
                   _ctx.isPopperShow(column) ? (openBlock(), createBlock(_component_Poptip, {
                     key: 3,
@@ -33021,7 +33033,8 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                             }, 1032, ["onClick"])
                           ], 2)
                         ], 2)
-                      ])
+                      ]),
+                      key: "0"
                     } : {
                       name: "content",
                       fn: withCtx(() => [
@@ -33044,7 +33057,8 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                             }), 128))
                           ], 2)
                         ], 2)
-                      ])
+                      ]),
+                      key: "1"
                     }
                   ]), 1032, ["modelValue", "onUpdate:modelValue", "onOnPopperHide"])) : createCommentVNode("", true)
                 ], 64))
@@ -33323,7 +33337,7 @@ const _hoisted_2$8 = {
   class: "ivu-table-cell-tree ivu-table-cell-tree-empty"
 };
 const _hoisted_3$6 = ["innerHTML"];
-const _hoisted_4$4 = { key: 1 };
+const _hoisted_4$3 = { key: 1 };
 function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Checkbox = resolveComponent("Checkbox");
   const _component_Icon = resolveComponent("Icon");
@@ -33386,7 +33400,7 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
           }, toDisplayString($props.row[$props.column.key]), 545)
         ]),
         _: 1
-      }, 8, ["content", "theme", "disabled", "max-width"])) : (openBlock(), createElementBlock("span", _hoisted_4$4, toDisplayString($props.row[$props.column.key]), 1))
+      }, 8, ["content", "theme", "disabled", "max-width"])) : (openBlock(), createElementBlock("span", _hoisted_4$3, toDisplayString($props.row[$props.column.key]), 1))
     ], 64)) : createCommentVNode("", true),
     $data.renderType === "expand" && !$props.row._disableExpand ? (openBlock(), createElementBlock("div", {
       key: 7,
@@ -35330,7 +35344,7 @@ const _hoisted_1$a = {
 };
 const _hoisted_2$6 = ["innerHTML"];
 const _hoisted_3$4 = ["innerHTML"];
-const _hoisted_4$3 = {
+const _hoisted_4$2 = {
   class: "ivu-table-resize-line",
   ref: "resizeLine"
 };
@@ -35452,7 +35466,7 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
           style: normalizeStyle($options.fixedBodyStyle),
           ref: "fixedBody",
           onMousewheel: _cache[3] || (_cache[3] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args)),
-          onDOMMouseScroll: _cache[4] || (_cache[4] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args))
+          "on:DOMMouseScroll": _cache[4] || (_cache[4] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args))
         }, [
           createVNode(_component_table_body, {
             fixed: "left",
@@ -35503,7 +35517,7 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
           style: normalizeStyle($options.fixedBodyStyle),
           ref: "fixedRightBody",
           onMousewheel: _cache[5] || (_cache[5] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args)),
-          onDOMMouseScroll: _cache[6] || (_cache[6] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args))
+          "on:DOMMouseScroll": _cache[6] || (_cache[6] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args))
         }, [
           createVNode(_component_table_body, {
             fixed: "right",
@@ -35541,7 +35555,7 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
         renderSlot(_ctx.$slots, "footer")
       ], 2)) : createCommentVNode("", true)
     ], 2),
-    withDirectives(createElementVNode("div", _hoisted_4$3, null, 512), [
+    withDirectives(createElementVNode("div", _hoisted_4$2, null, 512), [
       [vShow, $data.showResizeLine]
     ]),
     $props.showContextMenu ? (openBlock(), createElementBlock("div", {
@@ -35852,9 +35866,8 @@ const _hoisted_1$8 = {
   key: 0,
   class: "ivu-tag-select-option"
 };
-const _hoisted_2$4 = /* @__PURE__ */ createTextVNode("\u5168\u90E8");
-const _hoisted_3$2 = { key: 0 };
-const _hoisted_4$2 = { key: 1 };
+const _hoisted_2$4 = { key: 0 };
+const _hoisted_3$2 = { key: 1 };
 function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Tag = resolveComponent("Tag");
   const _component_Icon = resolveComponent("Icon");
@@ -35869,7 +35882,7 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
         color: "primary"
       }, {
         default: withCtx(() => [
-          _hoisted_2$4
+          createTextVNode("\u5168\u90E8")
         ]),
         _: 1
       }, 8, ["checked", "onOnChange"])
@@ -35880,7 +35893,7 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
       class: "ivu-tag-select-expand-btn",
       onClick: _cache[0] || (_cache[0] = (...args) => $options.handleToggleExpand && $options.handleToggleExpand(...args))
     }, [
-      $data.expand ? (openBlock(), createElementBlock("span", _hoisted_3$2, toDisplayString($props.locale.collapseText), 1)) : (openBlock(), createElementBlock("span", _hoisted_4$2, toDisplayString($props.locale.expandText), 1)),
+      $data.expand ? (openBlock(), createElementBlock("span", _hoisted_2$4, toDisplayString($props.locale.collapseText), 1)) : (openBlock(), createElementBlock("span", _hoisted_3$2, toDisplayString($props.locale.expandText), 1)),
       $data.expand ? (openBlock(), createBlock(_component_Icon, {
         key: 2,
         type: "ios-arrow-up"
@@ -36116,7 +36129,7 @@ const _sfc_main$c = {
     level: {
       type: Number,
       validator(value) {
-        return oneOf(value, [1, 2, 3, 4, 5]);
+        return oneOf(value, [1, 2, 3, 4, 5, 6]);
       },
       default: 1
     }
@@ -38021,12 +38034,11 @@ const _hoisted_4 = {
   key: 3,
   class: "ivu-word-count-overflow"
 };
-const _hoisted_5 = /* @__PURE__ */ createTextVNode(" / ");
-const _hoisted_6 = {
+const _hoisted_5 = {
   key: 5,
   class: "ivu-word-count-suffix"
 };
-const _hoisted_7 = {
+const _hoisted_6 = {
   key: 6,
   class: "ivu-word-count-suffix ivu-word-count-overflow"
 };
@@ -38056,15 +38068,15 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       ], 2)) : (openBlock(), createElementBlock("span", _hoisted_4, toDisplayString($props.value.length - $props.total), 1)),
       !$props.hideTotal ? (openBlock(), createElementBlock(Fragment, { key: 4 }, [
         renderSlot(_ctx.$slots, "separator", {}, () => [
-          _hoisted_5
+          createTextVNode(" / ")
         ]),
         renderSlot(_ctx.$slots, "total", { total: $props.total }, () => [
           createTextVNode(toDisplayString($props.total), 1)
         ])
       ], 64)) : createCommentVNode("", true),
-      !$options.isOverflow ? (openBlock(), createElementBlock("span", _hoisted_6, [
+      !$options.isOverflow ? (openBlock(), createElementBlock("span", _hoisted_5, [
         renderSlot(_ctx.$slots, "suffix")
-      ])) : (openBlock(), createElementBlock("span", _hoisted_7, [
+      ])) : (openBlock(), createElementBlock("span", _hoisted_6, [
         renderSlot(_ctx.$slots, "suffix-overflow")
       ]))
     ], 64))
@@ -38362,7 +38374,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.1";
+const version$1 = "1.3.14";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
@@ -38390,8 +38402,7 @@ const scripts = {
   "build:style": "gulp --gulpfile build/build-style.js",
   "build:prod": "vite build",
   "build:lang": "vite build --config build/vite.lang.config.js",
-  lint: "vue-cli-service lint --fix",
-  prepare: "npm run build"
+  lint: "vue-cli-service lint --fix"
 };
 const repository = {
   type: "git",
@@ -38456,7 +38467,7 @@ const devDependencies = {
   "uglifyjs-webpack-plugin": "^1.3.0",
   "url-loader": "^1.1.2",
   vite: "^2.6.4",
-  vue: "^3.2.31",
+  vue: "^3.2.47",
   "vue-hot-reload-api": "^2.3.4",
   "vue-html-loader": "^1.2.4",
   "vue-loader": "^17.0.0",
@@ -38464,20 +38475,6 @@ const devDependencies = {
   "vue-style-loader": "^4.1.3",
   "vue-template-compiler": "^2.6.14"
 };
-const engines = {
-  node: ">=16.14.2",
-  npm: ">=8.5.0",
-  yarn: ">=1.3.2"
-};
-const browserslist = [
-  "last 3 Chrome versions",
-  "last 3 Firefox versions",
-  "Safari >= 10",
-  "Explorer >= 11",
-  "Edge >= 12",
-  "iOS >= 10",
-  "Android >= 6"
-];
 var pkg = {
   name,
   version: version$1,
@@ -38494,9 +38491,7 @@ var pkg = {
   license,
   bugs,
   dependencies,
-  devDependencies,
-  engines,
-  browserslist
+  devDependencies
 };
 const directives = {
   display: style.display,

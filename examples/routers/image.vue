@@ -1,5 +1,13 @@
 <template>
 	<div class="demo-image">
+        <div>
+            <Button @click="img1 = 'https://dev-file.iviewui.com/ll7neXYI7fzKv1SjjOl77vpfkDbJpbDB/large'">换1</Button>
+            <Button @click="img1 = 'https://dev-file.iviewui.com/YSUjM5Fx7mOjsijiI3eVDuaHGqnmT7H8/large'">换2</Button>
+            <Button @click="img1 = 'https://file.iviewui.com/DSCF6873.JPG'">换大</Button>
+            <Button @click="img1 = 'https://replit.com/cdn-cgi/image/width=32,quality=80,format=auto/https://storage.googleapis.com/replit/images/1664475603315_1442b3c69cc612aff6ef60cce0c69328.jpeg/avatar'">换error</Button>
+            <Image :src="img1"></Image>
+        </div>
+        <Divider></Divider>
 		<div style="width: 1000px;height: 300px;">
 			<div class="demo-image-item" v-for="(fit, index) in fitList" :key="index">
 				<Image
@@ -101,7 +109,8 @@ export default {
                 'https://dev-file.iviewui.com/ll7neXYI7fzKv1SjjOl77vpfkDbJpbDB/large',
                 'https://dev-file.iviewui.com/ASzUrSpwJHqOi2G2jWzsVJyDV1ZF6xnK/large',
                 'https://dev-file.iviewui.com/YSUjM5Fx7mOjsijiI3eVDuaHGqnmT7H8/large',
-            ]
+            ],
+            img1: 'https://dev-file.iviewui.com/ll7neXYI7fzKv1SjjOl77vpfkDbJpbDB/large'
 		}
 	},
     methods: {

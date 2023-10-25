@@ -47,7 +47,7 @@
         name: 'Drawer',
         mixins: [ ScrollbarMixins ],
         components: { Icon },
-        emits: ['on-close', 'on-resize-width', 'on-visible-change', 'update:modelValue'],
+        emits: ['on-close', 'on-resize-width', 'on-visible-change', 'update:modelValue', 'on-drag'],
         provide () {
             return {
                 DrawerInstance: this
@@ -256,6 +256,7 @@
                 if (width <= 100) width = (width / this.wrapperWidth) * 100;
                 this.dragWidth = width;
                 this.$emit('on-resize-width', parseInt(this.dragWidth));
+                this.$emit('on-drag', 'dragging', parseInt(this.dragWidth));
             },
             handleSetWrapperWidth () {
                 const {
@@ -268,11 +269,13 @@
             handleMouseup () {
                 if (!this.draggable) return;
                 this.canMove = false;
+                this.$emit('on-drag', 'end');
             },
             handleTriggerMousedown () {
                 this.canMove = true;
                 // 防止鼠标选中抽屉中文字，造成拖动trigger触发浏览器原生拖动行为
                 window.getSelection().removeAllRanges();
+                this.$emit('on-drag', 'start');
             },
             addDrawer () {
                 const root = this.$root;

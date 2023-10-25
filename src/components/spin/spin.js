@@ -1,4 +1,4 @@
-import { createApp, h, getCurrentInstance } from 'vue';
+import { createApp, h, getCurrentInstance, nextTick } from 'vue';
 import Spin from './spin.vue';
 
 import { transferIndex, transferIncrease } from '../../utils/transfer-queue';
@@ -58,8 +58,10 @@ Spin.newInstance = properties => {
 
     return {
         show () {
-            spin.visible = true;
-            tIndex = handleGetIndex();
+            nextTick(()=> {
+                _instance.refs.spin.visible = true;
+                tIndex = handleGetIndex();
+            })
         },
         remove (cb) {
             spin.visible = false;
