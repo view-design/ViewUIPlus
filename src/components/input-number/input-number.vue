@@ -298,26 +298,7 @@
                 this.focused = true;
                 this.$emit('on-focus', event);
             },
-            blur () {
-                this.focused = false;
-                this.$emit('on-blur');
-                if (!findComponentUpward(this, ['DatePicker', 'TimePicker', 'Cascader', 'Search'])) {
-                    this.handleFormItemChange('blur', this.currentValue);
-                }
-            },
-            keyDown (e) {
-                if (e.keyCode === 38) {
-                    e.preventDefault();
-                    this.up(e);
-                } else if (e.keyCode === 40) {
-                    e.preventDefault();
-                    this.down(e);
-                }
-            },
-            change (event) {
-                if (event.type === 'change' && this.activeChange) return;
-
-                if (event.type === 'input' && !this.activeChange) return;
+            blur (event) {
                 let val = event.target.value.trim();
                 if (this.parser) {
                     val = this.parser(val);
@@ -338,6 +319,27 @@
                 } else {
                     event.target.value = this.currentValue;
                 }
+
+                this.focused = false;
+                this.$emit('on-blur');
+                if (!findComponentUpward(this, ['DatePicker', 'TimePicker', 'Cascader', 'Search'])) {
+                    this.handleFormItemChange('blur', this.currentValue);
+                }
+            },
+            keyDown (e) {
+                if (e.keyCode === 38) {
+                    e.preventDefault();
+                    this.up(e);
+                } else if (e.keyCode === 40) {
+                    e.preventDefault();
+                    this.down(e);
+                }
+            },
+            change (event) {
+                if (event.type === 'change' && this.activeChange) return;
+
+                if (event.type === 'input' && !this.activeChange) return;
+                
             },
             changeVal (val) {
                 val = Number(val);
