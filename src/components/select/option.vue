@@ -102,7 +102,7 @@
                 const slotOptionsMap = SelectInstance.slotOptionsMap;
                 const { props } = slotOptionsMap.get(this.value) || { props: {} };
                 const label = this.label || this.$el && this.$el.textContent;
-                let filterOption = (label || props.value || '').toLowerCase();
+                let filterOption = (label + props.value || '').toLowerCase();
                 if (filterByLabel) {
                     filterOption = (label || '').toLowerCase();
                 }
