@@ -185,6 +185,39 @@ describe('Select.vue', () => {
       };
       waitForIt(condition, callback);
     });
+
+    it('should set new options with default binding', done => {
+      const laterOptions = [{value: 1, label: 'Foo'}, {value: 2, label: 'Bar'}];
+
+      vm = createVue({
+        template: `
+        <Select>
+          <Option v-for="item in options" :value="item.value" :key="item.value">
+            {{ item.label }}
+          </Option>
+        </Select>
+        `,
+        data() {
+          return {
+            value: 1,
+            options: []
+          };
+        },
+        mounted() {
+          this.$nextTick(() => (this.options = laterOptions));
+        }
+      });
+      const condition = function() {
+        const componentOptions = vm.$children[0].flatOptions;
+        return componentOptions && componentOptions.length > 0;
+      };
+      const callback = function() {
+        const selectedValueSpan = vm.$el.querySelector('.ivu-select-selected-value');
+        expect(selectedValueSpan.textContent).to.equal('Foo');
+        done();
+      };
+      waitForIt(condition, callback);
+    });
   });
 
   describe('Behavior tests', () => {
