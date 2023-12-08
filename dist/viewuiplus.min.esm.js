@@ -5623,6 +5623,13 @@ const _sfc_main$2h = {
         return oneOf(value, ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end", "right", "right-start", "right-end"]);
       },
       default: "top"
+    },
+    transfer: {
+      type: Boolean,
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
+      }
     }
   },
   computed: {
@@ -5659,7 +5666,8 @@ function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
         $props.tooltip && item.tip ? (openBlock(), createBlock(_component_Tooltip, {
           key: 0,
           content: item.tip,
-          placement: $props.placement
+          placement: $props.placement,
+          transfer: $props.transfer
         }, {
           default: withCtx(() => [
             createVNode(_component_Avatar, {
@@ -5669,7 +5677,7 @@ function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
             }, null, 8, ["src", "size", "shape"])
           ]),
           _: 2
-        }, 1032, ["content", "placement"])) : (openBlock(), createBlock(_component_Avatar, {
+        }, 1032, ["content", "placement", "transfer"])) : (openBlock(), createBlock(_component_Avatar, {
           key: 1,
           src: item.src,
           size: $props.size,
@@ -38374,7 +38382,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.14";
+const version$1 = "1.3.15";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
