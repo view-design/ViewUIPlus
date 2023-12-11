@@ -88,7 +88,7 @@
                             if (Array.isArray(vNode.children)) {
                                 vNodes = vNodes.concat(vNode.children)
                             }
-                        }           
+                        }
                     }
                 }
                 const focusOption = slotOptions[focusIndex]
@@ -144,7 +144,11 @@
                     select.slotOptionsMap.set(value, instance)
                     // fix Option hide, the modalValue cannot selected
                     const { modelValue } = select;
-                    modelValue && modelValue.length && select.lazyUpdateValue(true);
+                    if (typeof modelValue === 'number') {
+                        select.lazyUpdateValue(true);
+                    } else {
+                        modelValue && modelValue.length && select.lazyUpdateValue(true);
+                    }
                 }
             },
             removeOption () {
