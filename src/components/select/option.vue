@@ -144,7 +144,7 @@
                     select.slotOptionsMap.set(value, instance)
                     // fix Option hide, the modalValue cannot selected
                     const { modelValue } = select;
-                    modelValue && modelValue.length && select.lazyUpdateValue(true);
+                    (modelValue && modelValue.length || typeOf(modelValue)  === 'number') && select.lazyUpdateValue(true);
                 }
             },
             removeOption () {
