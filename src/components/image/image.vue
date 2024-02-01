@@ -143,6 +143,11 @@
                 imagePreviewModal: false
             }
         },
+        watch: {
+            src () {
+                this.loadImage();
+            }
+        },
         computed: {
             innerClasses () {
                 return [

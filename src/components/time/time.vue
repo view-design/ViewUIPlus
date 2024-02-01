@@ -8,6 +8,7 @@
     import Locale from '../../mixins/locale';
     import Time from './time';
     import { isClient } from '../../utils/index';
+    import dayjs from 'dayjs';
 
     const prefixCls = 'ivu-time';
 
@@ -71,7 +72,8 @@
                 } else if (type === 'object') {
                     time = this.time.getTime();
                 } else if (type === 'string') {
-                    time = (new Date(this.time)).getTime();
+                    // time = (new Date(this.time)).getTime();
+                    time = dayjs(this.time).valueOf();
                 }
 
                 if (this.type === 'relative') {
@@ -96,9 +98,11 @@
         mounted () {
             this.setTime();
             // if (isServer) return;
-            this.timer = setInterval(() => {
-                this.setTime();
-            }, 1000 * this.interval);
+            if (this.interval !== 0) {
+                this.timer = setInterval(() => {
+                    this.setTime();
+                }, 1000 * this.interval);
+            }
         },
         beforeUnmount () {
             if (this.timer) clearInterval(this.timer);

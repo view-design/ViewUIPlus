@@ -123,7 +123,7 @@
                     custom: this.customIcon
                 }));
             }
-            if (this.showSlot) {
+            if (this.$slots.default) {
                 slots.push(h('span', {
                     ref: 'slot'
                 }, this.$slots.default()));

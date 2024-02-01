@@ -1,7 +1,7 @@
 <template>
     <div class="ivu-avatar-list" :class="'ivu-avatar-list-' + size">
         <div class="ivu-avatar-list-item" v-for="(item, index) in currentList" :key="index">
-            <Tooltip :content="item.tip" v-if="tooltip && item.tip" :placement="placement">
+            <Tooltip :content="item.tip" v-if="tooltip && item.tip" :placement="placement" :transfer="transfer">
                 <Avatar :src="item.src" :size="size" :shape="shape"></Avatar>
             </Tooltip>
             <Avatar v-else :src="item.src" :size="size" :shape="shape"></Avatar>
@@ -15,6 +15,7 @@
     </div>
 </template>
 <script>
+    import { getCurrentInstance } from 'vue';
     import Avatar from '../avatar/avatar.vue';
     import Tooltip from '../tooltip/tooltip.vue';
 
@@ -60,6 +61,13 @@
                     return oneOf(value, ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end']);
                 },
                 default: 'top'
+            },
+            transfer: {
+                type: Boolean,
+                default () {
+                    const global = getCurrentInstance().appContext.config.globalProperties;
+                    return !global.$VIEWUI || global.$VIEWUI.transfer === '' ? false : global.$VIEWUI.transfer;
+                }
             },
         },
         computed: {

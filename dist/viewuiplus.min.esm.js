@@ -1,22 +1,3 @@
-var __defProp = Object.defineProperty;
-var __defProps = Object.defineProperties;
-var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key2, value) => key2 in obj ? __defProp(obj, key2, { enumerable: true, configurable: true, writable: true, value }) : obj[key2] = value;
-var __spreadValues = (a, b) => {
-  for (var prop2 in b || (b = {}))
-    if (__hasOwnProp.call(b, prop2))
-      __defNormalProp(a, prop2, b[prop2]);
-  if (__getOwnPropSymbols)
-    for (var prop2 of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop2))
-        __defNormalProp(a, prop2, b[prop2]);
-    }
-  return a;
-};
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import { nextTick, openBlock, createElementBlock, createElementVNode, normalizeClass, normalizeStyle, renderSlot, withDirectives, vShow, resolveComponent, createBlock, Transition, withCtx, createVNode, createCommentVNode, resolveDynamicComponent, inject, withModifiers, toDisplayString, h, Teleport, mergeProps, getCurrentInstance, Fragment, renderList, createTextVNode, withKeys, vModelText, resolveDirective, vModelCheckbox, TransitionGroup, createApp, normalizeProps, guardReactiveProps, defineComponent, toHandlers, Comment, Text, setBlockTracking, createSlots } from "vue";
 const isClient = typeof window !== "undefined";
 const on = function() {
@@ -300,7 +281,7 @@ function firstUpperCase(str) {
   return str.toString()[0].toUpperCase() + str.toString().slice(1);
 }
 function typeOf(obj) {
-  const toString = Object.prototype.toString;
+  const toString2 = Object.prototype.toString;
   const map = {
     "[object Boolean]": "boolean",
     "[object Number]": "number",
@@ -313,7 +294,7 @@ function typeOf(obj) {
     "[object Null]": "null",
     "[object Object]": "object"
   };
-  return map[toString.call(obj)];
+  return map[toString2.call(obj)];
 }
 function deepCopy(data) {
   const t2 = typeOf(data);
@@ -852,7 +833,7 @@ function _sfc_render$2b(_ctx, _cache, $props, $setup, $data, $options) {
       ], 6)
     ]),
     _: 3
-  }, 8, ["offset-top", "offset-bottom", "onOnChange"]);
+  }, 40, ["offset-top", "offset-bottom", "onOnChange"]);
 }
 var Anchor = /* @__PURE__ */ _export_sfc(_sfc_main$2s, [["render", _sfc_render$2b]]);
 function random(len = 32) {
@@ -1970,7 +1951,7 @@ var popper = { exports: {} };
       CLOCKWISE: "clockwise",
       COUNTERCLOCKWISE: "counterclockwise"
     };
-    function flip(data, options) {
+    function flip2(data, options) {
       if (isModifierEnabled(data.instance.modifiers, "inner")) {
         return data;
       }
@@ -2272,7 +2253,7 @@ var popper = { exports: {} };
       flip: {
         order: 600,
         enabled: true,
-        fn: flip,
+        fn: flip2,
         behavior: "flip",
         padding: 5,
         boundariesElement: "viewport",
@@ -3227,84 +3208,101 @@ const nonCaptureEventHandler = function onNonCaptureEvent(event) {
 const getEventHandler = function _getEventHandler(useCapture) {
   return useCapture ? captureEventHandler : nonCaptureEventHandler;
 };
-const directive = Object.defineProperties({}, {
-  $_captureInstances: {
-    value: captureInstances
-  },
-  $_nonCaptureInstances: {
-    value: nonCaptureInstances
-  },
-  $_onCaptureEvent: {
-    value: captureEventHandler
-  },
-  $_onNonCaptureEvent: {
-    value: nonCaptureEventHandler
-  },
-  beforeMount: {
-    value: function bind(el, binding) {
-      if (typeof binding.value !== "function") {
-        throw new TypeError("Binding value must be a function.");
-      }
-      let eventType;
-      const modifiers = binding.modifiers;
-      if (modifiers.click)
-        eventType = "click";
-      else if (modifiers.mousedown)
-        eventType = "mousedown";
-      else if (modifiers.touchstart)
-        eventType = "touchstart";
-      else
-        eventType = CLICK;
-      const useCapture = binding.arg;
-      const normalisedBinding = __spreadValues(__spreadValues({}, binding), {
-        modifiers: __spreadValues(__spreadValues({}, {
-          capture: false,
-          prevent: false,
-          stop: false
-        }), binding.modifiers)
-      });
-      const instances = useCapture ? captureInstances : nonCaptureInstances;
-      if (!Array.isArray(instances[eventType])) {
-        instances[eventType] = [];
-      }
-      if (instances[eventType].push({ el, binding: normalisedBinding }) === 1) {
-        if (typeof document === "object" && document) {
-          document.addEventListener(eventType, getEventHandler(useCapture), useCapture);
+const directive = Object.defineProperties(
+  {},
+  {
+    $_captureInstances: {
+      value: captureInstances
+    },
+    $_nonCaptureInstances: {
+      value: nonCaptureInstances
+    },
+    $_onCaptureEvent: {
+      value: captureEventHandler
+    },
+    $_onNonCaptureEvent: {
+      value: nonCaptureEventHandler
+    },
+    beforeMount: {
+      value: function bind(el, binding) {
+        if (typeof binding.value !== "function") {
+          throw new TypeError("Binding value must be a function.");
         }
-      }
-    }
-  },
-  unmounted: {
-    value: function unbind(el) {
-      const compareElements = function _compareElements(item) {
-        return item.el !== el;
-      };
-      const instancesIteratee = function _instancesIteratee(instances) {
-        const instanceKeys = Object.keys(instances);
-        if (instanceKeys.length) {
-          const useCapture = instances === captureInstances;
-          const keysIteratee = function _keysIteratee(eventName) {
-            const newInstance = instances[eventName].filter(compareElements);
-            if (newInstance.length) {
-              instances[eventName] = newInstance;
-            } else {
-              if (typeof document === "object" && document) {
-                document.removeEventListener(eventName, getEventHandler(useCapture), useCapture);
-              }
-              delete instances[eventName];
+        let eventType;
+        const modifiers = binding.modifiers;
+        if (modifiers.click)
+          eventType = "click";
+        else if (modifiers.mousedown)
+          eventType = "mousedown";
+        else if (modifiers.touchstart)
+          eventType = "touchstart";
+        else
+          eventType = CLICK;
+        const useCapture = binding.arg;
+        const normalisedBinding = {
+          ...binding,
+          ...{
+            modifiers: {
+              ...{
+                capture: false,
+                prevent: false,
+                stop: false
+              },
+              ...binding.modifiers
             }
-          };
-          instanceKeys.forEach(keysIteratee);
+          }
+        };
+        const instances = useCapture ? captureInstances : nonCaptureInstances;
+        if (!Array.isArray(instances[eventType])) {
+          instances[eventType] = [];
         }
-      };
-      instancesList.forEach(instancesIteratee);
+        if (instances[eventType].push({ el, binding: normalisedBinding }) === 1) {
+          if (typeof document === "object" && document) {
+            document.addEventListener(
+              eventType,
+              getEventHandler(useCapture),
+              useCapture
+            );
+          }
+        }
+      }
+    },
+    unmounted: {
+      value: function unbind(el) {
+        const compareElements = function _compareElements(item) {
+          return item.el !== el;
+        };
+        const instancesIteratee = function _instancesIteratee(instances) {
+          const instanceKeys = Object.keys(instances);
+          if (instanceKeys.length) {
+            const useCapture = instances === captureInstances;
+            const keysIteratee = function _keysIteratee(eventName) {
+              const newInstance = instances[eventName].filter(compareElements);
+              if (newInstance.length) {
+                instances[eventName] = newInstance;
+              } else {
+                if (typeof document === "object" && document) {
+                  document.removeEventListener(
+                    eventName,
+                    getEventHandler(useCapture),
+                    useCapture
+                  );
+                }
+                delete instances[eventName];
+              }
+            };
+            instanceKeys.forEach(keysIteratee);
+          }
+        };
+        instancesList.forEach(instancesIteratee);
+      }
+    },
+    version: {
+      enumerable: true,
+      value: "3.7.1"
     }
-  },
-  version: {
-    enumerable: true,
-    value: "3.7.1"
   }
-});
+);
 var mixinsForm = {
   inject: {
     FormInstance: {
@@ -4236,7 +4234,7 @@ const _sfc_main$2m = {
         filterOption = (label || "").toLowerCase();
       }
       const showFilterOption = filterOption.includes(query);
-      return !filterable || filterable && showFilterOption;
+      return !filterable || filterable && (showFilterOption || !SelectInstance.filterQueryChange) || typeOf(SelectInstance.remoteMethod) === "function";
     },
     selected() {
       const SelectInstance = this.SelectInstance;
@@ -4259,19 +4257,21 @@ const _sfc_main$2m = {
       const group = this.OptionGroupInstance;
       const { id, value, instance } = this;
       if (group) {
-        group.optionList.push(__spreadProps(__spreadValues({}, instance), {
+        group.optionList.push({
+          ...instance,
           id,
           tag: "option"
-        }));
+        });
       }
       if (select2) {
-        select2.slotOptions.push(__spreadProps(__spreadValues({}, instance), {
+        select2.slotOptions.push({
+          ...instance,
           id,
           tag: "option"
-        }));
+        });
         select2.slotOptionsMap.set(value, instance);
         const { modelValue } = select2;
-        modelValue && modelValue.length && select2.lazyUpdateValue(true);
+        (modelValue && modelValue.length || typeOf(modelValue) === "number") && select2.lazyUpdateValue(true);
       }
     },
     removeOption() {
@@ -4792,20 +4792,20 @@ const _hoisted_3$A = {
   key: 0,
   class: "ivu-icon ivu-icon-ios-eye-outline"
 };
-const _hoisted_4$u = {
+const _hoisted_4$t = {
   key: 1,
   class: "ivu-icon ivu-icon-ios-eye-off-outline"
 };
-const _hoisted_5$m = ["id", "autocomplete", "spellcheck", "type", "placeholder", "disabled", "maxlength", "readonly", "name", "value", "number", "autofocus"];
-const _hoisted_6$b = {
+const _hoisted_5$l = ["id", "autocomplete", "spellcheck", "type", "placeholder", "disabled", "maxlength", "readonly", "name", "value", "number", "autofocus"];
+const _hoisted_6$a = {
   key: 0,
   class: "ivu-icon ivu-icon-ios-search"
 };
-const _hoisted_7$a = {
+const _hoisted_7$8 = {
   key: 9,
   class: "ivu-input-prefix"
 };
-const _hoisted_8$6 = ["id", "wrap", "autocomplete", "spellcheck", "placeholder", "disabled", "rows", "maxlength", "readonly", "name", "value", "autofocus"];
+const _hoisted_8$5 = ["id", "wrap", "autocomplete", "spellcheck", "placeholder", "disabled", "rows", "maxlength", "readonly", "name", "value", "autofocus"];
 const _hoisted_9$5 = {
   key: 0,
   class: "ivu-input-word-count"
@@ -4848,7 +4848,7 @@ function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
         class: "ivu-input-suffix",
         onClick: _cache[3] || (_cache[3] = (...args) => $options.handleToggleShowPassword && $options.handleToggleShowPassword(...args))
       }, [
-        $data.showPassword ? (openBlock(), createElementBlock("i", _hoisted_3$A)) : (openBlock(), createElementBlock("i", _hoisted_4$u))
+        $data.showPassword ? (openBlock(), createElementBlock("i", _hoisted_3$A)) : (openBlock(), createElementBlock("i", _hoisted_4$t))
       ])) : createCommentVNode("", true),
       createVNode(Transition, { name: "fade" }, {
         default: withCtx(() => [
@@ -4887,7 +4887,7 @@ function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
         onCompositionend: _cache[12] || (_cache[12] = (...args) => $options.handleComposition && $options.handleComposition(...args)),
         onInput: _cache[13] || (_cache[13] = (...args) => $options.handleInput && $options.handleInput(...args)),
         onChange: _cache[14] || (_cache[14] = (...args) => $options.handleChange && $options.handleChange(...args))
-      }, null, 42, _hoisted_5$m),
+      }, null, 42, _hoisted_5$l),
       $options.append ? withDirectives((openBlock(), createElementBlock("div", {
         key: 7,
         class: normalizeClass([$data.prefixCls + "-group-append"])
@@ -4900,10 +4900,10 @@ function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass([$data.prefixCls + "-group-append", $data.prefixCls + "-search"]),
         onClick: _cache[15] || (_cache[15] = (...args) => $options.handleSearch && $options.handleSearch(...args))
       }, [
-        $props.enterButton === true ? (openBlock(), createElementBlock("i", _hoisted_6$b)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+        $props.enterButton === true ? (openBlock(), createElementBlock("i", _hoisted_6$a)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
           createTextVNode(toDisplayString($props.enterButton), 1)
         ], 64))
-      ], 2)) : $options.showPrefix ? (openBlock(), createElementBlock("span", _hoisted_7$a, [
+      ], 2)) : $options.showPrefix ? (openBlock(), createElementBlock("span", _hoisted_7$8, [
         renderSlot(_ctx.$slots, "prefix", {}, () => [
           $props.prefix ? (openBlock(), createElementBlock("i", {
             key: 0,
@@ -4940,7 +4940,7 @@ function _sfc_render$25(_ctx, _cache, $props, $setup, $data, $options) {
         onCompositionupdate: _cache[23] || (_cache[23] = (...args) => $options.handleComposition && $options.handleComposition(...args)),
         onCompositionend: _cache[24] || (_cache[24] = (...args) => $options.handleComposition && $options.handleComposition(...args)),
         onInput: _cache[25] || (_cache[25] = (...args) => $options.handleInput && $options.handleInput(...args))
-      }, "\n            ", 46, _hoisted_8$6),
+      }, "\n            ", 46, _hoisted_8$5),
       $props.showWordLimit ? (openBlock(), createElementBlock("span", _hoisted_9$5, toDisplayString($options.textLength) + "/" + toDisplayString($options.upperLimit), 1)) : createCommentVNode("", true)
     ], 64))
   ], 2);
@@ -5623,6 +5623,13 @@ const _sfc_main$2h = {
         return oneOf(value, ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end", "right", "right-start", "right-end"]);
       },
       default: "top"
+    },
+    transfer: {
+      type: Boolean,
+      default() {
+        const global2 = getCurrentInstance().appContext.config.globalProperties;
+        return !global2.$VIEWUI || global2.$VIEWUI.transfer === "" ? false : global2.$VIEWUI.transfer;
+      }
     }
   },
   computed: {
@@ -5659,7 +5666,8 @@ function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
         $props.tooltip && item.tip ? (openBlock(), createBlock(_component_Tooltip, {
           key: 0,
           content: item.tip,
-          placement: $props.placement
+          placement: $props.placement,
+          transfer: $props.transfer
         }, {
           default: withCtx(() => [
             createVNode(_component_Avatar, {
@@ -5669,7 +5677,7 @@ function _sfc_render$21(_ctx, _cache, $props, $setup, $data, $options) {
             }, null, 8, ["src", "size", "shape"])
           ]),
           _: 2
-        }, 1032, ["content", "placement"])) : (openBlock(), createBlock(_component_Avatar, {
+        }, 1032, ["content", "placement", "transfer"])) : (openBlock(), createBlock(_component_Avatar, {
           key: 1,
           src: item.src,
           size: $props.size,
@@ -6164,16 +6172,17 @@ const _sfc_main$2c = {
         custom: this.customIcon
       }));
     }
-    if (this.showSlot) {
+    if (this.$slots.default) {
       slots.push(h("span", {
         ref: "slot"
-      }), this.$slots.default());
+      }, this.$slots.default()));
     }
-    return h(tag, __spreadValues({
+    return h(tag, {
       class: this.classes,
       disabled: this.itemDisabled,
-      onClick: this.handleClickLink
-    }, this.tagProps), slots);
+      onClick: this.handleClickLink,
+      ...this.tagProps
+    }, slots);
   }
 };
 const prefixCls$19 = "ivu-btn-group";
@@ -6499,32 +6508,35 @@ var dayjs_min = { exports: {} };
   !function(t2, e) {
     module.exports = e();
   }(commonjsGlobal, function() {
-    var t2 = 1e3, e = 6e4, n = 36e5, r = "millisecond", i = "second", s = "minute", u = "hour", a = "day", o = "week", f = "month", h2 = "quarter", c = "year", d = "date", $ = "Invalid Date", l = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_") }, m = function(t3, e2, n2) {
+    var t2 = 1e3, e = 6e4, n = 36e5, r = "millisecond", i = "second", s = "minute", u = "hour", a = "day", o = "week", c = "month", f = "quarter", h2 = "year", d = "date", l = "Invalid Date", $ = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"), ordinal: function(t3) {
+      var e2 = ["th", "st", "nd", "rd"], n2 = t3 % 100;
+      return "[" + t3 + (e2[(n2 - 20) % 10] || e2[n2] || e2[0]) + "]";
+    } }, m = function(t3, e2, n2) {
       var r2 = String(t3);
       return !r2 || r2.length >= e2 ? t3 : "" + Array(e2 + 1 - r2.length).join(n2) + t3;
-    }, g = { s: m, z: function(t3) {
+    }, v = { s: m, z: function(t3) {
       var e2 = -t3.utcOffset(), n2 = Math.abs(e2), r2 = Math.floor(n2 / 60), i2 = n2 % 60;
       return (e2 <= 0 ? "+" : "-") + m(r2, 2, "0") + ":" + m(i2, 2, "0");
     }, m: function t3(e2, n2) {
       if (e2.date() < n2.date())
         return -t3(n2, e2);
-      var r2 = 12 * (n2.year() - e2.year()) + (n2.month() - e2.month()), i2 = e2.clone().add(r2, f), s2 = n2 - i2 < 0, u2 = e2.clone().add(r2 + (s2 ? -1 : 1), f);
+      var r2 = 12 * (n2.year() - e2.year()) + (n2.month() - e2.month()), i2 = e2.clone().add(r2, c), s2 = n2 - i2 < 0, u2 = e2.clone().add(r2 + (s2 ? -1 : 1), c);
       return +(-(r2 + (n2 - i2) / (s2 ? i2 - u2 : u2 - i2)) || 0);
     }, a: function(t3) {
       return t3 < 0 ? Math.ceil(t3) || 0 : Math.floor(t3);
     }, p: function(t3) {
-      return { M: f, y: c, w: o, d: a, D: d, h: u, m: s, s: i, ms: r, Q: h2 }[t3] || String(t3 || "").toLowerCase().replace(/s$/, "");
+      return { M: c, y: h2, w: o, d: a, D: d, h: u, m: s, s: i, ms: r, Q: f }[t3] || String(t3 || "").toLowerCase().replace(/s$/, "");
     }, u: function(t3) {
-      return t3 === void 0;
-    } }, v = "en", D = {};
-    D[v] = M;
-    var p = function(t3) {
-      return t3 instanceof _;
-    }, S = function t3(e2, n2, r2) {
+      return void 0 === t3;
+    } }, g = "en", D = {};
+    D[g] = M;
+    var p = "$isDayjsObject", S = function(t3) {
+      return t3 instanceof _ || !(!t3 || !t3[p]);
+    }, w = function t3(e2, n2, r2) {
       var i2;
       if (!e2)
-        return v;
-      if (typeof e2 == "string") {
+        return g;
+      if ("string" == typeof e2) {
         var s2 = e2.toLowerCase();
         D[s2] && (i2 = s2), n2 && (D[s2] = n2, i2 = s2);
         var u2 = e2.split("-");
@@ -6534,150 +6546,232 @@ var dayjs_min = { exports: {} };
         var a2 = e2.name;
         D[a2] = e2, i2 = a2;
       }
-      return !r2 && i2 && (v = i2), i2 || !r2 && v;
-    }, w = function(t3, e2) {
-      if (p(t3))
+      return !r2 && i2 && (g = i2), i2 || !r2 && g;
+    }, O = function(t3, e2) {
+      if (S(t3))
         return t3.clone();
-      var n2 = typeof e2 == "object" ? e2 : {};
+      var n2 = "object" == typeof e2 ? e2 : {};
       return n2.date = t3, n2.args = arguments, new _(n2);
-    }, O = g;
-    O.l = S, O.i = p, O.w = function(t3, e2) {
-      return w(t3, { locale: e2.$L, utc: e2.$u, x: e2.$x, $offset: e2.$offset });
+    }, b = v;
+    b.l = w, b.i = S, b.w = function(t3, e2) {
+      return O(t3, { locale: e2.$L, utc: e2.$u, x: e2.$x, $offset: e2.$offset });
     };
     var _ = function() {
       function M2(t3) {
-        this.$L = S(t3.locale, null, true), this.parse(t3);
+        this.$L = w(t3.locale, null, true), this.parse(t3), this.$x = this.$x || t3.x || {}, this[p] = true;
       }
       var m2 = M2.prototype;
       return m2.parse = function(t3) {
         this.$d = function(t4) {
           var e2 = t4.date, n2 = t4.utc;
-          if (e2 === null)
+          if (null === e2)
             return new Date(NaN);
-          if (O.u(e2))
+          if (b.u(e2))
             return new Date();
           if (e2 instanceof Date)
             return new Date(e2);
-          if (typeof e2 == "string" && !/Z$/i.test(e2)) {
-            var r2 = e2.match(l);
+          if ("string" == typeof e2 && !/Z$/i.test(e2)) {
+            var r2 = e2.match($);
             if (r2) {
               var i2 = r2[2] - 1 || 0, s2 = (r2[7] || "0").substring(0, 3);
               return n2 ? new Date(Date.UTC(r2[1], i2, r2[3] || 1, r2[4] || 0, r2[5] || 0, r2[6] || 0, s2)) : new Date(r2[1], i2, r2[3] || 1, r2[4] || 0, r2[5] || 0, r2[6] || 0, s2);
             }
           }
           return new Date(e2);
-        }(t3), this.$x = t3.x || {}, this.init();
+        }(t3), this.init();
       }, m2.init = function() {
         var t3 = this.$d;
         this.$y = t3.getFullYear(), this.$M = t3.getMonth(), this.$D = t3.getDate(), this.$W = t3.getDay(), this.$H = t3.getHours(), this.$m = t3.getMinutes(), this.$s = t3.getSeconds(), this.$ms = t3.getMilliseconds();
       }, m2.$utils = function() {
-        return O;
+        return b;
       }, m2.isValid = function() {
-        return !(this.$d.toString() === $);
+        return !(this.$d.toString() === l);
       }, m2.isSame = function(t3, e2) {
-        var n2 = w(t3);
+        var n2 = O(t3);
         return this.startOf(e2) <= n2 && n2 <= this.endOf(e2);
       }, m2.isAfter = function(t3, e2) {
-        return w(t3) < this.startOf(e2);
+        return O(t3) < this.startOf(e2);
       }, m2.isBefore = function(t3, e2) {
-        return this.endOf(e2) < w(t3);
+        return this.endOf(e2) < O(t3);
       }, m2.$g = function(t3, e2, n2) {
-        return O.u(t3) ? this[e2] : this.set(n2, t3);
+        return b.u(t3) ? this[e2] : this.set(n2, t3);
       }, m2.unix = function() {
         return Math.floor(this.valueOf() / 1e3);
       }, m2.valueOf = function() {
         return this.$d.getTime();
       }, m2.startOf = function(t3, e2) {
-        var n2 = this, r2 = !!O.u(e2) || e2, h3 = O.p(t3), $2 = function(t4, e3) {
-          var i2 = O.w(n2.$u ? Date.UTC(n2.$y, e3, t4) : new Date(n2.$y, e3, t4), n2);
+        var n2 = this, r2 = !!b.u(e2) || e2, f2 = b.p(t3), l2 = function(t4, e3) {
+          var i2 = b.w(n2.$u ? Date.UTC(n2.$y, e3, t4) : new Date(n2.$y, e3, t4), n2);
           return r2 ? i2 : i2.endOf(a);
-        }, l2 = function(t4, e3) {
-          return O.w(n2.toDate()[t4].apply(n2.toDate("s"), (r2 ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e3)), n2);
-        }, y2 = this.$W, M3 = this.$M, m3 = this.$D, g2 = "set" + (this.$u ? "UTC" : "");
-        switch (h3) {
+        }, $2 = function(t4, e3) {
+          return b.w(n2.toDate()[t4].apply(n2.toDate("s"), (r2 ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e3)), n2);
+        }, y2 = this.$W, M3 = this.$M, m3 = this.$D, v2 = "set" + (this.$u ? "UTC" : "");
+        switch (f2) {
+          case h2:
+            return r2 ? l2(1, 0) : l2(31, 11);
           case c:
-            return r2 ? $2(1, 0) : $2(31, 11);
-          case f:
-            return r2 ? $2(1, M3) : $2(0, M3 + 1);
+            return r2 ? l2(1, M3) : l2(0, M3 + 1);
           case o:
-            var v2 = this.$locale().weekStart || 0, D2 = (y2 < v2 ? y2 + 7 : y2) - v2;
-            return $2(r2 ? m3 - D2 : m3 + (6 - D2), M3);
+            var g2 = this.$locale().weekStart || 0, D2 = (y2 < g2 ? y2 + 7 : y2) - g2;
+            return l2(r2 ? m3 - D2 : m3 + (6 - D2), M3);
           case a:
           case d:
-            return l2(g2 + "Hours", 0);
+            return $2(v2 + "Hours", 0);
           case u:
-            return l2(g2 + "Minutes", 1);
+            return $2(v2 + "Minutes", 1);
           case s:
-            return l2(g2 + "Seconds", 2);
+            return $2(v2 + "Seconds", 2);
           case i:
-            return l2(g2 + "Milliseconds", 3);
+            return $2(v2 + "Milliseconds", 3);
           default:
             return this.clone();
         }
       }, m2.endOf = function(t3) {
         return this.startOf(t3, false);
       }, m2.$set = function(t3, e2) {
-        var n2, o2 = O.p(t3), h3 = "set" + (this.$u ? "UTC" : ""), $2 = (n2 = {}, n2[a] = h3 + "Date", n2[d] = h3 + "Date", n2[f] = h3 + "Month", n2[c] = h3 + "FullYear", n2[u] = h3 + "Hours", n2[s] = h3 + "Minutes", n2[i] = h3 + "Seconds", n2[r] = h3 + "Milliseconds", n2)[o2], l2 = o2 === a ? this.$D + (e2 - this.$W) : e2;
-        if (o2 === f || o2 === c) {
+        var n2, o2 = b.p(t3), f2 = "set" + (this.$u ? "UTC" : ""), l2 = (n2 = {}, n2[a] = f2 + "Date", n2[d] = f2 + "Date", n2[c] = f2 + "Month", n2[h2] = f2 + "FullYear", n2[u] = f2 + "Hours", n2[s] = f2 + "Minutes", n2[i] = f2 + "Seconds", n2[r] = f2 + "Milliseconds", n2)[o2], $2 = o2 === a ? this.$D + (e2 - this.$W) : e2;
+        if (o2 === c || o2 === h2) {
           var y2 = this.clone().set(d, 1);
-          y2.$d[$2](l2), y2.init(), this.$d = y2.set(d, Math.min(this.$D, y2.daysInMonth())).$d;
+          y2.$d[l2]($2), y2.init(), this.$d = y2.set(d, Math.min(this.$D, y2.daysInMonth())).$d;
         } else
-          $2 && this.$d[$2](l2);
+          l2 && this.$d[l2]($2);
         return this.init(), this;
       }, m2.set = function(t3, e2) {
         return this.clone().$set(t3, e2);
       }, m2.get = function(t3) {
-        return this[O.p(t3)]();
-      }, m2.add = function(r2, h3) {
-        var d2, $2 = this;
+        return this[b.p(t3)]();
+      }, m2.add = function(r2, f2) {
+        var d2, l2 = this;
         r2 = Number(r2);
-        var l2 = O.p(h3), y2 = function(t3) {
-          var e2 = w($2);
-          return O.w(e2.date(e2.date() + Math.round(t3 * r2)), $2);
+        var $2 = b.p(f2), y2 = function(t3) {
+          var e2 = O(l2);
+          return b.w(e2.date(e2.date() + Math.round(t3 * r2)), l2);
         };
-        if (l2 === f)
-          return this.set(f, this.$M + r2);
-        if (l2 === c)
-          return this.set(c, this.$y + r2);
-        if (l2 === a)
+        if ($2 === c)
+          return this.set(c, this.$M + r2);
+        if ($2 === h2)
+          return this.set(h2, this.$y + r2);
+        if ($2 === a)
           return y2(1);
-        if (l2 === o)
+        if ($2 === o)
           return y2(7);
-        var M3 = (d2 = {}, d2[s] = e, d2[u] = n, d2[i] = t2, d2)[l2] || 1, m3 = this.$d.getTime() + r2 * M3;
-        return O.w(m3, this);
+        var M3 = (d2 = {}, d2[s] = e, d2[u] = n, d2[i] = t2, d2)[$2] || 1, m3 = this.$d.getTime() + r2 * M3;
+        return b.w(m3, this);
       }, m2.subtract = function(t3, e2) {
         return this.add(-1 * t3, e2);
       }, m2.format = function(t3) {
         var e2 = this, n2 = this.$locale();
         if (!this.isValid())
-          return n2.invalidDate || $;
-        var r2 = t3 || "YYYY-MM-DDTHH:mm:ssZ", i2 = O.z(this), s2 = this.$H, u2 = this.$m, a2 = this.$M, o2 = n2.weekdays, f2 = n2.months, h3 = function(t4, n3, i3, s3) {
-          return t4 && (t4[n3] || t4(e2, r2)) || i3[n3].substr(0, s3);
-        }, c2 = function(t4) {
-          return O.s(s2 % 12 || 12, t4, "0");
-        }, d2 = n2.meridiem || function(t4, e3, n3) {
+          return n2.invalidDate || l;
+        var r2 = t3 || "YYYY-MM-DDTHH:mm:ssZ", i2 = b.z(this), s2 = this.$H, u2 = this.$m, a2 = this.$M, o2 = n2.weekdays, c2 = n2.months, f2 = n2.meridiem, h3 = function(t4, n3, i3, s3) {
+          return t4 && (t4[n3] || t4(e2, r2)) || i3[n3].slice(0, s3);
+        }, d2 = function(t4) {
+          return b.s(s2 % 12 || 12, t4, "0");
+        }, $2 = f2 || function(t4, e3, n3) {
           var r3 = t4 < 12 ? "AM" : "PM";
           return n3 ? r3.toLowerCase() : r3;
-        }, l2 = { YY: String(this.$y).slice(-2), YYYY: this.$y, M: a2 + 1, MM: O.s(a2 + 1, 2, "0"), MMM: h3(n2.monthsShort, a2, f2, 3), MMMM: h3(f2, a2), D: this.$D, DD: O.s(this.$D, 2, "0"), d: String(this.$W), dd: h3(n2.weekdaysMin, this.$W, o2, 2), ddd: h3(n2.weekdaysShort, this.$W, o2, 3), dddd: o2[this.$W], H: String(s2), HH: O.s(s2, 2, "0"), h: c2(1), hh: c2(2), a: d2(s2, u2, true), A: d2(s2, u2, false), m: String(u2), mm: O.s(u2, 2, "0"), s: String(this.$s), ss: O.s(this.$s, 2, "0"), SSS: O.s(this.$ms, 3, "0"), Z: i2 };
-        return r2.replace(y, function(t4, e3) {
-          return e3 || l2[t4] || i2.replace(":", "");
+        };
+        return r2.replace(y, function(t4, r3) {
+          return r3 || function(t5) {
+            switch (t5) {
+              case "YY":
+                return String(e2.$y).slice(-2);
+              case "YYYY":
+                return b.s(e2.$y, 4, "0");
+              case "M":
+                return a2 + 1;
+              case "MM":
+                return b.s(a2 + 1, 2, "0");
+              case "MMM":
+                return h3(n2.monthsShort, a2, c2, 3);
+              case "MMMM":
+                return h3(c2, a2);
+              case "D":
+                return e2.$D;
+              case "DD":
+                return b.s(e2.$D, 2, "0");
+              case "d":
+                return String(e2.$W);
+              case "dd":
+                return h3(n2.weekdaysMin, e2.$W, o2, 2);
+              case "ddd":
+                return h3(n2.weekdaysShort, e2.$W, o2, 3);
+              case "dddd":
+                return o2[e2.$W];
+              case "H":
+                return String(s2);
+              case "HH":
+                return b.s(s2, 2, "0");
+              case "h":
+                return d2(1);
+              case "hh":
+                return d2(2);
+              case "a":
+                return $2(s2, u2, true);
+              case "A":
+                return $2(s2, u2, false);
+              case "m":
+                return String(u2);
+              case "mm":
+                return b.s(u2, 2, "0");
+              case "s":
+                return String(e2.$s);
+              case "ss":
+                return b.s(e2.$s, 2, "0");
+              case "SSS":
+                return b.s(e2.$ms, 3, "0");
+              case "Z":
+                return i2;
+            }
+            return null;
+          }(t4) || i2.replace(":", "");
         });
       }, m2.utcOffset = function() {
         return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
-      }, m2.diff = function(r2, d2, $2) {
-        var l2, y2 = O.p(d2), M3 = w(r2), m3 = (M3.utcOffset() - this.utcOffset()) * e, g2 = this - M3, v2 = O.m(this, M3);
-        return v2 = (l2 = {}, l2[c] = v2 / 12, l2[f] = v2, l2[h2] = v2 / 3, l2[o] = (g2 - m3) / 6048e5, l2[a] = (g2 - m3) / 864e5, l2[u] = g2 / n, l2[s] = g2 / e, l2[i] = g2 / t2, l2)[y2] || g2, $2 ? v2 : O.a(v2);
+      }, m2.diff = function(r2, d2, l2) {
+        var $2, y2 = this, M3 = b.p(d2), m3 = O(r2), v2 = (m3.utcOffset() - this.utcOffset()) * e, g2 = this - m3, D2 = function() {
+          return b.m(y2, m3);
+        };
+        switch (M3) {
+          case h2:
+            $2 = D2() / 12;
+            break;
+          case c:
+            $2 = D2();
+            break;
+          case f:
+            $2 = D2() / 3;
+            break;
+          case o:
+            $2 = (g2 - v2) / 6048e5;
+            break;
+          case a:
+            $2 = (g2 - v2) / 864e5;
+            break;
+          case u:
+            $2 = g2 / n;
+            break;
+          case s:
+            $2 = g2 / e;
+            break;
+          case i:
+            $2 = g2 / t2;
+            break;
+          default:
+            $2 = g2;
+        }
+        return l2 ? $2 : b.a($2);
       }, m2.daysInMonth = function() {
-        return this.endOf(f).$D;
+        return this.endOf(c).$D;
       }, m2.$locale = function() {
         return D[this.$L];
       }, m2.locale = function(t3, e2) {
         if (!t3)
           return this.$L;
-        var n2 = this.clone(), r2 = S(t3, e2, true);
+        var n2 = this.clone(), r2 = w(t3, e2, true);
         return r2 && (n2.$L = r2), n2;
       }, m2.clone = function() {
-        return O.w(this.$d, this);
+        return b.w(this.$d, this);
       }, m2.toDate = function() {
         return new Date(this.valueOf());
       }, m2.toJSON = function() {
@@ -6687,16 +6781,16 @@ var dayjs_min = { exports: {} };
       }, m2.toString = function() {
         return this.$d.toUTCString();
       }, M2;
-    }(), b = _.prototype;
-    return w.prototype = b, [["$ms", r], ["$s", i], ["$m", s], ["$H", u], ["$W", a], ["$M", f], ["$y", c], ["$D", d]].forEach(function(t3) {
-      b[t3[1]] = function(e2) {
+    }(), k = _.prototype;
+    return O.prototype = k, [["$ms", r], ["$s", i], ["$m", s], ["$H", u], ["$W", a], ["$M", c], ["$y", h2], ["$D", d]].forEach(function(t3) {
+      k[t3[1]] = function(e2) {
         return this.$g(e2, t3[0], t3[1]);
       };
-    }), w.extend = function(t3, e2) {
-      return t3.$i || (t3(e2, _, w), t3.$i = true), w;
-    }, w.locale = S, w.isDayjs = p, w.unix = function(t3) {
-      return w(1e3 * t3);
-    }, w.en = D[v], w.Ls = D, w.p = {}, w;
+    }), O.extend = function(t3, e2) {
+      return t3.$i || (t3(e2, _, O), t3.$i = true), O;
+    }, O.locale = w, O.isDayjs = S, O.unix = function(t3) {
+      return O(1e3 * t3);
+    }, O.en = D[g], O.Ls = D, O.p = {}, O;
   });
 })(dayjs_min);
 var dayjs = dayjs_min.exports;
@@ -6908,8 +7002,8 @@ const _hoisted_1$18 = {
 };
 const _hoisted_2$J = ["onClick", "onContextmenu"];
 const _hoisted_3$z = ["onClick"];
-const _hoisted_4$t = { class: "ivu-calendar-table-day-title" };
-const _hoisted_5$l = { class: "ivu-calendar-table-day-slot" };
+const _hoisted_4$s = { class: "ivu-calendar-table-day-title" };
+const _hoisted_5$k = { class: "ivu-calendar-table-day-slot" };
 function _sfc_render$1V(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("table", _hoisted_1$18, [
     createElementVNode("thead", null, [
@@ -6931,8 +7025,8 @@ function _sfc_render$1V(_ctx, _cache, $props, $setup, $data, $options) {
                 style: normalizeStyle($options.dayStyles),
                 onClick: ($event) => $options.handleClickDate(date3.text)
               }, [
-                createElementVNode("div", _hoisted_4$t, toDisplayString(date3.date), 1),
-                createElementVNode("div", _hoisted_5$l, [
+                createElementVNode("div", _hoisted_4$s, toDisplayString(date3.date), 1),
+                createElementVNode("div", _hoisted_5$k, [
                   renderSlot(_ctx.$slots, "month", {
                     date: new Date(date3.date),
                     data: { type: date3.type + "-month", day: date3.text, selected: date3.text === $options.currentDate }
@@ -6998,8 +7092,8 @@ const _hoisted_1$17 = {
 };
 const _hoisted_2$I = ["onClick", "onContextmenu"];
 const _hoisted_3$y = ["onClick"];
-const _hoisted_4$s = { class: "ivu-calendar-table-day-title" };
-const _hoisted_5$k = { class: "ivu-calendar-table-day-slot" };
+const _hoisted_4$r = { class: "ivu-calendar-table-day-title" };
+const _hoisted_5$j = { class: "ivu-calendar-table-day-slot" };
 function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("table", _hoisted_1$17, [
     createElementVNode("tbody", null, [
@@ -7016,8 +7110,8 @@ function _sfc_render$1U(_ctx, _cache, $props, $setup, $data, $options) {
                 style: normalizeStyle($options.dayStyles),
                 onClick: ($event) => $options.handleClickDate(month.text)
               }, [
-                createElementVNode("div", _hoisted_4$s, toDisplayString(month.month), 1),
-                createElementVNode("div", _hoisted_5$k, [
+                createElementVNode("div", _hoisted_4$r, toDisplayString(month.month), 1),
+                createElementVNode("div", _hoisted_5$j, [
                   renderSlot(_ctx.$slots, "year", {
                     month: new Date(month.month),
                     data: { type: month.type + "-year", month: month.text, selected: month.text === $options.currentMonth }
@@ -7164,8 +7258,8 @@ const _hoisted_2$H = {
   class: "ivu-calendar-header"
 };
 const _hoisted_3$x = { class: "ivu-calendar-header-title" };
-const _hoisted_4$r = { class: "ivu-calendar-header-action" };
-const _hoisted_5$j = { class: "ivu-calendar-body" };
+const _hoisted_4$q = { class: "ivu-calendar-header-action" };
+const _hoisted_5$i = { class: "ivu-calendar-body" };
 function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Button = resolveComponent("Button");
@@ -7182,7 +7276,7 @@ function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
             createTextVNode(toDisplayString($options.headerTitle), 1)
           ])
         ]),
-        createElementVNode("div", _hoisted_4$r, [
+        createElementVNode("div", _hoisted_4$q, [
           $props.headerType === "simple" ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
             createVNode(_component_ButtonGroup, null, {
               default: withCtx(() => [
@@ -7235,7 +7329,7 @@ function _sfc_render$1T(_ctx, _cache, $props, $setup, $data, $options) {
         ])
       ])
     ])) : createCommentVNode("", true),
-    createElementVNode("div", _hoisted_5$j, [
+    createElementVNode("div", _hoisted_5$i, [
       $data.mode === "month" ? (openBlock(), createBlock(_component_CalendarMonth, {
         key: 0,
         date: $data.currentValue
@@ -7316,7 +7410,9 @@ const _sfc_main$25 = {
         } else if (typeof this[size] === "object") {
           let props = this[size];
           Object.keys(props).forEach((prop2) => {
-            classList.push(prop2 !== "span" ? `${prefixCls$16}-${size}-${prop2}-${props[prop2]}` : `${prefixCls$16}-span-${size}-${props[prop2]}`);
+            classList.push(
+              prop2 !== "span" ? `${prefixCls$16}-${size}-${prop2}-${props[prop2]}` : `${prefixCls$16}-span-${size}-${props[prop2]}`
+            );
           });
         }
       });
@@ -8147,7 +8243,7 @@ function newMessages() {
     pattern: {
       mismatch: "%s value %s does not match pattern %s"
     },
-    clone: function clone() {
+    clone: function clone2() {
       var cloned = JSON.parse(JSON.stringify(this));
       cloned.clone = this.clone;
       return cloned;
@@ -8743,10 +8839,11 @@ var LoginItem = {
   },
   render() {
     const finalProps = this.handleGetProps();
-    const $input = h(Input, __spreadProps(__spreadValues({}, finalProps), {
+    const $input = h(Input, {
+      ...finalProps,
       "onUpdate:modelValue": this.handleChange,
       "onOn-enter": this.handleEnter
-    }));
+    });
     const $formitem = h(FormItem, {
       prop: this.prop,
       rules: this.rules
@@ -8863,13 +8960,15 @@ const _sfc_main$22 = {
     } else {
       buttonSlot = () => "\u83B7\u53D6\u9A8C\u8BC1\u7801";
     }
-    const $button = h(_sfc_main$2c, __spreadProps(__spreadValues({}, defaultButtonProps), {
+    const $button = h(_sfc_main$2c, {
+      ...defaultButtonProps,
       onClick: this.handleClickCaptcha
-    }), buttonSlot);
-    const $input = h(Input, __spreadProps(__spreadValues({}, finalProps), {
+    }, buttonSlot);
+    const $input = h(Input, {
+      ...finalProps,
       "onUpdate:modelValue": this.handleChange,
       "onOn-enter": this.handleEnter
-    }));
+    });
     const $colinput = h(Col, {
       span: 16
     }, () => [$input]);
@@ -10284,29 +10383,29 @@ const _sfc_main$1X = {
 const _hoisted_1$10 = { class: "ivu-cell-item" };
 const _hoisted_2$F = { class: "ivu-cell-icon" };
 const _hoisted_3$w = { class: "ivu-cell-main" };
-const _hoisted_4$q = { class: "ivu-cell-title" };
-const _hoisted_5$i = { class: "ivu-cell-label" };
-const _hoisted_6$a = { class: "ivu-cell-footer" };
-const _hoisted_7$9 = { class: "ivu-cell-extra" };
+const _hoisted_4$p = { class: "ivu-cell-title" };
+const _hoisted_5$h = { class: "ivu-cell-label" };
+const _hoisted_6$9 = { class: "ivu-cell-footer" };
+const _hoisted_7$7 = { class: "ivu-cell-extra" };
 function _sfc_render$1J(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", _hoisted_1$10, [
     createElementVNode("div", _hoisted_2$F, [
       renderSlot(_ctx.$slots, "icon")
     ]),
     createElementVNode("div", _hoisted_3$w, [
-      createElementVNode("div", _hoisted_4$q, [
+      createElementVNode("div", _hoisted_4$p, [
         renderSlot(_ctx.$slots, "default", {}, () => [
           createTextVNode(toDisplayString($props.title), 1)
         ])
       ]),
-      createElementVNode("div", _hoisted_5$i, [
+      createElementVNode("div", _hoisted_5$h, [
         renderSlot(_ctx.$slots, "label", {}, () => [
           createTextVNode(toDisplayString($props.label), 1)
         ])
       ])
     ]),
-    createElementVNode("div", _hoisted_6$a, [
-      createElementVNode("span", _hoisted_7$9, [
+    createElementVNode("div", _hoisted_6$9, [
+      createElementVNode("span", _hoisted_7$7, [
         renderSlot(_ctx.$slots, "extra", {}, () => [
           createTextVNode(toDisplayString($props.extra), 1)
         ])
@@ -10875,10 +10974,10 @@ const _sfc_main$1S = {
 const _hoisted_1$Y = { viewBox: "0 0 100 100" };
 const _hoisted_2$C = { key: 0 };
 const _hoisted_3$u = ["id"];
-const _hoisted_4$p = ["stop-color"];
-const _hoisted_5$h = ["stop-color"];
-const _hoisted_6$9 = ["d", "stroke", "stroke-width", "stroke-linecap"];
-const _hoisted_7$8 = ["d", "stroke-linecap", "stroke", "stroke-width"];
+const _hoisted_4$o = ["stop-color"];
+const _hoisted_5$g = ["stop-color"];
+const _hoisted_6$8 = ["d", "stroke", "stroke-width", "stroke-linecap"];
+const _hoisted_7$6 = ["d", "stroke-linecap", "stroke", "stroke-width"];
 function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     style: normalizeStyle($options.circleSize),
@@ -10896,11 +10995,11 @@ function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
           createElementVNode("stop", {
             offset: "0%",
             "stop-color": $props.strokeColor[0]
-          }, null, 8, _hoisted_4$p),
+          }, null, 8, _hoisted_4$o),
           createElementVNode("stop", {
             offset: "100%",
             "stop-color": $props.strokeColor[1]
-          }, null, 8, _hoisted_5$h)
+          }, null, 8, _hoisted_5$g)
         ], 8, _hoisted_3$u)
       ])) : createCommentVNode("", true),
       createElementVNode("path", {
@@ -10910,7 +11009,7 @@ function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
         "fill-opacity": 0,
         style: normalizeStyle($options.trailStyle),
         "stroke-linecap": $props.strokeLinecap
-      }, null, 12, _hoisted_6$9),
+      }, null, 12, _hoisted_6$8),
       createElementVNode("path", {
         d: $options.pathString,
         "stroke-linecap": $props.strokeLinecap,
@@ -10918,7 +11017,7 @@ function _sfc_render$1E(_ctx, _cache, $props, $setup, $data, $options) {
         "stroke-width": $options.computedStrokeWidth,
         "fill-opacity": "0",
         style: normalizeStyle($options.pathStyle)
-      }, null, 12, _hoisted_7$8)
+      }, null, 12, _hoisted_7$6)
     ])),
     createElementVNode("div", {
       class: normalizeClass($options.innerClasses)
@@ -12143,32 +12242,30 @@ const _hoisted_3$t = {
   key: 0,
   class: "ivu-city-drop-cities"
 };
-const _hoisted_4$o = ["onClick"];
-const _hoisted_5$g = { class: "ivu-city-drop-menu" };
-const _hoisted_6$8 = { class: "ivu-city-drop-type" };
-const _hoisted_7$7 = /* @__PURE__ */ createTextVNode("\u6309\u7701\u4EFD");
-const _hoisted_8$5 = /* @__PURE__ */ createTextVNode("\u6309\u57CE\u5E02");
-const _hoisted_9$4 = { class: "ivu-city-drop-search" };
-const _hoisted_10$3 = {
+const _hoisted_4$n = ["onClick"];
+const _hoisted_5$f = { class: "ivu-city-drop-menu" };
+const _hoisted_6$7 = { class: "ivu-city-drop-type" };
+const _hoisted_7$5 = { class: "ivu-city-drop-search" };
+const _hoisted_8$4 = {
   key: 1,
   class: "ivu-city-drop-list"
 };
-const _hoisted_11$3 = { class: "ivu-city-drop-list-letter" };
-const _hoisted_12$3 = {
+const _hoisted_9$4 = { class: "ivu-city-drop-list-letter" };
+const _hoisted_10$3 = {
   class: "ivu-city-drop-list-main",
   ref: "list"
 };
-const _hoisted_13$2 = ["onClick"];
-const _hoisted_14$2 = {
+const _hoisted_11$3 = ["onClick"];
+const _hoisted_12$3 = {
   key: 2,
   class: "ivu-city-drop-list"
 };
-const _hoisted_15$2 = { class: "ivu-city-drop-list-letter" };
-const _hoisted_16$2 = {
+const _hoisted_13$2 = { class: "ivu-city-drop-list-letter" };
+const _hoisted_14$2 = {
   class: "ivu-city-drop-list-main ivu-city-drop-list-main-city",
   ref: "list"
 };
-const _hoisted_17$2 = ["onClick"];
+const _hoisted_15$2 = ["onClick"];
 function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Icon = resolveComponent("Icon");
   const _component_Radio = resolveComponent("Radio");
@@ -12203,11 +12300,11 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                   return openBlock(), createElementBlock("span", {
                     key: item.n,
                     onClick: ($event) => $options.handleChangeValue(item.c)
-                  }, toDisplayString(item.n), 9, _hoisted_4$o);
+                  }, toDisplayString(item.n), 9, _hoisted_4$n);
                 }), 128))
               ])) : createCommentVNode("", true),
-              createElementVNode("div", _hoisted_5$g, [
-                createElementVNode("div", _hoisted_6$8, [
+              createElementVNode("div", _hoisted_5$f, [
+                createElementVNode("div", _hoisted_6$7, [
                   createVNode(_component_RadioGroup, {
                     modelValue: $data.listType,
                     "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.listType = $event),
@@ -12217,13 +12314,13 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                     default: withCtx(() => [
                       createVNode(_component_Radio, { label: "province" }, {
                         default: withCtx(() => [
-                          _hoisted_7$7
+                          createTextVNode("\u6309\u7701\u4EFD")
                         ]),
                         _: 1
                       }),
                       createVNode(_component_Radio, { label: "city" }, {
                         default: withCtx(() => [
-                          _hoisted_8$5
+                          createTextVNode("\u6309\u57CE\u5E02")
                         ]),
                         _: 1
                       })
@@ -12231,7 +12328,7 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                     _: 1
                   }, 8, ["modelValue"])
                 ]),
-                createElementVNode("div", _hoisted_9$4, [
+                createElementVNode("div", _hoisted_7$5, [
                   createVNode(_component_Select, {
                     modelValue: $data.queryCity,
                     "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $data.queryCity = $event),
@@ -12258,8 +12355,8 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                   }, 8, ["modelValue", "placeholder", "onOnChange"])
                 ])
               ]),
-              $data.listType === "province" ? (openBlock(), createElementBlock("div", _hoisted_10$3, [
-                createElementVNode("div", _hoisted_11$3, [
+              $data.listType === "province" ? (openBlock(), createElementBlock("div", _hoisted_8$4, [
+                createElementVNode("div", _hoisted_9$4, [
                   (openBlock(true), createElementBlock(Fragment, null, renderList($data.provinceList, (item) => {
                     return openBlock(), createBlock(_component_Tag, {
                       onClick: ($event) => $options.handleClickLetter(item.n),
@@ -12274,7 +12371,7 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                     }, 1032, ["onClick"]);
                   }), 128))
                 ]),
-                createElementVNode("div", _hoisted_12$3, [
+                createElementVNode("div", _hoisted_10$3, [
                   createElementVNode("dl", null, [
                     (openBlock(true), createElementBlock(Fragment, null, renderList($data.cityListByProvince, (item) => {
                       return openBlock(), createElementBlock(Fragment, {
@@ -12288,7 +12385,7 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                             return openBlock(), createElementBlock("li", {
                               key: city.n,
                               onClick: ($event) => $options.handleChangeValue(city.c)
-                            }, toDisplayString(city.n), 9, _hoisted_13$2);
+                            }, toDisplayString(city.n), 9, _hoisted_11$3);
                           }), 128))
                         ])
                       ], 64);
@@ -12296,8 +12393,8 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                   ])
                 ], 512)
               ])) : createCommentVNode("", true),
-              $data.listType === "city" ? (openBlock(), createElementBlock("div", _hoisted_14$2, [
-                createElementVNode("div", _hoisted_15$2, [
+              $data.listType === "city" ? (openBlock(), createElementBlock("div", _hoisted_12$3, [
+                createElementVNode("div", _hoisted_13$2, [
                   (openBlock(true), createElementBlock(Fragment, null, renderList($data.cityListByLetter, (item, key2) => {
                     return openBlock(), createBlock(_component_Tag, {
                       onClick: ($event) => $options.handleClickLetter(key2),
@@ -12312,7 +12409,7 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                     }, 1032, ["onClick"]);
                   }), 128))
                 ]),
-                createElementVNode("div", _hoisted_16$2, [
+                createElementVNode("div", _hoisted_14$2, [
                   createElementVNode("dl", null, [
                     (openBlock(true), createElementBlock(Fragment, null, renderList($data.cityListByLetter, (item, key2) => {
                       return openBlock(), createElementBlock(Fragment, { key: key2 }, [
@@ -12324,7 +12421,7 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                             return openBlock(), createElementBlock("li", {
                               key: city.n,
                               onClick: ($event) => $options.handleChangeValue(city.c)
-                            }, toDisplayString(city.n), 9, _hoisted_17$2);
+                            }, toDisplayString(city.n), 9, _hoisted_15$2);
                           }), 128))
                         ])
                       ], 64);
@@ -12461,919 +12558,981 @@ function _sfc_render$1z(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2);
 }
 var Collapse = /* @__PURE__ */ _export_sfc(_sfc_main$1N, [["render", _sfc_render$1z]]);
-var tinycolor$1 = { exports: {} };
-(function(module) {
-  (function(Math2) {
-    var trimLeft = /^\s+/, trimRight = /\s+$/, tinyCounter = 0, mathRound = Math2.round, mathMin = Math2.min, mathMax = Math2.max, mathRandom = Math2.random;
-    function tinycolor2(color2, opts) {
-      color2 = color2 ? color2 : "";
-      opts = opts || {};
-      if (color2 instanceof tinycolor2) {
-        return color2;
-      }
-      if (!(this instanceof tinycolor2)) {
-        return new tinycolor2(color2, opts);
-      }
-      var rgb = inputToRGB(color2);
-      this._originalInput = color2, this._r = rgb.r, this._g = rgb.g, this._b = rgb.b, this._a = rgb.a, this._roundA = mathRound(100 * this._a) / 100, this._format = opts.format || rgb.format;
-      this._gradientType = opts.gradientType;
-      if (this._r < 1) {
-        this._r = mathRound(this._r);
-      }
-      if (this._g < 1) {
-        this._g = mathRound(this._g);
-      }
-      if (this._b < 1) {
-        this._b = mathRound(this._b);
-      }
-      this._ok = rgb.ok;
-      this._tc_id = tinyCounter++;
-    }
-    tinycolor2.prototype = {
-      isDark: function() {
-        return this.getBrightness() < 128;
-      },
-      isLight: function() {
-        return !this.isDark();
-      },
-      isValid: function() {
-        return this._ok;
-      },
-      getOriginalInput: function() {
-        return this._originalInput;
-      },
-      getFormat: function() {
-        return this._format;
-      },
-      getAlpha: function() {
-        return this._a;
-      },
-      getBrightness: function() {
-        var rgb = this.toRgb();
-        return (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1e3;
-      },
-      getLuminance: function() {
-        var rgb = this.toRgb();
-        var RsRGB, GsRGB, BsRGB, R, G, B;
-        RsRGB = rgb.r / 255;
-        GsRGB = rgb.g / 255;
-        BsRGB = rgb.b / 255;
-        if (RsRGB <= 0.03928) {
-          R = RsRGB / 12.92;
-        } else {
-          R = Math2.pow((RsRGB + 0.055) / 1.055, 2.4);
-        }
-        if (GsRGB <= 0.03928) {
-          G = GsRGB / 12.92;
-        } else {
-          G = Math2.pow((GsRGB + 0.055) / 1.055, 2.4);
-        }
-        if (BsRGB <= 0.03928) {
-          B = BsRGB / 12.92;
-        } else {
-          B = Math2.pow((BsRGB + 0.055) / 1.055, 2.4);
-        }
-        return 0.2126 * R + 0.7152 * G + 0.0722 * B;
-      },
-      setAlpha: function(value) {
-        this._a = boundAlpha(value);
-        this._roundA = mathRound(100 * this._a) / 100;
-        return this;
-      },
-      toHsv: function() {
-        var hsv = rgbToHsv(this._r, this._g, this._b);
-        return { h: hsv.h * 360, s: hsv.s, v: hsv.v, a: this._a };
-      },
-      toHsvString: function() {
-        var hsv = rgbToHsv(this._r, this._g, this._b);
-        var h2 = mathRound(hsv.h * 360), s = mathRound(hsv.s * 100), v = mathRound(hsv.v * 100);
-        return this._a == 1 ? "hsv(" + h2 + ", " + s + "%, " + v + "%)" : "hsva(" + h2 + ", " + s + "%, " + v + "%, " + this._roundA + ")";
-      },
-      toHsl: function() {
-        var hsl = rgbToHsl(this._r, this._g, this._b);
-        return { h: hsl.h * 360, s: hsl.s, l: hsl.l, a: this._a };
-      },
-      toHslString: function() {
-        var hsl = rgbToHsl(this._r, this._g, this._b);
-        var h2 = mathRound(hsl.h * 360), s = mathRound(hsl.s * 100), l = mathRound(hsl.l * 100);
-        return this._a == 1 ? "hsl(" + h2 + ", " + s + "%, " + l + "%)" : "hsla(" + h2 + ", " + s + "%, " + l + "%, " + this._roundA + ")";
-      },
-      toHex: function(allow3Char) {
-        return rgbToHex(this._r, this._g, this._b, allow3Char);
-      },
-      toHexString: function(allow3Char) {
-        return "#" + this.toHex(allow3Char);
-      },
-      toHex8: function(allow4Char) {
-        return rgbaToHex(this._r, this._g, this._b, this._a, allow4Char);
-      },
-      toHex8String: function(allow4Char) {
-        return "#" + this.toHex8(allow4Char);
-      },
-      toRgb: function() {
-        return { r: mathRound(this._r), g: mathRound(this._g), b: mathRound(this._b), a: this._a };
-      },
-      toRgbString: function() {
-        return this._a == 1 ? "rgb(" + mathRound(this._r) + ", " + mathRound(this._g) + ", " + mathRound(this._b) + ")" : "rgba(" + mathRound(this._r) + ", " + mathRound(this._g) + ", " + mathRound(this._b) + ", " + this._roundA + ")";
-      },
-      toPercentageRgb: function() {
-        return { r: mathRound(bound01(this._r, 255) * 100) + "%", g: mathRound(bound01(this._g, 255) * 100) + "%", b: mathRound(bound01(this._b, 255) * 100) + "%", a: this._a };
-      },
-      toPercentageRgbString: function() {
-        return this._a == 1 ? "rgb(" + mathRound(bound01(this._r, 255) * 100) + "%, " + mathRound(bound01(this._g, 255) * 100) + "%, " + mathRound(bound01(this._b, 255) * 100) + "%)" : "rgba(" + mathRound(bound01(this._r, 255) * 100) + "%, " + mathRound(bound01(this._g, 255) * 100) + "%, " + mathRound(bound01(this._b, 255) * 100) + "%, " + this._roundA + ")";
-      },
-      toName: function() {
-        if (this._a === 0) {
-          return "transparent";
-        }
-        if (this._a < 1) {
-          return false;
-        }
-        return hexNames[rgbToHex(this._r, this._g, this._b, true)] || false;
-      },
-      toFilter: function(secondColor) {
-        var hex8String = "#" + rgbaToArgbHex(this._r, this._g, this._b, this._a);
-        var secondHex8String = hex8String;
-        var gradientType = this._gradientType ? "GradientType = 1, " : "";
-        if (secondColor) {
-          var s = tinycolor2(secondColor);
-          secondHex8String = "#" + rgbaToArgbHex(s._r, s._g, s._b, s._a);
-        }
-        return "progid:DXImageTransform.Microsoft.gradient(" + gradientType + "startColorstr=" + hex8String + ",endColorstr=" + secondHex8String + ")";
-      },
-      toString: function(format2) {
-        var formatSet = !!format2;
-        format2 = format2 || this._format;
-        var formattedString = false;
-        var hasAlpha = this._a < 1 && this._a >= 0;
-        var needsAlphaFormat = !formatSet && hasAlpha && (format2 === "hex" || format2 === "hex6" || format2 === "hex3" || format2 === "hex4" || format2 === "hex8" || format2 === "name");
-        if (needsAlphaFormat) {
-          if (format2 === "name" && this._a === 0) {
-            return this.toName();
-          }
-          return this.toRgbString();
-        }
-        if (format2 === "rgb") {
-          formattedString = this.toRgbString();
-        }
-        if (format2 === "prgb") {
-          formattedString = this.toPercentageRgbString();
-        }
-        if (format2 === "hex" || format2 === "hex6") {
-          formattedString = this.toHexString();
-        }
-        if (format2 === "hex3") {
-          formattedString = this.toHexString(true);
-        }
-        if (format2 === "hex4") {
-          formattedString = this.toHex8String(true);
-        }
-        if (format2 === "hex8") {
-          formattedString = this.toHex8String();
-        }
-        if (format2 === "name") {
-          formattedString = this.toName();
-        }
-        if (format2 === "hsl") {
-          formattedString = this.toHslString();
-        }
-        if (format2 === "hsv") {
-          formattedString = this.toHsvString();
-        }
-        return formattedString || this.toHexString();
-      },
-      clone: function() {
-        return tinycolor2(this.toString());
-      },
-      _applyModification: function(fn, args) {
-        var color2 = fn.apply(null, [this].concat([].slice.call(args)));
-        this._r = color2._r;
-        this._g = color2._g;
-        this._b = color2._b;
-        this.setAlpha(color2._a);
-        return this;
-      },
-      lighten: function() {
-        return this._applyModification(lighten, arguments);
-      },
-      brighten: function() {
-        return this._applyModification(brighten, arguments);
-      },
-      darken: function() {
-        return this._applyModification(darken, arguments);
-      },
-      desaturate: function() {
-        return this._applyModification(desaturate, arguments);
-      },
-      saturate: function() {
-        return this._applyModification(saturate, arguments);
-      },
-      greyscale: function() {
-        return this._applyModification(greyscale, arguments);
-      },
-      spin: function() {
-        return this._applyModification(spin, arguments);
-      },
-      _applyCombination: function(fn, args) {
-        return fn.apply(null, [this].concat([].slice.call(args)));
-      },
-      analogous: function() {
-        return this._applyCombination(analogous, arguments);
-      },
-      complement: function() {
-        return this._applyCombination(complement, arguments);
-      },
-      monochromatic: function() {
-        return this._applyCombination(monochromatic, arguments);
-      },
-      splitcomplement: function() {
-        return this._applyCombination(splitcomplement, arguments);
-      },
-      triad: function() {
-        return this._applyCombination(triad, arguments);
-      },
-      tetrad: function() {
-        return this._applyCombination(tetrad, arguments);
-      }
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj2) {
+    return typeof obj2;
+  } : function(obj2) {
+    return obj2 && "function" == typeof Symbol && obj2.constructor === Symbol && obj2 !== Symbol.prototype ? "symbol" : typeof obj2;
+  }, _typeof(obj);
+}
+var trimLeft = /^\s+/;
+var trimRight = /\s+$/;
+function tinycolor(color2, opts) {
+  color2 = color2 ? color2 : "";
+  opts = opts || {};
+  if (color2 instanceof tinycolor) {
+    return color2;
+  }
+  if (!(this instanceof tinycolor)) {
+    return new tinycolor(color2, opts);
+  }
+  var rgb = inputToRGB(color2);
+  this._originalInput = color2, this._r = rgb.r, this._g = rgb.g, this._b = rgb.b, this._a = rgb.a, this._roundA = Math.round(100 * this._a) / 100, this._format = opts.format || rgb.format;
+  this._gradientType = opts.gradientType;
+  if (this._r < 1)
+    this._r = Math.round(this._r);
+  if (this._g < 1)
+    this._g = Math.round(this._g);
+  if (this._b < 1)
+    this._b = Math.round(this._b);
+  this._ok = rgb.ok;
+}
+tinycolor.prototype = {
+  isDark: function isDark() {
+    return this.getBrightness() < 128;
+  },
+  isLight: function isLight() {
+    return !this.isDark();
+  },
+  isValid: function isValid() {
+    return this._ok;
+  },
+  getOriginalInput: function getOriginalInput() {
+    return this._originalInput;
+  },
+  getFormat: function getFormat() {
+    return this._format;
+  },
+  getAlpha: function getAlpha() {
+    return this._a;
+  },
+  getBrightness: function getBrightness() {
+    var rgb = this.toRgb();
+    return (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1e3;
+  },
+  getLuminance: function getLuminance() {
+    var rgb = this.toRgb();
+    var RsRGB, GsRGB, BsRGB, R, G, B;
+    RsRGB = rgb.r / 255;
+    GsRGB = rgb.g / 255;
+    BsRGB = rgb.b / 255;
+    if (RsRGB <= 0.03928)
+      R = RsRGB / 12.92;
+    else
+      R = Math.pow((RsRGB + 0.055) / 1.055, 2.4);
+    if (GsRGB <= 0.03928)
+      G = GsRGB / 12.92;
+    else
+      G = Math.pow((GsRGB + 0.055) / 1.055, 2.4);
+    if (BsRGB <= 0.03928)
+      B = BsRGB / 12.92;
+    else
+      B = Math.pow((BsRGB + 0.055) / 1.055, 2.4);
+    return 0.2126 * R + 0.7152 * G + 0.0722 * B;
+  },
+  setAlpha: function setAlpha(value) {
+    this._a = boundAlpha(value);
+    this._roundA = Math.round(100 * this._a) / 100;
+    return this;
+  },
+  toHsv: function toHsv() {
+    var hsv = rgbToHsv(this._r, this._g, this._b);
+    return {
+      h: hsv.h * 360,
+      s: hsv.s,
+      v: hsv.v,
+      a: this._a
     };
-    tinycolor2.fromRatio = function(color2, opts) {
-      if (typeof color2 == "object") {
-        var newColor = {};
-        for (var i in color2) {
-          if (color2.hasOwnProperty(i)) {
-            if (i === "a") {
-              newColor[i] = color2[i];
-            } else {
-              newColor[i] = convertToPercentage(color2[i]);
-            }
-          }
-        }
-        color2 = newColor;
-      }
-      return tinycolor2(color2, opts);
+  },
+  toHsvString: function toHsvString() {
+    var hsv = rgbToHsv(this._r, this._g, this._b);
+    var h2 = Math.round(hsv.h * 360), s = Math.round(hsv.s * 100), v = Math.round(hsv.v * 100);
+    return this._a == 1 ? "hsv(" + h2 + ", " + s + "%, " + v + "%)" : "hsva(" + h2 + ", " + s + "%, " + v + "%, " + this._roundA + ")";
+  },
+  toHsl: function toHsl() {
+    var hsl = rgbToHsl(this._r, this._g, this._b);
+    return {
+      h: hsl.h * 360,
+      s: hsl.s,
+      l: hsl.l,
+      a: this._a
     };
-    function inputToRGB(color2) {
-      var rgb = { r: 0, g: 0, b: 0 };
-      var a = 1;
-      var s = null;
-      var v = null;
-      var l = null;
-      var ok = false;
-      var format2 = false;
-      if (typeof color2 == "string") {
-        color2 = stringInputToObject(color2);
-      }
-      if (typeof color2 == "object") {
-        if (isValidCSSUnit(color2.r) && isValidCSSUnit(color2.g) && isValidCSSUnit(color2.b)) {
-          rgb = rgbToRgb(color2.r, color2.g, color2.b);
-          ok = true;
-          format2 = String(color2.r).substr(-1) === "%" ? "prgb" : "rgb";
-        } else if (isValidCSSUnit(color2.h) && isValidCSSUnit(color2.s) && isValidCSSUnit(color2.v)) {
-          s = convertToPercentage(color2.s);
-          v = convertToPercentage(color2.v);
-          rgb = hsvToRgb(color2.h, s, v);
-          ok = true;
-          format2 = "hsv";
-        } else if (isValidCSSUnit(color2.h) && isValidCSSUnit(color2.s) && isValidCSSUnit(color2.l)) {
-          s = convertToPercentage(color2.s);
-          l = convertToPercentage(color2.l);
-          rgb = hslToRgb(color2.h, s, l);
-          ok = true;
-          format2 = "hsl";
-        }
-        if (color2.hasOwnProperty("a")) {
-          a = color2.a;
-        }
-      }
-      a = boundAlpha(a);
-      return {
-        ok,
-        format: color2.format || format2,
-        r: mathMin(255, mathMax(rgb.r, 0)),
-        g: mathMin(255, mathMax(rgb.g, 0)),
-        b: mathMin(255, mathMax(rgb.b, 0)),
-        a
-      };
-    }
-    function rgbToRgb(r, g, b) {
-      return {
-        r: bound01(r, 255) * 255,
-        g: bound01(g, 255) * 255,
-        b: bound01(b, 255) * 255
-      };
-    }
-    function rgbToHsl(r, g, b) {
-      r = bound01(r, 255);
-      g = bound01(g, 255);
-      b = bound01(b, 255);
-      var max = mathMax(r, g, b), min = mathMin(r, g, b);
-      var h2, s, l = (max + min) / 2;
-      if (max == min) {
-        h2 = s = 0;
-      } else {
-        var d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-          case r:
-            h2 = (g - b) / d + (g < b ? 6 : 0);
-            break;
-          case g:
-            h2 = (b - r) / d + 2;
-            break;
-          case b:
-            h2 = (r - g) / d + 4;
-            break;
-        }
-        h2 /= 6;
-      }
-      return { h: h2, s, l };
-    }
-    function hslToRgb(h2, s, l) {
-      var r, g, b;
-      h2 = bound01(h2, 360);
-      s = bound01(s, 100);
-      l = bound01(l, 100);
-      function hue2rgb(p2, q2, t2) {
-        if (t2 < 0)
-          t2 += 1;
-        if (t2 > 1)
-          t2 -= 1;
-        if (t2 < 1 / 6)
-          return p2 + (q2 - p2) * 6 * t2;
-        if (t2 < 1 / 2)
-          return q2;
-        if (t2 < 2 / 3)
-          return p2 + (q2 - p2) * (2 / 3 - t2) * 6;
-        return p2;
-      }
-      if (s === 0) {
-        r = g = b = l;
-      } else {
-        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-        var p = 2 * l - q;
-        r = hue2rgb(p, q, h2 + 1 / 3);
-        g = hue2rgb(p, q, h2);
-        b = hue2rgb(p, q, h2 - 1 / 3);
-      }
-      return { r: r * 255, g: g * 255, b: b * 255 };
-    }
-    function rgbToHsv(r, g, b) {
-      r = bound01(r, 255);
-      g = bound01(g, 255);
-      b = bound01(b, 255);
-      var max = mathMax(r, g, b), min = mathMin(r, g, b);
-      var h2, s, v = max;
-      var d = max - min;
-      s = max === 0 ? 0 : d / max;
-      if (max == min) {
-        h2 = 0;
-      } else {
-        switch (max) {
-          case r:
-            h2 = (g - b) / d + (g < b ? 6 : 0);
-            break;
-          case g:
-            h2 = (b - r) / d + 2;
-            break;
-          case b:
-            h2 = (r - g) / d + 4;
-            break;
-        }
-        h2 /= 6;
-      }
-      return { h: h2, s, v };
-    }
-    function hsvToRgb(h2, s, v) {
-      h2 = bound01(h2, 360) * 6;
-      s = bound01(s, 100);
-      v = bound01(v, 100);
-      var i = Math2.floor(h2), f = h2 - i, p = v * (1 - s), q = v * (1 - f * s), t2 = v * (1 - (1 - f) * s), mod = i % 6, r = [v, q, p, p, t2, v][mod], g = [t2, v, v, q, p, p][mod], b = [p, p, t2, v, v, q][mod];
-      return { r: r * 255, g: g * 255, b: b * 255 };
-    }
-    function rgbToHex(r, g, b, allow3Char) {
-      var hex2 = [
-        pad2(mathRound(r).toString(16)),
-        pad2(mathRound(g).toString(16)),
-        pad2(mathRound(b).toString(16))
-      ];
-      if (allow3Char && hex2[0].charAt(0) == hex2[0].charAt(1) && hex2[1].charAt(0) == hex2[1].charAt(1) && hex2[2].charAt(0) == hex2[2].charAt(1)) {
-        return hex2[0].charAt(0) + hex2[1].charAt(0) + hex2[2].charAt(0);
-      }
-      return hex2.join("");
-    }
-    function rgbaToHex(r, g, b, a, allow4Char) {
-      var hex2 = [
-        pad2(mathRound(r).toString(16)),
-        pad2(mathRound(g).toString(16)),
-        pad2(mathRound(b).toString(16)),
-        pad2(convertDecimalToHex(a))
-      ];
-      if (allow4Char && hex2[0].charAt(0) == hex2[0].charAt(1) && hex2[1].charAt(0) == hex2[1].charAt(1) && hex2[2].charAt(0) == hex2[2].charAt(1) && hex2[3].charAt(0) == hex2[3].charAt(1)) {
-        return hex2[0].charAt(0) + hex2[1].charAt(0) + hex2[2].charAt(0) + hex2[3].charAt(0);
-      }
-      return hex2.join("");
-    }
-    function rgbaToArgbHex(r, g, b, a) {
-      var hex2 = [
-        pad2(convertDecimalToHex(a)),
-        pad2(mathRound(r).toString(16)),
-        pad2(mathRound(g).toString(16)),
-        pad2(mathRound(b).toString(16))
-      ];
-      return hex2.join("");
-    }
-    tinycolor2.equals = function(color1, color2) {
-      if (!color1 || !color2) {
-        return false;
-      }
-      return tinycolor2(color1).toRgbString() == tinycolor2(color2).toRgbString();
+  },
+  toHslString: function toHslString() {
+    var hsl = rgbToHsl(this._r, this._g, this._b);
+    var h2 = Math.round(hsl.h * 360), s = Math.round(hsl.s * 100), l = Math.round(hsl.l * 100);
+    return this._a == 1 ? "hsl(" + h2 + ", " + s + "%, " + l + "%)" : "hsla(" + h2 + ", " + s + "%, " + l + "%, " + this._roundA + ")";
+  },
+  toHex: function toHex(allow3Char) {
+    return rgbToHex(this._r, this._g, this._b, allow3Char);
+  },
+  toHexString: function toHexString(allow3Char) {
+    return "#" + this.toHex(allow3Char);
+  },
+  toHex8: function toHex8(allow4Char) {
+    return rgbaToHex(this._r, this._g, this._b, this._a, allow4Char);
+  },
+  toHex8String: function toHex8String(allow4Char) {
+    return "#" + this.toHex8(allow4Char);
+  },
+  toRgb: function toRgb() {
+    return {
+      r: Math.round(this._r),
+      g: Math.round(this._g),
+      b: Math.round(this._b),
+      a: this._a
     };
-    tinycolor2.random = function() {
-      return tinycolor2.fromRatio({
-        r: mathRandom(),
-        g: mathRandom(),
-        b: mathRandom()
-      });
+  },
+  toRgbString: function toRgbString() {
+    return this._a == 1 ? "rgb(" + Math.round(this._r) + ", " + Math.round(this._g) + ", " + Math.round(this._b) + ")" : "rgba(" + Math.round(this._r) + ", " + Math.round(this._g) + ", " + Math.round(this._b) + ", " + this._roundA + ")";
+  },
+  toPercentageRgb: function toPercentageRgb() {
+    return {
+      r: Math.round(bound01(this._r, 255) * 100) + "%",
+      g: Math.round(bound01(this._g, 255) * 100) + "%",
+      b: Math.round(bound01(this._b, 255) * 100) + "%",
+      a: this._a
     };
-    function desaturate(color2, amount) {
-      amount = amount === 0 ? 0 : amount || 10;
-      var hsl = tinycolor2(color2).toHsl();
-      hsl.s -= amount / 100;
-      hsl.s = clamp01(hsl.s);
-      return tinycolor2(hsl);
+  },
+  toPercentageRgbString: function toPercentageRgbString() {
+    return this._a == 1 ? "rgb(" + Math.round(bound01(this._r, 255) * 100) + "%, " + Math.round(bound01(this._g, 255) * 100) + "%, " + Math.round(bound01(this._b, 255) * 100) + "%)" : "rgba(" + Math.round(bound01(this._r, 255) * 100) + "%, " + Math.round(bound01(this._g, 255) * 100) + "%, " + Math.round(bound01(this._b, 255) * 100) + "%, " + this._roundA + ")";
+  },
+  toName: function toName() {
+    if (this._a === 0) {
+      return "transparent";
     }
-    function saturate(color2, amount) {
-      amount = amount === 0 ? 0 : amount || 10;
-      var hsl = tinycolor2(color2).toHsl();
-      hsl.s += amount / 100;
-      hsl.s = clamp01(hsl.s);
-      return tinycolor2(hsl);
-    }
-    function greyscale(color2) {
-      return tinycolor2(color2).desaturate(100);
-    }
-    function lighten(color2, amount) {
-      amount = amount === 0 ? 0 : amount || 10;
-      var hsl = tinycolor2(color2).toHsl();
-      hsl.l += amount / 100;
-      hsl.l = clamp01(hsl.l);
-      return tinycolor2(hsl);
-    }
-    function brighten(color2, amount) {
-      amount = amount === 0 ? 0 : amount || 10;
-      var rgb = tinycolor2(color2).toRgb();
-      rgb.r = mathMax(0, mathMin(255, rgb.r - mathRound(255 * -(amount / 100))));
-      rgb.g = mathMax(0, mathMin(255, rgb.g - mathRound(255 * -(amount / 100))));
-      rgb.b = mathMax(0, mathMin(255, rgb.b - mathRound(255 * -(amount / 100))));
-      return tinycolor2(rgb);
-    }
-    function darken(color2, amount) {
-      amount = amount === 0 ? 0 : amount || 10;
-      var hsl = tinycolor2(color2).toHsl();
-      hsl.l -= amount / 100;
-      hsl.l = clamp01(hsl.l);
-      return tinycolor2(hsl);
-    }
-    function spin(color2, amount) {
-      var hsl = tinycolor2(color2).toHsl();
-      var hue = (hsl.h + amount) % 360;
-      hsl.h = hue < 0 ? 360 + hue : hue;
-      return tinycolor2(hsl);
-    }
-    function complement(color2) {
-      var hsl = tinycolor2(color2).toHsl();
-      hsl.h = (hsl.h + 180) % 360;
-      return tinycolor2(hsl);
-    }
-    function triad(color2) {
-      var hsl = tinycolor2(color2).toHsl();
-      var h2 = hsl.h;
-      return [
-        tinycolor2(color2),
-        tinycolor2({ h: (h2 + 120) % 360, s: hsl.s, l: hsl.l }),
-        tinycolor2({ h: (h2 + 240) % 360, s: hsl.s, l: hsl.l })
-      ];
-    }
-    function tetrad(color2) {
-      var hsl = tinycolor2(color2).toHsl();
-      var h2 = hsl.h;
-      return [
-        tinycolor2(color2),
-        tinycolor2({ h: (h2 + 90) % 360, s: hsl.s, l: hsl.l }),
-        tinycolor2({ h: (h2 + 180) % 360, s: hsl.s, l: hsl.l }),
-        tinycolor2({ h: (h2 + 270) % 360, s: hsl.s, l: hsl.l })
-      ];
-    }
-    function splitcomplement(color2) {
-      var hsl = tinycolor2(color2).toHsl();
-      var h2 = hsl.h;
-      return [
-        tinycolor2(color2),
-        tinycolor2({ h: (h2 + 72) % 360, s: hsl.s, l: hsl.l }),
-        tinycolor2({ h: (h2 + 216) % 360, s: hsl.s, l: hsl.l })
-      ];
-    }
-    function analogous(color2, results, slices) {
-      results = results || 6;
-      slices = slices || 30;
-      var hsl = tinycolor2(color2).toHsl();
-      var part = 360 / slices;
-      var ret = [tinycolor2(color2)];
-      for (hsl.h = (hsl.h - (part * results >> 1) + 720) % 360; --results; ) {
-        hsl.h = (hsl.h + part) % 360;
-        ret.push(tinycolor2(hsl));
-      }
-      return ret;
-    }
-    function monochromatic(color2, results) {
-      results = results || 6;
-      var hsv = tinycolor2(color2).toHsv();
-      var h2 = hsv.h, s = hsv.s, v = hsv.v;
-      var ret = [];
-      var modification = 1 / results;
-      while (results--) {
-        ret.push(tinycolor2({ h: h2, s, v }));
-        v = (v + modification) % 1;
-      }
-      return ret;
-    }
-    tinycolor2.mix = function(color1, color2, amount) {
-      amount = amount === 0 ? 0 : amount || 50;
-      var rgb1 = tinycolor2(color1).toRgb();
-      var rgb2 = tinycolor2(color2).toRgb();
-      var p = amount / 100;
-      var rgba = {
-        r: (rgb2.r - rgb1.r) * p + rgb1.r,
-        g: (rgb2.g - rgb1.g) * p + rgb1.g,
-        b: (rgb2.b - rgb1.b) * p + rgb1.b,
-        a: (rgb2.a - rgb1.a) * p + rgb1.a
-      };
-      return tinycolor2(rgba);
-    };
-    tinycolor2.readability = function(color1, color2) {
-      var c1 = tinycolor2(color1);
-      var c2 = tinycolor2(color2);
-      return (Math2.max(c1.getLuminance(), c2.getLuminance()) + 0.05) / (Math2.min(c1.getLuminance(), c2.getLuminance()) + 0.05);
-    };
-    tinycolor2.isReadable = function(color1, color2, wcag2) {
-      var readability = tinycolor2.readability(color1, color2);
-      var wcag2Parms, out;
-      out = false;
-      wcag2Parms = validateWCAG2Parms(wcag2);
-      switch (wcag2Parms.level + wcag2Parms.size) {
-        case "AAsmall":
-        case "AAAlarge":
-          out = readability >= 4.5;
-          break;
-        case "AAlarge":
-          out = readability >= 3;
-          break;
-        case "AAAsmall":
-          out = readability >= 7;
-          break;
-      }
-      return out;
-    };
-    tinycolor2.mostReadable = function(baseColor, colorList2, args) {
-      var bestColor = null;
-      var bestScore = 0;
-      var readability;
-      var includeFallbackColors, level, size;
-      args = args || {};
-      includeFallbackColors = args.includeFallbackColors;
-      level = args.level;
-      size = args.size;
-      for (var i = 0; i < colorList2.length; i++) {
-        readability = tinycolor2.readability(baseColor, colorList2[i]);
-        if (readability > bestScore) {
-          bestScore = readability;
-          bestColor = tinycolor2(colorList2[i]);
-        }
-      }
-      if (tinycolor2.isReadable(baseColor, bestColor, { "level": level, "size": size }) || !includeFallbackColors) {
-        return bestColor;
-      } else {
-        args.includeFallbackColors = false;
-        return tinycolor2.mostReadable(baseColor, ["#fff", "#000"], args);
-      }
-    };
-    var names = tinycolor2.names = {
-      aliceblue: "f0f8ff",
-      antiquewhite: "faebd7",
-      aqua: "0ff",
-      aquamarine: "7fffd4",
-      azure: "f0ffff",
-      beige: "f5f5dc",
-      bisque: "ffe4c4",
-      black: "000",
-      blanchedalmond: "ffebcd",
-      blue: "00f",
-      blueviolet: "8a2be2",
-      brown: "a52a2a",
-      burlywood: "deb887",
-      burntsienna: "ea7e5d",
-      cadetblue: "5f9ea0",
-      chartreuse: "7fff00",
-      chocolate: "d2691e",
-      coral: "ff7f50",
-      cornflowerblue: "6495ed",
-      cornsilk: "fff8dc",
-      crimson: "dc143c",
-      cyan: "0ff",
-      darkblue: "00008b",
-      darkcyan: "008b8b",
-      darkgoldenrod: "b8860b",
-      darkgray: "a9a9a9",
-      darkgreen: "006400",
-      darkgrey: "a9a9a9",
-      darkkhaki: "bdb76b",
-      darkmagenta: "8b008b",
-      darkolivegreen: "556b2f",
-      darkorange: "ff8c00",
-      darkorchid: "9932cc",
-      darkred: "8b0000",
-      darksalmon: "e9967a",
-      darkseagreen: "8fbc8f",
-      darkslateblue: "483d8b",
-      darkslategray: "2f4f4f",
-      darkslategrey: "2f4f4f",
-      darkturquoise: "00ced1",
-      darkviolet: "9400d3",
-      deeppink: "ff1493",
-      deepskyblue: "00bfff",
-      dimgray: "696969",
-      dimgrey: "696969",
-      dodgerblue: "1e90ff",
-      firebrick: "b22222",
-      floralwhite: "fffaf0",
-      forestgreen: "228b22",
-      fuchsia: "f0f",
-      gainsboro: "dcdcdc",
-      ghostwhite: "f8f8ff",
-      gold: "ffd700",
-      goldenrod: "daa520",
-      gray: "808080",
-      green: "008000",
-      greenyellow: "adff2f",
-      grey: "808080",
-      honeydew: "f0fff0",
-      hotpink: "ff69b4",
-      indianred: "cd5c5c",
-      indigo: "4b0082",
-      ivory: "fffff0",
-      khaki: "f0e68c",
-      lavender: "e6e6fa",
-      lavenderblush: "fff0f5",
-      lawngreen: "7cfc00",
-      lemonchiffon: "fffacd",
-      lightblue: "add8e6",
-      lightcoral: "f08080",
-      lightcyan: "e0ffff",
-      lightgoldenrodyellow: "fafad2",
-      lightgray: "d3d3d3",
-      lightgreen: "90ee90",
-      lightgrey: "d3d3d3",
-      lightpink: "ffb6c1",
-      lightsalmon: "ffa07a",
-      lightseagreen: "20b2aa",
-      lightskyblue: "87cefa",
-      lightslategray: "789",
-      lightslategrey: "789",
-      lightsteelblue: "b0c4de",
-      lightyellow: "ffffe0",
-      lime: "0f0",
-      limegreen: "32cd32",
-      linen: "faf0e6",
-      magenta: "f0f",
-      maroon: "800000",
-      mediumaquamarine: "66cdaa",
-      mediumblue: "0000cd",
-      mediumorchid: "ba55d3",
-      mediumpurple: "9370db",
-      mediumseagreen: "3cb371",
-      mediumslateblue: "7b68ee",
-      mediumspringgreen: "00fa9a",
-      mediumturquoise: "48d1cc",
-      mediumvioletred: "c71585",
-      midnightblue: "191970",
-      mintcream: "f5fffa",
-      mistyrose: "ffe4e1",
-      moccasin: "ffe4b5",
-      navajowhite: "ffdead",
-      navy: "000080",
-      oldlace: "fdf5e6",
-      olive: "808000",
-      olivedrab: "6b8e23",
-      orange: "ffa500",
-      orangered: "ff4500",
-      orchid: "da70d6",
-      palegoldenrod: "eee8aa",
-      palegreen: "98fb98",
-      paleturquoise: "afeeee",
-      palevioletred: "db7093",
-      papayawhip: "ffefd5",
-      peachpuff: "ffdab9",
-      peru: "cd853f",
-      pink: "ffc0cb",
-      plum: "dda0dd",
-      powderblue: "b0e0e6",
-      purple: "800080",
-      rebeccapurple: "663399",
-      red: "f00",
-      rosybrown: "bc8f8f",
-      royalblue: "4169e1",
-      saddlebrown: "8b4513",
-      salmon: "fa8072",
-      sandybrown: "f4a460",
-      seagreen: "2e8b57",
-      seashell: "fff5ee",
-      sienna: "a0522d",
-      silver: "c0c0c0",
-      skyblue: "87ceeb",
-      slateblue: "6a5acd",
-      slategray: "708090",
-      slategrey: "708090",
-      snow: "fffafa",
-      springgreen: "00ff7f",
-      steelblue: "4682b4",
-      tan: "d2b48c",
-      teal: "008080",
-      thistle: "d8bfd8",
-      tomato: "ff6347",
-      turquoise: "40e0d0",
-      violet: "ee82ee",
-      wheat: "f5deb3",
-      white: "fff",
-      whitesmoke: "f5f5f5",
-      yellow: "ff0",
-      yellowgreen: "9acd32"
-    };
-    var hexNames = tinycolor2.hexNames = flip(names);
-    function flip(o) {
-      var flipped = {};
-      for (var i in o) {
-        if (o.hasOwnProperty(i)) {
-          flipped[o[i]] = i;
-        }
-      }
-      return flipped;
-    }
-    function boundAlpha(a) {
-      a = parseFloat(a);
-      if (isNaN(a) || a < 0 || a > 1) {
-        a = 1;
-      }
-      return a;
-    }
-    function bound01(n, max) {
-      if (isOnePointZero(n)) {
-        n = "100%";
-      }
-      var processPercent = isPercentage(n);
-      n = mathMin(max, mathMax(0, parseFloat(n)));
-      if (processPercent) {
-        n = parseInt(n * max, 10) / 100;
-      }
-      if (Math2.abs(n - max) < 1e-6) {
-        return 1;
-      }
-      return n % max / parseFloat(max);
-    }
-    function clamp01(val) {
-      return mathMin(1, mathMax(0, val));
-    }
-    function parseIntFromHex(val) {
-      return parseInt(val, 16);
-    }
-    function isOnePointZero(n) {
-      return typeof n == "string" && n.indexOf(".") != -1 && parseFloat(n) === 1;
-    }
-    function isPercentage(n) {
-      return typeof n === "string" && n.indexOf("%") != -1;
-    }
-    function pad2(c) {
-      return c.length == 1 ? "0" + c : "" + c;
-    }
-    function convertToPercentage(n) {
-      if (n <= 1) {
-        n = n * 100 + "%";
-      }
-      return n;
-    }
-    function convertDecimalToHex(d) {
-      return Math2.round(parseFloat(d) * 255).toString(16);
-    }
-    function convertHexToDecimal(h2) {
-      return parseIntFromHex(h2) / 255;
-    }
-    var matchers = function() {
-      var CSS_INTEGER = "[-\\+]?\\d+%?";
-      var CSS_NUMBER = "[-\\+]?\\d*\\.\\d+%?";
-      var CSS_UNIT = "(?:" + CSS_NUMBER + ")|(?:" + CSS_INTEGER + ")";
-      var PERMISSIVE_MATCH3 = "[\\s|\\(]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")\\s*\\)?";
-      var PERMISSIVE_MATCH4 = "[\\s|\\(]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")\\s*\\)?";
-      return {
-        CSS_UNIT: new RegExp(CSS_UNIT),
-        rgb: new RegExp("rgb" + PERMISSIVE_MATCH3),
-        rgba: new RegExp("rgba" + PERMISSIVE_MATCH4),
-        hsl: new RegExp("hsl" + PERMISSIVE_MATCH3),
-        hsla: new RegExp("hsla" + PERMISSIVE_MATCH4),
-        hsv: new RegExp("hsv" + PERMISSIVE_MATCH3),
-        hsva: new RegExp("hsva" + PERMISSIVE_MATCH4),
-        hex3: /^#?([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
-        hex6: /^#?([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/,
-        hex4: /^#?([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
-        hex8: /^#?([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/
-      };
-    }();
-    function isValidCSSUnit(color2) {
-      return !!matchers.CSS_UNIT.exec(color2);
-    }
-    function stringInputToObject(color2) {
-      color2 = color2.replace(trimLeft, "").replace(trimRight, "").toLowerCase();
-      var named = false;
-      if (names[color2]) {
-        color2 = names[color2];
-        named = true;
-      } else if (color2 == "transparent") {
-        return { r: 0, g: 0, b: 0, a: 0, format: "name" };
-      }
-      var match;
-      if (match = matchers.rgb.exec(color2)) {
-        return { r: match[1], g: match[2], b: match[3] };
-      }
-      if (match = matchers.rgba.exec(color2)) {
-        return { r: match[1], g: match[2], b: match[3], a: match[4] };
-      }
-      if (match = matchers.hsl.exec(color2)) {
-        return { h: match[1], s: match[2], l: match[3] };
-      }
-      if (match = matchers.hsla.exec(color2)) {
-        return { h: match[1], s: match[2], l: match[3], a: match[4] };
-      }
-      if (match = matchers.hsv.exec(color2)) {
-        return { h: match[1], s: match[2], v: match[3] };
-      }
-      if (match = matchers.hsva.exec(color2)) {
-        return { h: match[1], s: match[2], v: match[3], a: match[4] };
-      }
-      if (match = matchers.hex8.exec(color2)) {
-        return {
-          r: parseIntFromHex(match[1]),
-          g: parseIntFromHex(match[2]),
-          b: parseIntFromHex(match[3]),
-          a: convertHexToDecimal(match[4]),
-          format: named ? "name" : "hex8"
-        };
-      }
-      if (match = matchers.hex6.exec(color2)) {
-        return {
-          r: parseIntFromHex(match[1]),
-          g: parseIntFromHex(match[2]),
-          b: parseIntFromHex(match[3]),
-          format: named ? "name" : "hex"
-        };
-      }
-      if (match = matchers.hex4.exec(color2)) {
-        return {
-          r: parseIntFromHex(match[1] + "" + match[1]),
-          g: parseIntFromHex(match[2] + "" + match[2]),
-          b: parseIntFromHex(match[3] + "" + match[3]),
-          a: convertHexToDecimal(match[4] + "" + match[4]),
-          format: named ? "name" : "hex8"
-        };
-      }
-      if (match = matchers.hex3.exec(color2)) {
-        return {
-          r: parseIntFromHex(match[1] + "" + match[1]),
-          g: parseIntFromHex(match[2] + "" + match[2]),
-          b: parseIntFromHex(match[3] + "" + match[3]),
-          format: named ? "name" : "hex"
-        };
-      }
+    if (this._a < 1) {
       return false;
     }
-    function validateWCAG2Parms(parms) {
-      var level, size;
-      parms = parms || { "level": "AA", "size": "small" };
-      level = (parms.level || "AA").toUpperCase();
-      size = (parms.size || "small").toLowerCase();
-      if (level !== "AA" && level !== "AAA") {
-        level = "AA";
-      }
-      if (size !== "small" && size !== "large") {
-        size = "small";
-      }
-      return { "level": level, "size": size };
+    return hexNames[rgbToHex(this._r, this._g, this._b, true)] || false;
+  },
+  toFilter: function toFilter(secondColor) {
+    var hex8String = "#" + rgbaToArgbHex(this._r, this._g, this._b, this._a);
+    var secondHex8String = hex8String;
+    var gradientType = this._gradientType ? "GradientType = 1, " : "";
+    if (secondColor) {
+      var s = tinycolor(secondColor);
+      secondHex8String = "#" + rgbaToArgbHex(s._r, s._g, s._b, s._a);
     }
-    if (module.exports) {
-      module.exports = tinycolor2;
-    } else {
-      window.tinycolor = tinycolor2;
+    return "progid:DXImageTransform.Microsoft.gradient(" + gradientType + "startColorstr=" + hex8String + ",endColorstr=" + secondHex8String + ")";
+  },
+  toString: function toString(format2) {
+    var formatSet = !!format2;
+    format2 = format2 || this._format;
+    var formattedString = false;
+    var hasAlpha = this._a < 1 && this._a >= 0;
+    var needsAlphaFormat = !formatSet && hasAlpha && (format2 === "hex" || format2 === "hex6" || format2 === "hex3" || format2 === "hex4" || format2 === "hex8" || format2 === "name");
+    if (needsAlphaFormat) {
+      if (format2 === "name" && this._a === 0) {
+        return this.toName();
+      }
+      return this.toRgbString();
     }
-  })(Math);
-})(tinycolor$1);
-var tinycolor = tinycolor$1.exports;
+    if (format2 === "rgb") {
+      formattedString = this.toRgbString();
+    }
+    if (format2 === "prgb") {
+      formattedString = this.toPercentageRgbString();
+    }
+    if (format2 === "hex" || format2 === "hex6") {
+      formattedString = this.toHexString();
+    }
+    if (format2 === "hex3") {
+      formattedString = this.toHexString(true);
+    }
+    if (format2 === "hex4") {
+      formattedString = this.toHex8String(true);
+    }
+    if (format2 === "hex8") {
+      formattedString = this.toHex8String();
+    }
+    if (format2 === "name") {
+      formattedString = this.toName();
+    }
+    if (format2 === "hsl") {
+      formattedString = this.toHslString();
+    }
+    if (format2 === "hsv") {
+      formattedString = this.toHsvString();
+    }
+    return formattedString || this.toHexString();
+  },
+  clone: function clone() {
+    return tinycolor(this.toString());
+  },
+  _applyModification: function _applyModification(fn, args) {
+    var color2 = fn.apply(null, [this].concat([].slice.call(args)));
+    this._r = color2._r;
+    this._g = color2._g;
+    this._b = color2._b;
+    this.setAlpha(color2._a);
+    return this;
+  },
+  lighten: function lighten() {
+    return this._applyModification(_lighten, arguments);
+  },
+  brighten: function brighten() {
+    return this._applyModification(_brighten, arguments);
+  },
+  darken: function darken() {
+    return this._applyModification(_darken, arguments);
+  },
+  desaturate: function desaturate() {
+    return this._applyModification(_desaturate, arguments);
+  },
+  saturate: function saturate() {
+    return this._applyModification(_saturate, arguments);
+  },
+  greyscale: function greyscale() {
+    return this._applyModification(_greyscale, arguments);
+  },
+  spin: function spin() {
+    return this._applyModification(_spin, arguments);
+  },
+  _applyCombination: function _applyCombination(fn, args) {
+    return fn.apply(null, [this].concat([].slice.call(args)));
+  },
+  analogous: function analogous() {
+    return this._applyCombination(_analogous, arguments);
+  },
+  complement: function complement() {
+    return this._applyCombination(_complement, arguments);
+  },
+  monochromatic: function monochromatic() {
+    return this._applyCombination(_monochromatic, arguments);
+  },
+  splitcomplement: function splitcomplement() {
+    return this._applyCombination(_splitcomplement, arguments);
+  },
+  triad: function triad() {
+    return this._applyCombination(polyad, [3]);
+  },
+  tetrad: function tetrad() {
+    return this._applyCombination(polyad, [4]);
+  }
+};
+tinycolor.fromRatio = function(color2, opts) {
+  if (_typeof(color2) == "object") {
+    var newColor = {};
+    for (var i in color2) {
+      if (color2.hasOwnProperty(i)) {
+        if (i === "a") {
+          newColor[i] = color2[i];
+        } else {
+          newColor[i] = convertToPercentage(color2[i]);
+        }
+      }
+    }
+    color2 = newColor;
+  }
+  return tinycolor(color2, opts);
+};
+function inputToRGB(color2) {
+  var rgb = {
+    r: 0,
+    g: 0,
+    b: 0
+  };
+  var a = 1;
+  var s = null;
+  var v = null;
+  var l = null;
+  var ok = false;
+  var format2 = false;
+  if (typeof color2 == "string") {
+    color2 = stringInputToObject(color2);
+  }
+  if (_typeof(color2) == "object") {
+    if (isValidCSSUnit(color2.r) && isValidCSSUnit(color2.g) && isValidCSSUnit(color2.b)) {
+      rgb = rgbToRgb(color2.r, color2.g, color2.b);
+      ok = true;
+      format2 = String(color2.r).substr(-1) === "%" ? "prgb" : "rgb";
+    } else if (isValidCSSUnit(color2.h) && isValidCSSUnit(color2.s) && isValidCSSUnit(color2.v)) {
+      s = convertToPercentage(color2.s);
+      v = convertToPercentage(color2.v);
+      rgb = hsvToRgb(color2.h, s, v);
+      ok = true;
+      format2 = "hsv";
+    } else if (isValidCSSUnit(color2.h) && isValidCSSUnit(color2.s) && isValidCSSUnit(color2.l)) {
+      s = convertToPercentage(color2.s);
+      l = convertToPercentage(color2.l);
+      rgb = hslToRgb(color2.h, s, l);
+      ok = true;
+      format2 = "hsl";
+    }
+    if (color2.hasOwnProperty("a")) {
+      a = color2.a;
+    }
+  }
+  a = boundAlpha(a);
+  return {
+    ok,
+    format: color2.format || format2,
+    r: Math.min(255, Math.max(rgb.r, 0)),
+    g: Math.min(255, Math.max(rgb.g, 0)),
+    b: Math.min(255, Math.max(rgb.b, 0)),
+    a
+  };
+}
+function rgbToRgb(r, g, b) {
+  return {
+    r: bound01(r, 255) * 255,
+    g: bound01(g, 255) * 255,
+    b: bound01(b, 255) * 255
+  };
+}
+function rgbToHsl(r, g, b) {
+  r = bound01(r, 255);
+  g = bound01(g, 255);
+  b = bound01(b, 255);
+  var max = Math.max(r, g, b), min = Math.min(r, g, b);
+  var h2, s, l = (max + min) / 2;
+  if (max == min) {
+    h2 = s = 0;
+  } else {
+    var d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r:
+        h2 = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h2 = (b - r) / d + 2;
+        break;
+      case b:
+        h2 = (r - g) / d + 4;
+        break;
+    }
+    h2 /= 6;
+  }
+  return {
+    h: h2,
+    s,
+    l
+  };
+}
+function hslToRgb(h2, s, l) {
+  var r, g, b;
+  h2 = bound01(h2, 360);
+  s = bound01(s, 100);
+  l = bound01(l, 100);
+  function hue2rgb(p2, q2, t2) {
+    if (t2 < 0)
+      t2 += 1;
+    if (t2 > 1)
+      t2 -= 1;
+    if (t2 < 1 / 6)
+      return p2 + (q2 - p2) * 6 * t2;
+    if (t2 < 1 / 2)
+      return q2;
+    if (t2 < 2 / 3)
+      return p2 + (q2 - p2) * (2 / 3 - t2) * 6;
+    return p2;
+  }
+  if (s === 0) {
+    r = g = b = l;
+  } else {
+    var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    var p = 2 * l - q;
+    r = hue2rgb(p, q, h2 + 1 / 3);
+    g = hue2rgb(p, q, h2);
+    b = hue2rgb(p, q, h2 - 1 / 3);
+  }
+  return {
+    r: r * 255,
+    g: g * 255,
+    b: b * 255
+  };
+}
+function rgbToHsv(r, g, b) {
+  r = bound01(r, 255);
+  g = bound01(g, 255);
+  b = bound01(b, 255);
+  var max = Math.max(r, g, b), min = Math.min(r, g, b);
+  var h2, s, v = max;
+  var d = max - min;
+  s = max === 0 ? 0 : d / max;
+  if (max == min) {
+    h2 = 0;
+  } else {
+    switch (max) {
+      case r:
+        h2 = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h2 = (b - r) / d + 2;
+        break;
+      case b:
+        h2 = (r - g) / d + 4;
+        break;
+    }
+    h2 /= 6;
+  }
+  return {
+    h: h2,
+    s,
+    v
+  };
+}
+function hsvToRgb(h2, s, v) {
+  h2 = bound01(h2, 360) * 6;
+  s = bound01(s, 100);
+  v = bound01(v, 100);
+  var i = Math.floor(h2), f = h2 - i, p = v * (1 - s), q = v * (1 - f * s), t2 = v * (1 - (1 - f) * s), mod = i % 6, r = [v, q, p, p, t2, v][mod], g = [t2, v, v, q, p, p][mod], b = [p, p, t2, v, v, q][mod];
+  return {
+    r: r * 255,
+    g: g * 255,
+    b: b * 255
+  };
+}
+function rgbToHex(r, g, b, allow3Char) {
+  var hex2 = [pad2(Math.round(r).toString(16)), pad2(Math.round(g).toString(16)), pad2(Math.round(b).toString(16))];
+  if (allow3Char && hex2[0].charAt(0) == hex2[0].charAt(1) && hex2[1].charAt(0) == hex2[1].charAt(1) && hex2[2].charAt(0) == hex2[2].charAt(1)) {
+    return hex2[0].charAt(0) + hex2[1].charAt(0) + hex2[2].charAt(0);
+  }
+  return hex2.join("");
+}
+function rgbaToHex(r, g, b, a, allow4Char) {
+  var hex2 = [pad2(Math.round(r).toString(16)), pad2(Math.round(g).toString(16)), pad2(Math.round(b).toString(16)), pad2(convertDecimalToHex(a))];
+  if (allow4Char && hex2[0].charAt(0) == hex2[0].charAt(1) && hex2[1].charAt(0) == hex2[1].charAt(1) && hex2[2].charAt(0) == hex2[2].charAt(1) && hex2[3].charAt(0) == hex2[3].charAt(1)) {
+    return hex2[0].charAt(0) + hex2[1].charAt(0) + hex2[2].charAt(0) + hex2[3].charAt(0);
+  }
+  return hex2.join("");
+}
+function rgbaToArgbHex(r, g, b, a) {
+  var hex2 = [pad2(convertDecimalToHex(a)), pad2(Math.round(r).toString(16)), pad2(Math.round(g).toString(16)), pad2(Math.round(b).toString(16))];
+  return hex2.join("");
+}
+tinycolor.equals = function(color1, color2) {
+  if (!color1 || !color2)
+    return false;
+  return tinycolor(color1).toRgbString() == tinycolor(color2).toRgbString();
+};
+tinycolor.random = function() {
+  return tinycolor.fromRatio({
+    r: Math.random(),
+    g: Math.random(),
+    b: Math.random()
+  });
+};
+function _desaturate(color2, amount) {
+  amount = amount === 0 ? 0 : amount || 10;
+  var hsl = tinycolor(color2).toHsl();
+  hsl.s -= amount / 100;
+  hsl.s = clamp01(hsl.s);
+  return tinycolor(hsl);
+}
+function _saturate(color2, amount) {
+  amount = amount === 0 ? 0 : amount || 10;
+  var hsl = tinycolor(color2).toHsl();
+  hsl.s += amount / 100;
+  hsl.s = clamp01(hsl.s);
+  return tinycolor(hsl);
+}
+function _greyscale(color2) {
+  return tinycolor(color2).desaturate(100);
+}
+function _lighten(color2, amount) {
+  amount = amount === 0 ? 0 : amount || 10;
+  var hsl = tinycolor(color2).toHsl();
+  hsl.l += amount / 100;
+  hsl.l = clamp01(hsl.l);
+  return tinycolor(hsl);
+}
+function _brighten(color2, amount) {
+  amount = amount === 0 ? 0 : amount || 10;
+  var rgb = tinycolor(color2).toRgb();
+  rgb.r = Math.max(0, Math.min(255, rgb.r - Math.round(255 * -(amount / 100))));
+  rgb.g = Math.max(0, Math.min(255, rgb.g - Math.round(255 * -(amount / 100))));
+  rgb.b = Math.max(0, Math.min(255, rgb.b - Math.round(255 * -(amount / 100))));
+  return tinycolor(rgb);
+}
+function _darken(color2, amount) {
+  amount = amount === 0 ? 0 : amount || 10;
+  var hsl = tinycolor(color2).toHsl();
+  hsl.l -= amount / 100;
+  hsl.l = clamp01(hsl.l);
+  return tinycolor(hsl);
+}
+function _spin(color2, amount) {
+  var hsl = tinycolor(color2).toHsl();
+  var hue = (hsl.h + amount) % 360;
+  hsl.h = hue < 0 ? 360 + hue : hue;
+  return tinycolor(hsl);
+}
+function _complement(color2) {
+  var hsl = tinycolor(color2).toHsl();
+  hsl.h = (hsl.h + 180) % 360;
+  return tinycolor(hsl);
+}
+function polyad(color2, number3) {
+  if (isNaN(number3) || number3 <= 0) {
+    throw new Error("Argument to polyad must be a positive number");
+  }
+  var hsl = tinycolor(color2).toHsl();
+  var result = [tinycolor(color2)];
+  var step = 360 / number3;
+  for (var i = 1; i < number3; i++) {
+    result.push(tinycolor({
+      h: (hsl.h + i * step) % 360,
+      s: hsl.s,
+      l: hsl.l
+    }));
+  }
+  return result;
+}
+function _splitcomplement(color2) {
+  var hsl = tinycolor(color2).toHsl();
+  var h2 = hsl.h;
+  return [tinycolor(color2), tinycolor({
+    h: (h2 + 72) % 360,
+    s: hsl.s,
+    l: hsl.l
+  }), tinycolor({
+    h: (h2 + 216) % 360,
+    s: hsl.s,
+    l: hsl.l
+  })];
+}
+function _analogous(color2, results, slices) {
+  results = results || 6;
+  slices = slices || 30;
+  var hsl = tinycolor(color2).toHsl();
+  var part = 360 / slices;
+  var ret = [tinycolor(color2)];
+  for (hsl.h = (hsl.h - (part * results >> 1) + 720) % 360; --results; ) {
+    hsl.h = (hsl.h + part) % 360;
+    ret.push(tinycolor(hsl));
+  }
+  return ret;
+}
+function _monochromatic(color2, results) {
+  results = results || 6;
+  var hsv = tinycolor(color2).toHsv();
+  var h2 = hsv.h, s = hsv.s, v = hsv.v;
+  var ret = [];
+  var modification = 1 / results;
+  while (results--) {
+    ret.push(tinycolor({
+      h: h2,
+      s,
+      v
+    }));
+    v = (v + modification) % 1;
+  }
+  return ret;
+}
+tinycolor.mix = function(color1, color2, amount) {
+  amount = amount === 0 ? 0 : amount || 50;
+  var rgb1 = tinycolor(color1).toRgb();
+  var rgb2 = tinycolor(color2).toRgb();
+  var p = amount / 100;
+  var rgba = {
+    r: (rgb2.r - rgb1.r) * p + rgb1.r,
+    g: (rgb2.g - rgb1.g) * p + rgb1.g,
+    b: (rgb2.b - rgb1.b) * p + rgb1.b,
+    a: (rgb2.a - rgb1.a) * p + rgb1.a
+  };
+  return tinycolor(rgba);
+};
+tinycolor.readability = function(color1, color2) {
+  var c1 = tinycolor(color1);
+  var c2 = tinycolor(color2);
+  return (Math.max(c1.getLuminance(), c2.getLuminance()) + 0.05) / (Math.min(c1.getLuminance(), c2.getLuminance()) + 0.05);
+};
+tinycolor.isReadable = function(color1, color2, wcag2) {
+  var readability = tinycolor.readability(color1, color2);
+  var wcag2Parms, out;
+  out = false;
+  wcag2Parms = validateWCAG2Parms(wcag2);
+  switch (wcag2Parms.level + wcag2Parms.size) {
+    case "AAsmall":
+    case "AAAlarge":
+      out = readability >= 4.5;
+      break;
+    case "AAlarge":
+      out = readability >= 3;
+      break;
+    case "AAAsmall":
+      out = readability >= 7;
+      break;
+  }
+  return out;
+};
+tinycolor.mostReadable = function(baseColor, colorList2, args) {
+  var bestColor = null;
+  var bestScore = 0;
+  var readability;
+  var includeFallbackColors, level, size;
+  args = args || {};
+  includeFallbackColors = args.includeFallbackColors;
+  level = args.level;
+  size = args.size;
+  for (var i = 0; i < colorList2.length; i++) {
+    readability = tinycolor.readability(baseColor, colorList2[i]);
+    if (readability > bestScore) {
+      bestScore = readability;
+      bestColor = tinycolor(colorList2[i]);
+    }
+  }
+  if (tinycolor.isReadable(baseColor, bestColor, {
+    level,
+    size
+  }) || !includeFallbackColors) {
+    return bestColor;
+  } else {
+    args.includeFallbackColors = false;
+    return tinycolor.mostReadable(baseColor, ["#fff", "#000"], args);
+  }
+};
+var names = tinycolor.names = {
+  aliceblue: "f0f8ff",
+  antiquewhite: "faebd7",
+  aqua: "0ff",
+  aquamarine: "7fffd4",
+  azure: "f0ffff",
+  beige: "f5f5dc",
+  bisque: "ffe4c4",
+  black: "000",
+  blanchedalmond: "ffebcd",
+  blue: "00f",
+  blueviolet: "8a2be2",
+  brown: "a52a2a",
+  burlywood: "deb887",
+  burntsienna: "ea7e5d",
+  cadetblue: "5f9ea0",
+  chartreuse: "7fff00",
+  chocolate: "d2691e",
+  coral: "ff7f50",
+  cornflowerblue: "6495ed",
+  cornsilk: "fff8dc",
+  crimson: "dc143c",
+  cyan: "0ff",
+  darkblue: "00008b",
+  darkcyan: "008b8b",
+  darkgoldenrod: "b8860b",
+  darkgray: "a9a9a9",
+  darkgreen: "006400",
+  darkgrey: "a9a9a9",
+  darkkhaki: "bdb76b",
+  darkmagenta: "8b008b",
+  darkolivegreen: "556b2f",
+  darkorange: "ff8c00",
+  darkorchid: "9932cc",
+  darkred: "8b0000",
+  darksalmon: "e9967a",
+  darkseagreen: "8fbc8f",
+  darkslateblue: "483d8b",
+  darkslategray: "2f4f4f",
+  darkslategrey: "2f4f4f",
+  darkturquoise: "00ced1",
+  darkviolet: "9400d3",
+  deeppink: "ff1493",
+  deepskyblue: "00bfff",
+  dimgray: "696969",
+  dimgrey: "696969",
+  dodgerblue: "1e90ff",
+  firebrick: "b22222",
+  floralwhite: "fffaf0",
+  forestgreen: "228b22",
+  fuchsia: "f0f",
+  gainsboro: "dcdcdc",
+  ghostwhite: "f8f8ff",
+  gold: "ffd700",
+  goldenrod: "daa520",
+  gray: "808080",
+  green: "008000",
+  greenyellow: "adff2f",
+  grey: "808080",
+  honeydew: "f0fff0",
+  hotpink: "ff69b4",
+  indianred: "cd5c5c",
+  indigo: "4b0082",
+  ivory: "fffff0",
+  khaki: "f0e68c",
+  lavender: "e6e6fa",
+  lavenderblush: "fff0f5",
+  lawngreen: "7cfc00",
+  lemonchiffon: "fffacd",
+  lightblue: "add8e6",
+  lightcoral: "f08080",
+  lightcyan: "e0ffff",
+  lightgoldenrodyellow: "fafad2",
+  lightgray: "d3d3d3",
+  lightgreen: "90ee90",
+  lightgrey: "d3d3d3",
+  lightpink: "ffb6c1",
+  lightsalmon: "ffa07a",
+  lightseagreen: "20b2aa",
+  lightskyblue: "87cefa",
+  lightslategray: "789",
+  lightslategrey: "789",
+  lightsteelblue: "b0c4de",
+  lightyellow: "ffffe0",
+  lime: "0f0",
+  limegreen: "32cd32",
+  linen: "faf0e6",
+  magenta: "f0f",
+  maroon: "800000",
+  mediumaquamarine: "66cdaa",
+  mediumblue: "0000cd",
+  mediumorchid: "ba55d3",
+  mediumpurple: "9370db",
+  mediumseagreen: "3cb371",
+  mediumslateblue: "7b68ee",
+  mediumspringgreen: "00fa9a",
+  mediumturquoise: "48d1cc",
+  mediumvioletred: "c71585",
+  midnightblue: "191970",
+  mintcream: "f5fffa",
+  mistyrose: "ffe4e1",
+  moccasin: "ffe4b5",
+  navajowhite: "ffdead",
+  navy: "000080",
+  oldlace: "fdf5e6",
+  olive: "808000",
+  olivedrab: "6b8e23",
+  orange: "ffa500",
+  orangered: "ff4500",
+  orchid: "da70d6",
+  palegoldenrod: "eee8aa",
+  palegreen: "98fb98",
+  paleturquoise: "afeeee",
+  palevioletred: "db7093",
+  papayawhip: "ffefd5",
+  peachpuff: "ffdab9",
+  peru: "cd853f",
+  pink: "ffc0cb",
+  plum: "dda0dd",
+  powderblue: "b0e0e6",
+  purple: "800080",
+  rebeccapurple: "663399",
+  red: "f00",
+  rosybrown: "bc8f8f",
+  royalblue: "4169e1",
+  saddlebrown: "8b4513",
+  salmon: "fa8072",
+  sandybrown: "f4a460",
+  seagreen: "2e8b57",
+  seashell: "fff5ee",
+  sienna: "a0522d",
+  silver: "c0c0c0",
+  skyblue: "87ceeb",
+  slateblue: "6a5acd",
+  slategray: "708090",
+  slategrey: "708090",
+  snow: "fffafa",
+  springgreen: "00ff7f",
+  steelblue: "4682b4",
+  tan: "d2b48c",
+  teal: "008080",
+  thistle: "d8bfd8",
+  tomato: "ff6347",
+  turquoise: "40e0d0",
+  violet: "ee82ee",
+  wheat: "f5deb3",
+  white: "fff",
+  whitesmoke: "f5f5f5",
+  yellow: "ff0",
+  yellowgreen: "9acd32"
+};
+var hexNames = tinycolor.hexNames = flip(names);
+function flip(o) {
+  var flipped = {};
+  for (var i in o) {
+    if (o.hasOwnProperty(i)) {
+      flipped[o[i]] = i;
+    }
+  }
+  return flipped;
+}
+function boundAlpha(a) {
+  a = parseFloat(a);
+  if (isNaN(a) || a < 0 || a > 1) {
+    a = 1;
+  }
+  return a;
+}
+function bound01(n, max) {
+  if (isOnePointZero(n))
+    n = "100%";
+  var processPercent = isPercentage(n);
+  n = Math.min(max, Math.max(0, parseFloat(n)));
+  if (processPercent) {
+    n = parseInt(n * max, 10) / 100;
+  }
+  if (Math.abs(n - max) < 1e-6) {
+    return 1;
+  }
+  return n % max / parseFloat(max);
+}
+function clamp01(val) {
+  return Math.min(1, Math.max(0, val));
+}
+function parseIntFromHex(val) {
+  return parseInt(val, 16);
+}
+function isOnePointZero(n) {
+  return typeof n == "string" && n.indexOf(".") != -1 && parseFloat(n) === 1;
+}
+function isPercentage(n) {
+  return typeof n === "string" && n.indexOf("%") != -1;
+}
+function pad2(c) {
+  return c.length == 1 ? "0" + c : "" + c;
+}
+function convertToPercentage(n) {
+  if (n <= 1) {
+    n = n * 100 + "%";
+  }
+  return n;
+}
+function convertDecimalToHex(d) {
+  return Math.round(parseFloat(d) * 255).toString(16);
+}
+function convertHexToDecimal(h2) {
+  return parseIntFromHex(h2) / 255;
+}
+var matchers = function() {
+  var CSS_INTEGER = "[-\\+]?\\d+%?";
+  var CSS_NUMBER = "[-\\+]?\\d*\\.\\d+%?";
+  var CSS_UNIT = "(?:" + CSS_NUMBER + ")|(?:" + CSS_INTEGER + ")";
+  var PERMISSIVE_MATCH3 = "[\\s|\\(]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")\\s*\\)?";
+  var PERMISSIVE_MATCH4 = "[\\s|\\(]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")\\s*\\)?";
+  return {
+    CSS_UNIT: new RegExp(CSS_UNIT),
+    rgb: new RegExp("rgb" + PERMISSIVE_MATCH3),
+    rgba: new RegExp("rgba" + PERMISSIVE_MATCH4),
+    hsl: new RegExp("hsl" + PERMISSIVE_MATCH3),
+    hsla: new RegExp("hsla" + PERMISSIVE_MATCH4),
+    hsv: new RegExp("hsv" + PERMISSIVE_MATCH3),
+    hsva: new RegExp("hsva" + PERMISSIVE_MATCH4),
+    hex3: /^#?([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
+    hex6: /^#?([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/,
+    hex4: /^#?([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
+    hex8: /^#?([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/
+  };
+}();
+function isValidCSSUnit(color2) {
+  return !!matchers.CSS_UNIT.exec(color2);
+}
+function stringInputToObject(color2) {
+  color2 = color2.replace(trimLeft, "").replace(trimRight, "").toLowerCase();
+  var named = false;
+  if (names[color2]) {
+    color2 = names[color2];
+    named = true;
+  } else if (color2 == "transparent") {
+    return {
+      r: 0,
+      g: 0,
+      b: 0,
+      a: 0,
+      format: "name"
+    };
+  }
+  var match;
+  if (match = matchers.rgb.exec(color2)) {
+    return {
+      r: match[1],
+      g: match[2],
+      b: match[3]
+    };
+  }
+  if (match = matchers.rgba.exec(color2)) {
+    return {
+      r: match[1],
+      g: match[2],
+      b: match[3],
+      a: match[4]
+    };
+  }
+  if (match = matchers.hsl.exec(color2)) {
+    return {
+      h: match[1],
+      s: match[2],
+      l: match[3]
+    };
+  }
+  if (match = matchers.hsla.exec(color2)) {
+    return {
+      h: match[1],
+      s: match[2],
+      l: match[3],
+      a: match[4]
+    };
+  }
+  if (match = matchers.hsv.exec(color2)) {
+    return {
+      h: match[1],
+      s: match[2],
+      v: match[3]
+    };
+  }
+  if (match = matchers.hsva.exec(color2)) {
+    return {
+      h: match[1],
+      s: match[2],
+      v: match[3],
+      a: match[4]
+    };
+  }
+  if (match = matchers.hex8.exec(color2)) {
+    return {
+      r: parseIntFromHex(match[1]),
+      g: parseIntFromHex(match[2]),
+      b: parseIntFromHex(match[3]),
+      a: convertHexToDecimal(match[4]),
+      format: named ? "name" : "hex8"
+    };
+  }
+  if (match = matchers.hex6.exec(color2)) {
+    return {
+      r: parseIntFromHex(match[1]),
+      g: parseIntFromHex(match[2]),
+      b: parseIntFromHex(match[3]),
+      format: named ? "name" : "hex"
+    };
+  }
+  if (match = matchers.hex4.exec(color2)) {
+    return {
+      r: parseIntFromHex(match[1] + "" + match[1]),
+      g: parseIntFromHex(match[2] + "" + match[2]),
+      b: parseIntFromHex(match[3] + "" + match[3]),
+      a: convertHexToDecimal(match[4] + "" + match[4]),
+      format: named ? "name" : "hex8"
+    };
+  }
+  if (match = matchers.hex3.exec(color2)) {
+    return {
+      r: parseIntFromHex(match[1] + "" + match[1]),
+      g: parseIntFromHex(match[2] + "" + match[2]),
+      b: parseIntFromHex(match[3] + "" + match[3]),
+      format: named ? "name" : "hex"
+    };
+  }
+  return false;
+}
+function validateWCAG2Parms(parms) {
+  var level, size;
+  parms = parms || {
+    level: "AA",
+    size: "small"
+  };
+  level = (parms.level || "AA").toUpperCase();
+  size = (parms.size || "small").toLowerCase();
+  if (level !== "AA" && level !== "AAA") {
+    level = "AA";
+  }
+  if (size !== "small" && size !== "large") {
+    size = "small";
+  }
+  return {
+    level,
+    size
+  };
+}
 var handleEscapeMixin = {
   inject: ["ColorPickerInstance"],
   methods: {
@@ -13392,7 +13551,7 @@ var Prefixes = {
     };
   }
 };
-function setAlpha(data, alpha) {
+function setAlpha2(data, alpha) {
   const color2 = tinycolor(data);
   const { _a } = color2;
   if (_a === void 0 || _a === null) {
@@ -13404,13 +13563,13 @@ function getColor(data, colorData) {
   const alpha = colorData && colorData.a;
   if (colorData) {
     if (colorData.hsl) {
-      return setAlpha(colorData.hsl, alpha);
+      return setAlpha2(colorData.hsl, alpha);
     }
     if (colorData.hex && colorData.hex.length > 0) {
-      return setAlpha(colorData.hex, alpha);
+      return setAlpha2(colorData.hex, alpha);
     }
   }
-  return setAlpha(colorData, alpha);
+  return setAlpha2(colorData, alpha);
 }
 function changeColor(data, oldHue) {
   const colorData = data === "" ? "#2d8cf0" : data;
@@ -13505,7 +13664,7 @@ const _sfc_main$1M = {
       e.preventDefault();
       e.stopPropagation();
       this.blurColor();
-      const grid = __spreadValues({}, this.grid);
+      const grid = { ...this.grid };
       if (e[this.powerKey]) {
         if (direction < 0) {
           grid[axis] = 1;
@@ -14723,10 +14882,10 @@ const _hoisted_2$y = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon 
 const _hoisted_3$s = [
   _hoisted_2$y
 ];
-const _hoisted_4$n = ["innerHTML"];
-const _hoisted_5$f = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1);
-const _hoisted_6$7 = [
-  _hoisted_5$f
+const _hoisted_4$m = ["innerHTML"];
+const _hoisted_5$e = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1);
+const _hoisted_6$6 = [
+  _hoisted_5$e
 ];
 function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_render_cell = resolveComponent("render-cell");
@@ -14759,7 +14918,7 @@ function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
       createElementVNode("div", {
         class: normalizeClass([$options.baseClass + "-content-text"]),
         innerHTML: $props.content
-      }, null, 10, _hoisted_4$n),
+      }, null, 10, _hoisted_4$m),
       createElementVNode("div", {
         class: normalizeClass([$options.baseClass + "-content-text"])
       }, [
@@ -14769,7 +14928,7 @@ function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
         key: 0,
         class: normalizeClass([$options.baseClass + "-close"]),
         onClick: _cache[1] || (_cache[1] = (...args) => $options.close && $options.close(...args))
-      }, _hoisted_6$7, 2)) : createCommentVNode("", true)
+      }, _hoisted_6$6, 2)) : createCommentVNode("", true)
     ], 2)) : createCommentVNode("", true)
   ], 6);
 }
@@ -14936,7 +15095,8 @@ const iconPrefixCls$3 = "ivu-icon";
 const prefixKey$1 = "ivu_message_key_";
 const defaults$1 = {
   top: 24,
-  duration: 1.5
+  duration: 1.5,
+  background: false
 };
 let messageInstance;
 let name$2 = 1;
@@ -14960,7 +15120,7 @@ function getMessageInstance() {
 }
 function notice$1(content = "", duration2 = defaults$1.duration, type2, onClose = function() {
 }, closable = false, render = function() {
-}, background = false) {
+}, background = defaults$1.background) {
   const iconType = iconTypes$1[type2];
   const loadCls = type2 === "loading" ? " ivu-load-loop" : "";
   let instance = getMessageInstance();
@@ -15021,6 +15181,8 @@ var $Message = {
     if (options.duration || options.duration === 0) {
       defaults$1.duration = options.duration;
     }
+    if (options.background)
+      defaults$1.background = options.background;
   },
   destroy() {
     let instance = getMessageInstance();
@@ -15171,7 +15333,7 @@ var countUp_min = { exports: {} };
         var n3, t4, e3, i2, r2, o2, s2 = a3 < 0;
         if (a3 = Math.abs(a3).toFixed(l.decimals), a3 += "", n3 = a3.split("."), t4 = n3[0], e3 = n3.length > 1 ? l.options.decimal + n3[1] : "", l.options.useGrouping) {
           for (i2 = "", r2 = 0, o2 = t4.length; r2 < o2; ++r2)
-            r2 !== 0 && r2 % 3 === 0 && (i2 = l.options.separator + i2), i2 = t4[o2 - r2 - 1] + i2;
+            0 !== r2 && r2 % 3 === 0 && (i2 = l.options.separator + i2), i2 = t4[o2 - r2 - 1] + i2;
           t4 = i2;
         }
         return l.options.numerals.length && (t4 = t4.replace(/[0-9]/g, function(a4) {
@@ -15184,15 +15346,15 @@ var countUp_min = { exports: {} };
         return t4 * (-Math.pow(2, -10 * a3 / e3) + 1) * 1024 / 1023 + n3;
       }
       function u(a3) {
-        return typeof a3 == "number" && !isNaN(a3);
+        return "number" == typeof a3 && !isNaN(a3);
       }
       var l = this;
       if (l.version = function() {
         return "1.9.3";
-      }, l.options = { useEasing: true, useGrouping: true, separator: ",", decimal: ".", easingFn: s, formattingFn: o, prefix: "", suffix: "", numerals: [] }, r && typeof r == "object")
+      }, l.options = { useEasing: true, useGrouping: true, separator: ",", decimal: ".", easingFn: s, formattingFn: o, prefix: "", suffix: "", numerals: [] }, r && "object" == typeof r)
         for (var m in l.options)
-          r.hasOwnProperty(m) && r[m] !== null && (l.options[m] = r[m]);
-      l.options.separator === "" ? l.options.useGrouping = false : l.options.separator = "" + l.options.separator;
+          r.hasOwnProperty(m) && null !== r[m] && (l.options[m] = r[m]);
+      "" === l.options.separator ? l.options.useGrouping = false : l.options.separator = "" + l.options.separator;
       for (var d = 0, c = ["webkit", "moz", "ms", "o"], f = 0; f < c.length && !window.requestAnimationFrame; ++f)
         window.requestAnimationFrame = window[c[f] + "RequestAnimationFrame"], window.cancelAnimationFrame = window[c[f] + "CancelAnimationFrame"] || window[c[f] + "CancelRequestAnimationFrame"];
       window.requestAnimationFrame || (window.requestAnimationFrame = function(a3, n3) {
@@ -15203,10 +15365,10 @@ var countUp_min = { exports: {} };
       }), window.cancelAnimationFrame || (window.cancelAnimationFrame = function(a3) {
         clearTimeout(a3);
       }), l.initialize = function() {
-        return !!l.initialized || (l.error = "", l.d = typeof a2 == "string" ? document.getElementById(a2) : a2, l.d ? (l.startVal = Number(n2), l.endVal = Number(t3), u(l.startVal) && u(l.endVal) ? (l.decimals = Math.max(0, e2 || 0), l.dec = Math.pow(10, l.decimals), l.duration = 1e3 * Number(i) || 2e3, l.countDown = l.startVal > l.endVal, l.frameVal = l.startVal, l.initialized = true, true) : (l.error = "[CountUp] startVal (" + n2 + ") or endVal (" + t3 + ") is not a number", false)) : (l.error = "[CountUp] target is null or undefined", false));
+        return !!l.initialized || (l.error = "", l.d = "string" == typeof a2 ? document.getElementById(a2) : a2, l.d ? (l.startVal = Number(n2), l.endVal = Number(t3), u(l.startVal) && u(l.endVal) ? (l.decimals = Math.max(0, e2 || 0), l.dec = Math.pow(10, l.decimals), l.duration = 1e3 * Number(i) || 2e3, l.countDown = l.startVal > l.endVal, l.frameVal = l.startVal, l.initialized = true, true) : (l.error = "[CountUp] startVal (" + n2 + ") or endVal (" + t3 + ") is not a number", false)) : (l.error = "[CountUp] target is null or undefined", false));
       }, l.printValue = function(a3) {
         var n3 = l.options.formattingFn(a3);
-        l.d.tagName === "INPUT" ? this.d.value = n3 : l.d.tagName === "text" || l.d.tagName === "tspan" ? this.d.textContent = n3 : this.d.innerHTML = n3;
+        "INPUT" === l.d.tagName ? this.d.value = n3 : "text" === l.d.tagName || "tspan" === l.d.tagName ? this.d.textContent = n3 : this.d.innerHTML = n3;
       }, l.count = function(a3) {
         l.startTime || (l.startTime = a3), l.timestamp = a3;
         var n3 = a3 - l.startTime;
@@ -15283,7 +15445,14 @@ const _sfc_main$1D = {
   methods: {
     init() {
       if (!this.CountUp) {
-        this.CountUp = new CountUp$1(this.$el, this.start, this.end, this.decimals, this.duration, this.options);
+        this.CountUp = new CountUp$1(
+          this.$el,
+          this.start,
+          this.end,
+          this.decimals,
+          this.duration,
+          this.options
+        );
         this.CountUp.start(() => {
           this.callback(this.CountUp);
         });
@@ -15545,14 +15714,14 @@ fecha.parse = function(dateStr, format2, i18nSettings) {
   if (dateStr.length > 1e3) {
     return false;
   }
-  var isValid = true;
+  var isValid2 = true;
   var dateInfo = {};
   format2.replace(token, function($0) {
     if (parseFlags[$0]) {
       var info = parseFlags[$0];
       var index2 = dateStr.search(info[0]);
       if (!~index2) {
-        isValid = false;
+        isValid2 = false;
       } else {
         dateStr.replace(info[0], function(result) {
           info[1](dateInfo, result, i18n2);
@@ -15563,7 +15732,7 @@ fecha.parse = function(dateStr, format2, i18nSettings) {
     }
     return parseFlags[$0] ? "" : $0.slice(1, $0.length - 1);
   });
-  if (!isValid) {
+  if (!isValid2) {
     return false;
   }
   var today = new Date();
@@ -15575,9 +15744,25 @@ fecha.parse = function(dateStr, format2, i18nSettings) {
   var date3;
   if (dateInfo.timezoneOffset != null) {
     dateInfo.minute = +(dateInfo.minute || 0) - +dateInfo.timezoneOffset;
-    date3 = new Date(Date.UTC(dateInfo.year || today.getFullYear(), dateInfo.month || 0, dateInfo.day || 1, dateInfo.hour || 0, dateInfo.minute || 0, dateInfo.second || 0, dateInfo.millisecond || 0));
+    date3 = new Date(Date.UTC(
+      dateInfo.year || today.getFullYear(),
+      dateInfo.month || 0,
+      dateInfo.day || 1,
+      dateInfo.hour || 0,
+      dateInfo.minute || 0,
+      dateInfo.second || 0,
+      dateInfo.millisecond || 0
+    ));
   } else {
-    date3 = new Date(dateInfo.year || today.getFullYear(), dateInfo.month || 0, dateInfo.day || 1, dateInfo.hour || 0, dateInfo.minute || 0, dateInfo.second || 0, dateInfo.millisecond || 0);
+    date3 = new Date(
+      dateInfo.year || today.getFullYear(),
+      dateInfo.month || 0,
+      dateInfo.day || 1,
+      dateInfo.hour || 0,
+      dateInfo.minute || 0,
+      dateInfo.second || 0,
+      dateInfo.millisecond || 0
+    );
   }
   return date3;
 };
@@ -16226,10 +16411,11 @@ const _sfc_main$1C = {
       const col = column % columnsPerPicker;
       if (horizontal) {
         const time = this.internalValue.map(extractTime);
-        this.focusedTime = __spreadProps(__spreadValues({}, this.focusedTime), {
+        this.focusedTime = {
+          ...this.focusedTime,
           column,
           time
-        });
+        };
         timePickers.forEach((instance, i) => {
           if (i === pickerIndex)
             instance.updateFocusedTime(col, time[pickerIndex]);
@@ -16250,9 +16436,10 @@ const _sfc_main$1C = {
           time[col] = nextValue;
           return time;
         });
-        this.focusedTime = __spreadProps(__spreadValues({}, this.focusedTime), {
+        this.focusedTime = {
+          ...this.focusedTime,
           time: times
-        });
+        };
         timePickers.forEach((instance, i) => {
           if (i === pickerIndex)
             instance.updateFocusedTime(col, times[i]);
@@ -16269,9 +16456,17 @@ const _sfc_main$1C = {
       }
       if (shift) {
         if (this.type === "year") {
-          this.focusedDate = new Date(this.focusedDate.getFullYear() + mapPossibleValues(direction, 0, 10), this.focusedDate.getMonth(), this.focusedDate.getDate());
+          this.focusedDate = new Date(
+            this.focusedDate.getFullYear() + mapPossibleValues(direction, 0, 10),
+            this.focusedDate.getMonth(),
+            this.focusedDate.getDate()
+          );
         } else {
-          this.focusedDate = new Date(this.focusedDate.getFullYear() + mapPossibleValues(direction, 0, 1), this.focusedDate.getMonth() + mapPossibleValues(direction, 1, 0), this.focusedDate.getDate());
+          this.focusedDate = new Date(
+            this.focusedDate.getFullYear() + mapPossibleValues(direction, 0, 1),
+            this.focusedDate.getMonth() + mapPossibleValues(direction, 1, 0),
+            this.focusedDate.getDate()
+          );
         }
         const position = direction.match(/left|down/) ? "prev" : "next";
         const double = direction.match(/up|down/) ? "-double" : "";
@@ -16354,7 +16549,10 @@ const _sfc_main$1C = {
       this.handleFormItemChange("change", "");
       this.emitChange(this.type);
       this.reset();
-      setTimeout(() => this.onSelectionModeChange(this.type), 500);
+      setTimeout(
+        () => this.onSelectionModeChange(this.type),
+        500
+      );
     },
     emitChange(type2) {
       nextTick(() => {
@@ -16419,9 +16617,10 @@ const _sfc_main$1C = {
       }
       if (this.internalValue[0])
         this.focusedDate = this.internalValue[0];
-      this.focusedTime = __spreadProps(__spreadValues({}, this.focusedTime), {
+      this.focusedTime = {
+        ...this.focusedTime,
         time: this.internalValue.map(extractTime)
-      });
+      };
       if (!this.isConfirm)
         this.onSelectionModeChange(this.type);
       if (!this.isConfirm)
@@ -16966,14 +17165,15 @@ const _sfc_main$1B = {
           cell.date.setTime(cell.date.getTime() + cell.date.getTimezoneOffset() * 6e4 + 480 * 60 * 1e3);
         const time = cell.date && clearHours(cell.date);
         const dateIsInCurrentMonth = cell.date && tableMonth === cell.date.getMonth();
-        return __spreadProps(__spreadValues({}, cell), {
+        return {
+          ...cell,
           type: time === today ? "today" : cell.type,
           selected: dateIsInCurrentMonth && selectedDays.includes(time),
           disabled: cell.date && disabledTestFn && disabledTestFn(new Date(time)),
           range: dateIsInCurrentMonth && isRange && isInRange(time, rangeStart, rangeEnd),
           start: dateIsInCurrentMonth && isRange && time === minDay,
           end: dateIsInCurrentMonth && isRange && time === maxDay
-        });
+        };
       }).cells.slice(this.showWeekNumbers ? 8 : 0);
     }
   },
@@ -17319,9 +17519,10 @@ const _sfc_main$1y = {
         const value = values[i];
         if (this[part] === value)
           return obj;
-        return __spreadProps(__spreadValues({}, obj), {
+        return {
+          ...obj,
           [part]: value
-        });
+        };
       }, {});
       if (Object.keys(changes).length > 0) {
         this.emitChange(changes);
@@ -17625,7 +17826,10 @@ var Mixin$1 = {
       this.$emit("on-pick-click");
     },
     resetView() {
-      setTimeout(() => this.currentView = this.selectionMode, 500);
+      setTimeout(
+        () => this.currentView = this.selectionMode,
+        500
+      );
     },
     handleClear() {
       this.dates = this.dates.map(() => null);
@@ -17707,7 +17911,10 @@ const _sfc_main$1w = {
     disabledHMS() {
       const disabledTypes = ["disabledHours", "disabledMinutes", "disabledSeconds"];
       if (this.disabledDate === returnFalse || !this.modelValue[0]) {
-        const disabled = disabledTypes.reduce((obj, type2) => (obj[type2] = this[type2], obj), {});
+        const disabled = disabledTypes.reduce(
+          (obj, type2) => (obj[type2] = this[type2], obj),
+          {}
+        );
         return disabled;
       } else {
         const slots = [24, 60, 60];
@@ -17723,7 +17930,10 @@ const _sfc_main$1w = {
           }
           return toDisable.filter(unique);
         });
-        return disabledTypes.reduce((obj, type2, i) => (obj[type2] = disabledHMS[i], obj), {});
+        return disabledTypes.reduce(
+          (obj, type2, i) => (obj[type2] = disabledHMS[i], obj),
+          {}
+        );
       }
     }
   },
@@ -17737,7 +17947,9 @@ const _sfc_main$1w = {
   methods: {
     handleChange(date3, emit = true) {
       const newDate = new Date(this.date);
-      Object.keys(date3).forEach((type2) => newDate[`set${capitalize$1(type2)}`](date3[type2]));
+      Object.keys(date3).forEach(
+        (type2) => newDate[`set${capitalize$1(type2)}`](date3[type2])
+      );
       if (emit)
         this.$emit("on-pick", newDate, "time");
     }
@@ -18079,7 +18291,7 @@ function _sfc_render$1g(_ctx, _cache, $props, $setup, $data, $options) {
           "focused-date": _ctx.focusedDate,
           onOnPick: $options.panelPickerHandlers,
           onOnPickClick: _ctx.handlePickClick
-        }, null, 8, ["table-date", "show-week-numbers", "model-value", "selection-mode", "disabled-date", "focused-date", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
+        }, null, 40, ["table-date", "show-week-numbers", "model-value", "selection-mode", "disabled-date", "focused-date", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
       ], 2),
       withDirectives(createElementVNode("div", {
         class: normalizeClass([$data.prefixCls + "-content"])
@@ -18460,7 +18672,11 @@ const _sfc_main$1s = {
         const currentDate = this[`${otherPanel}PanelDate`];
         const temp = new Date(currentDate);
         if (type2 === "Month") {
-          const nextMonthLastDate = new Date(temp.getFullYear(), temp.getMonth() + increment + 1, 0).getDate();
+          const nextMonthLastDate = new Date(
+            temp.getFullYear(),
+            temp.getMonth() + increment + 1,
+            0
+          ).getDate();
           temp.setDate(Math.min(nextMonthLastDate, temp.getDate()));
         }
         temp[`set${type2}`](temp[`get${type2}`]() + increment);
@@ -18598,7 +18814,7 @@ function _sfc_render$1e(_ctx, _cache, $props, $setup, $data, $options) {
           onOnChangeRange: $options.handleChangeRange,
           onOnPick: $options.panelPickerHandlers.left,
           onOnPickClick: _ctx.handlePickClick
-        }, null, 8, ["table-date", "disabled-date", "range-state", "show-week-numbers", "model-value", "focused-date", "onOnChangeRange", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
+        }, null, 40, ["table-date", "disabled-date", "range-state", "show-week-numbers", "model-value", "focused-date", "onOnChangeRange", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
       ], 2), [
         [vShow, !_ctx.isTime]
       ]),
@@ -18660,7 +18876,7 @@ function _sfc_render$1e(_ctx, _cache, $props, $setup, $data, $options) {
           onOnChangeRange: $options.handleChangeRange,
           onOnPick: $options.panelPickerHandlers.right,
           onOnPickClick: _ctx.handlePickClick
-        }, null, 8, ["table-date", "range-state", "disabled-date", "show-week-numbers", "model-value", "focused-date", "onOnChangeRange", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
+        }, null, 40, ["table-date", "range-state", "disabled-date", "show-week-numbers", "model-value", "focused-date", "onOnChangeRange", "onOnPick", "onOnPickClick"])) : createCommentVNode("", true)
       ], 2), [
         [vShow, !_ctx.isTime]
       ]),
@@ -18761,9 +18977,10 @@ const _sfc_main$1r = {
       class: "ivu-description-detail"
     }, this.$slots.default());
     const children = termNode ? [termNode, detailNode] : [detailNode];
-    return h(Col, __spreadProps(__spreadValues({}, responsive[this.DescriptionListInstance.col]), {
+    return h(Col, {
+      ...responsive[this.DescriptionListInstance.col],
       style: this.styles
-    }), () => children);
+    }, () => children);
   }
 };
 const _sfc_main$1q = {
@@ -18944,7 +19161,7 @@ const _sfc_main$1o = {
   name: "Drawer",
   mixins: [ScrollbarMixins],
   components: { Icon },
-  emits: ["on-close", "on-resize-width", "on-visible-change", "update:modelValue"],
+  emits: ["on-close", "on-resize-width", "on-visible-change", "update:modelValue", "on-drag"],
   provide() {
     return {
       DrawerInstance: this
@@ -19143,6 +19360,7 @@ const _sfc_main$1o = {
         width = width / this.wrapperWidth * 100;
       this.dragWidth = width;
       this.$emit("on-resize-width", parseInt(this.dragWidth));
+      this.$emit("on-drag", "dragging", parseInt(this.dragWidth));
     },
     handleSetWrapperWidth() {
       const {
@@ -19156,10 +19374,12 @@ const _sfc_main$1o = {
       if (!this.draggable)
         return;
       this.canMove = false;
+      this.$emit("on-drag", "end");
     },
     handleTriggerMousedown() {
       this.canMove = true;
       window.getSelection().removeAllRanges();
+      this.$emit("on-drag", "start");
     },
     addDrawer() {
       const root2 = this.$root;
@@ -19566,21 +19786,18 @@ const _hoisted_2$u = {
   class: "ivu-ellipsis-more",
   ref: "more"
 };
-const _hoisted_3$q = /* @__PURE__ */ createTextVNode("...");
-const _hoisted_4$m = {
+const _hoisted_3$q = {
   class: "ivu-ellipsis-more",
   ref: "more"
 };
-const _hoisted_5$e = /* @__PURE__ */ createTextVNode("...");
-const _hoisted_6$6 = {
+const _hoisted_4$l = {
   key: 1,
   class: "ivu-ellipsis-hidden"
 };
-const _hoisted_7$6 = {
+const _hoisted_5$d = {
   class: "ivu-ellipsis-more",
   ref: "more"
 };
-const _hoisted_8$4 = /* @__PURE__ */ createTextVNode("...");
 function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Tooltip = resolveComponent("Tooltip");
   return openBlock(), createElementBlock("div", _hoisted_1$J, [
@@ -19601,7 +19818,7 @@ function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
           }, toDisplayString($props.text), 513),
           withDirectives(createElementVNode("span", _hoisted_2$u, [
             renderSlot(_ctx.$slots, "more", {}, () => [
-              _hoisted_3$q
+              createTextVNode("...")
             ])
           ], 512), [
             [vShow, $data.oversize]
@@ -19614,23 +19831,23 @@ function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
           class: "ivu-ellipsis-text",
           ref: "text"
         }, toDisplayString($props.text), 513),
-        withDirectives(createElementVNode("span", _hoisted_4$m, [
+        withDirectives(createElementVNode("span", _hoisted_3$q, [
           renderSlot(_ctx.$slots, "more", {}, () => [
-            _hoisted_5$e
+            createTextVNode("...")
           ])
         ], 512), [
           [vShow, $data.oversize]
         ]),
         renderSlot(_ctx.$slots, "suffix", { class: "ivu-ellipsis-suffix" })
       ], 64))
-    ], 64)) : (openBlock(), createElementBlock("div", _hoisted_6$6, [
+    ], 64)) : (openBlock(), createElementBlock("div", _hoisted_4$l, [
       createElementVNode("span", {
         class: "ivu-ellipsis-text",
         ref: "text"
       }, toDisplayString($props.text), 513),
-      withDirectives(createElementVNode("span", _hoisted_7$6, [
+      withDirectives(createElementVNode("span", _hoisted_5$d, [
         renderSlot(_ctx.$slots, "more", {}, () => [
-          _hoisted_8$4
+          createTextVNode("...")
         ])
       ], 512), [
         [vShow, $data.oversize]
@@ -19738,8 +19955,8 @@ const _sfc_main$1k = {
 const _hoisted_1$I = { class: "ivu-exception" };
 const _hoisted_2$t = { class: "ivu-exception-img" };
 const _hoisted_3$p = { class: "ivu-exception-content" };
-const _hoisted_4$l = { class: "ivu-exception-content-desc" };
-const _hoisted_5$d = { class: "ivu-exception-content-actions" };
+const _hoisted_4$k = { class: "ivu-exception-content-desc" };
+const _hoisted_5$c = { class: "ivu-exception-content-actions" };
 function _sfc_render$18(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Button = resolveComponent("Button");
   return openBlock(), createElementBlock("div", _hoisted_1$I, [
@@ -19755,12 +19972,12 @@ function _sfc_render$18(_ctx, _cache, $props, $setup, $data, $options) {
           createTextVNode(toDisplayString($options.titleText), 1)
         ])
       ]),
-      createElementVNode("div", _hoisted_4$l, [
+      createElementVNode("div", _hoisted_4$k, [
         renderSlot(_ctx.$slots, "desc", {}, () => [
           createTextVNode(toDisplayString($options.descText), 1)
         ])
       ]),
-      createElementVNode("div", _hoisted_5$d, [
+      createElementVNode("div", _hoisted_5$c, [
         renderSlot(_ctx.$slots, "actions", {}, () => [
           createVNode(_component_Button, {
             to: $props.redirect,
@@ -19982,7 +20199,7 @@ const _hoisted_2$r = {
   class: "ivu-global-footer-links"
 };
 const _hoisted_3$n = ["href", "target", "title"];
-const _hoisted_4$k = {
+const _hoisted_4$j = {
   key: 1,
   class: "ivu-global-footer-copyright"
 };
@@ -20010,7 +20227,7 @@ function _sfc_render$14(_ctx, _cache, $props, $setup, $data, $options) {
         }), 128))
       ])
     ])) : createCommentVNode("", true),
-    $props.copyright || _ctx.$slots.copyright ? (openBlock(), createElementBlock("div", _hoisted_4$k, [
+    $props.copyright || _ctx.$slots.copyright ? (openBlock(), createElementBlock("div", _hoisted_4$j, [
       renderSlot(_ctx.$slots, "copyright", {}, () => [
         createTextVNode(toDisplayString($props.copyright), 1)
       ])
@@ -22036,28 +22253,28 @@ const _hoisted_3$m = /* @__PURE__ */ createElementVNode("path", {
   "p-id": "7198",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_4$j = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_4$i = /* @__PURE__ */ createElementVNode("path", {
   d: "M921 867L775 721c122.1-148.9 113.6-369.5-26-509-148-148.1-388.4-148.1-537 0-148.1 148.6-148.1 389 0 537 139.5 139.6 360.1 148.1 509 26l146 146c3.2 2.8 8.3 2.8 11 0l43-43c2.8-2.7 2.8-7.8 0-11zM696 696c-118.8 118.7-311.2 118.7-430 0-118.7-118.8-118.7-311.2 0-430 118.8-118.7 311.2-118.7 430 0 118.7 118.8 118.7 311.2 0 430z",
   "p-id": "7199",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_5$c = [
+const _hoisted_5$b = [
   _hoisted_3$m,
-  _hoisted_4$j
+  _hoisted_4$i
 ];
 const _hoisted_6$5 = /* @__PURE__ */ createElementVNode("path", {
   d: "M637 443H325c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h312c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z",
   "p-id": "7413",
   fill: "#ffffff"
 }, null, -1);
-const _hoisted_7$5 = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_7$4 = /* @__PURE__ */ createElementVNode("path", {
   d: "M921 867L775 721c122.1-148.9 113.6-369.5-26-509-148-148.1-388.4-148.1-537 0-148.1 148.6-148.1 389 0 537 139.5 139.6 360.1 148.1 509 26l146 146c3.2 2.8 8.3 2.8 11 0l43-43c2.8-2.7 2.8-7.8 0-11zM696 696c-118.8 118.7-311.2 118.7-430 0-118.7-118.8-118.7-311.2 0-430 118.8-118.7 311.2-118.7 430 0 118.7 118.8 118.7 311.2 0 430z",
   "p-id": "7414",
   fill: "#ffffff"
 }, null, -1);
 const _hoisted_8$3 = [
   _hoisted_6$5,
-  _hoisted_7$5
+  _hoisted_7$4
 ];
 const _hoisted_9$3 = /* @__PURE__ */ createElementVNode("path", {
   d: "M358.058667 128H156.970667A28.970667 28.970667 0 0 0 128 157.013333v202.837334c0 7.978667 6.528 14.506667 14.506667 14.506666h43.434666a14.506667 14.506667 0 0 0 14.506667-14.506666V200.448h157.610667a14.506667 14.506667 0 0 0 14.506666-14.506667V142.506667a14.506667 14.506667 0 0 0-14.506666-14.506667zM881.493333 649.642667h-43.434666a14.506667 14.506667 0 0 0-14.506667 14.506666v159.402667h-157.610667a14.506667 14.506667 0 0 0-14.506666 14.506667v43.434666c0 7.978667 6.570667 14.506667 14.506666 14.506667h201.088c16 0 28.970667-12.928 28.970667-29.013333v-202.837334a14.506667 14.506667 0 0 0-14.506667-14.506666zM358.058667 823.552H200.448v-159.402667a14.506667 14.506667 0 0 0-14.506667-14.506666H142.506667a14.506667 14.506667 0 0 0-14.506667 14.506666v202.88c0 16 12.970667 28.970667 29.013333 28.970667h201.045334a14.506667 14.506667 0 0 0 14.506666-14.506667v-43.434666a14.506667 14.506667 0 0 0-14.506666-14.506667zM866.986667 128h-201.088a14.506667 14.506667 0 0 0-14.506667 14.506667v43.434666c0 7.978667 6.570667 14.506667 14.506667 14.506667h157.610666v159.402667c0 7.978667 6.528 14.506667 14.506667 14.506666h43.434667a14.506667 14.506667 0 0 0 14.506666-14.506666V156.970667A28.928 28.928 0 0 0 866.986667 128z",
@@ -22210,7 +22427,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                       "p-id": "7197",
                       width: "200",
                       height: "200"
-                    }, _hoisted_5$c))
+                    }, _hoisted_5$b))
                   ]),
                   _: 1
                 }, 8, ["order"])) : createCommentVNode("", true),
@@ -22445,6 +22662,11 @@ const _sfc_main$1a = {
       imagePreviewModal: false
     };
   },
+  watch: {
+    src() {
+      this.loadImage();
+    }
+  },
   computed: {
     innerClasses() {
       return [
@@ -22568,7 +22790,7 @@ const _hoisted_2$p = {
   class: "ivu-image-error"
 };
 const _hoisted_3$l = ["alt", "src", "loading", "referrerPolicy"];
-const _hoisted_4$i = { class: "ivu-image-mark" };
+const _hoisted_4$h = { class: "ivu-image-mark" };
 function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ImagePreview = resolveComponent("ImagePreview");
   return openBlock(), createElementBlock("div", {
@@ -22601,7 +22823,7 @@ function _sfc_render$_(_ctx, _cache, $props, $setup, $data, $options) {
         onError: _cache[1] || (_cache[1] = (...args) => $options.handleImageError && $options.handleImageError(...args))
       }, null, 46, _hoisted_3$l),
       $props.preview && $props.previewTip ? renderSlot(_ctx.$slots, "preview", { key: 0 }, () => [
-        createElementVNode("div", _hoisted_4$i, [
+        createElementVNode("div", _hoisted_4$h, [
           createElementVNode("span", null, toDisplayString($options.previewLang), 1)
         ])
       ]) : createCommentVNode("", true)
@@ -23001,10 +23223,10 @@ const _hoisted_2$o = [
   _hoisted_1$C
 ];
 const _hoisted_3$k = /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-add" }, null, -1);
-const _hoisted_4$h = [
+const _hoisted_4$g = [
   _hoisted_3$k
 ];
-const _hoisted_5$b = ["id", "disabled", "autofocus", "readonly", "name", "value", "placeholder"];
+const _hoisted_5$a = ["id", "disabled", "autofocus", "readonly", "name", "value", "placeholder"];
 function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.wrapClasses)
@@ -23041,7 +23263,7 @@ function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
       key: 2,
       class: normalizeClass(["ivu-input-number-controls-outside-btn ivu-input-number-controls-outside-up", { "ivu-input-number-controls-outside-btn-disabled": $data.upDisabled }]),
       onClick: _cache[5] || (_cache[5] = (...args) => $options.up && $options.up(...args))
-    }, _hoisted_4$h, 2)) : createCommentVNode("", true),
+    }, _hoisted_4$g, 2)) : createCommentVNode("", true),
     createElementVNode("div", {
       class: normalizeClass($options.inputWrapClasses)
     }, [
@@ -23062,7 +23284,7 @@ function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
         name: $props.name,
         value: $options.formatterValue,
         placeholder: $props.placeholder
-      }, null, 42, _hoisted_5$b)
+      }, null, 42, _hoisted_5$a)
     ], 2)
   ], 2);
 }
@@ -23580,13 +23802,13 @@ const _sfc_main$17 = {
         style2["-webkit-line-clamp"] = this.mergedEllipsisConfig.rows;
       }
       let ellipsisExtraNode = null;
-      const baseNode = h(this.component, __spreadProps(__spreadValues({
+      const baseNode = h(this.component, {
         ref: "typography",
-        class: this.classes
-      }, this.linkProps), {
+        class: this.classes,
+        ...this.linkProps,
         style: style2,
         onClick: this.handleClickContent
-      }), [contentNodes, ellipsisExtraNode]);
+      }, [contentNodes, ellipsisExtraNode]);
       if (this.ellipsis && !this.ellipsisExpanded && this.isEllipsis && this.mergedEllipsisConfig.tooltip) {
         return h(Tooltip, {
           content: this.mergedEllipsisConfig.tooltip === true ? this.handleGetContent() : this.mergedEllipsisConfig.tooltip,
@@ -23608,9 +23830,11 @@ const _sfc_main$16 = {
   name: "Link",
   mixins: [baseProps],
   render() {
-    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
-      component: "a"
-    }), this.commonEvents()), this.commonSlots());
+    return h(_sfc_main$17, {
+      ...this.$props,
+      component: "a",
+      ...this.commonEvents()
+    }, this.commonSlots());
   }
 };
 function handleGetIndex() {
@@ -23657,21 +23881,23 @@ Spin.newInstance = (properties) => {
   const container = document.createElement("div");
   document.body.appendChild(container);
   Instance.mount(container);
-  const spin = _instance.refs.spin;
+  const spin2 = _instance.refs.spin;
   return {
     show() {
-      spin.visible = true;
-      tIndex = handleGetIndex();
+      nextTick(() => {
+        _instance.refs.spin.visible = true;
+        tIndex = handleGetIndex();
+      });
     },
     remove(cb) {
-      spin.visible = false;
+      spin2.visible = false;
       setTimeout(function() {
         Instance.unmount();
         document.body.removeChild(container);
         cb();
       }, 500);
     },
-    component: spin
+    component: spin2
   };
 };
 let spinInstance;
@@ -23767,7 +23993,7 @@ const _hoisted_1$B = {
 };
 const _hoisted_2$n = { class: "ivu-list-container" };
 const _hoisted_3$j = { class: "ivu-list-items" };
-const _hoisted_4$g = {
+const _hoisted_4$f = {
   key: 2,
   class: "ivu-list-footer"
 };
@@ -23796,7 +24022,7 @@ function _sfc_render$X(_ctx, _cache, $props, $setup, $data, $options) {
       ]),
       _: 3
     })) : createCommentVNode("", true),
-    $props.footer || _ctx.$slots.footer ? (openBlock(), createElementBlock("div", _hoisted_4$g, [
+    $props.footer || _ctx.$slots.footer ? (openBlock(), createElementBlock("div", _hoisted_4$f, [
       renderSlot(_ctx.$slots, "footer", {}, () => [
         createTextVNode(toDisplayString($props.footer), 1)
       ])
@@ -23843,11 +24069,11 @@ const _hoisted_2$m = {
   class: "ivu-list-item-action"
 };
 const _hoisted_3$i = { class: "ivu-list-item-extra" };
-const _hoisted_4$f = {
+const _hoisted_4$e = {
   key: 0,
   class: "ivu-list-item-action"
 };
-const _hoisted_5$a = { class: "ivu-list-item-extra" };
+const _hoisted_5$9 = { class: "ivu-list-item-extra" };
 function _sfc_render$W(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: normalizeClass(["ivu-list-item", $options.classes])
@@ -23864,10 +24090,10 @@ function _sfc_render$W(_ctx, _cache, $props, $setup, $data, $options) {
       ])
     ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
       renderSlot(_ctx.$slots, "default"),
-      _ctx.$slots.action ? (openBlock(), createElementBlock("ul", _hoisted_4$f, [
+      _ctx.$slots.action ? (openBlock(), createElementBlock("ul", _hoisted_4$e, [
         renderSlot(_ctx.$slots, "action")
       ])) : createCommentVNode("", true),
-      createElementVNode("div", _hoisted_5$a, [
+      createElementVNode("div", _hoisted_5$9, [
         renderSlot(_ctx.$slots, "extra")
       ])
     ], 64))
@@ -23898,11 +24124,11 @@ const _hoisted_2$l = {
   class: "ivu-list-item-meta-avatar"
 };
 const _hoisted_3$h = { class: "ivu-list-item-meta-content" };
-const _hoisted_4$e = {
+const _hoisted_4$d = {
   key: 0,
   class: "ivu-list-item-meta-title"
 };
-const _hoisted_5$9 = {
+const _hoisted_5$8 = {
   key: 1,
   class: "ivu-list-item-meta-description"
 };
@@ -23915,12 +24141,12 @@ function _sfc_render$V(_ctx, _cache, $props, $setup, $data, $options) {
       ])
     ])) : createCommentVNode("", true),
     createElementVNode("div", _hoisted_3$h, [
-      $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_4$e, [
+      $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_4$d, [
         renderSlot(_ctx.$slots, "title", {}, () => [
           createTextVNode(toDisplayString($props.title), 1)
         ])
       ])) : createCommentVNode("", true),
-      $props.description || _ctx.$slots.description ? (openBlock(), createElementBlock("div", _hoisted_5$9, [
+      $props.description || _ctx.$slots.description ? (openBlock(), createElementBlock("div", _hoisted_5$8, [
         renderSlot(_ctx.$slots, "description", {}, () => [
           createTextVNode(toDisplayString($props.description), 1)
         ])
@@ -24284,8 +24510,8 @@ const _sfc_main$10 = {
       });
     },
     updateOpenKeys(name2) {
-      let names = [...this.openedNames];
-      const index2 = names.indexOf(name2);
+      let names2 = [...this.openedNames];
+      const index2 = names2.indexOf(name2);
       const submenuList = this.submenuList.map((item) => item.submenu);
       if (this.accordion)
         submenuList.forEach((item) => {
@@ -24357,8 +24583,8 @@ const _sfc_main$10 = {
     });
   },
   watch: {
-    openNames(names) {
-      this.openedNames = names;
+    openNames(names2) {
+      this.openedNames = names2;
     },
     activeName(val) {
       this.currentActiveName = val;
@@ -25204,24 +25430,28 @@ Modal.newInstance = (properties) => {
           })
         ]);
       }
-      return h(Modal, Object.assign({}, _props, {
-        width: this.width,
-        scrollable: this.scrollable,
-        closable: this.closable,
-        ref: "modal"
-      }, {
-        modelValue: this.visible,
-        "onUpdate:modelValue": (status) => this.visible = status,
-        "onOn-cancel": this.cancel
-      }), () => h("div", {
-        class: prefixCls$t
-      }, [
-        head_render,
-        body_render,
-        h("div", {
-          class: `${prefixCls$t}-footer`
-        }, footerVNodes)
-      ]));
+      return h(
+        Modal,
+        Object.assign({}, _props, {
+          width: this.width,
+          scrollable: this.scrollable,
+          closable: this.closable,
+          ref: "modal"
+        }, {
+          modelValue: this.visible,
+          "onUpdate:modelValue": (status) => this.visible = status,
+          "onOn-cancel": this.cancel
+        }),
+        () => h("div", {
+          class: prefixCls$t
+        }, [
+          head_render,
+          body_render,
+          h("div", {
+            class: `${prefixCls$t}-footer`
+          }, footerVNodes)
+        ])
+      );
     },
     computed: {
       iconTypeCls() {
@@ -26117,7 +26347,7 @@ function _sfc_render$O(_ctx, _cache, $props, $setup, $data, $options) {
           createElementVNode("div", {
             ref: "navScroll",
             class: normalizeClass([$data.prefixCls + "-nav-scroll"]),
-            onDOMMouseScroll: _cache[3] || (_cache[3] = (...args) => $options.handleScroll && $options.handleScroll(...args)),
+            "on:DOMMouseScroll": _cache[3] || (_cache[3] = (...args) => $options.handleScroll && $options.handleScroll(...args)),
             onMousewheel: _cache[4] || (_cache[4] = (...args) => $options.handleScroll && $options.handleScroll(...args))
           }, [
             createElementVNode("div", {
@@ -26530,7 +26760,7 @@ const _sfc_main$V = {
       } else if (type2 === "object") {
         time = this.time.getTime();
       } else if (type2 === "string") {
-        time = new Date(this.time).getTime();
+        time = dayjs(this.time).valueOf();
       }
       if (this.type === "relative") {
         this.date = Time$1(time, this.t);
@@ -26552,9 +26782,11 @@ const _sfc_main$V = {
   },
   mounted() {
     this.setTime();
-    this.timer = setInterval(() => {
-      this.setTime();
-    }, 1e3 * this.interval);
+    if (this.interval !== 0) {
+      this.timer = setInterval(() => {
+        this.setTime();
+      }, 1e3 * this.interval);
+    }
   },
   beforeUnmount() {
     if (this.timer)
@@ -26653,7 +26885,7 @@ const _sfc_main$U = {
       };
     },
     contentSpan() {
-      return this.icon || this.customIcon || this.avatar ? 20 : 24;
+      return this.icon || this.customIcon || this.avatar || this.$slots.avatar ? 20 : 24;
     },
     iconStyle() {
       let style2 = {};
@@ -26703,11 +26935,11 @@ const _hoisted_3$f = {
   key: 0,
   class: "ivu-notifications-item-tag"
 };
-const _hoisted_4$d = {
+const _hoisted_4$c = {
   key: 0,
   class: "ivu-notifications-item-desc"
 };
-const _hoisted_5$8 = {
+const _hoisted_5$7 = {
   key: 1,
   class: "ivu-notifications-item-time"
 };
@@ -26724,33 +26956,36 @@ function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default", {}, () => [
       createVNode(_component_Row, normalizeProps(guardReactiveProps($props.rowProps)), {
         default: withCtx(() => [
-          createVNode(_component_Col, {
+          $props.icon || $props.customIcon || $props.avatar || _ctx.$slots.avatar ? (openBlock(), createBlock(_component_Col, {
+            key: 0,
             span: "4",
             class: "ivu-notifications-item-icon"
           }, {
             default: withCtx(() => [
-              $props.icon ? (openBlock(), createBlock(_component_Avatar, {
-                key: 0,
-                icon: $props.icon,
-                shape: $props.avatarShape,
-                size: $props.iconSize,
-                style: normalizeStyle($options.iconStyle)
-              }, null, 8, ["icon", "shape", "size", "style"])) : $props.customIcon ? (openBlock(), createBlock(_component_Avatar, {
-                key: 1,
-                "custom-icon": $props.customIcon,
-                shape: $props.avatarShape,
-                size: $props.iconSize,
-                style: normalizeStyle($options.iconStyle)
-              }, null, 8, ["custom-icon", "shape", "size", "style"])) : $props.avatar ? (openBlock(), createBlock(_component_Avatar, {
-                key: 2,
-                src: $props.avatar,
-                shape: $props.avatarShape,
-                size: $props.iconSize,
-                style: normalizeStyle($options.iconStyle)
-              }, null, 8, ["src", "shape", "size", "style"])) : createCommentVNode("", true)
+              renderSlot(_ctx.$slots, "avatar", {}, () => [
+                $props.icon ? (openBlock(), createBlock(_component_Avatar, {
+                  key: 0,
+                  icon: $props.icon,
+                  shape: $props.avatarShape,
+                  size: $props.iconSize,
+                  style: normalizeStyle($options.iconStyle)
+                }, null, 8, ["icon", "shape", "size", "style"])) : $props.customIcon ? (openBlock(), createBlock(_component_Avatar, {
+                  key: 1,
+                  "custom-icon": $props.customIcon,
+                  shape: $props.avatarShape,
+                  size: $props.iconSize,
+                  style: normalizeStyle($options.iconStyle)
+                }, null, 8, ["custom-icon", "shape", "size", "style"])) : $props.avatar ? (openBlock(), createBlock(_component_Avatar, {
+                  key: 2,
+                  src: $props.avatar,
+                  shape: $props.avatarShape,
+                  size: $props.iconSize,
+                  style: normalizeStyle($options.iconStyle)
+                }, null, 8, ["src", "shape", "size", "style"])) : createCommentVNode("", true)
+              ])
             ]),
-            _: 1
-          }),
+            _: 3
+          })) : createCommentVNode("", true),
           createVNode(_component_Col, {
             span: $options.contentSpan,
             class: "ivu-notifications-item-content"
@@ -26771,12 +27006,12 @@ function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
                   ])) : createCommentVNode("", true)
                 ])) : createCommentVNode("", true)
               ]),
-              $props.content || _ctx.$slots.content ? (openBlock(), createElementBlock("div", _hoisted_4$d, [
+              $props.content || _ctx.$slots.content ? (openBlock(), createElementBlock("div", _hoisted_4$c, [
                 renderSlot(_ctx.$slots, "content", {}, () => [
                   createTextVNode(toDisplayString($props.content), 1)
                 ])
               ])) : createCommentVNode("", true),
-              $props.time || _ctx.$slots.time ? (openBlock(), createElementBlock("div", _hoisted_5$8, [
+              $props.time || _ctx.$slots.time ? (openBlock(), createElementBlock("div", _hoisted_5$7, [
                 renderSlot(_ctx.$slots, "time", {}, () => [
                   createVNode(_component_Time, mergeProps({ time: $props.time }, $props.timeProps), null, 16, ["time"])
                 ])
@@ -26955,7 +27190,7 @@ const _sfc_main$S = {
       customLabel: (h2) => {
         return h2("div", [
           h2("span", this.title),
-          h2("Badge", {
+          h2(Badge, {
             count: this.count
           })
         ]);
@@ -27039,13 +27274,13 @@ const _hoisted_2$i = {
   class: "ivu-notifications-tab-empty"
 };
 const _hoisted_3$e = ["src"];
-const _hoisted_4$c = { class: "ivu-notifications-tab-empty-text" };
-const _hoisted_5$7 = { class: "ivu-notifications-tab-loading" };
+const _hoisted_4$b = { class: "ivu-notifications-tab-empty-text" };
+const _hoisted_5$6 = { class: "ivu-notifications-tab-loading" };
 const _hoisted_6$4 = {
   key: 0,
   class: "ivu-notifications-tab-loading-item ivu-notifications-tab-loading-show"
 };
-const _hoisted_7$4 = {
+const _hoisted_7$3 = {
   key: 2,
   class: "ivu-notifications-tab-loading-item ivu-notifications-tab-loading-all"
 };
@@ -27075,10 +27310,10 @@ function _sfc_render$J(_ctx, _cache, $props, $setup, $data, $options) {
               class: "ivu-notifications-tab-empty-img",
               src: $props.emptyImage
             }, null, 8, _hoisted_3$e)) : createCommentVNode("", true),
-            createElementVNode("div", _hoisted_4$c, toDisplayString($props.emptyText), 1)
+            createElementVNode("div", _hoisted_4$b, toDisplayString($props.emptyText), 1)
           ])
         ])) : createCommentVNode("", true),
-        createElementVNode("div", _hoisted_5$7, [
+        createElementVNode("div", _hoisted_5$6, [
           $props.loading ? (openBlock(), createElementBlock("div", _hoisted_6$4, [
             renderSlot(_ctx.$slots, "loading", {}, () => [
               createVNode(_component_Icon, {
@@ -27095,7 +27330,7 @@ function _sfc_render$J(_ctx, _cache, $props, $setup, $data, $options) {
             renderSlot(_ctx.$slots, "load-more", {}, () => [
               createTextVNode(toDisplayString($options.NotificationInstance.locale.loadMore), 1)
             ])
-          ])) : $props.showLoadedAll && $props.loadedAll ? (openBlock(), createElementBlock("div", _hoisted_7$4, [
+          ])) : $props.showLoadedAll && $props.loadedAll ? (openBlock(), createElementBlock("div", _hoisted_7$3, [
             renderSlot(_ctx.$slots, "loaded-all", {}, () => [
               createTextVNode(toDisplayString($options.NotificationInstance.locale.loadedAll), 1)
             ])
@@ -27222,8 +27457,8 @@ const _hoisted_3$d = {
   key: 1,
   class: "ivu-number-info-subTitle"
 };
-const _hoisted_4$b = { class: "ivu-number-info-total" };
-const _hoisted_5$6 = {
+const _hoisted_4$a = { class: "ivu-number-info-total" };
+const _hoisted_5$5 = {
   key: 0,
   class: "ivu-number-info-subTotal"
 };
@@ -27244,12 +27479,12 @@ function _sfc_render$H(_ctx, _cache, $props, $setup, $data, $options) {
       class: "ivu-number-info-value",
       style: normalizeStyle($options.valueStyle)
     }, [
-      createElementVNode("span", _hoisted_4$b, [
+      createElementVNode("span", _hoisted_4$a, [
         renderSlot(_ctx.$slots, "total", {}, () => [
           createTextVNode(toDisplayString($props.total), 1)
         ])
       ]),
-      $props.subTotal || _ctx.$slots.subTotal ? (openBlock(), createElementBlock("span", _hoisted_5$6, [
+      $props.subTotal || _ctx.$slots.subTotal ? (openBlock(), createElementBlock("span", _hoisted_5$5, [
         renderSlot(_ctx.$slots, "subTotal", {}, () => [
           createVNode(_component_Trend, { flag: $props.status }, {
             default: withCtx(() => [
@@ -28446,10 +28681,10 @@ const _hoisted_2$g = /* @__PURE__ */ createElementVNode("a", null, [
 const _hoisted_3$c = [
   _hoisted_2$g
 ];
-const _hoisted_4$a = ["title"];
-const _hoisted_5$5 = ["value", "disabled"];
+const _hoisted_4$9 = ["title"];
+const _hoisted_5$4 = ["value", "disabled"];
 const _hoisted_6$3 = /* @__PURE__ */ createElementVNode("span", null, "/", -1);
-const _hoisted_7$3 = ["title"];
+const _hoisted_7$2 = ["title"];
 const _hoisted_8$2 = /* @__PURE__ */ createElementVNode("a", null, [
   /* @__PURE__ */ createElementVNode("i", { class: "ivu-icon ivu-icon-ios-arrow-forward" })
 ], -1);
@@ -28519,15 +28754,15 @@ function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
         onKeydown: _cache[1] || (_cache[1] = (...args) => $options.keyDown && $options.keyDown(...args)),
         onKeyup: _cache[2] || (_cache[2] = (...args) => $options.keyUp && $options.keyUp(...args)),
         onChange: _cache[3] || (_cache[3] = (...args) => $options.keyUp && $options.keyUp(...args))
-      }, null, 40, _hoisted_5$5),
+      }, null, 40, _hoisted_5$4),
       _hoisted_6$3,
       createTextVNode(" " + toDisplayString($options.allPages), 1)
-    ], 10, _hoisted_4$a),
+    ], 10, _hoisted_4$9),
     createElementVNode("li", {
       title: _ctx.t("i.page.next"),
       class: normalizeClass($options.nextClasses),
       onClick: _cache[4] || (_cache[4] = (...args) => $options.next && $options.next(...args))
-    }, _hoisted_9$2, 10, _hoisted_7$3)
+    }, _hoisted_9$2, 10, _hoisted_7$2)
   ], 6)) : (openBlock(), createElementBlock("ul", {
     key: 1,
     class: normalizeClass($options.wrapClasses),
@@ -28735,10 +28970,10 @@ const _hoisted_3$b = {
   key: 1,
   class: "ivu-page-header-logo"
 };
-const _hoisted_4$9 = ["src"];
-const _hoisted_5$4 = { class: "ivu-page-header-main" };
+const _hoisted_4$8 = ["src"];
+const _hoisted_5$3 = { class: "ivu-page-header-main" };
 const _hoisted_6$2 = { class: "ivu-page-header-row" };
-const _hoisted_7$2 = {
+const _hoisted_7$1 = {
   key: 1,
   class: "ivu-page-header-title"
 };
@@ -28804,10 +29039,10 @@ function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
       ])) : createCommentVNode("", true),
       $props.logo || _ctx.$slots.logo ? (openBlock(), createElementBlock("div", _hoisted_3$b, [
         renderSlot(_ctx.$slots, "logo", {}, () => [
-          createElementVNode("img", { src: $props.logo }, null, 8, _hoisted_4$9)
+          createElementVNode("img", { src: $props.logo }, null, 8, _hoisted_4$8)
         ])
       ])) : createCommentVNode("", true),
-      createElementVNode("div", _hoisted_5$4, [
+      createElementVNode("div", _hoisted_5$3, [
         createElementVNode("div", _hoisted_6$2, [
           $props.back || _ctx.$slots.back ? (openBlock(), createElementBlock("div", {
             key: 0,
@@ -28819,7 +29054,7 @@ function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
             ]),
             createVNode(_component_Divider, { type: "vertical" })
           ])) : createCommentVNode("", true),
-          $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_7$2, [
+          $props.title || _ctx.$slots.title ? (openBlock(), createElementBlock("div", _hoisted_7$1, [
             renderSlot(_ctx.$slots, "title", {}, () => [
               createTextVNode(toDisplayString($props.title), 1)
             ])
@@ -29053,9 +29288,11 @@ const _sfc_main$I = {
   name: "Paragraph",
   mixins: [baseProps],
   render() {
-    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
-      component: "div"
-    }), this.commonEvents()), this.commonSlots());
+    return h(_sfc_main$17, {
+      ...this.$props,
+      component: "div",
+      ...this.commonEvents()
+    }, this.commonSlots());
   }
 };
 const _sfc_main$H = {
@@ -29788,9 +30025,8 @@ const _sfc_main$E = {
 };
 const _hoisted_1$k = ["name", "value"];
 const _hoisted_2$e = ["onMousemove", "onClick"];
-const _hoisted_3$a = /* @__PURE__ */ createTextVNode();
-const _hoisted_4$8 = { key: 0 };
-const _hoisted_5$3 = { key: 1 };
+const _hoisted_3$a = { key: 0 };
+const _hoisted_4$7 = { key: 1 };
 function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass($options.classes),
@@ -29844,8 +30080,8 @@ function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
     }, [
       renderSlot(_ctx.$slots, "default", {}, () => [
         createElementVNode("span", null, toDisplayString($data.currentValue), 1),
-        _hoisted_3$a,
-        $data.currentValue <= 1 ? (openBlock(), createElementBlock("span", _hoisted_4$8, toDisplayString(_ctx.t("i.rate.star")), 1)) : (openBlock(), createElementBlock("span", _hoisted_5$3, toDisplayString(_ctx.t("i.rate.stars")), 1))
+        createTextVNode(),
+        $data.currentValue <= 1 ? (openBlock(), createElementBlock("span", _hoisted_3$a, toDisplayString(_ctx.t("i.rate.star")), 1)) : (openBlock(), createElementBlock("span", _hoisted_4$7, toDisplayString(_ctx.t("i.rate.stars")), 1))
       ])
     ], 2)), [
       [vShow, $data.currentValue > 0]
@@ -29891,7 +30127,7 @@ const _hoisted_3$9 = {
   key: 1,
   class: "ivu-result-desc"
 };
-const _hoisted_4$7 = {
+const _hoisted_4$6 = {
   key: 2,
   class: "ivu-result-extra"
 };
@@ -29928,7 +30164,7 @@ function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
         createTextVNode(toDisplayString($props.desc), 1)
       ])
     ])) : createCommentVNode("", true),
-    $props.extra || _ctx.$slots.extra ? (openBlock(), createElementBlock("div", _hoisted_4$7, [
+    $props.extra || _ctx.$slots.extra ? (openBlock(), createElementBlock("div", _hoisted_4$6, [
       renderSlot(_ctx.$slots, "extra", {}, () => [
         createTextVNode(toDisplayString($props.extra), 1)
       ])
@@ -30111,7 +30347,10 @@ const _sfc_main$B = {
         const initialScrollTop = container.scrollTop;
         for (let i = 0; i < 20; i++) {
           setTimeout(() => {
-            bottomLoaderHeight = Math.max(bottomLoaderHeight, this.$refs.bottomLoader.getBoundingClientRect().height);
+            bottomLoaderHeight = Math.max(
+              bottomLoaderHeight,
+              this.$refs.bottomLoader.getBoundingClientRect().height
+            );
             container.scrollTop = initialScrollTop + bottomLoaderHeight;
           }, i * 50);
         }
@@ -30370,7 +30609,11 @@ function animate(parent) {
       return scrollSettings.end(COMPLETE);
     }
     let easeValue = 1 - scrollSettings.ease(timeValue);
-    setElementScroll(parent, location.x - location.differenceX * easeValue, location.y - location.differenceY * easeValue);
+    setElementScroll(
+      parent,
+      location.x - location.differenceX * easeValue,
+      location.y - location.differenceY * easeValue
+    );
     animate(parent);
   });
 }
@@ -31610,16 +31853,20 @@ const _sfc_main$w = {
     } else if (this.$slots.split) {
       split = this.$slots.split();
     }
-    return h("div", { class: this.classes, style: this.styles }, items.map((child, index2) => {
-      const item = h("div", { class: "ivu-space-item" }, [child]);
-      if (split && index2 + 1 < len) {
-        return [
-          item,
-          h("div", { class: "ivu-space-split" }, [split])
-        ];
-      }
-      return item;
-    }));
+    return h(
+      "div",
+      { class: this.classes, style: this.styles },
+      items.map((child, index2) => {
+        const item = h("div", { class: "ivu-space-item" }, [child]);
+        if (split && index2 + 1 < len) {
+          return [
+            item,
+            h("div", { class: "ivu-space-split" }, [split])
+          ];
+        }
+        return item;
+      })
+    );
   }
 };
 const _sfc_main$v = {
@@ -31987,7 +32234,7 @@ const _hoisted_2$a = [
   _hoisted_1$g
 ];
 const _hoisted_3$8 = { key: 0 };
-const _hoisted_4$6 = {
+const _hoisted_4$5 = {
   key: 1,
   class: "ivu-steps-icon"
 };
@@ -32004,7 +32251,7 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
       createElementVNode("div", {
         class: normalizeClass([$data.prefixCls + "-head-inner"])
       }, [
-        !$props.icon && !_ctx.$slots.icon && $options.currentStatus !== "finish" && $options.currentStatus !== "error" ? (openBlock(), createElementBlock("span", _hoisted_3$8, toDisplayString($options.stepNumber), 1)) : _ctx.$slots.icon ? (openBlock(), createElementBlock("span", _hoisted_4$6, [
+        !$props.icon && !_ctx.$slots.icon && $options.currentStatus !== "finish" && $options.currentStatus !== "error" ? (openBlock(), createElementBlock("span", _hoisted_3$8, toDisplayString($options.stepNumber), 1)) : _ctx.$slots.icon ? (openBlock(), createElementBlock("span", _hoisted_4$5, [
           renderSlot(_ctx.$slots, "icon")
         ])) : (openBlock(), createElementBlock("span", {
           key: 2,
@@ -32370,9 +32617,10 @@ const _sfc_main$q = {
       long: true
     };
     const finalProps = Object.assign(defaultProps, this.$attrs);
-    const $button = h(_sfc_main$2c, __spreadProps(__spreadValues({}, finalProps), {
+    const $button = h(_sfc_main$2c, {
+      ...finalProps,
       onClick: this.handleSubmit
-    }), this.$slots.default || (() => "\u767B\u5F55"));
+    }, this.$slots.default || (() => "\u767B\u5F55"));
     return h("div", {
       class: "ivu-login-submit"
     }, [$button]);
@@ -32863,10 +33111,10 @@ const _sfc_main$o = {
 const _hoisted_1$e = ["width"];
 const _hoisted_2$9 = ["width"];
 const _hoisted_3$7 = ["colspan", "rowspan"];
-const _hoisted_4$5 = { key: 0 };
+const _hoisted_4$4 = { key: 0 };
 const _hoisted_5$1 = ["onClick"];
 const _hoisted_6$1 = ["onClick"];
-const _hoisted_7$1 = ["onClick"];
+const _hoisted_7 = ["onClick"];
 const _hoisted_8 = ["onMousedown", "onMousemove"];
 const _hoisted_9 = ["rowspan"];
 function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
@@ -32908,7 +33156,7 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                 class: normalizeClass($options.cellClasses(column))
               }, [
                 column.type === "expand" ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                  !column.renderHeader ? (openBlock(), createElementBlock("span", _hoisted_4$5, toDisplayString(column.title || ""), 1)) : (openBlock(), createBlock(_component_render_header, {
+                  !column.renderHeader ? (openBlock(), createElementBlock("span", _hoisted_4$4, toDisplayString(column.title || ""), 1)) : (openBlock(), createBlock(_component_render_header, {
                     key: 1,
                     render: column.renderHeader,
                     column,
@@ -32943,7 +33191,7 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                     createElementVNode("i", {
                       class: normalizeClass(["ivu-icon ivu-icon-md-arrow-dropdown", { on: $options.getColumn(rowIndex, index2)._sortType === "desc" }]),
                       onClick: ($event) => $options.handleSort($options.getColumn(rowIndex, index2)._index, "desc")
-                    }, null, 10, _hoisted_7$1)
+                    }, null, 10, _hoisted_7)
                   ], 2)) : createCommentVNode("", true),
                   _ctx.isPopperShow(column) ? (openBlock(), createBlock(_component_Poptip, {
                     key: 3,
@@ -33021,7 +33269,8 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                             }, 1032, ["onClick"])
                           ], 2)
                         ], 2)
-                      ])
+                      ]),
+                      key: "0"
                     } : {
                       name: "content",
                       fn: withCtx(() => [
@@ -33044,7 +33293,8 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                             }), 128))
                           ], 2)
                         ], 2)
-                      ])
+                      ]),
+                      key: "1"
                     }
                   ]), 1032, ["modelValue", "onUpdate:modelValue", "onOnPopperHide"])) : createCommentVNode("", true)
                 ], 64))
@@ -33323,7 +33573,7 @@ const _hoisted_2$8 = {
   class: "ivu-table-cell-tree ivu-table-cell-tree-empty"
 };
 const _hoisted_3$6 = ["innerHTML"];
-const _hoisted_4$4 = { key: 1 };
+const _hoisted_4$3 = { key: 1 };
 function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Checkbox = resolveComponent("Checkbox");
   const _component_Icon = resolveComponent("Icon");
@@ -33386,7 +33636,7 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
           }, toDisplayString($props.row[$props.column.key]), 545)
         ]),
         _: 1
-      }, 8, ["content", "theme", "disabled", "max-width"])) : (openBlock(), createElementBlock("span", _hoisted_4$4, toDisplayString($props.row[$props.column.key]), 1))
+      }, 8, ["content", "theme", "disabled", "max-width"])) : (openBlock(), createElementBlock("span", _hoisted_4$3, toDisplayString($props.row[$props.column.key]), 1))
     ], 64)) : createCommentVNode("", true),
     $data.renderType === "expand" && !$props.row._disableExpand ? (openBlock(), createElementBlock("div", {
       key: 7,
@@ -33619,11 +33869,11 @@ const _sfc_main$l = {
                 treeLevel: this.getLevel(row._rowKey),
                 key: column._columnKey
               });
-              const $td = h2("td", __spreadProps(__spreadValues({
-                class: this.alignCls(column, row)
-              }, this.getSpan(row, column, index2, colIndex)), {
+              const $td = h2("td", {
+                class: this.alignCls(column, row),
+                ...this.getSpan(row, column, index2, colIndex),
                 onClick: (e) => this.clickCell(row, column, column.key, e)
-              }), [$tableCell]);
+              }, [$tableCell]);
               $tds.push($td);
             }
           });
@@ -33681,11 +33931,11 @@ const _sfc_main$l = {
             expanded: this.rowExpanded(row._index),
             key: column._columnKey
           });
-          const $td = h("td", __spreadProps(__spreadValues({
-            class: this.alignCls(column, row)
-          }, this.getSpan(row, column, index2, colIndex)), {
+          const $td = h("td", {
+            class: this.alignCls(column, row),
+            ...this.getSpan(row, column, index2, colIndex),
             onClick: (e) => this.clickCell(row, column, column.key, e)
-          }), [$tableCell]);
+          }, [$tableCell]);
           $tds.push($td);
         }
       });
@@ -35330,7 +35580,7 @@ const _hoisted_1$a = {
 };
 const _hoisted_2$6 = ["innerHTML"];
 const _hoisted_3$4 = ["innerHTML"];
-const _hoisted_4$3 = {
+const _hoisted_4$2 = {
   class: "ivu-table-resize-line",
   ref: "resizeLine"
 };
@@ -35452,7 +35702,7 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
           style: normalizeStyle($options.fixedBodyStyle),
           ref: "fixedBody",
           onMousewheel: _cache[3] || (_cache[3] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args)),
-          onDOMMouseScroll: _cache[4] || (_cache[4] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args))
+          "on:DOMMouseScroll": _cache[4] || (_cache[4] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args))
         }, [
           createVNode(_component_table_body, {
             fixed: "left",
@@ -35503,7 +35753,7 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
           style: normalizeStyle($options.fixedBodyStyle),
           ref: "fixedRightBody",
           onMousewheel: _cache[5] || (_cache[5] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args)),
-          onDOMMouseScroll: _cache[6] || (_cache[6] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args))
+          "on:DOMMouseScroll": _cache[6] || (_cache[6] = (...args) => $options.handleFixedMousewheel && $options.handleFixedMousewheel(...args))
         }, [
           createVNode(_component_table_body, {
             fixed: "right",
@@ -35541,7 +35791,7 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
         renderSlot(_ctx.$slots, "footer")
       ], 2)) : createCommentVNode("", true)
     ], 2),
-    withDirectives(createElementVNode("div", _hoisted_4$3, null, 512), [
+    withDirectives(createElementVNode("div", _hoisted_4$2, null, 512), [
       [vShow, $data.showResizeLine]
     ]),
     $props.showContextMenu ? (openBlock(), createElementBlock("div", {
@@ -35852,9 +36102,8 @@ const _hoisted_1$8 = {
   key: 0,
   class: "ivu-tag-select-option"
 };
-const _hoisted_2$4 = /* @__PURE__ */ createTextVNode("\u5168\u90E8");
-const _hoisted_3$2 = { key: 0 };
-const _hoisted_4$2 = { key: 1 };
+const _hoisted_2$4 = { key: 0 };
+const _hoisted_3$2 = { key: 1 };
 function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Tag = resolveComponent("Tag");
   const _component_Icon = resolveComponent("Icon");
@@ -35869,7 +36118,7 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
         color: "primary"
       }, {
         default: withCtx(() => [
-          _hoisted_2$4
+          createTextVNode("\u5168\u90E8")
         ]),
         _: 1
       }, 8, ["checked", "onOnChange"])
@@ -35880,7 +36129,7 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
       class: "ivu-tag-select-expand-btn",
       onClick: _cache[0] || (_cache[0] = (...args) => $options.handleToggleExpand && $options.handleToggleExpand(...args))
     }, [
-      $data.expand ? (openBlock(), createElementBlock("span", _hoisted_3$2, toDisplayString($props.locale.collapseText), 1)) : (openBlock(), createElementBlock("span", _hoisted_4$2, toDisplayString($props.locale.expandText), 1)),
+      $data.expand ? (openBlock(), createElementBlock("span", _hoisted_2$4, toDisplayString($props.locale.collapseText), 1)) : (openBlock(), createElementBlock("span", _hoisted_3$2, toDisplayString($props.locale.expandText), 1)),
       $data.expand ? (openBlock(), createBlock(_component_Icon, {
         key: 2,
         type: "ios-arrow-up"
@@ -35965,9 +36214,11 @@ const _sfc_main$f = {
   name: "Text",
   mixins: [baseProps],
   render() {
-    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
-      component: "span"
-    }), this.commonEvents()), this.commonSlots());
+    return h(_sfc_main$17, {
+      ...this.$props,
+      component: "span",
+      ...this.commonEvents()
+    }, this.commonSlots());
   }
 };
 const prefixCls$6 = "ivu-timeline";
@@ -36116,15 +36367,17 @@ const _sfc_main$c = {
     level: {
       type: Number,
       validator(value) {
-        return oneOf(value, [1, 2, 3, 4, 5]);
+        return oneOf(value, [1, 2, 3, 4, 5, 6]);
       },
       default: 1
     }
   },
   render() {
-    return h(_sfc_main$17, __spreadValues(__spreadProps(__spreadValues({}, this.$props), {
-      component: `h${this.level}`
-    }), this.commonEvents()), this.commonSlots());
+    return h(_sfc_main$17, {
+      ...this.$props,
+      component: `h${this.level}`,
+      ...this.commonEvents()
+    }, this.commonSlots());
   }
 };
 const _sfc_main$b = {
@@ -38021,12 +38274,11 @@ const _hoisted_4 = {
   key: 3,
   class: "ivu-word-count-overflow"
 };
-const _hoisted_5 = /* @__PURE__ */ createTextVNode(" / ");
-const _hoisted_6 = {
+const _hoisted_5 = {
   key: 5,
   class: "ivu-word-count-suffix"
 };
-const _hoisted_7 = {
+const _hoisted_6 = {
   key: 6,
   class: "ivu-word-count-suffix ivu-word-count-overflow"
 };
@@ -38056,15 +38308,15 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       ], 2)) : (openBlock(), createElementBlock("span", _hoisted_4, toDisplayString($props.value.length - $props.total), 1)),
       !$props.hideTotal ? (openBlock(), createElementBlock(Fragment, { key: 4 }, [
         renderSlot(_ctx.$slots, "separator", {}, () => [
-          _hoisted_5
+          createTextVNode(" / ")
         ]),
         renderSlot(_ctx.$slots, "total", { total: $props.total }, () => [
           createTextVNode(toDisplayString($props.total), 1)
         ])
       ], 64)) : createCommentVNode("", true),
-      !$options.isOverflow ? (openBlock(), createElementBlock("span", _hoisted_6, [
+      !$options.isOverflow ? (openBlock(), createElementBlock("span", _hoisted_5, [
         renderSlot(_ctx.$slots, "suffix")
-      ])) : (openBlock(), createElementBlock("span", _hoisted_7, [
+      ])) : (openBlock(), createElementBlock("span", _hoisted_6, [
         renderSlot(_ctx.$slots, "suffix-overflow")
       ]))
     ], 64))
@@ -38362,7 +38614,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.1";
+const version$1 = "1.3.16";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
@@ -38390,8 +38642,7 @@ const scripts = {
   "build:style": "gulp --gulpfile build/build-style.js",
   "build:prod": "vite build",
   "build:lang": "vite build --config build/vite.lang.config.js",
-  lint: "vue-cli-service lint --fix",
-  prepare: "npm run build"
+  lint: "vue-cli-service lint --fix"
 };
 const repository = {
   type: "git",
@@ -38456,7 +38707,7 @@ const devDependencies = {
   "uglifyjs-webpack-plugin": "^1.3.0",
   "url-loader": "^1.1.2",
   vite: "^2.6.4",
-  vue: "^3.2.31",
+  vue: "^3.2.47",
   "vue-hot-reload-api": "^2.3.4",
   "vue-html-loader": "^1.2.4",
   "vue-loader": "^17.0.0",
@@ -38464,20 +38715,6 @@ const devDependencies = {
   "vue-style-loader": "^4.1.3",
   "vue-template-compiler": "^2.6.14"
 };
-const engines = {
-  node: ">=16.14.2",
-  npm: ">=8.5.0",
-  yarn: ">=1.3.2"
-};
-const browserslist = [
-  "last 3 Chrome versions",
-  "last 3 Firefox versions",
-  "Safari >= 10",
-  "Explorer >= 11",
-  "Edge >= 12",
-  "iOS >= 10",
-  "Android >= 6"
-];
 var pkg = {
   name,
   version: version$1,
@@ -38494,9 +38731,7 @@ var pkg = {
   license,
   bugs,
   dependencies,
-  devDependencies,
-  engines,
-  browserslist
+  devDependencies
 };
 const directives = {
   display: style.display,
@@ -38510,7 +38745,8 @@ const directives = {
   resize,
   "line-clamp": lineClamp
 };
-const ViewUI = __spreadProps(__spreadValues({}, components), {
+const ViewUI = {
+  ...components,
   iButton: _sfc_main$2c,
   iCircle: Circle,
   iCol: Col,
@@ -38526,7 +38762,7 @@ const ViewUI = __spreadProps(__spreadValues({}, components), {
   iSwitch: Switch,
   iTable: Table,
   iTime: Time
-});
+};
 const install = function(app, opts = {}) {
   if (install.installed)
     return;
@@ -38630,11 +38866,12 @@ const lang = (code) => {
   else
     console.log(`The ${code} language pack is not loaded.`);
 };
-const API = __spreadValues({
+const API = {
   version,
   locale,
   i18n,
   install,
-  lang
-}, components);
+  lang,
+  ...components
+};
 export { Affix, Alert, Anchor, AnchorLink, _sfc_main$2q as Auth, AutoComplete, Avatar, AvatarList, BackTop, Badge, Breadcrumb, BreadcrumbItem, _sfc_main$2c as Button, ButtonGroup, Calendar, _sfc_main$22 as Captcha, Card, Carousel, CarouselItem, Cascader, Cell, CellGroup, Checkbox, CheckboxGroup, Circle, City, Col, Collapse, ColorPicker, Content, Copy, CountDown, CountUp, DatePicker, _sfc_main$1r as Description, DescriptionList, Divider, Drawer, Dropdown, DropdownItem, DropdownMenu, Ellipsis, _sfc_main$1l as Email, Exception, Footer, FooterToolbar, Form, FormItem, GlobalFooter, Grid, GridItem, Header, Icon, Image, ImagePreview, Input, InputNumber, Layout, _sfc_main$16 as Link, List$1 as List, ListItem, ListItemMeta, index$3 as LoadingBar, Login, Menu, MenuGroup, MenuItem, $Message as Message, _sfc_main$Z as Mobile, Modal, index$2 as Notice, Notification, NotificationItem, NotificationTab, NumberInfo, Numeral, iOption as Option, OptionGroup, Page, PageHeader, Panel, _sfc_main$I as Paragraph, _sfc_main$H as Password, Poptip, iProgress as Progress, Radio, RadioGroup, Rate, Result, Row, Scroll, index$1 as ScrollIntoView, index as ScrollTop, Select, Sider, Skeleton, SkeletonItem, Slider, _sfc_main$w as Space, Spin, Split, Step, Steps, Submenu, _sfc_main$q as Submit, Switch, TabPane, Table, TablePaste, Tabs, Tag, TagSelect, TagSelectOption, _sfc_main$f as Text, Time, TimePicker, Timeline, TimelineItem, _sfc_main$c as Title, Tooltip, _sfc_main$8 as Transfer, Tree, TreeSelect, Trend, Typography, Upload, _sfc_main$1 as UserName, WordCount, API as default, i18n, install, lang, locale, version };
