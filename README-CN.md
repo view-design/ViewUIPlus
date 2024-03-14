@@ -6,7 +6,8 @@
 
 <h1>
 View UI Plus
-    <h3>An enterprise-level UI component library and front-end solution based on Vue.js 3</h3>
+    <h3>基于 Vue.js 3 的企业级 UI 组件库和中后台系统解决方案，为数万开发者服务。
+</h3>
 </h1>
 
 [![View UI Plus](https://img.shields.io/npm/v/view-ui-plus.svg?style=flat-square)](https://www.npmjs.org/package/view-ui-plus)
@@ -16,45 +17,50 @@ View UI Plus
 ![CSS gzip size](http://img.badgesize.io/https://unpkg.com/view-ui-plus/dist/styles/viewuiplus.css?compression=gzip&label=gzip%20size:%20CSS&style=flat-square)
 [![Join the chat at https://gitter.im/iview/iview](https://img.shields.io/badge/chat-on_gitter-30b392.svg?style=flat-square)](https://gitter.im/iview/iview?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## Docs
+## 文档
 
 [https://www.iviewui.com](https://www.iviewui.com)
 
-## Experience it online in InsCode
+## 在 InsCode 中在线体验
 [https://inscode.csdn.net/@aresn/ViewDesign](https://inscode.csdn.net/@aresn/ViewDesign)
 
-## Features
+## 特性
 
-- Dozens of useful and beautiful components.
-- Friendly API. It's made for people with any skills level.
-- Extensive documentations and demos.
-- It is  quite awesome.
+- 丰富的组件和功能，满足绝大部分网站场景
+- 提供开箱即用的 [Admin 系统](https://iviewui.com/admin-plus) 和 快速增删改查 [表格组件](https://iviewui.com/icrud)，极大程度节省开发成本
+- 友好的 API ，自由灵活地使用空间
+- 细致、漂亮的 UI
+- 事无巨细的文档
+- 可自定义主题
 
-## Install
+## 安装
 
-We provide starter kit for you.
+我们推进您使用官方工具快速开始：
+
 - [View UI Plus Project (Based on Vue CLI)](https://github.com/view-design/view-ui-project-vuecli)
 - [View UI Plus Project (Based on Vite)](https://github.com/view-design/view-ui-project-vite)
 - [View UI Plus Project (Based on TypeScript)](https://github.com/view-design/view-ui-project-ts)
 - [View UI Plus Project (Based on Nuxt)](https://github.com/view-design/view-ui-project-nuxt)
 
-### Install View UI Plus
+### 安装 View UI Plus
 
-Using npm:
+使用 npm:
 ```
 npm install view-ui-plus --save
 ```
 
-Using a script tag for global use:
+或使用 `<script>` 全局引用：
 
 ```html
 <script type="text/javascript" src="viewuiplus.min.js"></script>
 <link rel="stylesheet" href="dist/styles/viewuiplus.css">
 ```
 
-You can find more info [on the website](https://www.iviewui.com/view-ui-plus/guide/install).
+您可以[在官网文档](https://www.iviewui.com/view-ui-plus/guide/install)查看更多详细说明。
 
-## Usage
+## 示例
+
+### Options API：
 
 ```vue
 <template>
@@ -66,21 +72,42 @@ You can find more info [on the website](https://www.iviewui.com/view-ui-plus/gui
 </script>
 ```
 
-Using css via `import`:
+### Composition API：
+
+```vue
+<template>
+    <Slider v-model="value" range />
+</template>
+<script setup>
+    import { ref } from 'vue'
+    const value = ref([20, 50])
+</script>
+```
+
+### TypeScript：
+
+```vue
+<template>
+    <Slider v-model="value" range />
+</template>
+<script setup lang="ts">
+    import { ref } from 'vue'
+    import type { Ref } from 'vue'
+    const value: Ref<number[]> = ref([20, 50])
+</script>
+```
+
+使用 `import` 导入 CSS:
 
 ```js
 import 'view-ui-plus/dist/styles/viewuiplus.css'
 ```
 
-## Community
+## 社区
 
-If you want to contribute us or in case you are haiving any doubt.
+您可以免费加入到 [ViewDesign 官方社区](https://community.gitcode.com/viewdesign) 了解更多 Vue 的内容。
 
-**Questions:** Find other users at the [Gitter chat](https://gitter.im/iview/iview) or post on [StackOverflow using `[iview-ui]` tag](https://stackoverflow.com/questions/tagged/iview-ui)  
-**Bugs:** [File a issue here](https://www.iviewui.com/new-issue) - please provide a example so we can help you better  
-**Contribute:** Contact us in [Gitter chat](https://gitter.im/iview/iview), WeChat or via mail to `admin@aresn.com`. PRs welcome!
-
-## Major Contributors
+## 主要贡献者
 |Name|Avatar|Name|Avatar|Name|Avatar|
 |---|---|---|---|---|---|
 |[Aresn](https://github.com/icarusion) |  ![](https://avatars3.githubusercontent.com/u/5370542?v=3&s=60)  |[jingsam](https://github.com/jingsam) |  ![](https://avatars3.githubusercontent.com/u/1522494?v=3&s=60)  | [rijn](https://github.com/rijn)       |  ![](https://avatars2.githubusercontent.com/u/6976367?v=3&s=60)  |
