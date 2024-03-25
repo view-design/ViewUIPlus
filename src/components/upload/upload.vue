@@ -338,8 +338,8 @@
                 immediate: true,
                 handler(fileList) {
                     this.fileList = fileList.map(item => {
-                        item.status = 'finished';
-                        item.percentage = 100;
+                        item.status = item.status ? item.status : 'finished';
+                        item.percentage = item.percentage >= 0 ? item.percentage : 100;
                         item.uid = Date.now() + this.tempIndex++;
                         return item;
                     });
