@@ -17,7 +17,7 @@
                             <span v-if="!column.renderHeader">{{ column.title || '' }}</span>
                             <render-header v-else :render="column.renderHeader" :column="column" :index="index"></render-header>
                         </template>
-                        <template v-else-if="column.type === 'selection'"><Checkbox v-if="!column.hideSelectAll" :model-value="isSelectAll" :disabled="isSelectDisabled" @on-change="selectAll"></Checkbox></template>
+                        <template v-else-if="column.type === 'selection'"><Checkbox v-if="!column.hideSelectAll" :indeterminate="indeterminate" :model-value="isSelectAll" :disabled="isSelectDisabled" @on-change="selectAll"></Checkbox></template>
                         <template v-else>
                             <span v-if="!column.renderHeader" :class="{[prefixCls + '-cell-sort']: column.sortable}" @click="column.sortable && handleSortByHead(getColumn(rowIndex, index)._index)">{{ column.title || '#' }}</span>
                             <render-header v-else :render="column.renderHeader" :column="column" :index="index"></render-header>
@@ -122,6 +122,22 @@
                 const width = parseInt(this.styleObject.width) ;
                 style.width = `${width}px`;
                 return style;
+            },
+            indeterminate () {
+                let isSelectPart = false
+                for (let i in this.objData) {
+                    const objData = this.objData[i]
+                    if (objData._isChecked) {
+                        isSelectPart = true
+                        break
+                    } else if (objData.children && objData.children.length) {
+                        isSelectPart = this.hasChildrenChecked(objData)
+                        if (isSelectPart) {
+                            break;
+                        }
+                    }
+                }
+                return isSelectPart && !this.isSelectAll;
             },
             isSelectAll () {
                 let isSelectAll = true;
@@ -402,7 +418,21 @@
                     });
                 }
                 return status;
-            }
+            },
+            hasChildrenChecked (objData) {
+                let status = false;
+                if (objData.children && objData.children.length) {
+                    status = !!objData.children.find((row) => {
+                        if (row._isChecked) {
+                            return true;
+                        } else if (row.children && row.children.length) {
+                            return this.hasChildrenChecked(row)
+                        }
+                        return false;
+                    });
+                }
+                return status;
+            },
         }
     };
 </script>
