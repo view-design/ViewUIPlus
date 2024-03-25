@@ -62,7 +62,7 @@
     import { transferIndex, transferIncrease } from '../../utils/transfer-queue';
     import Row from '../row/row.vue';
     import Col from '../col/col.vue';
-    import { downloadFile } from '../../utils/assist';
+    import { downloadFile, typeOf } from '../../utils/assist';
 
     export default {
         name: 'ImagePreview',
@@ -108,7 +108,8 @@
                         ? ['zoomIn', 'zoomOut', 'original', 'rotateLeft', 'rotateRight', 'download']
                         : global.$VIEWUI.image.toolbar;
                 }
-            }
+            },
+            renameImage: Function
         },
         data() {
             return {
@@ -238,6 +239,23 @@
                 }
                 this.$emit('on-switch', { currentIndex: this.currentIndex });
             },
+            getImageSuffixName () {
+                const { previewList, currentIndex } = this;
+                let imagePath = previewList[currentIndex];
+                const regImageSuffix = /\.(jpg|jpeg|ico|webp|png|pjpeg)$/gi;
+                imagePath = imagePath.replace(regImageSuffix, '');
+                const splitImagePath = imagePath.split('/');
+                return splitImagePath[splitImagePath.length - 1]
+            },
+            handleDownloadImage () {
+                const { previewList, renameImage, currentIndex } = this;
+                const imageName = typeOf(renameImage) === 'function' ? this.renameImage(currentIndex) : this.getImageSuffixName();
+                downloadFile(previewList[currentIndex], imageName).then(() => {
+                    this.downloading = false;
+                }).catch(() => {
+                    this.downloading = false;
+                });
+            },
             handleOperation (val) {
                 if (val === 'zoomIn' && this.scale < 6) this.scale += 0.25;
                 if (val === 'zoomOut' && this.scale > 0.25) this.scale -= 0.25;
@@ -251,11 +269,7 @@
                 }
                 if (val === 'download') {
                     this.downloading = true;
-                    downloadFile(this.previewList[this.currentIndex]).then(() => {
-                        this.downloading = false;
-                    }).catch(() => {
-                        this.downloading = false;
-                    });
+                    this.handleDownloadImage();
                 }
             },
             handleKeydown (event) {
