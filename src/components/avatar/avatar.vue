@@ -114,14 +114,18 @@
             }
         },
         beforeCreate () {
-            this.slotTemp = this.$slots.default ? this.$slots.default() : null;
+            this.$nextTick(() => {
+                this.slotTemp = this.$slots.default ? this.$slots.default() : null;
+            });
         },
         mounted () {
             this.setScale();
         },
         updated () {
-            const slot = this.$slots.default ? this.$slots.default() : null;
-            if (slot && slot !== this.slotTemp) this.setScale();
+            this.$nextTick(() => {
+                const slot = this.$slots.default ? this.$slots.default() : null;
+                if (slot && slot !== this.slotTemp) this.setScale();
+            });
         }
     };
 </script>
