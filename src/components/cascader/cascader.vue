@@ -228,7 +228,8 @@
                 }
             },
             querySelections () {
-                let selections = [];
+                let selections = [],
+                    changeOnSelect = this.changeOnSelect;
                 function getSelections (arr, label, value) {
                     const cloneArr = deepCopy(arr);
                     for (let i = 0; i < cloneArr.length; i++) {
@@ -238,6 +239,15 @@
 
                         if (item.children && item.children.length) {
                             getSelections(item.children, item.__label, item.__value);
+                            if (changeOnSelect) {
+                                selections.push({
+                                    label: item.__label,
+                                    value: item.__value,
+                                    display: item.__label,
+                                    item: item,
+                                    disabled: !!item.disabled
+                                });
+                            }
                             delete item.__label;
                             delete item.__value;
                         } else {
