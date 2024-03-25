@@ -329,6 +329,8 @@
 .active-btn-color(@color) {
     &:focus {
         box-shadow: 0 0 0 2px fade(@color, 20%);
+        position: relative;
+        z-index: 2;
     }
 }
 .btn-color(@color) {
