@@ -19267,6 +19267,11 @@ const _sfc_main$1o = {
         }
       ];
     },
+    wrapStyles() {
+      return {
+        zIndex: this.zIndex
+      };
+    },
     mainStyles() {
       let style2 = {};
       if (this.placement === "left" || this.placement === "right") {
@@ -19501,6 +19506,7 @@ function _sfc_render$1b(_ctx, _cache, $props, $setup, $data, $options) {
       }),
       createElementVNode("div", {
         class: normalizeClass($options.wrapClasses),
+        style: normalizeStyle($options.wrapStyles),
         onClick: _cache[3] || (_cache[3] = (...args) => $options.handleWrapClick && $options.handleWrapClick(...args))
       }, [
         createVNode(Transition, { name: $options.transitionName }, {
@@ -19554,7 +19560,7 @@ function _sfc_render$1b(_ctx, _cache, $props, $setup, $data, $options) {
           ]),
           _: 3
         }, 8, ["name"])
-      ], 2)
+      ], 6)
     ], 512)
   ], 8, ["disabled"]);
 }
@@ -38614,7 +38620,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.16";
+const version$1 = "1.3.17";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
