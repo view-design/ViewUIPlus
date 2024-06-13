@@ -4,7 +4,7 @@
             <transition name="fade">
                 <div :class="maskClasses" :style="maskStyle" v-show="visible" v-if="mask" @click="handleMask"></div>
             </transition>
-            <div :class="wrapClasses" @click="handleWrapClick">
+            <div :class="wrapClasses" :style="wrapStyles" @click="handleWrapClick">
                 <transition :name="transitionName">
                     <div :class="classes" :style="mainStyles" v-show="visible">
                         <div :class="contentClasses" ref="content">
@@ -155,6 +155,11 @@
                         [`${prefixCls}-wrap-dragging`]: this.canMove
                     }
                 ];
+            },
+            wrapStyles () {
+                return {
+                    zIndex: this.zIndex
+                }
             },
             mainStyles () {
                 let style = {};
