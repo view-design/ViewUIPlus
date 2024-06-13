@@ -1378,7 +1378,9 @@
             makeColumnsId (columns) {
                 const cloneColumns = deepCopy(columns);
                 return cloneColumns.map(item => {
-                    if ('children' in item) this.makeColumnsId(item.children);
+                    if ('children' in item) {
+                        item.children = this.makeColumnsId(item.children);
+                    }
                     item.__id = getRandomStr(6);
                     return item;
                 });
