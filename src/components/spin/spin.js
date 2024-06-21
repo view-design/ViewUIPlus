@@ -64,7 +64,7 @@ Spin.newInstance = properties => {
             })
         },
         remove (cb) {
-            spin.visible = false;
+            _instance.refs.spin.visible = false;
             setTimeout(function() {
                 Instance.unmount();
                 document.body.removeChild(container);

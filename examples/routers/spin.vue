@@ -33,8 +33,11 @@ export default {
             }, 3000);
         }
     },
-    mounted() {
+    mounted () {
         this.$Spin.show();
+        setTimeout(() => {
+            this.$Spin.hide();
+        }, 3000)
     }
 }
 </script>
