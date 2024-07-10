@@ -23896,7 +23896,7 @@ Spin.newInstance = (properties) => {
       });
     },
     remove(cb) {
-      spin2.visible = false;
+      _instance.refs.spin.visible = false;
       setTimeout(function() {
         Instance.unmount();
         document.body.removeChild(container);
@@ -38620,7 +38620,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.17";
+const version$1 = "1.3.18";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
