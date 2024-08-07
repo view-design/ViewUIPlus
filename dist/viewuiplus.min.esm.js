@@ -10694,7 +10694,9 @@ const _sfc_main$1U = {
     },
     currentValue() {
       if (this.CheckboxGroupInstance) {
-        return this.CheckboxGroupInstance.modelValue.indexOf(this.label) >= 0;
+        let modelValue = this.CheckboxGroupInstance.modelValue;
+        modelValue = Array.isArray(modelValue) ? modelValue : [];
+        return modelValue.indexOf(this.label) >= 0;
       } else {
         return this.modelValue === this.trueValue;
       }
@@ -38620,7 +38622,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.18";
+const version$1 = "1.3.19";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
