@@ -1,10 +1,10 @@
 <template>
     <ul :class="classes">
         <li @contextmenu.stop="handleContextmenu(data, $event)" @selectstart.stop="handlePreventSelect(data, $event)">
-                <span :class="arrowClasses" @click="handleExpand">
-                    <Icon v-if="showArrow" :type="arrowType" :custom="customArrowType" :size="arrowSize" />
-                    <Icon v-if="showLoading" type="ios-loading" class="ivu-load-loop" />
-                </span>
+            <span :class="arrowClasses" @click="handleExpand">
+                <Icon v-if="showArrow" :type="arrowType" :custom="customArrowType" :size="arrowSize" />
+                <Icon v-if="showLoading" type="ios-loading" class="ivu-load-loop" />
+            </span>
             <Checkbox
                 v-if="showCheckbox"
                 :model-value="data.checked"
@@ -101,7 +101,8 @@
                 return [
                     `${prefixCls}-title`,
                     {
-                        [`${prefixCls}-title-selected`]: this.data.selected
+                        [`${prefixCls}-title-selected`]: this.data.selected,
+                        [`${prefixCls}-title-disabled`]: this.data.disabled,
                     }
                 ];
             },
