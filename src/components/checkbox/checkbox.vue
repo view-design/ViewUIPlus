@@ -128,7 +128,9 @@
             },
             currentValue () {
                 if (this.CheckboxGroupInstance) {
-                    return this.CheckboxGroupInstance.modelValue.indexOf(this.label) >= 0;
+                    let modelValue = this.CheckboxGroupInstance.modelValue;
+                    modelValue = Array.isArray(modelValue) ? modelValue : []
+                    return modelValue.indexOf(this.label) >= 0;
                 } else {
                     return this.modelValue === this.trueValue;
                 }
