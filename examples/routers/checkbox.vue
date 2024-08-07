@@ -88,7 +88,7 @@
         data () {
             return {
                 social: ['facebook', 'github'],
-                fruit: ['苹果'],
+                fruit: null,
                 tags: [],
                 testValue1: null,
                 testValue2: null,
