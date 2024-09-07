@@ -31,6 +31,7 @@
                     :disabled="itemDisabled"
                     :size="size"
                     :icon="inputIcon"
+                    :maxlength="maxlength"
                     @on-click="handleClear"
                     @on-focus="handleFocus"
                     @on-blur="handleBlur"></i-input>
@@ -128,7 +129,10 @@
             eventsEnabled: {
                 type: Boolean,
                 default: false
-            }
+            },
+            maxlength: {
+                type: [String, Number]
+            },
         },
         data () {
             return {
