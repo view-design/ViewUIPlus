@@ -157,7 +157,7 @@
                     let height = this.height;
                     // 当 height 未定义，且 lines 定义时，计算真实高度，否则使用 this.height
                     if (!height && this.lines) {
-                        const lineHeight = parseInt(getStyle($el, 'lineHeight'), 10);
+                        const lineHeight = parseFloat(getStyle($el, 'lineHeight'), 10);
                         height = lineHeight * this.lines;
                     }
 

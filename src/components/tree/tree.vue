@@ -194,7 +194,10 @@
                 }
                 if (node[this.childrenKey]) {
                     node[this.childrenKey].forEach(child => {
-                        this.updateTreeDown(child, changes);
+                        if(child.disabled)
+                            this.updateTreeDown(child, {checked: false, indeterminate: false});
+                        else
+                            this.updateTreeDown(child, changes);
                     });
                 }
             },
