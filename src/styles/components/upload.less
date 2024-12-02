@@ -40,6 +40,19 @@
                     opacity: 1;
                 }
             }
+
+            &-error > span{
+                color: @error-color !important;
+                i{
+                    color: @error-color !important;
+                }
+                &:hover{
+                    color: @error-hover-color !important;
+                    i{
+                        color: @error-hover-color !important;
+                    }
+                }
+            }
         }
         &-remove{
             opacity: 0;
@@ -51,6 +64,12 @@
             transition: all @transition-time ease;
             &:hover{
                 color: #444;
+            }
+            &-error{
+                color: @error-color !important;
+                &:hover{
+                    color: @error-hover-color !important;
+                }
             }
         }
     }
