@@ -36,6 +36,7 @@
                 :mask-closable="maskClosable"
                 :transfer="transfer"
                 :toolbar="toolbar"
+                :renameImage="renameImage"
                 @on-close="handleClose"
                 @on-switch="handleSwitch"
             />
@@ -131,7 +132,8 @@
                         ? ['zoomIn', 'zoomOut', 'original', 'rotateLeft', 'rotateRight', 'download']
                         : global.$VIEWUI.image.toolbar;
                 }
-            }
+            },
+            renameImage: Function
         },
         data() {
             return {

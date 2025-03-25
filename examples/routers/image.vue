@@ -80,6 +80,7 @@
         v-model="showPreview"
         :previewList="srcList"
         :infinite="false"
+		:renameImage="renameImage"
         :toolbar="['zoomOut', 'original', 'rotateRight', 'rotateLeft', 'zoomIn', 'download']"
     ></ImagePreview>
 
@@ -119,6 +120,9 @@ export default {
                 previewList: this.srcList
             });
         },
+		renameImage(index) {
+			return `custom-name-${index}`
+		},
         showImagePreview2 () {
             this.$ImagePreview.show({
                 previewList: this.srcList2,
