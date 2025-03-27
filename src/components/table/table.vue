@@ -1140,7 +1140,7 @@
                 }, 5);
             },
             handleMouseWheel (event) {
-                const deltaX = event.deltaX;
+                const deltaX = event.wheelDelta;
                 const $body = this.$refs.body;
 
                 if (deltaX > 0) {
