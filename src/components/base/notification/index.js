@@ -37,8 +37,8 @@ Notification.newInstance = properties => {
         },
         component: notification,
         destroy (element) {
-            notification.closeAll();
             isClient && setTimeout(function() {
+                _instance.refs.notification.closeAll();
                 const removeElement = document.querySelectorAll(`.${element}`)[0];
                 if (container && removeElement) {
                     container.removeChild(removeElement);
