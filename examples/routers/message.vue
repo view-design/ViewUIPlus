@@ -90,6 +90,9 @@
                     closable: true
                 });
             }
+        },
+        mounted () {
+            this.success()
         }
     }
 </script>
