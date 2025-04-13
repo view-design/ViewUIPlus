@@ -11,6 +11,7 @@
                     :key="index"
                     :colspan="column.colSpan"
                     :rowspan="column.rowSpan"
+                    :style="mergeStyles(column)"
                     :class="alignCls(column)">
                     <div :class="cellClasses(column)">
                         <template v-if="column.type === 'expand'">

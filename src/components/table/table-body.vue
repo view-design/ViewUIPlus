@@ -325,9 +325,13 @@
                             expanded: this.rowExpanded(row._index),
                             key: column._columnKey,
                         });
-
+                        let styles = {}
+                        if (column._sticky === 'left' && column._styles) {
+                            styles = column._styles
+                        }
                         const $td = h('td', {
                             class: this.alignCls(column, row),
+                            style: styles,
                             ...this.getSpan(row, column, index, colIndex),
                             onClick: (e) => this.clickCell(row, column, column.key, e)
                         }, [$tableCell]);

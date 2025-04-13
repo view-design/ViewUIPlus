@@ -1,5 +1,7 @@
 <template>
     <div style="margin: 200px">
+        <Divider>Table Fixed</Divider>
+        <Table style="width: 400px;" :columns="stickyColumns" :data="stickyData"></Table>
         <Divider>TreeTable</Divider>
         <Table
             border
@@ -86,6 +88,54 @@
 export default {
     data () {
         return {
+            stickyColumns: [
+                {
+                    title: 'Name',
+                    _sticky: 'left',
+                    width: '100px',
+                    className: 'i-crud-column-sticky-left',
+                    _styles: {
+                        left: '0px'
+                    },
+                    key: 'name'
+                },
+                {
+                    title: 'Age',
+                    width: '300px',
+                    key: 'age'
+                },
+                {
+                    title: 'Address',
+                    width: '300px',
+                    key: 'address'
+                }
+            ],
+            stickyData: [
+                {
+                    name: 'John Brown',
+                    age: 18,
+                    address: 'New York No. 1 Lake Park',
+                    date: '2016-10-03'
+                },
+                {
+                    name: 'Jim Green',
+                    age: 24,
+                    address: 'London No. 1 Lake Park',
+                    date: '2016-10-01'
+                },
+                {
+                    name: 'Joe Black',
+                    age: 30,
+                    address: 'Sydney No. 1 Lake Park',
+                    date: '2016-10-02'
+                },
+                {
+                    name: 'Jon Snow',
+                    age: 26,
+                    address: 'Ottawa No. 2 Lake Park',
+                    date: '2016-10-04'
+                }
+            ],
             columns4: [
                 {
                     title: 'ID',
@@ -951,3 +1001,9 @@ export default {
     }
 }
 </script>
+<style>
+.i-crud-column-sticky-left {
+    position: sticky!important;
+    z-index: 10;
+}
+</style>
