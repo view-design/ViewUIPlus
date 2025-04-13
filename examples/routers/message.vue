@@ -69,6 +69,7 @@
             },
             success () {
                 this.$Message.success('This is a success tip');
+                this.$Message.destroy()
             },
             warning () {
                 this.$Message.warning('This is a warning tip');
@@ -91,7 +92,7 @@
                 });
             }
         },
-        mounted () {
+        created () {
             this.success()
         }
     }
