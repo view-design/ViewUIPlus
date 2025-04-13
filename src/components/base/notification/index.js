@@ -1,5 +1,5 @@
 import Notification from './notification.vue';
-import { createApp, h, getCurrentInstance } from 'vue';
+import { createApp, h, getCurrentInstance, nextTick } from 'vue';
 import { isClient } from '../../../utils/index';
 
 Notification.newInstance = properties => {
@@ -26,10 +26,14 @@ Notification.newInstance = properties => {
 
     return {
         notice (noticeProps) {
-            notification.add(noticeProps);
+            nextTick(() => {
+                _instance.refs.notification.add(noticeProps);
+            })
         },
         remove (name) {
-            notification.close(name);
+            nextTick(() => {
+                _instance.refs.notification.close(name);
+            })
         },
         component: notification,
         destroy (element) {
