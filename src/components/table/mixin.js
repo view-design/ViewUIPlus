@@ -15,6 +15,12 @@ export default {
                 }
             ];
         },
+        mergeStyles (column) {
+            if (column._sticky === 'left') {
+                return column._styles || {}
+            }
+            return {}
+        },
         isPopperShow (column) {
             return column.filters && ((!this.fixed && !column.fixed) || (this.fixed === 'left' && column.fixed === 'left') || (this.fixed === 'right' && column.fixed === 'right'));
         },

@@ -39,9 +39,13 @@
             error (nodesc) {
                 this.$Notice.error({
                     duration: 10000,
+                    name: '1111111',
                     title: 'Notification title',
                     desc: nodesc ? '' : 'Here is the notification description. Here is the notification description. '
                 });
+                setTimeout(() =>{
+                    this.$Notice.close('1111111')
+                }, 3000)
             }
         }
     }
