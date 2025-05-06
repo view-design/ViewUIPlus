@@ -366,7 +366,9 @@ const router = createRouter({
 });
 
 const app = createApp(App);
-app.use(ViewUIPlus);
+app.use(ViewUIPlus, {
+    size: 'small'
+});
 app.use(router);
 app.mount('#app');
 export default app;
