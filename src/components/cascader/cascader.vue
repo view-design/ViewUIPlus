@@ -35,7 +35,11 @@
                     :data="data"
                     :disabled="itemDisabled"
                     :change-on-select="changeOnSelect"
-                    :trigger="trigger"></Caspanel>
+                    :trigger="trigger">
+                    <template #label="{ data }">
+                        <slot name="label" :data="data"></slot>
+                    </template>
+                </Caspanel>
                 <div :class="[prefixCls + '-dropdown']" v-show="filterable && query !== '' && querySelections.length">
                     <ul :class="[selectPrefixCls + '-dropdown-list']">
                         <li
