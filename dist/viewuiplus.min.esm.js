@@ -5791,9 +5791,9 @@ function _sfc_render$20(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default", {}, () => [
       createElementVNode("div", {
         class: normalizeClass($options.innerClasses)
-      }, _cache[1] || (_cache[1] = [
+      }, [..._cache[1] || (_cache[1] = [
         createElementVNode("i", { class: "ivu-icon ivu-icon-ios-arrow-up" }, null, -1)
-      ]), 2)
+      ])], 2)
     ])
   ], 6);
 }
@@ -9599,7 +9599,9 @@ function _sfc_render$1M(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: normalizeClass($options.classes)
   }, [
-    createTextVNode(toDisplayString($props.data.label) + " ", 1),
+    renderSlot(_ctx.$slots, "label", { data: $props.data }, () => [
+      createTextVNode(toDisplayString($props.data.label), 1)
+    ]),
     $options.showArrow ? (openBlock(), createBlock(_component_Icon, {
       key: 0,
       type: $options.arrowType,
@@ -9812,7 +9814,12 @@ function _sfc_render$1L(_ctx, _cache, $props, $setup, $data, $options) {
           "tmp-item": $data.tmpItem,
           onClick: withModifiers(($event) => $options.handleClickItem(item), ["stop"]),
           onMouseenter: withModifiers(($event) => $options.handleHoverItem(item), ["stop"])
-        }, null, 8, ["prefix-cls", "data", "tmp-item", "onClick", "onMouseenter"]);
+        }, {
+          label: withCtx(({ data }) => [
+            renderSlot(_ctx.$slots, "label", { data })
+          ]),
+          _: 3
+        }, 8, ["prefix-cls", "data", "tmp-item", "onClick", "onMouseenter"]);
       }), 128))
     ], 2)) : createCommentVNode("", true),
     $data.sublist && $data.sublist.length ? (openBlock(), createBlock(_component_Caspanel, {
@@ -9822,7 +9829,12 @@ function _sfc_render$1L(_ctx, _cache, $props, $setup, $data, $options) {
       disabled: $props.disabled,
       trigger: $props.trigger,
       "change-on-select": $props.changeOnSelect
-    }, null, 8, ["prefix-cls", "data", "disabled", "trigger", "change-on-select"])) : createCommentVNode("", true)
+    }, {
+      label: withCtx(({ data }) => [
+        renderSlot(_ctx.$slots, "label", { data })
+      ]),
+      _: 3
+    }, 8, ["prefix-cls", "data", "disabled", "trigger", "change-on-select"])) : createCommentVNode("", true)
   ]);
 }
 var Caspanel = /* @__PURE__ */ _export_sfc(_sfc_main$1Z, [["render", _sfc_render$1L]]);
@@ -10322,7 +10334,12 @@ function _sfc_render$1K(_ctx, _cache, $props, $setup, $data, $options) {
             disabled: _ctx.itemDisabled,
             "change-on-select": $props.changeOnSelect,
             trigger: $props.trigger
-          }, null, 8, ["prefix-cls", "data", "disabled", "change-on-select", "trigger"]), [
+          }, {
+            label: withCtx(({ data }) => [
+              renderSlot(_ctx.$slots, "label", { data })
+            ]),
+            _: 3
+          }, 8, ["prefix-cls", "data", "disabled", "change-on-select", "trigger"]), [
             [vShow, !$props.filterable || $props.filterable && $data.query === ""]
           ]),
           withDirectives(createElementVNode("div", {
@@ -10354,7 +10371,7 @@ function _sfc_render$1K(_ctx, _cache, $props, $setup, $data, $options) {
           ])
         ])
       ]),
-      _: 1
+      _: 3
     }, 8, ["visible", "classes", "eventsEnabled", "transfer"])
   ], 2)), [
     [_directive_click_outside, $options.handleClose]
@@ -12313,15 +12330,15 @@ function _sfc_render$1A(_ctx, _cache, $props, $setup, $data, $options) {
                   }, {
                     default: withCtx(() => [
                       createVNode(_component_Radio, { label: "province" }, {
-                        default: withCtx(() => _cache[4] || (_cache[4] = [
-                          createTextVNode("\u6309\u7701\u4EFD")
-                        ])),
+                        default: withCtx(() => [..._cache[4] || (_cache[4] = [
+                          createTextVNode("\u6309\u7701\u4EFD", -1)
+                        ])]),
                         _: 1
                       }),
                       createVNode(_component_Radio, { label: "city" }, {
-                        default: withCtx(() => _cache[5] || (_cache[5] = [
-                          createTextVNode("\u6309\u57CE\u5E02")
-                        ])),
+                        default: withCtx(() => [..._cache[5] || (_cache[5] = [
+                          createTextVNode("\u6309\u57CE\u5E02", -1)
+                        ])]),
                         _: 1
                       })
                     ]),
@@ -14900,9 +14917,9 @@ function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
         key: 0,
         class: normalizeClass([$options.baseClass + "-close"]),
         onClick: _cache[0] || (_cache[0] = (...args) => $options.close && $options.close(...args))
-      }, _cache[2] || (_cache[2] = [
+      }, [..._cache[2] || (_cache[2] = [
         createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1)
-      ]), 2)) : createCommentVNode("", true)
+      ])], 2)) : createCommentVNode("", true)
     ], 64)) : createCommentVNode("", true),
     $props.type === "message" ? (openBlock(), createElementBlock("div", {
       key: 1,
@@ -14922,9 +14939,9 @@ function _sfc_render$1s(_ctx, _cache, $props, $setup, $data, $options) {
         key: 0,
         class: normalizeClass([$options.baseClass + "-close"]),
         onClick: _cache[1] || (_cache[1] = (...args) => $options.close && $options.close(...args))
-      }, _cache[3] || (_cache[3] = [
+      }, [..._cache[3] || (_cache[3] = [
         createElementVNode("i", { class: "ivu-icon ivu-icon-ios-close" }, null, -1)
-      ]), 2)) : createCommentVNode("", true)
+      ])], 2)) : createCommentVNode("", true)
     ], 2)) : createCommentVNode("", true)
   ], 6);
 }
@@ -19826,7 +19843,7 @@ function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
           }, toDisplayString($props.text), 513),
           withDirectives(createElementVNode("span", _hoisted_2$s, [
             renderSlot(_ctx.$slots, "more", {}, () => [
-              _cache[0] || (_cache[0] = createTextVNode("..."))
+              _cache[0] || (_cache[0] = createTextVNode("...", -1))
             ])
           ], 512), [
             [vShow, $data.oversize]
@@ -19841,7 +19858,7 @@ function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
         }, toDisplayString($props.text), 513),
         withDirectives(createElementVNode("span", _hoisted_3$o, [
           renderSlot(_ctx.$slots, "more", {}, () => [
-            _cache[1] || (_cache[1] = createTextVNode("..."))
+            _cache[1] || (_cache[1] = createTextVNode("...", -1))
           ])
         ], 512), [
           [vShow, $data.oversize]
@@ -19855,7 +19872,7 @@ function _sfc_render$19(_ctx, _cache, $props, $setup, $data, $options) {
       }, toDisplayString($props.text), 513),
       withDirectives(createElementVNode("span", _hoisted_5$b, [
         renderSlot(_ctx.$slots, "more", {}, () => [
-          _cache[2] || (_cache[2] = createTextVNode("..."))
+          _cache[2] || (_cache[2] = createTextVNode("...", -1))
         ])
       ], 512), [
         [vShow, $data.oversize]
@@ -22349,7 +22366,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                       "p-id": "7197",
                       width: "200",
                       height: "200"
-                    }, _cache[15] || (_cache[15] = [
+                    }, [..._cache[15] || (_cache[15] = [
                       createElementVNode("path", {
                         d: "M637 443H519V309c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v134H325c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h118v134c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V519h118c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z",
                         "p-id": "7198",
@@ -22360,7 +22377,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                         "p-id": "7199",
                         fill: "#ffffff"
                       }, null, -1)
-                    ])))
+                    ])]))
                   ]),
                   _: 1
                 }, 8, ["order"])) : createCommentVNode("", true),
@@ -22379,7 +22396,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                       "p-id": "7412",
                       width: "200",
                       height: "200"
-                    }, _cache[16] || (_cache[16] = [
+                    }, [..._cache[16] || (_cache[16] = [
                       createElementVNode("path", {
                         d: "M637 443H325c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h312c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z",
                         "p-id": "7413",
@@ -22390,7 +22407,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                         "p-id": "7414",
                         fill: "#ffffff"
                       }, null, -1)
-                    ])))
+                    ])]))
                   ]),
                   _: 1
                 }, 8, ["order"])) : createCommentVNode("", true),
@@ -22409,13 +22426,13 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                       "p-id": "26672",
                       width: "200",
                       height: "200"
-                    }, _cache[17] || (_cache[17] = [
+                    }, [..._cache[17] || (_cache[17] = [
                       createElementVNode("path", {
                         d: "M358.058667 128H156.970667A28.970667 28.970667 0 0 0 128 157.013333v202.837334c0 7.978667 6.528 14.506667 14.506667 14.506666h43.434666a14.506667 14.506667 0 0 0 14.506667-14.506666V200.448h157.610667a14.506667 14.506667 0 0 0 14.506666-14.506667V142.506667a14.506667 14.506667 0 0 0-14.506666-14.506667zM881.493333 649.642667h-43.434666a14.506667 14.506667 0 0 0-14.506667 14.506666v159.402667h-157.610667a14.506667 14.506667 0 0 0-14.506666 14.506667v43.434666c0 7.978667 6.570667 14.506667 14.506666 14.506667h201.088c16 0 28.970667-12.928 28.970667-29.013333v-202.837334a14.506667 14.506667 0 0 0-14.506667-14.506666zM358.058667 823.552H200.448v-159.402667a14.506667 14.506667 0 0 0-14.506667-14.506666H142.506667a14.506667 14.506667 0 0 0-14.506667 14.506666v202.88c0 16 12.970667 28.970667 29.013333 28.970667h201.045334a14.506667 14.506667 0 0 0 14.506666-14.506667v-43.434666a14.506667 14.506667 0 0 0-14.506666-14.506667zM866.986667 128h-201.088a14.506667 14.506667 0 0 0-14.506667 14.506667v43.434666c0 7.978667 6.570667 14.506667 14.506667 14.506667h157.610666v159.402667c0 7.978667 6.528 14.506667 14.506667 14.506666h43.434667a14.506667 14.506667 0 0 0 14.506666-14.506666V156.970667A28.928 28.928 0 0 0 866.986667 128z",
                         "p-id": "26673",
                         fill: "#ffffff"
                       }, null, -1)
-                    ]), 512)), [
+                    ])], 512)), [
                       [vShow, !this.original]
                     ]),
                     withDirectives((openBlock(), createElementBlock("svg", {
@@ -22427,7 +22444,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                       "p-id": "1976",
                       width: "200",
                       height: "200"
-                    }, _cache[18] || (_cache[18] = [
+                    }, [..._cache[18] || (_cache[18] = [
                       createElementVNode("path", {
                         d: "M864 128H160c-19.2 0-32 12.8-32 32v704c0 19.2 12.8 32 32 32h704c19.2 0 32-12.8 32-32V160c0-19.2-12.8-32-32-32z m-32 704H192V192h640v640z",
                         "p-id": "1977",
@@ -22448,7 +22465,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                         "p-id": "1980",
                         fill: "#ffffff"
                       }, null, -1)
-                    ]), 512)), [
+                    ])], 512)), [
                       [vShow, this.original]
                     ])
                   ]),
@@ -22469,13 +22486,13 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                       "p-id": "13308",
                       width: "200",
                       height: "200"
-                    }, _cache[19] || (_cache[19] = [
+                    }, [..._cache[19] || (_cache[19] = [
                       createElementVNode("path", {
                         d: "M672 418H144c-17.7 0-32 14.3-32 32v414c0 17.7 14.3 32 32 32h528c17.7 0 32-14.3 32-32V450c0-17.7-14.3-32-32-32z m-44 402H188V494h440v326z m191.3-491.5c-78.8-100.7-196-153.6-314.6-154.2l-0.2-64c0-6.5-7.6-10.1-12.6-6.1l-128 101c-4 3.1-3.9 9.1 0 12.3L492 318.6c5.1 4 12.7 0.4 12.6-6.1v-63.9c12.9 0.1 25.9 0.9 38.8 2.5 42.1 5.2 82.1 18.2 119 38.7 38.1 21.2 71.2 49.7 98.4 84.3 27.1 34.7 46.7 73.7 58.1 115.8 11 40.7 14 82.7 8.9 124.8-0.7 5.4-1.4 10.8-2.4 16.1h74.9c14.8-103.6-11.3-213-81-302.3z",
                         "p-id": "13309",
                         fill: "#ffffff"
                       }, null, -1)
-                    ])))
+                    ])]))
                   ]),
                   _: 1
                 }, 8, ["order"])) : createCommentVNode("", true),
@@ -22494,13 +22511,13 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                       "p-id": "13521",
                       width: "200",
                       height: "200"
-                    }, _cache[20] || (_cache[20] = [
+                    }, [..._cache[20] || (_cache[20] = [
                       createElementVNode("path", {
                         d: "M480.5 251.2c13-1.6 25.9-2.4 38.8-2.5v63.9c0 6.5 7.5 10.1 12.6 6.1L660 217.6c4-3.2 4-9.2 0-12.3l-128-101c-5.1-4-12.6-0.4-12.6 6.1l-0.2 64c-118.6 0.5-235.8 53.4-314.6 154.2-69.6 89.2-95.7 198.6-81.1 302.4h74.9c-0.9-5.3-1.7-10.7-2.4-16.1-5.1-42.1-2.1-84.1 8.9-124.8 11.4-42.2 31-81.1 58.1-115.8 27.2-34.7 60.3-63.2 98.4-84.3 37-20.6 76.9-33.6 119.1-38.8zM880 418H352c-17.7 0-32 14.3-32 32v414c0 17.7 14.3 32 32 32h528c17.7 0 32-14.3 32-32V450c0-17.7-14.3-32-32-32z m-44 402H396V494h440v326z",
                         "p-id": "13522",
                         fill: "#ffffff"
                       }, null, -1)
-                    ])))
+                    ])]))
                   ]),
                   _: 1
                 }, 8, ["order"])) : createCommentVNode("", true),
@@ -22519,7 +22536,7 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                       "p-id": "8825",
                       width: "200",
                       height: "200"
-                    }, _cache[21] || (_cache[21] = [
+                    }, [..._cache[21] || (_cache[21] = [
                       createElementVNode("path", {
                         d: "M505.7 621c3.2 4.1 9.4 4.1 12.6 0l112-141.7c4.1-5.2 0.4-12.9-6.3-12.9h-72.1V120c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v346.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8z",
                         "p-id": "8826",
@@ -22530,16 +22547,16 @@ function _sfc_render$$(_ctx, _cache, $props, $setup, $data, $options) {
                         "p-id": "8827",
                         fill: "#ffffff"
                       }, null, -1)
-                    ]), 512)), [
+                    ])], 512)), [
                       [vShow, !$data.downloading]
                     ]),
-                    withDirectives((openBlock(), createElementBlock("svg", _hoisted_3$k, _cache[22] || (_cache[22] = [
+                    withDirectives((openBlock(), createElementBlock("svg", _hoisted_3$k, [..._cache[22] || (_cache[22] = [
                       createElementVNode("path", {
                         d: "M512 64c247.2 0 448 200.8 448 448h-64c0-212-172-384-384-384V64z m0 832c-212 0-384-172-384-384H64c0 247.2 200.8 448 448 448v-64z",
                         "p-id": "7817",
                         fill: "#ffffff"
                       }, null, -1)
-                    ]), 512)), [
+                    ])], 512)), [
                       [vShow, $data.downloading]
                     ])
                   ]),
@@ -23252,16 +23269,16 @@ function _sfc_render$Z(_ctx, _cache, $props, $setup, $data, $options) {
       key: 1,
       class: normalizeClass(["ivu-input-number-controls-outside-btn ivu-input-number-controls-outside-down", { "ivu-input-number-controls-outside-btn-disabled": $data.downDisabled }]),
       onClick: _cache[4] || (_cache[4] = (...args) => $options.down && $options.down(...args))
-    }, _cache[12] || (_cache[12] = [
+    }, [..._cache[12] || (_cache[12] = [
       createElementVNode("i", { class: "ivu-icon ivu-icon-ios-remove" }, null, -1)
-    ]), 2)) : createCommentVNode("", true),
+    ])], 2)) : createCommentVNode("", true),
     $props.controlsOutside ? (openBlock(), createElementBlock("div", {
       key: 2,
       class: normalizeClass(["ivu-input-number-controls-outside-btn ivu-input-number-controls-outside-up", { "ivu-input-number-controls-outside-btn-disabled": $data.upDisabled }]),
       onClick: _cache[5] || (_cache[5] = (...args) => $options.up && $options.up(...args))
-    }, _cache[13] || (_cache[13] = [
+    }, [..._cache[13] || (_cache[13] = [
       createElementVNode("i", { class: "ivu-icon ivu-icon-ios-add" }, null, -1)
-    ]), 2)) : createCommentVNode("", true),
+    ])], 2)) : createCommentVNode("", true),
     createElementVNode("div", {
       class: normalizeClass($options.inputWrapClasses)
     }, [
@@ -28710,11 +28727,11 @@ function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
       title: _ctx.t("i.page.prev"),
       class: normalizeClass($options.prevClasses),
       onClick: _cache[0] || (_cache[0] = (...args) => $options.prev && $options.prev(...args))
-    }, _cache[17] || (_cache[17] = [
+    }, [..._cache[17] || (_cache[17] = [
       createElementVNode("a", null, [
         createElementVNode("i", { class: "ivu-icon ivu-icon-ios-arrow-back" })
       ], -1)
-    ]), 10, _hoisted_1$m),
+    ])], 10, _hoisted_1$m),
     createElementVNode("div", {
       class: normalizeClass($options.simplePagerClasses),
       title: $data.currentPage + "/" + $options.allPages
@@ -28736,11 +28753,11 @@ function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
       title: _ctx.t("i.page.next"),
       class: normalizeClass($options.nextClasses),
       onClick: _cache[4] || (_cache[4] = (...args) => $options.next && $options.next(...args))
-    }, _cache[19] || (_cache[19] = [
+    }, [..._cache[19] || (_cache[19] = [
       createElementVNode("a", null, [
         createElementVNode("i", { class: "ivu-icon ivu-icon-ios-arrow-forward" })
       ], -1)
-    ]), 10, _hoisted_4$8)
+    ])], 10, _hoisted_4$8)
   ], 6)) : (openBlock(), createElementBlock("ul", {
     key: 1,
     class: normalizeClass($options.wrapClasses),
@@ -28774,20 +28791,20 @@ function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
       title: "1",
       class: normalizeClass($options.firstPageClasses),
       onClick: _cache[6] || (_cache[6] = ($event) => $options.changePage(1))
-    }, _cache[20] || (_cache[20] = [
+    }, [..._cache[20] || (_cache[20] = [
       createElementVNode("a", null, "1", -1)
-    ]), 2),
+    ])], 2),
     $data.currentPage > 5 ? (openBlock(), createElementBlock("li", {
       key: 1,
       title: _ctx.t("i.page.prev5"),
       class: normalizeClass([$data.prefixCls + "-item-jump-prev"]),
       onClick: _cache[7] || (_cache[7] = (...args) => $options.fastPrev && $options.fastPrev(...args))
-    }, _cache[21] || (_cache[21] = [
+    }, [..._cache[21] || (_cache[21] = [
       createElementVNode("a", null, [
         createElementVNode("i", { class: "ivu-icon ivu-icon-ios-arrow-back" }),
         createElementVNode("i", { class: "ivu-icon ivu-icon-ios-more" })
       ], -1)
-    ]), 10, _hoisted_7$2)) : createCommentVNode("", true),
+    ])], 10, _hoisted_7$2)) : createCommentVNode("", true),
     $data.currentPage === 5 ? (openBlock(), createElementBlock("li", {
       key: 2,
       title: $data.currentPage - 3,
@@ -28848,12 +28865,12 @@ function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
       title: _ctx.t("i.page.next5"),
       class: normalizeClass([$data.prefixCls + "-item-jump-next"]),
       onClick: _cache[14] || (_cache[14] = (...args) => $options.fastNext && $options.fastNext(...args))
-    }, _cache[22] || (_cache[22] = [
+    }, [..._cache[22] || (_cache[22] = [
       createElementVNode("a", null, [
         createElementVNode("i", { class: "ivu-icon ivu-icon-ios-arrow-forward" }),
         createElementVNode("i", { class: "ivu-icon ivu-icon-ios-more" })
       ], -1)
-    ]), 10, _hoisted_15)) : createCommentVNode("", true),
+    ])], 10, _hoisted_15)) : createCommentVNode("", true),
     $options.allPages > 1 ? (openBlock(), createElementBlock("li", {
       key: 10,
       title: $options.allPages,
@@ -30864,9 +30881,9 @@ function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
     withDirectives(createElementVNode("span", {
       onClick: _cache[0] || (_cache[0] = (...args) => $options.toggleCollapse && $options.toggleCollapse(...args)),
       class: normalizeClass($options.zeroWidthTriggerClasses)
-    }, _cache[2] || (_cache[2] = [
+    }, [..._cache[2] || (_cache[2] = [
       createElementVNode("i", { class: "ivu-icon ivu-icon-ios-menu" }, null, -1)
-    ]), 2), [
+    ])], 2), [
       [vShow, $options.showZeroTrigger]
     ]),
     createElementVNode("div", {
@@ -32227,9 +32244,9 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
   }, [
     createElementVNode("div", {
       class: normalizeClass([$data.prefixCls + "-tail"])
-    }, _cache[0] || (_cache[0] = [
+    }, [..._cache[0] || (_cache[0] = [
       createElementVNode("i", null, null, -1)
-    ]), 2),
+    ])], 2),
     createElementVNode("div", {
       class: normalizeClass([$data.prefixCls + "-head"])
     }, [
@@ -33249,8 +33266,8 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                               default: withCtx(() => [
                                 createTextVNode(toDisplayString(_ctx.t("i.table.confirmFilter")), 1)
                               ]),
-                              _: 2
-                            }, 1032, ["disabled", "onClick"]),
+                              _: 1
+                            }, 8, ["disabled", "onClick"]),
                             createVNode(_component_i_button, {
                               type: "text",
                               size: "small",
@@ -33259,8 +33276,8 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                               default: withCtx(() => [
                                 createTextVNode(toDisplayString(_ctx.t("i.table.resetFilter")), 1)
                               ]),
-                              _: 2
-                            }, 1032, ["onClick"])
+                              _: 1
+                            }, 8, ["onClick"])
                           ], 2)
                         ], 2)
                       ]),
@@ -36116,9 +36133,9 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
         onOnChange: $options.handleCheckAll,
         color: "primary"
       }, {
-        default: withCtx(() => _cache[1] || (_cache[1] = [
-          createTextVNode("\u5168\u90E8")
-        ])),
+        default: withCtx(() => [..._cache[1] || (_cache[1] = [
+          createTextVNode("\u5168\u90E8", -1)
+        ])]),
         _: 1
       }, 8, ["checked", "onOnChange"])
     ])) : createCommentVNode("", true),
@@ -38307,7 +38324,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       ], 2)) : (openBlock(), createElementBlock("span", _hoisted_4, toDisplayString($props.value.length - $props.total), 1)),
       !$props.hideTotal ? (openBlock(), createElementBlock(Fragment, { key: 4 }, [
         renderSlot(_ctx.$slots, "separator", {}, () => [
-          _cache[0] || (_cache[0] = createTextVNode(" / "))
+          _cache[0] || (_cache[0] = createTextVNode(" / ", -1))
         ]),
         renderSlot(_ctx.$slots, "total", { total: $props.total }, () => [
           createTextVNode(toDisplayString($props.total), 1)
@@ -38613,7 +38630,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.20";
+const version$1 = "1.3.21";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
