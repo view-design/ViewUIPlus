@@ -8,8 +8,17 @@
                 :data="item"
                 :tmp-item="tmpItem"
                 @click.stop="handleClickItem(item)"
-                @mouseenter.stop="handleHoverItem(item)"></Casitem>
-        </ul><Caspanel v-if="sublist && sublist.length" :prefix-cls="prefixCls" :data="sublist" :disabled="disabled" :trigger="trigger" :change-on-select="changeOnSelect"></Caspanel>
+                @mouseenter.stop="handleHoverItem(item)">
+                <template #label="{ data }">
+                    <slot name="label" :data="data"></slot>
+                </template>
+            </Casitem>
+        </ul>
+        <Caspanel v-if="sublist && sublist.length" :prefix-cls="prefixCls" :data="sublist" :disabled="disabled" :trigger="trigger" :change-on-select="changeOnSelect">
+            <template #label="{ data }">
+                <slot name="label" :data="data"></slot>
+            </template>
+        </Caspanel>
     </span>
 </template>
 <script>

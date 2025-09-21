@@ -1,6 +1,12 @@
 <template>
     <div style="margin: 100px;width: 200px;">
-        <Cascader :data="data" v-model="value1"></Cascader>
+        <Cascader :data="data" v-model="value1">
+            <!-- <template #label="{data}">
+                <Tooltip :content="data.label">
+                    <span>{{ data.label }}</span>
+                </Tooltip>
+            </template> -->
+        </Cascader>
     </div>
 </template>
 <script>
