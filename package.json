@@ -16,6 +16,15 @@
         "framework"
     ],
     "main": "dist/viewuiplus.min.js",
+    "exports": {
+        ".": {
+            "types": "./types/index.d.ts",
+            "import": "./dist/esm/index.js",
+            "require": "./dist/viewuiplus.min.js"
+        },
+        "./*": "./*.js",
+        "./*.json": "./*.json"
+    },
     "typings": "types/index.d.ts",
     "files": [
         "dist",
@@ -24,10 +33,11 @@
     ],
     "scripts": {
         "dev": "vue-cli-service serve",
-        "build": "npm run build:prod && npm run build:style && npm run build:lang",
+        "build": "npm run build:prod && npm run build:esm && npm run build:style && npm run build:lang",
         "build:style": "gulp --gulpfile build/build-style.js",
         "build:prod": "vite build",
         "build:lang": "vite build --config build/vite.lang.config.js",
+        "build:esm": "vite build --config build/vite.esm.config.js",
         "lint": "vue-cli-service lint --fix"
     },
     "repository": {
