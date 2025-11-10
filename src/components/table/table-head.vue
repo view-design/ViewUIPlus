@@ -310,7 +310,7 @@
 
                             const finalLeft = parseInt(resizeProxy.style.left, 10);
                             const columnWidth = finalLeft - startColumnLeft;
-                            const _column = table.allColumns.find(item => item.__id === column.__id);
+                            const _column = table.cloneColumns.find(item => item.__id === column.__id);
                             if (_column) {
                                 _column.width = columnWidth;
                                 column.width = columnWidth;
