@@ -1,4 +1,4 @@
-import { createApp, h, getCurrentInstance } from 'vue';
+import { createApp, h, getCurrentInstance, nextTick } from 'vue';
 import LoadingBar from './loading-bar.vue';
 import { isClient } from '../../utils/index';
 
@@ -25,10 +25,15 @@ LoadingBar.newInstance = properties => {
     const container = document.createElement('div');
     document.body.appendChild(container);
     Instance.mount(container);
-    const loading_bar = _instance.refs.loadingBar;
+
+    let loading_bar;
+    nextTick(() => {
+        loading_bar = _instance.refs.loadingBar;
+    })
 
     return {
-        update (options) {
+        update(options) {
+            if (!loading_bar) return;
             if ('percent' in options) {
                 loading_bar.percent = options.percent;
             }
