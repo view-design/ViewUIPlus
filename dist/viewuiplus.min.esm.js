@@ -4224,6 +4224,8 @@ const _sfc_main$2m = {
     isShow() {
       var _a, _b;
       const SelectInstance = this.SelectInstance;
+      if (!SelectInstance.filterQueryChange)
+        return true;
       const filterable = SelectInstance.filterable;
       const query = String(((_a = SelectInstance.query) != null ? _a : "") ? SelectInstance.query : "").toLowerCase().trim();
       const filterByLabel = SelectInstance.filterByLabel;
@@ -8642,9 +8644,7 @@ const _sfc_main$23 = {
       if (rules2.length && this.required) {
         return;
       } else if (rules2.length) {
-        rules2.every((rule) => {
-          this.isRequired = rule.required;
-        });
+        this.isRequired = rules2.some((rule) => rule.required);
       } else if (this.required) {
         this.isRequired = this.required;
       }
@@ -19761,7 +19761,7 @@ const _sfc_main$1m = {
         let text = this.text;
         let height2 = this.height;
         if (!height2 && this.lines) {
-          const lineHeight = parseInt(getStyle($el, "lineHeight"), 10);
+          const lineHeight = parseFloat(getStyle($el, "lineHeight"), 10);
           height2 = lineHeight * this.lines;
         }
         if ($text) {
@@ -24268,9 +24268,14 @@ LoadingBar.newInstance = (properties) => {
   const container = document.createElement("div");
   document.body.appendChild(container);
   Instance.mount(container);
-  const loading_bar = _instance.refs.loadingBar;
+  let loading_bar;
+  nextTick(() => {
+    loading_bar = _instance.refs.loadingBar;
+  });
   return {
     update(options) {
+      if (!loading_bar)
+        return;
       if ("percent" in options) {
         loading_bar.percent = options.percent;
       }
@@ -37391,7 +37396,10 @@ const _sfc_main$6 = {
       }
       if (node[this.childrenKey]) {
         node[this.childrenKey].forEach((child) => {
-          this.updateTreeDown(child, changes);
+          if (child.disabled)
+            this.updateTreeDown(child, { checked: false, indeterminate: false });
+          else
+            this.updateTreeDown(child, changes);
         });
       }
     },
@@ -38673,7 +38681,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.22";
+const version$1 = "1.3.23";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
