@@ -97,7 +97,7 @@
         "vue-hot-reload-api": "^2.3.4",
         "vue-html-loader": "^1.2.4",
         "vue-loader": "^17.0.0",
-        "vue-router": "^4.0.14",
+        "vue-router": "4.0.14",
         "vue-style-loader": "^4.1.3",
         "vue-template-compiler": "^2.6.14"
     }

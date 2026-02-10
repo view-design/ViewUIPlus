@@ -97,14 +97,14 @@
             isShow(){
                 const SelectInstance = this.SelectInstance;
                 const filterable = SelectInstance.filterable;
-                const query = SelectInstance.query.toLowerCase().trim();
+                const query = String(SelectInstance.query != null ? SelectInstance.query : '').toLowerCase().trim();
                 const filterByLabel = SelectInstance.filterByLabel;
                 const slotOptionsMap = SelectInstance.slotOptionsMap;
                 const { props } = slotOptionsMap.get(this.value) || { props: {} };
                 const label = this.label || this.$el && this.$el.textContent;
-                let filterOption = (label || props.value || '').toLowerCase();
+                let filterOption = String(label != null ? label : (props.value != null ? props.value : '')).toLowerCase();
                 if (filterByLabel) {
-                    filterOption = (label || '').toLowerCase();
+                    filterOption = String(label != null ? label : '').toLowerCase();
                 }
                 const showFilterOption = filterOption.includes(query);
                 return !filterable || filterable && (showFilterOption || !SelectInstance.filterQueryChange) || typeOf(SelectInstance.remoteMethod) === 'function';
