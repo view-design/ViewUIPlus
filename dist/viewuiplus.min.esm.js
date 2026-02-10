@@ -4222,16 +4222,17 @@ const _sfc_main$2m = {
       return focusOption && focusOption.props && focusOption.props.value === this.value;
     },
     isShow() {
+      var _a, _b;
       const SelectInstance = this.SelectInstance;
       const filterable = SelectInstance.filterable;
-      const query = SelectInstance.query.toLowerCase().trim();
+      const query = String(((_a = SelectInstance.query) != null ? _a : "") ? SelectInstance.query : "").toLowerCase().trim();
       const filterByLabel = SelectInstance.filterByLabel;
       const slotOptionsMap = SelectInstance.slotOptionsMap;
       const { props } = slotOptionsMap.get(this.value) || { props: {} };
       const label = this.label || this.$el && this.$el.textContent;
-      let filterOption = (label || props.value || "").toLowerCase();
+      let filterOption = String((_b = label != null ? label : props.value) != null ? _b : "").toLowerCase();
       if (filterByLabel) {
-        filterOption = (label || "").toLowerCase();
+        filterOption = String(label != null ? label : "").toLowerCase();
       }
       const showFilterOption = filterOption.includes(query);
       return !filterable || filterable && (showFilterOption || !SelectInstance.filterQueryChange) || typeOf(SelectInstance.remoteMethod) === "function";
@@ -33358,15 +33359,15 @@ const _sfc_main$n = {
       const objData = this.isChildren ? this.$parent.$parent.getDataByRowKey(this.row._rowKey) : this.objData[_index];
       return [
         `${this.prefixCls}-row`,
-        this.rowClsName(_index),
+        this.rowClsName(objData, _index),
         {
           [`${this.prefixCls}-row-highlight`]: objData && objData._isHighlight,
           [`${this.prefixCls}-row-hover`]: objData && objData._isHover
         }
       ];
     },
-    rowClsName(_index) {
-      return this.$parent.$parent.rowClassName(this.objData[_index], _index);
+    rowClsName(objData, _index) {
+      return this.$parent.$parent.rowClassName(objData, _index);
     }
   }
 };
@@ -37189,19 +37190,21 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass($options.titleClasses),
         onClick: _cache[1] || (_cache[1] = (...args) => $options.handleClickNode && $options.handleClickNode(...args))
       }, [
-        $props.data.render ? (openBlock(), createBlock(_component_Render, {
-          key: 0,
-          render: $props.data.render,
-          data: $props.data,
-          node: $options.node
-        }, null, 8, ["render", "data", "node"])) : $options.isParentRender ? (openBlock(), createBlock(_component_Render, {
-          key: 1,
-          render: $options.parentRender,
-          data: $props.data,
-          node: $options.node
-        }, null, 8, ["render", "data", "node"])) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
-          createTextVNode(toDisplayString($props.data.title), 1)
-        ], 64))
+        renderSlot(_ctx.$slots, "title", { data: $props.data }, () => [
+          $props.data.render ? (openBlock(), createBlock(_component_Render, {
+            key: 0,
+            render: $props.data.render,
+            data: $props.data,
+            node: $options.node
+          }, null, 8, ["render", "data", "node"])) : $options.isParentRender ? (openBlock(), createBlock(_component_Render, {
+            key: 1,
+            render: $options.parentRender,
+            data: $props.data,
+            node: $options.node
+          }, null, 8, ["render", "data", "node"])) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
+            createTextVNode(toDisplayString($props.data.title), 1)
+          ], 64))
+        ])
       ], 2),
       createVNode(_component_collapse_transition, { appear: $props.appear }, {
         default: withCtx(() => [
@@ -37214,11 +37217,16 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                 multiple: $props.multiple,
                 "show-checkbox": $props.showCheckbox,
                 "children-key": $props.childrenKey
-              }, null, 8, ["appear", "data", "multiple", "show-checkbox", "children-key"]);
+              }, {
+                title: withCtx(({ data }) => [
+                  renderSlot(_ctx.$slots, "title", { data })
+                ]),
+                _: 3
+              }, 8, ["appear", "data", "multiple", "show-checkbox", "children-key"]);
             }), 128))
           ])) : createCommentVNode("", true)
         ]),
-        _: 1
+        _: 3
       }, 8, ["appear"])
     ], 32)
   ], 2);
@@ -37453,6 +37461,7 @@ const _sfc_main$6 = {
   }
 };
 function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_Render = resolveComponent("Render");
   const _component_TreeNode = resolveComponent("TreeNode");
   const _component_DropdownMenu = resolveComponent("DropdownMenu");
   const _component_Dropdown = resolveComponent("Dropdown");
@@ -37468,7 +37477,26 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
         multiple: $props.multiple,
         "show-checkbox": $props.showCheckbox,
         "children-key": $props.childrenKey
-      }, null, 8, ["data", "multiple", "show-checkbox", "children-key"]);
+      }, {
+        title: withCtx(({ data }) => [
+          renderSlot(_ctx.$slots, "title", { data }, () => [
+            data.render ? (openBlock(), createBlock(_component_Render, {
+              key: 0,
+              render: data.render,
+              data,
+              node: _ctx.node
+            }, null, 8, ["render", "data", "node"])) : _ctx.isParentRender ? (openBlock(), createBlock(_component_Render, {
+              key: 1,
+              render: _ctx.parentRender,
+              data,
+              node: _ctx.node
+            }, null, 8, ["render", "data", "node"])) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
+              createTextVNode(toDisplayString(data.title), 1)
+            ], 64))
+          ])
+        ]),
+        _: 3
+      }, 8, ["data", "multiple", "show-checkbox", "children-key"]);
     }), 128)),
     !$data.stateTree.length ? (openBlock(), createElementBlock("div", {
       key: 0,
@@ -37737,7 +37765,16 @@ const _sfc_main$3 = {
       return [
         `${prefixCls$1}-list-file`,
         {
-          [`${prefixCls$1}-list-file-finish`]: file.status === "finished"
+          [`${prefixCls$1}-list-file-finish`]: file.status === "finished",
+          [`${prefixCls$1}-list-file-error`]: file.status === "error"
+        }
+      ];
+    },
+    fileRemoveCls(file) {
+      return [
+        `${prefixCls$1}-list-remove`,
+        {
+          [`${prefixCls$1}-list-remove-error`]: file.status === "error"
         }
       ];
     },
@@ -37774,7 +37811,13 @@ const _sfc_main$3 = {
       return type2;
     },
     parsePercentage(val) {
-      return parseInt(val, 10);
+      val = parseInt(val, 10);
+      if (val < 0) {
+        val = 0;
+      } else if (val > 100) {
+        val = 100;
+      }
+      return val;
     }
   }
 };
@@ -37802,10 +37845,10 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
         ], 8, _hoisted_2$1),
         withDirectives(createVNode(_component_Icon, {
           type: "ios-close",
-          class: normalizeClass([$data.prefixCls + "-list-remove"]),
+          class: normalizeClass($options.fileRemoveCls(file)),
           onClick: ($event) => $options.handleRemove(file)
         }, null, 8, ["class", "onClick"]), [
-          [vShow, file.status === "finished"]
+          [vShow, file.status === "finished" || file.status === "error"]
         ]),
         createVNode(Transition, { name: "fade" }, {
           default: withCtx(() => [
@@ -38176,8 +38219,8 @@ const _sfc_main$2 = {
       immediate: true,
       handler(fileList) {
         this.fileList = fileList.map((item) => {
-          item.status = "finished";
-          item.percentage = 100;
+          item.status = item.status ? item.status : "finished";
+          item.percentage = item.percentage >= 0 ? item.percentage : 100;
           item.uid = Date.now() + this.tempIndex++;
           return item;
         });
@@ -38630,7 +38673,7 @@ var style = {
   }
 };
 const name = "view-ui-plus";
-const version$1 = "1.3.21";
+const version$1 = "1.3.22";
 const title = "ViewUIPlus";
 const description = "A high quality UI components Library with Vue.js 3";
 const homepage = "http://www.iviewui.com";
@@ -38654,6 +38697,7 @@ const files = [
 ];
 const scripts = {
   dev: "vue-cli-service serve",
+  dev2: "vite --config vite.config.dev.js",
   build: "npm run build:prod && npm run build:style && npm run build:lang",
   "build:style": "gulp --gulpfile build/build-style.js",
   "build:prod": "vite build",
@@ -38727,7 +38771,7 @@ const devDependencies = {
   "vue-hot-reload-api": "^2.3.4",
   "vue-html-loader": "^1.2.4",
   "vue-loader": "^17.0.0",
-  "vue-router": "^4.0.14",
+  "vue-router": "4.0.14",
   "vue-style-loader": "^4.1.3",
   "vue-template-compiler": "^2.6.14"
 };
