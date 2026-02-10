@@ -24,6 +24,7 @@
     ],
     "scripts": {
         "dev": "vue-cli-service serve",
+        "dev2": "vite --config vite.config.dev.js",
         "build": "npm run build:prod && npm run build:style && npm run build:lang",
         "build:style": "gulp --gulpfile build/build-style.js",
         "build:prod": "vite build",

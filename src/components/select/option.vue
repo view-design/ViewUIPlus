@@ -97,12 +97,12 @@
             isShow(){
                 const SelectInstance = this.SelectInstance;
                 const filterable = SelectInstance.filterable;
-                const query = String(SelectInstance.query != null ? SelectInstance.query : '').toLowerCase().trim();
+                const query = String(SelectInstance.query ?? '' ? SelectInstance.query : '').toLowerCase().trim();
                 const filterByLabel = SelectInstance.filterByLabel;
                 const slotOptionsMap = SelectInstance.slotOptionsMap;
                 const { props } = slotOptionsMap.get(this.value) || { props: {} };
                 const label = this.label || this.$el && this.$el.textContent;
-                let filterOption = String(label != null ? label : (props.value != null ? props.value : '')).toLowerCase();
+                let filterOption = String(label ?? props.value ?? '').toLowerCase();
                 if (filterByLabel) {
                     filterOption = String(label != null ? label : '').toLowerCase();
                 }
