@@ -1,5 +1,9 @@
 <template>
-    <Tree :data="data1"></Tree>
+    <Tree :data="data1">
+        <template #title="{ data }">
+            <span>{{ data.title }}test</span>
+        </template>
+    </Tree>
 </template>
 <script>
 export default {

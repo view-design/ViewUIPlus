@@ -8,6 +8,13 @@
             :multiple="multiple"
             :show-checkbox="showCheckbox"
             :children-key="childrenKey">
+            <template #title="{ data }">
+                <slot name="title" :data="data">
+                    <Render v-if="data.render" :render="data.render" :data="data" :node="node"></Render>
+                    <Render v-else-if="isParentRender" :render="parentRender" :data="data" :node="node"></Render>
+                    <template v-else>{{ data.title }}</template>
+                </slot>
+            </template>
         </TreeNode>
         <div :class="[prefixCls + '-empty']" v-if="!stateTree.length">{{ localeEmptyText }}</div>
         <div class="ivu-tree-context-menu" :style="contextMenuStyles">
