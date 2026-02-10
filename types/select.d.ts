@@ -4,7 +4,7 @@ export declare const Select: DefineComponent<{
     /**
      * 指定选中项目的 value 值，可以使用 v-model 双向绑定数据。单选时只接受 String 或 Number，多选时只接受 Array|String | Number | Array
      */
-    'model-value'?: '';
+    'model-value'?: string | number | (string | number)[];
 
     /**
      * 是否支持多选

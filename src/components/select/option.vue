@@ -96,6 +96,8 @@
             },
             isShow(){
                 const SelectInstance = this.SelectInstance;
+                // Avoid entering filter mode when selecting again.
+                if(!SelectInstance.filterQueryChange) return true
                 const filterable = SelectInstance.filterable;
                 const query = String(SelectInstance.query ?? '' ? SelectInstance.query : '').toLowerCase().trim();
                 const filterByLabel = SelectInstance.filterByLabel;
