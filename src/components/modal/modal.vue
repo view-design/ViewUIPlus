@@ -7,6 +7,12 @@
             <transition :name="transitionNames[0]" @after-leave="animationFinish">
                 <div v-bind="$attrs" :class="classes" :style="mainStyles" v-show="visible" @mousedown="handleMousedown">
                     <div :class="contentClasses" ref="content" :style="contentStyles" @click="handleClickModal">
+                        <a :class="[prefixCls + '-fullscreen-icon']" :style="fullscreenIconStyles"
+                            v-if="showFullscreenIcon" @click="handleFullscreen">
+                            <slot name="fullscreen">
+                                <Icon :type="fullscreen ? 'ios-contract' : 'ios-expand'"></Icon>
+                            </slot>
+                        </a>
                         <a :class="[prefixCls + '-close']" v-if="closable" @click="close">
                             <slot name="close">
                                 <Icon type="ios-close"></Icon>
@@ -59,7 +65,7 @@
         name: 'Modal',
         mixins: [ Locale, ScrollbarMixins ],
         components: { Icon, iButton },
-        emits: ['on-cancel', 'on-ok', 'on-hidden', 'on-visible-change', 'update:modelValue'],
+        emits: ['on-cancel', 'on-ok', 'on-hidden', 'on-visible-change', 'on-fullscreen', 'update:modelValue', 'update:fullscreenValue'],
         provide () {
             return {
                 ModalInstance: this
@@ -129,7 +135,11 @@
                     return !global.$VIEWUI || global.$VIEWUI.transfer === '' ? true : global.$VIEWUI.transfer;
                 }
             },
-            fullscreen: {
+            fullscreenValue: {
+                type: Boolean,
+                default: false
+            },
+            showFullscreenIcon: {
                 type: Boolean,
                 default: false
             },
@@ -170,6 +180,7 @@
                 showHead: true,
                 buttonLoading: false,
                 visible: this.modelValue,
+                fullscreen: this.fullscreenValue,
                 dragData: deepCopy(dragData),
                 modalIndex: this.handleGetModalIndex(),  // for Esc close the top modal
                 isMouseTriggerIn: false, // #5800
@@ -253,6 +264,17 @@
 
                 return style;
             },
+            fullscreenIconStyles () {
+                let style = {};
+
+                const styleRight = {
+                    right: this.closable ? '44px' : '14px'
+                };
+
+                Object.assign(style, styleRight);
+
+                return style;
+            },
             localeOkText () {
                 if (this.okText === undefined) {
                     return this.t('i.modal.okText');
@@ -272,6 +294,11 @@
             }
         },
         methods: {
+            handleFullscreen () {
+                this.fullscreen = !this.fullscreen;
+                this.$emit('update:fullscreenValue', this.fullscreen);
+                this.$emit('on-fullscreen', this.fullscreen);
+            },
             close () {
                 if (!this.beforeClose) {
                     return this.handleClose();
@@ -472,6 +499,11 @@
                 if (val && this.resetDragPosition) {
                     this.dragData = deepCopy(dragData);
                 }
+            },
+            fullscreenValue (val) {
+                if (val === this.fullscreen) return;
+                this.fullscreen = val;
+                this.$emit('on-fullscreen', this.fullscreen);
             },
             loading (val) {
                 if (!val) {
