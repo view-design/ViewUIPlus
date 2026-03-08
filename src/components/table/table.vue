@@ -53,7 +53,7 @@
                     <table-head
                         fixed="left"
                         :prefix-cls="prefixCls"
-                        :styleObject="fixedTableStyle"
+                        :styleObject="tableStyle"
                         :columns="leftFixedColumns"
                         :column-rows="columnRows"
                         :fixed-column-rows="leftFixedColumnRows"
@@ -66,7 +66,7 @@
                         fixed="left"
                         :draggable="draggable"
                         :prefix-cls="prefixCls"
-                        :styleObject="fixedTableStyle"
+                        :styleObject="tableStyle"
                         :columns="leftFixedColumns"
                         :data="rebuildData"
                         :row-key="rowKey"
@@ -77,14 +77,14 @@
                     v-if="showSummary && (data && data.length)"
                     fixed="left"
                     :prefix-cls="prefixCls"
-                    :styleObject="fixedTableStyle"
+                    :styleObject="tableStyle"
                     :columns="leftFixedColumns"
                     :data="summaryData"
                     :columns-width="columnsWidth"
                     :style="{ 'margin-top': showHorizontalScrollBar ? scrollBarWidth + 'px' : 0 }"
                 />
             </div>
-            <div :class="fixedRightTableClasses" :style="fixedRightTableStyle" v-if="isRightFixed">
+            <div :class="fixedRightTableClasses" :style="fixedRightStyle" v-if="isRightFixed">
                 <div :class="fixedHeaderClasses" v-if="showHeader">
                     <table-head
                         fixed="right"
@@ -481,7 +481,7 @@
                 style.width = `${width}px`;
                 return style;
             },
-            fixedRightTableStyle () {
+            fixedRightStyle () {
                 let style = {};
                 let width = 0;
                 this.rightFixedColumns.forEach((col) => {
@@ -489,6 +489,20 @@
                 });
                 //width += this.scrollBarWidth;
                 style.width = `${width}px`;
+                style.right = `${this.showVerticalScrollBar?this.scrollBarWidth:0}px`;
+                return style;
+            },
+            fixedRightTableStyle () {
+                let style = {}
+                if (this.tableWidth !== 0) {
+                    let width = '';
+                    if (this.bodyHeight === 0) {
+                        width = this.tableWidth;
+                    } else {
+                        width = this.tableWidth - (this.showVerticalScrollBar?this.scrollBarWidth:0);
+                    }
+                    style.width = `${width}px`;
+                }
                 style.right = `${this.showVerticalScrollBar?this.scrollBarWidth:0}px`;
                 return style;
             },
