@@ -45,6 +45,11 @@
         &-selected, &-selected:hover{
             background-color: tint(@primary-color, 80%);
         }
+        &-disabled, &-disabled:hover{
+            color: @btn-disable-color;
+            background-color: unset;
+            cursor: not-allowed;
+        }
     }
     &-arrow{
         cursor: pointer;
