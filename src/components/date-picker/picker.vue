@@ -70,7 +70,11 @@
                     @on-pick-success="onPickSuccess"
                     @on-pick-click="disableClickOutSide = true"
                     @on-selection-mode-change="onSelectionModeChange"
-                ></component>
+                >
+                    <template v-if="$slots.dateRender" #dateRender="{cell}">
+                        <slot name="dateRender" :cell="cell"></slot>
+                    </template>
+                </component>
             </div>
         </Drop>
     </div>

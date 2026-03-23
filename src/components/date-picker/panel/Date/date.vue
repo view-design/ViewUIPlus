@@ -44,7 +44,11 @@
 
                     @on-pick="panelPickerHandlers"
                     @on-pick-click="handlePickClick"
-                ></component>
+                >
+                    <template v-if="$slots.dateRender" #dateRender="{cell}">
+                        <slot name="dateRender" :cell="cell"></slot>
+                    </template>
+                </component>
             </div>
             <div :class="[prefixCls + '-content']" v-show="isTime">
                 <time-picker

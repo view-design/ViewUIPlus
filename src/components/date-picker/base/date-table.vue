@@ -12,7 +12,9 @@
                 @click="handleClick(cell, $event)"
                 @mouseenter="handleMouseMove(cell)"
         >
-            <em>{{ cell.desc }}</em>
+            <slot name="dateRender" :cell="cell">
+                <em>{{ cell.desc }}</em>
+            </slot>
         </span>
     </div>
 </template>
