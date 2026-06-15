@@ -67,7 +67,7 @@
                 return (this.label) ? this.label : this.value;
             },
             optionLabel(){
-                return this.label || (this.$el && this.$el.textContent);
+                return this.label || this.searchLabel;
             },
             isFocused(){
                 const SelectInstance = this.SelectInstance;
@@ -103,7 +103,7 @@
                 const filterByLabel = SelectInstance.filterByLabel;
                 const slotOptionsMap = SelectInstance.slotOptionsMap;
                 const { props } = slotOptionsMap.get(this.value) || { props: {} };
-                const label = this.label || this.$el && this.$el.textContent;
+                const label = this.label || this.searchLabel;
                 let filterOption = String(label ?? props.value ?? '').toLowerCase();
                 if (filterByLabel) {
                     filterOption = String(label != null ? label : '').toLowerCase();
@@ -168,11 +168,24 @@
         created(){
             this.instance = getCurrentInstance();
         },
+        updated () {
+            this.searchLabel = (this.$el && this.$el.textContent) || '';
+        },
         mounted () {
+            this.searchLabel = (this.$el && this.$el.textContent) || '';
             this.addOption();
             const Select = findComponentUpward(this, 'iSelect');
             if (Select) {
                 this.autoComplete = Select.autoComplete;
+            }
+        },
+        watch: {
+            value (newVal, oldVal) {
+                const select = this.SelectInstance;
+                if (select && newVal !== oldVal) {
+                    select.slotOptionsMap.has(oldVal) && select.slotOptionsMap.delete(oldVal);
+                    select.slotOptionsMap.set(newVal, this.instance);
+                }
             }
         },
         beforeUnmount () {
