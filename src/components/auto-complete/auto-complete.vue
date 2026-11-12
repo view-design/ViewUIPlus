@@ -177,6 +177,7 @@
                 this.$emit('on-search', query);
             },
             handleSelect (option) {
+                if (this.itemDisabled) return;
                 const val = option.value;
                 if (val === undefined || val === null) return;
                 this.currentValue = val;
