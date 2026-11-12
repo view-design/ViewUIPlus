@@ -77,6 +77,7 @@
                 if (item.disabled) return;
 
                 const cascader = findComponentUpward(this, 'Cascader');
+                if (fromUser && cascader?.itemDisabled) return;
                 if (item.loading !== undefined && !item.children.length) {
                     if (cascader && cascader.loadData) {
                         cascader.loadData(item, () => {
