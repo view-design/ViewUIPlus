@@ -395,6 +395,9 @@
             }
         },
         watch: {
+            itemDisabled (disabled) {
+                if (disabled) this.visible = false;
+            },
             modelValue (newVal) {
                 this.val = changeColor(newVal || '');
             },
@@ -439,6 +442,7 @@
                 this.$refs.input.focus();
             },
             childChange (data) {
+                if (this.itemDisabled) return;
                 this.colorChange(data);
             },
             colorChange (data, oldHue) {
@@ -462,14 +466,17 @@
                 this.closer(event);
             },
             handleSuccess (event) {
+                if (this.itemDisabled) return;
                 this.handleButtons(event, this.formatColor);
                 this.$emit('on-pick-success');
             },
             handleClear (event) {
+                if (this.itemDisabled) return;
                 this.handleButtons(event, '');
                 this.$emit('on-pick-clear');
             },
             handleSelectColor (color) {
+                if (this.itemDisabled) return;
                 this.val = changeColor(color);
                 this.$emit('on-active-change', this.formatColor);
             },
