@@ -387,6 +387,7 @@
             },
             onPointerDragEnd () {
                 if (this.dragging) {
+                    this.currentValue = this.checkLimits(this.currentValue);
                     this.dragging = false;
                     this.$refs[`${this.pointerDown}Tooltip`].visible = false;
                     this.emitChange();
